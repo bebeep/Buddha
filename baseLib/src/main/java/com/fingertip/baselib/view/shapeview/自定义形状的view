@@ -1,0 +1,8 @@
+    边框宽度 borderWidth = 0
+    边框颜色 borderColor = Color.BLACK
+    圆角 radius = 0f
+    背景色 bgColor = 0
+    渐变色-开始 startColor = 0
+    渐变色-结束 endColor = 0
+    渐变-角度 gradientOrientation = 0
+    背景drawable bgDrawable: Drawable? = null

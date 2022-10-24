@@ -39,6 +39,9 @@ dependencies {
 
     api androidx_libs.values()
     api common_libs.values()
+    api views_libs.values()
+    api glide_libs.values()
+    api retrofit_libs.values()
 
 }
 repositories {

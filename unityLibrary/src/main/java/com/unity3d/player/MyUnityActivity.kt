@@ -3,8 +3,7 @@ package com.unity3d.player
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import com.fingertip.baselib.MessageEvent
-import com.unity3d.player.UnityPlayer
+import com.fingertip.baselib.event_bus.MessageEvent
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 

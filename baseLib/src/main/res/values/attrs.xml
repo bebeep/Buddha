@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="GDView">
+        <attr name="gdBgDrawable" format="reference" />
+        <attr name="gdBgColor" format="color"/>
+        <attr name="gdRadius" format="dimension"/>
+        <attr name="gdBorderColor" format="color"/>
+        <attr name="gdBorderWidth" format="dimension"/>
+        <attr name="gdStartColor" format="color"/>
+        <attr name="gdEndColor" format="color"/>
+        <attr name="gdGradientOrientation">
+            <enum name="TOP_BOTTOM" value="0"/>
+            <enum name="TR_BL" value="1"/>
+            <enum name="RIGHT_LEFT" value="2"/>
+            <enum name="BR_TL" value="3"/>
+            <enum name="BOTTOM_TOP" value="4"/>
+            <enum name="BL_TR" value="5"/>
+            <enum name="LEFT_RIGHT" value="6"/>
+            <enum name="TL_BR" value="7"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="CornerImageView">
+        <attr name="radius_t_l" format="dimension"/>
+        <attr name="radius_t_r" format="dimension"/>
+        <attr name="radius_b_l" format="dimension"/>
+        <attr name="radius_b_r" format="dimension"/>
+        <attr name="radius" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="GDDrawableTextView">
+        <attr name="start_drawable" format="reference" />
+        <attr name="end_drawable" format="reference" />
+        <attr name="top_drawable" format="reference" />
+        <attr name="bottom_drawable" format="reference" />
+
+        <attr name="drawable_width" format="dimension" />
+        <attr name="drawable_height" format="dimension" />
+
+        <attr name="start_drawable_width" format="dimension" />
+        <attr name="start_drawable_height" format="dimension" />
+
+        <attr name="end_drawable_width" format="dimension" />
+        <attr name="end_drawable_height" format="dimension" />
+
+        <attr name="top_drawable_width" format="dimension" />
+        <attr name="top_drawable_height" format="dimension" />
+
+        <attr name="bottom_drawable_width" format="dimension" />
+        <attr name="bottom_drawable_height" format="dimension" />
+
+        <attr name="drawable_top_margin" format="dimension"/>
+        <attr name="drawable_left_margin" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="MyTextView">
+        <attr name="zdyFont">
+            <enum name="regular" value="0"></enum>
+            <enum name="medium" value="1"/>
+            <enum name="bold" value="2"/>
+
+            <enum name="blackitalic" value="3"></enum>
+        </attr>
+        <!--中横线-->
+        <attr name="ystrike" format="boolean"/>
+        <!--下划线-->
+        <attr name="ysunderline" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="CircleImageView">
+        <attr name="civ_border_width" format="dimension"/>
+        <attr name="civ_border_color" format="color"/>
+        <attr name="civ_border_overlay" format="boolean"/>
+        <attr name="civ_fill_color" format="color"/>
+        <attr name="civ_circle_background_color" format="color"/>
+    </declare-styleable>
+</resources>

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">uilib</string>
+
+
+    <string name="uselib_net1">Internet error</string>
+    <string name="uselib_net2">Failed to request, please try again.</string>
+    <string name="uselib_net3">Connection failed, please try again.</string>
+    <string name="uselib_net4">Unknown error</string>
+    <string name="uselib_net5">No Connection</string>
+</resources>
