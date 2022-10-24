@@ -1,0 +1,46 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
+}
+def productProps = getVersionConfig()
+android {
+    compileSdkVersion rootProject.versions["compileSdkVersion"]
+
+    defaultConfig {
+        minSdkVersion rootProject.versions["minSdkVersion"]
+        targetSdkVersion rootProject.versions["targetSdkVersion"]
+        versionCode Integer.parseInt(productProps["versionCode"])
+        versionName productProps["versionName"]
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+
+    api androidx_libs.values()
+    api common_libs.values()
+
+}
+repositories {
+    mavenCentral()
+}

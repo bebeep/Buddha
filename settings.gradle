@@ -1,0 +1,4 @@
+include ':app'
+rootProject.name = "Buddha"
+include ':baseLib'
+include ':unityLibrary'

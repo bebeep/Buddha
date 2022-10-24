@@ -1,0 +1,137 @@
+-- Merging decision tree log ---
+manifest
+ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:2:1-21:12
+INJECTED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:2:1-21:12
+INJECTED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:2:1-21:12
+INJECTED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:2:1-21:12
+INJECTED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:2:1-21:12
+INJECTED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:2:1-21:12
+INJECTED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:2:1-21:12
+	package
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:2:70-98
+		INJECTED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml
+		INJECTED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:2:1-21:12
+		INJECTED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:2:99-145
+	android:versionCode
+		INJECTED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:2:1-21:12
+		INJECTED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:2:11-69
+application
+ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:3:3-14:17
+	android:extractNativeLibs
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:3:16-48
+activity#com.unity3d.player.UnityPlayerActivity
+ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:4:5-7:16
+	android:screenOrientation
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:4:111-147
+	android:launchMode
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:4:148-179
+	android:hardwareAccelerated
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:4:397-432
+	android:exported
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:4:433-456
+	android:resizeableActivity
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:4:362-396
+	android:configChanges
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:4:180-361
+	android:theme
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:4:69-110
+	android:name
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:4:15-68
+meta-data#unityplayer.UnityActivity
+ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:5:7-82
+	android:value
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:5:59-79
+	android:name
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:5:18-58
+meta-data#android.notch_support
+ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:6:7-78
+	android:value
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:6:55-75
+	android:name
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:6:18-54
+activity#com.unity3d.player.MyUnityActivity
+ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:8:5-49
+	android:name
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:8:15-46
+meta-data#unity.splash-mode
+ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:9:5-69
+	android:value
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:9:49-66
+	android:name
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:9:16-48
+meta-data#unity.splash-enable
+ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:10:5-74
+	android:value
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:10:51-71
+	android:name
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:10:16-50
+meta-data#unity.launch-fullscreen
+ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:11:5-78
+	android:value
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:11:55-75
+	android:name
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:11:16-54
+meta-data#unity.allow-resizable-window
+ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:12:5-84
+	android:value
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:12:60-81
+	android:name
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:12:16-59
+meta-data#notch.config
+ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:13:5-81
+	android:value
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:13:44-78
+	android:name
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:13:16-43
+uses-feature#0x00020000
+ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:15:3-52
+	android:glEsVersion
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:15:17-49
+uses-permission#android.permission.INTERNET
+ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:16:3-65
+	android:name
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:16:20-62
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:17:3-77
+	android:name
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:17:20-74
+uses-feature#android.hardware.touchscreen
+ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:18:3-88
+	android:required
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:18:61-85
+	android:name
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:18:17-60
+uses-feature#android.hardware.touchscreen.multitouch
+ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:19:3-99
+	android:required
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:19:72-96
+	android:name
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:19:17-71
+uses-feature#android.hardware.touchscreen.multitouch.distinct
+ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:20:3-108
+	android:required
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:20:81-105
+	android:name
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml:20:17-80
+uses-sdk
+INJECTED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml
+INJECTED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml
+INJECTED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml
+INJECTED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml
+		INJECTED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml
+		ADDED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml
+		INJECTED from G:\learn\Android\Buddha\unityLibrary\src\main\AndroidManifest.xml
