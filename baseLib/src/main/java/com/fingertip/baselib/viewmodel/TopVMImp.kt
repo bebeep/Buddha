@@ -1,15 +1,12 @@
-package com.lzlz.uselib.viewmodel
+package com.fingertip.baselib.viewmodel
 
-import com.fingertip.baselib.viewmodel.PP_ApiHandler
-import com.fingertip.baselib.viewmodel.PP_HttpRequestDelegate
-import com.lzlz.toplib.viewmodel.TopViewModel
-import com.lzlz.uselib.bianjava.RequestRsp
-
+import androidx.lifecycle.viewModelScope
+import com.fingertip.baselib.bean.RequestRsp
 import kotlinx.coroutines.CoroutineScope
 
 open class TopVMImp: TopViewModel() {
 
-    private val delegate by lazy { PP_HttpRequestDelegate(viewModelScope).apply {
+    private val delegate by lazy { HttpRequestDelegate(viewModelScope).apply {
         goLoading = { this@TopVMImp.goLoading() }
         stopLoading = { this@TopVMImp.stopLoading() }
     } }
@@ -17,7 +14,7 @@ open class TopVMImp: TopViewModel() {
     fun <T> call(
         block: suspend CoroutineScope.() -> RequestRsp<T>,
         success: (T?) -> Unit,
-        error: (PP_ApiHandler.ErrorInfo) -> Unit = {},
+        error: (ApiHandler.ErrorInfo) -> Unit = {},
         toastError: Boolean = false,
         showLoading: Boolean = false
     ) {

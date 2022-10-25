@@ -6,28 +6,9 @@ import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.LanguageUtils
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.SPUtils
-import com.facebook.FacebookSdk
-import com.facebook.LoggingBehavior
-import com.facebook.appevents.AppEventsLogger
+import com.fingertip.baseLib.BuildConfig
+import com.fingertip.baselib.language.LanguageUtil
 import com.google.gson.Gson
-import com.lzlz.imlib.AVIMManager
-import com.lzlz.imlib.notify.NotifyDelegate
-import com.lzlz.toplib.language.LanguageUtil
-import com.lzlz.toplib.log
-import com.lzlz.toplib.top.TopApplication
-import com.lzlz.uilib.BuildConfig
-import com.lzlz.uilib.R
-import com.lzlz.uselib.app.AppApplication
-import com.lzlz.uselib.app.YHManager
-import com.lzlz.uselib.bianjava.PushData
-import com.lzlz.uselib.cons.PP_Constants
-import com.onesignal.OSNotification
-import com.onesignal.OneSignal
-import com.shuyu.gsyvideoplayer.player.PlayerFactory
-import com.shuyu.gsyvideoplayer.utils.Debuger
-import com.tencent.bugly.crashreport.CrashReport
-import io.github.devzwy.nsfw.NSFWHelper
-import tv.danmaku.ijk.media.exo2.Exo2PlayerManager
 import java.lang.Exception
 import java.util.*
 
@@ -52,11 +33,6 @@ class UIApplication: AppApplication() {
 
         LogUtils.e("language===============${LanguageUtils.getAppContextLanguage().language}")
 
-        AVIMManager.initialize()
-        initFacebook()
-        CrashReport.initCrashReport(applicationContext, "b3924e3836", BuildConfig.DEBUG)
-        initOngSignal()
-        PlayerFactory.setPlayManager(Exo2PlayerManager::class.java)
 
         if (BuildConfig.DEBUG){
             Debuger.enable()

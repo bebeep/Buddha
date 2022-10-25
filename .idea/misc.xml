@@ -3,11 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/workpace/Buddha/baseLib/src/main/res/layout/view_toast.xml" value="0.36614583333333334" />
+        <entry key="..\:/learn/Android/Buddha/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
+        <entry key="..\:/learn/Android/Buddha/baseLib/src/main/res/layout/dialog_c.xml" value="0.36614583333333334" />
+        <entry key="..\:/learn/Android/Buddha/uilib/src/main/res/layout/activity_start.xml" value="0.153125" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="17" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/out" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
   </component>
 </project>

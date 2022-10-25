@@ -13,7 +13,7 @@ import retrofit2.HttpException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
-object PP_ApiHandler {
+object ApiHandler {
     suspend fun<T> handleException(
         block: suspend CoroutineScope.() -> RequestRsp<T>,
         success: suspend CoroutineScope.(RequestRsp<T>) -> Unit,
@@ -59,11 +59,8 @@ object PP_ApiHandler {
         success: suspend CoroutineScope.(T?) -> Unit
     ) {
         coroutineScope {
-            if (response.retCode == 0)  success(response.data)
-            else if (response.retCode == PP_Constants.ResultCode.AccountBlocked){
-                EventBusProxy.post(MessageEvent(PP_EventBusCons.EVENT_BLOCKED,response.message))
-            }
-            else throw ResponseThrowable(response.retCode, response.message)
+            if (response.code == 0)  success(response.data)
+            else throw ResponseThrowable(response.code, response.message)
         }
     }
 

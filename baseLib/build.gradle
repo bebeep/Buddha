@@ -46,6 +46,7 @@ dependencies {
     api views_libs.values()
     api glide_libs.values()
     api retrofit_libs.values()
+    api smart_refresh_libs.values()
 
 }
 repositories {
