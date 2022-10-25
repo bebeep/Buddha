@@ -1,14 +1,11 @@
-package com.lzlz.uselib.net
+package com.fingertip.baselib.net
 
 import com.blankj.utilcode.util.DeviceUtils
 import com.blankj.utilcode.util.GsonUtils
-import com.lzlz.toplib.top.TopApplication
-import com.lzlz.toplib.top.TopUtils
-import com.lzlz.toplib.util.HashUtil
-import com.lzlz.uselib.BuildConfig
-import com.lzlz.uselib.app.YHManager
-import com.lzlz.uselib.utils.PP_DeviceIdUtils
-import jm.NetProperty
+import com.fingertip.baselib.top.TopApplication
+import com.fingertip.baselib.top.TopUtils
+import com.fingertip.baselib.util.DeviceIdUtils
+import com.fingertip.baselib.util.HashUtil
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -29,31 +26,6 @@ object PP_RequestBodyFactory {
 
     private val secretKey = "55c9bc4c67638934fafa150c48bd4008"
 
-    /**
-     * 试玩
-     */
-    fun tryBody(): RequestBody {
-        val testId =
-            if (BuildConfig.DEBUG) {
-                ""
-            } else {
-                ""
-            }
-
-        val param = HashMap<String, Any>()
-        param["androidId"] = DeviceUtils.getAndroidID()+ NetProperty.CHANNEL + testId
-        param["channelId"] = NetProperty.CHANNEL
-        param["clientVersion"] = NetProperty.VERSION
-        param["deviceName"] = DeviceUtils.getModel()
-        param["mobileInfo"] = TopUtils.sjInfo
-        param["deviceUUID"] = PP_DeviceIdUtils.getDeviceChannleID(TopApplication.instance) + testId
-        param["idfa"] = PP_DeviceIdUtils.getDeviceChannleID(TopApplication.instance) + testId
-        param["countryCode"] = Locale.getDefault().country
-        param["languageCode"] = Locale.getDefault().language
-        param["sign"] = makeMd5Sign(NetProperty.CHANNEL.toString(), secretKey, param["deviceUUID"].toString())
-
-        return buildJsonRequestBody(param)
-    }
 
     /**
      * 登陆参数
@@ -65,7 +37,7 @@ object PP_RequestBodyFactory {
         param["clientVersion"] = NetProperty.VERSION
         param["deviceName"] = DeviceUtils.getModel()
         param["mobileInfo"] = TopUtils.sjInfo
-        param["deviceUUID"] = PP_DeviceIdUtils.getDeviceChannleID(TopApplication.instance)
+        param["deviceUUID"] = DeviceIdUtils.getDeviceChannleID(TopApplication.instance)
         param["accountName"] = account
         param["password"] = psw
         param["sign"] = makeMd5Sign(NetProperty.CHANNEL.toString(), secretKey, account, psw)
@@ -92,7 +64,7 @@ object PP_RequestBodyFactory {
         param["gender"] = gender
         param["age"] = age
         param["avatar"] = avatar
-        param["deviceUUID"] = PP_DeviceIdUtils.getDeviceChannleID(TopApplication.instance)
+        param["deviceUUID"] = DeviceIdUtils.getDeviceChannleID(TopApplication.instance)
         param["countryCode"] = Locale.getDefault().country
         param["channelId"] = NetProperty.CHANNEL
         param["languageCode"] = Locale.getDefault().language

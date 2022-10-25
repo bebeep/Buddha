@@ -1,18 +1,9 @@
-package com.lzlz.uselib.viewmodel
+package com.fingertip.baselib.viewmodel
 
 import com.blankj.utilcode.util.SPUtils
-import com.lzlz.uselib.cons.PP_Constants
-import com.lzlz.toplib.log
-import com.lzlz.toplib.loge
-import com.lzlz.toplib.util.HashUtil
-import com.lzlz.uselib.app.YHManager
-import com.lzlz.uselib.bianjava.PP_LoginRspData
-import com.lzlz.uselib.bianjava.RequestRsp
-import com.fingertip.baselib.net.PP_NetManager
-import com.fingertip.baselib.viewmodel.PP_ApiHandler
-import com.lzlz.uselib.net.PP_RequestBodyFactory
-import com.lzlz.uselib.utils.PP_ErrorUtils
-import com.lzlz.uselib.utils.PP_ToastUtil
+import com.fingertip.baselib.bean.RequestRsp
+import com.fingertip.baselib.loge
+import com.fingertip.baselib.util.ToastUtil
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -59,7 +50,7 @@ class PP_HttpRequestDelegate(private val scope: CoroutineScope) {
                         if (toastError && it.errorCode != 1) {
                             if (it.errorCode == -12321) {
                                 it.errorMsg?.let {msg ->
-                                    PP_ToastUtil.showMessage(msg)
+                                    ToastUtil.showMessage(msg)
                                 }
                             } else {
                                 showErrorToast(it.errorCode)

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <com.fingertip.baselib.view.shapeview.ShapeConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:gdRadius="8dp"
+        app:gdBgColor="@color/color_bla_50"
+        android:layout_marginHorizontal="80dp"
+        >
+        <com.fingertip.baselib.view.MyTextView
+            android:visibility="gone"
+            app:zdyFont="bold"
+            android:textStyle="bold"
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reminder"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="8dp"
+            android:textSize="22sp"
+
+            android:includeFontPadding="true"
+            android:textColor="@color/color_w_90"/>
+
+        <com.fingertip.baselib.view.MyTextView
+            android:textStyle="bold"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/tv_text"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="-------------"
+            />
+
+    </com.fingertip.baselib.view.shapeview.ShapeConstraintLayout>
+
+
+</RelativeLayout>

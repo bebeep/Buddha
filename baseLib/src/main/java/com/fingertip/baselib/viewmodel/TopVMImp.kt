@@ -1,7 +1,7 @@
 package com.lzlz.uselib.viewmodel
 
-import androidx.lifecycle.viewModelScope
 import com.fingertip.baselib.viewmodel.PP_ApiHandler
+import com.fingertip.baselib.viewmodel.PP_HttpRequestDelegate
 import com.lzlz.toplib.viewmodel.TopViewModel
 import com.lzlz.uselib.bianjava.RequestRsp
 

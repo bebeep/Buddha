@@ -7,7 +7,16 @@ object NetProperty {
 
     private const val API_PATH = "/api/"
 
+    /**
+     * 渠道号
+     */
+    const val CHANNEL = 888
 
+    /**
+     * 版本号
+     */
+//    val VERSION = BuildConfig.VERSION_NAME
+    val VERSION = ""
 
     /**
      * 测试服

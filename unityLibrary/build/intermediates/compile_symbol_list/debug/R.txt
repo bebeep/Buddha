@@ -26,9 +26,19 @@ int anim design_bottom_sheet_slide_in 0x0
 int anim design_bottom_sheet_slide_out 0x0
 int anim design_snackbar_in 0x0
 int anim design_snackbar_out 0x0
+int anim h_fragment_enter 0x0
+int anim h_fragment_exit 0x0
+int anim h_fragment_pop_enter 0x0
+int anim h_fragment_pop_exit 0x0
 int anim mtrl_bottom_sheet_slide_in 0x0
 int anim mtrl_bottom_sheet_slide_out 0x0
 int anim mtrl_card_lowers_interpolator 0x0
+int anim no_anim 0x0
+int anim pop_exit_no_anim 0x0
+int anim v_fragment_enter 0x0
+int anim v_fragment_exit 0x0
+int anim v_fragment_pop_enter 0x0
+int anim v_fragment_pop_exit 0x0
 int animator design_appbar_state_list_animator 0x0
 int animator design_fab_hide_motion_spec 0x0
 int animator design_fab_show_motion_spec 0x0
@@ -126,6 +136,7 @@ int attr barrierDirection 0x0
 int attr barrierMargin 0x0
 int attr behavior_autoHide 0x0
 int attr behavior_autoShrink 0x0
+int attr behavior_draggable 0x0
 int attr behavior_expandedOffset 0x0
 int attr behavior_fitToContents 0x0
 int attr behavior_halfExpandedRatio 0x0
@@ -143,6 +154,9 @@ int attr bottomAppBarStyle 0x0
 int attr bottomNavigationStyle 0x0
 int attr bottomSheetDialogTheme 0x0
 int attr bottomSheetStyle 0x0
+int attr bottom_drawable 0x0
+int attr bottom_drawable_height 0x0
+int attr bottom_drawable_width 0x0
 int attr boxBackgroundColor 0x0
 int attr boxBackgroundMode 0x0
 int attr boxCollapsedPaddingTop 0x0
@@ -151,6 +165,7 @@ int attr boxCornerRadiusBottomStart 0x0
 int attr boxCornerRadiusTopEnd 0x0
 int attr boxCornerRadiusTopStart 0x0
 int attr boxStrokeColor 0x0
+int attr boxStrokeErrorColor 0x0
 int attr boxStrokeWidth 0x0
 int attr boxStrokeWidthFocused 0x0
 int attr brightness 0x0
@@ -220,6 +235,11 @@ int attr circularflow_defaultAngle 0x0
 int attr circularflow_defaultRadius 0x0
 int attr circularflow_radiusInDP 0x0
 int attr circularflow_viewCenter 0x0
+int attr civ_border_color 0x0
+int attr civ_border_overlay 0x0
+int attr civ_border_width 0x0
+int attr civ_circle_background_color 0x0
+int attr civ_fill_color 0x0
 int attr clearsTag 0x0
 int attr clickAction 0x0
 int attr closeIcon 0x0
@@ -342,6 +362,10 @@ int attr drawableStartCompat 0x0
 int attr drawableTint 0x0
 int attr drawableTintMode 0x0
 int attr drawableTopCompat 0x0
+int attr drawable_height 0x0
+int attr drawable_left_margin 0x0
+int attr drawable_top_margin 0x0
+int attr drawable_width 0x0
 int attr drawerArrowStyle 0x0
 int attr dropDownListViewStyle 0x0
 int attr dropdownListPreferredItemHeight 0x0
@@ -358,9 +382,13 @@ int attr endIconDrawable 0x0
 int attr endIconMode 0x0
 int attr endIconTint 0x0
 int attr endIconTintMode 0x0
+int attr end_drawable 0x0
+int attr end_drawable_height 0x0
+int attr end_drawable_width 0x0
 int attr enforceMaterialTheme 0x0
 int attr enforceTextAppearance 0x0
 int attr ensureMinTouchTargetSize 0x0
+int attr errorContentDescription 0x0
 int attr errorEnabled 0x0
 int attr errorIconDrawable 0x0
 int attr errorIconTint 0x0
@@ -425,7 +453,18 @@ int attr fontWeight 0x0
 int attr foregroundInsidePadding 0x0
 int attr framePosition 0x0
 int attr gapBetweenBars 0x0
+int attr gdBgColor 0x0
+int attr gdBgDrawable 0x0
+int attr gdBorderColor 0x0
+int attr gdBorderWidth 0x0
+int attr gdEndColor 0x0
+int attr gdGradientOrientation 0x0
+int attr gdRadius 0x0
+int attr gdStartColor 0x0
+int attr gestureInsetBottomIgnored 0x0
 int attr goIcon 0x0
+int attr haloColor 0x0
+int attr haloRadius 0x0
 int attr headerLayout 0x0
 int attr height 0x0
 int attr helperText 0x0
@@ -441,6 +480,7 @@ int attr hintTextAppearance 0x0
 int attr hintTextColor 0x0
 int attr homeAsUpIndicator 0x0
 int attr homeLayout 0x0
+int attr horizontalOffset 0x0
 int attr hoveredFocusedTranslationZ 0x0
 int attr icon 0x0
 int attr iconEndPadding 0x0
@@ -489,6 +529,8 @@ int attr itemTextAppearanceInactive 0x0
 int attr itemTextColor 0x0
 int attr keyPositionType 0x0
 int attr keylines 0x0
+int attr labelBehavior 0x0
+int attr labelStyle 0x0
 int attr labelVisibilityMode 0x0
 int attr lastBaselineToBottomHeight 0x0
 int attr layout 0x0
@@ -611,6 +653,7 @@ int attr maxButtonHeight 0x0
 int attr maxCharacterCount 0x0
 int attr maxHeight 0x0
 int attr maxImageSize 0x0
+int attr maxLines 0x0
 int attr maxVelocity 0x0
 int attr maxWidth 0x0
 int attr measureWithLargestChild 0x0
@@ -660,7 +703,10 @@ int attr onTouchUp 0x0
 int attr overlapAnchor 0x0
 int attr overlay 0x0
 int attr paddingBottomNoButtons 0x0
+int attr paddingBottomSystemWindowInsets 0x0
 int attr paddingEnd 0x0
+int attr paddingLeftSystemWindowInsets 0x0
+int attr paddingRightSystemWindowInsets 0x0
 int attr paddingStart 0x0
 int attr paddingTopNoTitle 0x0
 int attr panelBackground 0x0
@@ -679,12 +725,18 @@ int attr percentX 0x0
 int attr percentY 0x0
 int attr perpendicularPath_percent 0x0
 int attr pivotAnchor 0x0
+int attr placeholderText 0x0
+int attr placeholderTextAppearance 0x0
+int attr placeholderTextColor 0x0
 int attr placeholder_emptyVisibility 0x0
 int attr polarRelativeTo 0x0
 int attr popupMenuBackground 0x0
 int attr popupMenuStyle 0x0
 int attr popupTheme 0x0
 int attr popupWindowStyle 0x0
+int attr prefixText 0x0
+int attr prefixTextAppearance 0x0
+int attr prefixTextColor 0x0
 int attr preserveIconSpacing 0x0
 int attr pressedTranslationZ 0x0
 int attr progressBarPadding 0x0
@@ -695,6 +747,11 @@ int attr quantizeMotionSteps 0x0
 int attr queryBackground 0x0
 int attr queryHint 0x0
 int attr radioButtonStyle 0x0
+int attr radius 0x0
+int attr radius_b_l 0x0
+int attr radius_b_r 0x0
+int attr radius_t_l 0x0
+int attr radius_t_r 0x0
 int attr rangeFillColor 0x0
 int attr ratingBarStyle 0x0
 int attr ratingBarStyleIndicator 0x0
@@ -724,6 +781,7 @@ int attr searchViewStyle 0x0
 int attr seekBarStyle 0x0
 int attr selectableItemBackground 0x0
 int attr selectableItemBackgroundBorderless 0x0
+int attr selectionRequired 0x0
 int attr setsTag 0x0
 int attr shapeAppearance 0x0
 int attr shapeAppearanceLargeComponent 0x0
@@ -741,8 +799,10 @@ int attr singleChoiceItemLayout 0x0
 int attr singleLine 0x0
 int attr singleSelection 0x0
 int attr sizePercent 0x0
+int attr sliderStyle 0x0
 int attr snackbarButtonStyle 0x0
 int attr snackbarStyle 0x0
+int attr snackbarTextViewStyle 0x0
 int attr spanCount 0x0
 int attr spinBars 0x0
 int attr spinnerDropDownItemStyle 0x0
@@ -761,6 +821,9 @@ int attr startIconContentDescription 0x0
 int attr startIconDrawable 0x0
 int attr startIconTint 0x0
 int attr startIconTintMode 0x0
+int attr start_drawable 0x0
+int attr start_drawable_height 0x0
+int attr start_drawable_width 0x0
 int attr state_above_anchor 0x0
 int attr state_collapsed 0x0
 int attr state_collapsible 0x0
@@ -778,7 +841,11 @@ int attr subtitle 0x0
 int attr subtitleTextAppearance 0x0
 int attr subtitleTextColor 0x0
 int attr subtitleTextStyle 0x0
+int attr suffixText 0x0
+int attr suffixTextAppearance 0x0
+int attr suffixTextColor 0x0
 int attr suggestionRowLayout 0x0
+int attr swipeRefreshLayoutProgressSpinnerBackgroundColor 0x0
 int attr switchMinWidth 0x0
 int attr switchPadding 0x0
 int attr switchStyle 0x0
@@ -845,6 +912,7 @@ int attr textColorAlertDialogListItem 0x0
 int attr textColorSearchUrl 0x0
 int attr textEndPadding 0x0
 int attr textFillColor 0x0
+int attr textInputLayoutFocusedRectEnabled 0x0
 int attr textInputStyle 0x0
 int attr textLocale 0x0
 int attr textOutlineColor 0x0
@@ -859,9 +927,15 @@ int attr textureWidth 0x0
 int attr theme 0x0
 int attr themeLineHeight 0x0
 int attr thickness 0x0
+int attr thumbColor 0x0
+int attr thumbElevation 0x0
+int attr thumbRadius 0x0
 int attr thumbTextPadding 0x0
 int attr thumbTint 0x0
 int attr thumbTintMode 0x0
+int attr tickColor 0x0
+int attr tickColorActive 0x0
+int attr tickColorInactive 0x0
 int attr tickMark 0x0
 int attr tickMarkTint 0x0
 int attr tickMarkTintMode 0x0
@@ -883,11 +957,19 @@ int attr toolbarNavigationButtonStyle 0x0
 int attr toolbarStyle 0x0
 int attr tooltipForegroundColor 0x0
 int attr tooltipFrameBackground 0x0
+int attr tooltipStyle 0x0
 int attr tooltipText 0x0
+int attr top_drawable 0x0
+int attr top_drawable_height 0x0
+int attr top_drawable_width 0x0
 int attr touchAnchorId 0x0
 int attr touchAnchorSide 0x0
 int attr touchRegionId 0x0
 int attr track 0x0
+int attr trackColor 0x0
+int attr trackColorActive 0x0
+int attr trackColorInactive 0x0
+int attr trackHeight 0x0
 int attr trackTint 0x0
 int attr trackTintMode 0x0
 int attr transformPivotTarget 0x0
@@ -895,6 +977,7 @@ int attr transitionDisable 0x0
 int attr transitionEasing 0x0
 int attr transitionFlags 0x0
 int attr transitionPathRotate 0x0
+int attr transitionShapeAppearance 0x0
 int attr triggerId 0x0
 int attr triggerReceiver 0x0
 int attr triggerSlack 0x0
@@ -902,6 +985,8 @@ int attr ttcIndex 0x0
 int attr upDuration 0x0
 int attr useCompatPadding 0x0
 int attr useMaterialThemeColors 0x0
+int attr values 0x0
+int attr verticalOffset 0x0
 int attr viewInflaterClass 0x0
 int attr viewTransitionMode 0x0
 int attr viewTransitionOnCross 0x0
@@ -929,6 +1014,9 @@ int attr windowNoTitle 0x0
 int attr yearSelectedStyle 0x0
 int attr yearStyle 0x0
 int attr yearTodayStyle 0x0
+int attr ystrike 0x0
+int attr ysunderline 0x0
+int attr zdyFont 0x0
 int bool abc_action_bar_embed_tabs 0x0
 int bool abc_allow_stacked_button_bar 0x0
 int bool abc_config_actionMenuItemAllCaps 0x0
@@ -1050,6 +1138,13 @@ int color material_on_primary_emphasis_medium 0x0
 int color material_on_surface_disabled 0x0
 int color material_on_surface_emphasis_high_type 0x0
 int color material_on_surface_emphasis_medium 0x0
+int color material_on_surface_stroke 0x0
+int color material_slider_active_tick_marks_color 0x0
+int color material_slider_active_track_color 0x0
+int color material_slider_halo_color 0x0
+int color material_slider_inactive_tick_marks_color 0x0
+int color material_slider_inactive_track_color 0x0
+int color material_slider_thumb_color 0x0
 int color mtrl_bottom_nav_colored_item_tint 0x0
 int color mtrl_bottom_nav_colored_ripple_color 0x0
 int color mtrl_bottom_nav_item_tint 0x0
@@ -1075,9 +1170,8 @@ int color mtrl_choice_chip_background_color 0x0
 int color mtrl_choice_chip_ripple_color 0x0
 int color mtrl_choice_chip_text_color 0x0
 int color mtrl_error 0x0
-int color mtrl_extended_fab_bg_color_selector 0x0
-int color mtrl_extended_fab_ripple_color 0x0
-int color mtrl_extended_fab_text_color_selector 0x0
+int color mtrl_fab_bg_color_selector 0x0
+int color mtrl_fab_icon_text_color_selector 0x0
 int color mtrl_fab_ripple_color 0x0
 int color mtrl_filled_background_color 0x0
 int color mtrl_filled_icon_tint 0x0
@@ -1115,6 +1209,7 @@ int color primary_text_disabled_material_light 0x0
 int color purple_200 0x0
 int color purple_500 0x0
 int color purple_700 0x0
+int color radiobutton_themeable_attribute_color 0x0
 int color ripple_material_dark 0x0
 int color ripple_material_light 0x0
 int color secondary_text_default_material_dark 0x0
@@ -1379,6 +1474,7 @@ int dimen mtrl_card_elevation 0x0
 int dimen mtrl_card_spacing 0x0
 int dimen mtrl_chip_pressed_translation_z 0x0
 int dimen mtrl_chip_text_size 0x0
+int dimen mtrl_edittext_rectangle_top_offset 0x0
 int dimen mtrl_exposed_dropdown_menu_popup_elevation 0x0
 int dimen mtrl_exposed_dropdown_menu_popup_vertical_offset 0x0
 int dimen mtrl_exposed_dropdown_menu_popup_vertical_padding 0x0
@@ -1422,6 +1518,16 @@ int dimen mtrl_navigation_item_shape_vertical_margin 0x0
 int dimen mtrl_shape_corner_size_large_component 0x0
 int dimen mtrl_shape_corner_size_medium_component 0x0
 int dimen mtrl_shape_corner_size_small_component 0x0
+int dimen mtrl_slider_halo_radius 0x0
+int dimen mtrl_slider_label_padding 0x0
+int dimen mtrl_slider_label_radius 0x0
+int dimen mtrl_slider_label_square_side 0x0
+int dimen mtrl_slider_thumb_elevation 0x0
+int dimen mtrl_slider_thumb_radius 0x0
+int dimen mtrl_slider_track_height 0x0
+int dimen mtrl_slider_track_side_padding 0x0
+int dimen mtrl_slider_track_top 0x0
+int dimen mtrl_slider_widget_height 0x0
 int dimen mtrl_snackbar_action_text_color_alpha 0x0
 int dimen mtrl_snackbar_background_corner_radius 0x0
 int dimen mtrl_snackbar_background_overlay_color_alpha 0x0
@@ -1432,10 +1538,17 @@ int dimen mtrl_textinput_box_corner_radius_small 0x0
 int dimen mtrl_textinput_box_label_cutout_padding 0x0
 int dimen mtrl_textinput_box_stroke_width_default 0x0
 int dimen mtrl_textinput_box_stroke_width_focused 0x0
+int dimen mtrl_textinput_counter_margin_start 0x0
 int dimen mtrl_textinput_end_icon_margin_start 0x0
 int dimen mtrl_textinput_outline_box_expanded_padding 0x0
 int dimen mtrl_textinput_start_icon_margin_end 0x0
 int dimen mtrl_toolbar_default_height 0x0
+int dimen mtrl_tooltip_arrowSize 0x0
+int dimen mtrl_tooltip_cornerSize 0x0
+int dimen mtrl_tooltip_minHeight 0x0
+int dimen mtrl_tooltip_minWidth 0x0
+int dimen mtrl_tooltip_padding 0x0
+int dimen mtrl_transition_shared_axis_slide_distance 0x0
 int dimen notification_action_icon_size 0x0
 int dimen notification_action_text_size 0x0
 int dimen notification_big_circle_margin 0x0
@@ -1562,19 +1675,22 @@ int drawable design_ic_visibility 0x0
 int drawable design_ic_visibility_off 0x0
 int drawable design_password_eye 0x0
 int drawable design_snackbar_background 0x0
-int drawable ic_calendar_black_24dp 0x0
-int drawable ic_clear_black_24dp 0x0
-int drawable ic_edit_black_24dp 0x0
-int drawable ic_keyboard_arrow_left_black_24dp 0x0
-int drawable ic_keyboard_arrow_right_black_24dp 0x0
+int drawable fragmentation_help 0x0
+int drawable fragmentation_ic_expandable 0x0
+int drawable fragmentation_ic_right 0x0
+int drawable fragmentation_ic_stack 0x0
 int drawable ic_launcher_background 0x0
-int drawable ic_launcher_foreground 0x0
-int drawable ic_menu_arrow_down_black_24dp 0x0
-int drawable ic_menu_arrow_up_black_24dp 0x0
 int drawable ic_mtrl_checked_circle 0x0
 int drawable ic_mtrl_chip_checked_black 0x0
 int drawable ic_mtrl_chip_checked_circle 0x0
 int drawable ic_mtrl_chip_close_circle 0x0
+int drawable material_ic_calendar_black_24dp 0x0
+int drawable material_ic_clear_black_24dp 0x0
+int drawable material_ic_edit_black_24dp 0x0
+int drawable material_ic_keyboard_arrow_left_black_24dp 0x0
+int drawable material_ic_keyboard_arrow_right_black_24dp 0x0
+int drawable material_ic_menu_arrow_down_black_24dp 0x0
+int drawable material_ic_menu_arrow_up_black_24dp 0x0
 int drawable mtrl_dialog_background 0x0
 int drawable mtrl_dropdown_arrow 0x0
 int drawable mtrl_ic_arrow_drop_down 0x0
@@ -1600,14 +1716,23 @@ int drawable notify_panel_notification_icon_bg 0x0
 int drawable test_custom_background 0x0
 int drawable tooltip_frame_dark 0x0
 int drawable tooltip_frame_light 0x0
+int drawable utils_toast_bg 0x0
+int id BL_TR 0x0
 int id BOTTOM_END 0x0
 int id BOTTOM_START 0x0
+int id BOTTOM_TOP 0x0
+int id BR_TL 0x0
+int id LEFT_RIGHT 0x0
 int id NO_DEBUG 0x0
+int id RIGHT_LEFT 0x0
 int id SHOW_ALL 0x0
 int id SHOW_PATH 0x0
 int id SHOW_PROGRESS 0x0
+int id TL_BR 0x0
+int id TOP_BOTTOM 0x0
 int id TOP_END 0x0
 int id TOP_START 0x0
+int id TR_BL 0x0
 int id accelerate 0x0
 int id accessibility_action_clickable_span 0x0
 int id accessibility_custom_action_0 0x0
@@ -1680,7 +1805,9 @@ int id autoCompleteToEnd 0x0
 int id autoCompleteToStart 0x0
 int id baseline 0x0
 int id bestChoice 0x0
+int id blackitalic 0x0
 int id blocking 0x0
+int id bold 0x0
 int id bottom 0x0
 int id bounce 0x0
 int id buttonPanel 0x0
@@ -1691,6 +1818,9 @@ int id chain 0x0
 int id checkbox 0x0
 int id checked 0x0
 int id chip 0x0
+int id chip1 0x0
+int id chip2 0x0
+int id chip3 0x0
 int id chip_group 0x0
 int id chronometer 0x0
 int id clear_text 0x0
@@ -1708,6 +1838,7 @@ int id currentState 0x0
 int id custom 0x0
 int id customPanel 0x0
 int id cut 0x0
+int id dataBinding 0x0
 int id date_picker_actions 0x0
 int id decelerate 0x0
 int id decelerateAndComplete 0x0
@@ -1740,15 +1871,18 @@ int id expanded_menu 0x0
 int id fade 0x0
 int id fill 0x0
 int id filled 0x0
-int id filter_chip 0x0
 int id fixed 0x0
 int id flip 0x0
+int id floating 0x0
 int id forever 0x0
 int id frost 0x0
 int id ghost_view 0x0
 int id ghost_view_holder 0x0
+int id gif 0x0
+int id glide_custom_view_target_tag 0x0
 int id gone 0x0
 int id group_divider 0x0
+int id hierarchy 0x0
 int id home 0x0
 int id honorRequest 0x0
 int id horizontal_only 0x0
@@ -1761,6 +1895,7 @@ int id immediateStop 0x0
 int id included 0x0
 int id info 0x0
 int id invisible 0x0
+int id isexpand 0x0
 int id italic 0x0
 int id item_touch_helper_previous_elevation 0x0
 int id jumpToEnd 0x0
@@ -1777,6 +1912,7 @@ int id list_item 0x0
 int id masked 0x0
 int id match_constraint 0x0
 int id match_parent 0x0
+int id medium 0x0
 int id message 0x0
 int id middle 0x0
 int id mini 0x0
@@ -1798,6 +1934,7 @@ int id mtrl_calendar_year_selector_frame 0x0
 int id mtrl_card_checked_layer_id 0x0
 int id mtrl_child_content_container 0x0
 int id mtrl_internal_children_alpha_tag 0x0
+int id mtrl_motion_snapshot_view 0x0
 int id mtrl_picker_fullscreen 0x0
 int id mtrl_picker_header 0x0
 int id mtrl_picker_header_selection_text 0x0
@@ -1820,6 +1957,8 @@ int id notification_main_column 0x0
 int id notification_main_column_container 0x0
 int id off 0x0
 int id on 0x0
+int id onAttachStateChangeListener 0x0
+int id onDateChanged 0x0
 int id outline 0x0
 int id overshoot 0x0
 int id packed 0x0
@@ -1839,11 +1978,13 @@ int id progress_circular 0x0
 int id progress_horizontal 0x0
 int id radio 0x0
 int id rectangles 0x0
+int id regular 0x0
 int id reverseSawtooth 0x0
 int id right 0x0
 int id right_icon 0x0
 int id right_side 0x0
 int id rounded 0x0
+int id row_index_key 0x0
 int id save_non_transition_alpha 0x0
 int id save_overlay_view 0x0
 int id sawtooth 0x0
@@ -1906,15 +2047,21 @@ int id tag_unhandled_key_event_manager 0x0
 int id tag_unhandled_key_listeners 0x0
 int id test_checkbox_android_button_tint 0x0
 int id test_checkbox_app_button_tint 0x0
+int id test_radiobutton_android_button_tint 0x0
+int id test_radiobutton_app_button_tint 0x0
 int id text 0x0
 int id text2 0x0
 int id textSpacerNoButtons 0x0
 int id textSpacerNoTitle 0x0
+int id textWatcher 0x0
 int id text_input_end_icon 0x0
 int id text_input_start_icon 0x0
 int id textinput_counter 0x0
 int id textinput_error 0x0
 int id textinput_helper_text 0x0
+int id textinput_placeholder 0x0
+int id textinput_prefix_text 0x0
+int id textinput_suffix_text 0x0
 int id time 0x0
 int id title 0x0
 int id titleDividerNoCustom 0x0
@@ -1933,16 +2080,22 @@ int id uniform 0x0
 int id unitySurfaceView 0x0
 int id unlabeled 0x0
 int id up 0x0
+int id utvBottomIconView 0x0
+int id utvLeftIconView 0x0
+int id utvRightIconView 0x0
+int id utvTopIconView 0x0
 int id vertical_only 0x0
 int id view_offset_helper 0x0
 int id view_transition 0x0
 int id visible 0x0
 int id west 0x0
+int id withinBounds 0x0
 int id wrap 0x0
 int id wrap_content 0x0
 int id wrap_content_constrained 0x0
 int id x_left 0x0
 int id x_right 0x0
+int id zero_corner_chip 0x0
 int integer abc_config_activityDefaultDur 0x0
 int integer abc_config_activityShortDur 0x0
 int integer app_bar_elevation_anim_duration 0x0
@@ -2019,6 +2172,7 @@ int layout design_navigation_menu 0x0
 int layout design_navigation_menu_item 0x0
 int layout design_text_input_end_icon 0x0
 int layout design_text_input_start_icon 0x0
+int layout dialog_c 0x0
 int layout mtrl_alert_dialog 0x0
 int layout mtrl_alert_dialog_actions 0x0
 int layout mtrl_alert_dialog_title 0x0
@@ -2058,7 +2212,9 @@ int layout select_dialog_multichoice_material 0x0
 int layout select_dialog_singlechoice_material 0x0
 int layout support_simple_spinner_dropdown_item 0x0
 int layout test_action_chip 0x0
+int layout test_chip_zero_corner_radius 0x0
 int layout test_design_checkbox 0x0
+int layout test_design_radiobutton 0x0
 int layout test_reflow_chipgroup 0x0
 int layout test_toolbar 0x0
 int layout test_toolbar_custom_background 0x0
@@ -2069,8 +2225,13 @@ int layout text_view_with_line_height_from_layout 0x0
 int layout text_view_with_line_height_from_style 0x0
 int layout text_view_with_theme_line_height 0x0
 int layout text_view_without_line_height 0x0
+int layout utils_toast_view 0x0
 int mipmap ic_launcher 0x0
 int mipmap ic_launcher_round 0x0
+int mipmap icon_default_head 0x0
+int mipmap icon_default_img 0x0
+int mipmap live_loading 0x0
+int mipmap loading 0x0
 int plurals mtrl_badge_content_description 0x0
 int string FreeformWindowOrientation_landscape 0x0
 int string FreeformWindowOrientation_portrait 0x0
@@ -2085,6 +2246,18 @@ int string abc_activity_chooser_view_see_all 0x0
 int string abc_activitychooserview_choose_application 0x0
 int string abc_capital_off 0x0
 int string abc_capital_on 0x0
+int string abc_font_family_body_1_material 0x0
+int string abc_font_family_body_2_material 0x0
+int string abc_font_family_button_material 0x0
+int string abc_font_family_caption_material 0x0
+int string abc_font_family_display_1_material 0x0
+int string abc_font_family_display_2_material 0x0
+int string abc_font_family_display_3_material 0x0
+int string abc_font_family_display_4_material 0x0
+int string abc_font_family_headline_material 0x0
+int string abc_font_family_menu_material 0x0
+int string abc_font_family_subhead_material 0x0
+int string abc_font_family_title_material 0x0
 int string abc_menu_alt_shortcut_label 0x0
 int string abc_menu_ctrl_shortcut_label 0x0
 int string abc_menu_delete_shortcut_label 0x0
@@ -2116,10 +2289,16 @@ int string error_icon_content_description 0x0
 int string exposed_dropdown_menu_content_description 0x0
 int string fab_transformation_scrim_behavior 0x0
 int string fab_transformation_sheet_behavior 0x0
+int string fragmentation_stack_help 0x0
+int string fragmentation_stack_view 0x0
 int string hide_bottom_view_on_scroll_behavior 0x0
 int string icon_content_description 0x0
+int string item_view_role_description 0x0
+int string material_slider_range_end 0x0
+int string material_slider_range_start 0x0
 int string mtrl_badge_numberless_content_description 0x0
 int string mtrl_chip_close_icon_content_description 0x0
+int string mtrl_exceed_max_badge_number_content_description 0x0
 int string mtrl_exceed_max_badge_number_suffix 0x0
 int string mtrl_picker_a11y_next_month 0x0
 int string mtrl_picker_a11y_prev_month 0x0
@@ -2159,8 +2338,15 @@ int string path_password_eye_mask_visible 0x0
 int string path_password_strike_through 0x0
 int string search_menu_title 0x0
 int string status_bar_notification_info_overflow 0x0
+int string uselib_net1 0x0
+int string uselib_net2 0x0
+int string uselib_net3 0x0
+int string uselib_net4 0x0
+int string uselib_net5 0x0
+int style ActivityTranslucent 0x0
 int style AlertDialog_AppCompat 0x0
 int style AlertDialog_AppCompat_Light 0x0
+int style AndroidThemeColorAccentYellow 0x0
 int style Animation_AppCompat_Dialog 0x0
 int style Animation_AppCompat_DropDownUp 0x0
 int style Animation_AppCompat_Tooltip 0x0
@@ -2239,6 +2425,8 @@ int style Base_ThemeOverlay_AppCompat_Dialog_Alert 0x0
 int style Base_ThemeOverlay_AppCompat_Light 0x0
 int style Base_ThemeOverlay_MaterialComponents_Dialog 0x0
 int style Base_ThemeOverlay_MaterialComponents_Dialog_Alert 0x0
+int style Base_ThemeOverlay_MaterialComponents_Dialog_Alert_Framework 0x0
+int style Base_ThemeOverlay_MaterialComponents_Light_Dialog_Alert_Framework 0x0
 int style Base_ThemeOverlay_MaterialComponents_MaterialAlertDialog 0x0
 int style Base_Theme_AppCompat 0x0
 int style Base_Theme_AppCompat_CompactMenu 0x0
@@ -2290,6 +2478,10 @@ int style Base_V21_Theme_AppCompat 0x0
 int style Base_V21_Theme_AppCompat_Dialog 0x0
 int style Base_V21_Theme_AppCompat_Light 0x0
 int style Base_V21_Theme_AppCompat_Light_Dialog 0x0
+int style Base_V21_Theme_MaterialComponents 0x0
+int style Base_V21_Theme_MaterialComponents_Dialog 0x0
+int style Base_V21_Theme_MaterialComponents_Light 0x0
+int style Base_V21_Theme_MaterialComponents_Light_Dialog 0x0
 int style Base_V22_Theme_AppCompat 0x0
 int style Base_V22_Theme_AppCompat_Light 0x0
 int style Base_V23_Theme_AppCompat 0x0
@@ -2373,6 +2565,7 @@ int style Base_Widget_MaterialComponents_PopupMenu 0x0
 int style Base_Widget_MaterialComponents_PopupMenu_ContextMenu 0x0
 int style Base_Widget_MaterialComponents_PopupMenu_ListPopupWindow 0x0
 int style Base_Widget_MaterialComponents_PopupMenu_Overflow 0x0
+int style Base_Widget_MaterialComponents_Slider 0x0
 int style Base_Widget_MaterialComponents_TextInputEditText 0x0
 int style Base_Widget_MaterialComponents_TextInputLayout 0x0
 int style Base_Widget_MaterialComponents_TextView 0x0
@@ -2441,6 +2634,7 @@ int style ShapeAppearance_MaterialComponents_LargeComponent 0x0
 int style ShapeAppearance_MaterialComponents_MediumComponent 0x0
 int style ShapeAppearance_MaterialComponents_SmallComponent 0x0
 int style ShapeAppearance_MaterialComponents_Test 0x0
+int style ShapeAppearance_MaterialComponents_Tooltip 0x0
 int style TestStyleWithLineHeight 0x0
 int style TestStyleWithLineHeightAppearance 0x0
 int style TestStyleWithThemeLineHeightAttribute 0x0
@@ -2511,7 +2705,10 @@ int style TextAppearance_Design_Counter_Overflow 0x0
 int style TextAppearance_Design_Error 0x0
 int style TextAppearance_Design_HelperText 0x0
 int style TextAppearance_Design_Hint 0x0
+int style TextAppearance_Design_Placeholder 0x0
+int style TextAppearance_Design_Prefix 0x0
 int style TextAppearance_Design_Snackbar_Message 0x0
+int style TextAppearance_Design_Suffix 0x0
 int style TextAppearance_Design_Tab 0x0
 int style TextAppearance_MaterialComponents_Badge 0x0
 int style TextAppearance_MaterialComponents_Body1 0x0
@@ -2528,9 +2725,11 @@ int style TextAppearance_MaterialComponents_Headline6 0x0
 int style TextAppearance_MaterialComponents_Overline 0x0
 int style TextAppearance_MaterialComponents_Subtitle1 0x0
 int style TextAppearance_MaterialComponents_Subtitle2 0x0
+int style TextAppearance_MaterialComponents_Tooltip 0x0
 int style TextAppearance_Widget_AppCompat_ExpandedMenu_Item 0x0
 int style TextAppearance_Widget_AppCompat_Toolbar_Subtitle 0x0
 int style TextAppearance_Widget_AppCompat_Toolbar_Title 0x0
+int style ThemeOverlayColorAccentRed 0x0
 int style ThemeOverlay_AppCompat 0x0
 int style ThemeOverlay_AppCompat_ActionBar 0x0
 int style ThemeOverlay_AppCompat_Dark 0x0
@@ -2558,8 +2757,10 @@ int style ThemeOverlay_MaterialComponents_Dark_ActionBar 0x0
 int style ThemeOverlay_MaterialComponents_DayNight_BottomSheetDialog 0x0
 int style ThemeOverlay_MaterialComponents_Dialog 0x0
 int style ThemeOverlay_MaterialComponents_Dialog_Alert 0x0
+int style ThemeOverlay_MaterialComponents_Dialog_Alert_Framework 0x0
 int style ThemeOverlay_MaterialComponents_Light 0x0
 int style ThemeOverlay_MaterialComponents_Light_BottomSheetDialog 0x0
+int style ThemeOverlay_MaterialComponents_Light_Dialog_Alert_Framework 0x0
 int style ThemeOverlay_MaterialComponents_MaterialAlertDialog 0x0
 int style ThemeOverlay_MaterialComponents_MaterialAlertDialog_Centered 0x0
 int style ThemeOverlay_MaterialComponents_MaterialAlertDialog_Picker_Date 0x0
@@ -2740,6 +2941,7 @@ int style Widget_Design_NavigationView 0x0
 int style Widget_Design_ScrimInsetsFrameLayout 0x0
 int style Widget_Design_Snackbar 0x0
 int style Widget_Design_TabLayout 0x0
+int style Widget_Design_TextInputEditText 0x0
 int style Widget_Design_TextInputLayout 0x0
 int style Widget_MaterialComponents_ActionBar_Primary 0x0
 int style Widget_MaterialComponents_ActionBar_PrimarySurface 0x0
@@ -2811,8 +3013,11 @@ int style Widget_MaterialComponents_PopupMenu 0x0
 int style Widget_MaterialComponents_PopupMenu_ContextMenu 0x0
 int style Widget_MaterialComponents_PopupMenu_ListPopupWindow 0x0
 int style Widget_MaterialComponents_PopupMenu_Overflow 0x0
+int style Widget_MaterialComponents_ShapeableImageView 0x0
+int style Widget_MaterialComponents_Slider 0x0
 int style Widget_MaterialComponents_Snackbar 0x0
 int style Widget_MaterialComponents_Snackbar_FullWidth 0x0
+int style Widget_MaterialComponents_Snackbar_TextView 0x0
 int style Widget_MaterialComponents_TabLayout 0x0
 int style Widget_MaterialComponents_TabLayout_Colored 0x0
 int style Widget_MaterialComponents_TabLayout_PrimarySurface 0x0
@@ -2833,7 +3038,15 @@ int style Widget_MaterialComponents_Toolbar 0x0
 int style Widget_MaterialComponents_Toolbar_Primary 0x0
 int style Widget_MaterialComponents_Toolbar_PrimarySurface 0x0
 int style Widget_MaterialComponents_Toolbar_Surface 0x0
+int style Widget_MaterialComponents_Tooltip 0x0
 int style Widget_Support_CoordinatorLayout 0x0
+int style constraint_center 0x0
+int style constraint_h_center_bottom 0x0
+int style constraint_h_center_top 0x0
+int style constraint_v_center_end 0x0
+int style constraint_v_center_start 0x0
+int style dialog_load 0x0
+int style launch 0x0
 int[] styleable ActionBar { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
 int styleable ActionBar_background 0
 int styleable ActionBar_backgroundSplit 1
@@ -3086,13 +3299,15 @@ int styleable AppCompatTheme_windowFixedWidthMinor 121
 int styleable AppCompatTheme_windowMinWidthMajor 122
 int styleable AppCompatTheme_windowMinWidthMinor 123
 int styleable AppCompatTheme_windowNoTitle 124
-int[] styleable Badge { 0x0, 0x0, 0x0, 0x0, 0x0 }
+int[] styleable Badge { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
 int styleable Badge_backgroundColor 0
 int styleable Badge_badgeGravity 1
 int styleable Badge_badgeTextColor 2
-int styleable Badge_maxCharacterCount 3
-int styleable Badge_number 4
-int[] styleable BottomAppBar { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
+int styleable Badge_horizontalOffset 3
+int styleable Badge_maxCharacterCount 4
+int styleable Badge_number 5
+int styleable Badge_verticalOffset 6
+int[] styleable BottomAppBar { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
 int styleable BottomAppBar_backgroundTint 0
 int styleable BottomAppBar_elevation 1
 int styleable BottomAppBar_fabAlignmentMode 2
@@ -3101,6 +3316,9 @@ int styleable BottomAppBar_fabCradleMargin 4
 int styleable BottomAppBar_fabCradleRoundedCornerRadius 5
 int styleable BottomAppBar_fabCradleVerticalOffset 6
 int styleable BottomAppBar_hideOnScroll 7
+int styleable BottomAppBar_paddingBottomSystemWindowInsets 8
+int styleable BottomAppBar_paddingLeftSystemWindowInsets 9
+int styleable BottomAppBar_paddingRightSystemWindowInsets 10
 int[] styleable BottomNavigationView { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
 int styleable BottomNavigationView_backgroundTint 0
 int styleable BottomNavigationView_elevation 1
@@ -3114,18 +3332,20 @@ int styleable BottomNavigationView_itemTextAppearanceInactive 8
 int styleable BottomNavigationView_itemTextColor 9
 int styleable BottomNavigationView_labelVisibilityMode 10
 int styleable BottomNavigationView_menu 11
-int[] styleable BottomSheetBehavior_Layout { 0x1010440, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
+int[] styleable BottomSheetBehavior_Layout { 0x1010440, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
 int styleable BottomSheetBehavior_Layout_android_elevation 0
 int styleable BottomSheetBehavior_Layout_backgroundTint 1
-int styleable BottomSheetBehavior_Layout_behavior_expandedOffset 2
-int styleable BottomSheetBehavior_Layout_behavior_fitToContents 3
-int styleable BottomSheetBehavior_Layout_behavior_halfExpandedRatio 4
-int styleable BottomSheetBehavior_Layout_behavior_hideable 5
-int styleable BottomSheetBehavior_Layout_behavior_peekHeight 6
-int styleable BottomSheetBehavior_Layout_behavior_saveFlags 7
-int styleable BottomSheetBehavior_Layout_behavior_skipCollapsed 8
-int styleable BottomSheetBehavior_Layout_shapeAppearance 9
-int styleable BottomSheetBehavior_Layout_shapeAppearanceOverlay 10
+int styleable BottomSheetBehavior_Layout_behavior_draggable 2
+int styleable BottomSheetBehavior_Layout_behavior_expandedOffset 3
+int styleable BottomSheetBehavior_Layout_behavior_fitToContents 4
+int styleable BottomSheetBehavior_Layout_behavior_halfExpandedRatio 5
+int styleable BottomSheetBehavior_Layout_behavior_hideable 6
+int styleable BottomSheetBehavior_Layout_behavior_peekHeight 7
+int styleable BottomSheetBehavior_Layout_behavior_saveFlags 8
+int styleable BottomSheetBehavior_Layout_behavior_skipCollapsed 9
+int styleable BottomSheetBehavior_Layout_gestureInsetBottomIgnored 10
+int styleable BottomSheetBehavior_Layout_shapeAppearance 11
+int styleable BottomSheetBehavior_Layout_shapeAppearanceOverlay 12
 int[] styleable ButtonBarLayout { 0x0 }
 int styleable ButtonBarLayout_allowStacking 0
 int[] styleable CardView { 0x1010140, 0x101013f, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
@@ -3153,7 +3373,7 @@ int styleable Carousel_carousel_previousState 6
 int styleable Carousel_carousel_touchUpMode 7
 int styleable Carousel_carousel_touchUp_dampeningFactor 8
 int styleable Carousel_carousel_touchUp_velocityThreshold 9
-int[] styleable Chip { 0x10101e5, 0x10100ab, 0x101011f, 0x101014f, 0x1010034, 0x1010098, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
+int[] styleable Chip { 0x10101e5, 0x10100ab, 0x101011f, 0x101014f, 0x1010034, 0x1010098, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
 int styleable Chip_android_checkable 0
 int styleable Chip_android_ellipsize 1
 int styleable Chip_android_maxWidth 2
@@ -3162,46 +3382,54 @@ int styleable Chip_android_textAppearance 4
 int styleable Chip_android_textColor 5
 int styleable Chip_checkedIcon 6
 int styleable Chip_checkedIconEnabled 7
-int styleable Chip_checkedIconVisible 8
-int styleable Chip_chipBackgroundColor 9
-int styleable Chip_chipCornerRadius 10
-int styleable Chip_chipEndPadding 11
-int styleable Chip_chipIcon 12
-int styleable Chip_chipIconEnabled 13
-int styleable Chip_chipIconSize 14
-int styleable Chip_chipIconTint 15
-int styleable Chip_chipIconVisible 16
-int styleable Chip_chipMinHeight 17
-int styleable Chip_chipMinTouchTargetSize 18
-int styleable Chip_chipStartPadding 19
-int styleable Chip_chipStrokeColor 20
-int styleable Chip_chipStrokeWidth 21
-int styleable Chip_chipSurfaceColor 22
-int styleable Chip_closeIcon 23
-int styleable Chip_closeIconEnabled 24
-int styleable Chip_closeIconEndPadding 25
-int styleable Chip_closeIconSize 26
-int styleable Chip_closeIconStartPadding 27
-int styleable Chip_closeIconTint 28
-int styleable Chip_closeIconVisible 29
-int styleable Chip_ensureMinTouchTargetSize 30
-int styleable Chip_hideMotionSpec 31
-int styleable Chip_iconEndPadding 32
-int styleable Chip_iconStartPadding 33
-int styleable Chip_rippleColor 34
-int styleable Chip_shapeAppearance 35
-int styleable Chip_shapeAppearanceOverlay 36
-int styleable Chip_showMotionSpec 37
-int styleable Chip_textEndPadding 38
-int styleable Chip_textStartPadding 39
-int[] styleable ChipGroup { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
+int styleable Chip_checkedIconTint 8
+int styleable Chip_checkedIconVisible 9
+int styleable Chip_chipBackgroundColor 10
+int styleable Chip_chipCornerRadius 11
+int styleable Chip_chipEndPadding 12
+int styleable Chip_chipIcon 13
+int styleable Chip_chipIconEnabled 14
+int styleable Chip_chipIconSize 15
+int styleable Chip_chipIconTint 16
+int styleable Chip_chipIconVisible 17
+int styleable Chip_chipMinHeight 18
+int styleable Chip_chipMinTouchTargetSize 19
+int styleable Chip_chipStartPadding 20
+int styleable Chip_chipStrokeColor 21
+int styleable Chip_chipStrokeWidth 22
+int styleable Chip_chipSurfaceColor 23
+int styleable Chip_closeIcon 24
+int styleable Chip_closeIconEnabled 25
+int styleable Chip_closeIconEndPadding 26
+int styleable Chip_closeIconSize 27
+int styleable Chip_closeIconStartPadding 28
+int styleable Chip_closeIconTint 29
+int styleable Chip_closeIconVisible 30
+int styleable Chip_ensureMinTouchTargetSize 31
+int styleable Chip_hideMotionSpec 32
+int styleable Chip_iconEndPadding 33
+int styleable Chip_iconStartPadding 34
+int styleable Chip_rippleColor 35
+int styleable Chip_shapeAppearance 36
+int styleable Chip_shapeAppearanceOverlay 37
+int styleable Chip_showMotionSpec 38
+int styleable Chip_textEndPadding 39
+int styleable Chip_textStartPadding 40
+int[] styleable ChipGroup { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
 int styleable ChipGroup_checkedChip 0
 int styleable ChipGroup_chipSpacing 1
 int styleable ChipGroup_chipSpacingHorizontal 2
 int styleable ChipGroup_chipSpacingVertical 3
-int styleable ChipGroup_singleLine 4
-int styleable ChipGroup_singleSelection 5
-int[] styleable CollapsingToolbarLayout { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
+int styleable ChipGroup_selectionRequired 4
+int styleable ChipGroup_singleLine 5
+int styleable ChipGroup_singleSelection 6
+int[] styleable CircleImageView { 0x0, 0x0, 0x0, 0x0, 0x0 }
+int styleable CircleImageView_civ_border_color 0
+int styleable CircleImageView_civ_border_overlay 1
+int styleable CircleImageView_civ_border_width 2
+int styleable CircleImageView_civ_circle_background_color 3
+int styleable CircleImageView_civ_fill_color 4
+int[] styleable CollapsingToolbarLayout { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
 int styleable CollapsingToolbarLayout_collapsedTitleGravity 0
 int styleable CollapsingToolbarLayout_collapsedTitleTextAppearance 1
 int styleable CollapsingToolbarLayout_contentScrim 2
@@ -3212,12 +3440,13 @@ int styleable CollapsingToolbarLayout_expandedTitleMarginEnd 6
 int styleable CollapsingToolbarLayout_expandedTitleMarginStart 7
 int styleable CollapsingToolbarLayout_expandedTitleMarginTop 8
 int styleable CollapsingToolbarLayout_expandedTitleTextAppearance 9
-int styleable CollapsingToolbarLayout_scrimAnimationDuration 10
-int styleable CollapsingToolbarLayout_scrimVisibleHeightTrigger 11
-int styleable CollapsingToolbarLayout_statusBarScrim 12
-int styleable CollapsingToolbarLayout_title 13
-int styleable CollapsingToolbarLayout_titleEnabled 14
-int styleable CollapsingToolbarLayout_toolbarId 15
+int styleable CollapsingToolbarLayout_maxLines 10
+int styleable CollapsingToolbarLayout_scrimAnimationDuration 11
+int styleable CollapsingToolbarLayout_scrimVisibleHeightTrigger 12
+int styleable CollapsingToolbarLayout_statusBarScrim 13
+int styleable CollapsingToolbarLayout_title 14
+int styleable CollapsingToolbarLayout_titleEnabled 15
+int styleable CollapsingToolbarLayout_toolbarId 16
 int[] styleable CollapsingToolbarLayout_Layout { 0x0, 0x0 }
 int styleable CollapsingToolbarLayout_Layout_layout_collapseMode 0
 int styleable CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier 1
@@ -3718,6 +3947,12 @@ int styleable CoordinatorLayout_Layout_layout_behavior 3
 int styleable CoordinatorLayout_Layout_layout_dodgeInsetEdges 4
 int styleable CoordinatorLayout_Layout_layout_insetEdge 5
 int styleable CoordinatorLayout_Layout_layout_keyline 6
+int[] styleable CornerImageView { 0x0, 0x0, 0x0, 0x0, 0x0 }
+int styleable CornerImageView_radius 0
+int styleable CornerImageView_radius_b_l 1
+int styleable CornerImageView_radius_b_r 2
+int styleable CornerImageView_radius_t_l 3
+int styleable CornerImageView_radius_t_r 4
 int[] styleable CustomAttribute { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
 int styleable CustomAttribute_attributeName 0
 int styleable CustomAttribute_customBoolean 1
@@ -3748,23 +3983,24 @@ int styleable ExtendedFloatingActionButton_shrinkMotionSpec 4
 int[] styleable ExtendedFloatingActionButton_Behavior_Layout { 0x0, 0x0 }
 int styleable ExtendedFloatingActionButton_Behavior_Layout_behavior_autoHide 0
 int styleable ExtendedFloatingActionButton_Behavior_Layout_behavior_autoShrink 1
-int[] styleable FloatingActionButton { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
-int styleable FloatingActionButton_backgroundTint 0
-int styleable FloatingActionButton_backgroundTintMode 1
-int styleable FloatingActionButton_borderWidth 2
-int styleable FloatingActionButton_elevation 3
-int styleable FloatingActionButton_ensureMinTouchTargetSize 4
-int styleable FloatingActionButton_fabCustomSize 5
-int styleable FloatingActionButton_fabSize 6
-int styleable FloatingActionButton_hideMotionSpec 7
-int styleable FloatingActionButton_hoveredFocusedTranslationZ 8
-int styleable FloatingActionButton_maxImageSize 9
-int styleable FloatingActionButton_pressedTranslationZ 10
-int styleable FloatingActionButton_rippleColor 11
-int styleable FloatingActionButton_shapeAppearance 12
-int styleable FloatingActionButton_shapeAppearanceOverlay 13
-int styleable FloatingActionButton_showMotionSpec 14
-int styleable FloatingActionButton_useCompatPadding 15
+int[] styleable FloatingActionButton { 0x101000e, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
+int styleable FloatingActionButton_android_enabled 0
+int styleable FloatingActionButton_backgroundTint 1
+int styleable FloatingActionButton_backgroundTintMode 2
+int styleable FloatingActionButton_borderWidth 3
+int styleable FloatingActionButton_elevation 4
+int styleable FloatingActionButton_ensureMinTouchTargetSize 5
+int styleable FloatingActionButton_fabCustomSize 6
+int styleable FloatingActionButton_fabSize 7
+int styleable FloatingActionButton_hideMotionSpec 8
+int styleable FloatingActionButton_hoveredFocusedTranslationZ 9
+int styleable FloatingActionButton_maxImageSize 10
+int styleable FloatingActionButton_pressedTranslationZ 11
+int styleable FloatingActionButton_rippleColor 12
+int styleable FloatingActionButton_shapeAppearance 13
+int styleable FloatingActionButton_shapeAppearanceOverlay 14
+int styleable FloatingActionButton_showMotionSpec 15
+int styleable FloatingActionButton_useCompatPadding 16
 int[] styleable FloatingActionButton_Behavior_Layout { 0x0 }
 int styleable FloatingActionButton_Behavior_Layout_behavior_autoHide 0
 int[] styleable FlowLayout { 0x0, 0x0 }
@@ -3792,6 +4028,32 @@ int[] styleable ForegroundLinearLayout { 0x1010109, 0x1010200, 0x0 }
 int styleable ForegroundLinearLayout_android_foreground 0
 int styleable ForegroundLinearLayout_android_foregroundGravity 1
 int styleable ForegroundLinearLayout_foregroundInsidePadding 2
+int[] styleable GDDrawableTextView { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
+int styleable GDDrawableTextView_bottom_drawable 0
+int styleable GDDrawableTextView_bottom_drawable_height 1
+int styleable GDDrawableTextView_bottom_drawable_width 2
+int styleable GDDrawableTextView_drawable_height 3
+int styleable GDDrawableTextView_drawable_left_margin 4
+int styleable GDDrawableTextView_drawable_top_margin 5
+int styleable GDDrawableTextView_drawable_width 6
+int styleable GDDrawableTextView_end_drawable 7
+int styleable GDDrawableTextView_end_drawable_height 8
+int styleable GDDrawableTextView_end_drawable_width 9
+int styleable GDDrawableTextView_start_drawable 10
+int styleable GDDrawableTextView_start_drawable_height 11
+int styleable GDDrawableTextView_start_drawable_width 12
+int styleable GDDrawableTextView_top_drawable 13
+int styleable GDDrawableTextView_top_drawable_height 14
+int styleable GDDrawableTextView_top_drawable_width 15
+int[] styleable GDView { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
+int styleable GDView_gdBgColor 0
+int styleable GDView_gdBgDrawable 1
+int styleable GDView_gdBorderColor 2
+int styleable GDView_gdBorderWidth 3
+int styleable GDView_gdEndColor 4
+int styleable GDView_gdGradientOrientation 5
+int styleable GDView_gdRadius 6
+int styleable GDView_gdStartColor 7
 int[] styleable GradientColor { 0x101020b, 0x10101a2, 0x10101a3, 0x101019e, 0x1010512, 0x1010513, 0x10101a4, 0x101019d, 0x1010510, 0x1010511, 0x1010201, 0x10101a1 }
 int styleable GradientColor_android_centerColor 0
 int styleable GradientColor_android_centerX 1
@@ -3823,6 +4085,10 @@ int styleable ImageFilterView_round 10
 int styleable ImageFilterView_roundPercent 11
 int styleable ImageFilterView_saturation 12
 int styleable ImageFilterView_warmth 13
+int[] styleable Insets { 0x0, 0x0, 0x0 }
+int styleable Insets_paddingBottomSystemWindowInsets 0
+int styleable Insets_paddingLeftSystemWindowInsets 1
+int styleable Insets_paddingRightSystemWindowInsets 2
 int[] styleable KeyAttribute { 0x101031f, 0x1010440, 0x1010326, 0x1010327, 0x1010328, 0x1010324, 0x1010325, 0x1010320, 0x1010321, 0x1010322, 0x1010323, 0x10103fa, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
 int styleable KeyAttribute_android_alpha 0
 int styleable KeyAttribute_android_elevation 1
@@ -4022,30 +4288,34 @@ int styleable MaterialAlertDialogTheme_materialAlertDialogTheme 1
 int styleable MaterialAlertDialogTheme_materialAlertDialogTitleIconStyle 2
 int styleable MaterialAlertDialogTheme_materialAlertDialogTitlePanelStyle 3
 int styleable MaterialAlertDialogTheme_materialAlertDialogTitleTextStyle 4
-int[] styleable MaterialButton { 0x10101e5, 0x10101ba, 0x10101b7, 0x10101b8, 0x10101b9, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
-int styleable MaterialButton_android_checkable 0
-int styleable MaterialButton_android_insetBottom 1
-int styleable MaterialButton_android_insetLeft 2
-int styleable MaterialButton_android_insetRight 3
-int styleable MaterialButton_android_insetTop 4
-int styleable MaterialButton_backgroundTint 5
-int styleable MaterialButton_backgroundTintMode 6
-int styleable MaterialButton_cornerRadius 7
-int styleable MaterialButton_elevation 8
-int styleable MaterialButton_icon 9
-int styleable MaterialButton_iconGravity 10
-int styleable MaterialButton_iconPadding 11
-int styleable MaterialButton_iconSize 12
-int styleable MaterialButton_iconTint 13
-int styleable MaterialButton_iconTintMode 14
-int styleable MaterialButton_rippleColor 15
-int styleable MaterialButton_shapeAppearance 16
-int styleable MaterialButton_shapeAppearanceOverlay 17
-int styleable MaterialButton_strokeColor 18
-int styleable MaterialButton_strokeWidth 19
-int[] styleable MaterialButtonToggleGroup { 0x0, 0x0 }
+int[] styleable MaterialAutoCompleteTextView { 0x1010220 }
+int styleable MaterialAutoCompleteTextView_android_inputType 0
+int[] styleable MaterialButton { 0x10100d4, 0x10101e5, 0x10101ba, 0x10101b7, 0x10101b8, 0x10101b9, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
+int styleable MaterialButton_android_background 0
+int styleable MaterialButton_android_checkable 1
+int styleable MaterialButton_android_insetBottom 2
+int styleable MaterialButton_android_insetLeft 3
+int styleable MaterialButton_android_insetRight 4
+int styleable MaterialButton_android_insetTop 5
+int styleable MaterialButton_backgroundTint 6
+int styleable MaterialButton_backgroundTintMode 7
+int styleable MaterialButton_cornerRadius 8
+int styleable MaterialButton_elevation 9
+int styleable MaterialButton_icon 10
+int styleable MaterialButton_iconGravity 11
+int styleable MaterialButton_iconPadding 12
+int styleable MaterialButton_iconSize 13
+int styleable MaterialButton_iconTint 14
+int styleable MaterialButton_iconTintMode 15
+int styleable MaterialButton_rippleColor 16
+int styleable MaterialButton_shapeAppearance 17
+int styleable MaterialButton_shapeAppearanceOverlay 18
+int styleable MaterialButton_strokeColor 19
+int styleable MaterialButton_strokeWidth 20
+int[] styleable MaterialButtonToggleGroup { 0x0, 0x0, 0x0 }
 int styleable MaterialButtonToggleGroup_checkedButton 0
-int styleable MaterialButtonToggleGroup_singleSelection 1
+int styleable MaterialButtonToggleGroup_selectionRequired 1
+int styleable MaterialButtonToggleGroup_singleSelection 2
 int[] styleable MaterialCalendar { 0x101020d, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
 int styleable MaterialCalendar_android_windowFullscreen 0
 int styleable MaterialCalendar_dayInvalidStyle 1
@@ -4081,8 +4351,9 @@ int styleable MaterialCardView_strokeWidth 9
 int[] styleable MaterialCheckBox { 0x0, 0x0 }
 int styleable MaterialCheckBox_buttonTint 0
 int styleable MaterialCheckBox_useMaterialThemeColors 1
-int[] styleable MaterialRadioButton { 0x0 }
-int styleable MaterialRadioButton_useMaterialThemeColors 0
+int[] styleable MaterialRadioButton { 0x0, 0x0 }
+int styleable MaterialRadioButton_buttonTint 0
+int styleable MaterialRadioButton_useMaterialThemeColors 1
 int[] styleable MaterialShape { 0x0, 0x0 }
 int styleable MaterialShape_shapeAppearance 0
 int styleable MaterialShape_shapeAppearanceOverlay 1
@@ -4204,6 +4475,10 @@ int[] styleable MotionTelltales { 0x0, 0x0, 0x0 }
 int styleable MotionTelltales_telltales_tailColor 0
 int styleable MotionTelltales_telltales_tailScale 1
 int styleable MotionTelltales_telltales_velocityMode 2
+int[] styleable MyTextView { 0x0, 0x0, 0x0 }
+int styleable MyTextView_ystrike 0
+int styleable MyTextView_ysunderline 1
+int styleable MyTextView_zdyFont 2
 int[] styleable NavigationView { 0x10100d4, 0x10100dd, 0x101011f, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
 int styleable NavigationView_android_background 0
 int styleable NavigationView_android_fitsSystemWindows 1
@@ -4261,6 +4536,8 @@ int styleable PropertySet_android_visibility 1
 int styleable PropertySet_layout_constraintTag 2
 int styleable PropertySet_motionProgress 3
 int styleable PropertySet_visibilityMode 4
+int[] styleable RangeSlider { 0x0 }
+int styleable RangeSlider_values 0
 int[] styleable RecycleListView { 0x0, 0x0 }
 int styleable RecycleListView_paddingBottomNoButtons 0
 int styleable RecycleListView_paddingTopNoTitle 1
@@ -4310,16 +4587,44 @@ int styleable ShapeAppearance_cornerSizeBottomLeft 6
 int styleable ShapeAppearance_cornerSizeBottomRight 7
 int styleable ShapeAppearance_cornerSizeTopLeft 8
 int styleable ShapeAppearance_cornerSizeTopRight 9
-int[] styleable Snackbar { 0x0, 0x0 }
+int[] styleable ShapeableImageView { 0x0, 0x0, 0x0, 0x0 }
+int styleable ShapeableImageView_shapeAppearance 0
+int styleable ShapeableImageView_shapeAppearanceOverlay 1
+int styleable ShapeableImageView_strokeColor 2
+int styleable ShapeableImageView_strokeWidth 3
+int[] styleable Slider { 0x101000e, 0x1010146, 0x1010024, 0x10102de, 0x10102df, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
+int styleable Slider_android_enabled 0
+int styleable Slider_android_stepSize 1
+int styleable Slider_android_value 2
+int styleable Slider_android_valueFrom 3
+int styleable Slider_android_valueTo 4
+int styleable Slider_haloColor 5
+int styleable Slider_haloRadius 6
+int styleable Slider_labelBehavior 7
+int styleable Slider_labelStyle 8
+int styleable Slider_thumbColor 9
+int styleable Slider_thumbElevation 10
+int styleable Slider_thumbRadius 11
+int styleable Slider_tickColor 12
+int styleable Slider_tickColorActive 13
+int styleable Slider_tickColorInactive 14
+int styleable Slider_trackColor 15
+int styleable Slider_trackColorActive 16
+int styleable Slider_trackColorInactive 17
+int styleable Slider_trackHeight 18
+int[] styleable Snackbar { 0x0, 0x0, 0x0 }
 int styleable Snackbar_snackbarButtonStyle 0
 int styleable Snackbar_snackbarStyle 1
-int[] styleable SnackbarLayout { 0x0, 0x101011f, 0x0, 0x0, 0x0, 0x0 }
+int styleable Snackbar_snackbarTextViewStyle 2
+int[] styleable SnackbarLayout { 0x0, 0x101011f, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
 int styleable SnackbarLayout_actionTextColorAlpha 0
 int styleable SnackbarLayout_android_maxWidth 1
 int styleable SnackbarLayout_animationMode 2
 int styleable SnackbarLayout_backgroundOverlayColorAlpha 3
-int styleable SnackbarLayout_elevation 4
-int styleable SnackbarLayout_maxActionInlineWidth 5
+int styleable SnackbarLayout_backgroundTint 4
+int styleable SnackbarLayout_backgroundTintMode 5
+int styleable SnackbarLayout_elevation 6
+int styleable SnackbarLayout_maxActionInlineWidth 7
 int[] styleable Spinner { 0x1010262, 0x10100b2, 0x1010176, 0x101017b, 0x0 }
 int styleable Spinner_android_dropDownWidth 0
 int styleable Spinner_android_entries 1
@@ -4340,6 +4645,8 @@ int[] styleable StateListDrawableItem { 0x1010199 }
 int styleable StateListDrawableItem_android_drawable 0
 int[] styleable StateSet { 0x0 }
 int styleable StateSet_defaultState 0
+int[] styleable SwipeRefreshLayout { 0x0 }
+int styleable SwipeRefreshLayout_swipeRefreshLayoutProgressSpinnerBackgroundColor 0
 int[] styleable SwitchCompat { 0x1010125, 0x1010124, 0x1010142, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
 int styleable SwitchCompat_android_textOff 0
 int styleable SwitchCompat_android_textOn 1
@@ -4419,57 +4726,71 @@ int styleable TextEffects_borderRoundPercent 10
 int styleable TextEffects_textFillColor 11
 int styleable TextEffects_textOutlineColor 12
 int styleable TextEffects_textOutlineThickness 13
-int[] styleable TextInputLayout { 0x1010150, 0x101009a, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
-int styleable TextInputLayout_android_hint 0
-int styleable TextInputLayout_android_textColorHint 1
-int styleable TextInputLayout_boxBackgroundColor 2
-int styleable TextInputLayout_boxBackgroundMode 3
-int styleable TextInputLayout_boxCollapsedPaddingTop 4
-int styleable TextInputLayout_boxCornerRadiusBottomEnd 5
-int styleable TextInputLayout_boxCornerRadiusBottomStart 6
-int styleable TextInputLayout_boxCornerRadiusTopEnd 7
-int styleable TextInputLayout_boxCornerRadiusTopStart 8
-int styleable TextInputLayout_boxStrokeColor 9
-int styleable TextInputLayout_boxStrokeWidth 10
-int styleable TextInputLayout_boxStrokeWidthFocused 11
-int styleable TextInputLayout_counterEnabled 12
-int styleable TextInputLayout_counterMaxLength 13
-int styleable TextInputLayout_counterOverflowTextAppearance 14
-int styleable TextInputLayout_counterOverflowTextColor 15
-int styleable TextInputLayout_counterTextAppearance 16
-int styleable TextInputLayout_counterTextColor 17
-int styleable TextInputLayout_endIconCheckable 18
-int styleable TextInputLayout_endIconContentDescription 19
-int styleable TextInputLayout_endIconDrawable 20
-int styleable TextInputLayout_endIconMode 21
-int styleable TextInputLayout_endIconTint 22
-int styleable TextInputLayout_endIconTintMode 23
-int styleable TextInputLayout_errorEnabled 24
-int styleable TextInputLayout_errorIconDrawable 25
-int styleable TextInputLayout_errorIconTint 26
-int styleable TextInputLayout_errorIconTintMode 27
-int styleable TextInputLayout_errorTextAppearance 28
-int styleable TextInputLayout_errorTextColor 29
-int styleable TextInputLayout_helperText 30
-int styleable TextInputLayout_helperTextEnabled 31
-int styleable TextInputLayout_helperTextTextAppearance 32
-int styleable TextInputLayout_helperTextTextColor 33
-int styleable TextInputLayout_hintAnimationEnabled 34
-int styleable TextInputLayout_hintEnabled 35
-int styleable TextInputLayout_hintTextAppearance 36
-int styleable TextInputLayout_hintTextColor 37
-int styleable TextInputLayout_passwordToggleContentDescription 38
-int styleable TextInputLayout_passwordToggleDrawable 39
-int styleable TextInputLayout_passwordToggleEnabled 40
-int styleable TextInputLayout_passwordToggleTint 41
-int styleable TextInputLayout_passwordToggleTintMode 42
-int styleable TextInputLayout_shapeAppearance 43
-int styleable TextInputLayout_shapeAppearanceOverlay 44
-int styleable TextInputLayout_startIconCheckable 45
-int styleable TextInputLayout_startIconContentDescription 46
-int styleable TextInputLayout_startIconDrawable 47
-int styleable TextInputLayout_startIconTint 48
-int styleable TextInputLayout_startIconTintMode 49
+int[] styleable TextInputEditText { 0x0 }
+int styleable TextInputEditText_textInputLayoutFocusedRectEnabled 0
+int[] styleable TextInputLayout { 0x101000e, 0x1010150, 0x101009a, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
+int styleable TextInputLayout_android_enabled 0
+int styleable TextInputLayout_android_hint 1
+int styleable TextInputLayout_android_textColorHint 2
+int styleable TextInputLayout_boxBackgroundColor 3
+int styleable TextInputLayout_boxBackgroundMode 4
+int styleable TextInputLayout_boxCollapsedPaddingTop 5
+int styleable TextInputLayout_boxCornerRadiusBottomEnd 6
+int styleable TextInputLayout_boxCornerRadiusBottomStart 7
+int styleable TextInputLayout_boxCornerRadiusTopEnd 8
+int styleable TextInputLayout_boxCornerRadiusTopStart 9
+int styleable TextInputLayout_boxStrokeColor 10
+int styleable TextInputLayout_boxStrokeErrorColor 11
+int styleable TextInputLayout_boxStrokeWidth 12
+int styleable TextInputLayout_boxStrokeWidthFocused 13
+int styleable TextInputLayout_counterEnabled 14
+int styleable TextInputLayout_counterMaxLength 15
+int styleable TextInputLayout_counterOverflowTextAppearance 16
+int styleable TextInputLayout_counterOverflowTextColor 17
+int styleable TextInputLayout_counterTextAppearance 18
+int styleable TextInputLayout_counterTextColor 19
+int styleable TextInputLayout_endIconCheckable 20
+int styleable TextInputLayout_endIconContentDescription 21
+int styleable TextInputLayout_endIconDrawable 22
+int styleable TextInputLayout_endIconMode 23
+int styleable TextInputLayout_endIconTint 24
+int styleable TextInputLayout_endIconTintMode 25
+int styleable TextInputLayout_errorContentDescription 26
+int styleable TextInputLayout_errorEnabled 27
+int styleable TextInputLayout_errorIconDrawable 28
+int styleable TextInputLayout_errorIconTint 29
+int styleable TextInputLayout_errorIconTintMode 30
+int styleable TextInputLayout_errorTextAppearance 31
+int styleable TextInputLayout_errorTextColor 32
+int styleable TextInputLayout_helperText 33
+int styleable TextInputLayout_helperTextEnabled 34
+int styleable TextInputLayout_helperTextTextAppearance 35
+int styleable TextInputLayout_helperTextTextColor 36
+int styleable TextInputLayout_hintAnimationEnabled 37
+int styleable TextInputLayout_hintEnabled 38
+int styleable TextInputLayout_hintTextAppearance 39
+int styleable TextInputLayout_hintTextColor 40
+int styleable TextInputLayout_passwordToggleContentDescription 41
+int styleable TextInputLayout_passwordToggleDrawable 42
+int styleable TextInputLayout_passwordToggleEnabled 43
+int styleable TextInputLayout_passwordToggleTint 44
+int styleable TextInputLayout_passwordToggleTintMode 45
+int styleable TextInputLayout_placeholderText 46
+int styleable TextInputLayout_placeholderTextAppearance 47
+int styleable TextInputLayout_placeholderTextColor 48
+int styleable TextInputLayout_prefixText 49
+int styleable TextInputLayout_prefixTextAppearance 50
+int styleable TextInputLayout_prefixTextColor 51
+int styleable TextInputLayout_shapeAppearance 52
+int styleable TextInputLayout_shapeAppearanceOverlay 53
+int styleable TextInputLayout_startIconCheckable 54
+int styleable TextInputLayout_startIconContentDescription 55
+int styleable TextInputLayout_startIconDrawable 56
+int styleable TextInputLayout_startIconTint 57
+int styleable TextInputLayout_startIconTintMode 58
+int styleable TextInputLayout_suffixText 59
+int styleable TextInputLayout_suffixTextAppearance 60
+int styleable TextInputLayout_suffixTextColor 61
 int[] styleable ThemeEnforcement { 0x1010034, 0x0, 0x0 }
 int styleable ThemeEnforcement_android_textAppearance 0
 int styleable ThemeEnforcement_enforceMaterialTheme 1
@@ -4505,6 +4826,14 @@ int styleable Toolbar_titleMarginTop 26
 int styleable Toolbar_titleMargins 27
 int styleable Toolbar_titleTextAppearance 28
 int styleable Toolbar_titleTextColor 29
+int[] styleable Tooltip { 0x10100f6, 0x1010140, 0x101013f, 0x10100d5, 0x101014f, 0x1010034, 0x0 }
+int styleable Tooltip_android_layout_margin 0
+int styleable Tooltip_android_minHeight 1
+int styleable Tooltip_android_minWidth 2
+int styleable Tooltip_android_padding 3
+int styleable Tooltip_android_text 4
+int styleable Tooltip_android_textAppearance 5
+int styleable Tooltip_backgroundTint 6
 int[] styleable Transform { 0x1010440, 0x1010326, 0x1010327, 0x1010328, 0x1010324, 0x1010325, 0x1010320, 0x1010321, 0x1010322, 0x1010323, 0x10103fa, 0x0 }
 int styleable Transform_android_elevation 0
 int styleable Transform_android_rotation 1
@@ -4574,3 +4903,5 @@ int xml standalone_badge 0x0
 int xml standalone_badge_gravity_bottom_end 0x0
 int xml standalone_badge_gravity_bottom_start 0x0
 int xml standalone_badge_gravity_top_start 0x0
+int xml standalone_badge_offset 0x0
+int xml util_code_provider_paths 0x0

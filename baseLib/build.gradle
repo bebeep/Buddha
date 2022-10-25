@@ -14,6 +14,10 @@ android {
         versionCode Integer.parseInt(productProps["versionCode"])
         versionName productProps["versionName"]
 
+
+        //启用renderscript
+        renderscriptTargetApi = rootProject.versions["minSdkVersion"]
+        renderscriptSupportModeEnabled = true
     }
 
     buildTypes {
