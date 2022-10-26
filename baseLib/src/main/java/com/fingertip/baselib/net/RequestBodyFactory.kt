@@ -16,7 +16,7 @@ import kotlin.collections.HashMap
 /**
  * 参数构造工具类
  */
-object PP_RequestBodyFactory {
+object RequestBodyFactory {
 
     fun <K, V> buildJsonRequestBody(map: Map<K, V>): RequestBody {
         // 设置请求类型

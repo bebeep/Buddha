@@ -37,19 +37,19 @@ open class MyTextView @JvmOverloads constructor(
     }
 
     fun setSize(fontStyle:Int){
-        when (fontStyle) {
-            0 -> {
-                super.setTypeface(Typeface.createFromAsset(context.assets, "gilroy-regular-3.otf"))
-            }
-            1 -> {
-                super.setTypeface(Typeface.createFromAsset(context.assets, "gilroy-Medium-2.otf"))
-            }
-            2 -> {
-                super.setTypeface(Typeface.createFromAsset(context.assets, "gilroy-bold-4.otf"))
-            }
-            3 -> {
-                super.setTypeface(Typeface.createFromAsset(context.assets, "gilroy-blackitalic-7.otf"))
-            }
-        }
+//        when (fontStyle) {
+//            0 -> {
+//                super.setTypeface(Typeface.createFromAsset(context.assets, "gilroy-regular-3.otf"))
+//            }
+//            1 -> {
+//                super.setTypeface(Typeface.createFromAsset(context.assets, "gilroy-Medium-2.otf"))
+//            }
+//            2 -> {
+//                super.setTypeface(Typeface.createFromAsset(context.assets, "gilroy-bold-4.otf"))
+//            }
+//            3 -> {
+//                super.setTypeface(Typeface.createFromAsset(context.assets, "gilroy-blackitalic-7.otf"))
+//            }
+//        }
     }
 }

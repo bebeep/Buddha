@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
 import androidx.core.widget.NestedScrollView
-import com.fingertip.baselib.event_bus.toPx
+import com.lzlz.toplib.extention.toPx
 
 /**
  * 控制是否可触摸

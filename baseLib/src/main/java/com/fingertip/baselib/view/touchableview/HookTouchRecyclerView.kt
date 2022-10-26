@@ -5,7 +5,8 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.fingertip.baselib.event_bus.toPx
+import com.lzlz.toplib.extention.toPx
+import kotlin.math.abs
 
 /**
  * 控制是否可触摸
@@ -32,7 +33,7 @@ open class HookTouchRecyclerView @JvmOverloads constructor(
             _curDownY = curY
         }
         if (e.action == MotionEvent.ACTION_MOVE) {
-            _startScroll = Math.abs(curX - _curDownX) > _scrollMax || Math.abs(curY - _curDownY) > _scrollMax
+            _startScroll = Math.abs(curX - _curDownX) > _scrollMax || abs(curY - _curDownY) > _scrollMax
             super.onTouchEvent(e)
             return false
         }

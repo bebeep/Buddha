@@ -11,17 +11,17 @@ import java.util.concurrent.TimeUnit
 /**
  * 发起接口请求工具类
  */
-object PP_NetManager {
+object NetManager {
 
-    private var api: PP_Api? = null
+    private var api: ApiManager? = null
 
-    fun getApi(isNosave: Boolean = false): PP_Api {
-        synchronized(PP_NetManager::class.java) {
+    fun getApi(isNosave: Boolean = false): ApiManager {
+        synchronized(NetManager::class.java) {
             if (isNosave){
-                return getRetrofit(NetProperty.BASE_URL).create(PP_Api::class.java)
+                return getRetrofit(NetProperty.BASE_URL).create(ApiManager::class.java)
             }
             if (api == null) {
-                api = getRetrofit(NetProperty.BASE_URL).create(PP_Api::class.java)
+                api = getRetrofit(NetProperty.BASE_URL).create(ApiManager::class.java)
             }
 
         }

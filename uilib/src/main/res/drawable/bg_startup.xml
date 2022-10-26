@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/bg_launch">
+    </item>
+
+    <item android:gravity="top|center_horizontal"
+        android:top="170dp"
+        android:width="186dp"
+        android:height="66dp">
+        <bitmap android:src="@mipmap/papaya"/>
+    </item>
+
+    <item android:gravity="bottom|center_horizontal"
+        android:bottom="110dp"
+        android:width="115dp"
+        android:height="115dp">
+        <bitmap
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/icon_app" />
+    </item>
+</layer-list>

@@ -6,7 +6,7 @@ import android.graphics.Path
 import android.graphics.RectF
 import android.util.AttributeSet
 import android.webkit.WebView
-import com.fingertip.baselib.event_bus.toPx
+import com.lzlz.toplib.extention.toPx
 
 /**
  * 通过绘制实现 圆角，适用所有view

@@ -5,7 +5,10 @@
       <map>
         <entry key="..\:/learn/Android/Buddha/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
         <entry key="..\:/learn/Android/Buddha/baseLib/src/main/res/layout/dialog_c.xml" value="0.36614583333333334" />
+        <entry key="..\:/learn/Android/Buddha/uilib/src/main/res/drawable/bg_lanch.xml" value="0.2435" />
+        <entry key="..\:/learn/Android/Buddha/uilib/src/main/res/drawable/qidong_bg.xml" value="0.2435" />
         <entry key="..\:/learn/Android/Buddha/uilib/src/main/res/layout/activity_start.xml" value="0.153125" />
+        <entry key="..\:/learn/Android/Buddha/uilib/src/main/res/layout/activity_startup.xml" value="0.36614583333333334" />
       </map>
     </option>
   </component>

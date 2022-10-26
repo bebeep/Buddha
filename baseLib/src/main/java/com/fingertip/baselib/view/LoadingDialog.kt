@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.fingertip.baseLib.R
-import com.fingertip.baselib.util.loadWeabpGif
+import com.fingertip.baselib.util.loadWebpGif
 import kotlinx.android.synthetic.main.dialog_c.*
 
 
@@ -33,7 +33,7 @@ class LoadingDialog(c:Context) : Dialog(c, R.style.dialog_load){
 
     override fun show() {
         super.show()
-        com.fingertip.baselib.util.loadWeabpGif(R.mipmap.live_loading)
+        gif.loadWebpGif(R.mipmap.live_loading)
     }
 
     override fun dismiss() {

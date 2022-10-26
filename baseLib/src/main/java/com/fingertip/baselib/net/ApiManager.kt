@@ -7,7 +7,7 @@ import com.fingertip.baselib.net.NetProperty
 import okhttp3.RequestBody
 import retrofit2.http.*
 
-interface PP_Api {
+interface ApiManager {
 
 
     /**

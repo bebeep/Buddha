@@ -3,7 +3,7 @@ package com.fingertip.baselib.view
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.fingertip.baselib.event_bus.toPx
+import com.lzlz.toplib.extention.toPx
 
 /**
  * recyclerview的分割线

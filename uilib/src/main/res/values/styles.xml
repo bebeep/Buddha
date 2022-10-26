@@ -1,0 +1,24 @@
+<resources>
+
+    <style name="launch" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+
+    <!--启动的activity 的style-->
+    <style name="launch.startup" parent="launch">
+        <item name="windowActionBar">false</item>
+        <item name="android:windowBackground">@drawable/bg_startup</item>
+    </style>
+
+    <style name="style_clickable">
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <style name="roundedCornerImage_15dp">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">15dp</item>
+    </style>
+</resources>
