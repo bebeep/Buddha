@@ -3,3 +3,5 @@ rootProject.name = "Buddha"
 include ':baseLib'
 include ':unityLibrary'
 include ':uilib'
+include ':nsfw'
+include ':fragmentation_core'

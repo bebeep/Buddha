@@ -36,4 +36,7 @@ android {
 dependencies {
 
     api project(path: ':baseLib')
+
+
+    implementation 'com.tencent.bugly:crashreport:latest.release'
 }

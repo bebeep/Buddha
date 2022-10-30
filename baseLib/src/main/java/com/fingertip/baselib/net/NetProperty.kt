@@ -49,11 +49,12 @@ object NetProperty {
 
 
 
+
     /**
-     * 绑定账号
-     * @variable {Account/BindAccount}
+     * 检查服务器状态
      */
-    var ACTBIND                           = "Account/BindAccount"
+    var CHECK_SERVER_STATUS                           = "check/serverStatus"
+
 
     /**
      * 登录

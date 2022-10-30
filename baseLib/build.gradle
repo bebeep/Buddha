@@ -48,6 +48,16 @@ dependencies {
     api retrofit_libs.values()
     api smart_refresh_libs.values()
 
+    api project(path: ':fragmentation_core')
+
+    //权限
+    api 'pub.devrel:easypermissions:0.4.2'
+
+    //离线鉴黄
+    api project(path: ':nsfw')
+
+    //图片压缩 https://github.com/Sunzxyong/Tiny
+    api 'com.zxy.android:tiny:1.1.0'
 }
 repositories {
     mavenCentral()

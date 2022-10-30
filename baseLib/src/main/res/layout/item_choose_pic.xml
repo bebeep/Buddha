@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="57dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.fingertip.baselib.view.shapeview.ShapeTextView
+        app:zdyFont="regular"
+        android:id="@+id/tv_titlie"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:clickable="false"
+        android:gravity="center"
+        android:textColor="#3DD9C5"
+        android:textSize="18sp"
+        tools:text="12312" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="12dp"
+        android:background="#DBDBE1" />
+</RelativeLayout>

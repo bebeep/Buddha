@@ -7,6 +7,7 @@
     <ImageView
         android:scaleType="centerCrop"
         android:id="@+id/iv_banner"
+        android:src="@mipmap/icon_default_head"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

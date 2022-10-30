@@ -1,11 +1,9 @@
-package com.fingertip.baselib.bean
+package com.fingertip.baselib.constant
 
 import com.blankj.utilcode.util.GsonUtils
 import com.blankj.utilcode.util.SPUtils
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
-import me.yokeyword.fragmentation.SupportFragment
+import com.fingertip.baselib.bean.PersonData
+import com.fingertip.baselib.bean.ServerConfigBean
 
 /**
  * 用户信息、全局配置相关
@@ -14,10 +12,10 @@ object YHManager {
 
     private val TAG = "YHManager"
 
-    private const val spName = "YHManager"
+    const val spName = "YHManager"
 
     // 存放用户登陆信息的sp key
-    private const val spYH = "spYH"
+    const val spYH = "spYH"
 
     // 存放配置信息的sp key
     private const val spParam = "spParam"
@@ -70,17 +68,8 @@ object YHManager {
 
 
     /**
-     * 是否是试玩登陆
+     * tabBar配置
      */
-    var isTryLogin: Boolean
-        get() {
-            return SPUtils.getInstance(spName).getBoolean("isTryLogin")
-        }
-        set(value) {
-            SPUtils.getInstance(spName).put("isTryLogin", value)
-        }
-
-
-
+    var tabBarConfig: ServerConfigBean.TabBarConfig? = null
 
 }

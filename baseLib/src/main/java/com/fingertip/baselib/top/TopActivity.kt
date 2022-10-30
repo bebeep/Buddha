@@ -3,10 +3,13 @@ package com.fingertip.baselib.top
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import com.fingertip.baselib.event_bus.EventBusProxy
+import com.fingertip.baselib.event_bus.MessageEvent
 import com.fingertip.baselib.log
 import com.fingertip.baselib.util.FullTopUtil
 import com.fingertip.baselib.view.LoadingDialog
 import me.yokeyword.fragmentation.SupportActivity
+import org.greenrobot.eventbus.Subscribe
 
 abstract class TopActivity : SupportActivity(), View.OnClickListener{
     lateinit var activity: TopActivity
@@ -20,6 +23,7 @@ abstract class TopActivity : SupportActivity(), View.OnClickListener{
             WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
             WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
         )
+        EventBusProxy.register(this)
         activity=this
         setContentView(layoutId())
         FullTopUtil.setStatusTranslucent(this)
@@ -50,17 +54,13 @@ abstract class TopActivity : SupportActivity(), View.OnClickListener{
     protected abstract fun initShiTu()
 
 
-    fun loading() {
-        loading(true)
-    }
 
-    fun loading(cancelable: Boolean) {
-        log("startLoading.....",cancelable)
+    fun loading(cancelable: Boolean ?=false) {
         if (loadDialog == null) {
             loadDialog = LoadingDialog(this)
         }
         loadDialog?.run {
-            setCancelable(cancelable)
+            setCancelable(cancelable?:false)
             if (!isShowing) {
                 show()
             }
@@ -76,6 +76,7 @@ abstract class TopActivity : SupportActivity(), View.OnClickListener{
     }
 
     override fun onDestroy() {
+        EventBusProxy.unRegister(this)
         super.onDestroy()
         loadEnding()
     }
@@ -99,4 +100,8 @@ abstract class TopActivity : SupportActivity(), View.OnClickListener{
 
     }
 
+    @Subscribe
+    fun onReceiveMessage(event: MessageEvent){
+
+    }
 }

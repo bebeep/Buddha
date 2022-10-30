@@ -1,9 +1,8 @@
-package com.lzlz.toplib.top
+package com.fingertip.baselib.top
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.fingertip.baselib.top.TopFragment
 import com.fingertip.baselib.viewmodel.TopViewModel
 
 abstract class TopVMFragment<VM : TopViewModel> : TopFragment() {
@@ -28,7 +27,7 @@ abstract class TopVMFragment<VM : TopViewModel> : TopFragment() {
                     if (getContentIfNotHandled() != null && peekContent()) {
                         startWaiting()
                     } else {
-                        endWaiting()
+                        loadEnding()
                     }
                 }
             })

@@ -69,8 +69,8 @@ ext {
             gson                    : "com.google.code.gson:gson:2.8.6",
             blankj                  : "com.blankj:utilcodex:1.30.6",
             eventBus                : "org.greenrobot:eventbus:3.1.1",
-            //单activity多fragment https://github.com/YoKeyword/Fragmentation
-            fragmention             : "me.yokeyword:fragmentationx:1.0.2"
+            //单activity多fragment https://github.com/YoKeyword/Fragmentation  下载下来进行修改
+//            fragmention             : "me.yokeyword:fragmentationx:1.0.2"
     ]
 
     arouter_libs = [
@@ -82,7 +82,7 @@ ext {
     //下拉刷新下载加载组件
     smart_refresh_libs = [
             kernel                  : "com.scwang.smart:refresh-layout-kernel:2.0.1",
-            header_classics         : "com.scwang.smart:refresh-header-classics:2.0.1",
+            header_classics         : "com.scwang.smart:refresh-header-material:2.0.1",
             footer_ball             : "com.scwang.smart:refresh-footer-ball:2.0.1"
     ]
 

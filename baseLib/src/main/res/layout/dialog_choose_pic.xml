@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:background="@color/color_bla_20"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.fingertip.baselib.view.shapeview.ShapeLinearLayout
+        android:orientation="vertical"
+        android:layout_marginHorizontal="20dp"
+        android:id="@+id/TopRly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:gdBgColor="#EBECEB"
+        app:gdRadius="10dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.fingertip.baselib.view.shapeview.ShapeLinearLayout>
+
+
+    <com.fingertip.baselib.view.shapeview.ShapeRelativeLayout
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginBottom="20dp"
+        android:layout_below="@+id/TopRly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:gdBgColor="@color/color_w"
+        app:gdRadius="10dp">
+
+        <com.fingertip.baselib.view.shapeview.ShapeTextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:gravity="center"
+            android:text="取消"
+            android:textAllCaps="false"
+            android:textColor="@color/color_bla"
+            android:textSize="18sp"
+            app:zdyFont="bold" />
+    </com.fingertip.baselib.view.shapeview.ShapeRelativeLayout>
+
+</RelativeLayout>

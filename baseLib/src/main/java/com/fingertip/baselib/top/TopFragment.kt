@@ -95,7 +95,7 @@ abstract class TopFragment: SupportFragment(), View.OnClickListener, KeyboardUti
         EventBusProxy.unRegister(this)
         super.onDestroyView()
         log(fName, "onDestroyView--")
-        endWaiting()
+        loadEnding()
     }
 
     open fun getClickViews(): List<View> = listOf()
@@ -118,10 +118,10 @@ abstract class TopFragment: SupportFragment(), View.OnClickListener, KeyboardUti
     //****************** 弹窗相关 *******************
 
     fun startWaiting() {
-        startWaiting(true)
+        loading(true)
     }
 
-    fun startWaiting(cancelable: Boolean) {
+    fun loading(cancelable: Boolean) {
         log(value = "startLoading.....")
         activity?.let {
             if (mWaitingDialog == null) {
@@ -135,7 +135,7 @@ abstract class TopFragment: SupportFragment(), View.OnClickListener, KeyboardUti
             }
         }
     }
-    fun endWaiting() {
+    fun loadEnding() {
         log(value = "endLoading.....")
         mWaitingDialog?.apply {
             if (isShowing)

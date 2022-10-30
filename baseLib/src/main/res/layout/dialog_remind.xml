@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:background="@color/color_bla_50">
+
+
+    <com.fingertip.baselib.view.shapeview.ShapeConstraintLayout
+        android:layout_width="275dp"
+        android:layout_height="275dp"
+        app:gdBgColor="@color/white"
+        app:gdRadius="20dp"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/iv_hint"
+            android:layout_width="150dp"
+            android:layout_height="135dp"
+            android:src="@mipmap/icon_sc_account"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="16dp"/>
+
+        <com.fingertip.baselib.view.shapeview.ShapeTextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="title"
+            android:textColor="#ff1d2020"
+            android:textSize="30sp"
+            app:zdyFont="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="41dp"/>
+
+        <com.fingertip.baselib.view.shapeview.ShapeTextView
+            android:id="@+id/tv_content"
+            android:layout_width="175dp"
+            android:layout_height="wrap_content"
+            tools:text="content"
+            android:textColor="#ff1d2020"
+            android:textSize="14sp"
+            app:zdyFont="regular"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="109dp"/>
+
+        <com.fingertip.baselib.view.shapeview.ShapeTextView
+            android:id="@+id/btn_no"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            tools:text="cancel"
+            app:gdBgColor="#ADB4B4"
+            app:gdRadius="22.5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_yes"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="34dp"
+            app:zdyFont="bold"
+            app:layout_constraintWidth_percent="0.33"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:layout_goneMarginEnd="15dp" />
+
+        <com.fingertip.baselib.view.shapeview.ShapeTextView
+            android:id="@+id/btn_yes"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:paddingHorizontal="36dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            tools:text="sure"
+            app:gdRadius="22.5dp"
+            app:gdGradientOrientation="LEFT_RIGHT"
+            app:gdStartColor="#59EF96"
+            app:gdEndColor="#3CB9DF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_start"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginBottom="34dp"
+            app:zdyFont="bold"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
+    </com.fingertip.baselib.view.shapeview.ShapeConstraintLayout>
+</FrameLayout>
