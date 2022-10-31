@@ -7,12 +7,6 @@
 
 
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:src="@mipmap/icon_bg_home"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintTop_toTopOf="parent"/>
 
     <FrameLayout
         android:id="@+id/multi_container"

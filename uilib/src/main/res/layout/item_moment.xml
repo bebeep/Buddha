@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="16dp"
+    android:padding="15dp"
+    android:layout_height="wrap_content">
+
+
+    <com.fingertip.baselib.view.shapeview.ShapeImageView
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/iv_head"
+        app:gdRadius="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="40dp"
+        android:src="@mipmap/icon_default_head"
+        android:layout_height="40dp"/>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@+id/iv_head"
+        android:text="nickname"
+        android:layout_marginStart="15dp"
+        app:layout_constraintTop_toTopOf="@+id/iv_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <com.fingertip.baselib.view.shapeview.ShapeTextView
+        android:layout_width="wrap_content"
+        android:id="@+id/tv_follow"
+        android:text="+关注"
+        app:gdRadius="4dp"
+        android:paddingHorizontal="4dp"
+        android:layout_marginStart="15dp"
+        app:gdBorderColor="@color/purple_700"
+        android:textColor="@color/purple_700"
+        app:gdBorderWidth="1dp"
+        app:layout_constraintStart_toEndOf="@+id/tv_name"
+        app:layout_constraintTop_toTopOf="@+id/tv_name"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_level"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_head"
+        app:layout_constraintLeft_toRightOf="@+id/iv_head"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="15dp"
+        android:textSize="12sp"
+        android:text="lv 5 菩提初生 | 1小时前"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:text="这是内容。。。。最多有两行"
+        app:layout_constraintTop_toBottomOf="@+id/iv_head"
+        android:layout_marginTop="12dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/iv_content"
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tv_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:adjustViewBounds="true"
+        android:maxHeight="200dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/icon_default_img"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+

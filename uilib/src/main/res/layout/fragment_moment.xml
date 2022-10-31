@@ -1,31 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<com.fingertip.baselib.view.FullTopConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.fingertip.baselib.view.FullTopConstraintLayout
-        android:id="@+id/top_bar"
+
+
+
+    <com.fingertip.baselib.view.SlidingTabLayout
+        android:id="@+id/tab_layout"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent">
-    </com.fingertip.baselib.view.FullTopConstraintLayout>
-
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="佛友圈"
-        android:textSize="30sp"
-        android:textColor="@color/black"
-        style="@style/constraint_center"/>
-
+        android:layout_height="50dp"
+        app:flow_wrapMode="chain"
+        app:tl_indicator_color="#3EEBD5"
+        app:tl_indicator_width="24dp"
+        app:tl_indicator_height="4dp"
+        app:tl_indicator_corner_radius="2dp"
+        app:tl_textSelectColor="#1D2020"
+        app:tl_textUnselectColor="#767B7B"
+        app:tl_tab_padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 
 
 
+    <androidx.viewpager.widget.ViewPager
+        android:layout_marginTop="6dp"
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/tab_layout"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</com.fingertip.baselib.view.FullTopConstraintLayout>

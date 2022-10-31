@@ -1,0 +1,38 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+def productProps = getVersionConfig()
+android {
+    compileSdkVersion rootProject.versions["compileSdkVersion"]
+    defaultConfig {
+        minSdkVersion rootProject.versions["minSdkVersion"]
+        targetSdkVersion rootProject.versions["targetSdkVersion"]
+        versionCode Integer.parseInt(productProps["versionCode"])
+        versionName productProps["versionName"]
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+
+    api 'org.tensorflow:tensorflow-lite:2.1.0'
+    api 'org.tensorflow:tensorflow-lite-gpu:2.1.0'
+
+    //协程相关
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7"
+
+}
