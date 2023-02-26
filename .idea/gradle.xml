@@ -16,9 +16,9 @@
             <option value="$PROJECT_DIR$/fragmentation_core" />
             <option value="$PROJECT_DIR$/nsfw" />
             <option value="$PROJECT_DIR$/uilib" />
-            <option value="$PROJECT_DIR$/unityLibrary" />
           </set>
         </option>
+        <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
   </component>
