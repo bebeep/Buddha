@@ -33,7 +33,7 @@ class BottomMenu @JvmOverloads constructor(
     private lateinit var tabBarNormal :ArrayList<String>
     private lateinit var tabBarSelect :ArrayList<String>
     private lateinit var imageViewList :ArrayList<ImageView>
-    private val localIcon = listOf(R.drawable.tab_me_selector,R.drawable.tab_me_selector,R.drawable.tab_me_selector,R.drawable.tab_me_selector,R.drawable.tab_me_selector,R.drawable.tab_me_selector)
+    private val localIcon = listOf(R.drawable.tab_host_selector,R.drawable.tab_post_selector,R.drawable.tab_baifo_selector,R.drawable.tab_rank_selector,R.drawable.tab_me_selector)
 
     fun initTabBarUrl(){
         tabBarNormal = ArrayList()

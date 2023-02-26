@@ -1,27 +1,221 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="#234566"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFFEFD"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <com.fingertip.baselib.view.FullTopConstraintLayout
-        android:id="@+id/top_bar"
+        android:id="@+id/cl_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="24dp"
+        android:background="@drawable/bg_host_top"
         app:layout_constraintTop_toTopOf="parent">
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_date"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="22dp"
+            android:layout_marginStart="24dp"
+            android:text="佛历 2558 年  农历庚子年 二月初二"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_mood"
+            app:layout_constraintTop_toBottomOf="@+id/tv_date"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="24dp"
+            android:text="惊蛰六祖慧能圣诞，观音斋"
+            app:zdyFont="bold"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_sign"
+            android:text="签到"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingHorizontal="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginTop="8dp"
+            android:drawablePadding="2dp"
+            android:drawableTop="@mipmap/icon_sign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
     </com.fingertip.baselib.view.FullTopConstraintLayout>
 
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="修行"
-        android:textSize="30sp"
-        android:textColor="@color/black"
-        style="@style/constraint_center"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/cl_top"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="16dp"
+        android:overScrollMode="never"
+        android:layout_height="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <com.youth.banner.Banner
+                android:id="@+id/banner"
+                app:banner_indicator_normal_width="6dp"
+                app:banner_indicator_selected_width="10dp"
+                app:banner_indicator_normal_color="#D4D5D8"
+                app:banner_indicator_selected_color="#FFC34D"
+                app:banner_indicator_space="10dp"
+                app:banner_indicator_height="6dp"
+                app:banner_indicator_radius="3dp"
+                app:banner_radius="10dp"
+                app:banner_indicator_gravity="right"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                app:layout_constraintDimensionRatio="h,390:140"
+                android:layout_height="0dp"/>
+
+            <com.youth.banner.indicator.RectangleIndicator
+                android:id="@+id/indicator"
+                app:layout_constraintBottom_toBottomOf="@+id/banner"
+                android:layout_width="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/banner"
+                android:layout_marginEnd="24dp"
+                android:layout_height="6dp"/>
+
+            <ImageView
+                android:id="@+id/iv_baifo"
+                app:layout_constraintTop_toBottomOf="@+id/banner"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/iv_jihuai"
+                android:layout_marginStart="16dp"
+                android:src="@mipmap/icon_baifo"
+                android:layout_width="0dp"
+                android:adjustViewBounds="true"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:id="@+id/iv_jihuai"
+                app:layout_constraintTop_toBottomOf="@+id/banner"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toEndOf="@+id/iv_baifo"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:src="@mipmap/icon_jihuai"
+                android:adjustViewBounds="true"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_baifo_lefttime"
+                app:layout_constraintStart_toStartOf="@+id/iv_baifo"
+                app:layout_constraintTop_toTopOf="@+id/iv_baifo"
+                android:background="@drawable/bg_left_time_baifo"
+                android:text="12:59"
+                android:paddingEnd="10dp"
+                android:gravity="center_vertical"
+                android:drawableStart="@mipmap/icon_left_time"
+                android:layout_width="wrap_content"
+                android:textColor="#FFCE53"
+                android:paddingStart="4dp"
+                android:drawablePadding="4dp"
+                android:textSize="14sp"
+                android:layout_height="wrap_content"/>
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_jihuai_lefttime"
+                app:layout_constraintEnd_toEndOf="@+id/iv_jihuai"
+                app:layout_constraintTop_toTopOf="@+id/iv_jihuai"
+                android:background="@drawable/bg_left_time_jihuai"
+                android:text="12:59"
+                android:paddingEnd="4dp"
+                android:gravity="center_vertical"
+                android:drawableStart="@mipmap/icon_left_time"
+                android:layout_width="wrap_content"
+                android:textColor="#FFCE53"
+                android:paddingStart="10dp"
+                android:drawablePadding="4dp"
+                android:textSize="14sp"
+                android:layout_height="wrap_content"/>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_menu"
+                app:layout_constraintTop_toBottomOf="@+id/iv_baifo"
+                android:layout_width="match_parent"
+                android:nestedScrollingEnabled="false"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="8dp"
+                android:overScrollMode="never"
+                android:layout_height="wrap_content"/>
+
+
+
+
+
+            <com.hjq.shape.layout.ShapeConstraintLayout
+                android:id="@+id/cl_moment"
+                app:layout_constraintTop_toBottomOf="@+id/rc_menu"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_width="match_parent"
+                app:shape_shadowSize="8dp"
+                app:shape_shadowColor="#FFE7C4"
+                app:shape_shadowOffsetY="2dp"
+                app:shape_radius="20dp"
+                android:padding="8dp"
+                app:shape_solidColor="@color/white"
+                android:layout_height="wrap_content">
+
+                <com.fingertip.baselib.view.MyTextView
+                    android:id="@+id/tv_moment_title"
+                    android:text="佛友动态"
+                    android:drawableStart="@mipmap/icon_moment_title"
+                    android:gravity="center_vertical"
+                    android:drawablePadding="4dp"
+                    android:textColor="#2C1900"
+                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <View
+                    android:id="@+id/v_line"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_height="0.5dp"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_moment_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:background="#B3E5E5E5"/>
+
+                <com.stx.xmarqueeview.XMarqueeView
+                    android:id="@+id/v_marquee"
+                    app:layout_constraintTop_toBottomOf="@+id/v_line"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="8dp"
+                    android:layout_height="wrap_content"/>
+
+            </com.hjq.shape.layout.ShapeConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 
 

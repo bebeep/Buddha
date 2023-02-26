@@ -2,12 +2,16 @@ package com.fingertip.uilib.fragment
 
 import android.view.View
 import androidx.lifecycle.lifecycleScope
+import com.fingertip.baselib.bean.BannerEntity
 import com.fingertip.baselib.event_bus.MessageEvent
 import com.fingertip.baselib.log
 import com.fingertip.baselib.top.TopPmFragment
 import com.fingertip.baselib.util.PicUtils
 import com.fingertip.uilib.R
+import com.fingertip.uilib.adapter.HostBannerAdapter
+import com.fingertip.uilib.adapter.MeBannerAdapter
 import com.fingertip.uilib.viewmodel.MeFragmentVM
+import com.youth.banner.Banner
 import kotlinx.android.synthetic.main.fragment_me.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -15,20 +19,32 @@ import org.greenrobot.eventbus.Subscribe
 
 class MeFragment : TopPmFragment<MeFragmentVM>(), PicUtils.UpPicCallBack {
     override fun layoutId(): Int = R.layout.fragment_me
+    override fun initVM(): MeFragmentVM = provideVM()
 
     override fun initShiTu() {
         picUtils.upPicCallBack = this
 
 
+        initBanner()
     }
 
-    override fun onSupportVisible() {
-        super.onSupportVisible()
-        refreshData()
 
+    var bannerAdapter : MeBannerAdapter?=null
+    var bannerList =  ArrayList<BannerEntity>()
+    private fun initBanner(){
+        bannerList.add(BannerEntity().apply { imgUrl =  "https://pics1.baidu.com/feed/d62a6059252dd42a73c6e9397669febec8eab837.jpeg@f_auto?token=75b8e8ee466dbf0e56f425b47d7af74b"})
+        bannerList.add(BannerEntity().apply { imgUrl =  "https://pics1.baidu.com/feed/d62a6059252dd42a73c6e9397669febec8eab837.jpeg@f_auto?token=75b8e8ee466dbf0e56f425b47d7af74b"})
+        bannerList.add(BannerEntity().apply { imgUrl =  "https://pics1.baidu.com/feed/d62a6059252dd42a73c6e9397669febec8eab837.jpeg@f_auto?token=75b8e8ee466dbf0e56f425b47d7af74b"})
+        bannerAdapter = MeBannerAdapter(requireContext(),bannerList){ viewId, pos ->
+
+        }
+        (banner as Banner<BannerEntity, MeBannerAdapter>)?.setAdapter(bannerAdapter)
+        banner.visibility = if (bannerList.isNullOrEmpty()) View.GONE else View.VISIBLE
+        banner.setIndicator(indicator,false)
     }
 
-    override fun getClickViews(): List<View> = mutableListOf(iv_setting, iv_edit,iv_head)
+
+    override fun getClickViews(): List<View> = mutableListOf(iv_setting, iv_edit)
 
     override fun onSingleClick(v: View?) {
         when(v){
@@ -40,18 +56,14 @@ class MeFragment : TopPmFragment<MeFragmentVM>(), PicUtils.UpPicCallBack {
 //                startActRootFragment(EditFragment())
             }
 
-            iv_head -> {
-                picChoseDialog.show()
-            }
         }
     }
 
-    private fun refreshData() {
-    }
 
 
 
-    override fun initVM(): MeFragmentVM = provideVM()
+
+
 
     override fun initObserver() {
         super.initObserver()

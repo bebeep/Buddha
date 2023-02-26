@@ -39,17 +39,16 @@ class MainFragment : TopVMFragment<MainVM>(), BottomMenu.MenuSelectCallback {
             fragmentList.add(MeFragment())
 
             loadMultipleRootFragment(R.id.multi_container, 0, *fragmentList.toTypedArray())
-
         }
 
         lastFragment = fragmentList[0]
 
         bottom_menu.menuSelectCallback = this
 
-        bottom_menu.addMenuItem(BottomMenuItem(R.drawable.tab_me_selector, true))
-        bottom_menu.addMenuItem(BottomMenuItem(R.drawable.tab_me_selector))
-        bottom_menu.addMenuItem(BottomMenuItem(R.drawable.tab_me_selector))
-        bottom_menu.addMenuItem(BottomMenuItem(R.drawable.tab_me_selector, hasMsg = true))
+        bottom_menu.addMenuItem(BottomMenuItem(R.drawable.tab_host_selector,true))
+        bottom_menu.addMenuItem(BottomMenuItem(R.drawable.tab_post_selector))
+        bottom_menu.addMenuItem(BottomMenuItem(R.drawable.tab_baifo_selector))
+        bottom_menu.addMenuItem(BottomMenuItem(R.drawable.tab_rank_selector, hasMsg = true))
         bottom_menu.addMenuItem(BottomMenuItem(R.drawable.tab_me_selector))
 
 

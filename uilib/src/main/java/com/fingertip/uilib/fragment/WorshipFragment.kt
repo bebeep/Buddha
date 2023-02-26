@@ -16,15 +16,7 @@ class WorshipFragment : TopFragment() {
 
     }
 
-    override fun onSupportVisible() {
-        super.onSupportVisible()
-        refreshData()
 
-    }
-
-
-    private fun refreshData() {
-    }
 
 
 

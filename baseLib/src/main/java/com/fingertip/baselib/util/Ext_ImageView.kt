@@ -36,12 +36,15 @@ fun ImageView.loadImg(
         ),
     listener: RequestListener<Drawable>? = null
 ) {
+    if (url is String && (url.endsWith(".gif") || url.endsWith(".GIF"))){
+        Glide.with(this)
+            .asGif()
+            .load(url)
+            .apply(option)
+            .into(this)
+        return
+    }
     Glide.with(this)
-            .apply {
-                if (url is String && url.contains(".gif")) {
-                    this.asGif().diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                }
-            }
             .load(url)
             .apply(option)
             .apply {

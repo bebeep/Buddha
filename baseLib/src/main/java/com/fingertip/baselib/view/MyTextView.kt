@@ -34,6 +34,8 @@ open class MyTextView @JvmOverloads constructor(
         }
 
        this.textDirection = View.TEXT_DIRECTION_LTR
+
+        includeFontPadding = false
     }
 
     fun setSize(fontStyle:Int){

@@ -10,7 +10,7 @@ var ISDEBUG:Boolean
     }
     set(value) {}
 
-fun log(tag: String?="TAG", value: Any) {
+fun log(tag: String? ="TAG", value: Any) {
     if (ISDEBUG) {
         Log.d( tag, value.toString())
     }
