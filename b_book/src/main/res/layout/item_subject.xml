@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="16dp"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_bg"
+        android:adjustViewBounds="true"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/bg_subject"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        app:layout_constraintGuide_percent="0.5"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_title"
+        android:text="南无阿弥陀佛"
+        android:textColor="#FF9600"
+        android:textSize="24sp"
+        app:zdyFont="bold"
+        app:layout_constraintTop_toTopOf="@+id/iv_bg"
+        app:layout_constraintEnd_toEndOf="@+id/iv_bg"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_intro"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+        app:layout_constraintEnd_toEndOf="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_marginTop="4dp"
+        android:textColor="#CBB491"
+        android:textSize="12sp"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:text="专题介绍是这样的，文字最多两行专题介绍是这样"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        android:layout_height="wrap_content"/>
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_followed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="16dp"
+        android:layout_width="wrap_content"
+        android:text="9999"
+        android:textSize="14sp"
+        android:layout_marginBottom="16dp"
+        android:textColor="#C19357"
+        android:drawablePadding="4dp"
+        android:drawableStart="@mipmap/icon_subject_follow"
+        android:layout_height="wrap_content"/>
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_book_count"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_followed"
+        app:layout_constraintTop_toTopOf="@+id/tv_followed"
+        app:layout_constraintEnd_toStartOf="@+id/tv_followed"
+        android:layout_marginEnd="16dp"
+        android:layout_width="wrap_content"
+        android:text="23"
+        android:textSize="14sp"
+        android:textColor="#C19357"
+        android:drawablePadding="4dp"
+        android:drawableStart="@mipmap/icon_subject_book_count"
+        android:layout_height="wrap_content"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,7 +8,6 @@ import com.fingertip.baselib.log
 import com.fingertip.baselib.top.TopPmFragment
 import com.fingertip.baselib.util.PicUtils
 import com.fingertip.uilib.R
-import com.fingertip.uilib.adapter.HostBannerAdapter
 import com.fingertip.uilib.adapter.MeBannerAdapter
 import com.fingertip.uilib.viewmodel.MeFragmentVM
 import com.youth.banner.Banner
@@ -26,6 +25,13 @@ class MeFragment : TopPmFragment<MeFragmentVM>(), PicUtils.UpPicCallBack {
 
 
         initBanner()
+
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            nsl.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+//                val slideOffset = min(scrollY * 1.0f / 88.toPx(),1f)
+//                cl_title.setBackgroundColor(ColorUtil.changeAlpha(resources.getColor(R.color.white),slideOffset))
+//            }
+//        }
     }
 
 

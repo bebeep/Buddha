@@ -49,6 +49,7 @@ dependencies {
     api smart_refresh_libs.values()
 
     api project(path: ':fragmentation_core')
+    api project(path: ':FlycoTabLayout')
 
     //权限
     api 'pub.devrel:easypermissions:0.4.2'
@@ -58,8 +59,6 @@ dependencies {
 
     //图片压缩 https://github.com/Sunzxyong/Tiny
     api 'com.zxy.android:tiny:1.1.0'
-
-    api "com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar"
 
     //显示3D模型 https://github.com/DymanZy/EasyShow3D
     api 'com.github.DymanZy:EasyShow3D:1.2'

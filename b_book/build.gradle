@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'kotlin-android-extensions'
 }
+
 def productProps = getVersionConfig()
 android {
     compileSdkVersion rootProject.versions["compileSdkVersion"]
@@ -28,16 +29,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures {
-        viewBinding true
-    }
 }
 
 dependencies {
 
-    api project(path: ':baseLib')
-    implementation project(path: ':b_book') //佛经
-
-
-    implementation 'com.tencent.bugly:crashreport:latest.release'
+    implementation project(path: ':baseLib')
 }

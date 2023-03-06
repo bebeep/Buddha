@@ -89,4 +89,16 @@
         <item name="android:windowEnterAnimation">@anim/gd_dialog_bottom_in_anim</item>
         <item name="android:windowExitAnimation">@anim/gd_dialog_bottom_out_anim</item>
     </style>
+
+
+    <style name="ToolBarTitleText" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">#FF9600</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="ExpandTitleText" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">#FF9600</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

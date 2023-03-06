@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginHorizontal="4dp"
+    android:layout_marginBottom="24dp"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/iv_book"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintDimensionRatio="h,106:147"
+        android:layout_width="match_parent"
+        android:src="@mipmap/icon_default_img"
+        android:scaleType="centerCrop"
+        android:layout_height="0dp"/>
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_book_name"
+        app:layout_constraintTop_toBottomOf="@+id/iv_book"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:ellipsize="end"
+        android:text="药师琉大家ask來得及ask多久啊是快樂的ask打連擊啊是璃光如来本愿功德经阿斯利康"
+        android:textColor="#2C1900"
+        android:textSize="14sp"
+        android:layout_width="0dp"
+        android:lines="2"
+        android:layout_height="wrap_content"/>
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_read_status"
+        app:layout_constraintTop_toBottomOf="@+id/tv_book_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="0dp"
+        android:layout_marginTop="2dp"
+        android:textColor="#AAAAAA"
+        android:textSize="12sp"
+        android:text="已读30%"
+        android:singleLine="true"
+        android:layout_height="wrap_content"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,19 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/learn/Android/Buddha/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
+        <entry key="..\:/learn/Android/Buddha/b_book/src/main/res/layout/frag_book_shelf.xml" value="0.5" />
+        <entry key="..\:/learn/Android/Buddha/b_book/src/main/res/layout/frag_buddha_texts.xml" value="0.353125" />
+        <entry key="..\:/learn/Android/Buddha/b_book/src/main/res/layout/frag_fojing.xml" value="0.353125" />
+        <entry key="..\:/learn/Android/Buddha/b_book/src/main/res/layout/frag_fojing_child.xml" value="0.525" />
+        <entry key="..\:/learn/Android/Buddha/b_book/src/main/res/layout/frag_fojing_details.xml" value="0.353125" />
+        <entry key="..\:/learn/Android/Buddha/b_book/src/main/res/layout/frag_fojing_subject.xml" value="0.5239583333333333" />
+        <entry key="..\:/learn/Android/Buddha/b_book/src/main/res/layout/frag_fojing_subject_details.xml" value="0.4154987633965375" />
+        <entry key="..\:/learn/Android/Buddha/b_book/src/main/res/layout/frag_fojing_subject_details_.xml" value="0.525" />
+        <entry key="..\:/learn/Android/Buddha/b_book/src/main/res/layout/item_book_shelf.xml" value="0.5239583333333333" />
+        <entry key="..\:/learn/Android/Buddha/b_book/src/main/res/layout/item_fojing.xml" value="0.33" />
+        <entry key="..\:/learn/Android/Buddha/b_book/src/main/res/layout/item_subject.xml" value="0.33" />
         <entry key="..\:/learn/Android/Buddha/baseLib/src/main/res/drawable/bg_oval_red.xml" value="0.238" />
+        <entry key="..\:/learn/Android/Buddha/baseLib/src/main/res/drawable/bg_ratingbar.xml" value="0.3585" />
         <entry key="..\:/learn/Android/Buddha/baseLib/src/main/res/drawable/tab_baifo_selector.xml" value="0.406" />
         <entry key="..\:/learn/Android/Buddha/baseLib/src/main/res/drawable/tab_host_selector.xml" value="0.406" />
         <entry key="..\:/learn/Android/Buddha/baseLib/src/main/res/drawable/tab_me_selector.xml" value="0.238" />
@@ -14,6 +26,7 @@
         <entry key="..\:/learn/Android/Buddha/baseLib/src/main/res/layout/dialog_choose_pic.xml" value="0.23177083333333334" />
         <entry key="..\:/learn/Android/Buddha/baseLib/src/main/res/layout/dialog_remind.xml" value="0.36614583333333334" />
         <entry key="..\:/learn/Android/Buddha/baseLib/src/main/res/layout/item_choose_pic.xml" value="0.23177083333333334" />
+        <entry key="..\:/learn/Android/Buddha/baseLib/src/main/res/layout/view_back.xml" value="0.35208333333333336" />
         <entry key="..\:/learn/Android/Buddha/uilib/src/main/res/drawable/bg_host_menu.xml" value="0.259" />
         <entry key="..\:/learn/Android/Buddha/uilib/src/main/res/drawable/bg_host_top.xml" value="0.265" />
         <entry key="..\:/learn/Android/Buddha/uilib/src/main/res/drawable/bg_lanch.xml" value="0.2435" />

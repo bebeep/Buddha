@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.fingertip.baselib.view.FullTopConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.fingertip.baselib.view.tablayout.ScaleTabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tl_indicator_color="#FF9600"
+        app:tl_indicator_corner_radius="16dp"
+        app:tl_indicator_height="4dp"
+        app:tl_indicator_horizontal="CENTER"
+        app:tl_indicator_width="15dp"
+        app:tl_tab_padding="10dp"
+        app:tl_textBold="BOTH"
+        app:tl_textSelectColor="#FF9600"
+        app:tl_textUnselectColor="#AAAAAA" />
+
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tab_layout" />
+
+
+    <include
+        android:id="@+id/v_back"
+        layout="@layout/view_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tab_layout"
+        app:layout_constraintBottom_toBottomOf="@+id/tab_layout"/>
+
+
+
+    <View
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/tab_layout"
+        android:layout_marginHorizontal="16dp"
+        android:background="#F7F7F7"
+        android:layout_height="1dp"/>
+
+
+
+</com.fingertip.baselib.view.FullTopConstraintLayout>

@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#F3EEE7"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.fingertip.baselib.view.shapeview.ShapeView
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            app:gdStartColor="#FFF8EE"
+            app:gdEndColor="#F1E0C9"
+            app:gdGradientOrientation="TOP_BOTTOM"
+            />
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:background="@color/transparent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="56dp"
+                    android:paddingBottom="8dp"
+                    app:layout_collapseMode="parallax"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/iv_book_cover"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:scaleType="centerCrop"
+                        android:layout_marginEnd="42dp"
+                        android:src="@mipmap/bg_buddha_default"
+                        android:layout_width="60dp"
+                        android:layout_height="90dp"/>
+
+                    <com.fingertip.baselib.view.MyTextView
+                        android:id="@+id/tv_book_name"
+                        android:text="药师琉璃光如来本愿功德经"
+                        android:textColor="#2C1900"
+                        android:textSize="16sp"
+                        app:layout_constraintTop_toTopOf="@+id/iv_book_cover"
+                        app:layout_constraintBottom_toTopOf="@+id/tv_recommend"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/iv_book_cover"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginTop="6dp"
+                        app:zdyFont="bold"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+
+                    <com.fingertip.baselib.view.MyTextView
+                        android:id="@+id/tv_recommend"
+                        app:layout_constraintStart_toStartOf="@+id/tv_book_name"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_book_cover"
+                        android:text="推荐指数"
+                        android:textSize="14sp"
+                        android:textColor="#666666"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <RatingBar
+                        android:id="@+id/ratingbar"
+                        app:layout_constraintTop_toTopOf="@+id/tv_recommend"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_recommend"
+                        app:layout_constraintStart_toEndOf="@+id/tv_recommend"
+                        android:orientation="horizontal"
+                        style="@android:style/Widget.Holo.RatingBar.Small"
+                        android:progressDrawable="@drawable/bg_ratingbar"
+                        android:isIndicator="true"
+                        android:layout_marginStart="8dp"
+                        android:numStars="5"
+                        android:rating="3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <com.hjq.shape.layout.ShapeConstraintLayout
+            android:layout_width="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:shape_shadowSize="0dp"
+            app:shape_shadowColor="#FFE7C4"
+            app:shape_shadowOffsetY="2dp"
+            app:shape_topLeftRadius="24dp"
+            app:shape_topRightRadius="24dp"
+            app:shape_bottomLeftRadius="0dp"
+            app:shape_bottomRightRadius="0dp"
+            app:shape_solidColor="@color/white"
+            android:paddingHorizontal="24dp"
+            android:paddingTop="16dp"
+            android:layout_height="match_parent">
+
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_book_level"
+                tools:text="入门"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textColor="#2C1900"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_book_level_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_book_level"
+                app:layout_constraintStart_toStartOf="@+id/tv_book_level"
+                android:layout_width="wrap_content"
+                android:text="内容深度"
+                android:layout_marginTop="4dp"
+                android:textColor="#AAAAAA"
+                android:textSize="12sp"
+                android:layout_height="wrap_content"/>
+
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:gravity="start"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_book_copy"
+                tools:text="998佛友"
+                android:textColor="#2C1900"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <com.fingertip.baselib.view.MyTextView
+                app:layout_constraintTop_toBottomOf="@+id/tv_book_copy"
+                app:layout_constraintStart_toStartOf="@+id/tv_book_copy"
+                android:layout_width="wrap_content"
+                android:text="已抄经"
+                android:layout_marginTop="4dp"
+                android:textColor="#AAAAAA"
+                android:textSize="12sp"
+                android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:gravity="start"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <com.fingertip.baselib.view.MyTextView
+                    android:id="@+id/tv_book_read"
+                    tools:text="998佛友"
+                    android:textColor="#2C1900"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <com.fingertip.baselib.view.MyTextView
+                    android:layout_width="wrap_content"
+                    android:text="已阅读"
+                    android:layout_marginTop="4dp"
+                    android:textColor="#AAAAAA"
+                    android:textSize="12sp"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+
+            <View
+                android:id="@+id/v_line1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_book_level_title"
+                android:layout_marginTop="16dp"
+                android:background="#F7F7F7"/>
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_book_intro_title"
+                android:text="经书简介"
+                android:textSize="14sp"
+                android:textColor="#2C1900"
+                app:layout_constraintTop_toBottomOf="@+id/v_line1"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_book_intro"
+                android:textColor="#666666"
+                android:textSize="14sp"
+                android:layout_marginTop="6dp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_book_intro_title"
+                tools:text="这里是经书简介爱上拉萨扩大了来到喀山啦啊拉萨市快乐打卡啊ask登录劳动的快乐爱上来到拉萨扩大上看到了ask的力量"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:id="@+id/v_line2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_book_intro"
+                android:layout_marginTop="16dp"
+                android:background="#F7F7F7"/>
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_book_recommend_title"
+                android:text="大师推荐"
+                android:textSize="14sp"
+                android:textColor="#2C1900"
+                app:layout_constraintTop_toBottomOf="@+id/v_line2"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_recommend"
+                app:layout_constraintTop_toBottomOf="@+id/tv_book_recommend_title"
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <View
+                android:id="@+id/v_line3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                app:layout_constraintTop_toBottomOf="@+id/rv_recommend"
+                android:layout_marginTop="16dp"
+                android:background="#F7F7F7"/>
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_book_comment_title"
+                android:text="佛友讨论"
+                android:textSize="14sp"
+                android:textColor="#2C1900"
+                app:layout_constraintTop_toBottomOf="@+id/v_line3"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_comment"
+                app:layout_constraintTop_toBottomOf="@+id/tv_book_comment_title"
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+        </com.hjq.shape.layout.ShapeConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+    <com.fingertip.baselib.view.FullTopConstraintLayout
+        android:id="@+id/cl_title"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/view_back"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/v_back"/>
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_title"
+            app:layout_constraintStart_toEndOf="@+id/v_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="40dp"
+            android:layout_marginStart="2dp"
+            app:layout_constraintTop_toTopOf="@+id/v_back"
+            app:layout_constraintBottom_toBottomOf="@+id/v_back"
+            android:text="南无阿弥陀ask鹿鼎奥术大师多记奥克奥术大师多兰的接口佛"
+            android:textColor="#2C1900"
+            android:textSize="16sp"
+            android:singleLine="true"
+            android:alpha="0"
+            android:ellipsize="end"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/iv_share"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@mipmap/icon_share"
+            android:layout_width="38dp"
+            android:layout_height="38dp"/>
+
+    </com.fingertip.baselib.view.FullTopConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

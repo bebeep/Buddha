@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/srl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+        <com.fingertip.baselib.view.shapeview.ShapeLinearLayout
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="24dp"
+            android:id="@+id/cl_finish_status"
+            app:gdBgColor="#F7F7F7"
+            app:gdRadius="5dp"
+            android:paddingHorizontal="8dp"
+            android:gravity="center"
+            android:layout_marginEnd="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp">
+
+            <com.fingertip.baselib.view.shapeview.ShapeView
+                android:layout_width="6dp"
+                app:gdBgColor="#FFCE53"
+                app:gdRadius="3dp"
+                app:gdBorderColor="#FF9600"
+                app:gdBorderWidth="1dp"
+                android:layout_height="6dp"/>
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_finish_status"
+                android:text="未完成"
+                android:textSize="12sp"
+                android:textColor="#AAAAAA"
+                android:layout_marginStart="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:src="@mipmap/icon_morning_class_status"
+                android:layout_width="14dp"
+                android:layout_marginStart="5dp"
+                android:layout_height="14dp"/>
+
+        </com.fingertip.baselib.view.shapeview.ShapeLinearLayout>
+
+
+        <com.fingertip.baselib.view.MyTextView
+            app:layout_constraintTop_toTopOf="@+id/cl_finish_status"
+            app:layout_constraintBottom_toBottomOf="@+id/cl_finish_status"
+            app:layout_constraintEnd_toStartOf="@+id/cl_finish_status"
+            android:text="今日早课"
+            android:textSize="12sp"
+            android:layout_marginEnd="4dp"
+            android:textColor="#2C1900"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            app:layout_constraintTop_toBottomOf="@+id/cl_finish_status"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginHorizontal="12dp"
+            android:overScrollMode="never"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

@@ -2,6 +2,7 @@ package com.fingertip.uilib.fragment
 
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
+import com.buddha.b_book.fragment.BuddhaTextsFragment
 import com.fingertip.baselib.bean.BannerEntity
 import com.fingertip.baselib.bean.HostMenu
 import com.fingertip.baselib.event_bus.MessageEvent
@@ -36,12 +37,24 @@ class HostFragment : TopFragment() {
         rc_menu.layoutManager = GridLayoutManager(requireContext(),3)
         adapter = HostMenuAdapter(requireContext()){ pos->
             when(pos){
-                0->{}
-                1->{}
-                2->{}
-                3->{}
-                4->{}
-                5->{}
+                0->{//供佛
+
+                }
+                1->{//佛经
+                    startActRootFragment(BuddhaTextsFragment())
+                }
+                2->{//功德
+
+                }
+                3->{//祈福
+
+                }
+                4->{//许愿
+
+                }
+                5->{//放生
+
+                }
             }
         }
         rc_menu.adapter = adapter
