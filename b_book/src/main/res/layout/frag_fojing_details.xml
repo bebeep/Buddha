@@ -113,168 +113,197 @@
             app:shape_solidColor="@color/white"
             android:paddingHorizontal="24dp"
             android:paddingTop="16dp"
+            android:overScrollMode="never"
             android:layout_height="match_parent">
 
-
-            <com.fingertip.baselib.view.MyTextView
-                android:id="@+id/tv_book_level"
-                tools:text="入门"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:textColor="#2C1900"
-                android:textSize="16sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <com.fingertip.baselib.view.MyTextView
-                android:id="@+id/tv_book_level_title"
-                app:layout_constraintTop_toBottomOf="@+id/tv_book_level"
-                app:layout_constraintStart_toStartOf="@+id/tv_book_level"
-                android:layout_width="wrap_content"
-                android:text="内容深度"
-                android:layout_marginTop="4dp"
-                android:textColor="#AAAAAA"
-                android:textSize="12sp"
-                android:layout_height="wrap_content"/>
-
-
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:gravity="start"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_width="wrap_content"
+            <com.scwang.smart.refresh.layout.SmartRefreshLayout
+                android:id="@+id/srl"
+                android:layout_width="match_parent"
+                app:srlEnableRefresh="false"
+                app:srlEnableLoadMore="true"
                 android:layout_height="wrap_content">
 
-            <com.fingertip.baselib.view.MyTextView
-                android:id="@+id/tv_book_copy"
-                tools:text="998佛友"
-                android:textColor="#2C1900"
-                android:textSize="16sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
 
-            <com.fingertip.baselib.view.MyTextView
-                app:layout_constraintTop_toBottomOf="@+id/tv_book_copy"
-                app:layout_constraintStart_toStartOf="@+id/tv_book_copy"
-                android:layout_width="wrap_content"
-                android:text="已抄经"
-                android:layout_marginTop="4dp"
-                android:textColor="#AAAAAA"
-                android:textSize="12sp"
-                android:layout_height="wrap_content"/>
+                <androidx.core.widget.NestedScrollView
+                    android:overScrollMode="never"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-            </LinearLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
+                        <com.fingertip.baselib.view.MyTextView
+                            android:id="@+id/tv_book_level"
+                            android:text="入门"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:textColor="#2C1900"
+                            android:textSize="16sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
 
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:gravity="start"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <com.fingertip.baselib.view.MyTextView
-                    android:id="@+id/tv_book_read"
-                    tools:text="998佛友"
-                    android:textColor="#2C1900"
-                    android:textSize="16sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <com.fingertip.baselib.view.MyTextView
-                    android:layout_width="wrap_content"
-                    android:text="已阅读"
-                    android:layout_marginTop="4dp"
-                    android:textColor="#AAAAAA"
-                    android:textSize="12sp"
-                    android:layout_height="wrap_content"/>
-
-            </LinearLayout>
+                        <com.fingertip.baselib.view.MyTextView
+                            android:id="@+id/tv_book_level_title"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_book_level"
+                            app:layout_constraintStart_toStartOf="@+id/tv_book_level"
+                            android:layout_width="wrap_content"
+                            android:text="内容深度"
+                            android:layout_marginTop="4dp"
+                            android:textColor="#AAAAAA"
+                            android:textSize="12sp"
+                            android:layout_height="wrap_content"/>
 
 
-            <View
-                android:id="@+id/v_line1"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                app:layout_constraintTop_toBottomOf="@+id/tv_book_level_title"
-                android:layout_marginTop="16dp"
-                android:background="#F7F7F7"/>
 
-            <com.fingertip.baselib.view.MyTextView
-                android:id="@+id/tv_book_intro_title"
-                android:text="经书简介"
-                android:textSize="14sp"
-                android:textColor="#2C1900"
-                app:layout_constraintTop_toBottomOf="@+id/v_line1"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="16dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:gravity="start"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
 
-            <com.fingertip.baselib.view.MyTextView
-                android:id="@+id/tv_book_intro"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:layout_marginTop="6dp"
-                app:layout_constraintTop_toBottomOf="@+id/tv_book_intro_title"
-                tools:text="这里是经书简介爱上拉萨扩大了来到喀山啦啊拉萨市快乐打卡啊ask登录劳动的快乐爱上来到拉萨扩大上看到了ask的力量"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                            <com.fingertip.baselib.view.MyTextView
+                                android:id="@+id/tv_book_copy"
+                                android:text="998佛友"
+                                android:textColor="#2C1900"
+                                android:textSize="16sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
 
-            <View
-                android:id="@+id/v_line2"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                app:layout_constraintTop_toBottomOf="@+id/tv_book_intro"
-                android:layout_marginTop="16dp"
-                android:background="#F7F7F7"/>
+                            <com.fingertip.baselib.view.MyTextView
+                                app:layout_constraintTop_toBottomOf="@+id/tv_book_copy"
+                                app:layout_constraintStart_toStartOf="@+id/tv_book_copy"
+                                android:layout_width="wrap_content"
+                                android:text="已抄经"
+                                android:layout_marginTop="4dp"
+                                android:textColor="#AAAAAA"
+                                android:textSize="12sp"
+                                android:layout_height="wrap_content"/>
 
-            <com.fingertip.baselib.view.MyTextView
-                android:id="@+id/tv_book_recommend_title"
-                android:text="大师推荐"
-                android:textSize="14sp"
-                android:textColor="#2C1900"
-                app:layout_constraintTop_toBottomOf="@+id/v_line2"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="16dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                        </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_recommend"
-                app:layout_constraintTop_toBottomOf="@+id/tv_book_recommend_title"
-                android:layout_marginTop="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <View
-                android:id="@+id/v_line3"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                app:layout_constraintTop_toBottomOf="@+id/rv_recommend"
-                android:layout_marginTop="16dp"
-                android:background="#F7F7F7"/>
 
-            <com.fingertip.baselib.view.MyTextView
-                android:id="@+id/tv_book_comment_title"
-                android:text="佛友讨论"
-                android:textSize="14sp"
-                android:textColor="#2C1900"
-                app:layout_constraintTop_toBottomOf="@+id/v_line3"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="16dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_comment"
-                app:layout_constraintTop_toBottomOf="@+id/tv_book_comment_title"
-                android:layout_marginTop="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:gravity="start"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <com.fingertip.baselib.view.MyTextView
+                                android:id="@+id/tv_book_read"
+                                android:text="998佛友"
+                                android:textColor="#2C1900"
+                                android:textSize="16sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <com.fingertip.baselib.view.MyTextView
+                                android:layout_width="wrap_content"
+                                android:text="已阅读"
+                                android:layout_marginTop="4dp"
+                                android:textColor="#AAAAAA"
+                                android:textSize="12sp"
+                                android:layout_height="wrap_content"/>
+
+                        </LinearLayout>
+
+
+                        <View
+                            android:id="@+id/v_line1"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_book_level_title"
+                            android:layout_marginTop="16dp"
+                            android:background="#F7F7F7"/>
+
+                        <com.fingertip.baselib.view.MyTextView
+                            android:id="@+id/tv_book_intro_title"
+                            android:text="经书简介"
+                            android:textSize="14sp"
+                            android:textColor="#2C1900"
+                            app:layout_constraintTop_toBottomOf="@+id/v_line1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:layout_marginTop="16dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <com.fingertip.baselib.view.MyTextView
+                            android:id="@+id/tv_book_intro"
+                            android:textColor="#666666"
+                            android:textSize="14sp"
+                            android:layout_marginTop="6dp"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_book_intro_title"
+                            android:text="这里是经书简介爱上拉萨扩大了来到喀山啦啊拉萨市快乐打卡啊ask登录劳动的快乐爱上来到拉萨扩大上看到了ask的力量"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <View
+                            android:id="@+id/v_line2"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_book_intro"
+                            android:layout_marginTop="16dp"
+                            android:background="#F7F7F7"/>
+
+                        <com.fingertip.baselib.view.MyTextView
+                            android:id="@+id/tv_book_recommend_title"
+                            android:text="大师推荐"
+                            android:textSize="14sp"
+                            android:textColor="#2C1900"
+                            app:layout_constraintTop_toBottomOf="@+id/v_line2"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:layout_marginTop="16dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_recommend"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_book_recommend_title"
+                            android:layout_width="match_parent"
+                            tools:listitem="@layout/item_book_recommend"
+                            tools:itemCount="3"
+                            android:nestedScrollingEnabled="false"
+                            android:layout_height="wrap_content"/>
+                        <View
+                            android:id="@+id/v_line3"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            app:layout_constraintTop_toBottomOf="@+id/rv_recommend"
+                            android:layout_marginTop="16dp"
+                            android:background="#F7F7F7"/>
+
+                        <com.fingertip.baselib.view.MyTextView
+                            android:id="@+id/tv_book_comment_title"
+                            android:text="佛友讨论"
+                            android:textSize="14sp"
+                            android:textColor="#2C1900"
+                            app:layout_constraintTop_toBottomOf="@+id/v_line3"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:layout_marginTop="16dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_comment"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_book_comment_title"
+                            android:layout_marginTop="16dp"
+                            tools:itemCount="3"
+                            android:nestedScrollingEnabled="false"
+                            tools:listitem="@layout/item_book_comment"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.core.widget.NestedScrollView>
+
+
+            </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
 
         </com.hjq.shape.layout.ShapeConstraintLayout>
@@ -318,5 +347,64 @@
             android:layout_height="38dp"/>
 
     </com.fingertip.baselib.view.FullTopConstraintLayout>
+
+    <com.hjq.shape.layout.ShapeConstraintLayout
+        android:layout_width="match_parent"
+        app:shape_topLeftRadius="24dp"
+        app:shape_topRightRadius="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:padding="10dp"
+        app:shape_solidColor="@color/white"
+        app:shape_shadowColor="#1A000000"
+        app:shape_shadowOffsetY="2dp"
+        android:layout_height="wrap_content">
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_read"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/v_line"
+            android:text="已阅读 35%"
+            android:padding="6dp"
+            android:textColor="@color/tv_select"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <View
+            android:id="@+id/v_line"
+            android:layout_width="1dp"
+            android:layout_height="20dp"
+            app:layout_constraintStart_toEndOf="@+id/tv_read"
+            app:layout_constraintEnd_toStartOf="@+id/tv_copy"
+            app:layout_constraintTop_toTopOf="@+id/tv_read"
+            android:layout_marginHorizontal="14dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_read"
+            android:background="#E5E5E5"/>
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_copy"
+            app:layout_constraintStart_toEndOf="@+id/v_line"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="已抄经 35%"
+            android:padding="6dp"
+            android:textColor="@color/tv_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_add_shelf"
+            app:layout_constraintTop_toBottomOf="@+id/tv_read"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="14dp"
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_button"
+            android:text="加入书架"
+            android:gravity="center"
+            android:textSize="16sp"
+            app:zdyFont="bold"
+            android:textColor="@color/tv_button"
+            android:layout_height="50dp"/>
+    </com.hjq.shape.layout.ShapeConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

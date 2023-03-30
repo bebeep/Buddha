@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.fingertip.baselib.view.shapeview.ShapeImageView
+        android:id="@+id/iv_head"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@mipmap/icon_default_head"
+        android:layout_width="36dp"
+        app:radius="18dp"
+        android:layout_height="36dp"/>
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_master_name"
+        app:layout_constraintTop_toTopOf="@+id/iv_head"
+        android:layout_width="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/iv_head"
+        app:layout_constraintBottom_toTopOf="@+id/tv_master_intro"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:layout_marginStart="8dp"
+        android:text="无心法师"
+        android:textSize="14sp"
+        android:textColor="#FF9600"
+        android:layout_height="wrap_content"/>
+
+
+    <LinearLayout
+        android:id="@+id/ll_follow"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/bg_follow"
+        android:layout_marginStart="4dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_master_name"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_master_name"
+        app:layout_constraintStart_toEndOf="@+id/tv_master_name"
+        android:layout_height="wrap_content">
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_master_follow"
+            android:layout_width="wrap_content"
+            android:text="已关注"
+            android:textSize="14sp"
+            android:textColor="@color/tv_select"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+
+
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_master_intro"
+        app:layout_constraintTop_toBottomOf="@+id/tv_master_name"
+        android:layout_width="0dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="@+id/tv_master_name"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_head"
+        android:text="广寒寺住持，《无心法师佛集》作者"
+        android:singleLine="true"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/ll_like"
+        android:textColor="#AAAAAA"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:id="@+id/ll_like"
+        android:paddingVertical="5dp"
+        android:paddingStart="8dp"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toTopOf="@+id/iv_head"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_head"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_master_like"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:src="@drawable/bg_like"/>
+
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_master_like"
+            android:layout_marginStart="4dp"
+            android:textColor="#AAAAAA"
+            android:textSize="12sp"
+            android:text="999"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_master_content"
+        app:layout_constraintTop_toBottomOf="@+id/iv_head"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textSize="14sp"
+        android:textColor="#666666"
+        android:text="这里是经书简介爱上拉萨扩大了来到喀山啦啊拉萨市快乐打卡啊ask登录劳动的快乐爱上来到拉萨扩大上看到了a来到喀山啦啊拉萨市快乐打卡啊ask登录劳动的快乐爱上来到sk的力量"
+        android:layout_height="wrap_content"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

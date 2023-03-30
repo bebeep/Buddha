@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.fingertip.baselib.view.FullTopConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <include
+        android:id="@+id/v_back"
+        layout="@layout/view_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_title"
+        app:layout_constraintTop_toTopOf="@+id/v_back"
+        android:layout_width="0dp"
+        android:singleLine="true"
+        app:layout_constraintBottom_toBottomOf="@+id/v_back"
+        android:text="心经"
+        android:textSize="18sp"
+        android:textColor="#2C1900"
+        app:zdyFont="bold"
+        app:layout_constraintStart_toEndOf="@+id/v_back"
+        app:layout_constraintEnd_toStartOf="@+id/iv_setting"
+        android:paddingHorizontal="8dp"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/iv_setting"
+        app:layout_constraintTop_toTopOf="@+id/v_back"
+        app:layout_constraintBottom_toBottomOf="@+id/v_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="14dp"
+        android:layout_width="38dp"
+        android:src="@mipmap/icon_fojing_setting"
+        android:layout_height="38dp"/>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/v_back"
+        app:layout_constraintBottom_toTopOf="@+id/tv_answer1"
+        android:layout_height="0dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_content"
+            android:overScrollMode="never"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginHorizontal="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_percent"
+            app:layout_constraintTop_toBottomOf="@+id/rv_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            android:text="33%"
+            android:textColor="#AAAAAA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_answer1"
+        android:layout_width="0dp"
+        android:text="关"
+        android:textSize="56sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="h,1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tv_answer2"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/bg_fojing_copy_answer"
+        android:layout_height="0dp"/>
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_answer2"
+        android:layout_width="0dp"
+        android:text="关"
+        android:textSize="56sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_answer1"
+        app:layout_constraintDimensionRatio="h,1:1"
+        app:layout_constraintStart_toEndOf="@+id/tv_answer1"
+        app:layout_constraintEnd_toStartOf="@+id/tv_answer3"
+        app:layout_constraintTop_toTopOf="@+id/tv_answer1"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:background="@drawable/bg_fojing_copy_answer"
+        android:layout_marginHorizontal="12dp"
+        android:layout_height="0dp"/>
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_answer3"
+        android:layout_width="0dp"
+        android:text="关"
+        android:textSize="56sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_answer1"
+        app:layout_constraintDimensionRatio="h,1:1"
+        app:layout_constraintStart_toEndOf="@+id/tv_answer2"
+        app:layout_constraintEnd_toStartOf="@+id/tv_answer4"
+        app:layout_constraintTop_toTopOf="@+id/tv_answer1"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:background="@drawable/bg_fojing_copy_answer"
+        android:layout_marginEnd="12dp"
+        android:layout_height="0dp"/>
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_answer4"
+        android:layout_width="0dp"
+        android:text="关"
+        android:textSize="56sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_answer1"
+        app:layout_constraintDimensionRatio="h,1:1"
+        app:layout_constraintStart_toEndOf="@+id/tv_answer3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_answer1"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_fojing_copy_answer"
+        android:layout_height="0dp"/>
+
+
+</com.fingertip.baselib.view.FullTopConstraintLayout>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:layout_marginTop="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_default"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:text="观"
+        android:textSize="18sp"
+        android:gravity="center_horizontal|bottom"
+        android:paddingBottom="4dp"
+        android:layout_height="40dp"/>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_copy"
+        android:background="#E44F4C"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_copy"
+        android:background="#E44F4C"/>
+
+    <View
+        android:id="@+id/v_line_left"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_copy"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_copy"
+        android:background="#E44F4C"/>
+    <View
+        android:id="@+id/v_line_right"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_copy"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_copy"
+        android:background="#E44F4C"/>
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_copy"
+        android:layout_width="match_parent"
+        android:text="关"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:background="@drawable/bg_fojing_copy_item"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="40dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
