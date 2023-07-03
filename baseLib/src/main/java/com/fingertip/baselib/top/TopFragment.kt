@@ -15,8 +15,8 @@ import com.fingertip.baselib.util.registerSoftInputChangedListener
 import com.fingertip.baselib.util.unregisterSoftInputChangedListener
 
 import com.fingertip.baselib.view.LoadingDialog
+import com.weikaiyun.fragmentation.SupportFragment
 
-import me.yokeyword.fragmentation.SupportFragment
 import org.greenrobot.eventbus.Subscribe
 
 abstract class TopFragment: SupportFragment(), View.OnClickListener, KeyboardUtils.OnSoftInputChangedListener {
@@ -47,13 +47,6 @@ abstract class TopFragment: SupportFragment(), View.OnClickListener, KeyboardUti
 //        }
     }
 
-    override fun onLazyInitView(savedInstanceState: Bundle?) {
-        super.onLazyInitView(savedInstanceState)
-        log(fName, "onLazyInitView")
-//        if (getLazyInit()) {
-//            build()
-//        }
-    }
 
     private fun build() {
         LogUtils.e("================================${view==null}")
@@ -180,8 +173,8 @@ abstract class TopFragment: SupportFragment(), View.OnClickListener, KeyboardUti
      */
     open fun isDialogFragment() = false
 
-    override fun onSupportVisible() {
-        super.onSupportVisible()
+    override fun onVisible() {
+        super.onVisible()
         log(fName, "onSupportVisible--")
 
         registerKeyboardIfNeed()
@@ -199,8 +192,8 @@ abstract class TopFragment: SupportFragment(), View.OnClickListener, KeyboardUti
         }
     }
 
-    override fun onSupportInvisible() {
-        super.onSupportInvisible()
+    override fun onInvisible() {
+        super.onInvisible()
         log(fName, "onSupportInvisible--")
 
         unregisterKeyboardIfNeed()

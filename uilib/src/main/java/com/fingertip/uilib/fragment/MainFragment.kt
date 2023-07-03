@@ -7,8 +7,8 @@ import com.fingertip.uilib.fragment.moment.MomentFragment
 import com.fingertip.uilib.viewmodel.MainVM
 import com.fingertip.uilib.widgets.bottom_menu.BottomMenu
 import com.fingertip.uilib.widgets.bottom_menu.BottomMenuItem
+import com.weikaiyun.fragmentation.SupportFragment
 import kotlinx.android.synthetic.main.fragment_main.*
-import me.yokeyword.fragmentation.SupportFragment
 import org.greenrobot.eventbus.Subscribe
 
 /**

@@ -14,11 +14,9 @@ class ContainerActivity : TopActivity() {
 
     override fun isFullTopBar() = true
 
-    override fun getMainContainerId() = R.id.root_container
-
     override fun initShiTu() {
 
-        loadRootFragment(mainContainerId, MainFragment())
+        loadRootFragment(R.id.root_container, MainFragment())
     }
 
 

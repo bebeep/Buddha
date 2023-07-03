@@ -8,7 +8,6 @@ import com.fingertip.baselib.log
 import com.fingertip.baselib.top.TopApplication
 import com.zxy.tiny.Tiny
 import com.zxy.tiny.callback.FileCallback
-import io.github.devzwy.nsfw.NSFWHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
@@ -100,14 +99,14 @@ class PicUtils {
     fun uploadFile(path: String,needCheckPorn:Boolean = true) {
         upPicCallBack?.start()
         //离线鉴黄  失败就直接返回
-        if (needCheckPorn) NSFWHelper.getNSFWScore(path).let {
-            if (it.nsfwScore > 0.3){
-                upPicCallBack?.errorend()
-                if (BuildConfig.DEBUG)  ToastUtil.showMessage("鉴黄不通过-》分数：${it.nsfwScore}")
-                return
-            }
-            if (BuildConfig.DEBUG)  ToastUtil.showMessage("鉴黄通过-》分数：${it.nsfwScore}")
-        }
+//        if (needCheckPorn) NSFWHelper.getNSFWScore(path).let {
+//            if (it.nsfwScore > 0.3){
+//                upPicCallBack?.errorend()
+//                if (BuildConfig.DEBUG)  ToastUtil.showMessage("鉴黄不通过-》分数：${it.nsfwScore}")
+//                return
+//            }
+//            if (BuildConfig.DEBUG)  ToastUtil.showMessage("鉴黄通过-》分数：${it.nsfwScore}")
+//        }
         MainScope().launch (Dispatchers.Default){
             //todo 上传服务器
         }

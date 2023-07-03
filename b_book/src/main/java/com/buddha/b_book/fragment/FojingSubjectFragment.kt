@@ -1,6 +1,5 @@
 package com.buddha.b_book.fragment
 
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.buddha.b_book.R
 import com.buddha.b_book.adapter.SubjectAdapter
@@ -23,7 +22,7 @@ class FojingSubjectFragment :TopVMFragment<BookshelfVM>(){
 
     private fun initAdapter(){
         adapter = SubjectAdapter(requireContext()){
-            startActRootFragment(FojingSubjectDetailsFragment())
+            start(FojingSubjectDetailsFragment())
         }
         recyclerview.layoutManager = LinearLayoutManager(requireContext())
         recyclerview.adapter = adapter

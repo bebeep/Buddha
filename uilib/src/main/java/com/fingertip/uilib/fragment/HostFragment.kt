@@ -41,7 +41,7 @@ class HostFragment : TopFragment() {
 
                 }
                 1->{//佛经
-                    startActRootFragment(BuddhaTextsFragment())
+                    (parentFragment as? MainFragment)?.start(BuddhaTextsFragment())
                 }
                 2->{//功德
 
@@ -124,13 +124,13 @@ class HostFragment : TopFragment() {
         }
     }
 
-    override fun onSupportVisible() {
-        super.onSupportVisible()
+    override fun onVisible() {
+        super.onVisible()
         v_marquee.startFlipping()
     }
 
-    override fun onSupportInvisible() {
-        super.onSupportInvisible()
+    override fun onInvisible() {
+        super.onInvisible()
         v_marquee.stopFlipping()
     }
 

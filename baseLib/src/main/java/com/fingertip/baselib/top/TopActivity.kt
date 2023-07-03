@@ -8,7 +8,7 @@ import com.fingertip.baselib.event_bus.MessageEvent
 import com.fingertip.baselib.log
 import com.fingertip.baselib.util.FullTopUtil
 import com.fingertip.baselib.view.LoadingDialog
-import me.yokeyword.fragmentation.SupportActivity
+import com.weikaiyun.fragmentation.SupportActivity
 import org.greenrobot.eventbus.Subscribe
 
 abstract class TopActivity : SupportActivity(), View.OnClickListener{

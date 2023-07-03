@@ -4,7 +4,7 @@ import android.content.Context
 import com.buddha.b_book.R
 import com.buddha.b_book.fragment.FojingDetailsFragment
 import com.fingertip.baselib.top.TopRcAdapter
-import me.yokeyword.fragmentation.SupportActivity
+import com.weikaiyun.fragmentation.SupportActivity
 
 /**
  * 书架
@@ -16,7 +16,7 @@ class BookShelfAdapter(context: Context):TopRcAdapter<String,TopRcAdapter.TopRcV
         get(position)?.let {
 
             holder.itemView.setOnClickListener {
-                (context as? SupportActivity)?.startRootFragment(FojingDetailsFragment())
+                (context as? SupportActivity)?.start(FojingDetailsFragment())
             }
         }
     }

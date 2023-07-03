@@ -6,15 +6,18 @@ import com.fingertip.baselib.bean.BannerEntity
 import com.fingertip.baselib.event_bus.MessageEvent
 import com.fingertip.baselib.log
 import com.fingertip.baselib.top.TopPmFragment
+import com.fingertip.baselib.util.ColorUtil
 import com.fingertip.baselib.util.PicUtils
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.MeBannerAdapter
 import com.fingertip.uilib.viewmodel.MeFragmentVM
+import com.lzlz.toplib.extention.toPx
 import com.youth.banner.Banner
 import kotlinx.android.synthetic.main.fragment_me.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.Subscribe
+import kotlin.math.min
 
 class MeFragment : TopPmFragment<MeFragmentVM>(), PicUtils.UpPicCallBack {
     override fun layoutId(): Int = R.layout.fragment_me
@@ -26,12 +29,10 @@ class MeFragment : TopPmFragment<MeFragmentVM>(), PicUtils.UpPicCallBack {
 
         initBanner()
 
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            nsl.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
-//                val slideOffset = min(scrollY * 1.0f / 88.toPx(),1f)
-//                cl_title.setBackgroundColor(ColorUtil.changeAlpha(resources.getColor(R.color.white),slideOffset))
-//            }
-//        }
+        nsl.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+            val slideOffset = min(scrollY * 1.0f / 88.toPx(),1f)
+            cl_title.setBackgroundColor(ColorUtil.changeAlpha(resources.getColor(R.color.white),slideOffset))
+        }
     }
 
 

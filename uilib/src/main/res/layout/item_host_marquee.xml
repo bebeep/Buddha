@@ -20,7 +20,7 @@
     <com.fingertip.baselib.view.MyTextView
         android:id="@+id/tv_title"
         android:text="呉彦祖 供灯 成功"
-        android:textColor="#2C1900"
+        android:textColor="@color/color_bla"
         android:textSize="14sp"
         app:zdyFont="bold"
         android:layout_marginStart="4dp"

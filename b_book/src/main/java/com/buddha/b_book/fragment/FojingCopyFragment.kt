@@ -4,6 +4,7 @@ import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.buddha.b_book.R
 import com.buddha.b_book.adapter.FojingCopyAdapter
+import com.buddha.b_book.dialog.FojingCopySettingDialog
 import com.buddha.b_book.vm.BookshelfVM
 import com.fingertip.baselib.log
 import com.fingertip.baselib.top.TopVMFragment
@@ -33,7 +34,9 @@ class FojingCopyFragment :TopVMFragment<BookshelfVM>(){
         super.onSingleClick(v)
         when(v){
             v_back->pop()
-            iv_setting -> ToastUtil.showMessage("设置")
+            iv_setting -> {
+                FojingCopySettingDialog(requireContext()).show()
+            }
             tv_answer1 -> {
                 ToastUtil.showMessage("答案1")
             }

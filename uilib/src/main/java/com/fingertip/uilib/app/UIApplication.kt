@@ -6,11 +6,12 @@ import com.blankj.utilcode.util.SPUtils
 import com.fingertip.baselib.language.LanguageUtil
 import com.fingertip.baselib.top.TopApplication
 import com.fingertip.uilib.BuildConfig
+import com.fingertip.uilib.R
 import com.scwang.smart.refresh.footer.BallPulseFooter
 import com.scwang.smart.refresh.header.MaterialHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.tencent.bugly.crashreport.CrashReport
-import io.github.devzwy.nsfw.NSFWHelper
+import com.weikaiyun.fragmentation.Fragmentation
 
 
 /**
@@ -31,11 +32,7 @@ class UIApplication: TopApplication() {
         LogUtils.e("language===============${LanguageUtils.getAppContextLanguage().language}")
         CrashReport.initCrashReport(applicationContext, "111", BuildConfig.DEBUG)
         initRefresh()
-
-        if (BuildConfig.DEBUG){
-            NSFWHelper.openDebugLog()
-        }
-        NSFWHelper.initHelper(context = this,isOpenGPU = false)
+        initFragment()
     }
 
 
@@ -52,5 +49,14 @@ class UIApplication: TopApplication() {
         SmartRefreshLayout.setDefaultRefreshFooterCreator { context, layout -> //指定为经典Footer，默认是 BallPulseFooter
             BallPulseFooter(context)
         }
+    }
+
+
+    private fun initFragment(){
+        Fragmentation.builder() // 设置 栈视图 模式为 （默认）悬浮球模式   SHAKE: 摇一摇唤出  NONE：隐藏， 仅在Debug环境生效
+            .stackViewMode(Fragmentation.BUBBLE)
+            .debug(BuildConfig.DEBUG) // 实际场景建议.debug(BuildConfig.DEBUG)
+            .animation(R.anim.h_fragment_enter, R.anim.h_fragment_pop_exit, R.anim.h_fragment_pop_enter, R.anim.h_fragment_exit) //设置默认动画
+            .install()
     }
 }

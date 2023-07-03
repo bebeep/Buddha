@@ -16,8 +16,8 @@ class RankFragment : TopFragment() {
 
     }
 
-    override fun onSupportVisible() {
-        super.onSupportVisible()
+    override fun onVisible() {
+        super.onVisible()
         refreshData()
 
     }

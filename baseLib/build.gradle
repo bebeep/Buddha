@@ -48,14 +48,12 @@ dependencies {
     api retrofit_libs.values()
     api smart_refresh_libs.values()
 
-    api project(path: ':fragmentation_core')
-    api project(path: ':FlycoTabLayout')
 
     //权限
     api 'pub.devrel:easypermissions:0.4.2'
 
-    //离线鉴黄
-    api project(path: ':nsfw')
+    //tablayout
+    api project(path: ':flycoTabLayout')
 
     //图片压缩 https://github.com/Sunzxyong/Tiny
     api 'com.zxy.android:tiny:1.1.0'
@@ -71,6 +69,11 @@ dependencies {
 
     //上下翻滚的跑马灯View https://github.com/xiaohaibin/XMarqueeView
     api 'com.github.xiaohaibin:XMarqueeView:2.0.6'
+
+    //请使用最新版本
+    api 'com.github.weikaiyun.SFragmentation:fragmentation:1.8.4'
+    //滑动返回，可选
+    api 'com.github.weikaiyun.SFragmentation:fragmentation_swipeback:1.8.4'
 }
 repositories {
     mavenCentral()

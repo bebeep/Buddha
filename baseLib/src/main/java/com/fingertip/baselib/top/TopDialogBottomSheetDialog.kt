@@ -23,6 +23,8 @@ abstract class TopDialogBottomSheetDialog(context: Context) : BottomSheetDialog(
         window?.findViewById<FrameLayout>(R.id.design_bottom_sheet)?.setBackgroundResource(android.R.color.transparent)
         onViewCreate(view)
 
+
+        behavior.isHideable = false
         setOnDismissListener(this)
     }
 

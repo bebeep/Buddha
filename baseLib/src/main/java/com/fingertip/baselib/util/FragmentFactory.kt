@@ -1,8 +1,8 @@
 package com.fingertip.baselib.util
 
 import android.os.Bundle
-import me.yokeyword.fragmentation.ISupportFragment
-import me.yokeyword.fragmentation.SupportFragment
+import com.weikaiyun.fragmentation.ISupportFragment
+import com.weikaiyun.fragmentation.SupportFragment
 
 
 /**

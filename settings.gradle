@@ -2,7 +2,5 @@ include ':app'
 rootProject.name = "Buddha"
 include ':baseLib'
 include ':uilib'
-include ':nsfw'
-include ':fragmentation_core'
 include ':b_book'
-include ':FlycoTabLayout'
+include ':flycoTabLayout'

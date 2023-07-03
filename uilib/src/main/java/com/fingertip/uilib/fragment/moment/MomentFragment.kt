@@ -4,8 +4,8 @@ import com.fingertip.baselib.event_bus.MessageEvent
 import com.fingertip.baselib.top.TopFragment
 import com.fingertip.baselib.top.TopFragmentPagerAdapter
 import com.fingertip.uilib.R
+import com.weikaiyun.fragmentation.SupportFragment
 import kotlinx.android.synthetic.main.fragment_moment.*
-import me.yokeyword.fragmentation.SupportFragment
 import org.greenrobot.eventbus.Subscribe
 
 /**
@@ -29,8 +29,8 @@ class MomentFragment : TopFragment() {
 
     }
 
-    override fun onSupportVisible() {
-        super.onSupportVisible()
+    override fun onVisible() {
+        super.onVisible()
         refreshData()
 
     }
