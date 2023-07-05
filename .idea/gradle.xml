@@ -7,14 +7,14 @@
         <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleJvm" value="Android Studio default JDK" />
+        <option name="gradleJvm" value="liberica-1.8" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/FlycoTabLayout" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/b_book" />
             <option value="$PROJECT_DIR$/baseLib" />
-            <option value="$PROJECT_DIR$/flycoTabLayout" />
             <option value="$PROJECT_DIR$/uilib" />
           </set>
         </option>

@@ -53,7 +53,7 @@ dependencies {
     api 'pub.devrel:easypermissions:0.4.2'
 
     //tablayout
-    api project(path: ':flycoTabLayout')
+    api project(path: ':FlycoTabLayout')
 
     //图片压缩 https://github.com/Sunzxyong/Tiny
     api 'com.zxy.android:tiny:1.1.0'

@@ -3,4 +3,4 @@ rootProject.name = "Buddha"
 include ':baseLib'
 include ':uilib'
 include ':b_book'
-include ':flycoTabLayout'
+include ':FlycoTabLayout'
