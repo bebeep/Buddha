@@ -101,4 +101,13 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+
+    <style name="CustomProgressBar_Small">
+        <item name="android:indeterminateDrawable">@drawable/progress_video</item>
+        <item name="android:minWidth">40dip</item>
+        <item name="android:maxWidth">40dip</item>
+        <item name="android:minHeight">40dip</item>
+        <item name="android:maxHeight">40dip</item>
+    </style>
 </resources>

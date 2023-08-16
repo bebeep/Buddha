@@ -2,7 +2,7 @@ package com.fingertip.uilib.fragment.moment
 
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.fingertip.baselib.bean.MomentBean
+import com.fingertip.baselib.bean.MomentEntity
 import com.fingertip.baselib.top.TopFragment
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.MomentAdapter
@@ -25,7 +25,7 @@ class MomentChildFragment : TopFragment(){
     }
 
     var adapter: MomentAdapter?=null
-    val list = ArrayList<MomentBean>()
+    val list = ArrayList<MomentEntity>()
     var typeString = MOMENT
     override fun initShiTu() {
         typeString = arguments?.getString(TYPE_STRING, MOMENT) ?: MOMENT
@@ -38,11 +38,11 @@ class MomentChildFragment : TopFragment(){
         recyclerview.layoutManager = LinearLayoutManager(requireContext())
         recyclerview.adapter = adapter
 
-        list.add(MomentBean())
-        list.add(MomentBean())
-        list.add(MomentBean())
-        list.add(MomentBean())
-        list.add(MomentBean())
+        list.add(MomentEntity())
+        list.add(MomentEntity())
+        list.add(MomentEntity())
+        list.add(MomentEntity())
+        list.add(MomentEntity())
         adapter?.initData(list)
     }
 }

@@ -74,6 +74,15 @@ dependencies {
     api 'com.github.weikaiyun.SFragmentation:fragmentation:1.8.4'
     //滑动返回，可选
     api 'com.github.weikaiyun.SFragmentation:fragmentation_swipeback:1.8.4'
+
+
+    //视频播放器 https://github.com/CarGuo/GSYVideoPlayer
+    api 'com.github.CarGuo.GSYVideoPlayer:GSYVideoPlayer:v8.1.7-release-jitpack'
+
+
+    //双指缩放imageview
+    api 'com.github.chrisbanes:PhotoView:2.3.0'
+
 }
 repositories {
     mavenCentral()

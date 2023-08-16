@@ -51,7 +51,9 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
         when(v){
             v_back -> pop()
             iv_share -> ToastUtil.showMessage("分享")
-            tv_read -> ToastUtil.showMessage("阅读模式")
+            tv_read -> {
+                start(FojingReadFragment())
+            }
             tv_copy -> {
                 ToastUtil.showMessage("抄经模式")
                 start(FojingCopyFragment())

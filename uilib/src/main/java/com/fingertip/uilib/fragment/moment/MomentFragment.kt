@@ -15,16 +15,16 @@ class MomentFragment : TopFragment() {
     override fun layoutId(): Int = R.layout.fragment_moment
 
     override fun initShiTu() {
-        val titles = mutableListOf("关注","佛友圈")
+        val titles = mutableListOf("佛友圈","关注")
         val fragments = mutableListOf<SupportFragment>(
-            MomentChildFragment.newInstance(MomentChildFragment.FOLLOW),
-            MomentChildFragment.newInstance(MomentChildFragment.MOMENT)
+            MomentChildFragment.newInstance(MomentChildFragment.MOMENT),
+            MomentChildFragment.newInstance(MomentChildFragment.FOLLOW)
         )
 
         vp.offscreenPageLimit = fragments.size
-        vp.currentItem = 1
         vp.adapter = TopFragmentPagerAdapter(fragments, childFragmentManager)
 
+        tab_layout.textBold = 2
         tab_layout.setViewPager(vp, titles.toTypedArray())
 
     }

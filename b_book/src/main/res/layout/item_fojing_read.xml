@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginHorizontal="4dp"
+    android:layout_marginBottom="24dp"
+    android:background="#FFFEFA"
+    android:layout_height="match_parent">
+
+
+    <com.fingertip.baselib.view.MyTextView
+        android:text="点击阿萨德阿卡丽三等奖阿萨德阿斯卡大家啊数控刀具点德阿斯卡大家啊数控刀具点击阿萨德阿卡丽三等奖阿萨德阿斯卡大家啊数控德阿斯卡大家啊数控刀具点击阿萨德阿卡丽三等奖阿萨德阿斯卡大家啊数控德阿斯卡大家啊数控刀具点击阿萨德阿卡丽三等奖阿萨德阿斯卡大家啊数控德阿斯卡大家啊数控刀具点击阿萨德阿卡丽三等奖阿萨德阿斯卡大家啊数控德阿斯卡大家啊数控刀具点击阿萨德阿卡丽三等奖阿萨德阿斯卡大家啊数控德阿斯卡大家啊数控刀具点击阿萨德阿卡丽三等奖阿萨德阿斯卡大家啊数控德阿斯卡大家啊数控刀具点击阿萨德阿卡丽三等奖阿萨德阿斯卡大家啊数控德阿斯卡大家啊数控刀具点击阿萨德阿卡丽三等奖阿萨德阿斯卡大家啊数控德阿斯卡大家啊数控刀具点击阿萨德阿卡丽三等奖阿萨德阿斯卡大家啊数控德阿斯卡大家啊数控刀具点击阿萨德阿卡丽三等奖阿萨德阿斯卡大家啊数控德阿斯卡大家啊数控刀具点击阿萨德阿卡丽三等奖阿萨德阿斯卡大家啊数控德阿斯卡大家啊数控刀具点击阿萨德阿卡丽三等奖阿萨德阿斯卡大家啊数控德阿斯卡大家啊数控刀具点击阿萨德阿卡丽三等奖阿萨德阿斯卡大家啊数控德阿斯卡大家啊数控刀具点击阿萨德阿卡丽三等奖阿萨德阿斯卡大家啊数控德阿斯卡大家啊数控刀具点击阿萨德阿卡丽三等奖阿萨德阿斯卡大家啊数控击阿萨德阿卡丽三等奖阿萨德阿斯卡大家啊数控刀具点击阿萨德阿卡丽三等奖阿萨德阿斯卡大家啊数控刀具点击阿萨德阿卡丽三等奖阿萨德阿斯卡大家啊数控刀具点击阿萨德阿卡丽三等奖阿萨德阿斯卡大家啊数控刀具"
+        android:layout_width="match_parent"
+        android:lineSpacingExtra="10dp"
+        android:layout_marginHorizontal="16dp"
+        android:textColor="#2C1900"
+        android:textSize="16sp"
+        android:layout_height="match_parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

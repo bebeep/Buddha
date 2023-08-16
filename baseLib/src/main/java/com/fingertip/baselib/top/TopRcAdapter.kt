@@ -13,7 +13,7 @@ abstract class TopRcAdapter<T, VH: TopRcAdapter.TopRcViewHolder>(
 
     val TAG by lazy { javaClass.simpleName }
 
-    private val mlist = ArrayList<T>()
+    val mlist = ArrayList<T>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val v = inflate(parent, initLayoutId(viewType))
