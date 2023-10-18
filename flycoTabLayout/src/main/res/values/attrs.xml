@@ -69,6 +69,10 @@
     <!-- title -->
     <!-- 设置字体大小 -->
     <attr name="tl_textsize" format="dimension"/>
+    <!-- 设置未选中字体大小 -->
+    <attr name="tl_textUnSelectSize" format="float"/>
+    <!-- 设置选中字体大小 -->
+    <attr name="tl_textSelectSize" format="float"/>
     <!-- 设置字体选中颜色 -->
     <attr name="tl_textSelectColor" format="color"/>
     <!-- 设置字体未选中颜色 -->
@@ -81,6 +85,9 @@
     </attr>
     <!-- 设置字体全大写 -->
     <attr name="tl_textAllCaps" format="boolean"/>
+
+    <!--自定义字体路径-->
+    <attr name="tl_customFontPath" format="string"/>
 
     <declare-styleable name="SlidingTabLayout">
         <!-- indicator -->
@@ -114,10 +121,13 @@
 
         <!-- title -->
         <attr name="tl_textsize"/>
+        <attr name="tl_textUnSelectSize"/>
+        <attr name="tl_textSelectSize"/>
         <attr name="tl_textSelectColor"/>
         <attr name="tl_textUnselectColor"/>
         <attr name="tl_textBold"/>
         <attr name="tl_textAllCaps"/>
+        <attr name="tl_customFontPath"/>
 
     </declare-styleable>
 

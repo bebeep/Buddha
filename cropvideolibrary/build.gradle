@@ -1,0 +1,19 @@
+apply plugin: 'com.android.library'
+
+android {
+
+
+    compileSdkVersion rootProject.versions["compileSdkVersion"]
+    defaultConfig {
+        minSdkVersion rootProject.versions["minSdkVersion"]
+        targetSdkVersion rootProject.versions["targetSdkVersion"]
+    }
+
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':baseLib')
+    api 'com.github.yangjie10930:EpMedia:v0.9.2'
+}

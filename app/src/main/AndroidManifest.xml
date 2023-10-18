@@ -15,8 +15,6 @@
         android:theme="@style/Theme.Buddha"
         tools:replace="android:theme,android:icon"
         >
-        <activity android:name=".MainActivity">
-        </activity>
     </application>
 
 </manifest>

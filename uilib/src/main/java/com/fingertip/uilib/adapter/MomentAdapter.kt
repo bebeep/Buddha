@@ -9,7 +9,7 @@ import com.fingertip.baselib.top.TopRcAdapter
 import com.fingertip.uilib.R
 import kotlinx.android.synthetic.main.item_moment.view.*
 
-class MomentAdapter(context: Context) : TopRcAdapter<MomentEntity, TopRcAdapter.TopRcViewHolder>(context) {
+class MomentAdapter(context: Context,val onItemClick:(entity:MomentEntity)->Unit) : TopRcAdapter<MomentEntity, TopRcAdapter.TopRcViewHolder>(context) {
     override fun initLayoutId(viewType: Int): Int = R.layout.item_moment
 
     var bigImageDialog: BigImageDialog?=null
@@ -18,7 +18,7 @@ class MomentAdapter(context: Context) : TopRcAdapter<MomentEntity, TopRcAdapter.
 
         get(position)?.let {
             holder.itemView.v_divider.visibility = if (position == mlist.size-1) View.GONE else View.VISIBLE
-
+            holder.itemView.rv_photos.visibility = if (it.momentType == 2  && it.images.size > 0) View.VISIBLE else View.GONE
             if (it.momentType == 2  && it.images.size > 0 ){//显示图片集合
                 val colums = when(it.images.size){
                     1->1 //单图
@@ -35,6 +35,12 @@ class MomentAdapter(context: Context) : TopRcAdapter<MomentEntity, TopRcAdapter.
 
                 holder.itemView.rv_photos.adapter = adapter
                 adapter.initData(it.images)
+
+
+
+                holder.itemView.setOnClickListener {_->
+                    onItemClick(it)
+                }
             }
         }
     }

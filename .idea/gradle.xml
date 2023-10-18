@@ -7,7 +7,7 @@
         <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleJvm" value="Embedded JDK" />
+        <option name="gradleJvm" value="jbr-17" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
@@ -15,9 +15,15 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/b_book" />
             <option value="$PROJECT_DIR$/baseLib" />
+            <option value="$PROJECT_DIR$/cropvideolibrary" />
+            <option value="$PROJECT_DIR$/easyPhotos" />
+            <option value="$PROJECT_DIR$/flowcamera" />
+            <option value="$PROJECT_DIR$/fragmentation_core" />
+            <option value="$PROJECT_DIR$/nsfw" />
             <option value="$PROJECT_DIR$/uilib" />
           </set>
         </option>
+        <option name="resolveExternalAnnotations" value="false" />
       </GradleProjectSettings>
     </option>
   </component>

@@ -34,15 +34,72 @@ class MomentChildFragment : TopFragment(){
 
 
     private fun initAdapter(){
-        adapter = MomentAdapter(requireContext())
+        adapter = MomentAdapter(requireContext()){
+            start(MomentDetailsFragment())
+        }
         recyclerview.layoutManager = LinearLayoutManager(requireContext())
         recyclerview.adapter = adapter
 
-        list.add(MomentEntity())
-        list.add(MomentEntity())
-        list.add(MomentEntity())
-        list.add(MomentEntity())
-        list.add(MomentEntity())
+        list.add(MomentEntity().apply {
+            momentType = 2
+            images = ArrayList<String?>().apply {
+                add("")
+            }
+            imageWidths = ArrayList<Int>().apply {
+                add(300)
+            }
+            imageHeights = ArrayList<Int>().apply {
+                add(300)
+            }
+        })
+        list.add(MomentEntity().apply {
+            momentType = 2
+            images = ArrayList<String?>().apply {
+                add("")
+                add("")
+                add("")
+            }
+            imageWidths = ArrayList<Int>().apply {
+                add(300)
+            }
+            imageHeights = ArrayList<Int>().apply {
+                add(300)
+            }
+        })
+        list.add(MomentEntity().apply {
+            momentType = 2
+            images = ArrayList<String?>().apply {
+                add("")
+                add("")
+                add("")
+                add("")
+                add("")
+            }
+            imageWidths = ArrayList<Int>().apply {
+                add(300)
+            }
+            imageHeights = ArrayList<Int>().apply {
+                add(300)
+            }
+        })
+        list.add(MomentEntity().apply {
+            momentType = 2
+            images = ArrayList<String?>().apply {
+                add("")
+                add("")
+                add("")
+                add("")
+                add("")
+                add("")
+                add("")
+            }
+            imageWidths = ArrayList<Int>().apply {
+                add(300)
+            }
+            imageHeights = ArrayList<Int>().apply {
+                add(300)
+            }
+        })
         adapter?.initData(list)
     }
 }

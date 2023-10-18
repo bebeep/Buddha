@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item android:state_selected="false" android:drawable="@mipmap/bg_moment_hide_name_u"/>
+    <item android:state_selected="true" android:drawable="@mipmap/bg_moment_hide_name_s"/>
+</selector>

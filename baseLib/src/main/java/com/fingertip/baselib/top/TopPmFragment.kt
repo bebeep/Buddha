@@ -25,6 +25,7 @@ abstract class TopPmFragment<VM : TopViewModel> : TopVMFragment<VM>(),
     EasyPermissions.PermissionCallbacks,FileCallback {
 
     val picUtils: PicUtils by lazy { PicUtils() }
+    var autoGoPhotoAfterPermissionGranted = true //授权后是否自动拍照/打开相册
 
     protected val picChoseDialog: ChoosePicDialog by lazy {  ChoosePicDialog(_mActivity,onItemClick={
         when(it){
@@ -38,9 +39,10 @@ abstract class TopPmFragment<VM : TopViewModel> : TopVMFragment<VM>(),
     }) }
 
 
-    open fun useAlbum() {
+    open fun useAlbum():Boolean {
 
         if (EasyPermissions.hasPermissions(activity, *album_pm)) {
+            if (!autoGoPhotoAfterPermissionGranted) return true
             gotoAlbum()
         } else {
             EasyPermissions.requestPermissions(
@@ -52,6 +54,7 @@ abstract class TopPmFragment<VM : TopViewModel> : TopVMFragment<VM>(),
                 *album_pm
             )
         }
+        return false
     }
 
 
@@ -60,8 +63,9 @@ abstract class TopPmFragment<VM : TopViewModel> : TopVMFragment<VM>(),
 
 
 
-    open fun useCamera() {
+    open fun useCamera():Boolean {
         if (EasyPermissions.hasPermissions(activity, *camera_pm)) {
+            if (!autoGoPhotoAfterPermissionGranted) return true
             takeCamera(CodeConstant.IntentSkipCode.REQUESTCODE_CAMERA)
         } else {
             EasyPermissions.requestPermissions(
@@ -73,22 +77,16 @@ abstract class TopPmFragment<VM : TopViewModel> : TopVMFragment<VM>(),
                 *camera_pm
             )
         }
+        return false
     }
 
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String?>,
-        grantResults: IntArray
-    ) {
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String?>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
     }
 
-    override fun onPermissionsGranted(
-        requestCode: Int,
-        perms: List<String?>?
-    ) {
+    override fun onPermissionsGranted(requestCode: Int, perms: List<String?>?) {
         log("onPermissionsGranted", "sucess+" + requestCode)
         when(requestCode){
             1->{

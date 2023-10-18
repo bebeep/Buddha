@@ -1,0 +1,22 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdkVersion rootProject.versions["compileSdkVersion"]
+    defaultConfig {
+        minSdkVersion rootProject.versions["minSdkVersion"]
+        targetSdkVersion rootProject.versions["targetSdkVersion"]
+    }
+}
+
+dependencies {
+    implementation 'com.davemorrissey.labs:subsampling-scale-image-view-androidx:3.10.0'
+
+    implementation project(path: ':baseLib')
+    implementation project(path: ':flowcamera')
+}
+

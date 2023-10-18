@@ -1,4 +1,10 @@
-apply plugin: 'com.android.library'
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+}
 
 android {
     compileSdkVersion rootProject.versions["compileSdkVersion"]
@@ -21,10 +27,9 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation androidx_libs.values()
 }

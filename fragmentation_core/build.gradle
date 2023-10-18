@@ -1,0 +1,25 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+    compileSdkVersion rootProject.versions["compileSdkVersion"]
+    buildToolsVersion rootProject.versions["buildToolsVersion"]
+
+    defaultConfig {
+        minSdkVersion rootProject.versions["minSdkVersion"]
+        targetSdkVersion rootProject.versions["targetSdkVersion"]
+
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    // 必须这样导入
+    compileOnly "androidx.appcompat:appcompat:1.2.0"
+}

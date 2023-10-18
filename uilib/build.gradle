@@ -2,6 +2,7 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'kotlin-android'
     id 'kotlin-android-extensions'
 }
 def productProps = getVersionConfig()
@@ -31,13 +32,15 @@ android {
     buildFeatures {
         viewBinding true
     }
+
 }
 
 dependencies {
 
     api project(path: ':baseLib')
     implementation project(path: ':b_book') //佛经
-
+    implementation project(path: ':easyPhotos')
+    implementation project(path: ':cropvideolibrary')
 
     implementation 'com.tencent.bugly:crashreport:latest.release'
 }

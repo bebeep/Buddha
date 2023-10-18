@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginHorizontal="10dp"
+        android:id="@+id/TopRly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_white_radius_13">
+        <TextView
+            android:gravity="center"
+            android:id="@+id/tv_photo"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:text="Take Photo"
+            android:textAllCaps="false"
+            android:textSize="19sp"
+            android:textColor="#6C2AF2"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#30666667"></View>
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/btn_video"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:text="Record Video"
+            android:textAllCaps="false"
+            android:textSize="19sp"
+            android:textColor="#6C2AF2"/>
+    </LinearLayout>
+
+    <TextView
+        android:gravity="center"
+        android:id="@+id/tv_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:textColor="#6C2AF2"
+        android:text="Cancel"
+        android:background="@drawable/bg_white_radius_13"
+        android:layout_margin="10dp"
+        android:textAllCaps="false"
+        android:textSize="19sp" />
+</LinearLayout>

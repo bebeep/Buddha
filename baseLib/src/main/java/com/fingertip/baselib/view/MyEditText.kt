@@ -20,18 +20,18 @@ open class MyEditText @JvmOverloads constructor(
         a.recycle()
 
         when (fontStyle) {
-            0 -> {
-                super.setTypeface(Typeface.createFromAsset(getContext().assets, "gilroy-regular-3.otf"))
-            }
-            1 -> {
-                super.setTypeface(Typeface.createFromAsset(getContext().assets, "gilroy-Medium-2.otf"))
-            }
-            2 -> {
-                super.setTypeface(Typeface.createFromAsset(getContext().assets, "gilroy-bold-4.otf"))
-            }
-            3 -> {
-                super.setTypeface(Typeface.createFromAsset(getContext().assets, "gilroy-blackitalic-7.otf"))
-            }
+//            0 -> {
+//                super.setTypeface(Typeface.createFromAsset(getContext().assets, "gilroy-regular-3.otf"))
+//            }
+//            1 -> {
+//                super.setTypeface(Typeface.createFromAsset(getContext().assets, "gilroy-Medium-2.otf"))
+//            }
+//            2 -> {
+//                super.setTypeface(Typeface.createFromAsset(getContext().assets, "gilroy-bold-4.otf"))
+//            }
+//            3 -> {
+//                super.setTypeface(Typeface.createFromAsset(getContext().assets, "gilroy-blackitalic-7.otf"))
+//            }
         }
 
         if (yStrike) {
