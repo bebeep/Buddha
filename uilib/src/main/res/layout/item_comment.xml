@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_parent"
+    android:paddingBottom="15dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.fingertip.baselib.view.shapeview.ShapeImageView
+        android:id="@+id/iv_head"
+        app:layout_constraintTop_toTopOf="@+id/tv_nickname"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_level"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="32dp"
+        app:radius="16dp"
+        android:scaleType="centerCrop"
+        android:layout_height="32dp"/>
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_nickname"
+        app:layout_constraintStart_toEndOf="@+id/iv_head"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tv_level"
+        android:layout_width="wrap_content"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:text="Wuyanzu"
+        android:textColor="#9D9D9D"
+        android:textSize="13sp"
+        app:zdyFont="regular"
+        android:includeFontPadding="false"
+        android:layout_marginStart="8dp"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        />
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_level"
+        app:layout_constraintTop_toBottomOf="@+id/tv_nickname"
+        app:layout_constraintStart_toEndOf="@+id/iv_head"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_head"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="10sp"
+        android:textColor="#AAAAAA"
+        android:layout_marginTop="2dp"
+        android:text="lv1 佛门初探 | 3分钟前"
+        android:layout_height="wrap_content"/>
+
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_like"
+        app:layout_constraintTop_toTopOf="@+id/iv_head"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_head"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="4dp"
+        android:drawableStart="@drawable/bg_comment_like"
+        android:textColor="#2D2D2D"
+        android:textSize="11sp"
+        android:text="88"
+        android:gravity="center"
+        android:drawablePadding="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_comment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingVertical="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_head"
+        app:layout_constraintTop_toBottomOf="@+id/tv_level"
+        android:gravity="start"
+        android:text="Wuyanzu is 帅哥asd;aldlasd;a;lsd;las'dlas;d;las;dlas;ldasdasd;asld;las;ld"
+        android:textColor="#2D2D2D"
+        android:textSize="14sp"
+        />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        app:layout_constraintStart_toEndOf="@+id/iv_head"
+        app:layout_constraintTop_toBottomOf="@+id/tv_comment"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_width="0dp"
+        tools:listitem="@layout/item_comment_inner"
+        tools:itemCount="3"
+        android:layout_height="wrap_content"/>
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textColor="#848F9B"
+        android:paddingHorizontal="32dp"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerview"
+        app:layout_constraintStart_toEndOf="@+id/iv_head"
+        android:layout_marginStart="8dp"
+        android:paddingVertical="4dp"
+        android:layout_marginTop="4dp"
+        android:textSize="12sp"
+        android:text="查看更多回复"/>
+
+    <View
+        android:id="@+id/v_line_bottom"
+        app:layout_constraintTop_toBottomOf="@+id/tv_more"
+        app:layout_constraintStart_toEndOf="@+id/iv_head"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_width="0dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="16dp"
+        android:background="#F7F7F7"
+        android:layout_height="1dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

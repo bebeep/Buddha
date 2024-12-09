@@ -1,4 +1,4 @@
-package com.fingertip.uilib.fragment
+package com.fingertip.uilib.fragment.worshiping
 
 import com.fingertip.baselib.event_bus.MessageEvent
 import com.fingertip.baselib.top.TopFragment

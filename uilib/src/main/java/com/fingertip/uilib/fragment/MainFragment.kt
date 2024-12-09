@@ -4,9 +4,12 @@ import com.fingertip.baselib.event_bus.MessageEvent
 import com.fingertip.baselib.top.TopVMFragment
 import com.fingertip.uilib.R
 import com.fingertip.uilib.fragment.moment.MomentFragment
+import com.fingertip.uilib.fragment.worshiping.WorshipFragment
 import com.fingertip.uilib.viewmodel.MainVM
 import com.fingertip.uilib.widgets.bottom_menu.BottomMenu
 import com.fingertip.uilib.widgets.bottom_menu.BottomMenuItem
+import com.lzlz.toplib.extention.gone
+import com.lzlz.toplib.extention.visible
 import com.weikaiyun.fragmentation.SupportFragment
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.greenrobot.eventbus.Subscribe
@@ -64,6 +67,13 @@ class MainFragment : TopVMFragment<MainVM>(), BottomMenu.MenuSelectCallback {
         showHideFragment(fragmentList[pos], lastFragment)
         lastFragment = fragmentList[pos]
         lastIndex = pos
+        if(pos == 2){
+            multi_container.gone()
+            bottom_menu.alpha = 0.2f
+        }else{
+            multi_container.visible()
+            bottom_menu.alpha = 1f
+        }
     }
 
 

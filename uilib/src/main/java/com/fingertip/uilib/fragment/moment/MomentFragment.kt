@@ -6,6 +6,8 @@ import com.fingertip.baselib.top.TopFragment
 import com.fingertip.baselib.top.TopFragmentPagerAdapter
 import com.fingertip.uilib.R
 import com.fingertip.uilib.fragment.MainFragment
+import com.fingertip.uilib.fragment.message.MessageFragment
+import com.fingertip.uilib.fragment.search.SearchFragment
 import com.weikaiyun.fragmentation.SupportFragment
 import kotlinx.android.synthetic.main.fragment_moment.*
 import org.greenrobot.eventbus.Subscribe
@@ -38,8 +40,12 @@ class MomentFragment : TopFragment() {
     override fun onSingleClick(v: View?) {
         super.onSingleClick(v)
         when(v){
-            iv_search->{}
-            iv_notify->{}
+            iv_search->{
+                (parentFragment as? MainFragment)?.start(SearchFragment())
+            }
+            iv_notify->{
+                (parentFragment as? MainFragment)?.start(MessageFragment())
+            }
             iv_moment_post->{
                 (parentFragment as? MainFragment)?.start(MomentPostFragment())
             }

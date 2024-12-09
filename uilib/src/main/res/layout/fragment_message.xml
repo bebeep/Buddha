@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.fingertip.baselib.view.FullTopConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@mipmap/icon_back_black"
+            android:layout_marginStart="8dp"
+            android:layout_width="38dp"
+            android:layout_height="38dp"/>
+
+
+        <com.fingertip.baselib.view.MyTextView
+            android:text="消息"
+            android:textColor="#333333"
+            android:textSize="18sp"
+            app:layout_constraintTop_toTopOf="@+id/iv_back"
+            app:layout_constraintStart_toEndOf="@+id/iv_back"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_read"
+            android:text="一键已读"
+            android:textColor="#FF9600"
+            android:textSize="16sp"
+            app:layout_constraintTop_toTopOf="@+id/iv_back"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingHorizontal="16dp"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_height="0dp"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cl_title"
+        app:tl_indicator_margin_top="0dp"
+        app:tl_indicator_margin_bottom="0dp"
+        app:tl_indicator_color="#2D2D2D"
+        app:tl_indicator_corner_radius="2dp"
+        app:tl_indicator_height="4dp"
+        app:tl_indicator_horizontal="CENTER"
+        app:tl_indicator_width="15dp"
+        app:tl_tab_padding="10dp"
+        app:tl_textBold="SELECT"
+        app:tl_textSelectColor="#2D2D2D"
+        app:tl_textUnselectColor="#CC2D2D2D"
+        />
+
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tab_layout" />
+
+</com.fingertip.baselib.view.FullTopConstraintLayout>

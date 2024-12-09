@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_reply_parent"
+    android:layout_marginTop="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.fingertip.baselib.view.shapeview.ShapeImageView
+        android:id="@+id/iv_head"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="36dp"
+        app:radius="18dp"
+        android:layout_marginStart="16dp"
+        android:src="@mipmap/icon_avatar_default"
+        android:scaleType="centerCrop"
+        android:layout_height="36dp"/>
+    
+    <com.fingertip.baselib.view.shapeview.ShapeView
+        android:id="@+id/v_red_point"
+        app:layout_constraintTop_toTopOf="@+id/iv_head"
+        app:layout_constraintEnd_toEndOf="@+id/iv_head"
+        app:gdBgColor="#E44F4C"
+        app:gdRadius="3dp"
+        android:layout_width="6dp"
+        android:layout_height="6dp"/>
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_reply_title"
+        app:layout_constraintStart_toEndOf="@+id/iv_head"
+        app:layout_constraintTop_toTopOf="@+id/iv_head"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_head"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="0dp"
+        android:text="Wuyanzu asdasdasdas asddkj asdj as d见客户"
+        android:textColor="#FF9600"
+        android:textSize="14sp"
+        android:ellipsize="end"
+        app:zdyFont="bold"
+        android:maxLines="2"
+        android:gravity="center_vertical"
+        android:includeFontPadding="false"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="15dp"
+        android:layout_height="0dp"
+        />
+
+
+
+    <com.fingertip.baselib.view.shapeview.ShapeLinearLayout
+        android:orientation="vertical"
+        android:id="@+id/ll_content"
+        app:layout_constraintTop_toBottomOf="@+id/tv_reply_title"
+        app:layout_constraintStart_toEndOf="@+id/iv_head"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_width="0dp"
+        app:gdBgColor="#F2F4F6"
+        app:gdRadius="4dp"
+        android:padding="8dp"
+        android:layout_height="wrap_content">
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_reply_content"
+            android:text="这里是回复的内容klasjdkasjdklasjdklasjdkjaksljdkjaskdjaskdjklasjdklasjdkjaskdjkasjdkadja"
+            android:layout_width="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#2C1900"
+            android:lineSpacingExtra="4dp"
+            android:layout_height="wrap_content"/>
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_more"
+            android:layout_gravity="end"
+            android:text="展开"
+            android:textColor="#FF9600"
+            android:paddingTop="4dp"
+            android:paddingStart="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </com.fingertip.baselib.view.shapeview.ShapeLinearLayout>
+
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_reply_date"
+        app:layout_constraintTop_toBottomOf="@+id/ll_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="0dp"
+        android:text="5 mins ago"
+        android:textColor="#FF9D9D9D"
+        android:textSize="12sp"
+        android:layout_marginTop="5dp"
+        android:includeFontPadding="false"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="15dp"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        app:zdyFont="regular"
+        />
+
+
+    <View
+        android:id="@+id/v_line_bottom"
+        app:layout_constraintTop_toBottomOf="@+id/tv_reply_date"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:background="#F2F4F6"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

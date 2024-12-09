@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <com.fingertip.baselib.view.FullTopConstraintLayout
+        android:id="@+id/cl_title"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:paddingBottom="24dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@mipmap/icon_back_black"
+            android:layout_marginStart="8dp"
+            android:layout_width="38dp"
+            android:layout_height="38dp"/>
+
+        <com.fingertip.baselib.view.MyTextView
+            android:text="选择佛像"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/iv_back"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@+id/iv_back"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_back"
+            app:zdyFont="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+    </com.fingertip.baselib.view.FullTopConstraintLayout>
+
+
+    <ImageView
+        android:id="@+id/v_fo"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/cl_title"
+        app:layout_constraintBottom_toTopOf="@+id/tv_gf_people"
+        android:layout_margin="16dp"
+        android:src="@mipmap/bg_worship_buddha"
+        android:scaleType="fitCenter"
+        android:layout_height="0dp"
+        />
+
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_gf_people"
+        app:layout_constraintBottom_toTopOf="@+id/rc_fo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="32dp"
+        android:text="8897人已供佛"
+        android:textSize="12sp"
+        android:textColor="#AAAAAA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rc_fo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_gf"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_gf"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/bg_button"
+        android:gravity="center"
+        android:text="供佛"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:zdyFont="bold"
+        tools:layout_editor_absoluteX="24dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

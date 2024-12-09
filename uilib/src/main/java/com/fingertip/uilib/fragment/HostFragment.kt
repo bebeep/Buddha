@@ -13,6 +13,7 @@ import com.fingertip.uilib.adapter.HostBannerAdapter
 import com.fingertip.uilib.adapter.HostMarqueeAdapter
 import com.fingertip.uilib.adapter.HostMenuAdapter
 import com.fingertip.uilib.dialog.SignInDialog
+import com.fingertip.uilib.fragment.worshiping.GongFoFragment
 import com.youth.banner.Banner
 import kotlinx.android.synthetic.main.fragment_host.*
 import org.greenrobot.eventbus.Subscribe
@@ -38,7 +39,7 @@ class HostFragment : TopFragment() {
         adapter = HostMenuAdapter(requireContext()){ pos->
             when(pos){
                 0->{//供佛
-
+                    (parentFragment as? MainFragment)?.start(GongFoFragment())
                 }
                 1->{//佛经
                     (parentFragment as? MainFragment)?.start(BuddhaTextsFragment())

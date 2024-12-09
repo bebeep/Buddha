@@ -7,6 +7,79 @@
 
 
 
+    <ImageView
+        android:id="@+id/iv_bg_worship"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@mipmap/bg_worship"/>
+
+
+
+    <ImageView
+        android:id="@+id/iv_worship_buddha"
+        app:layout_constraintTop_toTopOf="@+id/iv_bg_worship"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_bg_worship"
+        app:layout_constraintStart_toStartOf="@+id/iv_bg_worship"
+        app:layout_constraintEnd_toEndOf="@+id/iv_bg_worship"
+        app:layout_constraintVertical_bias="0.21"
+        android:layout_width="0dp"
+        android:src="@mipmap/bg_worship_buddha"
+        android:layout_marginHorizontal="32dp"
+        app:layout_constraintDimensionRatio="h,338:425"
+        android:layout_height="0dp"/>
+
+    <ImageView
+        android:id="@+id/iv_worship_light_l"
+        app:layout_constraintTop_toTopOf="@+id/iv_bg_worship"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_bg_worship"
+        app:layout_constraintStart_toStartOf="@+id/iv_bg_worship"
+        app:layout_constraintVertical_bias="0.2"
+        android:layout_width="89dp"
+        android:src="@mipmap/bg_worship_light_l"
+        android:layout_height="109dp"/>
+
+    <ImageView
+        android:id="@+id/iv_worship_light_r"
+        app:layout_constraintTop_toTopOf="@+id/iv_bg_worship"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_bg_worship"
+        app:layout_constraintEnd_toEndOf="@+id/iv_bg_worship"
+        app:layout_constraintVertical_bias="0.2"
+        android:layout_width="89dp"
+        android:src="@mipmap/bg_worship_light_r"
+        android:layout_height="109dp"/>
+
+    <ImageView
+        android:id="@+id/iv_worship_candle_l"
+        app:layout_constraintTop_toTopOf="@+id/iv_bg_worship"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_bg_worship"
+        app:layout_constraintStart_toStartOf="@+id/iv_bg_worship"
+        app:layout_constraintVertical_bias="0.71"
+        android:layout_width="37dp"
+        android:layout_marginStart="64dp"
+        android:src="@mipmap/icon_worship_candle"
+        android:layout_height="135dp"/>
+    
+    <ImageView
+        android:id="@+id/iv_worship_censer"
+        app:layout_constraintStart_toStartOf="@+id/iv_worship_candle_l"
+        app:layout_constraintEnd_toStartOf="@+id/iv_worship_candle_r"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_worship_candle_l"
+        android:layout_width="116dp"
+        android:layout_height="116dp"/>
+
+    <ImageView
+        android:id="@+id/iv_worship_candle_r"
+        app:layout_constraintTop_toTopOf="@+id/iv_bg_worship"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_bg_worship"
+        app:layout_constraintEnd_toEndOf="@+id/iv_bg_worship"
+        app:layout_constraintVertical_bias="0.71"
+        android:layout_width="37dp"
+        android:layout_marginEnd="64dp"
+        android:src="@mipmap/icon_worship_candle"
+        android:layout_height="135dp"/>
+
+
 
     <FrameLayout
         android:id="@+id/multi_container"
@@ -22,5 +95,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:background="@color/white"
         android:elevation="2dp"/>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

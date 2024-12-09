@@ -1,54 +1,379 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <com.fingertip.baselib.view.FullTopConstraintLayout
+<com.fingertip.baselib.view.FullTopConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_moment_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:descendantFocusability="blocksDescendants"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+<!--        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--            xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--            android:id="@+id/cl_moment_parent"-->
+<!--            xmlns:tools="http://schemas.android.com/tools"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:background="@color/white"-->
+<!--            android:focusableInTouchMode="true"-->
+<!--            android:focusable="true"-->
+<!--            android:descendantFocusability="blocksDescendants"-->
+<!--            android:layout_height="match_parent">-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_title"
         android:layout_width="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_height="wrap_content">
-
-        <include layout="@layout/view_back"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:id="@+id/v_back"/>
-
-        <com.fingertip.baselib.view.MyTextView
-            android:id="@+id/tv_title"
-            app:layout_constraintStart_toEndOf="@+id/v_back"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="40dp"
-            android:layout_marginStart="2dp"
-            app:layout_constraintTop_toTopOf="@+id/v_back"
-            app:layout_constraintBottom_toBottomOf="@+id/v_back"
-            android:text="南无阿弥陀ask鹿鼎奥术大师多记奥克奥术大师多兰的接口佛"
-            android:textColor="#2C1900"
-            android:textSize="16sp"
-            android:singleLine="true"
-            android:alpha="0"
-            android:ellipsize="end"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:paddingVertical="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/iv_share"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:src="@mipmap/icon_menu"
+            android:id="@+id/iv_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@mipmap/icon_back_black"
+            android:layout_marginStart="8dp"
             android:layout_width="38dp"
             android:layout_height="38dp"/>
 
-    </com.fingertip.baselib.view.FullTopConstraintLayout>
+        <com.fingertip.baselib.view.shapeview.ShapeImageView
+            android:id="@+id/iv_head"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:scaleType="centerCrop"
+            app:radius="16dp"
+            android:src="@mipmap/icon_avatar_default"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_back"
+            app:layout_constraintStart_toEndOf="@+id/iv_back"
+            app:layout_constraintTop_toTopOf="@+id/iv_back" />
+
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_nickname"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_head"
+            android:layout_marginStart="6dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_level"
+            android:textSize="15sp"
+            android:textColor="#333333"
+            tools:text="吴彦祖"
+            app:layout_constraintVertical_chainStyle="packed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_level"
+            app:layout_constraintTop_toBottomOf="@+id/tv_nickname"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_head"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textSize="10sp"
+            android:textColor="#AAAAAA"
+            android:layout_marginTop="2dp"
+            tools:text="lv1 佛门初探 | 3分钟前"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/iv_menu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@mipmap/icon_menu"
+            android:layout_marginEnd="8dp"
+            android:layout_width="38dp"
+            android:layout_height="38dp"/>
 
 
 
+        <com.fingertip.baselib.view.MyTextView
+            android:layout_width="wrap_content"
+            android:id="@+id/tv_follow"
+            android:text="+关注"
+            android:paddingHorizontal="4dp"
+            android:paddingVertical="2dp"
+            android:textSize="10sp"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/tv_select"
+            android:background="@drawable/bg_follow"
+            app:layout_constraintStart_toEndOf="@+id/tv_nickname"
+            app:layout_constraintTop_toTopOf="@+id/tv_nickname"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_nickname"
+            android:layout_height="wrap_content"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:id="@+id/srl"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cl_title"
+        app:srlEnableRefresh="false">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/dc_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.fingertip.baselib.view.MyTextView
+                        android:id="@+id/tv_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:autoLink="web"
+                        android:ellipsize="end"
+                        android:includeFontPadding="false"
+                        android:lineSpacingExtra="5dp"
+                        android:paddingHorizontal="15dp"
+                        android:paddingBottom="10dp"
+                        android:textColor="@color/black"
+                        android:textColorLink="#32c5f3"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:text="Among men, www.baidu.com in intimacy; klalks la;skdla  as;ldkasd;laskdl; asdl;kl adl;kasdk asdlj asdlj asdl among women, intimacy sometimes resuilts in sex”-Donald Symons" />
+
+                    <Space
+                        android:id="@+id/space_right"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/fl_image_video"
+                        app:layout_constraintWidth_percent="0.33"
+                        tools:visibility="visible" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/fl_image_video"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="13.5dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="6dp"
+                        app:layout_constraintEnd_toStartOf="@+id/space_right"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_content">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cv_video"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:visibility="gone"
+                            app:cardCornerRadius="4dp"
+                            app:cardElevation="0dp"
+                            app:cardMaxElevation="0dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <com.fingertip.baselib.view.SampleCoverVideo
+                                android:id="@+id/video"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_photos"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="6dp"
+                            android:visibility="gone"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <com.fingertip.baselib.view.MyTextView
+                    android:id="@+id/tv_locate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:includeFontPadding="false"
+                    android:textColor="#848F9B"
+                    android:textSize="14sp"
+                    android:gravity="center_vertical"
+                    android:drawableStart="@mipmap/icon_moment_locate_gray"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dc_container"
+                    tools:text="四川省成都市天府广场101号" />
+
+                <com.fingertip.baselib.view.shapeview.ShapeTextView
+                    android:id="@+id/lv_share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="13dp"
+                    android:drawableStart="@mipmap/icon_moment_share"
+                    android:drawablePadding="4dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:textColor="#2C1900"
+                    android:textSize="14sp"
+                    app:layout_constraintTop_toTopOf="@+id/tv_like"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_like"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_like"
+                    android:layout_marginEnd="24dp"
+                    tools:text="25" />
+
+                <com.fingertip.baselib.view.shapeview.ShapeTextView
+                    android:id="@+id/tv_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="28dp"
+                    android:drawableStart="@drawable/bg_moment_like"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_locate"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="16dp"
+                    android:drawablePadding="4dp"
+                    android:gravity="center"
+                    android:textColor="#2C1900"
+                    android:textSize="14sp"
+                    tools:text="25" />
 
 
 
+                <View
+                    android:id="@+id/v_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="24dp"
+                    android:background="#F7F7F7"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_like" />
+
+
+                <com.fingertip.baselib.view.MyTextView
+                    android:id="@+id/tv_comments"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginTop="24dp"
+                    android:text="评论(899)"
+                    android:textColor="#2D2D2D"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/v_line"
+                    app:zdyFont="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="14dp"
+                    android:layout_marginTop="14dp"
+                    android:nestedScrollingEnabled="false"
+                    android:paddingBottom="24dp"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_comments" />
+
+
+                <com.fingertip.baselib.view.MyTextView
+                    android:id="@+id/iv_empty"
+                    android:text="暂无内容"
+                    android:textColor="#FFDBD7F4"
+                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:drawablePadding="16dp"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_comments"
+                    android:layout_height="200dp"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
+
+    <FrameLayout
+        android:id="@+id/fl_input"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_input"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_input"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="45dp"
+            android:gravity="center_vertical"
+            android:hint="加入讨论吧"
+            app:zdyFont="bold" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical|end"
+            android:src="@mipmap/btn_comment_send_grey" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/ll_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_input"
+        android:minHeight="48dp"
+        android:paddingRight="10dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+
+        <com.fingertip.baselib.view.MyEditText
+            android:id="@+id/et_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="48dp"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="加入讨论吧"
+            android:imeOptions="actionSend"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="4dp"
+            android:maxHeight="96dp"
+            android:maxLength="300"
+            android:minHeight="48dp"
+            android:paddingLeft="15dp"
+            android:textColor="#050505"
+            android:textCursorDrawable="@drawable/bg_comment_curser"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/iv_send"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_gravity="right|center_vertical"
+            android:padding="6dp"
+            android:src="@drawable/bg_iv_send" />
+    </FrameLayout>
 
 
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+</com.fingertip.baselib.view.FullTopConstraintLayout>

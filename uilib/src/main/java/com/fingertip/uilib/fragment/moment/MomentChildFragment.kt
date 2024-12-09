@@ -3,9 +3,11 @@ package com.fingertip.uilib.fragment.moment
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fingertip.baselib.bean.MomentEntity
+import com.fingertip.baselib.log
 import com.fingertip.baselib.top.TopFragment
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.MomentAdapter
+import com.fingertip.uilib.fragment.MainFragment
 import kotlinx.android.synthetic.main.fragment_moment_child.*
 
 class MomentChildFragment : TopFragment(){
@@ -35,7 +37,9 @@ class MomentChildFragment : TopFragment(){
 
     private fun initAdapter(){
         adapter = MomentAdapter(requireContext()){
-            start(MomentDetailsFragment())
+            log(value = "MomentAdapter-----------")
+            (parentFragment?.parentFragment as? MainFragment)?.start(MomentDetailsFragment())
+
         }
         recyclerview.layoutManager = LinearLayoutManager(requireContext())
         recyclerview.adapter = adapter
