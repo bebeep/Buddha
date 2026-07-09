@@ -1,8 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 android {
+    namespace 'com.hbzhou.open.flowcamera'
     compileSdkVersion rootProject.versions["compileSdkVersion"]
     defaultConfig {
         minSdkVersion rootProject.versions["minSdkVersion"]
@@ -41,7 +41,7 @@ dependencies {
     // PhotoView
     api 'com.github.chrisbanes:PhotoView:2.3.0'
     // custom camera view
-    api 'com.otaliastudios:cameraview:2.7.0'
+    api 'com.otaliastudios:cameraview:2.7.2'
     api "com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava"
 
 }

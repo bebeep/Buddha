@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
 
-
+    namespace 'test.taq.com.cropvideolibrary'
     compileSdkVersion rootProject.versions["compileSdkVersion"]
     defaultConfig {
         minSdkVersion rootProject.versions["minSdkVersion"]

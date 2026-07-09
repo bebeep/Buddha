@@ -2,19 +2,19 @@
 ext {
 
     versions = [
-            appcompat_version               : "1.2.0",
-            compileSdkVersion               : 30,
-            buildToolsVersion               : "30.0.3",
+            appcompat_version               : "1.6.1",
+            compileSdkVersion               : 34,
+            buildToolsVersion               : "34.0.0",
             minSdkVersion                   : 23,
-            targetSdkVersion                : 30,
+            targetSdkVersion                : 34,
 
 
-            arouter_version                 : "1.5.0",
-            room_version                    : "2.2.6",
-            corektx_version                 : "1.3.2",
-            lifecycle_version               : "2.2.0",
+            arouter_version                 : "1.5.2",
+            room_version                    : "2.6.1",
+            corektx_version                 : "1.12.2",
+            lifecycle_version               : "2.7.0",
             retrofit_version                : "2.9.0",
-            glide_version                   : "4.11.0",
+            glide_version                   : "4.16.0",
     ]
 
 
@@ -25,7 +25,7 @@ ext {
     glide_libs = [
             glide                   : "com.github.bumptech.glide:glide:${versions["glide_version"]}",
             glideCompiler           : "com.github.bumptech.glide:compiler:${versions["glide_version"]}",
-            webpdecoder             : "com.zlc.glide:webpdecoder:2.0.${versions["glide_version"]}"
+            webpdecoder             : "com.github.zjupure:webpdecoder:2.7.${versions["glide_version"]}"
     ]
 
 
@@ -49,41 +49,41 @@ ext {
 
     views_libs = [
             swipeRefresh            : "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0",
-            RecyclerView            : "androidx.recyclerview:recyclerview:1.1.0",
+            RecyclerView            : "androidx.recyclerview:recyclerview:1.3.2",
             viewpager2              : "androidx.viewpager2:viewpager2:1.0.0",
-            Design                  : "com.google.android.material:material:1.2.1"
+            Design                  : "com.google.android.material:material:1.12.0"
     ]
     androidx_libs = [
 
             Lifecycles_Java8        : "androidx.lifecycle:lifecycle-common-java8:${versions["lifecycle_version"]}",
             corektx                 : "androidx.core:core-ktx:${versions["corektx_version"]}",
-            constraintlayout        : "androidx.constraintlayout:constraintlayout:2.1.1",
+            constraintlayout        : "androidx.constraintlayout:constraintlayout:2.1.4",
             viewmodel               : "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions["lifecycle_version"]}",
             LiveData                : "androidx.lifecycle:lifecycle-livedata-ktx:${versions["lifecycle_version"]}",
             Lifecycles              : "androidx.lifecycle:lifecycle-runtime-ktx:${versions["lifecycle_version"]}",
             appcompat               : "androidx.appcompat:appcompat:${versions["appcompat_version"]}",
-            annotation              : "androidx.annotation:annotation:1.1.0",
-            multidex                : "androidx.multidex:multidex:2.0.0",
+            annotation              : "androidx.annotation:annotation:1.7.0",
+            multidex                : "androidx.multidex:multidex:2.0.1",
     ]
     common_libs = [
-            gson                    : "com.google.code.gson:gson:2.8.6",
+            gson                    : "com.google.code.gson:gson:2.10.1",
             blankj                  : "com.blankj:utilcodex:1.30.6",
-            eventBus                : "org.greenrobot:eventbus:3.1.1",
+            eventBus                : "org.greenrobot:eventbus:3.3.1",
             //单activity多fragment https://github.com/YoKeyword/Fragmentation  下载下来进行修改
 //            fragmention             : "me.yokeyword:fragmentationx:1.0.2"
     ]
 
     arouter_libs = [
             api                     : "com.alibaba:arouter-api:${versions["arouter_version"]}",
-            ap                      : "com.alibaba:arouter-compiler:1.2.2"
+            ap                      : "com.alibaba:arouter-compiler:1.5.2"
     ]
 
 
     //下拉刷新下载加载组件
     smart_refresh_libs = [
-            kernel                  : "com.scwang.smart:refresh-layout-kernel:2.0.1",
-            header_classics         : "com.scwang.smart:refresh-header-material:2.0.1",
-            footer_ball             : "com.scwang.smart:refresh-footer-ball:2.0.1"
+            kernel                  : "io.github.scwang90:refresh-layout-kernel:2.0.5",
+            header_classics         : "io.github.scwang90:refresh-header-material:2.0.5",
+            footer_ball             : "io.github.scwang90:refresh-footer-ball:2.0.5"
     ]
 
 

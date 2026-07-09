@@ -1,15 +1,17 @@
 apply from: "libconfig.gradle"
 buildscript {
-    ext.kotlin_version = "1.6.10"
+    ext.kotlin_version = '1.9.24'
     repositories {
         google()
-        jcenter()
+        mavenCentral()
+        maven { url 'https://mirrors.cloud.tencent.com/jitpack' }
         maven { url 'https://www.jitpack.io' }
+        maven { url "https://gitcode.com/gh_mirrors/ti/Tiny/raw/maven" }
+
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:7.0.4"
+        classpath 'com.android.tools.build:gradle:8.7.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
 
     }
 }
@@ -17,8 +19,11 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
+        maven { url 'https://mirrors.cloud.tencent.com/jitpack' }
         maven { url 'https://www.jitpack.io' }
+        maven { url "https://gitcode.com/gh_mirrors/ti/Tiny/raw/maven" }
+
     }
 }
 

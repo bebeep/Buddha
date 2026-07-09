@@ -7,6 +7,9 @@ plugins {
 def productProps = getVersionConfig()
 
 android {
+
+    namespace 'com.fingertip.buddha'
+
     signingConfigs {
         config {
             keyAlias 'buddha'

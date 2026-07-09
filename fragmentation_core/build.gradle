@@ -3,6 +3,7 @@ plugins {
 }
 
 android {
+    namespace ='me.yokeyword.fragmentation'
     compileSdkVersion rootProject.versions["compileSdkVersion"]
     buildToolsVersion rootProject.versions["buildToolsVersion"]
 

@@ -1,8 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 
 android {
+    namespace 'io.github.devzwy.nsfw'
     compileSdkVersion rootProject.versions["compileSdkVersion"]
     defaultConfig {
         minSdkVersion rootProject.versions["minSdkVersion"]
