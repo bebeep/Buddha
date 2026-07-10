@@ -13,7 +13,6 @@ import com.fingertip.baselib.util.loadImg
 import com.fingertip.uilib.R
 import com.lzlz.toplib.extention.gone
 import com.lzlz.toplib.extention.visible
-import kotlinx.android.synthetic.main.bottom_menu_item.view.*
 
 class BottomMenu @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -51,9 +50,9 @@ class BottomMenu @JvmOverloads constructor(
         addView(menuItemView, param)
         val count = childCount
         if (tabBarNormal.size > count-1){
-            menuItemView.iv_tab_icon.loadImg(tabBarNormal[count-1], holder = localIcon[count-1])
-        }else menuItemView.iv_tab_icon.setImageResource(menuItem.menuRes)
-        imageViewList.add(menuItemView.iv_tab_icon)
+            menuItemView.findViewById<ImageView>(R.id.iv_tab_icon).loadImg(tabBarNormal[count-1], holder = localIcon[count-1])
+        }else menuItemView.findViewById<ImageView>(R.id.iv_tab_icon).setImageResource(menuItem.menuRes)
+        imageViewList.add(menuItemView.findViewById(R.id.iv_tab_icon))
 
         menuItemView.setOnClickListener {
             if (lastSelectMenu == it && it != momentMenu)
@@ -92,21 +91,21 @@ class BottomMenu @JvmOverloads constructor(
 
     fun setUnReadMsgCount(count: Int) {
         if (count > 0) {
-            msgMenu?.tv_tab_msg_count?.let {
+            msgMenu?.findViewById<android.widget.TextView>(R.id.tv_tab_msg_count)?.let {
                 it.text = if (count > 99) "99+" else count.toString()
                 it.visible()
             }
         } else {
-            msgMenu?.tv_tab_msg_count?.gone()
+            msgMenu?.findViewById<View>(R.id.tv_tab_msg_count)?.gone()
         }
     }
 
 
     fun showRedPoint(visible:Boolean = false){
-        if (visible)momentMenu?.v_num_moment?.visible() else momentMenu?.v_num_moment?.gone()
+        if (visible)momentMenu?.findViewById<View>(R.id.v_num_moment)?.visible() else momentMenu?.findViewById<View>(R.id.v_num_moment)?.gone()
     }
 
-    fun isMomentPointShow() = momentMenu?.v_num_moment?.isShown?:false
+    fun isMomentPointShow() = momentMenu?.findViewById<View>(R.id.v_num_moment)?.isShown?:false
 
     fun selectTab(tabIndex: Int) {
         getChildAt(tabIndex)?.performClick()

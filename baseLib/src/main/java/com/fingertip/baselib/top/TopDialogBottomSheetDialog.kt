@@ -20,7 +20,7 @@ abstract class TopDialogBottomSheetDialog(context: Context) : BottomSheetDialog(
         TAG = javaClass.simpleName
         val view = LayoutInflater.from(context).inflate(getLayoutId(), null)
         setContentView(view)
-        window?.findViewById<FrameLayout>(R.id.design_bottom_sheet)?.setBackgroundResource(android.R.color.transparent)
+        window?.findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)?.setBackgroundResource(android.R.color.transparent)
         onViewCreate(view)
 
 

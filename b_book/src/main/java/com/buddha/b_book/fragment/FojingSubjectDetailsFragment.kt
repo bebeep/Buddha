@@ -1,5 +1,6 @@
 package com.buddha.b_book.fragment
 
+import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.buddha.b_book.R
 import com.buddha.b_book.adapter.FojingAdapter
@@ -8,7 +9,6 @@ import com.fingertip.baselib.top.TopVMFragment
 import com.fingertip.baselib.util.ColorUtil
 import com.google.android.material.appbar.AppBarLayout
 import com.lzlz.toplib.extention.toPx
-import kotlinx.android.synthetic.main.frag_fojing_subject_details.*
 import kotlin.math.abs
 import kotlin.math.min
 
@@ -22,19 +22,19 @@ class FojingSubjectDetailsFragment :TopVMFragment<BookshelfVM>(){
     lateinit var adapter: FojingAdapter
 
     override fun initShiTu() {
-
+        val v = requireView()
 
         initAdapter()
 
-        appbar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, scrollY ->
+        v.findViewById<com.google.android.material.appbar.AppBarLayout>(R.id.appbar).addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, scrollY ->
             val slideOffset = min(abs(scrollY * 1.0f / 88.toPx()),1f)
-            cl_title.setBackgroundColor(ColorUtil.changeAlpha(resources.getColor(R.color.white),slideOffset))
-            tv_title.alpha = slideOffset
+            v.findViewById<View>(R.id.cl_title).setBackgroundColor(ColorUtil.changeAlpha(resources.getColor(R.color.white),slideOffset))
+            v.findViewById<android.widget.TextView>(R.id.tv_title).alpha = slideOffset
         })
 
 
 
-        v_back.setOnClickListener {
+        v.findViewById<View>(R.id.v_back).setOnClickListener {
             pop()
         }
     }
@@ -42,8 +42,9 @@ class FojingSubjectDetailsFragment :TopVMFragment<BookshelfVM>(){
 
     private fun initAdapter(){
         adapter = FojingAdapter(requireContext())
-        recyclerview.layoutManager = GridLayoutManager(requireContext(),3)
-        recyclerview.adapter = adapter
+        val rv = requireView().findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recyclerview)
+        rv.layoutManager = GridLayoutManager(requireContext(),3)
+        rv.adapter = adapter
 
         adapter.initData(listOf("","",""))
     }

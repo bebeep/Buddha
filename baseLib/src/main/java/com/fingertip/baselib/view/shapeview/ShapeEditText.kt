@@ -11,7 +11,7 @@ import com.fingertip.baselib.view.MyEditText
 open class ShapeEditText @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = R.attr.editTextStyle
+    defStyleAttr: Int = android.R.attr.editTextStyle
 ) : MyEditText(context, attrs, defStyleAttr) {
 
     init {

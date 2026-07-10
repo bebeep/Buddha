@@ -9,7 +9,7 @@ import androidx.appcompat.widget.AppCompatEditText
 import com.fingertip.baseLib.R
 
 open class MyEditText @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = R.attr.editTextStyle
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = android.R.attr.editTextStyle
 ) : AppCompatEditText(context, attrs, defStyleAttr) {
 
     init {

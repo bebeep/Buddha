@@ -6,18 +6,19 @@ import com.fingertip.baselib.top.TopFragmentPagerAdapter
 import com.fingertip.baselib.top.TopPmFragment
 import com.fingertip.uilib.R
 import com.fingertip.uilib.viewmodel.MainVM
-import kotlinx.android.synthetic.main.fragment_message.*
 
 class MessageFragment:TopPmFragment<MainVM>() {
     override fun initVM() = MainVM()
     override fun layoutId() = R.layout.fragment_message
 
     override fun initShiTu() {
-        vp.offscreenPageLimit = 3
-        vp.adapter = TopFragmentPagerAdapter(listOf(
+        val v = requireView()
+        val vpView = v.findViewById<androidx.viewpager.widget.ViewPager>(R.id.vp)
+        vpView.offscreenPageLimit = 3
+        vpView.adapter = TopFragmentPagerAdapter(listOf(
             MessageChildFragment(),
             MessageSystemFragment()
         ), childFragmentManager)
-        tab_layout.setViewPager(vp, mutableListOf("与我相关","系统消息").toTypedArray())
+        v.findViewById<com.flyco.tablayout.SlidingTabLayout>(R.id.tab_layout).setViewPager(vpView, mutableListOf("与我相关","系统消息").toTypedArray())
     }
 }

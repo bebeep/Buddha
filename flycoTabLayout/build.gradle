@@ -26,10 +26,19 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 
 }
 
 dependencies {
     implementation androidx_libs.values()
+}
+
+repositories {
+    google()
+    mavenCentral()
+    maven { url 'https://mirrors.cloud.tencent.com/jitpack' }
+    maven { url 'https://www.jitpack.io' }
 }

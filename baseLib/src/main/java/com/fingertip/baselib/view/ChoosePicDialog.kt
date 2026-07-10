@@ -8,8 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.fingertip.baseLib.R
 import com.fingertip.baselib.top.TopDialogBottomSheetDialog
 import com.fingertip.baselib.top.TopRcAdapter
-import kotlinx.android.synthetic.main.dialog_choose_pic.*
-import kotlinx.android.synthetic.main.item_choose_pic.view.*
 
 /**
  * 选择相册/相机dialog
@@ -25,19 +23,17 @@ class ChoosePicDialog(
     override fun getLayoutId(): Int = R.layout.dialog_choose_pic
     var myAdapter: CZClickAdapter?=null
     override fun onViewCreate(view: View) {
-
-        tv_cancel.setOnClickListener {
+        view.findViewById<View>(R.id.tv_cancel).setOnClickListener {
             dismiss()
         }
-    }
-
-    init {
-        recyclerview.apply {
+        view.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recyclerview).apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             myAdapter=CZClickAdapter(context,this@ChoosePicDialog,onItemClick)
             adapter =myAdapter
         }
+    }
 
+    init {
         myAdapter?.apply {
             initData(mylist)
         }
@@ -50,11 +46,11 @@ class ChoosePicDialog(
 
 
         override fun onBindViewHolder(holder: TopRcViewHolder, position: Int) {
-            holder.itemView.tv_titlie.text = get(position)
+            holder.itemView.findViewById<android.widget.TextView>(R.id.tv_titlie).text = get(position)
             colorList?.let {
-                holder.itemView.tv_titlie.setTextColor(Color.parseColor(colorList[position]))
+                holder.itemView.findViewById<android.widget.TextView>(R.id.tv_titlie).setTextColor(Color.parseColor(colorList[position]))
             }
-            holder.itemView.tv_titlie.setOnClickListener {
+            holder.itemView.findViewById<android.widget.TextView>(R.id.tv_titlie).setOnClickListener {
                 dialog.dismiss()
                 onItemClick.invoke(position)
             }

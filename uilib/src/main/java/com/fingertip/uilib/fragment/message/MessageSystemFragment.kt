@@ -5,7 +5,6 @@ import com.fingertip.baselib.top.TopPmFragment
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.MessageSystemAdapter
 import com.fingertip.uilib.viewmodel.MainVM
-import kotlinx.android.synthetic.main.fragment_message_child.recyclerview
 
 class MessageSystemFragment: TopPmFragment<MainVM>() {
     override fun initVM() = MainVM()
@@ -23,8 +22,9 @@ class MessageSystemFragment: TopPmFragment<MainVM>() {
         adapter = MessageSystemAdapter(requireContext()){
 
         }
-        recyclerview.layoutManager = LinearLayoutManager(requireContext())
-        recyclerview.adapter = adapter
+        val rv = requireView().findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recyclerview)
+        rv.layoutManager = LinearLayoutManager(requireContext())
+        rv.adapter = adapter
 
         adapter.initData(listOf("","","","","","","",""))
     }

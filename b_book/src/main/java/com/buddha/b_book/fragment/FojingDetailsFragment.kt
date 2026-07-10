@@ -13,7 +13,6 @@ import com.google.android.material.appbar.AppBarLayout
 import com.lzlz.toplib.extention.toPx
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener
-import kotlinx.android.synthetic.main.frag_fojing_details.*
 import kotlin.math.abs
 import kotlin.math.min
 
@@ -28,57 +27,61 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
     lateinit var commentAdapter: FojingCommentAdapter
 
     override fun initShiTu() {
-
+        val v = requireView()
 
         initAdapter()
 
-        appbar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, scrollY ->
+        v.findViewById<com.google.android.material.appbar.AppBarLayout>(R.id.appbar).addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, scrollY ->
             val slideOffset = min(abs(scrollY * 1.0f / 100.toPx()),1f)
-            cl_title.setBackgroundColor(ColorUtil.changeAlpha(resources.getColor(R.color.white),slideOffset))
-            tv_title.alpha = slideOffset
+            v.findViewById<View>(R.id.cl_title).setBackgroundColor(ColorUtil.changeAlpha(resources.getColor(R.color.white),slideOffset))
+            v.findViewById<android.widget.TextView>(R.id.tv_title).alpha = slideOffset
         })
 
 
 
 
-        srl.setOnLoadMoreListener(this)
+        v.findViewById<com.scwang.smart.refresh.layout.SmartRefreshLayout>(R.id.srl).setOnLoadMoreListener(this)
     }
 
-    override fun getClickViews() = listOf(v_back,iv_share,tv_read,tv_copy,tv_add_shelf)
+    override fun getClickViews(): List<View> {
+        val v = requireView()
+        return listOf(v.findViewById(R.id.v_back), v.findViewById(R.id.iv_share), v.findViewById(R.id.tv_read), v.findViewById(R.id.tv_copy), v.findViewById(R.id.tv_add_shelf))
+    }
 
     override fun onSingleClick(v: View?) {
         super.onSingleClick(v)
-        when(v){
-            v_back -> pop()
-            iv_share -> ToastUtil.showMessage("分享")
-            tv_read -> {
+        when(v?.id){
+            R.id.v_back -> pop()
+            R.id.iv_share -> ToastUtil.showMessage("分享")
+            R.id.tv_read -> {
                 start(FojingReadFragment())
             }
-            tv_copy -> {
+            R.id.tv_copy -> {
                 ToastUtil.showMessage("抄经模式")
                 start(FojingCopyFragment())
             }
-            tv_add_shelf -> ToastUtil.showMessage("加入书架")
+            R.id.tv_add_shelf -> ToastUtil.showMessage("加入书架")
         }
     }
 
 
     private fun initAdapter(){
+        val v = requireView()
         recommendAdapter = FojingRecommendAdapter(requireContext())
-        rv_recommend.layoutManager = LinearLayoutManager(requireContext())
-        rv_recommend.adapter = recommendAdapter
+        v.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rv_recommend).layoutManager = LinearLayoutManager(requireContext())
+        v.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rv_recommend).adapter = recommendAdapter
 
         commentAdapter = FojingCommentAdapter(requireContext())
-        rv_comment.layoutManager = LinearLayoutManager(requireContext())
-        rv_comment.adapter = commentAdapter
+        v.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rv_comment).layoutManager = LinearLayoutManager(requireContext())
+        v.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rv_comment).adapter = commentAdapter
 
         recommendAdapter.initData(listOf("","","",""))
         commentAdapter.initData(listOf("","","",""))
     }
 
     override fun onLoadMore(refreshLayout: RefreshLayout) {
-        srl.postDelayed({
-            srl.finishLoadMore()
+        requireView().findViewById<com.scwang.smart.refresh.layout.SmartRefreshLayout>(R.id.srl).postDelayed({
+            requireView().findViewById<com.scwang.smart.refresh.layout.SmartRefreshLayout>(R.id.srl).finishLoadMore()
             commentAdapter.addData(listOf("",""))
         },1000)
     }

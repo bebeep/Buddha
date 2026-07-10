@@ -6,7 +6,6 @@ import com.fingertip.baselib.top.TopPmFragment
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.CommentAdapter
 import com.fingertip.uilib.viewmodel.MomentVM
-import kotlinx.android.synthetic.main.fragment_moment_details.*
 
 class MomentDetailsFragment: TopPmFragment<MomentVM>() {
     override fun initVM() = MomentVM ()
@@ -25,8 +24,9 @@ class MomentDetailsFragment: TopPmFragment<MomentVM>() {
 
         }
 
-        recyclerview.layoutManager = LinearLayoutManager(requireContext())
-        recyclerview.adapter = commentAdapter
+        val rv = requireView().findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recyclerview)
+        rv.layoutManager = LinearLayoutManager(requireContext())
+        rv.adapter = commentAdapter
 
 
         commentAdapter.initData(listOf(CommentEntity(),CommentEntity(),CommentEntity(),CommentEntity(),CommentEntity(),CommentEntity()))

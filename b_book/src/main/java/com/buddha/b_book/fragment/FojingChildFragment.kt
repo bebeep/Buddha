@@ -5,7 +5,6 @@ import com.buddha.b_book.R
 import com.buddha.b_book.adapter.FojingAdapter
 import com.buddha.b_book.vm.BookshelfVM
 import com.fingertip.baselib.top.TopVMFragment
-import kotlinx.android.synthetic.main.frag_fojing_child.*
 
 /**
  * 佛经-分类
@@ -22,8 +21,9 @@ class FojingChildFragment :TopVMFragment<BookshelfVM>(){
 
     private fun initAdapter(){
         adapter = FojingAdapter(requireContext())
-        recyclerview.layoutManager = GridLayoutManager(requireContext(),3)
-        recyclerview.adapter = adapter
+        val rv = requireView().findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recyclerview)
+        rv.layoutManager = GridLayoutManager(requireContext(),3)
+        rv.adapter = adapter
 
         adapter.initData(listOf("","","","","","","",""))
     }

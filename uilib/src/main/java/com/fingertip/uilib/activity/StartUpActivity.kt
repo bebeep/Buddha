@@ -6,7 +6,6 @@ import com.fingertip.baselib.dialog.RemindAllDialog
 import com.fingertip.baselib.top.TopVMActivity
 import com.fingertip.uilib.R
 import com.fingertip.uilib.viewmodel.StartUpVM
-import kotlinx.android.synthetic.main.activity_startup.*
 
 /**
  * 1、检查服务器状态 - 如果是强更，直接根据返回的地址前往下载
@@ -38,7 +37,7 @@ class StartUpActivity : TopVMActivity<StartUpVM>() {
 
 //        mViewModel.checkServerStatus()
 
-        iv_banner.postDelayed({
+        findViewById<android.widget.ImageView>(R.id.iv_banner).postDelayed({
             startActivity(Intent(this,ContainerActivity::class.java))
             finish()
         },2000)

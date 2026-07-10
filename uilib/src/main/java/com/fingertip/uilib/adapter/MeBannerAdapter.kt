@@ -9,7 +9,6 @@ import com.fingertip.baselib.bean.BannerEntity
 import com.fingertip.baselib.util.loadImg
 import com.fingertip.uilib.R
 import com.youth.banner.adapter.BannerAdapter
-import kotlinx.android.synthetic.main.item_me_banner.view.*
 
 
 /**
@@ -27,7 +26,7 @@ class MeBannerAdapter(val context: Context, list:List<BannerEntity>, val onClick
     override fun onBindView(holder: BannerViewAdapter, data: BannerEntity?, position: Int, size: Int) {
 
         data?.let {
-            holder.itemView.iv_banner_content.loadImg(data.imgUrl)
+            holder.itemView.findViewById<android.widget.ImageView>(R.id.iv_banner_content).loadImg(data.imgUrl)
         }
 
     }

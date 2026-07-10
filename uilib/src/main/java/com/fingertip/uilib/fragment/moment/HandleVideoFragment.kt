@@ -10,7 +10,6 @@ import com.blankj.utilcode.util.ThreadUtils.runOnUiThread
 import com.fingertip.baselib.log
 import com.fingertip.baselib.top.TopFragment
 import com.fingertip.uilib.R
-import kotlinx.android.synthetic.main.fragment_handle_video.*
 import test.taq.com.cropvideolibrary.interfaces.VideoTrimListener
 import java.io.File
 
@@ -21,6 +20,8 @@ import java.io.File
 class HandleVideoFragment: TopFragment(), VideoTrimListener {
     override fun layoutId() = R.layout.fragment_handle_video
     var path: String? = null
+    private val trimmerView get() = requireView().findViewById<test.taq.com.cropvideolibrary.widget.VideoTrimmerView>(R.id.trimmerView)
+
     override fun initShiTu() {
         log("HandleVideoFragment", "视频裁剪： $path")
         trimmerView.setOnTrimVideoListener(this)

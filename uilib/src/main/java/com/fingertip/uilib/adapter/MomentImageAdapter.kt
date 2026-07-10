@@ -1,12 +1,12 @@
 package com.fingertip.uilib.adapter
 
 import android.content.Context
+import android.view.View
 import androidx.constraintlayout.widget.ConstraintSet
 import com.blankj.utilcode.util.SizeUtils
 import com.fingertip.baselib.top.TopRcAdapter
 import com.fingertip.baselib.util.loadImg
 import com.fingertip.uilib.R
-import kotlinx.android.synthetic.main.item_moment_image.view.*
 
 
 /**
@@ -24,16 +24,18 @@ class MomentImageAdapter(var c: Context,
         val isHorizontal = singleImageWidth > singleImageHeight
         get(position)?.let {
             if (mlist.size == 1){
-                val param = holder.itemView.cl_moment_image.layoutParams
+                val clImage = holder.itemView.findViewById<View>(R.id.cl_moment_image)
+                val param = clImage.layoutParams
                 param.width = if (isHorizontal) SizeUtils.dp2px(273f) else SizeUtils.dp2px(162f)
-                holder.itemView.cl_moment_image.layoutParams = param
+                clImage.layoutParams = param
             }
 
             val width = if (mlist.size == 1)  singleImageWidth/2 else 400
             val height = if (mlist.size == 1) singleImageHeight/2  else 400
-            holder.itemView.iv_content.loadImg(it, width = width, height = height)
+            holder.itemView.findViewById<android.widget.ImageView>(R.id.iv_content).loadImg(it, width = width, height = height)
             val constraintSet = ConstraintSet()
-            constraintSet.clone(holder.itemView.cl_moment_image)
+            val clImage = holder.itemView.findViewById<View>(R.id.cl_moment_image)
+            constraintSet.clone(clImage as androidx.constraintlayout.widget.ConstraintLayout)
             //横图：固定宽度270dp
             //竖图：固定宽度159dp,最大高度255dp
             if (mlist.size == 1){
@@ -44,8 +46,8 @@ class MomentImageAdapter(var c: Context,
                 }
             }
             else constraintSet.setDimensionRatio(R.id.iv_content,"h,1:1")
-            constraintSet.applyTo(holder.itemView.cl_moment_image)
-            holder.itemView.iv_content.setOnClickListener {
+            constraintSet.applyTo(clImage)
+            holder.itemView.findViewById<android.widget.ImageView>(R.id.iv_content).setOnClickListener {
                 onItemClick(position)
             }
         }

@@ -8,13 +8,14 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.fingertip.baseLib.R
 import com.fingertip.baselib.util.loadWebpGif
-import kotlinx.android.synthetic.main.dialog_c.*
 
 
 class LoadingDialog(c:Context) : Dialog(c, R.style.dialog_load){
+    private var gifView: android.widget.ImageView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         var v = LayoutInflater.from(context).inflate(R.layout.dialog_c, null)
+        gifView = v.findViewById(R.id.gif)
         setContentView(
             v,
             ViewGroup.LayoutParams(
@@ -33,14 +34,15 @@ class LoadingDialog(c:Context) : Dialog(c, R.style.dialog_load){
 
     override fun show() {
         super.show()
-        gif.loadWebpGif(R.mipmap.live_loading)
+        gifView?.loadWebpGif(R.mipmap.live_loading)
     }
 
     override fun dismiss() {
 
         super.dismiss()
         try {
-            Glide.with(gif).clear(gif)
+            val v = gifView ?: return
+            Glide.with(v).clear(v)
         } catch (e: Exception) {
             e.printStackTrace()
         }

@@ -1,5 +1,6 @@
 package com.fingertip.uilib.fragment
 
+import android.view.View
 import com.fingertip.baselib.event_bus.MessageEvent
 import com.fingertip.baselib.top.TopVMFragment
 import com.fingertip.uilib.R
@@ -11,8 +12,11 @@ import com.fingertip.uilib.widgets.bottom_menu.BottomMenuItem
 import com.lzlz.toplib.extention.gone
 import com.lzlz.toplib.extention.visible
 import com.weikaiyun.fragmentation.SupportFragment
-import kotlinx.android.synthetic.main.fragment_main.*
 import org.greenrobot.eventbus.Subscribe
+
+import com.fingertip.uilib.fragment.HostFragment
+import com.fingertip.uilib.fragment.RankFragment
+import com.fingertip.uilib.fragment.MeFragment
 
 /**
  * 主Fragment
@@ -46,13 +50,14 @@ class MainFragment : TopVMFragment<MainVM>(), BottomMenu.MenuSelectCallback {
 
         lastFragment = fragmentList[0]
 
-        bottom_menu.menuSelectCallback = this
-
-        bottom_menu.addMenuItem(BottomMenuItem(R.drawable.tab_host_selector,true))
-        bottom_menu.addMenuItem(BottomMenuItem(R.drawable.tab_post_selector))
-        bottom_menu.addMenuItem(BottomMenuItem(R.drawable.tab_baifo_selector))
-        bottom_menu.addMenuItem(BottomMenuItem(R.drawable.tab_rank_selector, hasMsg = true))
-        bottom_menu.addMenuItem(BottomMenuItem(R.drawable.tab_me_selector))
+        requireView().findViewById<View>(R.id.bottom_menu).also { 
+            (it as com.fingertip.uilib.widgets.bottom_menu.BottomMenu).menuSelectCallback = this
+            (it as com.fingertip.uilib.widgets.bottom_menu.BottomMenu).addMenuItem(BottomMenuItem(R.mipmap.icon_menu,true))
+            (it as com.fingertip.uilib.widgets.bottom_menu.BottomMenu).addMenuItem(BottomMenuItem(R.mipmap.icon_menu))
+            (it as com.fingertip.uilib.widgets.bottom_menu.BottomMenu).addMenuItem(BottomMenuItem(R.mipmap.icon_menu))
+            (it as com.fingertip.uilib.widgets.bottom_menu.BottomMenu).addMenuItem(BottomMenuItem(R.mipmap.icon_menu,hasMsg = true))
+            (it as com.fingertip.uilib.widgets.bottom_menu.BottomMenu).addMenuItem(BottomMenuItem(R.mipmap.icon_menu))
+        }
 
 
     }
@@ -68,11 +73,11 @@ class MainFragment : TopVMFragment<MainVM>(), BottomMenu.MenuSelectCallback {
         lastFragment = fragmentList[pos]
         lastIndex = pos
         if(pos == 2){
-            multi_container.gone()
-            bottom_menu.alpha = 0.2f
+            requireView().findViewById<View>(R.id.multi_container).gone()
+            requireView().findViewById<View>(R.id.bottom_menu).alpha = 0.2f
         }else{
-            multi_container.visible()
-            bottom_menu.alpha = 1f
+            requireView().findViewById<View>(R.id.multi_container).visible()
+            requireView().findViewById<View>(R.id.bottom_menu).alpha = 1f
         }
     }
 

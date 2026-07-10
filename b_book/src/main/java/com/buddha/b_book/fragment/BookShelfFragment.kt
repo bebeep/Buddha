@@ -5,7 +5,6 @@ import com.buddha.b_book.R
 import com.buddha.b_book.adapter.BookShelfAdapter
 import com.buddha.b_book.vm.BookshelfVM
 import com.fingertip.baselib.top.TopVMFragment
-import kotlinx.android.synthetic.main.frag_book_shelf.*
 
 /**
  * 书架
@@ -25,8 +24,9 @@ class BookShelfFragment :TopVMFragment<BookshelfVM>(){
 
     private fun initAdapter(){
         adapter = BookShelfAdapter(requireContext())
-        recyclerview.layoutManager = GridLayoutManager(requireContext(),3)
-        recyclerview.adapter = adapter
+        val rv = requireView().findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recyclerview)
+        rv.layoutManager = GridLayoutManager(requireContext(),3)
+        rv.adapter = adapter
     }
 
 }

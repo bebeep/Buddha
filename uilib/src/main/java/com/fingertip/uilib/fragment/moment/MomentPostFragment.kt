@@ -27,7 +27,6 @@ import com.huantansheng.easyphotos.utils.file.FileUtils
 import com.huantansheng.easyphotos.utils.media.DurationUtils
 import com.huantansheng.easyphotos.utils.media.MediaScannerConnectionUtils
 import com.huantansheng.easyphotos.utils.uri.UriUtils
-import kotlinx.android.synthetic.main.fragment_moment_post.*
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -39,6 +38,10 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
     override fun layoutId() = R.layout.fragment_moment_post
 
     override fun initVM() = MomentVM()
+
+    private val rcImages get() = requireView().findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rc_images)
+    private val flVideo get() = requireView().findViewById<View>(R.id.fl_video)
+    private val ivPhoto get() = requireView().findViewById<android.widget.ImageView>(R.id.iv_photo)
 
 
 
@@ -99,8 +102,8 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
                 }
             }
         }
-        rc_images.layoutManager = GridLayoutManager(requireContext(), 3)
-        rc_images.adapter = adapter
+        rcImages.layoutManager = GridLayoutManager(requireContext(), 3)
+        rcImages.adapter = adapter
         adapter.initData(imageList)
     }
 
@@ -135,7 +138,7 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
         }
         for (photo in photoList)  imageList.add(photo.path)
         if (imageList.size<9&&imageList[imageList.size - 1] !=null)imageList.add(null)
-        rc_images?.post {
+        rcImages?.post {
             adapter.initData(imageList)
 
         }
@@ -179,7 +182,7 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
         startActivityForResult(videoIntent, 777)
     }
 
-    override fun onPermissionsGranted(requestCode: Int, perms: List<String?>?) {
+    override fun onPermissionsGranted(requestCode: Int, perms: List<String>) {
         log("onPermissionsGranted", "operateTag   $operateTag")
         when(operateTag){
             0->operationDialog.show()
@@ -216,8 +219,8 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
                     } else { //选择照片返回
                         photoList = data.getParcelableArrayListExtra(EasyPhotos.RESULT_PHOTOS)!!
                         refreshImages()
-                        rc_images.visibility = View.VISIBLE
-                        fl_video.visibility = View.GONE
+                        rcImages.visibility = View.VISIBLE
+                        flVideo.visibility = View.GONE
                     }
 
                 }
@@ -234,10 +237,10 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
             val file = MomentUtils.getVideoThumb(videoPath)
             photoList.clear()
             imageList.clear()
-            rc_images.visibility = View.GONE
-            fl_video.visibility = View.VISIBLE
+            rcImages.visibility = View.GONE
+            flVideo.visibility = View.VISIBLE
             videoThumb = file?.path?:""
-            Glide.with(this).asBitmap().load(videoThumb).into(iv_photo)
+            Glide.with(this).asBitmap().load(videoThumb).into(ivPhoto)
             operateTag = 2
         }
     }
@@ -323,8 +326,8 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
             )
             photoList.add(photo)
             refreshImages()
-            rc_images.visibility = View.VISIBLE
-            fl_video.visibility = View.GONE
+            rcImages.visibility = View.VISIBLE
+            flVideo.visibility = View.GONE
         }.start()
     }
 

@@ -8,7 +8,6 @@ import com.buddha.b_book.vm.BookshelfVM
 import com.fingertip.baselib.top.TopVMFragment
 import com.youth.banner.Banner
 import com.youth.banner.transformer.*
-import kotlinx.android.synthetic.main.frag_fojing_read.*
 
 class FojingReadFragment : TopVMFragment<BookshelfVM>(){
     override fun layoutId() = R.layout.frag_fojing_read
@@ -21,12 +20,15 @@ class FojingReadFragment : TopVMFragment<BookshelfVM>(){
     }
 
 
-    override fun getClickViews() = listOf(v_back,iv_setting)
+    override fun getClickViews(): List<View> {
+        val v = requireView()
+        return listOf(v.findViewById(R.id.v_back), v.findViewById(R.id.iv_setting))
+    }
     override fun onSingleClick(v: View?) {
         super.onSingleClick(v)
-        when(v){
-            v_back->pop()
-            iv_setting->{
+        when(v?.id){
+            R.id.v_back->pop()
+            R.id.iv_setting->{
                 FojingCopySettingDialog(requireContext()).show()
             }
         }
@@ -41,7 +43,8 @@ class FojingReadFragment : TopVMFragment<BookshelfVM>(){
         list.add("")
         list.add("")
         adapter = FojingReadAdapter(requireContext(),list)
-        (banner_fojing as Banner<String, FojingReadAdapter>).setAdapter(adapter)
-        (banner_fojing as Banner<String, FojingReadAdapter>).addPageTransformer(ScaleInTransformer()).addPageTransformer(AlphaPageTransformer())
+        val bannerView = requireView().findViewById<View>(R.id.banner_fojing)
+        (bannerView as Banner<String, FojingReadAdapter>).setAdapter(adapter)
+        (bannerView as Banner<String, FojingReadAdapter>).addPageTransformer(ScaleInTransformer()).addPageTransformer(AlphaPageTransformer())
     }
 }

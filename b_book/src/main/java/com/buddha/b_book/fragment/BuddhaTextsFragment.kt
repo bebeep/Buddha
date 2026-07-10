@@ -1,10 +1,11 @@
 package com.buddha.b_book.fragment
 
+import android.view.View
 import com.buddha.b_book.R
 import com.buddha.b_book.vm.BookshelfVM
+import com.fingertip.baselib.view.tablayout.ScaleTabLayout
 import com.fingertip.baselib.top.TopFragmentPagerAdapter
 import com.fingertip.baselib.top.TopVMFragment
-import kotlinx.android.synthetic.main.frag_buddha_texts.*
 
 /**
  * 佛经
@@ -17,14 +18,15 @@ class BuddhaTextsFragment :TopVMFragment<BookshelfVM>(){
 
 
     override fun initShiTu() {
+        val v = requireView()
+        val vpView = v.findViewById<androidx.viewpager.widget.ViewPager>(R.id.vp)
+        vpView.offscreenPageLimit = 2
+        vpView.adapter = TopFragmentPagerAdapter(listOf(BookShelfFragment(),FojingFragment()), childFragmentManager)
 
-        vp.offscreenPageLimit = 2
-        vp.adapter = TopFragmentPagerAdapter(listOf(BookShelfFragment(),FojingFragment()), childFragmentManager)
-
-        tab_layout.setViewPager(vp, mutableListOf("书架","佛经").toTypedArray())
+        v.findViewById<ScaleTabLayout>(R.id.tab_layout).setViewPager(vpView, mutableListOf("书架","佛经").toTypedArray())
 
 
-        v_back.setOnClickListener {
+        v.findViewById<View>(R.id.v_back).setOnClickListener {
             pop()
         }
 

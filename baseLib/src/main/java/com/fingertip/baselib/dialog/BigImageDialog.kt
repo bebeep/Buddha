@@ -7,7 +7,6 @@ import androidx.viewpager.widget.ViewPager
 import com.fingertip.baseLib.R
 import com.fingertip.baselib.adapter.ViewPagerAdapter
 import com.fingertip.baselib.top.TopDialog
-import kotlinx.android.synthetic.main.item_bigpics.*
 
 /**
  * 查看大图
@@ -21,6 +20,8 @@ class BigImageDialog(context: Context, var pics: List<String?> = ArrayList(), va
 
     override fun onViewInit(view: View?) {
         window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        val vp = view?.findViewById<ViewPager>(R.id.vp)
+        val selected_number_tv = view?.findViewById<android.widget.TextView>(R.id.selected_number_tv)
         picList.clear()
         if (pics.isEmpty() && singlePic.isNotEmpty()) picList.add(singlePic)
         else{
@@ -30,21 +31,21 @@ class BigImageDialog(context: Context, var pics: List<String?> = ArrayList(), va
         adapter = ViewPagerAdapter(picList,context) {
             dismiss()
         }
-        vp.visibility = View.VISIBLE
-        selected_number_tv.visibility = View.VISIBLE
-        vp.adapter = adapter
-        vp.addOnPageChangeListener(object :ViewPager.OnPageChangeListener{
+        vp?.visibility = View.VISIBLE
+        selected_number_tv?.visibility = View.VISIBLE
+        vp?.adapter = adapter
+        vp?.addOnPageChangeListener(object :ViewPager.OnPageChangeListener{
             override fun onPageScrolled(position: Int,positionOffset: Float,positionOffsetPixels: Int) {
             }
             override fun onPageSelected(position: Int) {
-                selected_number_tv.text = "${position+1}/${picList.size}"
+                selected_number_tv?.text = "${position+1}/${picList.size}"
             }
             override fun onPageScrollStateChanged(state: Int) {
             }
         })
-        vp.currentItem = index
-        selected_number_tv.visibility = if (picList.size ==0)View.GONE else View.VISIBLE
-        selected_number_tv.text = "${index+1}/${picList.size}"
+        vp?.currentItem = index
+        selected_number_tv?.visibility = if (picList.size ==0)View.GONE else View.VISIBLE
+        selected_number_tv?.text = "${index+1}/${picList.size}"
     }
 
 }

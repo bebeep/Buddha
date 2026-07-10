@@ -5,7 +5,6 @@ import com.buddha.b_book.R
 import com.buddha.b_book.adapter.SubjectAdapter
 import com.buddha.b_book.vm.BookshelfVM
 import com.fingertip.baselib.top.TopVMFragment
-import kotlinx.android.synthetic.main.frag_fojing_subject.*
 
 /**
  * 佛经-专题
@@ -24,8 +23,9 @@ class FojingSubjectFragment :TopVMFragment<BookshelfVM>(){
         adapter = SubjectAdapter(requireContext()){
             start(FojingSubjectDetailsFragment())
         }
-        recyclerview.layoutManager = LinearLayoutManager(requireContext())
-        recyclerview.adapter = adapter
+        val rv = requireView().findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recyclerview)
+        rv.layoutManager = LinearLayoutManager(requireContext())
+        rv.adapter = adapter
 
         adapter.initData(listOf("","","","","","","",""))
     }

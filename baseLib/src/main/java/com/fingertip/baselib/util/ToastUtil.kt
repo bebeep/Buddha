@@ -8,7 +8,6 @@ import android.widget.TextView
 import android.widget.Toast
 import com.fingertip.baseLib.R
 import com.fingertip.baselib.top.TopApplication
-import kotlinx.android.synthetic.main.view_toast.view.*
 
 
 import kotlinx.coroutines.Job
@@ -27,7 +26,7 @@ object ToastUtil {
             toast?.setGravity(Gravity.FILL_HORIZONTAL or Gravity.CENTER, 0, 0)
             val layout: View =
                 LayoutInflater.from(TopApplication.instance).inflate(R.layout.view_toast, null)
-            tvContent=layout.tv_text
+            tvContent=layout.findViewById(R.id.tv_text)
             toast?.view = layout
         }
     }

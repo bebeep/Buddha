@@ -1,0 +1,14 @@
+apply plugin: 'com.android.library'
+
+android {
+    namespace 'iknow.android.utils'
+    compileSdkVersion rootProject.versions["compileSdkVersion"]
+    defaultConfig {
+        minSdkVersion rootProject.versions["minSdkVersion"]
+        targetSdkVersion rootProject.versions["targetSdkVersion"]
+    }
+}
+
+dependencies {
+    implementation "androidx.appcompat:appcompat:${rootProject.versions["appcompat_version"]}"
+}

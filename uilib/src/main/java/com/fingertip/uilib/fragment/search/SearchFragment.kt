@@ -11,7 +11,6 @@ import com.fingertip.uilib.adapter.MomentAdapter
 import com.fingertip.uilib.adapter.SearchHotAdapter
 import com.fingertip.uilib.adapter.SearchUserAdapter
 import com.fingertip.uilib.viewmodel.MainVM
-import kotlinx.android.synthetic.main.fragment_search.*
 
 class SearchFragment:TopPmFragment<MainVM>() {
     override fun initVM() = MainVM()
@@ -24,18 +23,18 @@ class SearchFragment:TopPmFragment<MainVM>() {
 
     override fun initShiTu() {
         initAdapter()
+        val v = requireView()
+        val rvHistory = v.findViewById<android.widget.LinearLayout>(R.id.rv_search_history)
+        for (i in 0..5) rvHistory.addView(createTagView("搜索项$i"))
 
-        for (i in 0..5) rv_search_history.addView(createTagView("搜索项$i"))
 
-
-
-
-        et_search.setOnEditorActionListener { textView, actionId, keyEvent ->
+        val etSearch = v.findViewById<com.fingertip.baselib.view.MyEditText>(R.id.et_search)
+        etSearch.setOnEditorActionListener { textView, actionId, keyEvent ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH){
-                if (et_search.text.toString().isNotEmpty()){
+                if (etSearch.text.toString().isNotEmpty()){
 
                 }
-                et_search.isFocusable = false
+                etSearch.isFocusable = false
                 return@setOnEditorActionListener true
             }
             return@setOnEditorActionListener false
@@ -89,26 +88,33 @@ class SearchFragment:TopPmFragment<MainVM>() {
 
 
     private fun initAdapter(){
+        val v = requireView()
         searchHotAdapter = SearchHotAdapter(requireContext()){
 
         }
-        rv_search_hot.layoutManager = LinearLayoutManager(requireContext())
-        rv_search_hot.adapter = searchHotAdapter
+        v.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rv_search_hot).apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = searchHotAdapter
+        }
 
 
 
         searchUserAdapter = SearchUserAdapter(requireContext()){
 
         }
-        rv_search_users.layoutManager = LinearLayoutManager(requireContext())
-        rv_search_users.adapter = searchUserAdapter
+        v.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rv_search_users).apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = searchUserAdapter
+        }
 
 
         searchMomentAdapter = MomentAdapter(requireContext()){
 
         }
-        rv_search_moments.layoutManager = LinearLayoutManager(requireContext())
-        rv_search_moments.adapter = searchMomentAdapter
+        v.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rv_search_moments).apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = searchMomentAdapter
+        }
     }
 
 

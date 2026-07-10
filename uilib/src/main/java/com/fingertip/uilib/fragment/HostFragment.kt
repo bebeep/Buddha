@@ -15,7 +15,6 @@ import com.fingertip.uilib.adapter.HostMenuAdapter
 import com.fingertip.uilib.dialog.SignInDialog
 import com.fingertip.uilib.fragment.worshiping.GongFoFragment
 import com.youth.banner.Banner
-import kotlinx.android.synthetic.main.fragment_host.*
 import org.greenrobot.eventbus.Subscribe
 
 /**
@@ -35,7 +34,7 @@ class HostFragment : TopFragment() {
 
     lateinit var adapter:HostMenuAdapter
     private fun initMenu(){
-        rc_menu.layoutManager = GridLayoutManager(requireContext(),3)
+        requireView().findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rc_menu).layoutManager = GridLayoutManager(requireContext(),3)
         adapter = HostMenuAdapter(requireContext()){ pos->
             when(pos){
                 0->{//供佛
@@ -58,7 +57,7 @@ class HostFragment : TopFragment() {
                 }
             }
         }
-        rc_menu.adapter = adapter
+        requireView().findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rc_menu).adapter = adapter
         adapter.initData(listOf(
             HostMenu("供佛",R.mipmap.icon_menu_gongfo,R.drawable.bg_host_menu),
             HostMenu("佛经",R.mipmap.icon_menu_fojing,R.drawable.bg_host_menu),
@@ -80,9 +79,10 @@ class HostFragment : TopFragment() {
         bannerAdapter = HostBannerAdapter(requireContext(),bannerList){ viewId, pos ->
 
         }
-        (banner as Banner<BannerEntity, HostBannerAdapter>)?.setAdapter(bannerAdapter)
-        banner.visibility = if (bannerList.isNullOrEmpty()) View.GONE else View.VISIBLE
-        banner.setIndicator(indicator,false)
+        val bannerView = requireView().findViewById<View>(R.id.banner)
+        (bannerView as? Banner<BannerEntity, HostBannerAdapter>)?.setAdapter(bannerAdapter)
+        bannerView.visibility = if (bannerList.isNullOrEmpty()) View.GONE else View.VISIBLE
+        (bannerView as? Banner<BannerEntity, HostBannerAdapter>)?.setIndicator(requireView().findViewById(R.id.indicator),false)
     }
 
 
@@ -93,7 +93,7 @@ class HostFragment : TopFragment() {
         marqueeList.add("")
         marqueeList.add("")
         marqueeAdapter = HostMarqueeAdapter(marqueeList)
-        v_marquee.setAdapter(marqueeAdapter)
+        requireView().findViewById<com.stx.xmarqueeview.XMarqueeView>(R.id.v_marquee).setAdapter(marqueeAdapter)
 
 
 //        tv_sign.setOnClickListener {
@@ -104,22 +104,27 @@ class HostFragment : TopFragment() {
     }
 
 
-    override fun getClickViews() = listOf(tv_sign,iv_baifo,iv_jihuai,cl_moment)
+    override fun getClickViews() = listOf(
+        requireView().findViewById<View>(R.id.tv_sign),
+        requireView().findViewById<View>(R.id.iv_baifo),
+        requireView().findViewById<View>(R.id.iv_jihuai),
+        requireView().findViewById<View>(R.id.cl_moment)
+    )
 
     override fun onSingleClick(v: View?) {
         super.onSingleClick(v)
         when(v){
-            tv_sign->{//签到
+            requireView().findViewById<View>(R.id.tv_sign)->{//签到
                 log(value="签到")
                 SignInDialog(requireContext()).show("每日签到领取----")
             }
-            iv_baifo->{//拜佛
+            requireView().findViewById<View>(R.id.iv_baifo)->{//拜佛
 
             }
-            iv_jihuai->{//祭怀
+            requireView().findViewById<View>(R.id.iv_jihuai)->{//祭怀
 
             }
-            cl_moment->{//查看所有动态
+            requireView().findViewById<View>(R.id.cl_moment)->{//查看所有动态
 
             }
         }
@@ -127,12 +132,12 @@ class HostFragment : TopFragment() {
 
     override fun onVisible() {
         super.onVisible()
-        v_marquee.startFlipping()
+        requireView().findViewById<com.stx.xmarqueeview.XMarqueeView>(R.id.v_marquee).startFlipping()
     }
 
     override fun onInvisible() {
         super.onInvisible()
-        v_marquee.stopFlipping()
+        requireView().findViewById<com.stx.xmarqueeview.XMarqueeView>(R.id.v_marquee).stopFlipping()
     }
 
     @Subscribe

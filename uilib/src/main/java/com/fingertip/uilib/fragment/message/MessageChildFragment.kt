@@ -5,7 +5,6 @@ import com.fingertip.baselib.top.TopPmFragment
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.MessageReplyAdapter
 import com.fingertip.uilib.viewmodel.MainVM
-import kotlinx.android.synthetic.main.fragment_message_child.recyclerview
 
 /**
  * xxx评论了你发布的【发布的内容】:【评论内容】
@@ -29,8 +28,9 @@ class MessageChildFragment: TopPmFragment<MainVM>() {
         adapter = MessageReplyAdapter(requireContext()){
 
         }
-        recyclerview.layoutManager = LinearLayoutManager(requireContext())
-        recyclerview.adapter = adapter
+        val rv = requireView().findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recyclerview)
+        rv.layoutManager = LinearLayoutManager(requireContext())
+        rv.adapter = adapter
 
         adapter.initData(listOf("","","","","","","",""))
     }

@@ -4,7 +4,6 @@ import android.view.View
 import com.fingertip.baselib.event_bus.MessageEvent
 import com.fingertip.baselib.top.TopFragment
 import com.fingertip.uilib.R
-import kotlinx.android.synthetic.main.fragment_gf.*
 import org.greenrobot.eventbus.Subscribe
 
 /**
@@ -19,7 +18,10 @@ class GongFoFragment : TopFragment() {
     }
 
 
-    override fun getClickViews() = listOf(iv_back,tv_gf)
+    override fun getClickViews(): List<View> {
+        val v = requireView()
+        return listOf(v.findViewById(R.id.iv_back), v.findViewById(R.id.tv_gf))
+    }
 
     override fun onSingleClick(v: View?) {
         super.onSingleClick(v)

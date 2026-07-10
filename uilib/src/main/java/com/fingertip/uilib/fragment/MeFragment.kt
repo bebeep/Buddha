@@ -13,7 +13,6 @@ import com.fingertip.uilib.adapter.MeBannerAdapter
 import com.fingertip.uilib.viewmodel.MeFragmentVM
 import com.lzlz.toplib.extention.toPx
 import com.youth.banner.Banner
-import kotlinx.android.synthetic.main.fragment_me.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.Subscribe
@@ -29,9 +28,9 @@ class MeFragment : TopPmFragment<MeFragmentVM>(), PicUtils.UpPicCallBack {
 
         initBanner()
 
-        nsl.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+        requireView().findViewById<View>(R.id.nsl).setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
             val slideOffset = min(scrollY * 1.0f / 88.toPx(),1f)
-            cl_title.setBackgroundColor(ColorUtil.changeAlpha(resources.getColor(R.color.white),slideOffset))
+            requireView().findViewById<View>(R.id.cl_title).setBackgroundColor(ColorUtil.changeAlpha(resources.getColor(R.color.white),slideOffset))
         }
     }
 
@@ -45,21 +44,22 @@ class MeFragment : TopPmFragment<MeFragmentVM>(), PicUtils.UpPicCallBack {
         bannerAdapter = MeBannerAdapter(requireContext(),bannerList){ viewId, pos ->
 
         }
-        (banner as Banner<BannerEntity, MeBannerAdapter>)?.setAdapter(bannerAdapter)
-        banner.visibility = if (bannerList.isNullOrEmpty()) View.GONE else View.VISIBLE
-        banner.setIndicator(indicator,false)
+        val bannerView = requireView().findViewById<View>(R.id.banner)
+        (bannerView as? Banner<BannerEntity, MeBannerAdapter>)?.setAdapter(bannerAdapter)
+        bannerView.visibility = if (bannerList.isNullOrEmpty()) View.GONE else View.VISIBLE
+        (bannerView as? Banner<BannerEntity, MeBannerAdapter>)?.setIndicator(requireView().findViewById(R.id.indicator),false)
     }
 
 
-    override fun getClickViews(): List<View> = mutableListOf(iv_setting, iv_edit)
+    override fun getClickViews(): List<View> = mutableListOf(requireView().findViewById(R.id.iv_setting), requireView().findViewById(R.id.iv_edit))
 
     override fun onSingleClick(v: View?) {
         when(v){
-            iv_setting->{
+            requireView().findViewById<View>(R.id.iv_setting)->{
 
             }
 
-            iv_edit -> {
+            requireView().findViewById<View>(R.id.iv_edit) -> {
 //                startActRootFragment(EditFragment())
             }
 

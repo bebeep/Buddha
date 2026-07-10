@@ -18,11 +18,12 @@
             <option value="$PROJECT_DIR$/easyPhotos" />
             <option value="$PROJECT_DIR$/flowcamera" />
             <option value="$PROJECT_DIR$/fragmentation_core" />
+            <option value="$PROJECT_DIR$/iknow" />
             <option value="$PROJECT_DIR$/nsfw" />
+            <option value="$PROJECT_DIR$/tiny" />
             <option value="$PROJECT_DIR$/uilib" />
           </set>
         </option>
-        <option name="resolveExternalAnnotations" value="false" />
       </GradleProjectSettings>
     </option>
   </component>

@@ -8,7 +8,6 @@ import com.fingertip.baselib.top.TopFragment
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.MomentAdapter
 import com.fingertip.uilib.fragment.MainFragment
-import kotlinx.android.synthetic.main.fragment_moment_child.*
 
 class MomentChildFragment : TopFragment(){
     override fun layoutId(): Int = R.layout.fragment_moment_child
@@ -41,8 +40,9 @@ class MomentChildFragment : TopFragment(){
             (parentFragment?.parentFragment as? MainFragment)?.start(MomentDetailsFragment())
 
         }
-        recyclerview.layoutManager = LinearLayoutManager(requireContext())
-        recyclerview.adapter = adapter
+        val rv = requireView().findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recyclerview)
+        rv.layoutManager = LinearLayoutManager(requireContext())
+        rv.adapter = adapter
 
         list.add(MomentEntity().apply {
             momentType = 2

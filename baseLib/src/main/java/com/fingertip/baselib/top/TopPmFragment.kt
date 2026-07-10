@@ -41,15 +41,13 @@ abstract class TopPmFragment<VM : TopViewModel> : TopVMFragment<VM>(),
 
     open fun useAlbum():Boolean {
 
-        if (EasyPermissions.hasPermissions(activity, *album_pm)) {
+        if (EasyPermissions.hasPermissions(requireContext(), *album_pm)) {
             if (!autoGoPhotoAfterPermissionGranted) return true
             gotoAlbum()
         } else {
             EasyPermissions.requestPermissions(
                 this,
                 "请求获取读取相册权限",
-                R.string.yes,
-                R.string.no,
                 1,
                 *album_pm
             )
@@ -64,15 +62,13 @@ abstract class TopPmFragment<VM : TopViewModel> : TopVMFragment<VM>(),
 
 
     open fun useCamera():Boolean {
-        if (EasyPermissions.hasPermissions(activity, *camera_pm)) {
+        if (EasyPermissions.hasPermissions(requireContext(), *camera_pm)) {
             if (!autoGoPhotoAfterPermissionGranted) return true
             takeCamera(CodeConstant.IntentSkipCode.REQUESTCODE_CAMERA)
         } else {
             EasyPermissions.requestPermissions(
                 this,
-                "请求获相机使用权限",
-                R.string.yes,
-                R.string.no,
+                "请求获取相机使用权限",
                 2,
                 *camera_pm
             )
@@ -86,7 +82,7 @@ abstract class TopPmFragment<VM : TopViewModel> : TopVMFragment<VM>(),
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
     }
 
-    override fun onPermissionsGranted(requestCode: Int, perms: List<String?>?) {
+    override fun onPermissionsGranted(requestCode: Int, perms: List<String>) {
         log("onPermissionsGranted", "sucess+" + requestCode)
         when(requestCode){
             1->{
@@ -112,7 +108,7 @@ abstract class TopPmFragment<VM : TopViewModel> : TopVMFragment<VM>(),
         return false
     }
 
-    override fun onPermissionsDenied(requestCode: Int, perms: List<String?>?) {
+    override fun onPermissionsDenied(requestCode: Int, perms: List<String>) {
         perms?.let {
             if (EasyPermissions.somePermissionPermanentlyDenied(this, it)) {
                 AppSettingsDialog.Builder(this).build().show()
