@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
-import com.fingertip.baseLib.R
+import com.fingertip.baselib.R
 import com.fingertip.baselib.top.TopApplication
 
 

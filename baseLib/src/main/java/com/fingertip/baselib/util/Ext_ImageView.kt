@@ -12,7 +12,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
-import com.fingertip.baseLib.R
+import com.fingertip.baselib.R
 import com.fingertip.baselib.glide.GlideOptionFactory
 import com.fingertip.baselib.glide.NoTransform
 

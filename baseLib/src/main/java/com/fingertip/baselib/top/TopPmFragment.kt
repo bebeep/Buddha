@@ -7,7 +7,7 @@ import android.os.Build
 import android.provider.MediaStore
 import androidx.core.content.FileProvider
 import com.blankj.utilcode.util.ToastUtils
-import com.fingertip.baseLib.R
+import com.fingertip.baselib.R
 import com.fingertip.baselib.constant.CodeConstant
 import com.fingertip.baselib.log
 import com.fingertip.baselib.util.PicUtils

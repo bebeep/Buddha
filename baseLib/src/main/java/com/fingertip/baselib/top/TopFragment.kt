@@ -19,19 +19,18 @@ import com.weikaiyun.fragmentation.SupportFragment
 
 import org.greenrobot.eventbus.Subscribe
 
-abstract class TopFragment: SupportFragment(), View.OnClickListener, KeyboardUtils.OnSoftInputChangedListener {
+abstract class TopFragment : SupportFragment(), View.OnClickListener, KeyboardUtils.OnSoftInputChangedListener {
 
     protected val fName by lazy { javaClass.simpleName }
 
     protected var mWaitingDialog: LoadingDialog? = null
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(layoutId(), container, false)
+        return View.inflate(context, layoutId(), null)
     }
 
     /**
-     * 布局文件id
+     * 布局文件ID
      */
     protected abstract fun layoutId(): Int
 

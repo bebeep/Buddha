@@ -5,7 +5,7 @@ import android.content.res.TypedArray
 import android.graphics.*
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatImageView
-import com.fingertip.baseLib.R
+import com.fingertip.baselib.R
 
 open class ShapeImageView @JvmOverloads constructor(
     context: Context,

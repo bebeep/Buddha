@@ -1,9 +1,13 @@
 package com.fingertip.uilib.fragment
 
+import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import com.fingertip.baselib.event_bus.MessageEvent
 import com.fingertip.baselib.top.TopVMFragment
 import com.fingertip.uilib.R
+import com.fingertip.uilib.databinding.FragmentMainBinding
 import com.fingertip.uilib.fragment.moment.MomentFragment
 import com.fingertip.uilib.fragment.worshiping.WorshipFragment
 import com.fingertip.uilib.viewmodel.MainVM
@@ -23,9 +27,22 @@ import com.fingertip.uilib.fragment.MeFragment
  */
 class MainFragment : TopVMFragment<MainVM>(), BottomMenu.MenuSelectCallback {
 
-    override fun initVM()  = MainVM()
+    override fun initVM() = MainVM()
 
     override fun layoutId() = R.layout.fragment_main
+
+    private var _binding: FragmentMainBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        _binding = FragmentMainBinding.inflate(inflater, container, false)
+        return _binding?.root
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
+    }
 
     private val fragmentList = ArrayList<SupportFragment>()
     private var lastFragment: SupportFragment? = null
@@ -50,13 +67,13 @@ class MainFragment : TopVMFragment<MainVM>(), BottomMenu.MenuSelectCallback {
 
         lastFragment = fragmentList[0]
 
-        requireView().findViewById<View>(R.id.bottom_menu).also { 
-            (it as com.fingertip.uilib.widgets.bottom_menu.BottomMenu).menuSelectCallback = this
-            (it as com.fingertip.uilib.widgets.bottom_menu.BottomMenu).addMenuItem(BottomMenuItem(R.mipmap.icon_menu,true))
-            (it as com.fingertip.uilib.widgets.bottom_menu.BottomMenu).addMenuItem(BottomMenuItem(R.mipmap.icon_menu))
-            (it as com.fingertip.uilib.widgets.bottom_menu.BottomMenu).addMenuItem(BottomMenuItem(R.mipmap.icon_menu))
-            (it as com.fingertip.uilib.widgets.bottom_menu.BottomMenu).addMenuItem(BottomMenuItem(R.mipmap.icon_menu,hasMsg = true))
-            (it as com.fingertip.uilib.widgets.bottom_menu.BottomMenu).addMenuItem(BottomMenuItem(R.mipmap.icon_menu))
+        binding.bottomMenu.also {
+            it.menuSelectCallback = this
+            it.addMenuItem(BottomMenuItem(R.mipmap.icon_menu, true))
+            it.addMenuItem(BottomMenuItem(R.mipmap.icon_menu))
+            it.addMenuItem(BottomMenuItem(R.mipmap.icon_menu))
+            it.addMenuItem(BottomMenuItem(R.mipmap.icon_menu, hasMsg = true))
+            it.addMenuItem(BottomMenuItem(R.mipmap.icon_menu))
         }
 
 
@@ -72,12 +89,12 @@ class MainFragment : TopVMFragment<MainVM>(), BottomMenu.MenuSelectCallback {
         showHideFragment(fragmentList[pos], lastFragment)
         lastFragment = fragmentList[pos]
         lastIndex = pos
-        if(pos == 2){
-            requireView().findViewById<View>(R.id.multi_container).gone()
-            requireView().findViewById<View>(R.id.bottom_menu).alpha = 0.2f
-        }else{
-            requireView().findViewById<View>(R.id.multi_container).visible()
-            requireView().findViewById<View>(R.id.bottom_menu).alpha = 1f
+        if (pos == 2) {
+            binding.multiContainer.gone()
+            binding.bottomMenu.alpha = 0.2f
+        } else {
+            binding.multiContainer.visible()
+            binding.bottomMenu.alpha = 1f
         }
     }
 

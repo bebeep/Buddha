@@ -11,10 +11,10 @@ import com.fingertip.baselib.view.LoadingDialog
 import com.weikaiyun.fragmentation.SupportActivity
 import org.greenrobot.eventbus.Subscribe
 
-abstract class TopActivity : SupportActivity(), View.OnClickListener{
+abstract class TopActivity : SupportActivity(), View.OnClickListener {
     lateinit var activity: TopActivity
     protected var loadDialog: LoadingDialog? = null
-    var aTAG: String =this::class.java.simpleName
+    var aTAG: String = this::class.java.simpleName
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +24,7 @@ abstract class TopActivity : SupportActivity(), View.OnClickListener{
             WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
         )
         EventBusProxy.register(this)
-        activity=this
+        activity = this
         setContentView(layoutId())
         FullTopUtil.setStatusTranslucent(this)
         FullTopUtil.FitsSystemWindows(this, !isFullTopBar())
@@ -38,7 +38,7 @@ abstract class TopActivity : SupportActivity(), View.OnClickListener{
     }
 
     /**
-     * 布局文件id
+     * 布局文件ID
      */
     protected abstract fun layoutId(): Int
 

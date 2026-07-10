@@ -1,7 +1,7 @@
 package com.fingertip.baselib
 
 import android.util.Log
-import com.fingertip.baseLib.BuildConfig
+import com.fingertip.baselib.BuildConfig
 
 
 var ISDEBUG:Boolean

@@ -2,7 +2,7 @@ package com.fingertip.baselib.view.shapeview
 
 import android.content.Context
 import android.util.AttributeSet
-import com.fingertip.baseLib.R
+import com.fingertip.baselib.R
 import com.fingertip.baselib.view.MyEditText
 
 /**

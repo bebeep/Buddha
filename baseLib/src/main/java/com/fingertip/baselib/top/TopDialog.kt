@@ -8,7 +8,7 @@ import android.os.Bundle
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
-import com.fingertip.baseLib.R
+import com.fingertip.baselib.R
 
 
 abstract class TopDialog @JvmOverloads constructor(context: Context, themeResId: Int = R.style.gd_custom_dialog) : Dialog(context, themeResId), DialogInterface.OnDismissListener {
@@ -21,14 +21,15 @@ abstract class TopDialog @JvmOverloads constructor(context: Context, themeResId:
     }
 
     private var mOnDismissListener: DialogInterface.OnDismissListener? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val view: ViewGroup = View.inflate(context, attachLayoutRes(), null) as ViewGroup
-        if (IS_MATCH_PARENT()){
-            setContentView(view, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT ))
+        val view: View = View.inflate(context, attachLayoutRes(), null)
+        if (IS_MATCH_PARENT()) {
+            setContentView(view, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
             window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-        }else{
-            setContentView(view, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT ))
+        } else {
+            setContentView(view, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT))
             window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         }
         onViewInit(view)
@@ -40,7 +41,7 @@ abstract class TopDialog @JvmOverloads constructor(context: Context, themeResId:
     }
 
     /**
-     * 设置视图ID
+     * 布局文件ID
      */
     protected abstract fun attachLayoutRes(): Int
 

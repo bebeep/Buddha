@@ -7,7 +7,7 @@ plugins {
 def productProps = getVersionConfig()
 android {
 
-    namespace 'com.fingertip.baseLib'
+    namespace 'com.fingertip.baselib'
 
     compileSdkVersion rootProject.versions["compileSdkVersion"]
 
@@ -36,6 +36,7 @@ android {
     }
     buildFeatures {
         buildConfig true
+        viewBinding true
     }
 
 

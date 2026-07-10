@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.ViewPager
-import com.fingertip.baseLib.R
+import com.fingertip.baselib.R
 import com.fingertip.baselib.adapter.ViewPagerAdapter
 import com.fingertip.baselib.top.TopDialog
 

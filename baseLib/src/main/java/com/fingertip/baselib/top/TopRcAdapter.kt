@@ -7,24 +7,25 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 @Suppress("UNCHECKED_CAST")
-abstract class TopRcAdapter<T, VH: TopRcAdapter.TopRcViewHolder>(
-   val context: Context
-): RecyclerView.Adapter<VH>() {
+abstract class TopRcAdapter<T, VH : TopRcAdapter.TopRcViewHolder>(
+    val context: Context
+) : RecyclerView.Adapter<VH>() {
 
     val TAG by lazy { javaClass.simpleName }
 
     val mlist = ArrayList<T>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        val v = inflate(parent, initLayoutId(viewType))
-        return TopRcViewHolder(v) as VH
+        val view = LayoutInflater.from(context).inflate(initLayoutId(viewType), parent, false)
+        return TopRcViewHolder(view) as VH
     }
 
     override fun getItemCount(): Int = mlist.size
 
-    fun inflate(parent: ViewGroup, resId: Int): View = LayoutInflater.from(context).inflate(resId, parent, false)
-
-    abstract fun initLayoutId(viewType: Int): Int
+    /**
+     * 布局文件ID
+     */
+    protected abstract fun initLayoutId(viewType: Int): Int
 
     fun data() = mlist
 
@@ -46,5 +47,5 @@ abstract class TopRcAdapter<T, VH: TopRcAdapter.TopRcViewHolder>(
 
     fun get(position: Int) = if (position >= 0 && position < mlist.size) mlist[position] else null
 
-    open class TopRcViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    open class TopRcViewHolder(view: View) : RecyclerView.ViewHolder(view)
 }

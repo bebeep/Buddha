@@ -29,7 +29,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.AppCompatImageView;
 
-import com.fingertip.baseLib.R;
+import com.fingertip.baselib.R;
 
 
 /**

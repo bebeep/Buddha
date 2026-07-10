@@ -2,10 +2,9 @@ package com.fingertip.baselib.top
 
 import android.content.Context
 import android.content.DialogInterface
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
-import com.fingertip.baseLib.R
+import com.fingertip.baselib.R
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 
@@ -18,7 +17,7 @@ abstract class TopDialogBottomSheetDialog(context: Context) : BottomSheetDialog(
 
     init {
         TAG = javaClass.simpleName
-        val view = LayoutInflater.from(context).inflate(getLayoutId(), null)
+        val view = View.inflate(context, getLayoutId(), null)
         setContentView(view)
         window?.findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)?.setBackgroundResource(android.R.color.transparent)
         onViewCreate(view)
@@ -28,6 +27,9 @@ abstract class TopDialogBottomSheetDialog(context: Context) : BottomSheetDialog(
         setOnDismissListener(this)
     }
 
+    /**
+     * 布局文件ID
+     */
     abstract fun getLayoutId(): Int
 
     abstract fun onViewCreate(view: View)

@@ -3,7 +3,7 @@ package com.fingertip.baselib.dialog
 import android.content.Context
 import android.view.View
 import androidx.core.content.ContextCompat
-import com.fingertip.baseLib.R
+import com.fingertip.baselib.R
 import com.fingertip.baselib.top.TopDialog
 import com.lzlz.toplib.extention.visible
 

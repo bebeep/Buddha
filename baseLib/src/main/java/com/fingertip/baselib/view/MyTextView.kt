@@ -6,7 +6,7 @@ import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
-import com.fingertip.baseLib.R
+import com.fingertip.baselib.R
 
 
 /**

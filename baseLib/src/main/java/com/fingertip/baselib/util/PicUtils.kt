@@ -2,7 +2,7 @@ package com.fingertip.baselib.util
 
 import android.content.Intent
 import android.net.Uri
-import com.fingertip.baseLib.BuildConfig
+import com.fingertip.baselib.BuildConfig
 import com.fingertip.baselib.constant.CodeConstant
 import com.fingertip.baselib.log
 import com.fingertip.baselib.top.TopApplication

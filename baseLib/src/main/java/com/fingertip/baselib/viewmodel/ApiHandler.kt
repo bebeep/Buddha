@@ -1,7 +1,7 @@
 package com.fingertip.baselib.viewmodel
 
 
-import com.fingertip.baseLib.R
+import com.fingertip.baselib.R
 import com.fingertip.baselib.bean.RequestRsp
 import com.fingertip.baselib.log
 import com.fingertip.baselib.loge

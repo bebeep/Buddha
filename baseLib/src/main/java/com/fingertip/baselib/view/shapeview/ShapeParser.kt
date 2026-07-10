@@ -5,7 +5,7 @@ import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
-import com.fingertip.baseLib.R
+import com.fingertip.baselib.R
 
 class ShapeParser {
 

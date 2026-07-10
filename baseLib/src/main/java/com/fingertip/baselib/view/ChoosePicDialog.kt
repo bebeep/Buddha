@@ -5,7 +5,7 @@ import android.content.Context
 import android.graphics.Color
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.fingertip.baseLib.R
+import com.fingertip.baselib.R
 import com.fingertip.baselib.top.TopDialogBottomSheetDialog
 import com.fingertip.baselib.top.TopRcAdapter
 
@@ -28,7 +28,7 @@ class ChoosePicDialog(
         }
         view.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recyclerview).apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            myAdapter=CZClickAdapter(context,this@ChoosePicDialog,onItemClick)
+            myAdapter=CZClickAdapter(context,this@ChoosePicDialog)
             adapter =myAdapter
         }
     }
@@ -41,7 +41,7 @@ class ChoosePicDialog(
 
 
 
-    inner class CZClickAdapter(context:Context, var dialog: Dialog,var onItemClick: (position:Int) -> Unit) :
+    inner class CZClickAdapter(context:Context, var dialog: Dialog) :
         TopRcAdapter<String, TopRcAdapter.TopRcViewHolder>(context){
 
 

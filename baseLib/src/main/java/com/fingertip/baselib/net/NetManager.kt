@@ -1,6 +1,6 @@
 package com.fingertip.baselib.net
 
-import com.fingertip.baseLib.BuildConfig
+import com.fingertip.baselib.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
