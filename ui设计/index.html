@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>指尖佛 — Logo Design</title>
+<meta name="canvas:aspect-ratio" content="1:1">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&display=swap');
+
+  :root {
+    --ink: #2C2C2C;
+    --gold: #C4A265;
+    --gold-light: #D4B87A;
+    --cream: #F5F0E8;
+    --warm-white: #FAF7F2;
+    --zen-gray: #8A8680;
+    --deep-bg: #1A1A1A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Serif SC', 'Songti SC', serif;
+    background: var(--warm-white);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Hero Section */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 60px 20px;
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at center, rgba(196,162,101,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .logo-main {
+    width: 280px;
+    height: 280px;
+    margin-bottom: 40px;
+    animation: breathe 6s ease-in-out infinite;
+  }
+
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.02); opacity: 0.95; }
+  }
+
+  .app-name {
+    font-size: 42px;
+    font-weight: 300;
+    letter-spacing: 16px;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+
+  .app-tagline {
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 6px;
+    color: var(--zen-gray);
+    text-transform: uppercase;
+  }
+
+  /* Sections */
+  .section {
+    padding: 80px 40px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 8px;
+    color: var(--zen-gray);
+    text-align: center;
+    margin-bottom: 48px;
+    text-transform: uppercase;
+  }
+
+  .section-title::after {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+    margin: 16px auto 0;
+  }
+
+  /* Background Variants */
+  .bg-variants {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  .bg-card {
+    border-radius: 16px;
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 320px;
+    transition: transform 0.3s ease;
+  }
+
+  .bg-card:hover {
+    transform: scale(1.01);
+  }
+
+  .bg-card.light {
+    background: var(--cream);
+    border: 1px solid rgba(196,162,101,0.15);
+  }
+
+  .bg-card.dark {
+    background: var(--deep-bg);
+  }
+
+  .bg-card.warm {
+    background: linear-gradient(135deg, #2C2418 0%, #1A1612 100%);
+  }
+
+  .bg-card.zen {
+    background: linear-gradient(135deg, #E8E2D8 0%, #D8D0C4 100%);
+  }
+
+  .bg-card svg {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 20px;
+  }
+
+  .bg-card .label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--zen-gray);
+  }
+
+  .bg-card.dark .label,
+  .bg-card.warm .label {
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* Size Variants */
+  .size-variants {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .size-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .size-item .size-label {
+    font-size: 11px;
+    color: var(--zen-gray);
+    letter-spacing: 2px;
+  }
+
+  /* App Icon Preview */
+  .icon-preview {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .app-icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .app-icon.gold-bg {
+    background: linear-gradient(145deg, #2A2520 0%, #1A1714 100%);
+  }
+
+  .app-icon.cream-bg {
+    background: linear-gradient(145deg, var(--cream) 0%, #EDE7DD 100%);
+    border: 1px solid rgba(196,162,101,0.2);
+  }
+
+  .app-icon svg {
+    width: 72px;
+    height: 72px;
+  }
+
+  .app-icon-round {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg, #2A2520 0%, #1A1714 100%);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  }
+
+  .app-icon-round svg {
+    width: 72px;
+    height: 72px;
+  }
+
+  /* Concept Section */
+  .concept {
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .concept p {
+    font-size: 15px;
+    line-height: 2;
+    color: #666;
+    font-weight: 300;
+  }
+
+  .concept .highlight {
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  /* Divider */
+  .divider {
+    width: 1px;
+    height: 64px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    margin: 0 auto;
+  }
+
+  /* Color Palette */
+  .palette {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .color-swatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .swatch-circle {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .swatch-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--zen-gray);
+  }
+
+  .swatch-hex {
+    font-size: 11px;
+    color: #999;
+    font-family: monospace;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 60px 20px;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: #ccc;
+  }
+
+  @media (max-width: 640px) {
+    .bg-variants { grid-template-columns: 1fr; }
+    .logo-main { width: 200px; height: 200px; }
+    .app-name { font-size: 32px; letter-spacing: 12px; }
+    .section { padding: 60px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <svg class="logo-main" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <!-- Main Logo: Fingertip with Lotus -->
+    <defs>
+      <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#D4B87A"/>
+        <stop offset="50%" style="stop-color:#C4A265"/>
+        <stop offset="100%" style="stop-color:#A8894E"/>
+      </linearGradient>
+      <linearGradient id="goldGradV" x1="0%" y1="100%" x2="0%" y2="0%">
+        <stop offset="0%" style="stop-color:#A8894E"/>
+        <stop offset="100%" style="stop-color:#D4B87A"/>
+      </linearGradient>
+    </defs>
+
+    <!-- Subtle circle backdrop -->
+    <circle cx="200" cy="180" r="120" fill="none" stroke="#C4A265" stroke-width="0.5" opacity="0.2"/>
+
+    <!-- Hand/Finger - elegant minimal upward pointing finger -->
+    <g transform="translate(200, 340)">
+      <!-- Palm base - minimal curve -->
+      <path d="M-32,0 C-32,-8 -28,-16 -22,-20 L-22,-60 C-22,-66 -18,-72 -12,-74 L-12,-74 C-6,-76 0,-76 0,-76 L0,-76 C0,-76 6,-76 12,-74 L12,-74 C18,-72 22,-66 22,-60 L22,-20 C28,-16 32,-8 32,0"
+            fill="none" stroke="url(#goldGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <!-- Finger - clean upward -->
+      <path d="M-12,-74 L-12,-130 C-12,-140 -8,-148 0,-150 C8,-148 12,-140 12,-130 L12,-74"
+            fill="none" stroke="url(#goldGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <!-- Fingertip highlight dot -->
+      <circle cx="0" cy="-152" r="2" fill="#C4A265" opacity="0.6"/>
+
+      <!-- Side fingers suggestion - minimal strokes -->
+      <path d="M-22,-60 C-28,-62 -34,-58 -36,-50 L-36,-38 C-36,-32 -32,-28 -28,-26"
+            fill="none" stroke="url(#goldGrad)" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/>
+      <path d="M22,-60 C28,-62 34,-58 36,-50 L36,-38 C36,-32 32,-28 28,-26"
+            fill="none" stroke="url(#goldGrad)" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/>
+    </g>
+
+    <!-- Lotus blooming from fingertip -->
+    <g transform="translate(200, 168)">
+      <!-- Center petal -->
+      <path d="M0,-52 C-6,-36 -8,-20 0,-4 C8,-20 6,-36 0,-52Z"
+            fill="url(#goldGrad)" opacity="0.9"/>
+
+      <!-- Left petals -->
+      <path d="M-4,-6 C-18,-30 -28,-40 -32,-48 C-24,-38 -16,-22 -4,-6Z"
+            fill="url(#goldGrad)" opacity="0.7"/>
+      <path d="M-6,-2 C-24,-18 -38,-24 -46,-26 C-36,-20 -22,-10 -6,-2Z"
+            fill="url(#goldGrad)" opacity="0.5"/>
+
+      <!-- Right petals -->
+      <path d="M4,-6 C18,-30 28,-40 32,-48 C24,-38 16,-22 4,-6Z"
+            fill="url(#goldGrad)" opacity="0.7"/>
+      <path d="M6,-2 C24,-18 38,-24 46,-26 C36,-20 22,-10 6,-2Z"
+            fill="url(#goldGrad)" opacity="0.5"/>
+
+      <!-- Lotus base / seat -->
+      <ellipse cx="0" cy="0" rx="14" ry="4" fill="#C4A265" opacity="0.3"/>
+
+      <!-- Subtle radiating lines from center -->
+      <line x1="0" y1="-8" x2="0" y2="-60" stroke="#C4A265" stroke-width="0.3" opacity="0.15"/>
+      <line x1="0" y1="-8" x2="-20" y2="-55" stroke="#C4A265" stroke-width="0.3" opacity="0.1"/>
+      <line x1="0" y1="-8" x2="20" y2="-55" stroke="#C4A265" stroke-width="0.3" opacity="0.1"/>
+    </g>
+
+    <!-- Subtle aura dots -->
+    <circle cx="200" cy="100" r="1.5" fill="#C4A265" opacity="0.2"/>
+    <circle cx="170" cy="115" r="1" fill="#C4A265" opacity="0.15"/>
+    <circle cx="230" cy="115" r="1" fill="#C4A265" opacity="0.15"/>
+    <circle cx="155" cy="140" r="0.8" fill="#C4A265" opacity="0.1"/>
+    <circle cx="245" cy="140" r="0.8" fill="#C4A265" opacity="0.1"/>
+  </svg>
+
+  <h1 class="app-name">指尖佛</h1>
+  <p class="app-tagline">指间生莲 &middot; 心间见佛</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- Design Concept -->
+<section class="section">
+  <div class="section-title">设计理念</div>
+  <div class="concept">
+    <p>
+      <span class="highlight">「指尖」</span>取触碰、连接之意，以极简线条勾勒向上指引的手势，
+      象征数字化时代的指尖交互。<span class="highlight">「佛」</span>以指尖绽放的莲花为喻，
+      五瓣层叠，由淡而浓，寓意智慧从指间生发，清净自在于心间。
+      整体取<span class="highlight">「指间生莲，心间见佛」</span>之意，
+      以最少笔触传达最深禅意。
+    </p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Color Palette -->
+<section class="section">
+  <div class="section-title">品牌色彩</div>
+  <div class="palette">
+    <div class="color-swatch">
+      <div class="swatch-circle" style="background: #2C2C2C;"></div>
+      <span class="swatch-label">墨</span>
+      <span class="swatch-hex">#2C2C2C</span>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-circle" style="background: #C4A265;"></div>
+      <span class="swatch-label">檀金</span>
+      <span class="swatch-hex">#C4A265</span>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-circle" style="background: #D4B87A;"></div>
+      <span class="swatch-label">浅金</span>
+      <span class="swatch-hex">#D4B87A</span>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-circle" style="background: #F5F0E8;"></div>
+      <span class="swatch-label">莲白</span>
+      <span class="swatch-hex">#F5F0E8</span>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-circle" style="background: #1A1A1A;"></div>
+      <span class="swatch-label">玄</span>
+      <span class="swatch-hex">#1A1A1A</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Background Variants -->
+<section class="section">
+  <div class="section-title">多背景适配</div>
+  <div class="bg-variants">
+    <div class="bg-card light">
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#D4B87A"/><stop offset="100%" style="stop-color:#A8894E"/></linearGradient>
+        </defs>
+        <circle cx="200" cy="180" r="120" fill="none" stroke="#C4A265" stroke-width="0.5" opacity="0.2"/>
+        <g transform="translate(200, 340)">
+          <path d="M-32,0 C-32,-8 -28,-16 -22,-20 L-22,-60 C-22,-66 -18,-72 -12,-74 L-12,-74 C-6,-76 0,-76 0,-76 L0,-76 C0,-76 6,-76 12,-74 L12,-74 C18,-72 22,-66 22,-60 L22,-20 C28,-16 32,-8 32,0" fill="none" stroke="url(#g1)" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M-12,-74 L-12,-130 C-12,-140 -8,-148 0,-150 C8,-148 12,-140 12,-130 L12,-74" fill="none" stroke="url(#g1)" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="0" cy="-152" r="2" fill="#C4A265" opacity="0.6"/>
+          <path d="M-22,-60 C-28,-62 -34,-58 -36,-50 L-36,-38 C-36,-32 -32,-28 -28,-26" fill="none" stroke="url(#g1)" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/>
+          <path d="M22,-60 C28,-62 34,-58 36,-50 L36,-38 C36,-32 32,-28 28,-26" fill="none" stroke="url(#g1)" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/>
+        </g>
+        <g transform="translate(200, 168)">
+          <path d="M0,-52 C-6,-36 -8,-20 0,-4 C8,-20 6,-36 0,-52Z" fill="url(#g1)" opacity="0.9"/>
+          <path d="M-4,-6 C-18,-30 -28,-40 -32,-48 C-24,-38 -16,-22 -4,-6Z" fill="url(#g1)" opacity="0.7"/>
+          <path d="M-6,-2 C-24,-18 -38,-24 -46,-26 C-36,-20 -22,-10 -6,-2Z" fill="url(#g1)" opacity="0.5"/>
+          <path d="M4,-6 C18,-30 28,-40 32,-48 C24,-38 16,-22 4,-6Z" fill="url(#g1)" opacity="0.7"/>
+          <path d="M6,-2 C24,-18 38,-24 46,-26 C36,-20 22,-10 6,-2Z" fill="url(#g1)" opacity="0.5"/>
+          <ellipse cx="0" cy="0" rx="14" ry="4" fill="#C4A265" opacity="0.3"/>
+        </g>
+      </svg>
+      <span class="label">浅色背景</span>
+    </div>
+    <div class="bg-card dark">
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#D4B87A"/><stop offset="100%" style="stop-color:#A8894E"/></linearGradient>
+        </defs>
+        <circle cx="200" cy="180" r="120" fill="none" stroke="#C4A265" stroke-width="0.5" opacity="0.15"/>
+        <g transform="translate(200, 340)">
+          <path d="M-32,0 C-32,-8 -28,-16 -22,-20 L-22,-60 C-22,-66 -18,-72 -12,-74 L-12,-74 C-6,-76 0,-76 0,-76 L0,-76 C0,-76 6,-76 12,-74 L12,-74 C18,-72 22,-66 22,-60 L22,-20 C28,-16 32,-8 32,0" fill="none" stroke="url(#g2)" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M-12,-74 L-12,-130 C-12,-140 -8,-148 0,-150 C8,-148 12,-140 12,-130 L12,-74" fill="none" stroke="url(#g2)" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="0" cy="-152" r="2" fill="#C4A265" opacity="0.6"/>
+          <path d="M-22,-60 C-28,-62 -34,-58 -36,-50 L-36,-38 C-36,-32 -32,-28 -28,-26" fill="none" stroke="url(#g2)" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/>
+          <path d="M22,-60 C28,-62 34,-58 36,-50 L36,-38 C36,-32 32,-28 28,-26" fill="none" stroke="url(#g2)" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/>
+        </g>
+        <g transform="translate(200, 168)">
+          <path d="M0,-52 C-6,-36 -8,-20 0,-4 C8,-20 6,-36 0,-52Z" fill="url(#g2)" opacity="0.9"/>
+          <path d="M-4,-6 C-18,-30 -28,-40 -32,-48 C-24,-38 -16,-22 -4,-6Z" fill="url(#g2)" opacity="0.7"/>
+          <path d="M-6,-2 C-24,-18 -38,-24 -46,-26 C-36,-20 -22,-10 -6,-2Z" fill="url(#g2)" opacity="0.5"/>
+          <path d="M4,-6 C18,-30 28,-40 32,-48 C24,-38 16,-22 4,-6Z" fill="url(#g2)" opacity="0.7"/>
+          <path d="M6,-2 C24,-18 38,-24 46,-26 C36,-20 22,-10 6,-2Z" fill="url(#g2)" opacity="0.5"/>
+          <ellipse cx="0" cy="0" rx="14" ry="4" fill="#C4A265" opacity="0.3"/>
+        </g>
+      </svg>
+      <span class="label">深色背景</span>
+    </div>
+    <div class="bg-card warm">
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#D4B87A"/><stop offset="100%" style="stop-color:#A8894E"/></linearGradient>
+        </defs>
+        <circle cx="200" cy="180" r="120" fill="none" stroke="#C4A265" stroke-width="0.5" opacity="0.15"/>
+        <g transform="translate(200, 340)">
+          <path d="M-32,0 C-32,-8 -28,-16 -22,-20 L-22,-60 C-22,-66 -18,-72 -12,-74 L-12,-74 C-6,-76 0,-76 0,-76 L0,-76 C0,-76 6,-76 12,-74 L12,-74 C18,-72 22,-66 22,-60 L22,-20 C28,-16 32,-8 32,0" fill="none" stroke="url(#g3)" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M-12,-74 L-12,-130 C-12,-140 -8,-148 0,-150 C8,-148 12,-140 12,-130 L12,-74" fill="none" stroke="url(#g3)" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="0" cy="-152" r="2" fill="#C4A265" opacity="0.6"/>
+          <path d="M-22,-60 C-28,-62 -34,-58 -36,-50 L-36,-38 C-36,-32 -32,-28 -28,-26" fill="none" stroke="url(#g3)" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/>
+          <path d="M22,-60 C28,-62 34,-58 36,-50 L36,-38 C36,-32 32,-28 28,-26" fill="none" stroke="url(#g3)" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/>
+        </g>
+        <g transform="translate(200, 168)">
+          <path d="M0,-52 C-6,-36 -8,-20 0,-4 C8,-20 6,-36 0,-52Z" fill="url(#g3)" opacity="0.9"/>
+          <path d="M-4,-6 C-18,-30 -28,-40 -32,-48 C-24,-38 -16,-22 -4,-6Z" fill="url(#g3)" opacity="0.7"/>
+          <path d="M-6,-2 C-24,-18 -38,-24 -46,-26 C-36,-20 -22,-10 -6,-2Z" fill="url(#g3)" opacity="0.5"/>
+          <path d="M4,-6 C18,-30 28,-40 32,-48 C24,-38 16,-22 4,-6Z" fill="url(#g3)" opacity="0.7"/>
+          <path d="M6,-2 C24,-18 38,-24 46,-26 C36,-20 22,-10 6,-2Z" fill="url(#g3)" opacity="0.5"/>
+          <ellipse cx="0" cy="0" rx="14" ry="4" fill="#C4A265" opacity="0.3"/>
+        </g>
+      </svg>
+      <span class="label">暖棕背景</span>
+    </div>
+    <div class="bg-card zen">
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#D4B87A"/><stop offset="100%" style="stop-color:#A8894E"/></linearGradient>
+        </defs>
+        <circle cx="200" cy="180" r="120" fill="none" stroke="#C4A265" stroke-width="0.5" opacity="0.2"/>
+        <g transform="translate(200, 340)">
+          <path d="M-32,0 C-32,-8 -28,-16 -22,-20 L-22,-60 C-22,-66 -18,-72 -12,-74 L-12,-74 C-6,-76 0,-76 0,-76 L0,-76 C0,-76 6,-76 12,-74 L12,-74 C18,-72 22,-66 22,-60 L22,-20 C28,-16 32,-8 32,0" fill="none" stroke="url(#g4)" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M-12,-74 L-12,-130 C-12,-140 -8,-148 0,-150 C8,-148 12,-140 12,-130 L12,-74" fill="none" stroke="url(#g4)" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="0" cy="-152" r="2" fill="#C4A265" opacity="0.6"/>
+          <path d="M-22,-60 C-28,-62 -34,-58 -36,-50 L-36,-38 C-36,-32 -32,-28 -28,-26" fill="none" stroke="url(#g4)" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/>
+          <path d="M22,-60 C28,-62 34,-58 36,-50 L36,-38 C36,-32 32,-28 28,-26" fill="none" stroke="url(#g4)" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/>
+        </g>
+        <g transform="translate(200, 168)">
+          <path d="M0,-52 C-6,-36 -8,-20 0,-4 C8,-20 6,-36 0,-52Z" fill="url(#g4)" opacity="0.9"/>
+          <path d="M-4,-6 C-18,-30 -28,-40 -32,-48 C-24,-38 -16,-22 -4,-6Z" fill="url(#g4)" opacity="0.7"/>
+          <path d="M-6,-2 C-24,-18 -38,-24 -46,-26 C-36,-20 -22,-10 -6,-2Z" fill="url(#g4)" opacity="0.5"/>
+          <path d="M4,-6 C18,-30 28,-40 32,-48 C24,-38 16,-22 4,-6Z" fill="url(#g4)" opacity="0.7"/>
+          <path d="M6,-2 C24,-18 38,-24 46,-26 C36,-20 22,-10 6,-2Z" fill="url(#g4)" opacity="0.5"/>
+          <ellipse cx="0" cy="0" rx="14" ry="4" fill="#C4A265" opacity="0.3"/>
+        </g>
+      </svg>
+      <span class="label">禅灰背景</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Size Variants -->
+<section class="section">
+  <div class="section-title">多尺寸预览</div>
+  <div class="size-variants">
+    <div class="size-item">
+      <svg width="128" height="128" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="g5" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#D4B87A"/><stop offset="100%" style="stop-color:#A8894E"/></linearGradient></defs>
+        <g transform="translate(200, 340)">
+          <path d="M-32,0 C-32,-8 -28,-16 -22,-20 L-22,-60 C-22,-66 -18,-72 -12,-74 C-6,-76 0,-76 0,-76 C0,-76 6,-76 12,-74 C18,-72 22,-66 22,-60 L22,-20 C28,-16 32,-8 32,0" fill="none" stroke="url(#g5)" stroke-width="3" stroke-linecap="round"/>
+          <path d="M-12,-74 L-12,-130 C-12,-140 -8,-148 0,-150 C8,-148 12,-140 12,-130 L12,-74" fill="none" stroke="url(#g5)" stroke-width="3" stroke-linecap="round"/>
+          <path d="M-22,-60 C-28,-62 -34,-58 -36,-50 L-36,-38 C-36,-32 -32,-28 -28,-26" fill="none" stroke="url(#g5)" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+          <path d="M22,-60 C28,-62 34,-58 36,-50 L36,-38 C36,-32 32,-28 28,-26" fill="none" stroke="url(#g5)" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+        </g>
+        <g transform="translate(200, 168)">
+          <path d="M0,-52 C-6,-36 -8,-20 0,-4 C8,-20 6,-36 0,-52Z" fill="url(#g5)" opacity="0.9"/>
+          <path d="M-4,-6 C-18,-30 -28,-40 -32,-48 C-24,-38 -16,-22 -4,-6Z" fill="url(#g5)" opacity="0.7"/>
+          <path d="M4,-6 C18,-30 28,-40 32,-48 C24,-38 16,-22 4,-6Z" fill="url(#g5)" opacity="0.7"/>
+          <path d="M-6,-2 C-24,-18 -38,-24 -46,-26 C-36,-20 -22,-10 -6,-2Z" fill="url(#g5)" opacity="0.5"/>
+          <path d="M6,-2 C24,-18 38,-24 46,-26 C36,-20 22,-10 6,-2Z" fill="url(#g5)" opacity="0.5"/>
+        </g>
+      </svg>
+      <span class="size-label">128 &times; 128</span>
+    </div>
+    <div class="size-item">
+      <svg width="64" height="64" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="g6" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#D4B87A"/><stop offset="100%" style="stop-color:#A8894E"/></linearGradient></defs>
+        <g transform="translate(200, 340)">
+          <path d="M-32,0 C-32,-8 -28,-16 -22,-20 L-22,-60 C-22,-66 -18,-72 -12,-74 C-6,-76 0,-76 0,-76 C0,-76 6,-76 12,-74 C18,-72 22,-66 22,-60 L22,-20 C28,-16 32,-8 32,0" fill="none" stroke="url(#g6)" stroke-width="4" stroke-linecap="round"/>
+          <path d="M-12,-74 L-12,-130 C-12,-140 -8,-148 0,-150 C8,-148 12,-140 12,-130 L12,-74" fill="none" stroke="url(#g6)" stroke-width="4" stroke-linecap="round"/>
+        </g>
+        <g transform="translate(200, 168)">
+          <path d="M0,-52 C-6,-36 -8,-20 0,-4 C8,-20 6,-36 0,-52Z" fill="url(#g6)" opacity="0.9"/>
+          <path d="M-4,-6 C-18,-30 -28,-40 -32,-48 C-24,-38 -16,-22 -4,-6Z" fill="url(#g6)" opacity="0.7"/>
+          <path d="M4,-6 C18,-30 28,-40 32,-48 C24,-38 16,-22 4,-6Z" fill="url(#g6)" opacity="0.7"/>
+        </g>
+      </svg>
+      <span class="size-label">64 &times; 64</span>
+    </div>
+    <div class="size-item">
+      <svg width="32" height="32" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="g7" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#D4B87A"/><stop offset="100%" style="stop-color:#A8894E"/></linearGradient></defs>
+        <g transform="translate(200, 340)">
+          <path d="M-32,0 C-32,-8 -28,-16 -22,-20 L-22,-60 C-22,-66 -18,-72 -12,-74 C-6,-76 0,-76 0,-76 C0,-76 6,-76 12,-74 C18,-72 22,-66 22,-60 L22,-20 C28,-16 32,-8 32,0" fill="none" stroke="url(#g7)" stroke-width="6" stroke-linecap="round"/>
+          <path d="M-12,-74 L-12,-130 C-12,-140 -8,-148 0,-150 C8,-148 12,-140 12,-130 L12,-74" fill="none" stroke="url(#g7)" stroke-width="6" stroke-linecap="round"/>
+        </g>
+        <g transform="translate(200, 168)">
+          <path d="M0,-52 C-6,-36 -8,-20 0,-4 C8,-20 6,-36 0,-52Z" fill="url(#g7)"/>
+          <path d="M-4,-6 C-18,-30 -28,-40 -32,-48 C-24,-38 -16,-22 -4,-6Z" fill="url(#g7)" opacity="0.8"/>
+          <path d="M4,-6 C18,-30 28,-40 32,-48 C24,-38 16,-22 4,-6Z" fill="url(#g7)" opacity="0.8"/>
+        </g>
+      </svg>
+      <span class="size-label">32 &times; 32</span>
+    </div>
+    <div class="size-item">
+      <svg width="16" height="16" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="g8" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#D4B87A"/><stop offset="100%" style="stop-color:#A8894E"/></linearGradient></defs>
+        <g transform="translate(200, 340)">
+          <path d="M-12,-74 L-12,-130 C-12,-140 -8,-148 0,-150 C8,-148 12,-140 12,-130 L12,-74" fill="none" stroke="url(#g8)" stroke-width="10" stroke-linecap="round"/>
+        </g>
+        <g transform="translate(200, 168)">
+          <path d="M0,-52 C-6,-36 -8,-20 0,-4 C8,-20 6,-36 0,-52Z" fill="url(#g8)"/>
+          <path d="M-4,-6 C-18,-30 -28,-40 -32,-48 C-24,-38 -16,-22 -4,-6Z" fill="url(#g8)" opacity="0.8"/>
+          <path d="M4,-6 C18,-30 28,-40 32,-48 C24,-38 16,-22 4,-6Z" fill="url(#g8)" opacity="0.8"/>
+        </g>
+      </svg>
+      <span class="size-label">16 &times; 16</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- App Icon Preview -->
+<section class="section">
+  <div class="section-title">App 图标预览</div>
+  <div class="icon-preview">
+    <div class="app-icon gold-bg">
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="g9" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#D4B87A"/><stop offset="100%" style="stop-color:#A8894E"/></linearGradient></defs>
+        <g transform="translate(200, 340)">
+          <path d="M-32,0 C-32,-8 -28,-16 -22,-20 L-22,-60 C-22,-66 -18,-72 -12,-74 C-6,-76 0,-76 0,-76 C0,-76 6,-76 12,-74 C18,-72 22,-66 22,-60 L22,-20 C28,-16 32,-8 32,0" fill="none" stroke="url(#g9)" stroke-width="3" stroke-linecap="round"/>
+          <path d="M-12,-74 L-12,-130 C-12,-140 -8,-148 0,-150 C8,-148 12,-140 12,-130 L12,-74" fill="none" stroke="url(#g9)" stroke-width="3" stroke-linecap="round"/>
+          <path d="M-22,-60 C-28,-62 -34,-58 -36,-50 L-36,-38 C-36,-32 -32,-28 -28,-26" fill="none" stroke="url(#g9)" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+          <path d="M22,-60 C28,-62 34,-58 36,-50 L36,-38 C36,-32 32,-28 28,-26" fill="none" stroke="url(#g9)" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+        </g>
+        <g transform="translate(200, 168)">
+          <path d="M0,-52 C-6,-36 -8,-20 0,-4 C8,-20 6,-36 0,-52Z" fill="url(#g9)" opacity="0.9"/>
+          <path d="M-4,-6 C-18,-30 -28,-40 -32,-48 C-24,-38 -16,-22 -4,-6Z" fill="url(#g9)" opacity="0.7"/>
+          <path d="M4,-6 C18,-30 28,-40 32,-48 C24,-38 16,-22 4,-6Z" fill="url(#g9)" opacity="0.7"/>
+          <path d="M-6,-2 C-24,-18 -38,-24 -46,-26 C-36,-20 -22,-10 -6,-2Z" fill="url(#g9)" opacity="0.5"/>
+          <path d="M6,-2 C24,-18 38,-24 46,-26 C36,-20 22,-10 6,-2Z" fill="url(#g9)" opacity="0.5"/>
+        </g>
+      </svg>
+    </div>
+    <div class="app-icon cream-bg">
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="g10" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#C4A265"/><stop offset="100%" style="stop-color:#8A7040"/></linearGradient></defs>
+        <g transform="translate(200, 340)">
+          <path d="M-32,0 C-32,-8 -28,-16 -22,-20 L-22,-60 C-22,-66 -18,-72 -12,-74 C-6,-76 0,-76 0,-76 C0,-76 6,-76 12,-74 C18,-72 22,-66 22,-60 L22,-20 C28,-16 32,-8 32,0" fill="none" stroke="url(#g10)" stroke-width="3" stroke-linecap="round"/>
+          <path d="M-12,-74 L-12,-130 C-12,-140 -8,-148 0,-150 C8,-148 12,-140 12,-130 L12,-74" fill="none" stroke="url(#g10)" stroke-width="3" stroke-linecap="round"/>
+          <path d="M-22,-60 C-28,-62 -34,-58 -36,-50 L-36,-38 C-36,-32 -32,-28 -28,-26" fill="none" stroke="url(#g10)" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+          <path d="M22,-60 C28,-62 34,-58 36,-50 L36,-38 C36,-32 32,-28 28,-26" fill="none" stroke="url(#g10)" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+        </g>
+        <g transform="translate(200, 168)">
+          <path d="M0,-52 C-6,-36 -8,-20 0,-4 C8,-20 6,-36 0,-52Z" fill="url(#g10)" opacity="0.9"/>
+          <path d="M-4,-6 C-18,-30 -28,-40 -32,-48 C-24,-38 -16,-22 -4,-6Z" fill="url(#g10)" opacity="0.7"/>
+          <path d="M4,-6 C18,-30 28,-40 32,-48 C24,-38 16,-22 4,-6Z" fill="url(#g10)" opacity="0.7"/>
+          <path d="M-6,-2 C-24,-18 -38,-24 -46,-26 C-36,-20 -22,-10 -6,-2Z" fill="url(#g10)" opacity="0.5"/>
+          <path d="M6,-2 C24,-18 38,-24 46,-26 C36,-20 22,-10 6,-2Z" fill="url(#g10)" opacity="0.5"/>
+        </g>
+      </svg>
+    </div>
+    <div class="app-icon-round">
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="g11" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#D4B87A"/><stop offset="100%" style="stop-color:#A8894E"/></linearGradient></defs>
+        <g transform="translate(200, 340)">
+          <path d="M-32,0 C-32,-8 -28,-16 -22,-20 L-22,-60 C-22,-66 -18,-72 -12,-74 C-6,-76 0,-76 0,-76 C0,-76 6,-76 12,-74 C18,-72 22,-66 22,-60 L22,-20 C28,-16 32,-8 32,0" fill="none" stroke="url(#g11)" stroke-width="3" stroke-linecap="round"/>
+          <path d="M-12,-74 L-12,-130 C-12,-140 -8,-148 0,-150 C8,-148 12,-140 12,-130 L12,-74" fill="none" stroke="url(#g11)" stroke-width="3" stroke-linecap="round"/>
+          <path d="M-22,-60 C-28,-62 -34,-58 -36,-50 L-36,-38 C-36,-32 -32,-28 -28,-26" fill="none" stroke="url(#g11)" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+          <path d="M22,-60 C28,-62 34,-58 36,-50 L36,-38 C36,-32 32,-28 28,-26" fill="none" stroke="url(#g11)" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+        </g>
+        <g transform="translate(200, 168)">
+          <path d="M0,-52 C-6,-36 -8,-20 0,-4 C8,-20 6,-36 0,-52Z" fill="url(#g11)" opacity="0.9"/>
+          <path d="M-4,-6 C-18,-30 -28,-40 -32,-48 C-24,-38 -16,-22 -4,-6Z" fill="url(#g11)" opacity="0.7"/>
+          <path d="M4,-6 C18,-30 28,-40 32,-48 C24,-38 16,-22 4,-6Z" fill="url(#g11)" opacity="0.7"/>
+          <path d="M-6,-2 C-24,-18 -38,-24 -46,-26 C-36,-20 -22,-10 -6,-2Z" fill="url(#g11)" opacity="0.5"/>
+          <path d="M6,-2 C24,-18 38,-24 46,-26 C36,-20 22,-10 6,-2Z" fill="url(#g11)" opacity="0.5"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="footer">
+  指尖佛 &middot; Logo Design Concept
+</div>
+
+</body>
+</html>
