@@ -5,33 +5,38 @@ import com.fingertip.baselib.BuildConfig
 
 object NetProperty {
 
-    private const val API_PATH = "/api/"
+
+    /**
+     * 平台：1 安卓 2 iOS
+     */
+    const val PLATFORM = 1
 
     /**
      * 渠道号
      */
-    const val CHANNEL = 888
+    const val CHANNEL = 1
 
     /**
-     * 版本号
+     * 接口签名key
      */
-//    val VERSION = BuildConfig.VERSION_NAME
-    val VERSION = ""
+    const val API_KEY = "a8010cb1539eaa049908fc2de4184e64"
+
 
     /**
      * 测试服
      */
-    var TEST_URL            = "https://test.livegirl.me:9000"
+    var TEST_URL            = "http://192.168.10.195:8888/buddha/"
+//    var TEST_URL            = "https://soonturn.com/buddha"
 
     /**
      * 正式服
      */
-    var ZS_URL              = "https://v.51qifei.xyz:9002"
+    var PROD_URL            = "https://soonturn.com/buddha/"
 
 
     var SERVER_URL: String
         get() {
-            return  if (BuildConfig.DEBUG) TEST_URL else ZS_URL
+            return  if (BuildConfig.DEBUG) TEST_URL else PROD_URL
         }
         set(value) {}
 
@@ -40,7 +45,7 @@ object NetProperty {
      */
     val BASE_URL: String
         get() {
-            return SERVER_URL + API_PATH
+            return SERVER_URL
         }
 
 
@@ -58,14 +63,12 @@ object NetProperty {
 
     /**
      * 登录
-     * @variable {Account/BindAccount}
      */
-    var LOGIN                           = "Account/BindAccount"
+    var LOGIN                           = "account/login"
 
 
     /**
      * 登出
-     * @variable {Account/Logout}
      */
     var LOGOUT                           = "Account/Logout"
 

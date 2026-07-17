@@ -26,8 +26,8 @@ class RemindAllDialog(
         val tv_content = view?.findViewById<android.widget.TextView>(R.id.tv_content)
         val tv_title = view?.findViewById<android.widget.TextView>(R.id.tv_title)
         val iv_hint = view?.findViewById<android.widget.ImageView>(R.id.iv_hint)
-        val btn_no = view?.findViewById<android.widget.Button>(R.id.btn_no)
-        val btn_yes = view?.findViewById<android.widget.Button>(R.id.btn_yes)
+        val btn_no = view?.findViewById<android.widget.TextView>(R.id.btn_no)
+        val btn_yes = view?.findViewById<android.widget.TextView>(R.id.btn_yes)
 
         tv_content?.text = tvContent
         tvTitle?.run {

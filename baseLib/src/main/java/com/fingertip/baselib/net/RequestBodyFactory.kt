@@ -24,24 +24,22 @@ object RequestBodyFactory {
         return GsonUtils.toJson(map).toRequestBody(mediaType)
     }
 
-    private val secretKey = "55c9bc4c67638934fafa150c48bd4008"
-
 
     /**
      * 登陆参数
      */
-    fun loginBody(account: String, psw: String): RequestBody {
+    fun loginBody(phoneNumber: String, psw: String): RequestBody {
         val param = HashMap<String, Any>()
 
+        param["platform"] = NetProperty.PLATFORM
         param["channelId"] = NetProperty.CHANNEL
-        param["clientVersion"] = NetProperty.VERSION
-        param["deviceName"] = DeviceUtils.getModel()
-        param["mobileInfo"] = TopUtils.sjInfo
+        param["clientVersion"] = DeviceIdUtils.getVersionName()
+        param["deviceName"] = TopUtils.sjInfo
         param["deviceUUID"] = DeviceIdUtils.getDeviceChannleID(TopApplication.instance)
-        param["accountName"] = account
+        param["phoneNumber"] = phoneNumber
         param["password"] = psw
-        param["sign"] = makeMd5Sign(NetProperty.CHANNEL.toString(), secretKey, account, psw)
-
+        param["sign"] = makeMd5Sign(NetProperty.PLATFORM.toString(),NetProperty.CHANNEL.toString(),
+            DeviceIdUtils.getVersionName(),DeviceIdUtils.getDeviceChannleID(TopApplication.instance), phoneNumber, psw, NetProperty.API_KEY)
         return buildJsonRequestBody(param)
     }
 
@@ -50,7 +48,7 @@ object RequestBodyFactory {
         params.forEach {
             builder.append(it)
         }
-        return HashUtil.getMD5(builder.toString()).toUpperCase(Locale.getDefault())
+        return HashUtil.getMD5(builder.toString()).lowercase()
     }
 
     /**

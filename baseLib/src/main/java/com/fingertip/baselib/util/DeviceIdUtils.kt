@@ -1,6 +1,8 @@
 package com.fingertip.baselib.util
 
 import android.content.Context
+import android.content.pm.PackageInfo
+import androidx.core.content.pm.PackageInfoCompat
 import android.os.Build
 import android.provider.Settings
 import android.telephony.TelephonyManager
@@ -9,11 +11,11 @@ import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.SPUtils
 import com.fingertip.baselib.log
 import com.fingertip.baselib.net.NetProperty
+import com.fingertip.baselib.top.TopApplication
 import okhttp3.internal.and
-import java.lang.Exception
-import java.lang.StringBuilder
 import java.security.MessageDigest
 import java.util.*
+
 
 object DeviceIdUtils {
     /*
@@ -223,5 +225,23 @@ object DeviceIdUtils {
             ex.printStackTrace()
         }
         return ""
+    }
+
+    fun getVersionName(): String {
+        return try {
+            val pInfo = TopApplication.instance.packageManager.getPackageInfo(TopApplication.instance.packageName, 0)
+            pInfo?.versionName?:""
+        } catch (e: Exception) {
+            ""
+        }
+    }
+
+    fun getVersionCode(): Int {
+        return try {
+            val pInfo = TopApplication.instance.packageManager.getPackageInfo(TopApplication.instance.packageName, 0)
+            PackageInfoCompat.getLongVersionCode(pInfo).toInt()
+        } catch (e: Exception) {
+            0
+        }
     }
 }

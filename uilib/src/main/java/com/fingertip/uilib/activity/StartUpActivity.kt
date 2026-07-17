@@ -37,8 +37,11 @@ class StartUpActivity : TopVMActivity<StartUpVM>() {
 
 //        mViewModel.checkServerStatus()
 
+        mViewModel.login("13000000000","123456");
+
         findViewById<android.widget.ImageView>(R.id.iv_banner).postDelayed({
-            startActivity(Intent(this,ContainerActivity::class.java))
+//            startActivity(Intent(this,ContainerActivity::class.java))
+            startActivity(Intent(this, LoginRegisterActivity::class.java))
             finish()
         },2000)
     }

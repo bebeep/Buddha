@@ -14,6 +14,7 @@
         android:name="com.fingertip.uilib.app.UIApplication"
         android:theme="@style/Theme.Buddha"
         tools:replace="android:theme,android:icon"
+        android:networkSecurityConfig="@xml/network_security_config"
         >
 
 

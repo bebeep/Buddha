@@ -26,6 +26,11 @@
             android:name=".activity.ContainerActivity"
             android:screenOrientation="portrait">
         </activity>
+
+        <activity
+            android:name=".activity.LoginRegisterActivity"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>
