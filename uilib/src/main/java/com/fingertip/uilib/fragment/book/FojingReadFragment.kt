@@ -1,10 +1,10 @@
-package com.buddha.b_book.fragment
+package com.fingertip.uilib.fragment.book
 
 import android.view.View
-import com.buddha.b_book.R
-import com.buddha.b_book.adapter.FojingReadAdapter
-import com.buddha.b_book.dialog.FojingCopySettingDialog
-import com.buddha.b_book.vm.BookshelfVM
+import com.fingertip.uilib.R
+import com.fingertip.uilib.adapter.FojingReadAdapter
+import com.fingertip.uilib.dialog.FojingCopySettingDialog
+import com.fingertip.uilib.viewmodel.BookshelfVM
 import com.fingertip.baselib.top.TopVMFragment
 import com.youth.banner.Banner
 import com.youth.banner.transformer.*

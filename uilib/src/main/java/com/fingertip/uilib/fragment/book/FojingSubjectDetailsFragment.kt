@@ -1,10 +1,12 @@
-package com.buddha.b_book.fragment
+package com.fingertip.uilib.fragment.book
 
 import android.view.View
+import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
-import com.buddha.b_book.R
-import com.buddha.b_book.adapter.FojingAdapter
-import com.buddha.b_book.vm.BookshelfVM
+import androidx.recyclerview.widget.RecyclerView
+import com.fingertip.uilib.R
+import com.fingertip.uilib.adapter.FojingAdapter
+import com.fingertip.uilib.viewmodel.BookshelfVM
 import com.fingertip.baselib.top.TopVMFragment
 import com.fingertip.baselib.util.ColorUtil
 import com.google.android.material.appbar.AppBarLayout
@@ -26,10 +28,10 @@ class FojingSubjectDetailsFragment :TopVMFragment<BookshelfVM>(){
 
         initAdapter()
 
-        v.findViewById<com.google.android.material.appbar.AppBarLayout>(R.id.appbar).addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, scrollY ->
+        v.findViewById<AppBarLayout>(R.id.appbar).addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, scrollY ->
             val slideOffset = min(abs(scrollY * 1.0f / 88.toPx()),1f)
             v.findViewById<View>(R.id.cl_title).setBackgroundColor(ColorUtil.changeAlpha(resources.getColor(R.color.white),slideOffset))
-            v.findViewById<android.widget.TextView>(R.id.tv_title).alpha = slideOffset
+            v.findViewById<TextView>(R.id.tv_title).alpha = slideOffset
         })
 
 
@@ -42,7 +44,7 @@ class FojingSubjectDetailsFragment :TopVMFragment<BookshelfVM>(){
 
     private fun initAdapter(){
         adapter = FojingAdapter(requireContext())
-        val rv = requireView().findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recyclerview)
+        val rv = requireView().findViewById<RecyclerView>(R.id.recyclerview)
         rv.layoutManager = GridLayoutManager(requireContext(),3)
         rv.adapter = adapter
 

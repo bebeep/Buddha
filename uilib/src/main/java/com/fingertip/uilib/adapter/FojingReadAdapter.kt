@@ -1,18 +1,19 @@
-package com.buddha.b_book.adapter
+package com.fingertip.uilib.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.buddha.b_book.R
+import com.fingertip.uilib.R
 import com.youth.banner.adapter.BannerAdapter
 
 
 /**
  * 通用的bannerAdapter
  */
-class FojingReadAdapter(val context: Context, list:List<String>):BannerAdapter<String,FojingReadAdapter.BannerViewAdapter>(list) {
+class FojingReadAdapter(val context: Context, list:List<String>):
+    BannerAdapter<String, FojingReadAdapter.BannerViewAdapter>(list) {
 
 
 

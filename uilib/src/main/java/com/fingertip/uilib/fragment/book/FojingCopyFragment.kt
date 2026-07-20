@@ -1,14 +1,15 @@
-package com.buddha.b_book.fragment
+package com.fingertip.uilib.fragment.book
 
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
-import com.buddha.b_book.R
-import com.buddha.b_book.adapter.FojingCopyAdapter
-import com.buddha.b_book.dialog.FojingCopySettingDialog
-import com.buddha.b_book.vm.BookshelfVM
+import androidx.recyclerview.widget.RecyclerView
+import com.fingertip.uilib.R
+import com.fingertip.uilib.adapter.FojingCopyAdapter
+import com.fingertip.uilib.viewmodel.BookshelfVM
 import com.fingertip.baselib.log
 import com.fingertip.baselib.top.TopVMFragment
 import com.fingertip.baselib.util.ToastUtil
+import com.fingertip.uilib.dialog.FojingCopySettingDialog
 import com.lzlz.toplib.extention.onGlobalLayout
 import com.lzlz.toplib.extention.toPx
 
@@ -69,8 +70,8 @@ class FojingCopyFragment :TopVMFragment<BookshelfVM>(){
 
             adapter = FojingCopyAdapter(requireContext(),column)
             for (i in 15..listCount) list.add("")
-            requireView().findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rv_content).layoutManager = GridLayoutManager(requireContext(),column)
-            requireView().findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rv_content).adapter = adapter
+            requireView().findViewById<RecyclerView>(R.id.rv_content).layoutManager = GridLayoutManager(requireContext(),column)
+            requireView().findViewById<RecyclerView>(R.id.rv_content).adapter = adapter
             adapter.initData(list)
         }
     }

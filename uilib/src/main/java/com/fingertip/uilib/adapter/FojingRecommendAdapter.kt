@@ -1,7 +1,7 @@
-package com.buddha.b_book.adapter
+package com.fingertip.uilib.adapter
 
 import android.content.Context
-import com.buddha.b_book.R
+import com.fingertip.uilib.R
 import com.fingertip.baselib.top.TopRcAdapter
 
 /**

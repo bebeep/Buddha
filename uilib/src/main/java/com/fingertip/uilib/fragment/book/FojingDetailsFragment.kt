@@ -1,16 +1,19 @@
-package com.buddha.b_book.fragment
+package com.fingertip.uilib.fragment.book
 
 import android.view.View
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.buddha.b_book.R
-import com.buddha.b_book.adapter.FojingCommentAdapter
-import com.buddha.b_book.adapter.FojingRecommendAdapter
-import com.buddha.b_book.vm.BookshelfVM
+import androidx.recyclerview.widget.RecyclerView
+import com.fingertip.uilib.R
+import com.fingertip.uilib.adapter.FojingCommentAdapter
+import com.fingertip.uilib.adapter.FojingRecommendAdapter
+import com.fingertip.uilib.viewmodel.BookshelfVM
 import com.fingertip.baselib.top.TopVMFragment
 import com.fingertip.baselib.util.ColorUtil
 import com.fingertip.baselib.util.ToastUtil
 import com.google.android.material.appbar.AppBarLayout
 import com.lzlz.toplib.extention.toPx
+import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener
 import kotlin.math.abs
@@ -31,16 +34,16 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
 
         initAdapter()
 
-        v.findViewById<com.google.android.material.appbar.AppBarLayout>(R.id.appbar).addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, scrollY ->
+        v.findViewById<AppBarLayout>(R.id.appbar).addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, scrollY ->
             val slideOffset = min(abs(scrollY * 1.0f / 100.toPx()),1f)
             v.findViewById<View>(R.id.cl_title).setBackgroundColor(ColorUtil.changeAlpha(resources.getColor(R.color.white),slideOffset))
-            v.findViewById<android.widget.TextView>(R.id.tv_title).alpha = slideOffset
+            v.findViewById<TextView>(R.id.tv_title).alpha = slideOffset
         })
 
 
 
 
-        v.findViewById<com.scwang.smart.refresh.layout.SmartRefreshLayout>(R.id.srl).setOnLoadMoreListener(this)
+        v.findViewById<SmartRefreshLayout>(R.id.srl).setOnLoadMoreListener(this)
     }
 
     override fun getClickViews(): List<View> {
@@ -68,20 +71,20 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
     private fun initAdapter(){
         val v = requireView()
         recommendAdapter = FojingRecommendAdapter(requireContext())
-        v.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rv_recommend).layoutManager = LinearLayoutManager(requireContext())
-        v.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rv_recommend).adapter = recommendAdapter
+        v.findViewById<RecyclerView>(R.id.rv_recommend).layoutManager = LinearLayoutManager(requireContext())
+        v.findViewById<RecyclerView>(R.id.rv_recommend).adapter = recommendAdapter
 
         commentAdapter = FojingCommentAdapter(requireContext())
-        v.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rv_comment).layoutManager = LinearLayoutManager(requireContext())
-        v.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rv_comment).adapter = commentAdapter
+        v.findViewById<RecyclerView>(R.id.rv_comment).layoutManager = LinearLayoutManager(requireContext())
+        v.findViewById<RecyclerView>(R.id.rv_comment).adapter = commentAdapter
 
         recommendAdapter.initData(listOf("","","",""))
         commentAdapter.initData(listOf("","","",""))
     }
 
     override fun onLoadMore(refreshLayout: RefreshLayout) {
-        requireView().findViewById<com.scwang.smart.refresh.layout.SmartRefreshLayout>(R.id.srl).postDelayed({
-            requireView().findViewById<com.scwang.smart.refresh.layout.SmartRefreshLayout>(R.id.srl).finishLoadMore()
+        requireView().findViewById<SmartRefreshLayout>(R.id.srl).postDelayed({
+            requireView().findViewById<SmartRefreshLayout>(R.id.srl).finishLoadMore()
             commentAdapter.addData(listOf("",""))
         },1000)
     }

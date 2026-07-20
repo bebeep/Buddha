@@ -1,9 +1,10 @@
-package com.buddha.b_book.fragment
+package com.fingertip.uilib.fragment.book
 
 import androidx.recyclerview.widget.GridLayoutManager
-import com.buddha.b_book.R
-import com.buddha.b_book.adapter.BookShelfAdapter
-import com.buddha.b_book.vm.BookshelfVM
+import androidx.recyclerview.widget.RecyclerView
+import com.fingertip.uilib.R
+import com.fingertip.uilib.adapter.BookShelfAdapter
+import com.fingertip.uilib.viewmodel.BookshelfVM
 import com.fingertip.baselib.top.TopVMFragment
 
 /**
@@ -24,7 +25,7 @@ class BookShelfFragment :TopVMFragment<BookshelfVM>(){
 
     private fun initAdapter(){
         adapter = BookShelfAdapter(requireContext())
-        val rv = requireView().findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recyclerview)
+        val rv = requireView().findViewById<RecyclerView>(R.id.recyclerview)
         rv.layoutManager = GridLayoutManager(requireContext(),3)
         rv.adapter = adapter
     }

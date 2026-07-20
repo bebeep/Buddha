@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import com.buddha.b_book.fragment.BuddhaTextsFragment
+import com.fingertip.uilib.fragment.book.BuddhaTextsFragment
 import com.fingertip.baselib.bean.BannerEntity
 import com.fingertip.baselib.bean.HostMenu
 import com.fingertip.baselib.event_bus.MessageEvent

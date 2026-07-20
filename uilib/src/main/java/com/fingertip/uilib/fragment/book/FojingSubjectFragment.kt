@@ -1,9 +1,10 @@
-package com.buddha.b_book.fragment
+package com.fingertip.uilib.fragment.book
 
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.buddha.b_book.R
-import com.buddha.b_book.adapter.SubjectAdapter
-import com.buddha.b_book.vm.BookshelfVM
+import androidx.recyclerview.widget.RecyclerView
+import com.fingertip.uilib.R
+import com.fingertip.uilib.adapter.SubjectAdapter
+import com.fingertip.uilib.viewmodel.BookshelfVM
 import com.fingertip.baselib.top.TopVMFragment
 
 /**
@@ -23,7 +24,7 @@ class FojingSubjectFragment :TopVMFragment<BookshelfVM>(){
         adapter = SubjectAdapter(requireContext()){
             start(FojingSubjectDetailsFragment())
         }
-        val rv = requireView().findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recyclerview)
+        val rv = requireView().findViewById<RecyclerView>(R.id.recyclerview)
         rv.layoutManager = LinearLayoutManager(requireContext())
         rv.adapter = adapter
 

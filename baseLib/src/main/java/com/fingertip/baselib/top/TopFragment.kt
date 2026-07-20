@@ -4,6 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import androidx.fragment.app.Fragment
 
 import com.blankj.utilcode.util.KeyboardUtils
 import com.blankj.utilcode.util.LogUtils
@@ -211,4 +215,6 @@ abstract class TopFragment : SupportFragment(), View.OnClickListener, KeyboardUt
     }
 
     override fun onSoftInputChanged(height: Int) {}
+
+
 }

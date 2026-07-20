@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.weikaiyun.fragmentation.SupportFragment
 
+@Suppress("DEPRECATION")
 class TopFragmentPagerAdapter(
     private val fragments: List<SupportFragment>,
     manager: FragmentManager

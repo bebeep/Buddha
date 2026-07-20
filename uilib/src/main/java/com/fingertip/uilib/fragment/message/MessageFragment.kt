@@ -1,7 +1,5 @@
 package com.fingertip.uilib.fragment.message
 
-import com.buddha.b_book.fragment.FojingChildFragment
-import com.buddha.b_book.fragment.FojingSubjectFragment
 import com.fingertip.baselib.top.TopFragmentPagerAdapter
 import com.fingertip.baselib.top.TopPmFragment
 import com.fingertip.uilib.R
