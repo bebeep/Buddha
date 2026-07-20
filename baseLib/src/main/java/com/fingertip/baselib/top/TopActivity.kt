@@ -25,7 +25,6 @@ abstract class TopActivity : SupportActivity(), View.OnClickListener {
         )
         EventBusProxy.register(this)
         activity = this
-        setContentView(layoutId())
         FullTopUtil.setStatusTranslucent(this)
         FullTopUtil.FitsSystemWindows(this, !isFullTopBar())
         if (!FullTopUtil.setStatusBarDarkTheme(this, true)) {
@@ -33,14 +32,10 @@ abstract class TopActivity : SupportActivity(), View.OnClickListener {
             //半透明+白=灰
             FullTopUtil.setWindowStatusBarColor(this, 0x55000000);
         }
-        addViewClickEvent()
         initShiTu()
+        addViewClickEvent()
     }
 
-    /**
-     * 布局文件ID
-     */
-    protected abstract fun layoutId(): Int
 
 
     /**

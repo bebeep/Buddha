@@ -5,6 +5,7 @@ import com.blankj.utilcode.util.NetworkUtils
 import com.fingertip.baselib.dialog.RemindAllDialog
 import com.fingertip.baselib.top.TopVMActivity
 import com.fingertip.uilib.R
+import com.fingertip.uilib.databinding.ActivityStartupBinding
 import com.fingertip.uilib.viewmodel.StartUpVM
 
 /**
@@ -15,11 +16,14 @@ class StartUpActivity : TopVMActivity<StartUpVM>() {
 
     override fun initVM(): StartUpVM = provideVM()
 
-    override fun layoutId() = R.layout.activity_startup
+    lateinit var binding: ActivityStartupBinding
+
 
     override fun isFullTopBar() = true
 
     override fun initShiTu() {
+        binding = ActivityStartupBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         if (!isTaskRoot) {
             val intent = intent
             val action = intent.action
@@ -39,9 +43,10 @@ class StartUpActivity : TopVMActivity<StartUpVM>() {
 
         mViewModel.login("13000000000","123456");
 
-        findViewById<android.widget.ImageView>(R.id.iv_banner).postDelayed({
-//            startActivity(Intent(this,ContainerActivity::class.java))
-            startActivity(Intent(this, LoginRegisterActivity::class.java))
+
+        binding.ivBanner.postDelayed({
+            startActivity(Intent(this,ContainerActivity::class.java))
+//            startActivity(Intent(this, LoginRegisterActivity::class.java))
             finish()
         },2000)
     }
