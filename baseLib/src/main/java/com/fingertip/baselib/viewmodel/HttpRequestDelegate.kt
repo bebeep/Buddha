@@ -2,7 +2,7 @@ package com.fingertip.baselib.viewmodel
 
 import com.blankj.utilcode.util.SPUtils
 import com.fingertip.baselib.bean.RequestRsp
-import com.fingertip.baselib.constant.YHManager
+import com.fingertip.baselib.constant.GlobalConfig
 import com.fingertip.baselib.log
 import com.fingertip.baselib.loge
 import com.fingertip.baselib.util.ToastUtil
@@ -103,7 +103,7 @@ class HttpRequestDelegate(private val scope: CoroutineScope) {
                     semaphore.release()
                 } else {
                     log(cName, "上次设置session的时间距离大于三秒，重新登陆获取session")
-                    if (YHManager.isAccountLogin) {
+                    if (GlobalConfig.isAccountLogin) {
                         log(cName, "getSessionAndRetry  已经登录过")
 
                     }

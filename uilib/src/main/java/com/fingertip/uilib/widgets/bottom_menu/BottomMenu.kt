@@ -7,8 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
-import com.blankj.utilcode.util.LogUtils
-import com.fingertip.baselib.constant.YHManager
+import com.fingertip.baselib.constant.GlobalConfig
 import com.fingertip.baselib.util.loadImg
 import com.fingertip.uilib.R
 import com.lzlz.toplib.extention.gone
@@ -38,8 +37,8 @@ class BottomMenu @JvmOverloads constructor(
         tabBarNormal = ArrayList()
         tabBarSelect = ArrayList()
         imageViewList = ArrayList()
-        YHManager.tabBarConfig?.normal?.let {tabBarNormal.addAll(it) }
-        YHManager.tabBarConfig?.selected?.let {tabBarSelect.addAll(it) }
+        GlobalConfig.tabBarConfig?.normal?.let {tabBarNormal.addAll(it) }
+        GlobalConfig.tabBarConfig?.selected?.let {tabBarSelect.addAll(it) }
     }
 
     var menuSelectCallback: MenuSelectCallback? = null

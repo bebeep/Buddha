@@ -2,15 +2,17 @@ package com.fingertip.baselib.constant
 
 import com.blankj.utilcode.util.GsonUtils
 import com.blankj.utilcode.util.SPUtils
+import com.fingertip.baselib.bean.GlobalParam
 import com.fingertip.baselib.bean.PersonData
 import com.fingertip.baselib.bean.ServerConfigBean
+import com.fingertip.baselib.bean.VersionInfo
 
 /**
  * 用户信息、全局配置相关
  */
-object YHManager {
+object GlobalConfig {
 
-    private val TAG = "YHManager"
+
 
     const val spName = "YHManager"
 
@@ -42,6 +44,13 @@ object YHManager {
             SPUtils.getInstance(spName).put(spYH, str)
         }
 
+    /**
+     * 全局参数
+     */
+    var globalParam: GlobalParam? = null
+
+    //版本更新信息
+    var versionInfo: VersionInfo? = null
 
     /**
      * 登陆的session

@@ -28,7 +28,7 @@ class FojingFragment :TopVMFragment<BookshelfVM>(){
                 FojingChildFragment()
             ), childFragmentManager)
             binding.tabLayout.setViewPager(binding.vp, mutableListOf("专题","经典","入门","进阶","研究").toTypedArray())
-        }, 1000)
+        }, 600)
 
 
     }

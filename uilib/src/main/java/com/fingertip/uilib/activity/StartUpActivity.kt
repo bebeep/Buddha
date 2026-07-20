@@ -2,11 +2,15 @@ package com.fingertip.uilib.activity
 
 import android.content.Intent
 import com.blankj.utilcode.util.NetworkUtils
+import com.blankj.utilcode.util.SPUtils
+import com.fingertip.baselib.constant.GlobalConfig
+import com.fingertip.baselib.constant.SPConstant
 import com.fingertip.baselib.dialog.RemindAllDialog
 import com.fingertip.baselib.top.TopVMActivity
-import com.fingertip.uilib.R
+import com.fingertip.baselib.util.ToastUtil
 import com.fingertip.uilib.databinding.ActivityStartupBinding
 import com.fingertip.uilib.viewmodel.StartUpVM
+import com.lzlz.toplib.extention.visible
 
 /**
  * 1、检查服务器状态 - 如果是强更，直接根据返回的地址前往下载
@@ -25,9 +29,7 @@ class StartUpActivity : TopVMActivity<StartUpVM>() {
         binding = ActivityStartupBinding.inflate(layoutInflater)
         setContentView(binding.root)
         if (!isTaskRoot) {
-            val intent = intent
-            val action = intent.action
-            if (intent.hasCategory(Intent.CATEGORY_LAUNCHER) && Intent.ACTION_MAIN == action) {
+            if (intent.hasCategory(Intent.CATEGORY_LAUNCHER) && Intent.ACTION_MAIN == intent.action) {
                 finish()
                 return
             }
@@ -39,40 +41,74 @@ class StartUpActivity : TopVMActivity<StartUpVM>() {
             return
         }
 
-//        mViewModel.checkServerStatus()
+        mViewModel.checkServerStatus()
 
-        mViewModel.login("13000000000","123456");
-
-
-        binding.ivBanner.postDelayed({
+        binding.ivBanner.isEnabled = false
+        binding.ivBanner.setOnClickListener {
             startActivity(Intent(this,ContainerActivity::class.java))
-//            startActivity(Intent(this, LoginRegisterActivity::class.java))
             finish()
-        },2000)
+        }
     }
 
 
     override fun initObserver() {
         mViewModel.serverStatusResult.observe(this) {
-            if (!it.success) {//维护
-
+            if (!it.success) {//接口请求失败
+                showBadNetWork()
                 return@observe
             }
-
-            when(it.data?.status){
-                2->{//强更
-
+            GlobalConfig.versionInfo = it.data
+            when(it.data?.versionStatus){
+                1->{//正常
+                    GlobalConfig.globalParam = it.data?.globalParam
+                    val username = SPUtils.getInstance(SPConstant.SP_ACCOUNT).getString(SPConstant.SP_ACCOUNT_USERNAME)
+                    val password = SPUtils.getInstance(SPConstant.SP_ACCOUNT).getString(SPConstant.SP_ACCOUNT_PASSWORD)
+                    if (username.isNotEmpty() && password.isNotEmpty()){//情况正常，并且本地保存了账号密码 直接登录
+                        mViewModel.login(username,password)
+                    }
+                    else
+                    {
+                        startActivity(Intent(this, LoginRegisterActivity::class.java))
+                        finish()
+                    }
                 }
-                3->{//维护
-
+                2->{//维护
+                    RemindAllDialog(
+                        this,
+                        endAction = {
+                            finish()
+                        },
+                        tvContent = "维护中，请稍后再试",
+                        textYes = "退出"
+                    ).show()
+                }
+                3->{//强更
+                    RemindAllDialog(
+                        this,
+                        endAction = {
+                            finish()
+                        },
+                        tvContent = "强更",
+                        textYes = "立即更像",
+                        textNo = "退出"
+                    ).show()
+                }
+                4->{//软更
+                    ToastUtil.showMessage("有新版本可用，请更新")
                 }
             }
         }
         mViewModel.loginResult.observe(this) {
             if (it.success && it.data != null) {//跳转到主页
-
+                binding.ivBanner.visible()
+                binding.ivBanner.isEnabled = true
+                binding.ivBanner.postDelayed({
+                    startActivity(Intent(this,ContainerActivity::class.java))
+                    finish()
+                },2000)
             } else { //跳转到登录注册
-
+                startActivity(Intent(this, LoginRegisterActivity::class.java))
+                finish()
             }
         }
     }

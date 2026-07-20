@@ -9,7 +9,6 @@ import com.blankj.utilcode.util.GsonUtils;
 
 /**
  * 图片item实体类
- * Created by huan on 2017/10/20.
  */
 
 public class PhotoEntity implements Parcelable {

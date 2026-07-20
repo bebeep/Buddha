@@ -1,5 +1,6 @@
 package com.fingertip.uilib.activity
 
+import android.content.Intent
 import android.graphics.Color
 import android.view.View
 import android.widget.Toast
@@ -8,16 +9,21 @@ import com.fingertip.uilib.R
 import com.fingertip.uilib.databinding.ActivityLoginRegisterBinding
 import com.fingertip.uilib.viewmodel.StartUpVM
 import androidx.core.graphics.toColorInt
+import com.blankj.utilcode.util.SPUtils
+import com.fingertip.baselib.constant.GlobalConfig
+import com.fingertip.baselib.constant.SPConstant
+import com.fingertip.baselib.util.ToastUtil
+import com.fingertip.uilib.viewmodel.LoginRegisterVM
 
 /**
  * 登录注册
  */
-class LoginRegisterActivity : TopVMActivity<StartUpVM>() {
+class LoginRegisterActivity : TopVMActivity<LoginRegisterVM>() {
 
     private var isVerifyCodeMode = true
     private lateinit var binding: ActivityLoginRegisterBinding
 
-    override fun initVM(): StartUpVM = provideVM()
+    override fun initVM(): LoginRegisterVM = provideVM()
 
 
     override fun isFullTopBar() = true
@@ -95,22 +101,14 @@ class LoginRegisterActivity : TopVMActivity<StartUpVM>() {
     }
 
     override fun initObserver() {
-        mViewModel.serverStatusResult.observe(this) {
-            if (!it.success) {
-                return@observe
-            }
-            when (it.data?.status) {
-                2 -> { // 强更
-                }
-                3 -> { // 维护
-                }
-            }
-        }
         mViewModel.loginResult.observe(this) {
             if (it.success && it.data != null) {
                 // 跳转到主页
+                GlobalConfig.userData = it.data
+                startActivity(Intent(this,ContainerActivity::class.java))
+                finish()
             } else {
-                // 登录失败
+
             }
         }
     }

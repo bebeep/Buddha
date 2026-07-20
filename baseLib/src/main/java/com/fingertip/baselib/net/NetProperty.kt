@@ -57,8 +57,9 @@ object NetProperty {
 
     /**
      * 检查服务器状态
+     * 获取更新信息、全局参数
      */
-    var CHECK_SERVER_STATUS                           = "check/serverStatus"
+    var CHECK_SERVER_STATUS             = "config/checkUpdate"
 
 
     /**
@@ -70,7 +71,7 @@ object NetProperty {
     /**
      * 登出
      */
-    var LOGOUT                           = "Account/Logout"
+    var LOGOUT                          = "account/logout"
 
 
 }

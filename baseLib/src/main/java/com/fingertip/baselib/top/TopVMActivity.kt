@@ -41,6 +41,6 @@ abstract class TopVMActivity<VM : TopViewModel> : TopActivity() {
     }
 
     inline fun <reified T: TopViewModel> provideVM(): T {
-        return ViewModelProvider(this).get(T::class.java)
+        return ViewModelProvider(this)[T::class.java]
     }
 }
