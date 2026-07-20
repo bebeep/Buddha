@@ -34,7 +34,7 @@
 
 
     <include
-        android:id="@+id/v_back"
+        android:id="@+id/v_include_back"
         layout="@layout/view_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tab_layout"

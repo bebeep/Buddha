@@ -7,10 +7,14 @@ import com.fingertip.baselib.log
 import com.fingertip.baselib.top.TopFragment
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.MomentAdapter
+import com.fingertip.uilib.databinding.FragmentMomentChildBinding
 import com.fingertip.uilib.fragment.MainFragment
 
 class MomentChildFragment : TopFragment(){
     override fun layoutId(): Int = R.layout.fragment_moment_child
+
+    private val binding get() = mBinding as FragmentMomentChildBinding
+
     companion object {
         const val FOLLOW = "FOLLOW" //关注
         const val MOMENT = "MOMENT" //佛友圈
@@ -40,9 +44,8 @@ class MomentChildFragment : TopFragment(){
             (parentFragment?.parentFragment as? MainFragment)?.start(MomentDetailsFragment())
 
         }
-        val rv = requireView().findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recyclerview)
-        rv.layoutManager = LinearLayoutManager(requireContext())
-        rv.adapter = adapter
+        binding.recyclerview.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerview.adapter = adapter
 
         list.add(MomentEntity().apply {
             momentType = 2

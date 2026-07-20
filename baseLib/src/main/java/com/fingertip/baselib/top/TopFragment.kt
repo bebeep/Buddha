@@ -4,10 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AlphaAnimation
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
-import androidx.fragment.app.Fragment
+import androidx.viewbinding.ViewBinding
 
 import com.blankj.utilcode.util.KeyboardUtils
 import com.blankj.utilcode.util.LogUtils
@@ -29,8 +26,58 @@ abstract class TopFragment : SupportFragment(), View.OnClickListener, KeyboardUt
 
     protected var mWaitingDialog: LoadingDialog? = null
 
+    var mBinding: ViewBinding? = null
+        protected set
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return View.inflate(context, layoutId(), null)
+        mBinding = createViewBinding(inflater, container)
+        return mBinding?.root ?: View.inflate(context, layoutId(), null)
+    }
+
+    private fun createViewBinding(inflater: LayoutInflater, container: ViewGroup?): ViewBinding? {
+        return try {
+            val layoutName = resources.getResourceEntryName(layoutId())
+            val bindingName = layoutName.split("_")
+                .joinToString("") { it.replaceFirstChar { c -> c.uppercase() } } + "Binding"
+            
+            // 尝试多个可能的包路径（模块级databinding包、当前包等）
+            val packageName = javaClass.`package`?.name ?: ""
+            val packageParts = packageName.split(".")
+            val possiblePackages = mutableListOf<String>()
+            
+            // 尝试当前包及其父包的 databinding 子包
+            for (i in packageParts.size downTo 2) {
+                possiblePackages.add(packageParts.subList(0, i).joinToString(".") + ".databinding")
+            }
+            // 也尝试当前包
+            possiblePackages.add(packageName)
+            
+            var bindingClass: Class<*>? = null
+            for (pkg in possiblePackages) {
+                try {
+                    bindingClass = Class.forName("$pkg.$bindingName")
+                    break
+                } catch (e: ClassNotFoundException) {
+                    continue
+                }
+            }
+            
+            if (bindingClass == null) {
+                log(fName, "未找到Binding类: $bindingName")
+                return null
+            }
+            
+            val inflateMethod = bindingClass.getMethod(
+                "inflate",
+                LayoutInflater::class.java,
+                ViewGroup::class.java,
+                Boolean::class.javaPrimitiveType
+            )
+            inflateMethod.invoke(null, inflater, container, false) as? ViewBinding
+        } catch (e: Exception) {
+            log(fName, "ViewBinding创建失败，回退到普通inflate: ${e.message}")
+            null
+        }
     }
 
     /**
@@ -89,6 +136,7 @@ abstract class TopFragment : SupportFragment(), View.OnClickListener, KeyboardUt
 
     override fun onDestroyView() {
         EventBusProxy.unRegister(this)
+        mBinding = null
         super.onDestroyView()
         log(fName, "onDestroyView--")
         loadEnding()

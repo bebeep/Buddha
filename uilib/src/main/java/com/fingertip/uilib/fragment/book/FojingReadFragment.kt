@@ -3,6 +3,7 @@ package com.fingertip.uilib.fragment.book
 import android.view.View
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.FojingReadAdapter
+import com.fingertip.uilib.databinding.FragFojingReadBinding
 import com.fingertip.uilib.dialog.FojingCopySettingDialog
 import com.fingertip.uilib.viewmodel.BookshelfVM
 import com.fingertip.baselib.top.TopVMFragment
@@ -13,6 +14,8 @@ class FojingReadFragment : TopVMFragment<BookshelfVM>(){
     override fun layoutId() = R.layout.frag_fojing_read
     override fun initVM() = BookshelfVM()
 
+    private val binding get() = mBinding as FragFojingReadBinding
+
     override fun initShiTu() {
 
         initAdapter()
@@ -21,8 +24,7 @@ class FojingReadFragment : TopVMFragment<BookshelfVM>(){
 
 
     override fun getClickViews(): List<View> {
-        val v = requireView()
-        return listOf(v.findViewById(R.id.v_back), v.findViewById(R.id.iv_setting))
+        return listOf(binding.vBack.ivBack, binding.ivSetting)
     }
     override fun onSingleClick(v: View?) {
         super.onSingleClick(v)
@@ -43,7 +45,7 @@ class FojingReadFragment : TopVMFragment<BookshelfVM>(){
         list.add("")
         list.add("")
         adapter = FojingReadAdapter(requireContext(),list)
-        val bannerView = requireView().findViewById<View>(R.id.banner_fojing)
+        val bannerView = binding.bannerFojing
         (bannerView as Banner<String, FojingReadAdapter>).setAdapter(adapter)
         (bannerView as Banner<String, FojingReadAdapter>).addPageTransformer(ScaleInTransformer()).addPageTransformer(AlphaPageTransformer())
     }

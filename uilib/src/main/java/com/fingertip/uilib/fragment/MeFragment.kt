@@ -10,6 +10,7 @@ import com.fingertip.baselib.util.ColorUtil
 import com.fingertip.baselib.util.PicUtils
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.MeBannerAdapter
+import com.fingertip.uilib.databinding.FragmentMeBinding
 import com.fingertip.uilib.viewmodel.MeFragmentVM
 import com.lzlz.toplib.extention.toPx
 import com.youth.banner.Banner
@@ -22,15 +23,17 @@ class MeFragment : TopPmFragment<MeFragmentVM>(), PicUtils.UpPicCallBack {
     override fun layoutId(): Int = R.layout.fragment_me
     override fun initVM(): MeFragmentVM = provideVM()
 
+    private val binding get() = mBinding as FragmentMeBinding
+
     override fun initShiTu() {
         picUtils.upPicCallBack = this
 
 
         initBanner()
 
-        requireView().findViewById<View>(R.id.nsl).setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+        binding.nsl.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
             val slideOffset = min(scrollY * 1.0f / 88.toPx(),1f)
-            requireView().findViewById<View>(R.id.cl_title).setBackgroundColor(ColorUtil.changeAlpha(resources.getColor(R.color.white),slideOffset))
+            binding.clTitle.setBackgroundColor(ColorUtil.changeAlpha(resources.getColor(R.color.white),slideOffset))
         }
     }
 
@@ -44,22 +47,22 @@ class MeFragment : TopPmFragment<MeFragmentVM>(), PicUtils.UpPicCallBack {
         bannerAdapter = MeBannerAdapter(requireContext(),bannerList){ viewId, pos ->
 
         }
-        val bannerView = requireView().findViewById<View>(R.id.banner)
+        val bannerView = binding.banner
         (bannerView as? Banner<BannerEntity, MeBannerAdapter>)?.setAdapter(bannerAdapter)
         bannerView.visibility = if (bannerList.isNullOrEmpty()) View.GONE else View.VISIBLE
-        (bannerView as? Banner<BannerEntity, MeBannerAdapter>)?.setIndicator(requireView().findViewById(R.id.indicator),false)
+        (bannerView as? Banner<BannerEntity, MeBannerAdapter>)?.setIndicator(binding.indicator,false)
     }
 
 
-    override fun getClickViews(): List<View> = mutableListOf(requireView().findViewById(R.id.iv_setting), requireView().findViewById(R.id.iv_edit))
+    override fun getClickViews(): List<View> = mutableListOf(binding.ivSetting, binding.ivEdit)
 
     override fun onSingleClick(v: View?) {
         when(v){
-            requireView().findViewById<View>(R.id.iv_setting)->{
+            binding.ivSetting->{
 
             }
 
-            requireView().findViewById<View>(R.id.iv_edit) -> {
+            binding.ivEdit -> {
 //                startActRootFragment(EditFragment())
             }
 

@@ -1,9 +1,6 @@
 package com.fingertip.uilib.fragment
 
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.fingertip.uilib.fragment.book.BuddhaTextsFragment
 import com.fingertip.baselib.bean.BannerEntity
@@ -26,20 +23,9 @@ import org.greenrobot.eventbus.Subscribe
  */
 class HostFragment : TopFragment() {
 
-    private var _binding: FragmentHostBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = mBinding as FragmentHostBinding
 
     override fun layoutId() = R.layout.fragment_host
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _binding = FragmentHostBinding.inflate(inflater, container, false)
-        return _binding?.root
-    }
-
-    override fun onDestroyView() {
-        _binding = null
-        super.onDestroyView()
-    }
 
     override fun initShiTu() {
 

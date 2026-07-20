@@ -18,6 +18,7 @@ import com.fingertip.baselib.util.ToastUtil
 import com.fingertip.baselib.view.ChoosePicDialog
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.UploadImageAdapter
+import com.fingertip.uilib.databinding.FragmentMomentPostBinding
 import com.fingertip.uilib.utils.MomentUtils
 import com.fingertip.uilib.viewmodel.MomentVM
 import com.huantansheng.easyphotos.EasyPhotos
@@ -35,14 +36,10 @@ import java.util.Date
 import java.util.Locale
 
 class MomentPostFragment:TopPmFragment<MomentVM>() {
+    private val binding get() = mBinding as FragmentMomentPostBinding
     override fun layoutId() = R.layout.fragment_moment_post
 
     override fun initVM() = MomentVM()
-
-    private val rcImages get() = requireView().findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rc_images)
-    private val flVideo get() = requireView().findViewById<View>(R.id.fl_video)
-    private val ivPhoto get() = requireView().findViewById<android.widget.ImageView>(R.id.iv_photo)
-
 
 
     lateinit var operationDialog: ChoosePicDialog
@@ -102,8 +99,8 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
                 }
             }
         }
-        rcImages.layoutManager = GridLayoutManager(requireContext(), 3)
-        rcImages.adapter = adapter
+        binding.rcImages.layoutManager = GridLayoutManager(requireContext(), 3)
+        binding.rcImages.adapter = adapter
         adapter.initData(imageList)
     }
 
@@ -138,7 +135,7 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
         }
         for (photo in photoList)  imageList.add(photo.path)
         if (imageList.size<9&&imageList[imageList.size - 1] !=null)imageList.add(null)
-        rcImages?.post {
+        binding.rcImages?.post {
             adapter.initData(imageList)
 
         }
@@ -219,8 +216,8 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
                     } else { //选择照片返回
                         photoList = data.getParcelableArrayListExtra(EasyPhotos.RESULT_PHOTOS)!!
                         refreshImages()
-                        rcImages.visibility = View.VISIBLE
-                        flVideo.visibility = View.GONE
+                        binding.rcImages.visibility = View.VISIBLE
+                        binding.flVideo.visibility = View.GONE
                     }
 
                 }
@@ -237,10 +234,10 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
             val file = MomentUtils.getVideoThumb(videoPath)
             photoList.clear()
             imageList.clear()
-            rcImages.visibility = View.GONE
-            flVideo.visibility = View.VISIBLE
+            binding.rcImages.visibility = View.GONE
+            binding.flVideo.visibility = View.VISIBLE// binding.flVideo
             videoThumb = file?.path?:""
-            Glide.with(this).asBitmap().load(videoThumb).into(ivPhoto)
+            Glide.with(this).asBitmap().load(videoThumb).into(binding.ivPhoto)
             operateTag = 2
         }
     }
@@ -326,8 +323,8 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
             )
             photoList.add(photo)
             refreshImages()
-            rcImages.visibility = View.VISIBLE
-            flVideo.visibility = View.GONE
+            binding.rcImages.visibility = View.VISIBLE
+            binding.flVideo.visibility = View.GONE
         }.start()
     }
 

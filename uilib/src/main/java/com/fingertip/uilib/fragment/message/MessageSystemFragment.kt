@@ -4,11 +4,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.fingertip.baselib.top.TopPmFragment
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.MessageSystemAdapter
+import com.fingertip.uilib.databinding.FragmentMessageChildBinding
 import com.fingertip.uilib.viewmodel.MainVM
 
 class MessageSystemFragment: TopPmFragment<MainVM>() {
     override fun initVM() = MainVM()
     override fun layoutId() = R.layout.fragment_message_child
+
+    private val binding get() = mBinding as FragmentMessageChildBinding
 
     lateinit var adapter: MessageSystemAdapter
 
@@ -22,10 +25,9 @@ class MessageSystemFragment: TopPmFragment<MainVM>() {
         adapter = MessageSystemAdapter(requireContext()){
 
         }
-        val rv = requireView().findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recyclerview)
-        rv.layoutManager = LinearLayoutManager(requireContext())
-        rv.adapter = adapter
+        binding.recyclerview.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerview.adapter = adapter
 
-        adapter.initData(listOf("","","","","","","",""))
+        adapter.initData(listOf("","","","","","",""))
     }
 }

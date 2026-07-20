@@ -9,6 +9,7 @@ import com.fingertip.uilib.viewmodel.BookshelfVM
 import com.fingertip.baselib.log
 import com.fingertip.baselib.top.TopVMFragment
 import com.fingertip.baselib.util.ToastUtil
+import com.fingertip.uilib.databinding.FragFojingCopyBinding
 import com.fingertip.uilib.dialog.FojingCopySettingDialog
 import com.lzlz.toplib.extention.onGlobalLayout
 import com.lzlz.toplib.extention.toPx
@@ -17,6 +18,7 @@ import com.lzlz.toplib.extention.toPx
  * 佛经-抄经
  */
 class FojingCopyFragment :TopVMFragment<BookshelfVM>(){
+    private val binding get() = mBinding as FragFojingCopyBinding
     override fun layoutId() = R.layout.frag_fojing_copy
     override fun initVM() = BookshelfVM()
 
@@ -29,8 +31,7 @@ class FojingCopyFragment :TopVMFragment<BookshelfVM>(){
 
 
     override fun getClickViews(): List<View> {
-        val v = requireView()
-        return listOf(v.findViewById(R.id.v_back), v.findViewById(R.id.iv_setting), v.findViewById(R.id.tv_answer1), v.findViewById(R.id.tv_answer2), v.findViewById(R.id.tv_answer3), v.findViewById(R.id.tv_answer4))
+        return listOf(binding.vBack.ivBack, binding.ivSetting, binding.tvAnswer1, binding.tvAnswer2, binding.tvAnswer3, binding.tvAnswer4)
     }
 
     override fun onSingleClick(v: View?) {
@@ -60,9 +61,9 @@ class FojingCopyFragment :TopVMFragment<BookshelfVM>(){
     private fun initAdapter(){
 
 
-        requireView().findViewById<View>(R.id.fl_content).onGlobalLayout {
+        binding.flContent.onGlobalLayout {
 
-            val flContent = requireView().findViewById<View>(R.id.fl_content)
+            val flContent = binding.flContent
             val row = (flContent.height - 30.toPx())/85.toPx()
             val column = (flContent.width-32.toPx())/40.toPx()
             log(value = "fl_content  $row   $column  ")
@@ -70,8 +71,8 @@ class FojingCopyFragment :TopVMFragment<BookshelfVM>(){
 
             adapter = FojingCopyAdapter(requireContext(),column)
             for (i in 15..listCount) list.add("")
-            requireView().findViewById<RecyclerView>(R.id.rv_content).layoutManager = GridLayoutManager(requireContext(),column)
-            requireView().findViewById<RecyclerView>(R.id.rv_content).adapter = adapter
+            binding.rvContent.layoutManager = GridLayoutManager(requireContext(),column)
+            binding.rvContent.adapter = adapter
             adapter.initData(list)
         }
     }

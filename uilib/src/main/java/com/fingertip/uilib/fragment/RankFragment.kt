@@ -3,12 +3,14 @@ package com.fingertip.uilib.fragment
 import com.fingertip.baselib.event_bus.MessageEvent
 import com.fingertip.baselib.top.TopFragment
 import com.fingertip.uilib.R
+import com.fingertip.uilib.databinding.FragmentRankBinding
 import org.greenrobot.eventbus.Subscribe
 
 /**
  * 排行榜
  */
 class RankFragment : TopFragment() {
+    private val binding get() = mBinding as FragmentRankBinding
     override fun layoutId(): Int = R.layout.fragment_rank
 
     override fun initShiTu() {

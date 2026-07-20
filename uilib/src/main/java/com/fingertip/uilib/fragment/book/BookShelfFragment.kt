@@ -1,11 +1,11 @@
 package com.fingertip.uilib.fragment.book
 
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.BookShelfAdapter
 import com.fingertip.uilib.viewmodel.BookshelfVM
 import com.fingertip.baselib.top.TopVMFragment
+import com.fingertip.uilib.databinding.FragBookShelfBinding
 
 /**
  * 书架
@@ -13,6 +13,8 @@ import com.fingertip.baselib.top.TopVMFragment
 class BookShelfFragment :TopVMFragment<BookshelfVM>(){
     override fun layoutId() = R.layout.frag_book_shelf
     override fun initVM() = BookshelfVM()
+
+    private val binding get() = mBinding as FragBookShelfBinding
 
     lateinit var adapter: BookShelfAdapter
 
@@ -25,9 +27,8 @@ class BookShelfFragment :TopVMFragment<BookshelfVM>(){
 
     private fun initAdapter(){
         adapter = BookShelfAdapter(requireContext())
-        val rv = requireView().findViewById<RecyclerView>(R.id.recyclerview)
-        rv.layoutManager = GridLayoutManager(requireContext(),3)
-        rv.adapter = adapter
+        binding.recyclerview.layoutManager = GridLayoutManager(requireContext(),3)
+        binding.recyclerview.adapter = adapter
     }
 
 }

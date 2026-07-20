@@ -9,6 +9,7 @@ import com.fingertip.uilib.adapter.FojingAdapter
 import com.fingertip.uilib.viewmodel.BookshelfVM
 import com.fingertip.baselib.top.TopVMFragment
 import com.fingertip.baselib.util.ColorUtil
+import com.fingertip.uilib.databinding.FragFojingSubjectDetailsBinding
 import com.google.android.material.appbar.AppBarLayout
 import com.lzlz.toplib.extention.toPx
 import kotlin.math.abs
@@ -18,6 +19,7 @@ import kotlin.math.min
  * 佛经-专题详情
  */
 class FojingSubjectDetailsFragment :TopVMFragment<BookshelfVM>(){
+    private val binding get() = mBinding as FragFojingSubjectDetailsBinding
     override fun layoutId() = R.layout.frag_fojing_subject_details
     override fun initVM() = BookshelfVM()
 
@@ -28,15 +30,15 @@ class FojingSubjectDetailsFragment :TopVMFragment<BookshelfVM>(){
 
         initAdapter()
 
-        v.findViewById<AppBarLayout>(R.id.appbar).addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, scrollY ->
+        binding.appbar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, scrollY ->
             val slideOffset = min(abs(scrollY * 1.0f / 88.toPx()),1f)
-            v.findViewById<View>(R.id.cl_title).setBackgroundColor(ColorUtil.changeAlpha(resources.getColor(R.color.white),slideOffset))
-            v.findViewById<TextView>(R.id.tv_title).alpha = slideOffset
+            binding.clTitle.setBackgroundColor(ColorUtil.changeAlpha(resources.getColor(R.color.white),slideOffset))
+            binding.tvTitle.alpha = slideOffset
         })
 
 
 
-        v.findViewById<View>(R.id.v_back).setOnClickListener {
+        binding.vBack.ivBack.setOnClickListener {
             pop()
         }
     }
@@ -44,9 +46,8 @@ class FojingSubjectDetailsFragment :TopVMFragment<BookshelfVM>(){
 
     private fun initAdapter(){
         adapter = FojingAdapter(requireContext())
-        val rv = requireView().findViewById<RecyclerView>(R.id.recyclerview)
-        rv.layoutManager = GridLayoutManager(requireContext(),3)
-        rv.adapter = adapter
+        binding.recyclerview.layoutManager = GridLayoutManager(requireContext(),3)
+        binding.recyclerview.adapter = adapter
 
         adapter.initData(listOf("","",""))
     }

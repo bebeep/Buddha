@@ -2,7 +2,6 @@ include ':app'
 rootProject.name = "Buddha"
 include ':baseLib'
 include ':uilib'
-include ':b_book'
 include ':FlycoTabLayout'
 include ':flowcamera'
 include ':fragmentation_core'

@@ -10,6 +10,7 @@ import com.blankj.utilcode.util.ThreadUtils.runOnUiThread
 import com.fingertip.baselib.log
 import com.fingertip.baselib.top.TopFragment
 import com.fingertip.uilib.R
+import com.fingertip.uilib.databinding.FragmentHandleVideoBinding
 import test.taq.com.cropvideolibrary.interfaces.VideoTrimListener
 import java.io.File
 
@@ -20,7 +21,9 @@ import java.io.File
 class HandleVideoFragment: TopFragment(), VideoTrimListener {
     override fun layoutId() = R.layout.fragment_handle_video
     var path: String? = null
-    private val trimmerView get() = requireView().findViewById<test.taq.com.cropvideolibrary.widget.VideoTrimmerView>(R.id.trimmerView)
+
+    private val binding get() = mBinding as FragmentHandleVideoBinding
+    private val trimmerView get() = binding.trimmerView
 
     override fun initShiTu() {
         log("HandleVideoFragment", "视频裁剪： $path")

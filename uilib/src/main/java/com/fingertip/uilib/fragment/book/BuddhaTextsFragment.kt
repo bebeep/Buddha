@@ -7,6 +7,7 @@ import com.fingertip.uilib.viewmodel.BookshelfVM
 import com.fingertip.baselib.view.tablayout.ScaleTabLayout
 import com.fingertip.baselib.top.TopFragmentPagerAdapter
 import com.fingertip.baselib.top.TopVMFragment
+import com.fingertip.uilib.databinding.FragBuddhaTextsBinding
 
 /**
  * 佛经
@@ -15,20 +16,18 @@ class BuddhaTextsFragment :TopVMFragment<BookshelfVM>(){
     override fun layoutId() = R.layout.frag_buddha_texts
     override fun initVM() = BookshelfVM()
 
-
+    private val binding get() = mBinding as FragBuddhaTextsBinding
 
 
     override fun initShiTu() {
-        val v = requireView()
-        val vpView = v.findViewById<ViewPager>(R.id.vp)
 
-        vpView.offscreenPageLimit = 2
-        vpView.adapter = TopFragmentPagerAdapter(listOf(BookShelfFragment(), FojingFragment()), childFragmentManager)
+        binding.vp.offscreenPageLimit = 2
+        binding.vp.adapter = TopFragmentPagerAdapter(listOf(BookShelfFragment(), FojingFragment()), childFragmentManager)
 
-        v.findViewById<ScaleTabLayout>(R.id.tab_layout).setViewPager(vpView, mutableListOf("书架","佛经").toTypedArray())
+        binding.tabLayout.setViewPager(binding.vp, mutableListOf("书架","佛经").toTypedArray())
 
 
-        v.findViewById<View>(R.id.v_back).setOnClickListener {
+        binding.vIncludeBack.ivBack.setOnClickListener {
             pop()
         }
 
