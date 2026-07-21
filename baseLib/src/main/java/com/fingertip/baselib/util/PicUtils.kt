@@ -2,6 +2,7 @@ package com.fingertip.baselib.util
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.media.MediaMetadataRetriever
 import android.net.Uri
 import com.fingertip.baselib.BuildConfig
@@ -149,51 +150,142 @@ class PicUtils {
         fun errorend()
     }
 
-    //根据文件路径获取媒体信息
-    fun getMediaInfo(filePath: String, frameWidth: Int = 720): MediaInfo? {
-        // 先检查文件是否存在
-        if (!File(filePath).exists()) return null
 
+
+    /**
+     * 媒体类型枚举
+     */
+    enum class MediaType {
+        IMAGE,   // 图片
+        VIDEO,   // 视频
+        UNKNOWN  // 无效或无法识别的文件
+    }
+
+    /**
+     * 通过解析文件头部数据判断媒体类型
+     * @param filePath 本地文件的绝对路径
+     * @return MediaType
+     */
+    fun getMediaType(filePath: String): MediaType {
+        // 0. 文件存在性校验
+        val file = File(filePath)
+        if (!file.exists() || file.length() == 0L) {
+            return MediaType.UNKNOWN
+        }
+
+        // 1. 先尝试解析为图片（利用 BitmapFactory 仅解析边界，内存开销几乎为 0）
+        val imageCheckResult = checkIsImage(filePath)
+        if (imageCheckResult) {
+            return MediaType.IMAGE
+        }
+
+        // 2. 再尝试解析为视频（利用 MediaMetadataRetriever 提取视频宽高）
+        val videoCheckResult = checkIsVideo(filePath)
+        if (videoCheckResult) {
+            return MediaType.VIDEO
+        }
+
+        // 3. 都不是
+        return MediaType.UNKNOWN
+    }
+
+    /**
+     * 检查是否为有效图片
+     * 原理：仅解析图片宽高，不将像素加载到内存
+     */
+    private fun checkIsImage(filePath: String): Boolean {
+        val options = BitmapFactory.Options().apply {
+            inJustDecodeBounds = true // 关键：仅解析边界信息
+        }
+        BitmapFactory.decodeFile(filePath, options)
+        // 如果宽高都大于 0，说明是有效的图片格式（支持 JPEG, PNG, WebP, GIF 等）
+        return options.outWidth > 0 && options.outHeight > 0
+    }
+
+    /**
+     * 检查是否为有效视频
+     * 原理：尝试读取视频元数据中的宽高
+     */
+    private fun checkIsVideo(filePath: String): Boolean {
         val retriever = MediaMetadataRetriever()
         return try {
             retriever.setDataSource(filePath)
-
-            // 1. 获取时长（单位：毫秒）
-            val durationMs = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)?.toLongOrNull() ?: 0L
-
-            // 2. 获取首帧图（OPTION_NEXT_SYNC 表示寻找最近的关键帧，速度最快）
-            val originalFrame = retriever.getFrameAtTime(0, MediaMetadataRetriever.OPTION_NEXT_SYNC)
-
-            // 3. 对首帧图进行缩放，防止 OOM（如果不需要缩放，直接传 originalFrame 即可）
-            val scaledFrame = if (frameWidth > 0 && originalFrame != null) {
-                val ratio = frameWidth.toFloat() / originalFrame.width
-                val height = (originalFrame.height * ratio).toInt()
-                originalFrame.scale(frameWidth, height)
-            } else {
-                originalFrame
-            }
-
-            val thumbUrl = saveThumbnailToCache(scaledFrame, filePath)
-
-            MediaInfo(
-                mediaType = 2,
-                mediaUrl = filePath,
-                thumbUrl = thumbUrl?: "",
-                width = scaledFrame?.width ?: 0,
-                height = scaledFrame?.height ?: 0,
-                duration = durationMs.toInt(),
-                size = File(filePath).length()
-            )
-        } catch (e: SecurityException) {
-            // 极少情况下会因文件权限抛出异常
-            e.printStackTrace()
-            null
-        } catch (e: IllegalArgumentException) {
-            // 文件格式不支持或已损坏
-            e.printStackTrace()
-            null
+            val width = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH)?.toIntOrNull() ?: 0
+            val height = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT)?.toIntOrNull() ?: 0
+            width > 0 && height > 0
+        } catch (_: Exception) {
+            // 文件损坏、格式不支持或非视频文件都会走到这里
+            false
         } finally {
-            retriever.release() // 必须释放，否则会持有文件句柄导致内存泄漏
+            retriever.release()
+        }
+    }
+
+
+    //根据文件路径获取媒体信息
+    fun getMediaInfo(filePath: String, frameWidth: Int = 720): MediaInfo? {
+        when (getMediaType(filePath)) {
+            MediaType.IMAGE -> {
+                val options = BitmapFactory.Options().apply {
+                    inJustDecodeBounds = true // 只解析边界，不分配内存
+                }
+                BitmapFactory.decodeFile(filePath, options)
+                return MediaInfo(
+                    mediaType = 1,
+                    mediaUrl = filePath,
+                    thumbUrl = "",
+                    width = options.outWidth,
+                    height = options.outHeight,
+                    duration = 0,
+                    size = File(filePath).length()
+                )
+            }
+            MediaType.VIDEO -> {
+                val retriever = MediaMetadataRetriever()
+                return try {
+                    retriever.setDataSource(filePath)
+
+                    // 1. 获取时长（单位：毫秒）
+                    val durationMs = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)?.toLongOrNull() ?: 0L
+
+                    // 2. 获取首帧图（OPTION_NEXT_SYNC 表示寻找最近的关键帧，速度最快）
+                    val originalFrame = retriever.getFrameAtTime(0, MediaMetadataRetriever.OPTION_NEXT_SYNC)
+
+                    // 3. 对首帧图进行缩放，防止 OOM（如果不需要缩放，直接传 originalFrame 即可）
+                    val scaledFrame = if (frameWidth > 0 && originalFrame != null) {
+                        val ratio = frameWidth.toFloat() / originalFrame.width
+                        val height = (originalFrame.height * ratio).toInt()
+                        originalFrame.scale(frameWidth, height)
+                    } else {
+                        originalFrame
+                    }
+
+                    val thumbUrl = saveThumbnailToCache(scaledFrame, filePath)
+
+                    MediaInfo(
+                        mediaType = 2,
+                        mediaUrl = filePath,
+                        thumbUrl = thumbUrl?: "",
+                        width = scaledFrame?.width ?: 0,
+                        height = scaledFrame?.height ?: 0,
+                        duration = durationMs.toInt()/1000,
+                        size = File(filePath).length()
+                    )
+                } catch (e: SecurityException) {
+                    // 极少情况下会因文件权限抛出异常
+                    e.printStackTrace()
+                    null
+                } catch (e: IllegalArgumentException) {
+                    // 文件格式不支持或已损坏
+                    e.printStackTrace()
+                    null
+                } finally {
+                    retriever.release() // 必须释放，否则会持有文件句柄导致内存泄漏
+                }
+            }
+            MediaType.UNKNOWN -> {
+                return null
+            }
         }
     }
 

@@ -50,8 +50,28 @@ class GalleryPickerHelper {
     companion object {
         const val TAG = "GalleryPickerHelper"
 
+        // 静态引用，供 EmptyHandleActivity 访问
+        private var sCallback: MediaResultCallback? = null
+        private var sIsCompress: Boolean = true
+        private var sIgnoreSize: Int = 100
+        private var sQuality: Int = 75
+
         @JvmStatic
         fun newInstance(): GalleryPickerHelper = GalleryPickerHelper()
+
+        /** 获取当前回调（EmptyHandleActivity使用） */
+        @JvmStatic
+        fun getCallback(): MediaResultCallback? = sCallback
+
+        /** 获取压缩配置（EmptyHandleActivity使用） */
+        @JvmStatic
+        fun getIsCompress(): Boolean = sIsCompress
+
+        @JvmStatic
+        fun getIgnoreSize(): Int = sIgnoreSize
+
+        @JvmStatic
+        fun getQuality(): Int = sQuality
 
         @JvmStatic
         fun toPreViewVideo(activity: Activity, videoPath: String) {
@@ -121,6 +141,9 @@ class GalleryPickerHelper {
     //支持获取视频文件大小,超过该大小则选择失败
     private var maxVideoSize: Int = GalleryPickerOption.maxVideoSize
 
+    //已选择的文件路径列表（用于再次选择时合并）
+    private var selectedPaths: List<String> = emptyList()
+
     private var mLifecycleObserver = object : DefaultLifecycleObserver {
         override fun onCreate(owner: LifecycleOwner) {
             super.onCreate(owner)
@@ -180,39 +203,19 @@ class GalleryPickerHelper {
      * */
     fun maxVideoSize(maxSize: Int) = apply { this.maxVideoSize = maxSize }
 
+    /**
+     * 设置已选择的文件路径列表，再次选择时会与新增选项合并
+     * @param paths 之前已选择的文件路径列表
+     * */
+    fun selectedPaths(paths: List<String>) = apply { this.selectedPaths = paths }
+
 
     /**
      * 初始化启动器
      * */
     private fun initLaunch(activity: ComponentActivity) {
-        //相机拍照
-        if (mMediaType == MediaType.CAMERA) {
-            takePictureLauncher = registerTakePictureVisualResult(activity, mediaResultCallback)
-            takePictureLauncher?.let {
-                activity.lifecycleScope.launch {
-                    val file = Utils.createCameraFile(activity)
-                    photoFilePath = file.path
-                    val fileUri = FileProvider.getUriForFile(
-                        activity, "${activity.applicationContext.packageName}.fileprovider", file
-                    )
-                    takePictureLauncher?.launch(fileUri)
-                }
-            }
-            return
-        }
-        //相机拍摄
-        if (mMediaType == MediaType.CAPTURE_VIDEO) {
-            captureVideoLauncher = registerCaptureVideoVisualResult(activity, mediaResultCallback)
-            captureVideoLauncher?.let {
-                activity.lifecycleScope.launch {
-                    val file = Utils.createCaptureVideoFile(activity)
-                    captureVideoFilePath = file.path
-                    val fileUri = FileProvider.getUriForFile(
-                        activity, "${activity.applicationContext.packageName}.fileprovider", file
-                    )
-                    captureVideoLauncher?.launch(fileUri)
-                }
-            }
+        //相机拍照/拍摄已由 EmptyHandleActivity 直接处理，此处不再处理
+        if (mMediaType == MediaType.CAMERA || mMediaType == MediaType.CAPTURE_VIDEO) {
             return
         }
 
@@ -289,12 +292,20 @@ class GalleryPickerHelper {
      * @param callback 结果回调
      * */
     fun launchMediaPicker(activity: Activity, mediaType: MediaType, callback: MediaResultCallback) {
+        // 保存静态引用供 EmptyHandleActivity 使用
+        sCallback = callback
+        sIsCompress = isCompress
+        sIgnoreSize = ignoreSize
+        sQuality = quality
+
         LifecycleObserverHelper.removeObserver()
         LifecycleObserverHelper.bindObserver(mLifecycleObserver)
         mediaResultCallback = callback
         mMediaType = mediaType
         //创建一个空页面进行相册处理
-        activity.startActivity(Intent(activity, EmptyHandleActivity::class.java))
+        activity.startActivity(Intent(activity, EmptyHandleActivity::class.java).apply {
+            putExtra("media_type", mediaType.ordinal)
+        })
     }
 
 
@@ -339,8 +350,14 @@ class GalleryPickerHelper {
             )
         ) { uris ->
             if (uris.isEmpty()) {
-                // 取消选择，调用onCancel回调
-                block?.onCancel()
+                // 取消选择，如果有已选项则仍然返回
+                if (selectedPaths.isNotEmpty()) {
+                    val existingMedia = selectedPaths.map { it.toMediaData() }
+                    block?.onMediaResult(existingMedia)
+                    block?.onResult(selectedPaths)
+                } else {
+                    block?.onCancel()
+                }
                 activity.finish()
                 Utils.log("PickVisual  fail -> User canceled multiple selection")
             }
@@ -376,10 +393,8 @@ class GalleryPickerHelper {
                                     }
                                 }
                                 Utils.log("Compression successful  -> path:  $filePaths")
-                                block?.onResult(filePaths)
-                                block?.onMediaResult(mediaFiles)
+                                mergeAndCallback(filePaths, mediaFiles, block)
                                 activity.finish()
-                                Utils.log("MediaResultCallback  result  path: $filePaths")
                             }
                         } else {
                             val filePaths = mutableListOf<String>()
@@ -393,11 +408,8 @@ class GalleryPickerHelper {
                                     )
                                 )
                             }
-                            block?.onResult(filePaths)
-                            block?.onMediaResult(mediaFiles)
+                            mergeAndCallback(filePaths, mediaFiles, block)
                             activity.finish()
-                            Utils.log("MediaResultCallback  result  path: $filePaths")
-
                         }
                     }
                 }
@@ -564,7 +576,14 @@ class GalleryPickerHelper {
             ActivityResultContracts.PickMultipleVisualMedia(maxItems)
         ) { uris ->
             if (uris.isEmpty()) {
-                block?.onCancel()
+                // 取消选择，如果有已选项则仍然返回
+                if (selectedPaths.isNotEmpty()) {
+                    val existingMedia = selectedPaths.map { it.toMediaData() }
+                    block?.onMediaResult(existingMedia)
+                    block?.onResult(selectedPaths)
+                } else {
+                    block?.onCancel()
+                }
                 activity.finish()
                 Utils.log("PickVisual fail -> User canceled multiple selection")
             }
@@ -628,12 +647,17 @@ class GalleryPickerHelper {
                     }
 
                     if (mediaFiles.isNotEmpty()) {
-                        block?.onResult(filePaths)
-                        block?.onMediaResult(mediaFiles)
+                        mergeAndCallback(filePaths, mediaFiles, block)
                         activity.finish()
-                        Utils.log("MediaResultCallback result paths: $filePaths")
                     } else {
-                        block?.onCancel()
+                        // 新选择为空，如果有已选项则返回
+                        if (selectedPaths.isNotEmpty()) {
+                            val existingMedia = selectedPaths.map { it.toMediaData() }
+                            block?.onMediaResult(existingMedia)
+                            block?.onResult(selectedPaths)
+                        } else {
+                            block?.onCancel()
+                        }
                         activity.finish()
                     }
                 }
@@ -829,4 +853,56 @@ class GalleryPickerHelper {
         cropResultLauncher?.launch(intent)
     }
 
+    /**
+     * 合并已选文件和新选文件，去重并限制maxItems
+     */
+    private fun mergeAndCallback(
+        newPaths: List<String>,
+        newMedia: List<MediaData>,
+        block: MediaResultCallback?
+    ) {
+        val mergedPaths = mutableListOf<String>()
+        val mergedMedia = mutableListOf<MediaData>()
+        val pathSet = mutableSetOf<String>()
+
+        // 先加入已选项
+        for (path in selectedPaths) {
+            if (path.isNotEmpty() && path !in pathSet && mergedPaths.size < maxItems) {
+                mergedPaths.add(path)
+                mergedMedia.add(path.toMediaData())
+                pathSet.add(path)
+            }
+        }
+
+        // 再加入新选项（去重）
+        for (i in newPaths.indices) {
+            val path = newPaths[i]
+            if (path.isNotEmpty() && path !in pathSet && mergedPaths.size < maxItems) {
+                mergedPaths.add(path)
+                if (i < newMedia.size) {
+                    mergedMedia.add(newMedia[i])
+                } else {
+                    mergedMedia.add(path.toMediaData())
+                }
+                pathSet.add(path)
+            }
+        }
+
+        Utils.log("Merged result paths: $mergedPaths")
+        block?.onResult(mergedPaths)
+        block?.onMediaResult(mergedMedia)
+    }
+
+    /**
+     * 根据文件路径推断MimeType
+     */
+    private fun String.toMediaData(): MediaData {
+        val mimeType = when {
+            endsWith(".mp4", true) || endsWith(".mov", true) ||
+            endsWith(".avi", true) || endsWith(".mkv", true) ||
+            endsWith(".3gp", true) -> MimeType.VIDEO
+            else -> MimeType.IMAGE
+        }
+        return MediaData(mimeType, this)
+    }
 }

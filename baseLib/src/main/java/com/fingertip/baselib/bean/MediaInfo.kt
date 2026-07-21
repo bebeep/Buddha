@@ -6,6 +6,6 @@ data class MediaInfo(
     val thumbUrl:String, //视频缩略图路径
     val width:Int, //图片宽度
     val height:Int, //图片高度
-    val duration:Int, //视频时长
+    val duration:Int, //视频时长:秒
     val size:Long //文件大小
 )

@@ -57,13 +57,15 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
     private var videoMedia :MediaInfo?=null
     private var photoList = ArrayList<MediaInfo>()
     private fun initAdapter(){
-        adapter = UploadImageAdapter(requireContext()){ position, tag ->
-            if (tag == 0){ //删除
+        adapter = UploadImageAdapter(requireContext()){ position, isDelete ->
+            if (isDelete){ //删除
                 imageList.removeAt(position)
                 photoList.removeAt(position)
                 if (imageList.size < 9 && imageList[imageList.size - 1] != null) imageList.add(null)
                 adapter.initData(imageList)
-            }else{
+            }
+            else
+            {
                 if (imageList[position] == null) {//添加图片
                     if ((imageList.size==9 && imageList[8] !=null) || videoMedia != null){
                         ToastUtil.showMessage("Please delete one picture or video")
@@ -76,7 +78,10 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
                     }else
                     {
                         operationDialog.mylist = mutableListOf("拍照","相册")
+
                     }
+                    operationDialog.myAdapter?.initData(operationDialog.mylist)
+                    operationDialog.show()
                 } else {//预览大图
                     BigImageDialog(requireContext(), imageList, position).show()
                 }
@@ -121,10 +126,25 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
 
     fun takePhoto()
     {
+        if (photoList.size == 9) return
         GalleryPickerHelper.newInstance()
             .launchMediaPicker(requireActivity(), MediaType.CAMERA, object : MediaResultCallback {
                 override fun onMediaResult(mediaFiles: List<MediaData>) {
-                    // Handle result
+                    for (media in mediaFiles)
+                    {
+                        log("MomentPostFragment","takePhoto:${media.filePath}", )
+                        val mediaInfo = picUtils.getMediaInfo(media.filePath)
+                        if (mediaInfo != null)
+                        {
+                            photoList.add(mediaInfo)
+                        }
+                    }
+                    refreshImages()
+                }
+
+                override fun onCancel() {
+                    super.onCancel()
+                    log("MomentPostFragment","cancel", )
                 }
             })
     }
@@ -136,27 +156,35 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
             .quality(75) // 75%
             .launchMediaPicker(requireActivity(), MediaType.CAPTURE_VIDEO, object : MediaResultCallback {
                 override fun onMediaResult(mediaFiles: List<MediaData>) {
-                    // Handle result
+                    for (media in mediaFiles)
+                    {
+                        log("MomentPostFragment","takeVideo:${media.filePath}", )
+                        videoMedia = picUtils.getMediaInfo(media.filePath)
+                    }
                 }
             })
     }
 
     fun choosePhoto()
     {
-        if (imageList.size == 9) return
+        if (photoList.size == 9) return
         GalleryPickerHelper.newInstance()
             .ignoreSize(100) // kb
-            .maxItems(9 - imageList.size) // Single or Multiple
+            .maxItems(9) // Single or Multiple
+            .selectedPaths(photoList.map { it.mediaUrl }.toMutableList())
             .maxVideoSize(15) // Video file size limit in MB
             .launchMediaPicker(requireActivity(), MediaType.IMAGE, object : MediaResultCallback {
                 override fun onMediaResult(mediaFiles: List<MediaData>) {
-                    var i = 0
                     for (media in mediaFiles)
                     {
-                        log("MomentPostFragment","media${i++}:${media.filePath}", )
-                        imageList.add(media.filePath)
+                        log("MomentPostFragment","choosePhoto:${media.filePath}", )
+                        val mediaInfo = picUtils.getMediaInfo(media.filePath)
+                        if (mediaInfo != null && photoList.find { it.mediaUrl == mediaInfo.mediaUrl } == null)
+                        {
+                            photoList.add(mediaInfo)
+                        }
                     }
-                    adapter.initData(imageList)
+                    refreshImages()
                 }
             })
     }

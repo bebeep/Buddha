@@ -12,7 +12,7 @@ import com.fingertip.uilib.databinding.ItemUploadImageBinding
  * 发布动态
  * 图片列表
  */
-class UploadImageAdapter(var c: Context, var onItemClick: (pos:Int,tag:Int)->Unit) : TopRcAdapter<String?, TopRcAdapter.TopRcViewHolder>(c) {
+class UploadImageAdapter(var c: Context, var onItemClick: (pos:Int,isDelete: Boolean)->Unit) : TopRcAdapter<String?, TopRcAdapter.TopRcViewHolder>(c) {
 
     override fun initLayoutId(viewType: Int): Int = R.layout.item_upload_image
 
@@ -29,9 +29,9 @@ class UploadImageAdapter(var c: Context, var onItemClick: (pos:Int,tag:Int)->Uni
 
         get(position)?.let {
             Glide.with(c).asBitmap().load(it).into(binding.ivPhoto)
-            binding.ivDelete.setOnClickListener { onItemClick(position, 0) }
+            binding.ivDelete.setOnClickListener { onItemClick(position, true) }
         }
 
-        holder.itemView.setOnClickListener { onItemClick(position, 1) }
+        holder.itemView.setOnClickListener { onItemClick(position, false) }
     }
 }
