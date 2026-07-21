@@ -69,29 +69,29 @@ class LoginRegisterActivity : TopVMActivity<LoginRegisterVM>() {
                 // 获取验证码
                 val phone = binding.etPhone.text.toString().trim()
                 if (phone.isEmpty()) {
-                    Toast.makeText(this, "请输入手机号", Toast.LENGTH_SHORT).show()
+                    ToastUtil.showMessage("请输入手机号" )
                     return
                 }
-                Toast.makeText(this, "验证码已发送", Toast.LENGTH_SHORT).show()
+                ToastUtil.showMessage( "验证码已发送")
             }
             R.id.tv_login -> {
                 // 登录
                 val phone = binding.etPhone.text.toString().trim()
                 if (phone.isEmpty()) {
-                    Toast.makeText(this, "请输入手机号", Toast.LENGTH_SHORT).show()
+                    ToastUtil.showMessage("请输入手机号" )
                     return
                 }
                 if (isVerifyCodeMode) {
                     val code = binding.etVerifyCode.text.toString().trim()
                     if (code.isEmpty()) {
-                        Toast.makeText(this, "请输入验证码", Toast.LENGTH_SHORT).show()
+                        ToastUtil.showMessage("请输入验证码" )
                         return
                     }
                     mViewModel.login(phone, code)
                 } else {
                     val password = binding.etPassword.text.toString().trim()
                     if (password.isEmpty()) {
-                        Toast.makeText(this, "请输入密码", Toast.LENGTH_SHORT).show()
+                        ToastUtil.showMessage("请输入密码" )
                         return
                     }
                     mViewModel.login(phone, password)
@@ -107,8 +107,6 @@ class LoginRegisterActivity : TopVMActivity<LoginRegisterVM>() {
                 GlobalConfig.userData = it.data
                 startActivity(Intent(this,ContainerActivity::class.java))
                 finish()
-            } else {
-
             }
         }
     }
