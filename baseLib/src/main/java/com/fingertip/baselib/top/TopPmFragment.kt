@@ -157,7 +157,7 @@ abstract class TopPmFragment<VM : TopViewModel> : TopVMFragment<VM>(),
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     val contentUri = FileProvider.getUriForFile(
                         _mActivity,
-                        _mActivity.packageName + ".fileProvider",
+                        _mActivity.packageName + ".fileprovider",
                         photoFile
                     )
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri)

@@ -62,6 +62,8 @@ dependencies {
 
     //图片压缩 (本地模块)
     api project(path: ':tiny')
+    //图片选择器 (本地模块)
+    api project(path: ':PhotoPicker')
 
     //banner https://github.com/youth5201314/banner
     api 'io.github.youth5201314:banner:2.2.2'

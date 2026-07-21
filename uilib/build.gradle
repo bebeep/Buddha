@@ -36,8 +36,6 @@ android {
 dependencies {
 
     api project(path: ':baseLib')
-    implementation project(path: ':easyPhotos')
-    implementation project(path: ':cropvideolibrary')
 
     implementation 'com.tencent.bugly:crashreport:latest.release'
 }

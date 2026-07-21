@@ -11,11 +11,9 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/FlycoTabLayout" />
+            <option value="$PROJECT_DIR$/PhotoPicker" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/baseLib" />
-            <option value="$PROJECT_DIR$/cropvideolibrary" />
-            <option value="$PROJECT_DIR$/easyPhotos" />
-            <option value="$PROJECT_DIR$/flowcamera" />
             <option value="$PROJECT_DIR$/fragmentation_core" />
             <option value="$PROJECT_DIR$/iknow" />
             <option value="$PROJECT_DIR$/nsfw" />

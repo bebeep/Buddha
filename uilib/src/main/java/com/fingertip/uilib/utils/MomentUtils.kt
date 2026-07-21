@@ -11,7 +11,6 @@ import android.util.Log
 import android.widget.TextView
 import com.fingertip.baselib.bean.PhotoEntity
 import com.fingertip.baselib.util.ToastUtil
-import com.fingertip.uilib.fragment.moment.HandleVideoFragment
 import com.weikaiyun.fragmentation.SupportActivity
 import java.io.File
 import java.io.FileInputStream
@@ -97,31 +96,6 @@ object MomentUtils {
     }
 
 
-
-
-    /**
-     * 前往处理视频
-     */
-    const val REQUEST_CODE_HANDLE_VIDEO = 9912
-    fun goHandleVideo(activity: SupportActivity, filePath:String){
-        var retriever: MediaMetadataRetriever? = null
-        try {
-            retriever = MediaMetadataRetriever()
-            val inputStream = FileInputStream(File(filePath).absolutePath)
-            retriever.setDataSource(inputStream.fd)
-            val time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)?:"0"
-            retriever.release()
-            if (time.toLong() < 3000) {
-                ToastUtil.showMessage("视频不能低于3秒")
-                return
-            }
-            activity.startForResult(HandleVideoFragment().apply {
-                path = filePath
-            },REQUEST_CODE_HANDLE_VIDEO)
-        } catch (e: Exception) {
-            ToastUtil.showMessage("视频格式有误")
-        }
-    }
 
 
     // 获取视频缩略图
