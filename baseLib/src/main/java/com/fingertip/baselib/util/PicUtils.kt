@@ -1,8 +1,11 @@
 package com.fingertip.baselib.util
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.media.MediaMetadataRetriever
 import android.net.Uri
 import com.fingertip.baselib.BuildConfig
+import com.fingertip.baselib.bean.MediaInfo
 import com.fingertip.baselib.constant.CodeConstant
 import com.fingertip.baselib.log
 import com.fingertip.baselib.top.TopApplication
@@ -12,6 +15,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import java.io.*
+import androidx.core.graphics.scale
 
 
 /**
@@ -143,5 +147,76 @@ class PicUtils {
         fun start()
         fun isOktoUp(avatarPath: String)
         fun errorend()
+    }
+
+    //根据文件路径获取媒体信息
+    fun getMediaInfo(filePath: String, frameWidth: Int = 720): MediaInfo? {
+        // 先检查文件是否存在
+        if (!File(filePath).exists()) return null
+
+        val retriever = MediaMetadataRetriever()
+        return try {
+            retriever.setDataSource(filePath)
+
+            // 1. 获取时长（单位：毫秒）
+            val durationMs = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)?.toLongOrNull() ?: 0L
+
+            // 2. 获取首帧图（OPTION_NEXT_SYNC 表示寻找最近的关键帧，速度最快）
+            val originalFrame = retriever.getFrameAtTime(0, MediaMetadataRetriever.OPTION_NEXT_SYNC)
+
+            // 3. 对首帧图进行缩放，防止 OOM（如果不需要缩放，直接传 originalFrame 即可）
+            val scaledFrame = if (frameWidth > 0 && originalFrame != null) {
+                val ratio = frameWidth.toFloat() / originalFrame.width
+                val height = (originalFrame.height * ratio).toInt()
+                originalFrame.scale(frameWidth, height)
+            } else {
+                originalFrame
+            }
+
+            val thumbUrl = saveThumbnailToCache(scaledFrame, filePath)
+
+            MediaInfo(
+                mediaType = 2,
+                mediaUrl = filePath,
+                thumbUrl = thumbUrl?: "",
+                width = scaledFrame?.width ?: 0,
+                height = scaledFrame?.height ?: 0,
+                duration = durationMs.toInt(),
+                size = File(filePath).length()
+            )
+        } catch (e: SecurityException) {
+            // 极少情况下会因文件权限抛出异常
+            e.printStackTrace()
+            null
+        } catch (e: IllegalArgumentException) {
+            // 文件格式不支持或已损坏
+            e.printStackTrace()
+            null
+        } finally {
+            retriever.release() // 必须释放，否则会持有文件句柄导致内存泄漏
+        }
+    }
+
+
+    fun saveThumbnailToCache(bitmap: Bitmap?, videoFileName: String? = null): String? {
+        if (bitmap == null) return null
+        val fileName = if (videoFileName != null) {
+            "thumb_${videoFileName.substringBeforeLast('.')}.jpg"
+        } else {
+            "thumb_${System.currentTimeMillis()}.jpg"
+        }
+        val file = File(TopApplication.instance.cacheDir, "thumbnails") // 子目录便于管理
+        if (!file.exists()) file.mkdirs()
+
+        val outputFile = File(file, fileName)
+        return try {
+            FileOutputStream(outputFile).use { fos ->
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 85, fos)
+            }
+            outputFile.absolutePath
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
     }
 }

@@ -54,9 +54,6 @@ dependencies {
     api smart_refresh_libs.values()
 
 
-    //权限
-    api 'pub.devrel:easypermissions:3.0.0'
-
     //tablayout
     api project(path: ':FlycoTabLayout')
 

@@ -6,22 +6,23 @@ import com.fingertip.baselib.bean.HostMenu
 import com.fingertip.baselib.top.TopRcAdapter
 import com.fingertip.baselib.util.loadImgNoHolder
 import com.fingertip.uilib.R
+import com.fingertip.uilib.databinding.ItemHostMenuBinding
 
-class HostMenuAdapter(context: Context,val onItemClick:(pos:Int)->Unit) : TopRcAdapter<HostMenu, TopRcAdapter.TopRcViewHolder>(context) {
+class HostMenuAdapter(context: Context, val onItemClick: (pos: Int) -> Unit) : TopRcAdapter<HostMenu, TopRcAdapter.TopRcViewHolder>(context) {
     override fun initLayoutId(viewType: Int): Int = R.layout.item_host_menu
 
-    override fun onBindViewHolder(holder: TopRcViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TopRcAdapter.TopRcViewHolder, position: Int) {
+        val binding = holder.getBinding<ItemHostMenuBinding>()
         get(position)?.let {
-            holder.itemView.findViewById<android.widget.TextView>(R.id.tv_menu).text = it.name
-            holder.itemView.findViewById<android.widget.ImageView>(R.id.iv_menu).loadImgNoHolder(it.resId)
-            holder.itemView.findViewById<View>(R.id.cl_parent).setBackgroundResource(it.bgResId)
+            binding.tvMenu.text = it.name
+            binding.ivMenu.loadImgNoHolder(it.resId)
+            binding.clParent.setBackgroundResource(it.bgResId)
 
-            holder.itemView.setOnClickListener(object : View.OnClickListener{
+            holder.itemView.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(p0: View?) {
                     onItemClick(holder.adapterPosition)
                 }
             })
         }
     }
-
 }

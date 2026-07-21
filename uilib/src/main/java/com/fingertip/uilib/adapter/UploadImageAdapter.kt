@@ -5,6 +5,7 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.fingertip.baselib.top.TopRcAdapter
 import com.fingertip.uilib.R
+import com.fingertip.uilib.databinding.ItemUploadImageBinding
 
 
 /**
@@ -13,19 +14,24 @@ import com.fingertip.uilib.R
  */
 class UploadImageAdapter(var c: Context, var onItemClick: (pos:Int,tag:Int)->Unit) : TopRcAdapter<String?, TopRcAdapter.TopRcViewHolder>(c) {
 
-
     override fun initLayoutId(viewType: Int): Int = R.layout.item_upload_image
 
     override fun onBindViewHolder(holder: TopRcViewHolder, position: Int) {
-        holder.itemView.findViewById<View>(R.id.iv_add).visibility = if ( get(position) == null) View.VISIBLE else View.GONE
-        holder.itemView.findViewById<View>(R.id.iv_delete).visibility = if ( get(position) == null) View.GONE else View.VISIBLE
-        if ( get(position) == null)holder.itemView.findViewById<android.widget.ImageView>(R.id.iv_photo).setImageBitmap(null)
-        get(position)?.let {
-            Glide.with(c).asBitmap().load(it).into(holder.itemView.findViewById<android.widget.ImageView>(R.id.iv_photo))
-            holder.itemView.findViewById<View>(R.id.iv_delete).setOnClickListener { onItemClick(position,0) }
+        val binding = holder.getBinding<ItemUploadImageBinding>()
+        val hasImage = get(position) != null
+
+        binding.ivAdd.visibility = if (!hasImage) View.VISIBLE else View.GONE
+        binding.ivDelete.visibility = if (!hasImage) View.GONE else View.VISIBLE
+
+        if (!hasImage) {
+            binding.ivPhoto.setImageBitmap(null)
         }
 
-        holder.itemView.setOnClickListener { onItemClick(position,1) }
+        get(position)?.let {
+            Glide.with(c).asBitmap().load(it).into(binding.ivPhoto)
+            binding.ivDelete.setOnClickListener { onItemClick(position, 0) }
+        }
 
+        holder.itemView.setOnClickListener { onItemClick(position, 1) }
     }
 }

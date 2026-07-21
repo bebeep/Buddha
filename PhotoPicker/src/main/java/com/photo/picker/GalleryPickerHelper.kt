@@ -92,6 +92,8 @@ class GalleryPickerHelper {
 
     private var imageOrVideoMediaLauncher: ActivityResultLauncher<PickVisualMediaRequest>? = null
 
+    private var imageOrVideoMultipleMediaLauncher: ActivityResultLauncher<PickVisualMediaRequest>? = null
+
 
     private var mediaResultCallback: MediaResultCallback? = null
 
@@ -222,11 +224,19 @@ class GalleryPickerHelper {
             return
         }
 
-        //图片or视频单选
+        //图片or视频
         if (mMediaType == MediaType.IMAGE_OR_VIDEO) {
-            imageOrVideoMediaLauncher =
-                registerImageOrVideoVisualResult(activity, mediaResultCallback)
-            imageOrVideoMediaLauncher?.launch(PickVisualMediaRequest(createVisualMedia(mMediaType)))
+            if (maxItems > 1) {
+                //多选
+                imageOrVideoMultipleMediaLauncher =
+                    registerImageOrVideoMultipleVisualResult(activity, maxItems, mediaResultCallback)
+                imageOrVideoMultipleMediaLauncher?.launch(PickVisualMediaRequest(createVisualMedia(mMediaType)))
+            } else {
+                //单选
+                imageOrVideoMediaLauncher =
+                    registerImageOrVideoVisualResult(activity, mediaResultCallback)
+                imageOrVideoMediaLauncher?.launch(PickVisualMediaRequest(createVisualMedia(mMediaType)))
+            }
             return
         }
 
@@ -540,6 +550,97 @@ class GalleryPickerHelper {
         }
     }
 
+    /**
+     * 视频or图片多选
+     * 使用 ActivityResult 回调方式需要再 onResume() 之前注册
+     * @param activity 继承自ComponentActivity 的activity
+     * @param maxItems 最大选择数量
+     * @param block 返回获取到的媒体uris
+     * */
+    private fun registerImageOrVideoMultipleVisualResult(
+        activity: ComponentActivity, maxItems: Int = 1, block: MediaResultCallback?
+    ): ActivityResultLauncher<PickVisualMediaRequest> {
+        return activity.registerForActivityResult(
+            ActivityResultContracts.PickMultipleVisualMedia(maxItems)
+        ) { uris ->
+            if (uris.isEmpty()) {
+                block?.onCancel()
+                activity.finish()
+                Utils.log("PickVisual fail -> User canceled multiple selection")
+            }
+            if (uris.isNotEmpty()) {
+                Utils.log("PickVisual success uris: $uris")
+                val contentResolver: ContentResolver = activity.contentResolver
+                val imageUris = mutableListOf<Uri>()
+                val videoUris = mutableListOf<Uri>()
+                // 按类型分组
+                uris.forEach { uri ->
+                    val mimeType = contentResolver.getType(uri)
+                    when {
+                        mimeType?.startsWith("image/") == true -> imageUris.add(uri)
+                        mimeType?.startsWith("video/") == true -> videoUris.add(uri)
+                        else -> Utils.log("PickVisual unknown type skipped: $mimeType")
+                    }
+                }
+                activity.lifecycleScope.launch {
+                    val mediaFiles = mutableListOf<MediaData>()
+                    val filePaths = mutableListOf<String>()
+
+                    // 处理图片
+                    if (imageUris.isNotEmpty()) {
+                        val imageFiles = copyFilesToCache(activity, imageUris)
+                        imageFiles.forEach { file ->
+                            if (file != null && file.exists()) {
+                                if (isCompress) {
+                                    val result = Luban(activity).load(file).ignoreSize(ignoreSize)
+                                        .quality(quality).keepAlpha(false).keepSize(false).single()
+                                    if (result is CompressResult.Success) {
+                                        filePaths.add(result.file?.path ?: "")
+                                        mediaFiles.add(MediaData(MimeType.IMAGE, result.file?.path ?: ""))
+                                    }
+                                } else {
+                                    filePaths.add(file.path)
+                                    mediaFiles.add(MediaData(MimeType.IMAGE, file.path))
+                                }
+                            }
+                        }
+                    }
+
+                    // 处理视频
+                    if (videoUris.isNotEmpty()) {
+                        videoUris.forEach { uri ->
+                            val fileSizeInBytes = getFileSizeFromUri(activity, uri)
+                            if (fileSizeInBytes > maxVideoSize * 1024 * 1024) {
+                                Utils.showToast(
+                                    activity,
+                                    activity.getString(R.string.photo_video_size_tip) + "${maxVideoSize}M"
+                                )
+                                return@forEach
+                            }
+                            val videoFiles = copyFilesToCache(activity, listOf(uri))
+                            videoFiles.forEach { file ->
+                                if (file != null && file.exists()) {
+                                    filePaths.add(file.path)
+                                    mediaFiles.add(MediaData(MimeType.VIDEO, file.path))
+                                }
+                            }
+                        }
+                    }
+
+                    if (mediaFiles.isNotEmpty()) {
+                        block?.onResult(filePaths)
+                        block?.onMediaResult(mediaFiles)
+                        activity.finish()
+                        Utils.log("MediaResultCallback result paths: $filePaths")
+                    } else {
+                        block?.onCancel()
+                        activity.finish()
+                    }
+                }
+            }
+        }
+    }
+
     private fun registerCropVisualResult(
         activity: ComponentActivity, block: MediaResultCallback?
     ): ActivityResultLauncher<Intent> {
@@ -638,7 +739,14 @@ class GalleryPickerHelper {
                     val cacheDir =
                         File(context.cacheDir.absolutePath, "/temp_photo").also { it.mkdirs() }
                     val random = Random.nextInt(1000)
-                    val suffix = if (mMediaType == MediaType.VIDEO) "mp4" else "jpg"
+                    val suffix = when {
+                        mMediaType == MediaType.VIDEO -> "mp4"
+                        mMediaType == MediaType.IMAGE_OR_VIDEO -> {
+                            val mimeType = contentResolver.getType(uri)
+                            if (mimeType?.startsWith("video/") == true) "mp4" else "jpg"
+                        }
+                        else -> "jpg"
+                    }
                     val cacheFile = File(cacheDir, "${System.currentTimeMillis()}$random.$suffix")
                     FileOutputStream(cacheFile).use { outputStream ->
                         inputStream?.copyTo(outputStream)
