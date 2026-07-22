@@ -170,8 +170,7 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
         if (photoList.size == 9) return
         GalleryPickerHelper.newInstance()
             .ignoreSize(100) // kb
-            .maxItems(9) // Single or Multiple
-            .selectedPaths(photoList.map { it.mediaUrl }.toMutableList())
+            .maxItems(9-photoList.size) // Single or Multiple
             .maxVideoSize(15) // Video file size limit in MB
             .launchMediaPicker(requireActivity(), MediaType.IMAGE, object : MediaResultCallback {
                 override fun onMediaResult(mediaFiles: List<MediaData>) {

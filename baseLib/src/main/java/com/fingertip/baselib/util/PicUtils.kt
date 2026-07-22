@@ -50,51 +50,7 @@ class PicUtils {
         Tiny.getInstance().source(path).asFile().withOptions(options).compress(callback)
     }
 
-    fun getPhonePicPath(requestCode: Int, data: Intent?): String? {
-        var originalImagePath: String? = null
-        try {
-            if (requestCode == CodeConstant.IntentSkipCode.REQUESTCODE_ALBUM && null != data) {
-                val picturePath: String = SystemPhotoPathUtil.getPath(TopApplication.instance, data.data as Uri)?:""
-                originalImagePath = picturePath
-            } else if (requestCode == CodeConstant.IntentSkipCode.REQUESTCODE_CAMERA) {
-                originalImagePath = getImagePath()
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        log(TAG,"onActivityResult path : $originalImagePath")
-        return originalImagePath
-    }
 
-
-    fun copyUriToExternalFilesDir(uri: Uri?, fileName: String) {
-        isHaveOrCreateFolder(mcopy)
-        if (uri==null){
-            return
-        }
-
-        val inputStream = TopApplication.instance.contentResolver.openInputStream(uri)
-        val tempDir = mcopy
-        if (inputStream != null && tempDir != null) {
-            val file = File("$tempDir/$fileName")
-            if (file.exists()){
-                file.delete()
-            }
-
-            val fos = FileOutputStream(file)
-            val bis = BufferedInputStream(inputStream)
-            val bos = BufferedOutputStream(fos)
-            val byteArray = ByteArray(1024)
-            var bytes = bis.read(byteArray)
-            while (bytes > 0) {
-                bos.write(byteArray, 0, bytes)
-                bos.flush()
-                bytes = bis.read(byteArray)
-            }
-            bos.close()
-            fos.close()
-        }
-    }
 
     //返回图片地址
     fun getImagePath(): String? {
