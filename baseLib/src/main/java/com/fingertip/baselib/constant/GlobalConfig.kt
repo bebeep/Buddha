@@ -42,6 +42,7 @@ object GlobalConfig {
             field = value
             val str = GsonUtils.toJson(field)
             SPUtils.getInstance(spName).put(spYH, str)
+            session = field?.latestSession ?: ""
         }
 
     /**

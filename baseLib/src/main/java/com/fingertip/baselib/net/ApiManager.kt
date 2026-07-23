@@ -1,5 +1,6 @@
 package com.fingertip.baselib.net
 
+import com.fingertip.baselib.bean.OssConfig
 import com.fingertip.baselib.bean.PersonData
 import com.fingertip.baselib.bean.RequestRsp
 import com.fingertip.baselib.bean.VersionInfo
@@ -21,6 +22,15 @@ interface ApiManager {
         @Query("channelId") channelId: Int = NetProperty.CHANNEL,
         @Query("appVersion") appVersion: String = DeviceIdUtils.getVersionName()
     ): RequestRsp<VersionInfo?>
+
+    /**
+     * 获取oss配置
+     */
+    @GET()
+    suspend fun getOssConfig(
+        @Url url: String = NetProperty.GET_OSS_CONFIG,
+        @Query("session") session: String = GlobalConfig.session,
+    ): RequestRsp<OssConfig?>
 
     /**
      * 登录

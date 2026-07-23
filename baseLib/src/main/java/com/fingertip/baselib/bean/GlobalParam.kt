@@ -26,4 +26,10 @@ class GlobalParam: TopData() {
 
     //("单次中奖最大金额")
     var buddhaRewardOnceMaxCoin : Int? = 0
+
+    //("oss文件上传地址endPoint")
+    var ossFileEndPoint : String? = ""
+
+    //("oss文件上传地址bucketName")
+    var bucketName : String? = ""
 }

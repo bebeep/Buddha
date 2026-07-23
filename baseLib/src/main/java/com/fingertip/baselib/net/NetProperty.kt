@@ -61,6 +61,11 @@ object NetProperty {
      */
     var CHECK_SERVER_STATUS             = "config/checkUpdate"
 
+    /**
+     * 获取oss配置
+     */
+    var GET_OSS_CONFIG                  = "config/getOssConfig"
+
 
     /**
      * 登录

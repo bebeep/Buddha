@@ -11,7 +11,6 @@ import com.zxy.tiny.callback.FileCallback
  */
 abstract class TopPmFragment<VM : TopViewModel> : TopVMFragment<VM>(),FileCallback {
 
-    val picUtils: PicUtils by lazy { PicUtils() }
 
     protected val picChoseDialog: ChoosePicDialog by lazy {  ChoosePicDialog(_mActivity,onItemClick={
 

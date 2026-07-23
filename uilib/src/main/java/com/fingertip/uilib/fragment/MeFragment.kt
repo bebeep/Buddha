@@ -19,16 +19,13 @@ import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.Subscribe
 import kotlin.math.min
 
-class MeFragment : TopPmFragment<MeFragmentVM>(), PicUtils.UpPicCallBack {
+class MeFragment : TopPmFragment<MeFragmentVM>(){
     override fun layoutId(): Int = R.layout.fragment_me
     override fun initVM(): MeFragmentVM = provideVM()
 
     private val binding get() = mBinding as FragmentMeBinding
 
     override fun initShiTu() {
-        picUtils.upPicCallBack = this
-
-
         initBanner()
 
         binding.nsl.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
@@ -82,34 +79,6 @@ class MeFragment : TopPmFragment<MeFragmentVM>(), PicUtils.UpPicCallBack {
 
         }
     }
-
-    override fun callback(isSuccess: Boolean, outfile: String?, t: Throwable?) {
-        super.callback(isSuccess, outfile, t)
-        outfile?.let {
-            picUtils.uploadFile(it)
-        }
-    }
-
-    override fun start() {
-        lifecycleScope.launch(Dispatchers.Main) {
-            startWaiting()
-        }
-    }
-
-    override fun isOktoUp(avatarPath: String) {
-        lifecycleScope.launch(Dispatchers.Main) {
-            loadEnding()
-            log(fName, "上传头像")
-            mViewModel.upAvatar(avatarPath)
-        }
-    }
-
-    override fun errorend() {
-        lifecycleScope.launch(Dispatchers.Main) {
-            loadEnding()
-        }
-    }
-
     @Subscribe
     fun onMessageEvent(event: MessageEvent) {
         when(event.what) {

@@ -100,6 +100,7 @@ class StartUpActivity : TopVMActivity<StartUpVM>() {
         }
         mViewModel.loginResult.observe(this) {
             if (it.success && it.data != null) {//跳转到主页
+                GlobalConfig.userData = it.data
                 binding.ivBanner.visible()
                 binding.ivBanner.isEnabled = true
                 binding.ivBanner.postDelayed({

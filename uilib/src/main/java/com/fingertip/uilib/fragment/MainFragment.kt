@@ -1,8 +1,14 @@
 package com.fingertip.uilib.fragment
 
 import android.view.View
+import com.alibaba.sdk.android.oss.common.auth.OSSFederationCredentialProvider
+import com.alibaba.sdk.android.oss.common.auth.OSSFederationToken
+import com.alibaba.sdk.android.oss.common.auth.OSSStsTokenCredentialProvider
+import com.fingertip.baselib.constant.GlobalConfig
 import com.fingertip.baselib.event_bus.MessageEvent
+import com.fingertip.baselib.log
 import com.fingertip.baselib.top.TopVMFragment
+import com.fingertip.baselib.util.PicUtils
 import com.fingertip.uilib.R
 import com.fingertip.uilib.databinding.FragmentMainBinding
 import com.fingertip.uilib.fragment.moment.MomentFragment
@@ -13,6 +19,7 @@ import com.fingertip.uilib.widgets.bottom_menu.BottomMenuItem
 import com.lzlz.toplib.extention.gone
 import com.lzlz.toplib.extention.visible
 import com.weikaiyun.fragmentation.SupportFragment
+import kotlinx.coroutines.runBlocking
 import org.greenrobot.eventbus.Subscribe
 
 import com.fingertip.uilib.fragment.HostFragment
@@ -63,12 +70,43 @@ class MainFragment : TopVMFragment<MainVM>(), BottomMenu.MenuSelectCallback {
         }
 
 
+        initOss()
     }
 
 
     override fun initObserver() {
 
     }
+
+
+    /**
+     * 初始阿里云OSS
+     */
+    private fun initOss()
+    {
+        val credentialProvider = object : OSSFederationCredentialProvider()
+        {
+            override fun getFederationToken(): OSSFederationToken? {
+                // OSS SDK 在后台线程调用，可安全使用 runBlocking 同步获取
+                val ossConfig = runBlocking { mViewModel.getOssConfigSync() }
+                if (ossConfig != null)
+                {
+                    GlobalConfig.globalParam?.ossFileEndPoint = ossConfig.endPoint
+                    GlobalConfig.globalParam?.bucketName = ossConfig.bucketName
+                    return OSSFederationToken(
+                        ossConfig.stsAccessKeyId,
+                        ossConfig.stsAccessKeySecret,
+                        ossConfig.stsSecurityToken,
+                        System.currentTimeMillis() + 3600 * 1000
+                    )
+                }
+                return null
+            }
+        }
+        PicUtils.initOssWithSts(GlobalConfig.globalParam?.ossFileEndPoint ?: "", credentialProvider)
+    }
+
+
 
     var lastIndex = 0
     override fun onMenuSelect(pos: Int) {
