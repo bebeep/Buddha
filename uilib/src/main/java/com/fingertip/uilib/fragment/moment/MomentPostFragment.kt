@@ -3,6 +3,7 @@ package com.fingertip.uilib.fragment.moment
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.blankj.utilcode.util.GsonUtils
+import com.bumptech.glide.Glide
 import com.fingertip.baselib.bean.MediaInfo
 import com.fingertip.baselib.bean.PhotoEntity
 import com.fingertip.baselib.constant.GlobalConfig
@@ -29,22 +30,19 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
     override fun initVM() = MomentVM()
 
     override fun getClickViews(): List<View> {
-        return mutableListOf(binding.ivBack, binding.tvPost)
+        return mutableListOf(binding.ivBack, binding.tvPost,binding.flVideo,binding.ivDelete)
     }
 
     lateinit var operationDialog: ChoosePicDialog
     override fun initShiTu() {
 
-        operationDialog = ChoosePicDialog(requireContext(), mutableListOf("录视频","拍照","相册"),onItemClick = {pos->
+        operationDialog = ChoosePicDialog(requireContext(), mutableListOf("视频","照片"),onItemClick = {pos->
             when (operationDialog.mylist[pos]) {
-                "录视频" -> { //录视频
-                    takeVideo()
+                "视频" -> { //录视频
+                    choosePhoto(true)
                 }
-                "拍照" -> { //拍照
-                    takePhoto()
-                }
-                "相册"->{ //选相册
-                    choosePhoto()
+                "照片"->{ //选相册
+                    choosePhoto(false)
                 }
             }
         })
@@ -53,6 +51,13 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
         if (imageList.isEmpty() || (imageList.size < 9 && imageList[imageList.size-1]!=null ))imageList.add(null)
         adapter.initData(imageList)
 
+        mViewModel.postMomentResult.observe(this) {
+            if (it.success)
+            {
+                ToastUtil.showMessage("Post moment success")
+                pop()
+            }
+        }
     }
 
 
@@ -60,48 +65,41 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
         super.onSingleClick(v)
         when(v?.id){
             R.id.iv_back -> pop()
+            R.id.fl_video -> {//预览视频
+                videoMedia?.let {
+                    GalleryPickerHelper.toPreViewVideo(requireActivity(), it.mediaUrl)
+                }
+            }
+            R.id.iv_delete -> {//删除视频
+                videoMedia = null
+                imageList.clear()
+                photoList.clear()
+                if (imageList.isEmpty() || (imageList.size < 9 && imageList[imageList.size-1]!=null ))imageList.add(null)
+                adapter.initData(imageList)
+                binding.rcImages.visibility = View.VISIBLE
+                binding.flVideo.visibility = View.GONE
+            }
             R.id.tv_post -> {
-                //1.上传图片和视频
+                loading(false)
+                //上传图片和视频
                 if (videoMedia != null)
                 {
+                    if (videoMedia?.thumbUrl?.isEmpty() == true || videoMedia?.thumbObjectKey?.isEmpty() == true) {
+                        uploadFiles(mutableListOf(videoMedia?.mediaObjectKey?:""),mutableListOf(videoMedia?.mediaUrl?:""))
+                    }else
+                    {
+                        uploadFiles(mutableListOf(videoMedia?.mediaObjectKey?:"",videoMedia?.thumbObjectKey?:""),
+                            mutableListOf(videoMedia?.mediaUrl?:"",videoMedia?.thumbUrl?:""))
+                    }
 
                 }
                 else if (photoList.isNotEmpty())
                 {
-                    PicUtils.batchUploadToOss(
-                        GlobalConfig.globalParam?.bucketName?:"",
-                        photoList.map { it.objectKey }.toMutableList(),
-                        photoList.map { it.mediaUrl }.toMutableList(),
-                        object : PicUtils.OssBatchUploadCallback {
-                            override fun onBatchStart(totalCount: Int) {
-                                log("MomentPostFragment","onBatchStart")
-                            }
-
-                            override fun onFileProgress(index: Int,objectKey: String,currentSize: Long,totalSize: Long) {
-                                log("MomentPostFragment","onOverallProgress:index:${index},objectKey:${objectKey},  ${currentSize}/${totalSize}")
-                            }
-
-                            override fun onFileSuccess(index: Int,objectKey: String,objectUrl: String) {
-                                log("MomentPostFragment","onFileSuccess:index:${index},objectKey:${objectKey},objectUrl:${objectUrl}")
-                            }
-
-                            override fun onFileFailed(index: Int,objectKey: String,errorMsg: String) {
-                                log("MomentPostFragment","onFileFailed:index:${index},objectKey:${objectKey},errorMsg:${errorMsg}")
-                            }
-
-                            override fun onOverallProgress(completedCount: Int,totalCount: Int) {
-                                log("MomentPostFragment","onOverallProgress  ${completedCount}/${totalCount}")
-                            }
-
-                            override fun onBatchComplete(results: List<PicUtils.BatchFileResult>) {
-                                log("MomentPostFragment","onBatchComplete,results：  ${GsonUtils.toJson(results)}")
-                            }
-
-                            override fun onAllFailed(errorMsg: String) {
-                                log("MomentPostFragment","onAllFailed：${errorMsg}")
-                            }
-                        }
-                    )
+                    uploadFiles(photoList.map { it.mediaObjectKey }.toMutableList(),photoList.map { it.mediaUrl }.toMutableList())
+                }
+                else if (binding.etMomentContent.text.toString().trim().isNotEmpty())//纯文本提交
+                {
+                    mViewModel.postMoment(textContent = binding.etMomentContent.text.toString().trim())
                 }
             }
         }
@@ -110,8 +108,8 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
 
     private lateinit var adapter: UploadImageAdapter
     private var imageList = ArrayList<String?>()
-    private var videoMedia :MediaInfo?=null
-    private var photoList = ArrayList<MediaInfo>()
+    private var videoMedia :MediaInfo?=null //视频信息
+    private var photoList = ArrayList<MediaInfo>() //图片信息
     private fun initAdapter(){
         adapter = UploadImageAdapter(requireContext()){ position, isDelete ->
             if (isDelete){ //删除
@@ -130,14 +128,13 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
 
                     if (position == 0) //初始状态
                     {
-                        operationDialog.mylist = mutableListOf("录视频","拍照","相册")
+                        operationDialog.mylist = mutableListOf("视频","照片")
+                        operationDialog.myAdapter?.initData(operationDialog.mylist)
+                        operationDialog.show()
                     }else
                     {
-                        operationDialog.mylist = mutableListOf("拍照","相册")
-
+                        choosePhoto(false)
                     }
-                    operationDialog.myAdapter?.initData(operationDialog.mylist)
-                    operationDialog.show()
                 } else {//预览大图
                     BigImageDialog(requireContext(), imageList, position).show()
                 }
@@ -162,58 +159,40 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
         }
     }
 
-
-
-    fun takePhoto()
+    private fun refreshVideoUI()
     {
-        if (photoList.size == 9) return
-        GalleryPickerHelper.newInstance()
-            .launchMediaPicker(requireActivity(), MediaType.CAMERA, object : MediaResultCallback {
-                override fun onMediaResult(mediaFiles: List<MediaData>) {
-                    for (media in mediaFiles)
-                    {
-                        log("MomentPostFragment","takePhoto:${media.filePath}", )
-                        val mediaInfo = PicUtils.getMediaInfo(media.filePath)
-                        if (mediaInfo != null)
-                        {
-                            photoList.add(mediaInfo)
-                        }
-                    }
-                    refreshImages()
-                }
+        videoMedia?.apply {
+            binding.rcImages.visibility = View.GONE
+            binding.flVideo.visibility = View.VISIBLE
+            Glide.with(requireContext()).asBitmap().load(this.thumbUrl).into(binding.ivPhoto)
 
-                override fun onCancel() {
-                    super.onCancel()
-                    log("MomentPostFragment","cancel", )
-                }
-            })
+
+        }
+
     }
 
-    fun takeVideo()
+    fun choosePhoto(isVideo: Boolean)
     {
+        if ((isVideo && photoList.size == 1) || (!isVideo && photoList.size == 9)) return
+        val mediaType = if (isVideo) MediaType.VIDEO else MediaType.IMAGE
         GalleryPickerHelper.newInstance()
-            .ignoreSize(100) // kb
-            .quality(75) // 75%
-            .launchMediaPicker(requireActivity(), MediaType.CAPTURE_VIDEO, object : MediaResultCallback {
+            .ignoreSize(100)
+            .maxItems(9-photoList.size)
+            .maxVideoSize(15)
+            .launchMediaPicker(requireActivity(), mediaType, object : MediaResultCallback {
                 override fun onMediaResult(mediaFiles: List<MediaData>) {
-                    for (media in mediaFiles)
+                    if (mediaFiles.isEmpty())
                     {
-                        log("MomentPostFragment","takeVideo:${media.filePath}", )
-                        videoMedia = PicUtils.getMediaInfo(media.filePath)
+                         return
                     }
-                }
-            })
-    }
+                    val firstMedia = PicUtils.getMediaInfo(mediaFiles.first().filePath)
+                    if (firstMedia != null && firstMedia.mediaType == 2)
+                    {
+                        videoMedia = firstMedia
+                        refreshVideoUI()
+                        return
+                    }
 
-    fun choosePhoto()
-    {
-        if (photoList.size == 9) return
-        GalleryPickerHelper.newInstance()
-            .ignoreSize(100) // kb
-            .maxItems(9-photoList.size) // Single or Multiple
-            .maxVideoSize(15) // Video file size limit in MB
-            .launchMediaPicker(requireActivity(), MediaType.IMAGE_OR_VIDEO, object : MediaResultCallback {
-                override fun onMediaResult(mediaFiles: List<MediaData>) {
                     for (media in mediaFiles)
                     {
                         log("MomentPostFragment","choosePhoto:${media.filePath}", )
@@ -230,6 +209,43 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
 
 
 
+    private fun uploadFiles(objectKeys: MutableList<String>,localFilePaths: MutableList<String>)
+    {
+        PicUtils.batchUploadToOss(
+            GlobalConfig.globalParam?.bucketName?:"",
+            objectKeys,
+            localFilePaths,
+            object : PicUtils.OssBatchUploadCallback {
+                override fun onBatchStart(totalCount: Int) {
+                    log("MomentPostFragment","onBatchStart")
+                }
+
+                override fun onFileProgress(index: Int,objectKey: String,currentSize: Long,totalSize: Long) {
+                    log("MomentPostFragment","onOverallProgress:index:${index},objectKey:${objectKey},  ${currentSize}/${totalSize}")
+                }
+
+                override fun onFileSuccess(index: Int,objectKey: String,objectUrl: String) {
+                    log("MomentPostFragment","onFileSuccess:index:${index},objectKey:${objectKey},objectUrl:${objectUrl}")
+                }
+
+                override fun onFileFailed(index: Int,objectKey: String,errorMsg: String) {
+                    log("MomentPostFragment","onFileFailed:index:${index},objectKey:${objectKey},errorMsg:${errorMsg}")
+                }
+
+                override fun onOverallProgress(completedCount: Int,totalCount: Int) {
+                    log("MomentPostFragment","onOverallProgress  ${completedCount}/${totalCount}")
+                }
+
+                override fun onBatchComplete(results: List<PicUtils.BatchFileResult>) {
+                    log("MomentPostFragment","onBatchComplete,results：  ${GsonUtils.toJson(results)}")
+                }
+
+                override fun onAllFailed(errorMsg: String) {
+                    log("MomentPostFragment","onAllFailed：${errorMsg}")
+                }
+            }
+        )
+    }
 
 
 

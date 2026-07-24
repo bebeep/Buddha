@@ -79,4 +79,10 @@ object NetProperty {
     var LOGOUT                          = "account/logout"
 
 
+
+    /**
+     * 发布动态
+     */
+    var POST_MOMENT                     = "moment/postMoment"
+
 }

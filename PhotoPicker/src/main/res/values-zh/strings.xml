@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="photo_next_step">下一步</string>
-    <string name="photo_video_size_tip">視頻大小超過最大限制</string>
+    <string name="photo_video_size_tip">视频大小超过最大限制</string>
+    <string name="photo_only_one_type_tip">只能选择图片或视频其中一种，不能同时选择</string>
 </resources>

@@ -4,7 +4,8 @@ data class MediaInfo(
     val mediaType:Int, //文件类型 1 图片 2视频
     val mediaUrl:String, //本地路径
     val thumbUrl:String, //视频缩略图路径
-    val objectKey:String, //上传到云端的路径
+    val mediaObjectKey:String, //上传到云端的路径-资源
+    val thumbObjectKey:String, //上传到云端的路径-缩略图
     val width:Int, //图片宽度
     val height:Int, //图片高度
     val duration:Int, //视频时长:秒

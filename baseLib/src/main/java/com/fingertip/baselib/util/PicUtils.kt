@@ -120,8 +120,9 @@ object  PicUtils {
                 return MediaInfo(
                     mediaType = 1,
                     mediaUrl = filePath,
+                    mediaObjectKey = "app/android/${System.currentTimeMillis()}_${Random.nextInt(1000)}_${File(filePath).name}",
                     thumbUrl = "",
-                    objectKey = "app/android/${System.currentTimeMillis()}_${Random.nextInt(1000)}_${File(filePath).name}",
+                    thumbObjectKey = "",
                     width = options.outWidth,
                     height = options.outHeight,
                     duration = 0,
@@ -148,13 +149,15 @@ object  PicUtils {
                         originalFrame
                     }
 
-                    val thumbUrl = saveThumbnailToCache(scaledFrame, filePath)
-
+                    val thumbUrl = saveThumbnailToCache(scaledFrame, filePath)?:""
+                    val thumbObjectKey = if (thumbUrl.isNotEmpty()) "app/android/${System.currentTimeMillis()}_${Random.nextInt(1000)}_${File(thumbUrl).name}"
+                    else ""
                     MediaInfo(
                         mediaType = 2,
                         mediaUrl = filePath,
-                        thumbUrl = thumbUrl?: "",
-                        objectKey = "app/android/${System.currentTimeMillis()}_${Random.nextInt(1000)}_${File(filePath).name}",
+                        mediaObjectKey = "app/android/${System.currentTimeMillis()}_${Random.nextInt(1000)}_${File(filePath).name}",
+                        thumbUrl = thumbUrl,
+                        thumbObjectKey = thumbObjectKey,
                         width = scaledFrame?.width ?: 0,
                         height = scaledFrame?.height ?: 0,
                         duration = durationMs.toInt()/1000,
@@ -182,7 +185,8 @@ object  PicUtils {
     fun saveThumbnailToCache(bitmap: Bitmap?, videoFileName: String? = null): String? {
         if (bitmap == null) return null
         val fileName = if (videoFileName != null) {
-            "thumb_${videoFileName.substringBeforeLast('.')}.jpg"
+            val pureName = File(videoFileName).nameWithoutExtension
+            "thumb_$pureName.jpg"
         } else {
             "thumb_${System.currentTimeMillis()}.jpg"
         }

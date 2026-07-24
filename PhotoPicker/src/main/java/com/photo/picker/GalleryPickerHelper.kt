@@ -601,6 +601,32 @@ class GalleryPickerHelper {
                         else -> Utils.log("PickVisual unknown type skipped: $mimeType")
                     }
                 }
+                // 类型互斥校验：不允许同时选择图片和视频
+                if (imageUris.isNotEmpty() && videoUris.isNotEmpty()) {
+                    Utils.showToast(
+                        activity,
+                        activity.getString(R.string.photo_only_one_type_tip)
+                    )
+                    block?.onCancel()
+                    activity.finish()
+                    return@registerForActivityResult
+                }
+                // 与已选项的类型互斥校验
+                if (selectedPaths.isNotEmpty()) {
+                    val existingHasImage = selectedPaths.any { it.isImageFile() }
+                    val existingHasVideo = selectedPaths.any { it.isVideoFile() }
+                    val newHasImage = imageUris.isNotEmpty()
+                    val newHasVideo = videoUris.isNotEmpty()
+                    if ((existingHasImage && newHasVideo) || (existingHasVideo && newHasImage)) {
+                        Utils.showToast(
+                            activity,
+                            activity.getString(R.string.photo_only_one_type_tip)
+                        )
+                        block?.onCancel()
+                        activity.finish()
+                        return@registerForActivityResult
+                    }
+                }
                 activity.lifecycleScope.launch {
                     val mediaFiles = mutableListOf<MediaData>()
                     val filePaths = mutableListOf<String>()
@@ -898,11 +924,27 @@ class GalleryPickerHelper {
      */
     private fun String.toMediaData(): MediaData {
         val mimeType = when {
-            endsWith(".mp4", true) || endsWith(".mov", true) ||
-            endsWith(".avi", true) || endsWith(".mkv", true) ||
-            endsWith(".3gp", true) -> MimeType.VIDEO
+            isVideoFile() -> MimeType.VIDEO
             else -> MimeType.IMAGE
         }
         return MediaData(mimeType, this)
+    }
+
+    /**
+     * 判断文件路径是否为视频文件
+     */
+    private fun String.isVideoFile(): Boolean {
+        return endsWith(".mp4", true) || endsWith(".mov", true) ||
+                endsWith(".avi", true) || endsWith(".mkv", true) ||
+                endsWith(".3gp", true)
+    }
+
+    /**
+     * 判断文件路径是否是图片文件
+     */
+    private fun String.isImageFile(): Boolean {
+        return endsWith(".jpg", true) || endsWith(".jpeg", true) ||
+                endsWith(".png", true) || endsWith(".gif", true) ||
+                endsWith(".bmp", true) || endsWith(".webp", true)
     }
 }

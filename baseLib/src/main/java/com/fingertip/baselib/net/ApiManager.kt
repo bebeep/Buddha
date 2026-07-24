@@ -42,22 +42,12 @@ interface ApiManager {
     ): RequestRsp<PersonData?>
 
     /**
-     * 移除黑名单
+     * 发布动态
      */
     @POST()
-    suspend fun removeHMD(
-        @Url url: String = "",
-        @Query("targetAccountId") targetAccountId: Int,
-        @Query("session") session: String = GlobalConfig.session
-    ): RequestRsp<String?>
+    suspend fun postMoment(
+        @Url url: String = NetProperty.POST_MOMENT,
+        @Body request: RequestBody?
+    ): RequestRsp<String>
 
-    /**
-     * 移除黑名单
-     */
-    @POST()
-    suspend fun upAvatar(
-        @Url url: String = "",
-        @Query("imageUrl") imageUrl: String,
-        @Query("session") session: String = GlobalConfig.session
-    ): RequestRsp<String?>
 }

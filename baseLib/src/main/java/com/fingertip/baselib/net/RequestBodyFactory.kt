@@ -24,10 +24,16 @@ object RequestBodyFactory {
         return GsonUtils.toJson(map).toRequestBody(mediaType)
     }
 
-
+    private fun makeMd5Sign(vararg params: String): String {
+        val builder = StringBuilder()
+        params.forEach {
+            builder.append(it)
+        }
+        return HashUtil.getMD5(builder.toString()).lowercase()
+    }
 
     /**
-     * 登陆参数
+     * 登录参数
      */
     fun loginBody(phoneNumber: String, psw: String): RequestBody {
         val param = HashMap<String, Any>()
@@ -44,13 +50,29 @@ object RequestBodyFactory {
         return buildJsonRequestBody(param)
     }
 
-    private fun makeMd5Sign(vararg params: String): String {
-        val builder = StringBuilder()
-        params.forEach {
-            builder.append(it)
-        }
-        return HashUtil.getMD5(builder.toString()).lowercase()
+
+    /**
+     * 发布动态入参
+     */
+    fun postMomentBody(textContent: String,videoUrl: String,videoCover: String,imageUrl: List<String>,
+                       videoDuration: Int,videoWidth: Int,videoHeight: Int,isAnonymous: Boolean,
+                       location: String,remindAccountIds: List<Int>): RequestBody {
+        val param = HashMap<String, Any>()
+
+        param["textContent"] = textContent
+        param["videoUrl"] = videoUrl
+        param["videoDuration"] = videoDuration
+        param["videoWidth"] = videoWidth
+        param["videoHeight"] = videoHeight
+        param["isAnonymous"] = isAnonymous
+        param["location"] = location
+        param["remindAccountIds"] = remindAccountIds.toTypedArray()
+        param["videoCover"] = videoCover
+        param["imageUrl"] = imageUrl.toTypedArray()
+        return buildJsonRequestBody(param)
     }
+
+
 
     /**
      * 注册

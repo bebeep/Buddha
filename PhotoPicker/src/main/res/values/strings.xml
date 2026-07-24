@@ -2,4 +2,5 @@
 <resources>
     <string name="photo_next_step">Next</string>
     <string name="photo_video_size_tip">Video size exceeds the maximum limit</string>
+    <string name="photo_only_one_type_tip">You can only select photos or videos, not both at the same time</string>
 </resources>
