@@ -75,9 +75,6 @@ class MeFragment : TopPmFragment<MeFragmentVM>(){
     override fun initObserver() {
         super.initObserver()
 
-        mViewModel.setAvatarResult.observe(this) {
-
-        }
     }
     @Subscribe
     fun onMessageEvent(event: MessageEvent) {
