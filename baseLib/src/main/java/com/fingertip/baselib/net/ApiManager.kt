@@ -47,6 +47,7 @@ interface ApiManager {
     @POST()
     suspend fun postMoment(
         @Url url: String = NetProperty.POST_MOMENT,
+        @Query("session") session: String = GlobalConfig.session,
         @Body request: RequestBody?
     ): RequestRsp<String>
 

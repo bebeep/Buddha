@@ -54,7 +54,7 @@ object RequestBodyFactory {
     /**
      * 发布动态入参
      */
-    fun postMomentBody(textContent: String,videoUrl: String,videoCover: String,imageUrl: List<String>,
+    fun postMomentBody(textContent: String,videoUrl: String,videoCover: String,imageUrl: String,
                        videoDuration: Int,videoWidth: Int,videoHeight: Int,isAnonymous: Boolean,
                        location: String,remindAccountIds: List<Int>): RequestBody {
         val param = HashMap<String, Any>()
@@ -66,9 +66,9 @@ object RequestBodyFactory {
         param["videoHeight"] = videoHeight
         param["isAnonymous"] = isAnonymous
         param["location"] = location
-        param["remindAccountIds"] = remindAccountIds.toTypedArray()
+        param["remindAccountIds"] = remindAccountIds
         param["videoCover"] = videoCover
-        param["imageUrl"] = imageUrl.toTypedArray()
+        param["imageUrl"] = imageUrl
         return buildJsonRequestBody(param)
     }
 

@@ -15,8 +15,12 @@ import com.fingertip.baselib.util.ToastUtil
 import com.fingertip.baselib.view.ChoosePicDialog
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.UploadImageAdapter
+import com.fingertip.uilib.adapter.UploadStatus
 import com.fingertip.uilib.databinding.FragmentMomentPostBinding
 import com.fingertip.uilib.viewmodel.MomentVM
+import com.lzlz.toplib.extention.gone
+import com.lzlz.toplib.extention.invisible
+import com.lzlz.toplib.extention.visible
 import com.photo.picker.GalleryPickerHelper
 import com.photo.picker.MediaData
 import com.photo.picker.MediaType
@@ -56,6 +60,9 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
             {
                 ToastUtil.showMessage("Post moment success")
                 pop()
+            }else
+            {
+                binding.tvPost.isEnabled = true
             }
         }
     }
@@ -80,7 +87,7 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
                 binding.flVideo.visibility = View.GONE
             }
             R.id.tv_post -> {
-                loading(false)
+                binding.tvPost.isEnabled = false
                 //上传图片和视频
                 if (videoMedia != null)
                 {
@@ -211,6 +218,26 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
 
     private fun uploadFiles(objectKeys: MutableList<String>,localFilePaths: MutableList<String>)
     {
+        // 标记所有待上传项为 UPLOADING 状态
+        if (videoMedia != null)
+        {
+            binding.vStatusOverlay.visible()
+            binding.pbLoading.visible()
+            binding.tvSuccess.gone()
+            binding.tvFail.gone()
+        }
+        else
+        {
+            val uploadingStatuses = HashMap<Int, UploadStatus>()
+            for (i in imageList.indices) {
+                if (imageList[i] != null && localFilePaths.contains(imageList[i])) {
+                    uploadingStatuses[i] = UploadStatus.UPLOADING
+                }
+            }
+            adapter.setUploadStatuses(uploadingStatuses)
+        }
+
+
         PicUtils.batchUploadToOss(
             GlobalConfig.globalParam?.bucketName?:"",
             objectKeys,
@@ -221,27 +248,133 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
                 }
 
                 override fun onFileProgress(index: Int,objectKey: String,currentSize: Long,totalSize: Long) {
-                    log("MomentPostFragment","onOverallProgress:index:${index},objectKey:${objectKey},  ${currentSize}/${totalSize}")
                 }
 
                 override fun onFileSuccess(index: Int,objectKey: String,objectUrl: String) {
-                    log("MomentPostFragment","onFileSuccess:index:${index},objectKey:${objectKey},objectUrl:${objectUrl}")
+                    log("MomentPostFragment","onFileSuccess:index:${index},objectKey:${objectKey}")
+                    if (videoMedia == null)
+                    {
+                        val localPath = if (index < localFilePaths.size) localFilePaths[index] else null
+                        if (localPath != null) {
+                            val pos = imageList.indexOf(localPath)
+                            if (pos >= 0) {
+                                binding.rcImages.post { adapter.setUploadStatus(pos, UploadStatus.SUCCESS) }
+                            }
+                        }
+                    }
                 }
 
                 override fun onFileFailed(index: Int,objectKey: String,errorMsg: String) {
                     log("MomentPostFragment","onFileFailed:index:${index},objectKey:${objectKey},errorMsg:${errorMsg}")
+                    binding.tvPost.post { binding.tvPost.isEnabled = true }
+                    if (videoMedia != null)
+                    {
+                        binding.vStatusOverlay.post {
+                            binding.vStatusOverlay.gone()
+                            binding.pbLoading.gone()
+                            binding.tvSuccess.gone()
+                            binding.tvFail.visible()
+                        }
+                    }
+                    else
+                    {
+                        val localPath = if (index < localFilePaths.size) localFilePaths[index] else null
+                        if (localPath != null) {
+                            val pos = imageList.indexOf(localPath)
+                            if (pos >= 0) {
+                                binding.rcImages.post { adapter.setUploadStatus(pos, UploadStatus.FAIL)}
+                            }
+                        }
+                    }
+
                 }
 
                 override fun onOverallProgress(completedCount: Int,totalCount: Int) {
-                    log("MomentPostFragment","onOverallProgress  ${completedCount}/${totalCount}")
                 }
 
                 override fun onBatchComplete(results: List<PicUtils.BatchFileResult>) {
                     log("MomentPostFragment","onBatchComplete,results：  ${GsonUtils.toJson(results)}")
+                    //全部成功
+                    if (videoMedia != null)
+                    {
+                        binding.vStatusOverlay.post {
+                            binding.vStatusOverlay.gone()
+                            binding.pbLoading.gone()
+                            binding.tvSuccess.visible()
+                            binding.tvFail.gone()
+                        }
+
+                        val videoUrl = results.find { it.objectKey == videoMedia?.mediaObjectKey }?.objectUrl
+                        val videoCover = results.find { it.objectKey == videoMedia?.thumbObjectKey }?.objectUrl
+
+                        if (videoUrl != null && videoCover != null)
+                        {
+                            mViewModel.postMoment(textContent = binding.etMomentContent.text.toString().trim(),
+                                videoUrl = videoUrl,
+                                videoCover = videoCover,
+                                videoDuration = videoMedia?.duration?:0,
+                                videoWidth = videoMedia?.width?:0,
+                                videoHeight = videoMedia?.height?:0,
+                                isAnonymous = binding.switchHideName.isChecked,
+                                location = binding.tvLocate.text.toString().trim(),
+                                remindAccountIds = mutableListOf(1,2,3))
+                        }
+                        else
+                        {
+                            binding.vStatusOverlay.post {
+                                binding.tvPost.isEnabled = true
+                                binding.vStatusOverlay.visible()
+                                binding.pbLoading.gone()
+                                binding.tvSuccess.gone()
+                                binding.tvFail.visible()
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (results.isNotEmpty() && results.size == photoList.size)
+                        {
+                            val imageUrl = results.mapNotNull { it.objectUrl}.joinToString (",")
+                            mViewModel.postMoment(textContent = binding.etMomentContent.text.toString().trim(),
+                                imageUrl = imageUrl,
+                                isAnonymous = binding.switchHideName.isChecked,
+                                location = binding.tvLocate.text.toString().trim(),
+                                remindAccountIds = mutableListOf(1,2,3))
+                        }
+                        else
+                        {
+                            binding.vStatusOverlay.post {
+                                binding.tvPost.isEnabled = true
+                                binding.vStatusOverlay.visible()
+                                binding.pbLoading.gone()
+                                binding.tvSuccess.gone()
+                                binding.tvFail.visible()
+                            }
+                        }
+                    }
                 }
 
                 override fun onAllFailed(errorMsg: String) {
                     log("MomentPostFragment","onAllFailed：${errorMsg}")
+                    // 全部失败
+                    binding.tvPost.post { binding.tvPost.isEnabled = true }
+                    if (videoMedia != null)
+                    {
+                        binding.vStatusOverlay.post {
+                            binding.vStatusOverlay.visible()
+                            binding.pbLoading.gone()
+                            binding.tvSuccess.gone()
+                            binding.tvFail.visible()
+                        }
+                    }
+                    else
+                    {
+                        for (i in imageList.indices) {
+                            if (localFilePaths.contains(imageList[i])) {
+                                binding.rcImages.post { adapter.setUploadStatus(i, UploadStatus.FAIL) }
+                            }
+                        }
+                    }
                 }
             }
         )

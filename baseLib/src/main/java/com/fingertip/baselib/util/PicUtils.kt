@@ -278,7 +278,7 @@ object  PicUtils {
         client.asyncPutObject(putRequest, object : OSSCompletedCallback<PutObjectRequest, PutObjectResult> {
             override fun onSuccess(request: PutObjectRequest, result: PutObjectResult) {
                 // 拼接文件访问 URL
-                val url = "${ossEndpoint}/${bucketName}/${objectKey}"
+                val url = ossEndpoint.replace("://", "://${bucketName}.").let { "$it/${objectKey}" }
                 callback.onSuccess(url)
             }
 
@@ -347,7 +347,7 @@ object  PicUtils {
 
             client.asyncPutObject(putRequest, object : OSSCompletedCallback<PutObjectRequest, PutObjectResult> {
                 override fun onSuccess(request: PutObjectRequest, result: PutObjectResult) {
-                    val url = "${ossEndpoint}/${bucketName}/${objectKey}"
+                    val url = ossEndpoint.replace("://", "://${bucketName}.").let { "$it/${objectKey}" }
                     results[index] = BatchFileResult(objectKey, localFilePath, true, url, null)
                     callback.onFileSuccess(index, objectKey, url)
                     val completed = completedCount.incrementAndGet()
@@ -383,11 +383,11 @@ object  PicUtils {
      * 批量上传时单个文件的上传结果
      */
     data class BatchFileResult(
-        val objectKey: String,
-        val localFilePath: String,
-        val success: Boolean,
-        val objectUrl: String?,
-        val errorMsg: String?
+        val objectKey: String, //文件Key
+        val localFilePath: String,  //本地文件路径
+        val success: Boolean, //上传是否成功
+        val objectUrl: String?, //上传成功后的URL
+        val errorMsg: String? //上传失败的错误信息
     )
 
     /**

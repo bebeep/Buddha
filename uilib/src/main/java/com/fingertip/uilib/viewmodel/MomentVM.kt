@@ -13,7 +13,7 @@ class MomentVM:TopVMImp() {
     fun postMoment(textContent: String = "",
                    videoUrl: String = "",
                    videoCover: String = "",
-                   imageUrl: List<String> = emptyList(),
+                   imageUrl: String = "",
                    videoDuration: Int = 0,
                    videoWidth: Int = 0,
                    videoHeight: Int = 0,
