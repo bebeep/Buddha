@@ -85,4 +85,16 @@ object NetProperty {
      */
     var POST_MOMENT                     = "moment/postMoment"
 
+
+    /**
+     * 获取动态列表-HOT
+     */
+    var GET_MOMENT_LIST_HOT                     = "moment/getMomentListHot"
+
+
+    /**
+     * 获取动态列表-FOLLOWED
+     */
+    var GET_MOMENT_LIST_FOLLOWED                     = "moment/getMomentListFollowed"
+
 }

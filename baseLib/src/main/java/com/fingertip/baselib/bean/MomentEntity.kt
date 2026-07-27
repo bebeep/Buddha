@@ -6,30 +6,74 @@ package com.fingertip.baselib.bean
  */
 class MomentEntity: TopData() {
 
-    var momentId = -1                // 动态Id
-    var avatar = ""                // 头像
-    var lineStatus = 0        // 线上状态
-    var nickName = ""        // 昵称
-    var gender = ""                // 性别
-    var age = 18                        // 年龄
-    var accountId= 0                // 账号Id
-    var roleType = 0                // 角色类型（1：用户，2：主播）
-    var tags = ArrayList<Int>()// 标签 （1：NEW，2：HOT，3：官方）
-    var momentType = 1        // 动态类型（1：文字，2：图片，3：视频）
-    var content = ""                // 文字
-    var images = ArrayList<String?>() // 图片
-    var imageWidths = ArrayList<Int>() // 图片宽
-    var imageHeights = ArrayList<Int>() // 图片高
-    var video = ""             // 视频
-    var videoCover = ""               // 视频封面
-    var videoWidth = 0                // 视频宽
-    var videoHeight = 0        // 视频高
-    var likes = 0                // 点赞数
-    var commments = 0        // 评论数
-    var isTop = false                // 是否置顶
-    var isLiked = false                // 是否已点赞
-    var isFollowed = false        // 是否已关注
-    var createTime = 0        // 发布时间（从UTC时区 2017-01-01 00:00:00 开始到现在的秒数）
+    //"动态Id"
+    var momentId = 0
+
+    //"发布者账号id"
+    var postAccountId = 0
+
+    //"发布者昵称"
+    var postUserName: String? = null
+
+    //"发布者头像"
+    var postAvatar: String? = null
+
+    //"发布者等级"
+    var userLevel = 0
+
+    //"发布者角色类型：1：普通用户 2：认证大师"
+    var roleType = 0
+
+    //"动态类型（1：文本 2：视频 3 图片 4 语音）"
+    var momentType = 0
+
+    //"是否置顶"
+    var isTop = false
+
+    //"是否匿名"
+    var isAnonymous = false
+
+    //"文本内容"
+    var textContent: String? = null
+
+    //"视频资源"
+    var videoUrl: String? = null
+
+    //"视频时长"
+    var videoDuration = 0
+
+    //"视频封面"
+    var videoCover: String? = null
+
+    //"视频宽"
+    var videoWidth = 0
+
+    //"视频高"
+    var videoHeight = 0
+
+    //"图片地址合集"
+    var imageUrl: List<String?> = ArrayList()
+
+    //"点赞数"
+    var likeCount = 0
+
+    //"浏览量"
+    var viewCount = 0
+
+    //"评论数"
+    var commentCount = 0
+
+    //"分享次数"
+    var shareCount = 0
+
+    //"创建时间"
+    var createDate: String? = ""
+
+    //"是否已关注"
+    var isFollowed = false
+
+    //"是否已点赞"
+    var isLiked = false
 
 
 

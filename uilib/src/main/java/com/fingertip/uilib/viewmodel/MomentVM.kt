@@ -1,6 +1,7 @@
 package com.fingertip.uilib.viewmodel
 
 import androidx.lifecycle.MutableLiveData
+import com.fingertip.baselib.bean.MomentEntity
 import com.fingertip.baselib.net.NetManager
 import com.fingertip.baselib.net.RequestBodyFactory
 import com.fingertip.baselib.viewmodel.RequestResult
@@ -9,6 +10,7 @@ import com.fingertip.baselib.viewmodel.TopVMImp
 class MomentVM:TopVMImp() {
 
     val postMomentResult = MutableLiveData<RequestResult<String>>()
+    val momentListResult = MutableLiveData<RequestResult<List<MomentEntity>>>()
 
     fun postMoment(textContent: String = "",
                    videoUrl: String = "",
@@ -28,6 +30,16 @@ class MomentVM:TopVMImp() {
             postMomentResult.value = successResult(it)
         }, {
             postMomentResult.value = failResult(it.errorCode)
+        }, showLoading = false, toastError = true)
+    }
+
+    fun getMomentList(pageCount: Int) {
+        call({
+            NetManager.getApi().getMomentListHot(pageCount = pageCount)
+        }, {
+            momentListResult.value = successResult(it)
+        }, {
+            momentListResult.value = failResult(it.errorCode)
         }, showLoading = false, toastError = true)
     }
 

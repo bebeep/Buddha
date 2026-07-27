@@ -1,5 +1,6 @@
 package com.fingertip.baselib.net
 
+import com.fingertip.baselib.bean.MomentEntity
 import com.fingertip.baselib.bean.OssConfig
 import com.fingertip.baselib.bean.PersonData
 import com.fingertip.baselib.bean.RequestRsp
@@ -51,4 +52,23 @@ interface ApiManager {
         @Body request: RequestBody?
     ): RequestRsp<String>
 
+    /**
+     * 动态列表-HOT
+     */
+    @GET()
+    suspend fun getMomentListHot(
+        @Url url: String = NetProperty.GET_MOMENT_LIST_HOT,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("pageCount") pageCount: Int = 0,
+    ): RequestRsp<List<MomentEntity>>
+
+    /**
+     * 动态列表-FOLLOWED
+     */
+    @GET()
+    suspend fun getMomentListFollowed(
+        @Url url: String = NetProperty.GET_MOMENT_LIST_FOLLOWED,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("pageCount") pageCount: Int = 0,
+    ): RequestRsp<List<MomentEntity>>
 }

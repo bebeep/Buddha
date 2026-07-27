@@ -44,40 +44,7 @@ class SearchFragment:TopPmFragment<MainVM>() {
 
 
 
-        searchMomentAdapter.initData(listOf(MomentEntity().apply {
-            momentType = 2
-            images = ArrayList<String?>().apply {
-                add("")
-            }
-            imageWidths = ArrayList<Int>().apply {
-                add(300)
-            }
-            imageHeights = ArrayList<Int>().apply {
-                add(300)
-            }
-        },MomentEntity().apply {
-            momentType = 2
-            images = ArrayList<String?>().apply {
-                add("")
-            }
-            imageWidths = ArrayList<Int>().apply {
-                add(300)
-            }
-            imageHeights = ArrayList<Int>().apply {
-                add(300)
-            }
-        },MomentEntity().apply {
-            momentType = 2
-            images = ArrayList<String?>().apply {
-                add("")
-            }
-            imageWidths = ArrayList<Int>().apply {
-                add(300)
-            }
-            imageHeights = ArrayList<Int>().apply {
-                add(300)
-            }
-        }))
+        searchMomentAdapter.initData(listOf(MomentEntity(), MomentEntity(), MomentEntity()))
 
 
         searchUserAdapter.initData(listOf("","",""))

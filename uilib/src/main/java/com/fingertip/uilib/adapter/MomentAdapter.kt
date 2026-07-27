@@ -18,23 +18,21 @@ class MomentAdapter(context: Context, val onItemClick: (entity: MomentEntity) ->
         val binding = holder.getBinding<ItemMomentBinding>()
         get(position)?.let {
             binding.vDivider.visibility = if (position == mlist.size - 1) View.GONE else View.VISIBLE
-            binding.rvPhotos.visibility = if (it.momentType == 2 && it.images.size > 0) View.VISIBLE else View.GONE
-            if (it.momentType == 2 && it.images.size > 0) {//显示图片集合
-                val colums = when (it.images.size) {
+            binding.rvPhotos.visibility = if (it.momentType == 2) View.VISIBLE else View.GONE
+            if (it.momentType == 2) {//显示图片集合
+                val colums = when (it.imageUrl.size) {
                     1 -> 1 //单图
                     4 -> 2 //两列
                     else -> 3 //三列
                 }
                 binding.rvPhotos.layoutManager = GridLayoutManager(context, colums)
-                val adapter = MomentImageAdapter(context, it.imageWidths[0], it.imageHeights[0]) { pos ->
-                    val imageList = ArrayList<String?>()
-                    for (image in it.images) if (!image.isNullOrEmpty()) imageList.add(image)
-                    bigImageDialog = BigImageDialog(context, imageList, pos)
+                val adapter = MomentImageAdapter(context) { pos ->
+                    bigImageDialog = BigImageDialog(context, it.imageUrl, pos)
                     bigImageDialog?.show()
                 }
 
                 binding.rvPhotos.adapter = adapter
-                adapter.initData(it.images)
+                adapter.initData(it.imageUrl)
 
                 holder.itemView.setOnClickListener { _ ->
                     onItemClick(it)

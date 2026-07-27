@@ -33,7 +33,7 @@ fun ArrayList<MomentEntity>?.refreshComment( momentId:Int,commentCount:Int):Int{
     this?.let {
         for (moment in it.withIndex()) {
             if (moment.value.momentId == momentId) {
-                moment.value.commments = commentCount
+                moment.value.commentCount = commentCount
                 return moment.index
             }
         }
