@@ -24,7 +24,7 @@ class MomentEntity: TopData() {
     //"发布者角色类型：1：普通用户 2：认证大师"
     var roleType = 0
 
-    //"动态类型（1：文本 2：视频 3 图片 4 语音）"
+    //"动态类型（1：文本 2：视频 3 图片）"
     var momentType = 0
 
     //"是否置顶"
@@ -74,7 +74,6 @@ class MomentEntity: TopData() {
 
     //"是否已点赞"
     var isLiked = false
-
 
 
 }

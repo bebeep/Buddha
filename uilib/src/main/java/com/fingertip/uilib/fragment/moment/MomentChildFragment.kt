@@ -2,6 +2,7 @@ package com.fingertip.uilib.fragment.moment
 
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.fingertip.baselib.bean.MomentEntity
 import com.fingertip.baselib.log
 import com.fingertip.baselib.top.TopFragment
@@ -11,12 +12,16 @@ import com.fingertip.uilib.adapter.MomentAdapter
 import com.fingertip.uilib.databinding.FragmentMomentChildBinding
 import com.fingertip.uilib.fragment.MainFragment
 import com.fingertip.uilib.viewmodel.MomentVM
+import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack
+import com.shuyu.gsyvideoplayer.utils.GSYVideoHelper
 
 class MomentChildFragment : TopPmFragment<MomentVM>(){
     override fun layoutId(): Int = R.layout.fragment_moment_child
 
     override fun initVM() = MomentVM()
     private val binding get() = mBinding as FragmentMomentChildBinding
+
+    lateinit var videoHelper: GSYVideoHelper
 
     companion object {
         const val FOLLOW = "FOLLOW" //关注
@@ -38,7 +43,26 @@ class MomentChildFragment : TopPmFragment<MomentVM>(){
     var typeString = MOMENT
     override fun initShiTu() {
         typeString = arguments?.getString(TYPE_STRING, MOMENT) ?: MOMENT
+        videoHelper = GSYVideoHelper(requireContext())
+        val builder = GSYVideoHelper.GSYVideoHelperBuilder()
+        builder.setVideoAllCallBack(object : GSYSampleCallBack() {
+            override fun onPrepared(url: String?, vararg objects: Any?) {
+                super.onPrepared(url, *objects)
+            }
+
+            override fun onAutoComplete(url: String?, vararg objects: Any?) {
+                super.onAutoComplete(url, *objects)
+
+            }
+
+            override fun onPlayError(url: String?, vararg objects: Any?) {
+                super.onPlayError(url, *objects)
+
+            }
+        })
+        videoHelper.setGsyVideoOptionBuilder(builder)
         initAdapter()
+        mViewModel.getMomentList(pageCount,if (typeString==FOLLOW) 1 else 0)
     }
 
 
@@ -50,9 +74,21 @@ class MomentChildFragment : TopPmFragment<MomentVM>(){
         }
         binding.recyclerview.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerview.adapter = adapter
-
-        mViewModel.getMomentList(pageCount)
         adapter?.initData(list)
+
+
+        binding.recyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener()
+        {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (newState == RecyclerView.SCROLL_STATE_IDLE)
+                {
+                    val firstVisibleItemPosition = (binding.recyclerview.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+                    val lastVisibleItemPosition = (binding.recyclerview.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+
+                }
+            }
+        })
     }
 
 

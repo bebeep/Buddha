@@ -2,6 +2,7 @@ package com.fingertip.uilib.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import com.fingertip.baselib.bean.MomentEntity
+import com.fingertip.baselib.log
 import com.fingertip.baselib.net.NetManager
 import com.fingertip.baselib.net.RequestBodyFactory
 import com.fingertip.baselib.viewmodel.RequestResult
@@ -33,9 +34,12 @@ class MomentVM:TopVMImp() {
         }, showLoading = false, toastError = true)
     }
 
-    fun getMomentList(pageCount: Int) {
+    fun getMomentList(pageCount: Int,momentType: Int) {
         call({
-            NetManager.getApi().getMomentListHot(pageCount = pageCount)
+            when(momentType){
+                1 -> NetManager.getApi().getMomentListHot(pageCount = pageCount)
+                else -> NetManager.getApi().getMomentListFollowed(pageCount = pageCount)
+            }
         }, {
             momentListResult.value = successResult(it)
         }, {
