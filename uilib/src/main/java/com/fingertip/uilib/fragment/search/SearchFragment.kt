@@ -75,9 +75,13 @@ class SearchFragment:TopPmFragment<MainVM>() {
         }
 
 
-        searchMomentAdapter = MomentAdapter(requireContext()){
+        searchMomentAdapter = MomentAdapter(requireContext(),
+            onItemClick = {
 
-        }
+            }
+        )
+
+
         binding.rvSearchMoments.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = searchMomentAdapter

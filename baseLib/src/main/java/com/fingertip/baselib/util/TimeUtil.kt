@@ -42,16 +42,22 @@ object TimeUtil {
         return ""
     }
 
+    fun dateFormateTime(dateStr: String?):String{
+        return dateFormatTime(getTime(dateStr))
+    }
+
     /**
      * 日期格式化
      * @return
      */
-    fun dateFormatTime(date: Date): String {
+    fun dateFormatTime(date: Date?): String {
+        if (date == null)
+            return ""
         //SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         //转换为日期
         val time = date.time
         return if (isThisYear(date)) { //今年
-            val simpleDateFormat = SimpleDateFormat("HH:mm", Locale.ENGLISH)
+            val simpleDateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
             if (isToday(date)) { //今天
                 val minute = minutesAgo(time)
                 if (minute < 60) { //1小时之内
@@ -110,8 +116,9 @@ object TimeUtil {
         return getTime(getDataMy(time))
     }
 
-    private fun getTime(talktime: String): Date? {
-        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH)
+    private fun getTime(talktime: String?): Date? {
+        if (talktime.isNullOrEmpty()) return null
+        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
         var date_util: Date? = null //转换为util.date
         val a: Long? = null
         val b: Long? = null

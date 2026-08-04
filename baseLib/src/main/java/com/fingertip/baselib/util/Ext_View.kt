@@ -1,14 +1,20 @@
 package com.lzlz.toplib.extention
 
+import android.graphics.Color
 import android.os.Build
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
+import android.widget.TextView
 import androidx.annotation.Px
 import com.blankj.utilcode.util.SizeUtils
+import androidx.core.graphics.toColorInt
 
 
 /**
@@ -221,3 +227,100 @@ fun Int.toPx() = SizeUtils.dp2px(this.toFloat())
 fun Int.toDp() = SizeUtils.px2dp(this.toFloat())
 fun Float.toPx() = SizeUtils.dp2px( this)
 fun Float.toSp()=SizeUtils.sp2px( this)
+
+/**
+ * 为 TextView 设置文本，并指定某一段文字的颜色
+ * @param fullText 完整文本
+ * @param target 需要变色的那一段文字（第一次出现）
+ * @param color 颜色值（ColorInt 或 ColorRes）
+ * @param ignoreCase 是否忽略大小写
+ */
+fun TextView.setColoredText(
+    fullText: CharSequence,
+    target: String,
+    color: Int,
+    ignoreCase: Boolean = false
+) {
+    if (target.isEmpty()) {
+        text = fullText
+        return
+    }
+
+    val spannable = SpannableStringBuilder(fullText)
+    val textStr = fullText.toString()
+    val searchStr = if (ignoreCase) target.lowercase() else target
+    val sourceStr = if (ignoreCase) textStr.lowercase() else textStr
+
+    val startIndex = sourceStr.indexOf(searchStr)
+    if (startIndex != -1) {
+        val endIndex = startIndex + target.length
+        spannable.setSpan(
+            ForegroundColorSpan(color),
+            startIndex,
+            endIndex,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE // 不延伸影响新插入的字符
+        )
+    }
+    text = spannable
+}
+
+
+/**
+ * 新增方法：为 TextView 设置文本，并指定某一段文字的颜色（颜色为 String 类型，如 "#FF0000"）
+ */
+fun TextView.setColoredText(
+    fullText: CharSequence,
+    target: String,
+    colorString: String,
+    ignoreCase: Boolean = false
+) {
+    // 如果目标文本为空，或颜色字符串为空，直接显示原文本避免异常
+    if (target.isEmpty()) {
+        text = fullText
+        return
+    }
+
+    val color = try {
+        colorString.toColorInt() // 支持 "#RRGGBB"、"#AARRGGBB" 甚至 "red" 等
+    } catch (e: IllegalArgumentException) {
+        // 解析失败时，直接显示原文本（不染色），避免程序崩溃
+        text = fullText
+        return
+    }
+
+    // 复用上面 Int 版本的逻辑
+    setColoredText(fullText, target, color, ignoreCase)
+}
+
+/**
+ * 如果同一段文字要出现多次，全部变色（扩展重载）
+ */
+fun TextView.setColoredTextAllOccurrences(
+    fullText: CharSequence,
+    target: String,
+    color: Int,
+    ignoreCase: Boolean = false
+) {
+    if (target.isEmpty()) {
+        text = fullText
+        return
+    }
+
+    val spannable = SpannableStringBuilder(fullText)
+    val textStr = fullText.toString()
+    val searchStr = if (ignoreCase) target.lowercase() else target
+    val sourceStr = if (ignoreCase) textStr.lowercase() else textStr
+
+    var startIndex = sourceStr.indexOf(searchStr)
+    while (startIndex != -1) {
+        val endIndex = startIndex + target.length
+        spannable.setSpan(
+            ForegroundColorSpan(color),
+            startIndex,
+            endIndex,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        startIndex = sourceStr.indexOf(searchStr, startIndex + target.length)
+    }
+    text = spannable
+}

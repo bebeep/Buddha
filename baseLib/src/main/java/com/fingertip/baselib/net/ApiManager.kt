@@ -1,5 +1,6 @@
 package com.fingertip.baselib.net
 
+import com.fingertip.baselib.bean.CommentEntity
 import com.fingertip.baselib.bean.MomentEntity
 import com.fingertip.baselib.bean.OssConfig
 import com.fingertip.baselib.bean.PersonData
@@ -71,4 +72,36 @@ interface ApiManager {
         @Query("session") session: String = GlobalConfig.session,
         @Query("pageCount") pageCount: Int = 0,
     ): RequestRsp<List<MomentEntity>>
+
+    /**
+     * 动态详情
+     */
+    @GET()
+    suspend fun getMomentDetails(
+        @Url url: String = NetProperty.GET_MOMENT_DETAILS,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("momentId") momentId: Int = 0,
+    ): RequestRsp<MomentEntity>
+
+    /**
+     * 动态详情
+     */
+    @GET()
+    suspend fun getCommentByMomentId(
+        @Url url: String = NetProperty.GET_MOMENT_COMMENT_LIST,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("momentId") momentId: Int = 0,
+        @Query("pageCount") pageCount: Int = 0,
+    ): RequestRsp<List<CommentEntity>>
+
+    /**
+     * 动态详情
+     */
+    @GET()
+    suspend fun getCommentDetails(
+        @Url url: String = NetProperty.GET_MOMENT_COMMENT_DETAILS,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("commentId") commentId: Int = 0,
+        @Query("pageCount") pageCount: Int = 0,
+    ): RequestRsp<List<CommentEntity>>
 }

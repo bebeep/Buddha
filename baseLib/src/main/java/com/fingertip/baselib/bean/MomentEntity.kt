@@ -75,5 +75,8 @@ class MomentEntity: TopData() {
     //"是否已点赞"
     var isLiked = false
 
+    //"发布动态的位置"
+    var postAddress: String? = ""
+
 
 }

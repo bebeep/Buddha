@@ -4,7 +4,6 @@ import android.app.Activity
 import android.app.Application
 import com.blankj.utilcode.util.Utils
 import com.fingertip.baselib.bean.SensitiveWordsBean
-import iknow.android.utils.BaseUtils
 import java.util.HashMap
 
 open class TopApplication : Application() {
@@ -12,7 +11,6 @@ open class TopApplication : Application() {
         super.onCreate()
         instance = this
         Utils.init(instance)
-        BaseUtils.init(this)
     }
 
     companion object {

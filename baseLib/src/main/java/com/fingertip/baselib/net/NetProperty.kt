@@ -97,4 +97,22 @@ object NetProperty {
      */
     var GET_MOMENT_LIST_FOLLOWED                     = "moment/getMomentListFollowed"
 
+
+    /**
+     * 获取动态详情
+     */
+    var GET_MOMENT_DETAILS                     = "moment/getMomentDetails"
+
+
+    /**
+     * 获取评论列表
+     */
+    var GET_MOMENT_COMMENT_LIST                    = "moment/getCommentByMomentId"
+
+
+    /**
+     * 获取评论详情
+     */
+    var GET_MOMENT_COMMENT_DETAILS                    = "moment/getCommentDetails"
+
 }

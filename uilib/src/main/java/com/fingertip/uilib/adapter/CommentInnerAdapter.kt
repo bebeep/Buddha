@@ -8,6 +8,9 @@ import com.fingertip.baselib.util.TimeUtil
 import com.fingertip.baselib.util.clearFirstLine
 import com.fingertip.baselib.util.loadHead
 import com.fingertip.uilib.R
+import com.fingertip.uilib.databinding.ItemCommentBinding
+import com.fingertip.uilib.databinding.ItemCommentInnerBinding
+import com.lzlz.toplib.extention.setColoredText
 
 /**
  * 评论
@@ -18,19 +21,26 @@ class CommentInnerAdapter(context: Context, val onItemClick:(position:Int,longCl
     override fun initLayoutId(viewType: Int) = R.layout.item_comment_inner
 
     override fun onBindViewHolder(holder: TopRcViewHolder, position: Int) {
+        val binding = holder.getBinding<ItemCommentInnerBinding>()
         get(position)?.let{
 
-            holder.itemView.findViewById<android.widget.ImageView>(R.id.iv_inner_head).loadHead(it.senderAvatar)
-            holder.itemView.findViewById<android.widget.TextView>(R.id.tv_inner_nickname).text = it.senderNickname
-            holder.itemView.findViewById<android.widget.TextView>(R.id.tv_inner_comment).text = it.content.clearFirstLine()
-            holder.itemView.findViewById<android.widget.TextView>(R.id.tv_inner_date).text = TimeUtil.dateFormatTime(TimeUtil.getTimeUtcDate(it.commentTime))
+            binding.ivInnerHead.loadHead(it.senderAvatar)
+            binding.tvInnerNickname.text = it.senderNickName
+            binding.tvInnerComment.text = it.textContent.clearFirstLine()
+            binding.tvInnerDate.text = TimeUtil.dateFormateTime(it.commentDate)
 
-            holder.itemView.findViewById<android.widget.ImageView>(R.id.iv_inner_head).setOnClickListener { _->   }
-            holder.itemView.findViewById<android.widget.TextView>(R.id.tv_inner_nickname).setOnClickListener { _->   }
+            if (!it.replyNickName.isNullOrEmpty())
+            {
+                binding.tvInnerComment.setColoredText("回复 ${it.replyNickName}: ${it.textContent.clearFirstLine()}", "${it.replyNickName}", "#33000000")
+
+            }
+
+            binding.ivInnerHead.setOnClickListener { view ->  onItemClick(position,position,view.id) }
+            binding.tvInnerNickname.setOnClickListener { view ->  onItemClick(position,position,view.id) }
 
 
-            holder.itemView.findViewById<View>(R.id.cl_inner_parent).setOnClickListener { view-> onItemClick(position,-1,view.id) }
-            holder.itemView.findViewById<View>(R.id.cl_inner_parent).setOnLongClickListener { view->
+            binding.clInnerParent.setOnClickListener { view-> onItemClick(position,-1,view.id) }
+            binding.clInnerParent.setOnLongClickListener { view->
                 onItemClick(position,position,view.id)
                 return@setOnLongClickListener true
             }

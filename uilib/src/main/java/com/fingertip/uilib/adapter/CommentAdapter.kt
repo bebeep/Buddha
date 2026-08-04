@@ -9,6 +9,10 @@ import com.fingertip.baselib.util.TimeUtil
 import com.fingertip.baselib.util.clearFirstLine
 import com.fingertip.baselib.util.loadImg
 import com.fingertip.uilib.R
+import com.fingertip.uilib.databinding.ItemCommentBinding
+import com.lzlz.toplib.extention.gone
+import com.lzlz.toplib.extention.invisible
+import com.lzlz.toplib.extention.visible
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -18,44 +22,74 @@ import kotlin.collections.HashMap
 class CommentAdapter(context: Context, val onItemClick:(position:Int,innerPosition:Int,longClickPosition:Int, viewId:Int)->Unit):
     TopRcAdapter<CommentEntity, TopRcAdapter.TopRcViewHolder>(context) {
 
-    //显示的评论回复的条数
-    val showCountMap = HashMap<String,Int>()
+    val maxChildCommentCount = 3
 
     override fun initLayoutId(viewType: Int) = R.layout.item_comment
 
     override fun onBindViewHolder(holder: TopRcViewHolder, position: Int) {
+        val binding = holder.getBinding<ItemCommentBinding>()
         get(position)?.let{
-            if (showCountMap["COMMENT${it.commentId}"] == null)showCountMap["COMMENT${it.commentId}"] = 2
-            var showCount = showCountMap["COMMENT${it.commentId}"]?:2
-            holder.itemView.findViewById<android.widget.ImageView>(R.id.iv_head).loadImg(it.senderAvatar, width = 60, height = 60)
-            holder.itemView.findViewById<android.widget.TextView>(R.id.tv_nickname).text = it.senderNickname
-            holder.itemView.findViewById<android.widget.TextView>(R.id.tv_comment).text = it.content.clearFirstLine()
-            holder.itemView.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recyclerview).layoutManager = LinearLayoutManager(context)
-            holder.itemView.findViewById<android.widget.TextView>(R.id.tv_more).visibility = if (it.expandComments.size > showCount) View.VISIBLE else View.GONE
+            binding.tvMore.visibility = if ((it.childComment?.size?:0)>maxChildCommentCount) View.VISIBLE else View.GONE
+
+            binding.ivHead.loadImg(it.senderAvatar, width = 60, height = 60)
+            binding.tvLevel.text = "lv.${it.senderLevel}·${TimeUtil.dateFormateTime(it.commentDate)}"
+            binding.tvNickname.text = it.senderNickName
+            binding.tvComment.text = it.textContent.clearFirstLine()
+            binding.tvMore.text = "查看更多${(it.childComment?.size?:0) - maxChildCommentCount}条回复"
+            binding.tvFold.gone()
+
+            it.childComment?.let { childComment ->
+                binding.recyclerview.layoutManager = LinearLayoutManager(context)
 
 
-            val adapter = CommentInnerAdapter(context){innerPosition,longClickPosition, viewId ->
-                onItemClick(position, innerPosition,longClickPosition, viewId)
+                val adapter = CommentInnerAdapter(context){innerPosition,longClickPosition, viewId ->
+                    onItemClick(position, innerPosition,longClickPosition, viewId)
+                }
+                binding.recyclerview.adapter = adapter
+                if (childComment.size > 3)
+                {
+                    adapter.initData(childComment.subList(0,3))
+                }
+                else
+                {
+                    adapter.initData(childComment)
+                }
             }
-            holder.itemView.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recyclerview).adapter = adapter
-            if (it.expandComments.size > showCount) adapter.initData(it.expandComments.subList(0,showCount))
-            else adapter.initData(it.expandComments)
 
-            holder.itemView.findViewById<android.widget.ImageView>(R.id.iv_head).setOnClickListener { _->   }
-            holder.itemView.findViewById<android.widget.TextView>(R.id.tv_nickname).setOnClickListener { _->    }
-            holder.itemView.findViewById<View>(R.id.cl_parent).setOnClickListener { view->onItemClick(position,-1,-1,view.id) }
-            holder.itemView.findViewById<View>(R.id.cl_parent).setOnLongClickListener {view->
+            binding.ivHead.setOnClickListener { view->onItemClick(position,-1,-1,view.id) }
+            binding.tvNickname.setOnClickListener { view->onItemClick(position,-1,-1,view.id) }
+            binding.clParent.setOnClickListener { view->onItemClick(position,-1,-1,view.id) }
+            binding.clParent.setOnLongClickListener {view->
                 onItemClick(position,-1,position,view.id)
                 return@setOnLongClickListener true
             }
-            holder.itemView.findViewById<android.widget.TextView>(R.id.tv_more).setOnClickListener { _ ->
-                if (showCount < it.expandComments.size){
-                    showCount += 5
-                    showCountMap["COMMENT${it.commentId}"] = showCount
-                    if (showCount > it.expandComments.size) showCount = it.expandComments.size
-                    adapter.initData(it.expandComments.subList(0,showCount))
+            binding.tvMore.setOnClickListener { view ->
+                if ((it.childComment?.size ?: 0) >= it.childCommentCount){ //直接全部显示
+                    val adapter = binding.recyclerview.adapter as CommentInnerAdapter
+                    adapter.initData(it.childComment)
+                    binding.tvMore.invisible()
+                    binding.tvFold.visible()
                 }
-                holder.itemView.findViewById<android.widget.TextView>(R.id.tv_more).visibility = if (it.expandComments.size > showCount) View.VISIBLE else View.GONE
+                else //还有额外评论,需要弹窗分页显示
+                {
+                    onItemClick(position,-1,-1,view.id)
+                }
+            }
+
+            binding.tvFold.setOnClickListener { _ ->
+                binding.tvFold.gone()
+                binding.tvMore.visibility = if ((it.childComment?.size?:0)>maxChildCommentCount) View.VISIBLE else View.GONE
+                val adapter = binding.recyclerview.adapter as CommentInnerAdapter
+                it.childComment?.let { childComment->
+                    if (childComment.size > 3)
+                    {
+                        adapter.initData(childComment.subList(0,3))
+                    }
+                    else
+                    {
+                        adapter.initData(childComment)
+                    }
+                }
             }
         }
     }

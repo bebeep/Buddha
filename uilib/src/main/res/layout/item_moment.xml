@@ -51,6 +51,7 @@
         android:textSize="12sp"
         android:layout_marginEnd="24dp"
         android:textColor="@color/tv_select"
+
         android:background="@drawable/bg_follow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_name"
@@ -142,6 +143,7 @@
         android:layout_width="0dp"
         android:textColor="#C02C1900"
         android:layout_marginEnd="24dp"
+        android:layout_marginTop="10dp"
         android:textSize="12sp"
         android:text="这是一条热评，最多两行是这样的…这是一条热评，最多两行是这样的…最多两行是这样的…"
         android:layout_marginStart="4dp"

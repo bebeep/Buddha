@@ -50,22 +50,23 @@ fun ArrayList<CommentEntity>?.removeComment(commentId:Int):ArrayList<CommentEnti
         var removeIndex = -1
         var removeChildIndex = -1
         for (comment in this.withIndex()) {
-            if(comment.value.commentId == commentId){
+            if(comment.value.id == commentId){
                 removeIndex = comment.index
             }
-            for (childMoment in comment.value.expandComments.withIndex()){
-                if(childMoment.value.commentId == commentId){
-                    removeIndex = comment.index
-                    removeChildIndex = childMoment.index
+            comment.value.childComment?.let { childComment->
+                for (childMoment in childComment.withIndex()){
+                    if(childMoment.value.id == commentId){
+                        removeIndex = comment.index
+                        removeChildIndex = childMoment.index
+                    }
                 }
             }
-
         }
         if (removeIndex != -1 && removeChildIndex == -1){
             removeAt(removeIndex)
         }
         if (removeIndex != -1 && removeChildIndex != -1){
-            this[removeIndex].expandComments.removeAt(removeChildIndex)
+            this[removeIndex].childComment?.removeAt(removeChildIndex)
         }
     }
 

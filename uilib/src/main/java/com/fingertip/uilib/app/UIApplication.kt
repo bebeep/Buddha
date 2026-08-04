@@ -10,8 +10,10 @@ import com.fingertip.uilib.R
 import com.scwang.smart.refresh.footer.BallPulseFooter
 import com.scwang.smart.refresh.header.MaterialHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
+import com.shuyu.gsyvideoplayer.player.PlayerFactory
 import com.tencent.bugly.crashreport.CrashReport
 import com.weikaiyun.fragmentation.Fragmentation
+import tv.danmaku.ijk.media.exo2.Exo2PlayerManager
 
 
 /**
@@ -21,6 +23,7 @@ class UIApplication: TopApplication() {
 
     override fun onCreate() {
         super.onCreate()
+        PlayerFactory.setPlayManager(Exo2PlayerManager::class.java)
         val local = LanguageUtils.getSystemLanguage()//当前系统语言
         val customLan = SPUtils.getInstance().getString("customLanguage")
         LogUtils.e("language===============${local.language}  |  $customLan")

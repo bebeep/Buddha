@@ -1,8 +1,8 @@
 package com.fingertip.uilib.viewmodel
 
 import androidx.lifecycle.MutableLiveData
+import com.fingertip.baselib.bean.CommentEntity
 import com.fingertip.baselib.bean.MomentEntity
-import com.fingertip.baselib.log
 import com.fingertip.baselib.net.NetManager
 import com.fingertip.baselib.net.RequestBodyFactory
 import com.fingertip.baselib.viewmodel.RequestResult
@@ -12,6 +12,11 @@ class MomentVM:TopVMImp() {
 
     val postMomentResult = MutableLiveData<RequestResult<String>>()
     val momentListResult = MutableLiveData<RequestResult<List<MomentEntity>>>()
+    val momentDetailsResult = MutableLiveData<RequestResult<MomentEntity>>()
+
+    val momentCommentListResult = MutableLiveData<RequestResult<List<CommentEntity>>>()
+
+    val momentCommentDetailsResult = MutableLiveData<RequestResult<List<CommentEntity>>>()
 
     fun postMoment(textContent: String = "",
                    videoUrl: String = "",
@@ -45,6 +50,36 @@ class MomentVM:TopVMImp() {
         }, {
             momentListResult.value = failResult(it.errorCode)
         }, showLoading = false, toastError = true)
+    }
+
+    fun getMomentDetails(momentId: Int) {
+        call({
+            NetManager.getApi().getMomentDetails(momentId= momentId)
+        }, {
+            momentDetailsResult.value = successResult(it)
+        }, {
+            momentDetailsResult.value = failResult(it.errorCode)
+        }, showLoading = false, toastError = true)
+    }
+
+    fun getCommentList(momentId: Int,pageCount: Int) {
+        call({
+            NetManager.getApi().getCommentByMomentId(momentId = momentId)
+        }, {
+            momentCommentListResult.value = successResult(it)
+        }, {
+            momentCommentListResult.value = failResult(it.errorCode)
+        }, showLoading = false, toastError = false)
+    }
+
+    fun getCommentDetails(commentId: Int,pageCount: Int) {
+        call({
+            NetManager.getApi().getCommentDetails(commentId = commentId)
+        }, {
+            momentCommentDetailsResult.value = successResult(it)
+        }, {
+            momentCommentDetailsResult.value = failResult(it.errorCode)
+        }, showLoading = false, toastError = false)
     }
 
 }

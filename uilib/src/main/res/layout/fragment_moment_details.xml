@@ -148,8 +148,7 @@
                         android:textColorLink="#32c5f3"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:text="Among men, www.baidu.com in intimacy; klalks la;skdla  as;ldkasd;laskdl; asdl;kl adl;kasdk asdlj asdlj asdl among women, intimacy sometimes resuilts in sex”-Donald Symons" />
+                        app:layout_constraintTop_toTopOf="parent"/>
 
                     <Space
                         android:id="@+id/space_right"
@@ -220,7 +219,7 @@
                     tools:text="四川省成都市天府广场101号" />
 
                 <com.fingertip.baselib.view.shapeview.ShapeTextView
-                    android:id="@+id/lv_share"
+                    android:id="@+id/tv_share"
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
                     android:layout_marginStart="13dp"
@@ -277,7 +276,7 @@
                     app:zdyFont="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerview"
+                    android:id="@+id/rv_comment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="14dp"
@@ -324,8 +323,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="45dp"
             android:gravity="center_vertical"
-            android:hint="加入讨论吧"
-            app:zdyFont="bold" />
+            android:hint="加入讨论吧"/>
 
         <ImageView
             android:layout_width="30dp"
@@ -341,6 +339,7 @@
         android:background="@drawable/bg_input"
         android:minHeight="48dp"
         android:paddingRight="10dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent">
 
 
