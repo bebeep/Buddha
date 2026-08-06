@@ -17,6 +17,7 @@ class MomentVM:TopVMImp() {
     val momentCommentListResult = MutableLiveData<RequestResult<List<CommentEntity>>>()
 
     val momentCommentDetailsResult = MutableLiveData<RequestResult<List<CommentEntity>>>()
+    val commentResult = MutableLiveData<RequestResult<CommentEntity>>()
 
     fun postMoment(textContent: String = "",
                    videoUrl: String = "",
@@ -74,11 +75,30 @@ class MomentVM:TopVMImp() {
 
     fun getCommentDetails(commentId: Int,pageCount: Int) {
         call({
-            NetManager.getApi().getCommentDetails(commentId = commentId)
+            NetManager.getApi().getCommentDetails(commentId = commentId, pageCount = pageCount)
         }, {
             momentCommentDetailsResult.value = successResult(it)
         }, {
             momentCommentDetailsResult.value = failResult(it.errorCode)
+        }, showLoading = false, toastError = false)
+    }
+
+
+    fun commentMoment(momentId: Int,parentCommentId: Int,targetCommentId: Int,textContent: String) {
+        call({
+            NetManager.getApi().commentMoment(request = RequestBodyFactory.postMomentBody(momentId,parentCommentId,targetCommentId,textContent))
+        }, {
+            commentResult.value = successResult(it)
+        }, {
+            commentResult.value = failResult(it.errorCode)
+        }, showLoading = false, toastError = false)
+    }
+
+    fun viewMoment(momentIds: List<Int>) {
+        call({
+            NetManager.getApi().viewMoment(request = RequestBodyFactory.viewMomentBody(momentIds))
+        }, {
+        }, {
         }, showLoading = false, toastError = false)
     }
 

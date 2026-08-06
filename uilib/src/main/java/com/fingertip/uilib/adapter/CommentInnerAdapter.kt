@@ -35,13 +35,13 @@ class CommentInnerAdapter(context: Context, val onItemClick:(position:Int,longCl
 
             }
 
-            binding.ivInnerHead.setOnClickListener { view ->  onItemClick(position,position,view.id) }
-            binding.tvInnerNickname.setOnClickListener { view ->  onItemClick(position,position,view.id) }
+            binding.ivInnerHead.setOnClickListener { view ->  onItemClick(holder.bindingAdapterPosition,holder.bindingAdapterPosition,view.id) }
+            binding.tvInnerNickname.setOnClickListener { view ->  onItemClick(holder.bindingAdapterPosition,holder.bindingAdapterPosition,view.id) }
 
 
-            binding.clInnerParent.setOnClickListener { view-> onItemClick(position,-1,view.id) }
+            binding.clInnerParent.setOnClickListener { view-> onItemClick(holder.bindingAdapterPosition,-1,view.id) }
             binding.clInnerParent.setOnLongClickListener { view->
-                onItemClick(position,position,view.id)
+                onItemClick(holder.bindingAdapterPosition,holder.bindingAdapterPosition,view.id)
                 return@setOnLongClickListener true
             }
         }

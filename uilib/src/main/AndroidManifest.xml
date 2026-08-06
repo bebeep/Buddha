@@ -30,7 +30,8 @@
 
         <activity
             android:name=".activity.ContainerActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize">
         </activity>
 
         <activity

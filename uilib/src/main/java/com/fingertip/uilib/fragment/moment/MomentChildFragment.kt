@@ -26,6 +26,9 @@ class MomentChildFragment : TopPmFragment<MomentVM>() {
     /** 当前正在播放视频的位置，-1 表示无 */
     private var currentPlayingPosition = -1
 
+    /** 已标记为已读的动态ID集合，避免重复请求 */
+    private val viewedMomentIds = mutableSetOf<Int>()
+
     companion object {
         const val FOLLOW = "FOLLOW" //关注
         const val MOMENT = "MOMENT" //佛友圈
@@ -71,6 +74,8 @@ class MomentChildFragment : TopPmFragment<MomentVM>() {
                     RecyclerView.SCROLL_STATE_IDLE -> {
                         //滑动停止，自动播放可见区域的第一个视频
                         autoPlayVideo()
+                        //滑动停止后，将可见动态标记为已读
+                        markVisibleMomentsAsViewed()
                     }
                     RecyclerView.SCROLL_STATE_DRAGGING -> {
                         //拖动时暂停，避免滑动时视频声音干扰
@@ -94,6 +99,28 @@ class MomentChildFragment : TopPmFragment<MomentVM>() {
     }
 
     /**
+     * 将当前可见区域的动态标记为已读，批量调用接口，已请求过的不重复请求
+     */
+    private fun markVisibleMomentsAsViewed() {
+        val layoutManager = binding.recyclerview.layoutManager as? LinearLayoutManager ?: return
+        val firstVisible = layoutManager.findFirstVisibleItemPosition()
+        val lastVisible = layoutManager.findLastVisibleItemPosition()
+        if (firstVisible == RecyclerView.NO_POSITION) return
+
+        val newIds = mutableListOf<Int>()
+        for (i in firstVisible..lastVisible) {
+            val item = adapter?.get(i) ?: continue
+            if (item.momentId !in viewedMomentIds) {
+                newIds.add(item.momentId)
+                viewedMomentIds.add(item.momentId)
+            }
+        }
+        if (newIds.isNotEmpty()) {
+            mViewModel.viewMoment(newIds)
+        }
+    }
+
+    /**
      * 播放指定位置的视频
      */
     private fun playVideo(position: Int) {
@@ -113,6 +140,7 @@ class MomentChildFragment : TopPmFragment<MomentVM>() {
         //设置新播放器
         videoView.setUp(url, true, null)
         videoView.setIsTouchWiget(false)
+        videoView.isLooping = true
         videoView.setVideoAllCallBack(object : GSYSampleCallBack() {
             override fun onPrepared(url: String?, vararg objects: Any?) {
                 super.onPrepared(url, *objects)
@@ -193,6 +221,8 @@ class MomentChildFragment : TopPmFragment<MomentVM>() {
                     adapter?.initData(list) ?: log(value = "adapter is null")
                     binding.recyclerview.post {
                         autoPlayVideo()
+                        // 首次加载完成后，标记初始可见动态为已读
+                        markVisibleMomentsAsViewed()
                     }
                 }
             }

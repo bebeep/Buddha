@@ -1,8 +1,12 @@
 package com.fingertip.uilib.fragment.moment
 
+import android.graphics.Rect
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
+import android.view.ViewTreeObserver
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.KeyboardUtils
 import com.fingertip.baselib.bean.MomentEntity
@@ -13,6 +17,8 @@ import com.fingertip.baselib.util.loadHead
 import com.fingertip.baselib.view.SampleCoverVideo
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.CommentAdapter
+import com.fingertip.uilib.adapter.MomentImageAdapter
+import com.fingertip.uilib.dialog.CommentDetailDialog
 import com.fingertip.uilib.databinding.FragmentMomentDetailsBinding
 import com.fingertip.uilib.viewmodel.MomentVM
 import com.lzlz.toplib.extention.gone
@@ -34,6 +40,11 @@ class MomentDetailsFragment: TopPmFragment<MomentVM>() {
 
         const val MOMENT_ID = "MOMENT_ID"
         const val MOMENT_DATA = "MOMENT_DATA"
+
+        // descendantFocusability 常量
+        private const val FOCUS_BLOCK_DESCENDANTS = 0x00020000
+        private const val FOCUS_BEFORE_DESCENDANTS = 0x00040000
+
         fun newInstance(momentId : Int, entity : MomentEntity? = null) : MomentDetailsFragment {
             return MomentDetailsFragment().apply {
                 arguments = Bundle().apply {
@@ -50,6 +61,14 @@ class MomentDetailsFragment: TopPmFragment<MomentVM>() {
     var momentEntity: MomentEntity? = null
 
     lateinit var commentAdapter: CommentAdapter
+    lateinit var momentImageAdapter: MomentImageAdapter
+
+    private var keyboardListener: ViewTreeObserver.OnGlobalLayoutListener? = null
+    private var isKeyboardShowing = false
+
+    private var parentCommentId: Int = 0
+    private var targetCommentId: Int = 0
+    private var commentDetailDialog: CommentDetailDialog? = null
 
     override fun getClickViews(): List<View> {
         return listOf(binding.ivBack,binding.ivHead,binding.tvNickname,binding.ivMenu,binding.tvFollow,
@@ -73,6 +92,10 @@ class MomentDetailsFragment: TopPmFragment<MomentVM>() {
         }
 
         initAdapter()
+        setupKeyboardListener()
+        setupDismissKeyboardOnTouch()
+        // 进入详情时标记为已读
+        mViewModel.viewMoment(listOf(momentId))
         if (momentEntity == null)
         {
             mViewModel.getMomentDetails(momentId)
@@ -108,18 +131,93 @@ class MomentDetailsFragment: TopPmFragment<MomentVM>() {
 
             }
         }
+
+        mViewModel.commentResult.observe(this)
+        {
+            loadEnding()
+            if (it.success)
+            {
+                if (parentCommentId == 0) //添加主评论
+                {
+                    commentAdapter.addData(it.data,0)
+                }
+                else //刷新内部评论
+                {
+                    val entityIndex = commentAdapter.mlist.indexOfFirst { entity-> entity.id == parentCommentId }
+                    if (entityIndex!=-1)
+                    {
+                        if (commentAdapter.mlist[entityIndex].childComment == null)
+                        {
+                            commentAdapter.mlist[entityIndex].childComment = ArrayList()
+                        }
+                        commentAdapter.mlist[entityIndex].childComment?.add(0,it.data!!)
+                        commentAdapter.notifyItemChanged(entityIndex)
+                    }
+                }
+            }
+            parentCommentId = 0
+            targetCommentId = 0
+
+        }
     }
 
 
     private fun initAdapter(){
         commentAdapter = CommentAdapter(requireContext()){ position, innerPosition, longClickPosition, viewId->
+            if (longClickPosition!=-1)
+            {
+                return@CommentAdapter
+            }
+            when(viewId){
+                R.id.tv_like -> {
+                    //点赞
+                    return@CommentAdapter
+                }
+                R.id.iv_head,R.id.tv_nickname->{//主评论头像昵称-跳转资料页
 
+                }
+                R.id.iv_inner_head,R.id.tv_inner_nickname->{//子评论头像昵称-跳转资料页
+
+                }
+                R.id.tv_more->{//查看评论详情
+                    val parentComment = commentAdapter.get(position) ?: return@CommentAdapter
+                    log(tag="parentComment","details: ${parentComment==null}")
+                    if (commentDetailDialog == null)
+                    {
+                        commentDetailDialog = CommentDetailDialog(requireContext())
+                    }
+                    commentDetailDialog?.show(parentComment)
+                }
+                R.id.cl_parent,R.id.cl_inner_parent -> {//回复评论
+                    //回复
+                    val parentComment = commentAdapter.get(position) ?: return@CommentAdapter
+                    parentCommentId = parentComment.id
+                    if (innerPosition!=-1 && parentComment.childComment!=null && parentComment.childComment!!.size>innerPosition)
+                    {
+                        targetCommentId = parentComment.childComment!![innerPosition].id
+                    }
+                    // 允许子View优先获取焦点，EditText需要
+                    binding.clMomentParent.descendantFocusability = FOCUS_BEFORE_DESCENDANTS
+                    binding.flInput.gone()
+                    binding.llInput.visible()
+                    binding.etComment.requestFocus()
+                    KeyboardUtils.showSoftInput(binding.etComment)
+                    binding.etComment.hint = "回复 ${parentComment.senderNickName}"
+                }
+            }
         }
 
         binding.rvComment.layoutManager = LinearLayoutManager(requireContext())
         binding.rvComment.adapter = commentAdapter
 
         mViewModel.getCommentList(momentId,1)
+
+
+        momentImageAdapter = MomentImageAdapter(requireContext(),0,0){
+
+        }
+        binding.rvPhotos.layoutManager = GridLayoutManager(requireContext(), 3)
+        binding.rvPhotos.adapter = momentImageAdapter
     }
 
 
@@ -162,6 +260,9 @@ class MomentDetailsFragment: TopPmFragment<MomentVM>() {
                 binding.video.loadCoverImage(it.videoCover, com.fingertip.baselib.R.mipmap.icon_default_img)
                 initVideoPlayer()
             }
+            else if (it.momentType == 3 && it.imageUrl.isNotEmpty()) {
+                momentImageAdapter.initData(it.imageUrl)
+            }
 
         }
 
@@ -171,33 +272,42 @@ class MomentDetailsFragment: TopPmFragment<MomentVM>() {
         super.onSingleClick(v)
         when(v?.id){
             R.id.iv_back -> pop()
-            R.id.iv_head,R.id.tv_nickname -> {
+            R.id.iv_head,R.id.tv_nickname -> {//跳转资料页
 
             }
-            R.id.iv_menu -> {
+            R.id.iv_menu -> {//举报
 
             }
-            R.id.tv_follow -> {
+            R.id.tv_follow -> {//关注
 
             }
-            R.id.tv_share -> {
+            R.id.tv_share -> {//分享
 
             }
-            R.id.tv_like -> {
+            R.id.tv_like -> {//点赞
 
             }
             R.id.tv_input -> {
-                binding.flInput.invisible()
+                // 允许子View优先获取焦点，EditText需要
+                binding.clMomentParent.descendantFocusability = FOCUS_BEFORE_DESCENDANTS
+                binding.flInput.gone()
                 binding.llInput.visible()
                 binding.etComment.requestFocus()
                 KeyboardUtils.showSoftInput(binding.etComment)
             }
             R.id.iv_send -> {
-                binding.flInput.visible()
-                binding.llInput.invisible()
-                binding.etComment.clearFocus()
+                // 恢复阻止子View获取焦点
+                binding.clMomentParent.descendantFocusability = FOCUS_BLOCK_DESCENDANTS
                 KeyboardUtils.hideSoftInput(binding.etComment)
+                binding.llInput.gone()
+                binding.flInput.visible()
+                startWaiting()
+                mViewModel.commentMoment(momentId,parentCommentId,targetCommentId,binding.etComment.text.toString())
+                binding.etComment.setText("")
+                binding.etComment.hint = "加入讨论吧"
+                binding.etComment.clearFocus()
             }
+
         }
     }
 
@@ -262,7 +372,78 @@ class MomentDetailsFragment: TopPmFragment<MomentVM>() {
     }
 
 
+    /**
+     * 触摸空白区域时隐藏软键盘
+     * 利用 FullTopConstraintLayout 的 onPreDispatchTouchListener，
+     * 在子View处理触摸之前检测并隐藏键盘
+     */
+    private fun setupDismissKeyboardOnTouch() {
+        binding.clMomentParent.onPreDispatchTouchListener = { event ->
+            val b = mBinding as? FragmentMomentDetailsBinding
+            if (b != null && isKeyboardShowing) {
+                val x = event.x
+                val y = event.y
+                // 检查触摸点是否在 ll_input 区域外
+                if (x < b.llInput.left || x > b.llInput.right ||
+                    y < b.llInput.top || y > b.llInput.bottom) {
+                    b.clMomentParent.descendantFocusability = FOCUS_BLOCK_DESCENDANTS
+                    b.etComment.clearFocus()
+                    KeyboardUtils.hideSoftInput(b.etComment)
+                    b.llInput.gone()
+                    b.flInput.visible()
+                }
+            }
+            false // 不消费事件，继续分发给子View
+        }
+    }
+
+    /**
+     * 监听键盘高度变化，手动调整 ll_input 位置
+     * 因为 SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN 导致 adjustResize 失效
+     */
+    private fun setupKeyboardListener() {
+        keyboardListener = ViewTreeObserver.OnGlobalLayoutListener {
+            // View销毁后回调仍可能触发，需做空安全检查
+            val b = mBinding as? FragmentMomentDetailsBinding ?: return@OnGlobalLayoutListener
+            val rect = Rect()
+            b.clMomentParent.getWindowVisibleDisplayFrame(rect)
+            val screenHeight = b.clMomentParent.rootView.height
+            val keyboardHeight = screenHeight - rect.bottom
+
+            if (keyboardHeight > screenHeight / 4) {
+                // 键盘显示，调整 ll_input 的底部边距
+                isKeyboardShowing = true
+                val lp = b.llInput.layoutParams as ViewGroup.MarginLayoutParams
+                if (lp.bottomMargin != keyboardHeight) {
+                    lp.bottomMargin = keyboardHeight
+                    b.llInput.layoutParams = lp
+                }
+            } else if (isKeyboardShowing) {
+                // 键盘隐藏，恢复底部边距
+                isKeyboardShowing = false
+                val lp = b.llInput.layoutParams as ViewGroup.MarginLayoutParams
+                if (lp.bottomMargin != 0) {
+                    lp.bottomMargin = 0
+                    b.llInput.layoutParams = lp
+                }
+            }
+        }
+        binding.clMomentParent.viewTreeObserver.addOnGlobalLayoutListener(keyboardListener)
+    }
+
+    private fun removeKeyboardListener() {
+        val b = mBinding as? FragmentMomentDetailsBinding ?: run {
+            keyboardListener = null
+            return
+        }
+        keyboardListener?.let {
+            b.clMomentParent.viewTreeObserver.removeOnGlobalLayoutListener(it)
+        }
+        keyboardListener = null
+    }
+
     override fun onDestroyView() {
+        removeKeyboardListener()
         releaseVideo()
         super.onDestroyView()
     }

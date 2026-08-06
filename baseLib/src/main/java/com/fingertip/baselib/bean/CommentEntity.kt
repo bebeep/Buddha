@@ -53,5 +53,6 @@ class CommentEntity: TopData() {
     //("子评论列表")
     var childComment: ArrayList<CommentEntity>? = null
 
-
+    //是否已点赞
+    var isLiked = false
 }

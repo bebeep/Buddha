@@ -104,4 +104,24 @@ interface ApiManager {
         @Query("commentId") commentId: Int = 0,
         @Query("pageCount") pageCount: Int = 0,
     ): RequestRsp<List<CommentEntity>>
+
+    /**
+     * 提交动态评论
+     */
+    @POST()
+    suspend fun commentMoment(
+        @Url url: String = NetProperty.COMMENT_MOMENT,
+        @Query("session") session: String = GlobalConfig.session,
+        @Body request: RequestBody?
+    ): RequestRsp<CommentEntity>
+
+    /**
+     * 提交动态评论
+     */
+    @POST()
+    suspend fun viewMoment(
+        @Url url: String = NetProperty.VIEW_MOMENT,
+        @Query("session") session: String = GlobalConfig.session,
+        @Body request: RequestBody?
+    ): RequestRsp<CommentEntity>
 }

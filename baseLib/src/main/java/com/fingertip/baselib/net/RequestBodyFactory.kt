@@ -72,6 +72,29 @@ object RequestBodyFactory {
         return buildJsonRequestBody(param)
     }
 
+    /**
+     * 发布动态评论入参
+     */
+    fun postMomentBody(momentId: Int,parentCommentId: Int,targetCommentId: Int,textContent: String): RequestBody {
+        val param = HashMap<String, Any>()
+
+        param["momentId"] = momentId
+        param["parentCommentId"] = parentCommentId
+        param["targetCommentId"] = targetCommentId
+        param["textContent"] = textContent
+        return buildJsonRequestBody(param)
+    }
+
+
+    /**
+     * 设置动态已读入参
+     */
+    fun viewMomentBody(momentIds: List<Int>): RequestBody {
+        val param = HashMap<String, Any>()
+        param["momentIds"] = momentIds
+        return buildJsonRequestBody(param)
+    }
+
 
 
     /**

@@ -59,60 +59,72 @@ object NetProperty {
      * 检查服务器状态
      * 获取更新信息、全局参数
      */
-    var CHECK_SERVER_STATUS             = "config/checkUpdate"
+    const val CHECK_SERVER_STATUS             = "config/checkUpdate"
 
     /**
      * 获取oss配置
      */
-    var GET_OSS_CONFIG                  = "config/getOssConfig"
+    const val GET_OSS_CONFIG                  = "config/getOssConfig"
 
 
     /**
      * 登录
      */
-    var LOGIN                           = "account/login"
+    const val LOGIN                           = "account/login"
 
 
     /**
      * 登出
      */
-    var LOGOUT                          = "account/logout"
+    const val LOGOUT                          = "account/logout"
 
 
 
     /**
      * 发布动态
      */
-    var POST_MOMENT                     = "moment/postMoment"
+    const val POST_MOMENT                     = "moment/postMoment"
 
 
     /**
      * 获取动态列表-HOT
      */
-    var GET_MOMENT_LIST_HOT                     = "moment/getMomentListHot"
+    const val GET_MOMENT_LIST_HOT                     = "moment/getMomentListHot"
 
 
     /**
      * 获取动态列表-FOLLOWED
      */
-    var GET_MOMENT_LIST_FOLLOWED                     = "moment/getMomentListFollowed"
+    const val GET_MOMENT_LIST_FOLLOWED                     = "moment/getMomentListFollowed"
 
 
     /**
      * 获取动态详情
      */
-    var GET_MOMENT_DETAILS                     = "moment/getMomentDetails"
+    const val GET_MOMENT_DETAILS                     = "moment/getMomentDetails"
 
 
     /**
      * 获取评论列表
      */
-    var GET_MOMENT_COMMENT_LIST                    = "moment/getCommentByMomentId"
+    const val GET_MOMENT_COMMENT_LIST                    = "moment/getCommentByMomentId"
 
 
     /**
      * 获取评论详情
      */
-    var GET_MOMENT_COMMENT_DETAILS                    = "moment/getCommentDetails"
+    const val  GET_MOMENT_COMMENT_DETAILS                    = "moment/getCommentDetails"
+
+
+    /**
+     * 提交动态评论
+     */
+    const val COMMENT_MOMENT                    = "moment/commentMoment"
+
+
+    /**
+     * 设为已读
+     */
+    const val VIEW_MOMENT                    = "moment/viewMoment"
 
 }

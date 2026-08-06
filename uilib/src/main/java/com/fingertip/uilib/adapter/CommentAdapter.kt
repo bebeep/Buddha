@@ -35,7 +35,8 @@ class CommentAdapter(context: Context, val onItemClick:(position:Int,innerPositi
             binding.tvLevel.text = "lv.${it.senderLevel}·${TimeUtil.dateFormateTime(it.commentDate)}"
             binding.tvNickname.text = it.senderNickName
             binding.tvComment.text = it.textContent.clearFirstLine()
-            binding.tvMore.text = "查看更多${(it.childComment?.size?:0) - maxChildCommentCount}条回复"
+            binding.tvMore.text = "查看更多${it.childCommentCount - maxChildCommentCount}条回复"
+            binding.tvLike.isSelected = it.isLiked
             binding.tvFold.gone()
 
             it.childComment?.let { childComment ->
@@ -43,7 +44,7 @@ class CommentAdapter(context: Context, val onItemClick:(position:Int,innerPositi
 
 
                 val adapter = CommentInnerAdapter(context){innerPosition,longClickPosition, viewId ->
-                    onItemClick(position, innerPosition,longClickPosition, viewId)
+                    onItemClick(holder.bindingAdapterPosition, innerPosition,longClickPosition, viewId)
                 }
                 binding.recyclerview.adapter = adapter
                 if (childComment.size > 3)
@@ -56,23 +57,27 @@ class CommentAdapter(context: Context, val onItemClick:(position:Int,innerPositi
                 }
             }
 
-            binding.ivHead.setOnClickListener { view->onItemClick(position,-1,-1,view.id) }
-            binding.tvNickname.setOnClickListener { view->onItemClick(position,-1,-1,view.id) }
-            binding.clParent.setOnClickListener { view->onItemClick(position,-1,-1,view.id) }
+            binding.ivHead.setOnClickListener { view->onItemClick(holder.bindingAdapterPosition,-1,-1,view.id) }
+            binding.tvNickname.setOnClickListener { view->onItemClick(holder.bindingAdapterPosition,-1,-1,view.id) }
+            binding.clParent.setOnClickListener { view->onItemClick(holder.bindingAdapterPosition,-1,-1,view.id) }
             binding.clParent.setOnLongClickListener {view->
-                onItemClick(position,-1,position,view.id)
+                onItemClick(holder.bindingAdapterPosition,-1,holder.bindingAdapterPosition,view.id)
                 return@setOnLongClickListener true
             }
             binding.tvMore.setOnClickListener { view ->
-                if ((it.childComment?.size ?: 0) >= it.childCommentCount){ //直接全部显示
-                    val adapter = binding.recyclerview.adapter as CommentInnerAdapter
-                    adapter.initData(it.childComment)
-                    binding.tvMore.invisible()
-                    binding.tvFold.visible()
-                }
-                else //还有额外评论,需要弹窗分页显示
-                {
-                    onItemClick(position,-1,-1,view.id)
+                val pos = holder.bindingAdapterPosition
+                if (pos == -1) return@setOnClickListener
+                get(pos)?.let { item ->
+                    if ((item.childComment?.size ?: 0) >= item.childCommentCount){ //直接全部显示
+                        val adapter = binding.recyclerview.adapter as CommentInnerAdapter
+                        adapter.initData(item.childComment)
+                        binding.tvMore.invisible()
+                        binding.tvFold.visible()
+                    }
+                    else //还有额外评论,需要弹窗分页显示
+                    {
+                        onItemClick(pos,-1,-1,view.id)
+                    }
                 }
             }
 

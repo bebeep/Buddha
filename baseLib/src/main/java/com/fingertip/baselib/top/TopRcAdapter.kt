@@ -40,6 +40,20 @@ abstract class TopRcAdapter<T, VH : TopRcAdapter.TopRcViewHolder>(
         }
     }
 
+    open fun addData(t: T?,position: Int = -1) {
+        t?.let {
+            if (position  == -1)
+            {
+                mlist.add(t)
+            }
+            else
+            {
+                mlist.add(0,t)
+            }
+            notifyDataSetChanged()
+        }
+    }
+
     open fun addData(list: List<T>?) {
         list?.let {
             mlist.addAll(list)

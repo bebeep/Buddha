@@ -74,7 +74,7 @@
         app:layout_constraintStart_toEndOf="@+id/iv_inner_head"
         app:layout_constraintTop_toBottomOf="@+id/tv_inner_comment"
         android:layout_width="0dp"
-        android:text="5 mins ago"
+        android:hint="5 mins ago"
         android:textColor="#FF9D9D9D"
         android:textSize="12sp"
         android:layout_marginTop="5dp"
