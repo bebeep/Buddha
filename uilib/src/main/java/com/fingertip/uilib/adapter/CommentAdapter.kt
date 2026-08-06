@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fingertip.baselib.bean.CommentEntity
+import com.fingertip.baselib.log
 import com.fingertip.baselib.top.TopRcAdapter
 import com.fingertip.baselib.util.TimeUtil
 import com.fingertip.baselib.util.clearFirstLine
@@ -37,6 +38,7 @@ class CommentAdapter(context: Context, val onItemClick:(position:Int,innerPositi
             binding.tvComment.text = it.textContent.clearFirstLine()
             binding.tvMore.text = "查看更多${it.childCommentCount - maxChildCommentCount}条回复"
             binding.tvLike.isSelected = it.isLiked
+            binding.tvLike.text = it.likeCount.toString()
             binding.tvFold.gone()
 
             it.childComment?.let { childComment ->
@@ -80,6 +82,15 @@ class CommentAdapter(context: Context, val onItemClick:(position:Int,innerPositi
                     }
                 }
             }
+            binding.tvLike.setOnClickListener { view ->
+                onItemClick(holder.bindingAdapterPosition,-1,-1,view.id)
+                if (binding.tvLike.isSelected)
+                    it.likeCount--
+                else
+                    it.likeCount++
+                binding.tvLike.isSelected = !binding.tvLike.isSelected
+                binding.tvLike.text = "${it.likeCount}"
+            }
 
             binding.tvFold.setOnClickListener { _ ->
                 binding.tvFold.gone()
@@ -94,6 +105,28 @@ class CommentAdapter(context: Context, val onItemClick:(position:Int,innerPositi
                     {
                         adapter.initData(childComment)
                     }
+                }
+            }
+        }
+    }
+
+
+    //刷新内部评论
+    fun notifyInnerComment(position: Int, innerPosition: Int, innerComment: CommentEntity) {
+        get(position)?.let { item ->
+            item.childComment?.let { childList ->
+                if (innerPosition in childList.indices) {
+                    childList[innerPosition] = innerComment
+                }
+            }
+            val outerRv = (context as? android.app.Activity)?.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rv_comment)
+            val holder = outerRv?.findViewHolderForAdapterPosition(position)
+            val innerRv = holder?.itemView?.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recyclerview)
+            val innerAdapter = innerRv?.adapter as? CommentInnerAdapter
+            innerAdapter?.let { adapter ->
+                if (innerPosition in adapter.data().indices) {
+                    adapter.data()[innerPosition] = innerComment
+                    adapter.notifyItemChanged(innerPosition)
                 }
             }
         }

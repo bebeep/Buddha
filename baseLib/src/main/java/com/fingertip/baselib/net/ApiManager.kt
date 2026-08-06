@@ -124,4 +124,44 @@ interface ApiManager {
         @Query("session") session: String = GlobalConfig.session,
         @Body request: RequestBody?
     ): RequestRsp<CommentEntity>
+
+    /**
+     * 动态点赞
+     */
+    @POST()
+    suspend fun likeMoment(
+        @Url url: String = NetProperty.LIKE_MOMENT,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("momentId") momentId: Int,
+    ): RequestRsp<String>
+
+    /**
+     * 取消动态点赞
+     */
+    @POST()
+    suspend fun unLikeMoment(
+        @Url url: String = NetProperty.UN_LIKE_MOMENT,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("momentId") momentId: Int,
+    ): RequestRsp<String>
+
+    /**
+     * 评论点赞
+     */
+    @POST()
+    suspend fun likeMomentComment(
+        @Url url: String = NetProperty.LIKE_MOMENT_COMMENT,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("commentId") commentId: Int,
+    ): RequestRsp<String>
+
+    /**
+     * 取消评论点赞
+     */
+    @POST()
+    suspend fun unLikeMomentComment(
+        @Url url: String = NetProperty.UN_LIKE_MOMENT_COMMENT,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("commentId") commentId: Int,
+    ): RequestRsp<String>
 }

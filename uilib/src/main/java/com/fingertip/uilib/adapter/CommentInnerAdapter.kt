@@ -3,6 +3,7 @@ package com.fingertip.uilib.adapter
 import android.content.Context
 import android.view.View
 import com.fingertip.baselib.bean.CommentEntity
+import com.fingertip.baselib.log
 import com.fingertip.baselib.top.TopRcAdapter
 import com.fingertip.baselib.util.TimeUtil
 import com.fingertip.baselib.util.clearFirstLine
@@ -28,6 +29,8 @@ class CommentInnerAdapter(context: Context, val onItemClick:(position:Int,longCl
             binding.tvInnerNickname.text = it.senderNickName
             binding.tvInnerComment.text = it.textContent.clearFirstLine()
             binding.tvInnerDate.text = TimeUtil.dateFormateTime(it.commentDate)
+            binding.tvInnerLike.text = it.likeCount.toString()
+            binding.tvInnerLike.isSelected = it.isLiked
 
             if (!it.replyNickName.isNullOrEmpty())
             {
@@ -35,9 +38,19 @@ class CommentInnerAdapter(context: Context, val onItemClick:(position:Int,longCl
 
             }
 
-            binding.ivInnerHead.setOnClickListener { view ->  onItemClick(holder.bindingAdapterPosition,holder.bindingAdapterPosition,view.id) }
-            binding.tvInnerNickname.setOnClickListener { view ->  onItemClick(holder.bindingAdapterPosition,holder.bindingAdapterPosition,view.id) }
-
+            binding.ivInnerHead.setOnClickListener { view ->  onItemClick(holder.bindingAdapterPosition,-1,view.id) }
+            binding.tvInnerNickname.setOnClickListener { view ->  onItemClick(holder.bindingAdapterPosition,-1,view.id) }
+            binding.tvInnerLike.setOnClickListener { view ->
+                onItemClick(holder.bindingAdapterPosition,-1,view.id)
+                log("tvInnerLike", "${position}->${binding.tvInnerLike.isSelected} ${it.likeCount}")
+                if (binding.tvInnerLike.isSelected)
+                    it.likeCount--
+                else
+                    it.likeCount++
+                it.isLiked = !it.isLiked
+                binding.tvInnerLike.isSelected = it.isLiked
+                binding.tvInnerLike.text = "${it.likeCount}"
+            }
 
             binding.clInnerParent.setOnClickListener { view-> onItemClick(holder.bindingAdapterPosition,-1,view.id) }
             binding.clInnerParent.setOnLongClickListener { view->
@@ -47,5 +60,6 @@ class CommentInnerAdapter(context: Context, val onItemClick:(position:Int,longCl
         }
 
     }
+
 
 }

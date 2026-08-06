@@ -36,9 +36,14 @@ class CommentDetailDialog(context: Context) : TopDialogBottomSheetDialog(context
     private lateinit var binding: DialogCommentDetailBinding
     private lateinit var adapter: CommentInnerAdapter
 
+
     private var currentPage = -1
     private var noMore = false
     private var isAlive = true
+
+    var parentCommentPosition = -1
+
+    var onLikeClick:(position: Int,innerPosition:Int, comment: CommentEntity)->Unit = {_,_,_->}
 
     override fun onViewCreate(view: View) {
         binding = DialogCommentDetailBinding.bind(view)
@@ -53,6 +58,13 @@ class CommentDetailDialog(context: Context) : TopDialogBottomSheetDialog(context
             when (viewId) {
                 R.id.iv_inner_head, R.id.tv_inner_nickname -> {
                     // 跳转资料页（暂空）
+                }
+                R.id.tv_inner_like -> {
+                    //点赞
+                    val childComment = adapter.get(position)?: return@CommentInnerAdapter
+                    vm.likeMomentComment(childComment.id,!childComment.isLiked)
+                    onLikeClick(parentCommentPosition,position,childComment)
+                    return@CommentInnerAdapter
                 }
             }
         }
@@ -104,9 +116,10 @@ class CommentDetailDialog(context: Context) : TopDialogBottomSheetDialog(context
         super.onDismiss(dialog)
     }
 
-    fun show(parentComment: CommentEntity?)
+    fun show(parentCommentPosition:Int,parentComment: CommentEntity?)
     {
         if (parentComment == null) return
+        this.parentCommentPosition = parentCommentPosition
         this.parentComment = parentComment
 
         log(tag="parentComment","${binding==null} ${parentComment==null}")
@@ -131,8 +144,14 @@ class CommentDetailDialog(context: Context) : TopDialogBottomSheetDialog(context
                     noMore = true
                     binding.srl.finishLoadMoreWithNoMoreData()
                 } else {
+                    if (currentPage == 0)
+                    {
+                        childComments.clear()
+                        adapter.initData(newData)
+                    }
+                    else
+                        adapter.addData(newData)
                     childComments.addAll(newData)
-                    adapter.initData(childComments)
                     binding.srl.finishLoadMore()
                     // 如果累计数量已达到总数，不再加载更多
                     if (childComments.size >= parentComment.childCommentCount) {

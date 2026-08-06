@@ -127,4 +127,24 @@ object NetProperty {
      */
     const val VIEW_MOMENT                    = "moment/viewMoment"
 
+    /**
+     * 点赞动态
+     */
+    const val LIKE_MOMENT                    = "moment/likeMoment"
+
+    /**
+     * 取消点赞动态
+     */
+    const val UN_LIKE_MOMENT                    = "moment/unLikeMoment"
+
+    /**
+     * 点赞评论
+     */
+    const val LIKE_MOMENT_COMMENT                    = "moment/likeComment"
+
+    /**
+     * 取消点赞评论
+     */
+    const val UN_LIKE_MOMENT_COMMENT                     = "moment/unLikeComment"
+
 }

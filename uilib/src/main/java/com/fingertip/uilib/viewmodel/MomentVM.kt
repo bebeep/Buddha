@@ -19,6 +19,7 @@ class MomentVM:TopVMImp() {
     val momentCommentDetailsResult = MutableLiveData<RequestResult<List<CommentEntity>>>()
     val commentResult = MutableLiveData<RequestResult<CommentEntity>>()
 
+
     fun postMoment(textContent: String = "",
                    videoUrl: String = "",
                    videoCover: String = "",
@@ -43,8 +44,8 @@ class MomentVM:TopVMImp() {
     fun getMomentList(pageCount: Int,momentType: Int) {
         call({
             when(momentType){
-                1 -> NetManager.getApi().getMomentListHot(pageCount = pageCount)
-                else -> NetManager.getApi().getMomentListFollowed(pageCount = pageCount)
+                1 -> NetManager.getApi().getMomentListFollowed(pageCount = pageCount)
+                else -> NetManager.getApi().getMomentListHot(pageCount = pageCount)
             }
         }, {
             momentListResult.value = successResult(it)
@@ -65,7 +66,7 @@ class MomentVM:TopVMImp() {
 
     fun getCommentList(momentId: Int,pageCount: Int) {
         call({
-            NetManager.getApi().getCommentByMomentId(momentId = momentId)
+            NetManager.getApi().getCommentByMomentId(momentId = momentId, pageCount = pageCount)
         }, {
             momentCommentListResult.value = successResult(it)
         }, {
@@ -97,6 +98,28 @@ class MomentVM:TopVMImp() {
     fun viewMoment(momentIds: List<Int>) {
         call({
             NetManager.getApi().viewMoment(request = RequestBodyFactory.viewMomentBody(momentIds))
+        }, {
+        }, {
+        }, showLoading = false, toastError = false)
+    }
+
+    fun likeMoment(momentId: Int,like: Boolean,likeResult:(like:Boolean,success:Boolean)->Unit) {
+        call({
+            if (like)
+                NetManager.getApi().likeMoment(momentId = momentId)
+            else NetManager.getApi().unLikeMoment(momentId = momentId)
+        }, {
+            likeResult(like, true)
+        }, {
+            likeResult(like, false)
+        }, showLoading = false, toastError = false)
+    }
+
+    fun likeMomentComment(commentId: Int,like: Boolean) {
+        call({
+            if (like)
+                NetManager.getApi().likeMomentComment(commentId = commentId)
+            else NetManager.getApi().unLikeMomentComment(commentId = commentId)
         }, {
         }, {
         }, showLoading = false, toastError = false)

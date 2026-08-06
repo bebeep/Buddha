@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.KeyboardUtils
 import com.fingertip.baselib.bean.MomentEntity
+import com.fingertip.baselib.event_bus.EventBusProxy
+import com.fingertip.baselib.event_bus.EventConstant
+import com.fingertip.baselib.event_bus.MessageEvent
 import com.fingertip.baselib.log
 import com.fingertip.baselib.top.TopPmFragment
 import com.fingertip.baselib.util.TimeUtil
@@ -70,6 +73,8 @@ class MomentDetailsFragment: TopPmFragment<MomentVM>() {
     private var targetCommentId: Int = 0
     private var commentDetailDialog: CommentDetailDialog? = null
 
+    private var commentPageCount = 0
+
     override fun getClickViews(): List<View> {
         return listOf(binding.ivBack,binding.ivHead,binding.tvNickname,binding.ivMenu,binding.tvFollow,
             binding.tvShare,binding.tvLike,binding.tvInput,binding.ivSend,binding.flInput)
@@ -104,6 +109,11 @@ class MomentDetailsFragment: TopPmFragment<MomentVM>() {
         {
             refreshUI()
         }
+
+        binding.srl.setOnLoadMoreListener {
+            commentPageCount++
+            mViewModel.getCommentList(momentId,commentPageCount)
+        }
     }
 
 
@@ -120,17 +130,25 @@ class MomentDetailsFragment: TopPmFragment<MomentVM>() {
         {
             if (it.success)
             {
-                commentAdapter.initData(it.data)
+                if (commentPageCount == 0)
+                {
+                    commentAdapter.initData(it.data)
+                }
+                else
+                {
+                    commentAdapter.addData(it.data)
+                }
+                if (it.data == null || it.data?.isEmpty() == true)
+                {
+                    binding.srl.finishLoadMoreWithNoMoreData()
+                }
+                else
+                {
+                    binding.srl.finishLoadMore()
+                }
             }
         }
 
-        mViewModel.momentCommentDetailsResult.observe(this)
-        {
-            if (it.success)
-            {
-
-            }
-        }
 
         mViewModel.commentResult.observe(this)
         {
@@ -154,6 +172,9 @@ class MomentDetailsFragment: TopPmFragment<MomentVM>() {
                         commentAdapter.notifyItemChanged(entityIndex)
                     }
                 }
+                momentEntity!!.commentCount+=1
+                binding.tvComments.text = "评论(${momentEntity!!.commentCount})"
+                notifyMomentListUpdate()
             }
             parentCommentId = 0
             targetCommentId = 0
@@ -171,6 +192,14 @@ class MomentDetailsFragment: TopPmFragment<MomentVM>() {
             when(viewId){
                 R.id.tv_like -> {
                     //点赞
+                    val parentComment = commentAdapter.get(position) ?: return@CommentAdapter
+                    mViewModel.likeMomentComment(parentComment.id,!parentComment.isLiked)
+                    return@CommentAdapter
+                }
+                R.id.tv_inner_like -> {
+                    //点赞
+                    val childComment = commentAdapter.get(position)?.childComment?.get(innerPosition) ?: return@CommentAdapter
+                    mViewModel.likeMomentComment(childComment.id,!childComment.isLiked)
                     return@CommentAdapter
                 }
                 R.id.iv_head,R.id.tv_nickname->{//主评论头像昵称-跳转资料页
@@ -185,8 +214,14 @@ class MomentDetailsFragment: TopPmFragment<MomentVM>() {
                     if (commentDetailDialog == null)
                     {
                         commentDetailDialog = CommentDetailDialog(requireContext())
+                        commentDetailDialog?.onLikeClick = { parentCommentPosition,childCommentPosition,childComment->
+                            if (parentCommentPosition!=-1)
+                            {
+                                commentAdapter.notifyInnerComment(parentCommentPosition,childCommentPosition,childComment)
+                            }
+                        }
                     }
-                    commentDetailDialog?.show(parentComment)
+                    commentDetailDialog?.show(position,parentComment)
                 }
                 R.id.cl_parent,R.id.cl_inner_parent -> {//回复评论
                     //回复
@@ -210,7 +245,7 @@ class MomentDetailsFragment: TopPmFragment<MomentVM>() {
         binding.rvComment.layoutManager = LinearLayoutManager(requireContext())
         binding.rvComment.adapter = commentAdapter
 
-        mViewModel.getCommentList(momentId,1)
+        mViewModel.getCommentList(momentId,commentPageCount)
 
 
         momentImageAdapter = MomentImageAdapter(requireContext(),0,0){
@@ -238,6 +273,7 @@ class MomentDetailsFragment: TopPmFragment<MomentVM>() {
             binding.tvShare.text = "${it.shareCount}"
             binding.tvLike.text = "${it.likeCount}"
             binding.tvComments.text = "评论(${it.commentCount})"
+            binding.tvLike.isSelected = it.isLiked
 
 
             if (it.momentType == 2 && !it.videoUrl.isNullOrEmpty() && it.videoWidth > 0 && it.videoHeight > 0) {
@@ -285,7 +321,20 @@ class MomentDetailsFragment: TopPmFragment<MomentVM>() {
 
             }
             R.id.tv_like -> {//点赞
+                mViewModel.likeMoment(momentId,!momentEntity?.isLiked!!)
+                { isLike,success->
+                    if ( success)
+                    {
+                        momentEntity?.isLiked = isLike
 
+                        if (isLike) momentEntity!!.likeCount +=1
+                        else momentEntity!!.likeCount -=1
+
+                        binding.tvLike.text = "${0.coerceAtLeast(momentEntity!!.likeCount)}"
+                        binding.tvLike.isSelected = isLike
+                        notifyMomentListUpdate()
+                    }
+                }
             }
             R.id.tv_input -> {
                 // 允许子View优先获取焦点，EditText需要
@@ -460,5 +509,9 @@ class MomentDetailsFragment: TopPmFragment<MomentVM>() {
         if (player is SampleCoverVideo && player.currentState == GSYVideoView.CURRENT_STATE_PAUSE) {
             player.onVideoResume()
         }
+    }
+
+    fun notifyMomentListUpdate() {
+        EventBusProxy.post(MessageEvent(EventConstant.EVENT_NOTIFY_MOMENT_LIST,momentEntity))
     }
 }

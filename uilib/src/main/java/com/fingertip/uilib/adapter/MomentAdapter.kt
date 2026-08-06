@@ -38,6 +38,7 @@ class MomentAdapter(
             binding.tvLike.text = "${entity.likeCount}"
             binding.tvComment.text = "${entity.commentCount}"
             binding.tvFollow.isSelected = entity.isFollowed
+            binding.tvLike.isSelected = entity.isLiked
             binding.tvTimeLocate.text = "${TimeUtil.dateFormateTime(entity.createDate)}·${entity.postAddress}"
             if (entity.momentType == 2) //视频
             {

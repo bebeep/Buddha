@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fingertip.baselib.bean.MomentEntity
+import com.fingertip.baselib.event_bus.EventConstant
+import com.fingertip.baselib.event_bus.MessageEvent
 import com.fingertip.baselib.log
 import com.fingertip.baselib.top.TopPmFragment
 import com.fingertip.baselib.view.SampleCoverVideo
@@ -16,6 +18,7 @@ import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack
 import com.shuyu.gsyvideoplayer.video.base.GSYVideoView
+import org.greenrobot.eventbus.Subscribe
 
 class MomentChildFragment : TopPmFragment<MomentVM>() {
     override fun layoutId(): Int = R.layout.fragment_moment_child
@@ -245,6 +248,21 @@ class MomentChildFragment : TopPmFragment<MomentVM>() {
         val player = GSYVideoManager.instance().listener()
         if (player is SampleCoverVideo && player.currentState == GSYVideoView.CURRENT_STATE_PAUSE) {
             player.onVideoResume()
+        }
+    }
+
+
+    @Subscribe()
+    fun onEvent(event: MessageEvent) {
+        when(event.what) {
+            EventConstant.EVENT_NOTIFY_MOMENT_LIST -> {
+                val momentEntity = event.`object` as? MomentEntity ?: return
+                val position = list.indexOfFirst { it.momentId == momentEntity.momentId }
+                if (position != -1) {
+                    list[position] = momentEntity
+                    adapter?.notifyItemChanged(position)
+                }
+            }
         }
     }
 }
