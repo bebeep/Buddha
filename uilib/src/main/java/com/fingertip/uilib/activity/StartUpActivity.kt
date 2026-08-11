@@ -9,6 +9,7 @@ import com.fingertip.baselib.dialog.RemindAllDialog
 import com.fingertip.baselib.top.TopVMActivity
 import com.fingertip.baselib.util.ToastUtil
 import com.fingertip.uilib.databinding.ActivityStartupBinding
+import com.fingertip.uilib.service.ModuleDownloadService
 import com.fingertip.uilib.viewmodel.StartUpVM
 import com.lzlz.toplib.extention.visible
 
@@ -61,6 +62,10 @@ class StartUpActivity : TopVMActivity<StartUpVM>() {
             when(it.data?.versionStatus){
                 1->{//正常
                     GlobalConfig.globalParam = it.data?.globalParam
+                    //后台下载佛像模型文件(普通模型+3D模型)
+                    GlobalConfig.globalParam?.buddhaConfig?.let { config ->
+                        ModuleDownloadService.start(this, config[0])
+                    }
                     val username = SPUtils.getInstance(SPConstant.SP_ACCOUNT).getString(SPConstant.SP_ACCOUNT_USERNAME)
                     val password = SPUtils.getInstance(SPConstant.SP_ACCOUNT).getString(SPConstant.SP_ACCOUNT_PASSWORD)
                     if (username.isNotEmpty() && password.isNotEmpty()){//情况正常，并且本地保存了账号密码 直接登录

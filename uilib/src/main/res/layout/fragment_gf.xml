@@ -43,14 +43,12 @@
     </com.fingertip.baselib.view.FullTopConstraintLayout>
 
 
-    <ImageView
-        android:id="@+id/v_fo"
+    <com.youth.banner.Banner
+        android:id="@+id/banner_fo"
         android:layout_width="match_parent"
         app:layout_constraintTop_toBottomOf="@+id/cl_title"
         app:layout_constraintBottom_toTopOf="@+id/tv_gf_people"
         android:layout_margin="16dp"
-        android:src="@mipmap/bg_worship_buddha"
-        android:scaleType="fitCenter"
         android:layout_height="0dp"
         />
 

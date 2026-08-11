@@ -1,4 +1,41 @@
 apply from: "libconfig.gradle"
+
+// eq-renderer 模块需要的 CMake 和 C++ 配置
+ext.cmakeArgs = [
+        "--no-warn-unused-cli",
+        "-DANDROID_PIE=ON",
+        "-DANDROID_PLATFORM=21",
+        "-DANDROID_STL=c++_static",
+        "-DFILAMENT_SUPPORTS_VULKAN=ON",
+        "-DFILAMENT_SUPPORTS_WEBGPU=OFF",
+        "-DFILAMENT_ENABLE_FGVIEWER=OFF",
+        "-DFILAMENT_ENABLE_MATDBG=OFF",
+        "-DFILAMENT_DISABLE_MATOPT=OFF"
+]
+
+ext.cppFlags = [
+        "-std=c++17",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-fno-rtti",
+        "-ffast-math",
+        "-fno-finite-math-only",
+        "-ffp-contract=fast",
+        "-fvisibility-inlines-hidden",
+        "-fvisibility=hidden",
+        "-fomit-frame-pointer",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-no-canonical-prefixes",
+        "-Wformat",
+        "-Werror=format-security",
+        "-Wno-unused-command-line-argument",
+        "-Wl,--gc-sections",
+        "-Wl,-Bsymbolic-functions",
+        "-Wl,--hash-style=both",
+]
+
 buildscript {
     ext.kotlin_version = '1.9.24'
     repositories {
@@ -23,6 +60,13 @@ allprojects {
         maven { url 'https://maven.aliyun.com/repository/public' }
         maven { url 'https://mirrors.cloud.tencent.com/jitpack' }
         maven { url 'https://www.jitpack.io' }
+        // Sceneform-EQR (EQ-Renderer) 仓库
+        maven {
+            allowInsecureProtocol = true
+            url 'http://repo.eqgis.cn'
+        }
+        // Huawei AR Engine (eq-renderer compileOnly依赖)
+        maven { url 'https://developer.huawei.com/repo/' }
     }
 }
 

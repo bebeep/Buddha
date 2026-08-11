@@ -147,4 +147,9 @@ object NetProperty {
      */
     const val UN_LIKE_MOMENT_COMMENT                     = "moment/unLikeComment"
 
+
+    /**
+     * 取消点赞评论
+     */
+    const val GET_BUDDHA_CONFIG                     = "account/getBuddhaConfig"
 }

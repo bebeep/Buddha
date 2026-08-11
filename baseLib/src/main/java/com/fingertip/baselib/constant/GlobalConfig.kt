@@ -2,6 +2,7 @@ package com.fingertip.baselib.constant
 
 import com.blankj.utilcode.util.GsonUtils
 import com.blankj.utilcode.util.SPUtils
+import com.fingertip.baselib.bean.BuddhaConfig
 import com.fingertip.baselib.bean.GlobalParam
 import com.fingertip.baselib.bean.PersonData
 import com.fingertip.baselib.bean.ServerConfigBean

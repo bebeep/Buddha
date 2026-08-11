@@ -1,5 +1,6 @@
 package com.fingertip.baselib.net
 
+import com.fingertip.baselib.bean.BuddhaConfig
 import com.fingertip.baselib.bean.CommentEntity
 import com.fingertip.baselib.bean.MomentEntity
 import com.fingertip.baselib.bean.OssConfig
@@ -164,4 +165,13 @@ interface ApiManager {
         @Query("session") session: String = GlobalConfig.session,
         @Query("commentId") commentId: Int,
     ): RequestRsp<String>
+
+    /**
+     * 获取佛像列表
+     */
+    @POST()
+    suspend fun getBuddhaConfig(
+        @Url url: String = NetProperty.GET_BUDDHA_CONFIG,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<List<BuddhaConfig>>
 }

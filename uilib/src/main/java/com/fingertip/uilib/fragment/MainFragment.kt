@@ -114,11 +114,11 @@ class MainFragment : TopVMFragment<MainVM>(), BottomMenu.MenuSelectCallback {
         lastFragment = fragmentList[pos]
         lastIndex = pos
         if (pos == 2) {
-            binding.multiContainer.gone()
-            binding.bottomMenu.alpha = 0.2f
+//            binding.multiContainer.gone()
+//            binding.bottomMenu.alpha = 0.2f
         } else {
-            binding.multiContainer.visible()
-            binding.bottomMenu.alpha = 1f
+//            binding.multiContainer.visible()
+//            binding.bottomMenu.alpha = 1f
         }
     }
 

@@ -5,6 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- 3D场景渲染区域，全屏显示 -->
+    <com.eqgis.eqr.layout.SceneLayout
+        android:id="@+id/scene_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- 普通模型图片兜底（3D模型不可用时显示） -->
+    <ImageView
+        android:id="@+id/iv_fallback_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:visibility="gone" />
+
+    <!-- 顶部导航栏（可选，悬浮在3D场景上方） -->
     <com.fingertip.baselib.view.FullTopConstraintLayout
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
@@ -12,15 +27,29 @@
         app:layout_constraintTop_toTopOf="parent">
     </com.fingertip.baselib.view.FullTopConstraintLayout>
 
+    <!-- 加载进度提示 -->
+    <ProgressBar
+        android:id="@+id/progress_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-
-
-
-
-
-
-
-
-
+    <!-- 加载状态文字 -->
+    <TextView
+        android:id="@+id/tv_loading_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="加载模型中..."
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/progress_loading" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

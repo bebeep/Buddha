@@ -8,6 +8,12 @@ ext {
             minSdkVersion                   : 24,
             targetSdkVersion                : 35,
 
+            // eq-renderer 模块需要的别名属性
+            ndk                             : '27.3.13750724',
+            minSdk                          : 24,
+            targetSdk                       : 35,
+            compileSdk                      : 35,
+
 
             arouter_version                 : "1.5.2",
             room_version                    : "2.6.1",

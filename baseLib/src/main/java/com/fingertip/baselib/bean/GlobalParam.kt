@@ -32,4 +32,6 @@ class GlobalParam: TopData() {
 
     //("oss文件上传地址bucketName")
     var bucketName : String? = ""
+    //佛像配置
+    var buddhaConfig : List<BuddhaConfig>?=null
 }

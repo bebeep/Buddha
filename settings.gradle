@@ -6,3 +6,7 @@ include ':FlycoTabLayout'
 include ':fragmentation_core'
 include ':tiny'
 include ':PhotoPicker'
+
+// Sceneform-EQR (EQ-Renderer) 3D渲染引擎 - 本地源码模块
+include ':eq-renderer'
+project(':eq-renderer').projectDir = new File('E:\\Android\\SceneformEQR\\Sceneform-EQR-main\\Sceneform-EQR-main\\Eq-Renderer\\Android\\eq-renderer')

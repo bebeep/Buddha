@@ -40,6 +40,11 @@
         </activity>
 
 
+        <!--佛像模型文件后台下载服务-->
+        <service
+            android:name=".service.ModuleDownloadService"
+            android:exported="false" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.fingertip.uilib.fileprovider"
