@@ -14,6 +14,7 @@ import com.fingertip.uilib.adapter.HostMarqueeAdapter
 import com.fingertip.uilib.adapter.HostMenuAdapter
 import com.fingertip.uilib.databinding.FragmentHostBinding
 import com.fingertip.uilib.dialog.SignInDialog
+import com.fingertip.uilib.fragment.game.FangShengFragment
 import com.fingertip.uilib.fragment.worshiping.GongFoFragment
 import com.youth.banner.Banner
 import org.greenrobot.eventbus.Subscribe
@@ -57,7 +58,7 @@ class HostFragment : TopFragment() {
 
                 }
                 5 -> {//放生
-
+                    (parentFragment as? MainFragment)?.start(FangShengFragment())
                 }
             }
         }
