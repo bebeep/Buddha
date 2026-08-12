@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>放生小游戏</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:'PingFang SC',sans-serif;background:#0D1F1F;color:#fff;overflow:hidden;width:100vw;height:100vh}
+.page{display:none;width:100%;height:100%;position:absolute;top:0;left:0}
+.page.active{display:flex;flex-direction:column}
+/* 大厅 */
+#lobby{background:linear-gradient(180deg,#1A3A2A 0%,#0D1F1F 100%);padding:20px;align-items:center}
+.lobby-title{color:#FFD700;font-size:28px;font-weight:bold;margin-top:40px;text-align:center}
+.lobby-sub{color:#88FFFFFF;font-size:14px;margin-top:8px;text-align:center}
+.cards{flex:1;width:100%;max-width:420px;margin-top:30px;overflow-y:auto;padding:0 16px}
+.card{background:#2A3A2A;border-radius:16px;padding:20px;margin-bottom:16px;display:flex;align-items:center;cursor:pointer;transition:transform .2s}
+.card:active{transform:scale(0.97)}
+.card.fish{background:#1A3A4A}
+.card.turtle{background:#2A3A1A}
+.card-icon{width:64px;height:64px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:36px;flex-shrink:0}
+.card-icon.toad{background:#3A5A3A}
+.card-icon.fish{background:#2A4A5A}
+.card-icon.turtle{background:#3A5A2A}
+.card-info{flex:1;margin-left:14px}
+.card-name{font-size:18px;font-weight:bold}
+.card-desc{font-size:13px;color:#88FFFFFF;margin-top:4px}
+.card-diff{font-size:12px;color:#FFD700;margin-top:6px}
+.card-arrow{color:#FFD700;font-size:20px}
+.lobby-foot{color:#66FFFFFF;font-size:13px;text-align:center;padding:16px}
+/* 游戏页 */
+.game-page{background:#0D1F1F}
+.game-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:rgba(0,0,0,0.3);z-index:10}
+.btn-back{color:#FFD700;font-size:16px;cursor:pointer;padding:6px 12px;border:1px solid #FFD700;border-radius:8px}
+.game-title{color:#FFD700;font-size:16px;font-weight:bold}
+.game-area{flex:1;position:relative;overflow:hidden}
+.game-area canvas{width:100%;height:100%}
+/* 覆盖层 */
+.overlay{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,0.7);z-index:20}
+.overlay.hidden{display:none}
+.overlay-title{font-size:32px;font-weight:bold;margin-bottom:12px}
+.overlay-sub{font-size:18px;color:#AAFFFFFF;margin-bottom:8px}
+.overlay-hint{font-size:14px;color:#88FFFFFF;margin-top:16px}
+.gold{color:#FFD700}
+.green{color:#3AAA33}
+.blue{color:#00BFFF}
+.red{color:#FF6B6B}
+</style>
+</head>
+<body>
+<!-- 大厅 -->
+<div id="lobby" class="page active">
+  <div class="lobby-title">放生小游戏</div>
+  <div class="lobby-sub">解救生灵 · 功德无量</div>
+  <div class="cards">
+    <div class="card toad" onclick="startGame('toad')">
+      <div class="card-icon toad">🐸</div>
+      <div class="card-info">
+        <div class="card-name">蟾蜍障碍跳</div>
+        <div class="card-desc">点击跳跃 · 躲避障碍 · 解救蟾蜍</div>
+        <div class="card-diff">难度: ★★☆☆☆</div>
+      </div>
+      <div class="card-arrow">▶</div>
+    </div>
+    <div class="card fish" onclick="startGame('fish')">
+      <div class="card-icon fish">🐟</div>
+      <div class="card-info">
+        <div class="card-name">小鱼顺水流</div>
+        <div class="card-desc">滑动控制 · 穿越暗流 · 放归莲池</div>
+        <div class="card-diff">难度: ★★★☆☆</div>
+      </div>
+      <div class="card-arrow" style="color:#00BFFF">▶</div>
+    </div>
+    <div class="card turtle" onclick="startGame('turtle')">
+      <div class="card-icon turtle">🐢</div>
+      <div class="card-info">
+        <div class="card-name">小乌龟迷宫</div>
+        <div class="card-desc">滑动寻路 · 破解迷局 · 回归自然</div>
+        <div class="card-diff">难度: ★★★★☆</div>
+      </div>
+      <div class="card-arrow" style="color:#3AAA33">▶</div>
+    </div>
+  </div>
+  <div class="lobby-foot">🪷 每一次放生，都是一次善缘 🪷</div>
+</div>
+
+<!-- 蟾蜍障碍跳 -->
+<div id="game-toad" class="page game-page">
+  <div class="game-header">
+    <div class="btn-back" onclick="backToLobby()">← 返回</div>
+    <div class="game-title">蟾蜍障碍跳</div>
+    <div class="game-title" id="toad-score">0</div>
+  </div>
+  <div class="game-area">
+    <canvas id="toad-canvas"></canvas>
+    <div class="overlay" id="toad-ready" onclick="handleOverlayClick('toad')">
+      <div class="overlay-title gold">🐸 蟾蜍障碍跳</div>
+      <div class="overlay-sub">点击屏幕跳跃，躲避障碍</div>
+      <div class="overlay-hint">点击开始</div>
+    </div>
+    <div class="overlay hidden" id="toad-win" onclick="handleOverlayClick('toad')">
+      <div class="overlay-title gold">🪷 放生成功 🪷</div>
+      <div class="overlay-sub">功德 +1</div>
+      <div class="overlay-hint">点击返回大厅</div>
+    </div>
+    <div class="overlay hidden" id="toad-lose" onclick="handleOverlayClick('toad')">
+      <div class="overlay-title red">蟾蜍被困住了</div>
+      <div class="overlay-hint">点击重新开始</div>
+    </div>
+  </div>
+</div>
+
+<!-- 小鱼顺水流 -->
+<div id="game-fish" class="page game-page">
+  <div class="game-header">
+    <div class="btn-back" onclick="backToLobby()">← 返回</div>
+    <div class="game-title">小鱼顺水流</div>
+    <div class="game-title" id="fish-score">0</div>
+  </div>
+  <div class="game-area">
+    <canvas id="fish-canvas"></canvas>
+    <div class="overlay" id="fish-ready" onclick="handleOverlayClick('fish')">
+      <div class="overlay-title blue">🐟 小鱼顺水流</div>
+      <div class="overlay-sub">滑动屏幕控制鱼的位置</div>
+      <div class="overlay-hint">点击开始</div>
+    </div>
+    <div class="overlay hidden" id="fish-win" onclick="handleOverlayClick('fish')">
+      <div class="overlay-title blue">🪷 放生成功 🪷</div>
+      <div class="overlay-sub">功德 +1</div>
+      <div class="overlay-hint">点击返回大厅</div>
+    </div>
+    <div class="overlay hidden" id="fish-lose" onclick="handleOverlayClick('fish')">
+      <div class="overlay-title red">小鱼被困住了</div>
+      <div class="overlay-hint">点击重新开始</div>
+    </div>
+  </div>
+</div>
+
+<!-- 小乌龟迷宫 -->
+<div id="game-turtle" class="page game-page">
+  <div class="game-header">
+    <div class="btn-back" onclick="backToLobby()">← 返回</div>
+    <div class="game-title" id="turtle-level">第 1 关</div>
+    <div class="game-title" style="font-size:12px;color:#88FFFFFF">滑动控制方向</div>
+  </div>
+  <div class="game-area">
+    <canvas id="turtle-canvas"></canvas>
+    <div class="overlay" id="turtle-ready" onclick="handleOverlayClick('turtle')">
+      <div class="overlay-title green">🐢 小乌龟迷宫</div>
+      <div class="overlay-sub">滑动控制乌龟移动，找到金色莲花出口</div>
+      <div class="overlay-hint">点击开始</div>
+    </div>
+    <div class="overlay hidden" id="turtle-win" onclick="handleOverlayClick('turtle')">
+      <div class="overlay-title gold">🪷 放生成功 🪷</div>
+      <div class="overlay-sub" id="turtle-win-text">第 1 关通过！</div>
+      <div class="overlay-sub">功德 +1</div>
+      <div class="overlay-hint">点击进入下一关</div>
+    </div>
+  </div>
+</div>
+
+<script src="js/bridge.js"></script>
+<script>
+// ========== 导航 ==========
+var currentGame=null,animId=null;
+function startGame(type){
+  document.getElementById('lobby').classList.remove('active');
+  document.getElementById('game-'+type).classList.add('active');
+  currentGame=type;
+  setTimeout(function(){initGame(type)},100);
+}
+function backToLobby(){
+  if(animId){cancelAnimationFrame(animId);animId=null}
+  if(currentGame){document.getElementById('game-'+currentGame).classList.remove('active')}
+  document.getElementById('lobby').classList.add('active');
+  currentGame=null;
+}
+function showOverlay(id){document.getElementById(id).classList.remove('hidden')}
+function hideOverlay(id){document.getElementById(id).classList.add('hidden')}
+function initGame(type){
+  if(type==='toad')initToad();
+  else if(type==='fish')initFish();
+  else if(type==='turtle')initTurtle();
+}
+// 覆盖层点击处理 - 转发给canvas的点击逻辑
+var gameClickHandlers={};
+function handleOverlayClick(type){
+  if(gameClickHandlers[type])gameClickHandlers[type]();
+}
+
+// ========== 蟾蜍障碍跳 ==========
+function initToad(){
+  var c=document.getElementById('toad-canvas'),ctx=c.getContext('2d');
+  var area=c.parentElement;
+  c.width=area.clientWidth;c.height=area.clientHeight;
+  var W=c.width,H=c.height,groundY=H*0.75;
+  var toad={x:W*0.15,y:groundY-50,w:50,h:50,vy:0,onGround:true};
+  var obstacles=[],particles=[],dist=0,speed=300,score=0,state='ready';
+  var GRAVITY=2800,JUMP=-900,WIN_DIST=3000,obsTimer=0;
+  hideOverlay('toad-ready');showOverlay('toad-ready');
+  hideOverlay('toad-win');hideOverlay('toad-lose');
+  function reset(){toad.y=groundY-toad.h;toad.vy=0;toad.onGround=true;obstacles=[];dist=0;speed=300;score=0;obsTimer=0;state='playing';hideOverlay('toad-ready');hideOverlay('toad-win');hideOverlay('toad-lose')}
+  function jump(){if(toad.onGround){toad.vy=JUMP;toad.onGround=false}}
+  function spawnObs(){var types=['rock','trap','tall'];var t=types[Math.floor(Math.random()*3)];var w=t==='trap'?60:t==='tall'?35:45;var h=t==='trap'?25:t==='tall'?65:40;obstacles.push({x:W,y:groundY-h,w:w,h:h,type:t})}
+  function update(dt){
+    if(state!=='playing')return;
+    dist+=speed*dt;speed=300+dist*0.1;score=Math.floor(dist/10);
+    document.getElementById('toad-score').textContent=score;
+    if(dist>=WIN_DIST){state='win';showOverlay('toad-win');NativeBridge.onGameWin('toad',score);return}
+    toad.vy+=GRAVITY*dt;toad.y+=toad.vy*dt;
+    if(toad.y>=groundY-toad.h){toad.y=groundY-toad.h;toad.vy=0;toad.onGround=true}
+    obsTimer+=dt;var interval=1.8-(dist/WIN_DIST)*0.8;
+    if(obsTimer>=interval){obsTimer=0;spawnObs()}
+    for(var i=obstacles.length-1;i>=0;i--){var o=obstacles[i];o.x-=speed*dt;
+      if(o.x+o.w<0){obstacles.splice(i,1);continue}
+      if(toad.x+toad.w*0.8>o.x&&toad.x+toad.w*0.2<o.x+o.w&&toad.y+toad.h*0.8>o.y&&toad.y+toad.h*0.2<o.y+o.h){state='lose';showOverlay('toad-lose');NativeBridge.onGameLose('toad');return}
+    }
+    if(Math.random()<0.03)particles.push({x:W,y:Math.random()*groundY*0.6,vx:-(100+Math.random()*100),vy:30+Math.random()*50,s:4+Math.random()*8,a:200});
+    for(var j=particles.length-1;j>=0;j--){var p=particles[j];p.x+=p.vx*dt;p.y+=p.vy*dt;p.a-=15*dt;if(p.a<=0||p.x<-50)particles.splice(j,1)}
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    var bg=ctx.createLinearGradient(0,0,0,H);bg.addColorStop(0,'#1A3A2A');bg.addColorStop(0.5,'#2A5A3A');bg.addColorStop(1,'#1A4A3A');
+    ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+    // 地面
+    ctx.fillStyle='#2A4A2A';ctx.fillRect(0,groundY,W,H-groundY);
+    ctx.strokeStyle='#4A8A4A';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,groundY);ctx.lineTo(W,groundY);ctx.stroke();
+    // 粒子
+    particles.forEach(function(p){ctx.fillStyle='rgba(255,182,193,'+p.a/255+')';ctx.beginPath();ctx.arc(p.x,p.y,p.s,0,Math.PI*2);ctx.fill()});
+    // 障碍
+    obstacles.forEach(function(o){ctx.fillStyle=o.type==='trap'?'#8B4513':'#5A5A5A';
+      if(o.type==='trap'){ctx.beginPath();ctx.moveTo(o.x,o.y+o.h);for(var i=0;i<5;i++){ctx.lineTo(o.x+o.w/5*i+o.w/10,o.y);ctx.lineTo(o.x+o.w/5*(i+1),o.y+o.h)}ctx.closePath();ctx.fill()}
+      else{ctx.fillRect(o.x,o.y,o.w,o.h);ctx.fillStyle='#4A4A4A';ctx.fillRect(o.x+3,o.y+3,o.w-6,o.h-6)}});
+    // 蟾蜍
+    var cx=toad.x+toad.w/2,cy=toad.y+toad.h/2,r=toad.w/2;
+    ctx.fillStyle='#2D5A27';ctx.beginPath();ctx.ellipse(cx,cy,r,r*0.8,0,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#90EE90';ctx.beginPath();ctx.arc(cx-r*0.4,cy-r*0.5,6,0,Math.PI*2);ctx.fill();
+    ctx.beginPath();ctx.arc(cx+r*0.4,cy-r*0.5,6,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#000';ctx.beginPath();ctx.arc(cx-r*0.35,cy-r*0.5,3,0,Math.PI*2);ctx.fill();
+    ctx.beginPath();ctx.arc(cx+r*0.45,cy-r*0.5,3,0,Math.PI*2);ctx.fill();
+    // 进度条
+    var bw=W*0.5,bh=10,bx=(W-bw)/2,by=15;
+    ctx.fillStyle='rgba(255,255,255,0.2)';ctx.beginPath();ctx.roundRect(bx,by,bw,bh,5);ctx.fill();
+    ctx.fillStyle='#FFD700';ctx.beginPath();ctx.roundRect(bx,by,bw*Math.min(dist/WIN_DIST,1),bh,5);ctx.fill();
+  }
+  function loop(){update(1/60);draw();animId=requestAnimationFrame(loop)}
+  var clickHandler=function(){
+    if(state==='ready')reset();
+    else if(state==='playing')jump();
+    else if(state==='win'){backToLobby();return}
+    else if(state==='lose'){reset()}
+  };
+  c.onclick=clickHandler;
+  gameClickHandlers['toad']=clickHandler;
+  if(animId)cancelAnimationFrame(animId);
+  state='ready';loop();
+}
+
+// ========== 小鱼顺水流 ==========
+function initFish(){
+  var c=document.getElementById('fish-canvas'),ctx=c.getContext('2d');
+  var area=c.parentElement;c.width=area.clientWidth;c.height=area.clientHeight;
+  var W=c.width,H=c.height;
+  var fish={x:W*0.2,y:H*0.5,w:60,h:35};
+  var targetY=fish.y,obstacles=[],bubbles=[],dist=0,speed=250,score=0,state='ready';
+  var WIN_DIST=2500,obsTimer=0,waterOff=0;
+  hideOverlay('fish-ready');showOverlay('fish-ready');hideOverlay('fish-win');hideOverlay('fish-lose');
+  function reset(){fish.y=H*0.5;targetY=fish.y;obstacles=[];bubbles=[];dist=0;speed=250;score=0;obsTimer=0;state='playing';hideOverlay('fish-ready');hideOverlay('fish-win');hideOverlay('fish-lose')}
+  function spawnObs(){var gap=H*0.32,minT=H*0.15,maxT=H*0.55;var topH=minT+Math.random()*(maxT-minT);
+    obstacles.push({x:W,topH:topH,gap:gap,w:70,passed:false})}
+  function update(dt){
+    if(state!=='playing')return;
+    waterOff+=speed*dt;dist+=speed*dt;speed=250+dist*0.08;score=Math.floor(dist/10);
+    document.getElementById('fish-score').textContent=score;
+    if(dist>=WIN_DIST){state='win';showOverlay('fish-win');NativeBridge.onGameWin('fish',score);return}
+    fish.y+=(targetY-fish.y)*5*dt;fish.y=Math.max(20,Math.min(H-fish.h-20,fish.y));
+    obsTimer+=dt;var interval=1.5-(dist/WIN_DIST)*0.5;
+    if(obsTimer>=interval){obsTimer=0;spawnObs()}
+    for(var i=obstacles.length-1;i>=0;i--){var o=obstacles[i];o.x-=speed*dt;
+      if(o.x+o.w<0){obstacles.splice(i,1);continue}
+      var fx=fish.x+fish.w*0.7,fx2=fish.x+fish.w*0.3,fy=fish.y+fish.h*0.7,fy2=fish.y+fish.h*0.3;
+      if(fx>o.x&&fx2<o.x+o.w){
+        if(fy2<o.topH||fy>o.topH+o.gap){state='lose';showOverlay('fish-lose');NativeBridge.onGameLose('fish');return}}
+      if(!o.passed&&o.x+o.w<fish.x){o.passed=true;score+=5;document.getElementById('fish-score').textContent=score}
+    }
+    if(Math.random()<0.02)bubbles.push({x:W,y:H*0.3+Math.random()*H*0.5,r:12,a:0});
+    for(var j=bubbles.length-1;j>=0;j--){var b=bubbles[j];b.x-=speed*0.3*dt;b.a+=dt;
+      if(b.x<-30){bubbles.splice(j,1);continue}
+      if(Math.abs(b.x-fish.x)<30&&Math.abs(b.y-fish.y)<30){bubbles.splice(j,1);score+=2;document.getElementById('fish-score').textContent=score}
+    }
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    var bg=ctx.createLinearGradient(0,0,0,H);bg.addColorStop(0,'#0A4A6A');bg.addColorStop(0.5,'#0D6A8A');bg.addColorStop(1,'#0A3A5A');
+    ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+    // 水波
+    ctx.strokeStyle='rgba(255,255,255,0.1)';ctx.lineWidth=1.5;
+    for(var row=0;row<6;row++){ctx.beginPath();var by=row*H/6;
+      for(var px=0;px<=W;px+=20){ctx.lineTo(px,by+Math.sin((px+waterOff)*0.02+row)*8)}ctx.stroke()}
+    // 障碍(珊瑚)
+    obstacles.forEach(function(o){
+      ctx.fillStyle='#8B4513';ctx.beginPath();ctx.roundRect(o.x,0,o.w,o.topH,10);ctx.fill();
+      ctx.fillStyle='#6B3410';ctx.beginPath();ctx.roundRect(o.x+4,4,o.w-8,o.topH-8,8);ctx.fill();
+      ctx.fillStyle='#8B4513';ctx.beginPath();ctx.roundRect(o.x,o.topH+o.gap,o.w,H-o.topH-o.gap,10);ctx.fill();
+      ctx.fillStyle='#6B3410';ctx.beginPath();ctx.roundRect(o.x+4,o.topH+o.gap+4,o.w-8,H-o.topH-o.gap-8,8);ctx.fill()});
+    // 气泡
+    bubbles.forEach(function(b){ctx.strokeStyle='rgba(255,255,255,0.5)';ctx.lineWidth=2;ctx.beginPath();ctx.arc(b.x,b.y+Math.sin(b.a*3)*5,b.r,0,Math.PI*2);ctx.stroke()});
+    // 鱼
+    var cx=fish.x+fish.w/2,cy=fish.y+fish.h/2;
+    ctx.fillStyle='#FF8C00';ctx.beginPath();ctx.moveTo(fish.x+fish.w,cy);
+    ctx.quadraticCurveTo(cx+10,fish.y,cx-5,cy);ctx.quadraticCurveTo(cx+10,fish.y+fish.h,fish.x+fish.w,cy);ctx.fill();
+    ctx.fillStyle='#FF6600';ctx.beginPath();ctx.moveTo(fish.x+8,cy);
+    ctx.lineTo(fish.x-12,cy-12+Math.sin(Date.now()/100)*5);ctx.lineTo(fish.x-12,cy+12+Math.sin(Date.now()/100)*5);ctx.closePath();ctx.fill();
+    ctx.fillStyle='#FFF';ctx.beginPath();ctx.arc(fish.x+fish.w*0.75,cy-4,4,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#000';ctx.beginPath();ctx.arc(fish.x+fish.w*0.77,cy-4,2,0,Math.PI*2);ctx.fill();
+    // 进度条
+    var bw=W*0.5,bh=10,bx=(W-bw)/2,by=15;
+    ctx.fillStyle='rgba(255,255,255,0.2)';ctx.beginPath();ctx.roundRect(bx,by,bw,bh,5);ctx.fill();
+    ctx.fillStyle='#00BFFF';ctx.beginPath();ctx.roundRect(bx,by,bw*Math.min(dist/WIN_DIST,1),bh,5);ctx.fill();
+  }
+  function loop(){update(1/60);draw();animId=requestAnimationFrame(loop)}
+  c.addEventListener('touchstart',function(e){e.preventDefault();var t=e.touches[0];
+    if(state==='ready')reset();else if(state==='win'){backToLobby();return}else if(state==='lose'){reset()}
+    targetY=t.clientY-c.getBoundingClientRect().top-fish.h/2},{passive:false});
+  c.addEventListener('touchmove',function(e){e.preventDefault();targetY=e.touches[0].clientY-c.getBoundingClientRect().top-fish.h/2},{passive:false});
+  var clickHandler=function(){if(state==='ready')reset();else if(state==='win')backToLobby();else if(state==='lose')reset()};
+  c.onclick=clickHandler;
+  gameClickHandlers['fish']=clickHandler;
+  if(animId)cancelAnimationFrame(animId);state='ready';loop();
+}
+
+// ========== 小乌龟迷宫 ==========
+function initTurtle(){
+  var c=document.getElementById('turtle-canvas'),ctx=c.getContext('2d');
+  var area=c.parentElement;c.width=area.clientWidth;c.height=area.clientHeight;
+  var W=c.width,H=c.height;
+  var level=1,maze,rows,cols,cellSize,offX,offY;
+  var tr=1,tc=1,targetR=1,targetC=1,state='ready',animT=0;
+  var WALL=0,PATH=1,START=2,END=3;
+  function genMaze(cols,rows){
+    var m=[];for(var i=0;i<rows;i++){m[i]=[];for(var j=0;j<cols;j++)m[i][j]=WALL}
+    function dfs(r,c){m[r][c]=PATH;var dirs=[[0,2],[0,-2],[2,0],[-2,0]];
+      dirs.sort(function(){return Math.random()-0.5});
+      dirs.forEach(function(d){var nr=r+d[0],nc=c+d[1];
+        if(nr>0&&nr<rows-1&&nc>0&&nc<cols-1&&m[nr][nc]===WALL){
+          m[r+d[0]/2][c+d[1]/2]=PATH;dfs(nr,nc)}})}
+    dfs(1,1);m[1][1]=START;m[rows-2][cols-2]=END;
+    if(m[rows-3])m[rows-3][cols-2]=PATH;if(m[rows-2])m[rows-2][cols-3]=PATH;
+    return m;
+  }
+  function setupLevel(){
+    var s=9+(level-1)*4;s=Math.min(s,21);rows=s;cols=s;
+    maze=genMaze(cols,rows);
+    var pad=30,maxCW=(W-pad*2)/cols,maxCH=(H-pad*2-40)/rows;
+    cellSize=Math.min(maxCW,maxCH);offX=(W-cellSize*cols)/2;offY=(H-cellSize*rows)/2+30;
+    tr=1;tc=1;targetR=1;targetC=1;
+    document.getElementById('turtle-level').textContent='第 '+level+' 关';
+  }
+  hideOverlay('turtle-ready');showOverlay('turtle-ready');hideOverlay('turtle-win');
+  function reset(){level=1;state='playing';setupLevel();hideOverlay('turtle-ready');hideOverlay('turtle-win')}
+  function nextLevel(){level++;state='playing';setupLevel();hideOverlay('turtle-win')}
+  // 滑动控制
+  var touchSX=0,touchSY=0;
+  c.addEventListener('touchstart',function(e){
+    e.preventDefault();
+    if(state==='ready'){reset();return}
+    if(state==='win'){nextLevel();return}
+    touchSX=e.touches[0].clientX;touchSY=e.touches[0].clientY},{passive:false});
+  c.addEventListener('touchend',function(e){
+    e.preventDefault();
+    if(state!=='playing')return;
+    var dx=e.changedTouches[0].clientX-touchSX,dy=e.changedTouches[0].clientY-touchSY;
+    if(Math.abs(dx)<15&&Math.abs(dy)<15)return;
+    var nr=targetR,nc=targetC;
+    if(Math.abs(dx)>Math.abs(dy)){nc+=dx>0?1:-1}else{nr+=dy>0?1:-1}
+    if(nr>=0&&nr<rows&&nc>=0&&nc<cols&&maze[nr][nc]!==WALL){targetR=nr;targetC=nc}},{passive:false});
+  var clickHandler=function(){if(state==='ready')reset();else if(state==='win')nextLevel()};
+  c.onclick=clickHandler;
+  gameClickHandlers['turtle']=clickHandler;
+  function update(dt){
+    if(state!=='playing')return;animT+=dt;
+    var dr=targetR-tr,dc=targetC-tc,d=Math.sqrt(dr*dr+dc*dc);
+    if(d>0.05){var step=5*dt,ratio=Math.min(step/d,1);tr+=dr*ratio;tc+=dc*ratio}
+    else{tr=targetR;tc=targetC;if(maze[targetR]&&maze[targetR][targetC]===END){
+      state='win';document.getElementById('turtle-win-text').textContent='第 '+level+' 关通过！';
+      showOverlay('turtle-win');NativeBridge.onGameWin('turtle',level)}}
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    var bg=ctx.createLinearGradient(0,0,0,H);bg.addColorStop(0,'#1A2A1A');bg.addColorStop(1,'#0D1F0D');
+    ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+    if(!maze)return;
+    for(var r=0;r<rows;r++)for(var co=0;co<cols;co++){
+      var x=offX+co*cellSize,y=offY+r*cellSize;
+      if(maze[r][co]===WALL){ctx.fillStyle='#2A3A2A';ctx.fillRect(x,y,cellSize,cellSize);ctx.strokeStyle='#1A2A1A';ctx.lineWidth=0.5;ctx.strokeRect(x,y,cellSize,cellSize)}
+      else{ctx.fillStyle='#4A6A4A';ctx.fillRect(x,y,cellSize,cellSize);
+        if(maze[r][co]===END){ctx.fillStyle='#FFD700';var ecx=x+cellSize/2,ecy=y+cellSize/2,er=cellSize*0.3;
+          for(var p=0;p<6;p++){var ang=(p*60+animT*30)*Math.PI/180;ctx.beginPath();ctx.arc(ecx+er*Math.cos(ang),ecy+er*Math.sin(ang),er*0.4,0,Math.PI*2);ctx.fill()}
+          ctx.fillStyle='#FFA500';ctx.beginPath();ctx.arc(ecx,ecy,er*0.3,0,Math.PI*2);ctx.fill()}}}
+    // 乌龟
+    var tx=offX+tc*cellSize+cellSize/2,ty=offY+tr*cellSize+cellSize/2,ur=cellSize*0.35;
+    ctx.fillStyle='#2D8A27';ctx.beginPath();ctx.ellipse(tx,ty,ur,ur*0.85,0,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#1A6A1A';ctx.strokeStyle='#1A6A1A';ctx.lineWidth=1.5;ctx.beginPath();ctx.ellipse(tx,ty,ur*0.6,ur*0.5,0,0,Math.PI*2);ctx.stroke();
+    ctx.fillStyle='#3AAA33';ctx.beginPath();ctx.arc(tx,ty-ur*0.9,ur*0.35,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#000';ctx.beginPath();ctx.arc(tx-3,ty-ur*0.95,1.5,0,Math.PI*2);ctx.fill();
+    ctx.beginPath();ctx.arc(tx+3,ty-ur*0.95,1.5,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#3AAA33';var lr=ur*0.22;
+    ctx.beginPath();ctx.arc(tx-ur*0.8,ty-ur*0.4,lr,0,Math.PI*2);ctx.fill();
+    ctx.beginPath();ctx.arc(tx+ur*0.8,ty-ur*0.4,lr,0,Math.PI*2);ctx.fill();
+    ctx.beginPath();ctx.arc(tx-ur*0.8,ty+ur*0.5,lr,0,Math.PI*2);ctx.fill();
+    ctx.beginPath();ctx.arc(tx+ur*0.8,ty+ur*0.5,lr,0,Math.PI*2);ctx.fill();
+  }
+  function loop(){update(1/60);draw();animId=requestAnimationFrame(loop)}
+  setupLevel();if(animId)cancelAnimationFrame(animId);state='ready';loop();
+}
+</script>
+</body>
+</html>
