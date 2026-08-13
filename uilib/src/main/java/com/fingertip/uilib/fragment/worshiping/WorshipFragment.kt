@@ -33,7 +33,7 @@ class WorshipFragment : TopPmFragment<WorshipVM>() {
     companion object {
         private const val TAG = "WorshipFragment"
         /** 模型距离相机的距离 */
-        private const val MODEL_DISTANCE = 3.6f
+        private const val MODEL_DISTANCE = 2.5f
         /** 自动旋转一圈的时长(ms) */
         private const val ROTATE_DURATION = 8000L
     }
@@ -99,7 +99,7 @@ class WorshipFragment : TopPmFragment<WorshipVM>() {
 
         // 初始化场景，添加环境光照
         binding.sceneLayout.init(ctx)
-            .addIndirectLight("enviroments/light/lightroom_ibl.ktx", 50)
+            .addIndirectLight("enviroments/light/lightroom_ibl.ktx", 100)
 
         // 设置相机参数
         binding.sceneLayout.camera.setVerticalFovDegrees(45f)
@@ -133,9 +133,9 @@ class WorshipFragment : TopPmFragment<WorshipVM>() {
                 node.setRenderable(modelRenderable)
 
                 // 缩放成单位尺寸
-                node.setLocalScale(
-                    Vector3.one().scaled(ScaleTool.calculateUnitsScale(modelRenderable))
-                )
+//                node.setLocalScale(
+//                    Vector3.one().scaled(ScaleTool.calculateUnitsScale(modelRenderable))
+//                )
 
                 // 设置位置：在相机前方 MODEL_DISTANCE 处
                 node.setLocalPosition(Vector3(0f, 0f, -MODEL_DISTANCE))
@@ -146,8 +146,11 @@ class WorshipFragment : TopPmFragment<WorshipVM>() {
                 // 显示模型
                 node.isEnabled = true
 
+                // 修正模型初始朝向（.glb模型默认面朝右，需逆时针旋转90°面朝屏幕）
+                layout.setInitialRotationOffset(Quaternion(Vector3.up(), -90f))
+
                 // 启用触摸旋转（由SceneLayout统一处理）
-                layout.enableTouchRotation(node)
+                layout.enableTouchRotation(node,0.5f,true,false)
 
                 log(TAG, "3D模型加载完成")
             }
@@ -170,6 +173,8 @@ class WorshipFragment : TopPmFragment<WorshipVM>() {
                 }
                 null
             }
+        //自动旋转
+        binding.sceneLayout.startAutoRotation(node,-20f,Vector3.up())
     }
 
     /**
