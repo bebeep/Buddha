@@ -5,13 +5,14 @@
     android:layout_marginBottom="16dp"
     android:layout_height="wrap_content">
 
-    <ImageView
+    <com.fingertip.baselib.view.shapeview.ShapeImageView
         android:id="@+id/iv_bg"
         android:adjustViewBounds="true"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/bg_subject"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="h,684:348"
+        app:shape_radius="16dp"
         />
 
     <androidx.constraintlayout.widget.Guideline
@@ -39,14 +40,13 @@
         android:id="@+id/tv_intro"
         app:layout_constraintTop_toBottomOf="@+id/tv_title"
         app:layout_constraintEnd_toEndOf="@+id/tv_title"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_marginTop="4dp"
         android:textColor="#CBB491"
         android:textSize="12sp"
         android:maxLines="3"
         android:ellipsize="end"
-        android:text="专题介绍是这样的，文字最多两行专题介绍是这样"
-        app:layout_constraintStart_toEndOf="@+id/guideline"
+        android:text="专题介绍是这样的"
         android:layout_height="wrap_content"/>
 
     <com.fingertip.baselib.view.MyTextView

@@ -26,8 +26,6 @@ class FojingSubjectDetailsFragment :TopVMFragment<BookshelfVM>(){
     lateinit var adapter: FojingAdapter
 
     override fun initShiTu() {
-        val v = requireView()
-
         initAdapter()
 
         binding.appbar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, scrollY ->
