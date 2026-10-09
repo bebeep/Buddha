@@ -9,7 +9,6 @@
         <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/../../Android/SceneformEQR/Sceneform-EQR-main/Sceneform-EQR-main/Eq-Renderer/Android/eq-renderer" />
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/FlycoTabLayout" />
             <option value="$PROJECT_DIR$/PhotoPicker" />
