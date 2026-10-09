@@ -152,4 +152,29 @@ object NetProperty {
      * 取消点赞评论
      */
     const val GET_BUDDHA_CONFIG                     = "account/getBuddhaConfig"
+
+    /**
+     * 获取经书类型
+     */
+    const val GET_BOOK_TYPE_LIST                     = "book/getBookTypeConfig"
+
+    /**
+     * 获取经书主题列表
+     */
+    const val GET_BOOK_SUBJECT_LIST                     = "book/getBookThemeConfig"
+
+    /**
+     * 根据主题获取经书
+     */
+    const val GET_BOOK_LIST_BY_THEME                    = "book/getBookByTheme"
+
+    /**
+     * 根据分类获取经书
+     */
+    const val GET_BOOK_LIST_BY_TYPE                    = "book/getBookByType"
+
+    /**
+     * 获取书架上的书
+     */
+    const val GET_BOOK_LIST_IN_SHELF                    = "book/getBookInShelf"
 }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
 import com.blankj.utilcode.util.KeyboardUtils
@@ -140,6 +141,66 @@ abstract class TopFragment : SupportFragment(), View.OnClickListener, KeyboardUt
         super.onDestroyView()
         log(fName, "onDestroyView--")
         loadEnding()
+    }
+
+    // ----------------- 入栈动画相关 -----------------
+
+    /**
+     * 本页（以及它所在的宿主页面）是否还在播放「入栈动画」。
+     *
+     * Fragmentation 在 TransactionDelegate.start() 里给目标 Fragment 打上 hasEnterAnimation = true，
+     * 动画结束时由 SupportFragment.onEnterAnimationEnd() 复位；该方法在库里是 private，外部无法 override，
+     * 只能读这个标记。
+     *
+     * ViewPager 的子页面自身没有动画，所以这里顺带向上检查父级：
+     * 子页面想知道「宿主页的入栈动画播完了没」，用这个判断。
+     */
+    fun isEnterAnimating(): Boolean {
+        var f: Fragment? = this
+        while (f != null) {
+            if (f is SupportFragment && f.supportDelegate.hasEnterAnimation()) return true
+            f = f.parentFragment
+        }
+        return false
+    }
+
+    /**
+     * 等到入栈动画播放完毕再执行 [block]；没有动画时立即执行。
+     *
+     * 用来替代 `postDelayed(固定毫秒)` 这类魔法延迟：动画时长改了、或者这次根本没播动画，
+     * 固定延迟要么失效要么白等。这里等的是框架真正复位标记的那一帧，
+     * 并再多让出一帧给动画的最后一帧先画完，避免重活把动画收尾顶掉。
+     * 最后用 [MAX_ENTER_ANIM_FRAMES] 帧兜底，防止动画被打断导致标记不复位、页面一直空着。
+     */
+    fun postOnEnterAnimationEnd(block: () -> Unit) {
+        val target = view ?: run { block(); return }
+        if (!isEnterAnimating()) {
+            block()
+            return
+        }
+        var fired = false
+        var frames = 0
+        fun fire() {
+            if (fired) return
+            fired = true
+            block()
+        }
+        val poll = object : Runnable {
+            override fun run() {
+                if (fired) return
+                if (isAdded && isEnterAnimating() && frames++ < MAX_ENTER_ANIM_FRAMES) {
+                    target.postOnAnimation(this)
+                } else {
+                    target.postOnAnimation { fire() }
+                }
+            }
+        }
+        target.postOnAnimation(poll)
+    }
+
+    companion object {
+        /** 等待入栈动画结束的最大帧数（约 2s），仅作异常兜底 */
+        private const val MAX_ENTER_ANIM_FRAMES = 120
     }
 
     open fun getClickViews(): List<View> = listOf()

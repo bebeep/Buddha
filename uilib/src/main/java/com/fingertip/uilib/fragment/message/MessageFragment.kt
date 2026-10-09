@@ -14,13 +14,16 @@ class MessageFragment:TopPmFragment<MainVM>() {
 
 
     override fun initShiTu() {
-        binding.vp.postDelayed({
-            binding.vp.offscreenPageLimit = 2
-            binding.vp.adapter = TopFragmentPagerAdapter(listOf(
-                MessageChildFragment(),
-                MessageSystemFragment()
-            ), childFragmentManager)
-            binding.tabLayout.setViewPager(binding.vp, mutableListOf("与我相关","系统消息").toTypedArray())
-        },350)
+        postOnEnterAnimationEnd{ initFragmentAdapter() }
+    }
+
+    private fun initFragmentAdapter()
+    {
+        binding.vp.offscreenPageLimit = 2
+        binding.vp.adapter = TopFragmentPagerAdapter(listOf(
+            MessageChildFragment(),
+            MessageSystemFragment()
+        ), childFragmentManager)
+        binding.tabLayout.setViewPager(binding.vp, mutableListOf("与我相关","系统消息").toTypedArray())
     }
 }

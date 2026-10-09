@@ -21,7 +21,10 @@ class BookShelfFragment :TopVMFragment<BookshelfVM>(){
     override fun initShiTu() {
         initAdapter()
 
-        adapter.initData(listOf("","","","","","",""))
+         binding.srl.setOnRefreshListener {
+            mViewModel.getBookInShelf(0)
+         }
+        mViewModel.getBookInShelf(0)
     }
 
 
@@ -31,4 +34,15 @@ class BookShelfFragment :TopVMFragment<BookshelfVM>(){
         binding.recyclerview.adapter = adapter
     }
 
+
+    override fun initObserver() {
+        super.initObserver()
+        mViewModel.bookListResult.observe(this){
+            binding.srl.isRefreshing = false
+            if (it.success)
+            {
+                adapter.initData(it.data)
+            }
+        }
+    }
 }

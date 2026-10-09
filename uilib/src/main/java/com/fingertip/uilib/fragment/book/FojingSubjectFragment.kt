@@ -1,7 +1,6 @@
 package com.fingertip.uilib.fragment.book
 
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.SubjectAdapter
 import com.fingertip.uilib.viewmodel.BookshelfVM
@@ -19,18 +18,32 @@ class FojingSubjectFragment :TopVMFragment<BookshelfVM>(){
     lateinit var adapter: SubjectAdapter
     override fun initShiTu() {
         initAdapter()
+
+        binding.srl.setOnRefreshListener {
+            mViewModel.getBookSubjectList()
+        }
+
+        mViewModel.getBookSubjectList()
     }
 
 
     private fun initAdapter(){
         adapter = SubjectAdapter(requireContext()){
-            start(FojingSubjectDetailsFragment())
+            (parentFragment?.parentFragment as BuddhaTextsFragment).start(FojingSubjectDetailsFragment.newInstance(adapter.mlist[it].id))
         }
         binding.recyclerview.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerview.adapter = adapter
-
-        adapter.initData(listOf("","","","","","","",""))
     }
 
 
+    override fun initObserver() {
+        super.initObserver()
+        mViewModel.bookSubjectResult.observe(this){
+            binding.srl.isRefreshing = false
+            if (it.success)
+            {
+                adapter.initData(it.data!!)
+            }
+        }
+    }
 }
