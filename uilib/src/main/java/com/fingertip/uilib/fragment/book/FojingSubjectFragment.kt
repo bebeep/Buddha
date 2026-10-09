@@ -20,16 +20,16 @@ class FojingSubjectFragment :TopVMFragment<BookshelfVM>(){
         initAdapter()
 
         binding.srl.setOnRefreshListener {
-            mViewModel.getBookThemeList()
+            mViewModel.getBookSubjectList()
         }
 
-        mViewModel.getBookThemeList()
+        mViewModel.getBookSubjectList()
     }
 
 
     private fun initAdapter(){
         adapter = SubjectAdapter(requireContext()){
-            (parentFragment?.parentFragment as BuddhaTextsFragment).start(FojingSubjectDetailsFragment())
+            (parentFragment?.parentFragment as BuddhaTextsFragment).start(FojingSubjectDetailsFragment.newInstance(adapter.mlist[it].id))
         }
         binding.recyclerview.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerview.adapter = adapter

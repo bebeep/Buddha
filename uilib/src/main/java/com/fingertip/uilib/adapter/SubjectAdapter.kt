@@ -1,7 +1,7 @@
 package com.fingertip.uilib.adapter
 
 import android.content.Context
-import com.fingertip.baselib.bean.BookSubjectEntity
+import com.fingertip.baselib.bean.BookThemeEntity
 import com.fingertip.uilib.R
 import com.fingertip.baselib.top.TopRcAdapter
 import com.fingertip.baselib.util.loadImg
@@ -10,7 +10,7 @@ import com.fingertip.uilib.databinding.ItemSubjectBinding
 /**
  * 专题
  */
-class SubjectAdapter(context: Context,val onItemClick:(pos:Int)->Unit):TopRcAdapter<BookSubjectEntity,TopRcAdapter.TopRcViewHolder>(context) {
+class SubjectAdapter(context: Context,val onItemClick:(pos:Int)->Unit):TopRcAdapter<BookThemeEntity,TopRcAdapter.TopRcViewHolder>(context) {
     override fun initLayoutId(viewType: Int) = R.layout.item_subject
 
     override fun onBindViewHolder(holder: TopRcViewHolder, position: Int) {

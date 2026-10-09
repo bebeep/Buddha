@@ -44,7 +44,7 @@
 
                     <com.fingertip.baselib.view.MyTextView
                         android:id="@+id/tv_buddha_name"
-                        android:text="南无阿弥陀佛"
+                        android:hint="南无阿弥陀佛"
                         android:textColor="#FF9600"
                         android:textSize="24sp"
                         app:layout_constraintTop_toTopOf="@+id/iv_buddha"
@@ -59,7 +59,7 @@
 
                     <com.fingertip.baselib.view.MyTextView
                         android:id="@+id/tv_intro"
-                        android:text="每当到了寺院，感受到一份超尘的清净与安详，生起了一份庄严与宁静的心，令人自然而然的想进入大殿，礼佛三拜，表达对诸佛菩萨的礼敬、感恩，而从柔软、徐缓而安详的弯腰礼佛动作里，感受到礼佛者的安定与谦卑，拜佛"
+                        android:hint="每当到了寺院，感受到一份超尘的清净与安详，生起了一份庄严与宁静的心，令人自然而然的想进入大殿，礼佛三拜，表达对诸佛菩萨的礼敬、感恩，而从柔软、徐缓而安详的弯腰礼佛动作里，感受到礼佛者的安定与谦卑，拜佛"
                         android:layout_width="0dp"
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="16dp"
@@ -118,7 +118,7 @@
             android:layout_marginStart="2dp"
             app:layout_constraintTop_toTopOf="@+id/v_back"
             app:layout_constraintBottom_toBottomOf="@+id/v_back"
-            android:text="南无阿弥陀ask鹿鼎奥术大师多记奥克奥术大师多兰的接口佛"
+            android:hint="南无阿弥陀ask鹿鼎奥术大师多记奥克奥术大师多兰的接口佛"
             android:textColor="#E7FCB754"
             android:textSize="16sp"
             android:singleLine="true"

@@ -172,4 +172,9 @@ object NetProperty {
      * 根据分类获取经书
      */
     const val GET_BOOK_LIST_BY_TYPE                    = "book/getBookByType"
+
+    /**
+     * 获取书架上的书
+     */
+    const val GET_BOOK_LIST_IN_SHELF                    = "book/getBookInShelf"
 }

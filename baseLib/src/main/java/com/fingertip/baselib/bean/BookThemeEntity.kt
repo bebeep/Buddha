@@ -1,6 +1,6 @@
 package com.fingertip.baselib.bean
 
-class BookSubjectEntity: TopData() {
+class BookThemeEntity: TopData() {
     var id: Int = 0
     var themeTitle: String? = "" //主题名称
     var themeCover: String? = "" //主题封面

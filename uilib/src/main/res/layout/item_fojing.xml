@@ -23,7 +23,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:ellipsize="end"
-        android:text="药师琉大家ask來得及ask多久啊是快樂的ask打連擊啊是璃光如来本愿功德经阿斯利康"
+        android:hint="药师琉大家ask來得及ask多久啊是快樂的ask打連擊啊是璃光如来本愿功德经阿斯利康"
         android:textColor="#2C1900"
         android:textSize="14sp"
         android:layout_width="0dp"

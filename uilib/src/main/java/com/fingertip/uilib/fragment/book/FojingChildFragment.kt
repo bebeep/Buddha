@@ -23,11 +23,11 @@ class FojingChildFragment :TopVMFragment<BookshelfVM>(){
 
 
     companion object {
-        const val BOOK_TYPE = "BOOK_TYPE"
+        const val TYPE_ID = "TYPE_ID"
         fun newInstance(bookType: Int): FojingChildFragment {
             return FojingChildFragment().apply {
                 arguments = Bundle().apply {
-                    putInt(BOOK_TYPE, bookType)
+                    putInt(TYPE_ID, bookType)
                 }
             }
         }
@@ -42,11 +42,15 @@ class FojingChildFragment :TopVMFragment<BookshelfVM>(){
     }
 
     override fun initShiTu() {
-        bookType = arguments?.getInt(BOOK_TYPE, 0) ?: 0
+        bookType = arguments?.getInt(TYPE_ID, 0) ?: 0
         if (bookType <= 0) {
             return
         }
         initAdapter()
+        binding.srl.setOnRefreshListener {
+            mViewModel.getBookByType(bookType, 0)
+        }
+        mViewModel.getBookByType(bookType, 0)
     }
 
 
@@ -55,8 +59,17 @@ class FojingChildFragment :TopVMFragment<BookshelfVM>(){
         binding.recyclerview.layoutManager = GridLayoutManager(requireContext(),3)
         binding.recyclerview.adapter = adapter
 
-        adapter.initData(listOf("","","","","","","",""))
     }
 
+    override fun initObserver() {
+        super.initObserver()
+        mViewModel.bookListResult.observe(this){
+            binding.srl.isRefreshing = false
+            if (it.success)
+            {
+                adapter.initData(it.data)
+            }
+        }
+    }
 
 }

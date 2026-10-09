@@ -1,7 +1,8 @@
 package com.fingertip.baselib.net
 
-import com.fingertip.baselib.bean.BookSubjectEntity
+import com.fingertip.baselib.bean.BookThemeEntity
 import com.fingertip.baselib.bean.BookTypeConfig
+import com.fingertip.baselib.bean.BuddhaBook
 import com.fingertip.baselib.bean.BuddhaConfig
 import com.fingertip.baselib.bean.CommentEntity
 import com.fingertip.baselib.bean.MomentEntity
@@ -193,7 +194,7 @@ interface ApiManager {
     suspend fun getBookThemeList(
         @Url url: String = NetProperty.GET_BOOK_SUBJECT_LIST,
         @Query("session") session: String = GlobalConfig.session
-    ): RequestRsp<List<BookSubjectEntity>>
+    ): RequestRsp<List<BookThemeEntity>>
 
     /**
      * 根据主题id获取经书
@@ -201,8 +202,10 @@ interface ApiManager {
     @GET()
     suspend fun getBookByTheme(
         @Url url: String = NetProperty.GET_BOOK_LIST_BY_THEME,
-        @Query("session") session: String = GlobalConfig.session
-    ): RequestRsp<List<BookSubjectEntity>>
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("themeId") themeId: Int,
+        @Query("currPage") currPage: Int,
+    ): RequestRsp<List<BuddhaBook>>
 
     /**
      * 根据分类id获取经书
@@ -210,6 +213,18 @@ interface ApiManager {
     @GET()
     suspend fun getBookByType(
         @Url url: String = NetProperty.GET_BOOK_LIST_BY_TYPE,
+        @Query("typeId") typeId: Int,
+        @Query("currPage") currPage: Int,
         @Query("session") session: String = GlobalConfig.session
-    ): RequestRsp<List<BookSubjectEntity>>
+    ): RequestRsp<List<BuddhaBook>>
+
+    /**
+     * 获取书架上的书
+     */
+    @GET()
+    suspend fun getBookInShelf(
+        @Url url: String = NetProperty.GET_BOOK_LIST_IN_SHELF,
+        @Query("currPage") currPage: Int,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<List<BuddhaBook>>
 }
