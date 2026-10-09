@@ -9,6 +9,7 @@
         <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
         <option name="modules">
           <set>
+            <option value="$PROJECT_DIR$/../../Android/SceneformEQR/Sceneform-EQR-main/Sceneform-EQR-main/Eq-Renderer/Android/eq-renderer" />
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/FlycoTabLayout" />
             <option value="$PROJECT_DIR$/PhotoPicker" />
@@ -17,7 +18,6 @@
             <option value="$PROJECT_DIR$/fragmentation_core" />
             <option value="$PROJECT_DIR$/tiny" />
             <option value="$PROJECT_DIR$/uilib" />
-            <option value="$PROJECT_DIR$/../SceneformEQR/Sceneform-EQR-main/Sceneform-EQR-main/Eq-Renderer/Android/eq-renderer" />
           </set>
         </option>
       </GradleProjectSettings>
