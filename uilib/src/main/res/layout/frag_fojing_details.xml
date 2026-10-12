@@ -52,7 +52,7 @@
 
                     <com.fingertip.baselib.view.MyTextView
                         android:id="@+id/tv_book_name"
-                        android:text="药师琉璃光如来本愿功德经"
+                        android:hint="药师琉璃光如来本愿功德经"
                         android:textColor="#2C1900"
                         android:textSize="16sp"
                         app:layout_constraintTop_toTopOf="@+id/iv_book_cover"
@@ -135,7 +135,7 @@
 
                         <com.fingertip.baselib.view.MyTextView
                             android:id="@+id/tv_book_level"
-                            android:text="入门"
+                            android:hint="入门"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             android:textColor="#2C1900"
@@ -167,7 +167,7 @@
 
                             <com.fingertip.baselib.view.MyTextView
                                 android:id="@+id/tv_book_copy"
-                                android:text="998佛友"
+                                android:hint="998佛友"
                                 android:textColor="#2C1900"
                                 android:textSize="16sp"
                                 android:layout_width="wrap_content"
@@ -196,7 +196,7 @@
                             android:layout_height="wrap_content">
                             <com.fingertip.baselib.view.MyTextView
                                 android:id="@+id/tv_book_read"
-                                android:text="998佛友"
+                                android:hint="998佛友"
                                 android:textColor="#2C1900"
                                 android:textSize="16sp"
                                 android:layout_width="wrap_content"

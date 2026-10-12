@@ -24,7 +24,7 @@
         app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintHorizontal_chainStyle="packed"
         android:layout_marginStart="8dp"
-        android:text="秀芝羽"
+        android:hint="秀芝羽"
         android:textSize="14sp"
         android:textColor="#FF9600"
         android:layout_height="wrap_content"/>
@@ -62,7 +62,7 @@
         android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="@+id/tv_comment_name"
         app:layout_constraintBottom_toBottomOf="@+id/iv_head"
-        android:text="lv5 初入佛门"
+        android:hint="lv5 初入佛门"
         android:singleLine="true"
         android:textSize="12sp"
         app:layout_constraintEnd_toStartOf="@+id/ll_like"
@@ -93,7 +93,7 @@
             android:layout_marginStart="4dp"
             android:textColor="#AAAAAA"
             android:textSize="12sp"
-            android:text="999"
+            android:hint="999"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -108,7 +108,7 @@
         android:layout_marginTop="4dp"
         android:textSize="14sp"
         android:textColor="#666666"
-        android:text="这里是经书简介爱上拉萨扩大了来到喀山啦啊拉萨市快乐打卡啊ask登录劳动的快乐爱上来到拉萨扩大上看到了a来到喀山啦啊拉萨市快乐打卡啊ask登录劳动的快乐爱上来到sk的力量"
+        android:hint="这里是经书简介爱上拉萨扩大了来到喀山啦啊拉萨市快乐打卡啊ask登录劳动的快乐爱上来到拉萨扩大上看到了a来到喀山啦啊拉萨市快乐打卡啊ask登录劳动的快乐爱上来到sk的力量"
         android:layout_height="wrap_content"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

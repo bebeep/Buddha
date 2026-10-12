@@ -1,5 +1,6 @@
 package com.fingertip.baselib.net
 
+import com.fingertip.baselib.bean.BookComment
 import com.fingertip.baselib.bean.BookThemeEntity
 import com.fingertip.baselib.bean.BookTypeConfig
 import com.fingertip.baselib.bean.BuddhaBook
@@ -237,4 +238,14 @@ interface ApiManager {
         @Query("bookId") bookId: Int,
         @Query("session") session: String = GlobalConfig.session
     ): RequestRsp<BuddhaBook>
+    /**
+     * 获取书籍评论
+     */
+    @GET()
+    suspend fun getBookComment(
+        @Url url: String = NetProperty.GET_BOOK_COMMENT,
+        @Query("bookId") bookId: Int,
+        @Query("currPage") currPage: Int,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<List<BookComment>>
 }

@@ -29,4 +29,6 @@ class BuddhaBook: TopData() {
     var isInShelf:Boolean = false
     //"更新时间"
     var updateContentDate: String = "2027-01-01 00:00:00"
+    //大师推荐
+    var masterRecommend: List<BookComment>? = null
 }

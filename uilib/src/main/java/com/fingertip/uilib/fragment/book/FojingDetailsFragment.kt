@@ -43,6 +43,7 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
     lateinit var commentAdapter: FojingCommentAdapter
 
     var bookId: Int = 0
+    var currPage : Int = 0
     var bookInfo: BuddhaBook ? = null
 
     override fun initShiTu() {
@@ -65,9 +66,12 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
         binding.srl.setOnLoadMoreListener(this)
 
         binding.srl.setOnRefreshListener {
+            currPage = 0
             mViewModel.getBookInfoByBookId(bookId)
+            mViewModel.getBookComment(bookId,currPage)
         }
         mViewModel.getBookInfoByBookId(bookId)
+        mViewModel.getBookComment(bookId,currPage)
     }
 
     override fun getClickViews(): List<View> {
@@ -100,13 +104,21 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
                 refreshUI()
             }
         }
+
+        mViewModel.bookCommentResult.observe(this)
+        {
+            binding.srl.finishLoadMore()
+            if (it.success)
+            {
+                commentAdapter.mlist.addAll(it.data!!)
+                commentAdapter.notifyDataSetChanged()
+            }
+        }
     }
 
     override fun onLoadMore(refreshLayout: RefreshLayout) {
-        binding.srl.postDelayed({
-            binding.srl.finishLoadMore()
-            commentAdapter.addData(listOf("",""))
-        },1000)
+        currPage ++
+        mViewModel.getBookComment(bookId,currPage)
     }
 
 
@@ -119,8 +131,6 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
         binding.rvComment.layoutManager = LinearLayoutManager(requireContext())
         binding.rvComment.adapter = commentAdapter
 
-        recommendAdapter.initData(listOf("","","",""))
-        commentAdapter.initData(listOf("","","",""))
     }
 
     private fun refreshUI()
@@ -136,5 +146,10 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
         binding.tvBookIntro.text = bookInfo?.bookIntro
         binding.tvRead.text = "已阅读 ${bookInfo?.readPercent}%"
         binding.tvCopy.text = "已抄写 ${bookInfo?.copyPercent}%"
+
+        bookInfo?.masterRecommend?.let { masterRecommend ->
+            recommendAdapter.initData(masterRecommend)
+        }
+
     }
 }

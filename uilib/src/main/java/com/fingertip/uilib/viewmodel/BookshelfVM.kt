@@ -1,6 +1,7 @@
 package com.fingertip.uilib.viewmodel
 
 import androidx.lifecycle.MutableLiveData
+import com.fingertip.baselib.bean.BookComment
 import com.fingertip.baselib.bean.BookThemeEntity
 import com.fingertip.baselib.bean.BookTypeConfig
 import com.fingertip.baselib.bean.BuddhaBook
@@ -16,6 +17,7 @@ class BookshelfVM: TopVMImp() {
     val bookListResult = MutableLiveData<RequestResult<List<BuddhaBook>>>()
 
     val bookInfoResult = MutableLiveData<RequestResult<BuddhaBook>>()
+    val bookCommentResult = MutableLiveData<RequestResult<List<BookComment>>>()
 
 
     fun getBookTypeList() {
@@ -75,6 +77,16 @@ class BookshelfVM: TopVMImp() {
             bookInfoResult.value = successResult(it)
         }, {
             bookInfoResult.value = failResult(it.errorCode)
+        }, showLoading = false, toastError = true)
+    }
+
+    fun getBookComment(bookId: Int,currPage: Int) {
+        call({
+            NetManager.getApi().getBookComment(bookId = bookId, currPage = currPage)
+        }, {
+            bookCommentResult.value = successResult(it)
+        }, {
+            bookCommentResult.value = failResult(it.errorCode)
         }, showLoading = false, toastError = true)
     }
 }

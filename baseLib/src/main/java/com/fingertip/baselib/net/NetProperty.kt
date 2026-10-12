@@ -182,4 +182,8 @@ object NetProperty {
      * 获取书籍详情
      */
     const val GET_BOOK_INFO                    = "book/getBookInfo"
+    /**
+     * 获取书籍评论
+     */
+    const val GET_BOOK_COMMENT                    = "book/getBookComment"
 }
