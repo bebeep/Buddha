@@ -17,13 +17,13 @@ class FojingAdapter(context: Context):TopRcAdapter<BuddhaBook,TopRcAdapter.TopRc
 
     override fun onBindViewHolder(holder: TopRcViewHolder, position: Int) {
         val binding = holder.getBinding<ItemFojingBinding>()
-        get(position)?.let {
-            binding.ivBook.loadImg(it.bookCover)
-            binding.tvBookName.text = it.bookTitle
-            binding.tvReadStatus.text = it.viewCount.toString()
+        get(position)?.let { book->
+            binding.ivBook.loadImg(book.bookCover)
+            binding.tvBookName.text = book.bookTitle
+            binding.tvReadStatus.text = book.viewCount.toString()
 
             holder.itemView.setOnClickListener {
-                (context as? SupportActivity)?.start(FojingDetailsFragment())
+                (context as? SupportActivity)?.start(FojingDetailsFragment.newInstance(book.bookId))
             }
         }
     }

@@ -227,4 +227,14 @@ interface ApiManager {
         @Query("currPage") currPage: Int,
         @Query("session") session: String = GlobalConfig.session
     ): RequestRsp<List<BuddhaBook>>
+
+    /**
+     * 获取书籍详情
+     */
+    @GET()
+    suspend fun getBookInfoByBookId(
+        @Url url: String = NetProperty.GET_BOOK_INFO,
+        @Query("bookId") bookId: Int,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<BuddhaBook>
 }

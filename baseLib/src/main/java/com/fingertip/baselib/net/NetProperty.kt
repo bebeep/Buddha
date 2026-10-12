@@ -177,4 +177,8 @@ object NetProperty {
      * 获取书架上的书
      */
     const val GET_BOOK_LIST_IN_SHELF                    = "book/getBookInShelf"
+    /**
+     * 获取书籍详情
+     */
+    const val GET_BOOK_INFO                    = "book/getBookInfo"
 }

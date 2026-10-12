@@ -17,20 +17,20 @@ class BookShelfAdapter(context: Context):TopRcAdapter<BuddhaBook,TopRcAdapter.To
 
     override fun onBindViewHolder(holder: TopRcViewHolder, position: Int) {
         val binding = holder.getBinding<ItemBookShelfBinding>()
-        get(position)?.let {
-            binding.ivBook.loadImg(it.bookCover)
-            binding.tvBookName.text = it.bookTitle
-            if (it.copyPercent > 0)
+        get(position)?.let { book->
+            binding.ivBook.loadImg(book.bookCover)
+            binding.tvBookName.text = book.bookTitle
+            if (book.copyPercent > 0)
             {
-                binding.tvReadStatus.text = "已抄写${it.copyPercent}%"
+                binding.tvReadStatus.text = "已抄写${book.copyPercent}%"
             }
             else
             {
-                binding.tvReadStatus.text = "已读${it.readPercent}%"
+                binding.tvReadStatus.text = "已读${book.readPercent}%"
             }
 
             holder.itemView.setOnClickListener {
-                (context as? SupportActivity)?.start(FojingDetailsFragment())
+                (context as? SupportActivity)?.start(FojingDetailsFragment.newInstance(book.bookId))
             }
         }
     }

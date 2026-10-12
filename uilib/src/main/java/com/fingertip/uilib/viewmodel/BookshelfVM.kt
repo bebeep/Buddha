@@ -15,6 +15,8 @@ class BookshelfVM: TopVMImp() {
     val bookSubjectResult = MutableLiveData<RequestResult<List<BookThemeEntity>>>()
     val bookListResult = MutableLiveData<RequestResult<List<BuddhaBook>>>()
 
+    val bookInfoResult = MutableLiveData<RequestResult<BuddhaBook>>()
+
 
     fun getBookTypeList() {
         call({
@@ -63,6 +65,16 @@ class BookshelfVM: TopVMImp() {
             bookListResult.value = successResult(it)
         }, {
             bookListResult.value = failResult(it.errorCode)
+        }, showLoading = false, toastError = true)
+    }
+
+    fun getBookInfoByBookId(bookId: Int) {
+        call({
+            NetManager.getApi().getBookInfoByBookId(bookId = bookId)
+        }, {
+            bookInfoResult.value = successResult(it)
+        }, {
+            bookInfoResult.value = failResult(it.errorCode)
         }, showLoading = false, toastError = true)
     }
 }

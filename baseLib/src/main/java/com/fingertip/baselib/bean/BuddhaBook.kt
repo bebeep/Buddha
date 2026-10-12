@@ -19,8 +19,14 @@ class BuddhaBook: TopData() {
     var copyPercent:Int = 0
     //浏览人数
     var viewCount:Int = 0
+    //抄写人数
+    var copyCount:Int = 0
+    //经书类型
+    var bookType: String = ""
+    //经书专题
+    var bookTheme: String = ""
     //是否在书架
     var isInShelf:Boolean = false
     //"更新时间"
-    var updateDate: String = "2027-01-01 00:00:00"
+    var updateContentDate: String = "2027-01-01 00:00:00"
 }
