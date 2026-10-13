@@ -27,6 +27,8 @@ class BuddhaBook: TopData() {
     var bookTheme: String = ""
     //是否在书架
     var isInShelf:Boolean = false
+    //是否已评论
+    var hasComment:Boolean = false
     //"更新时间"
     var updateContentDate: String = "2027-01-01 00:00:00"
     //大师推荐

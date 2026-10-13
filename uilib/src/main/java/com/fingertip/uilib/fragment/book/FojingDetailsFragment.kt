@@ -110,8 +110,7 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
             binding.srl.finishLoadMore()
             if (it.success)
             {
-                commentAdapter.mlist.addAll(it.data!!)
-                commentAdapter.notifyDataSetChanged()
+                commentAdapter.addData(it.data)
             }
         }
     }
@@ -123,11 +122,39 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
 
 
     private fun initAdapter(){
-        recommendAdapter = FojingRecommendAdapter(requireContext())
+        recommendAdapter = FojingRecommendAdapter(requireContext()) { viewId, data ->
+            when(viewId){
+                //点赞
+                R.id.ll_like -> {
+                    mViewModel.likeBookComment(bookId, data.id, !data.isLiked, { success->
+                        if (success)
+                        {
+                            data.isLiked = !data.isLiked
+                            data.likeCount = if (data.isLiked) data.likeCount + 1 else data.likeCount - 1
+                            recommendAdapter.notifyItemChanged(recommendAdapter.mlist.indexOf(data), FojingRecommendAdapter.PAYLOAD_LIKE)
+                        }
+                    })
+                }
+            }
+        }
         binding.rvRecommend.layoutManager = LinearLayoutManager(requireContext())
         binding.rvRecommend.adapter = recommendAdapter
 
-        commentAdapter = FojingCommentAdapter(requireContext())
+        commentAdapter = FojingCommentAdapter(requireContext()){ viewId, data ->
+            when(viewId){
+                //点赞
+                R.id.ll_like -> {
+                    mViewModel.likeBookComment(bookId, data.id, !data.isLiked, { success->
+                        if (success)
+                        {
+                            data.isLiked = !data.isLiked
+                            data.likeCount = if (data.isLiked) data.likeCount + 1 else data.likeCount - 1
+                            commentAdapter.notifyItemChanged(commentAdapter.mlist.indexOf(data), FojingCommentAdapter.PAYLOAD_LIKE)
+                        }
+                    })
+                }
+            }
+        }
         binding.rvComment.layoutManager = LinearLayoutManager(requireContext())
         binding.rvComment.adapter = commentAdapter
 

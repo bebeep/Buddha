@@ -10,8 +10,13 @@ import com.fingertip.uilib.databinding.ItemBookRecommendBinding
 /**
  * 大师推荐
  */
-class FojingRecommendAdapter(context: Context):TopRcAdapter<BookComment,TopRcAdapter.TopRcViewHolder>(context) {
+class FojingRecommendAdapter(context: Context,val onItemClick: (viewId: Int, entity: BookComment) -> Unit):TopRcAdapter<BookComment,TopRcAdapter.TopRcViewHolder>(context) {
     override fun initLayoutId(viewType: Int) = R.layout.item_book_recommend
+
+    companion object {
+        /** 点赞局部刷新payload */
+        const val PAYLOAD_LIKE = "payload_like"
+    }
 
     override fun onBindViewHolder(holder: TopRcViewHolder, position: Int) {
         val binding = holder.getBinding<ItemBookRecommendBinding>()
@@ -22,6 +27,29 @@ class FojingRecommendAdapter(context: Context):TopRcAdapter<BookComment,TopRcAda
             binding.ivMasterLike.isSelected = comment.isLiked
             binding.tvMasterLike.text = "${comment.likeCount}"
             binding.tvMasterContent.text = comment.textContent
+
+            binding.llLike.setOnClickListener { v->
+                onItemClick.invoke(v.id,comment)
+            }
         }
+    }
+
+
+    /**
+     * 局部刷新：payload 命中时只更新点赞相关控件，跳过头像加载，避免占位图闪烁
+     */
+    override fun onBindViewHolder(holder: TopRcViewHolder, position: Int, payloads: MutableList<Any>) {
+        if (payloads.contains(PAYLOAD_LIKE)) {
+            val binding = holder.getBinding<ItemBookRecommendBinding>()
+            get(position)?.let { bindLike(binding, it) }
+        } else {
+            super.onBindViewHolder(holder, position, payloads)
+        }
+    }
+
+    /** 绑定点赞状态与数量 */
+    private fun bindLike(binding: ItemBookRecommendBinding, comment: BookComment) {
+        binding.ivMasterLike.isSelected = comment.isLiked
+        binding.tvMasterLike.text = "${comment.likeCount}"
     }
 }

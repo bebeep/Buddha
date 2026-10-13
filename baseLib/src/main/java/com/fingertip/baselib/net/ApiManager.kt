@@ -248,4 +248,25 @@ interface ApiManager {
         @Query("currPage") currPage: Int,
         @Query("session") session: String = GlobalConfig.session
     ): RequestRsp<List<BookComment>>
+
+    /**
+     * 点赞书籍评论
+     */
+    @POST()
+    suspend fun likeBookComment(
+        @Url url: String = NetProperty.LIKE_BOOK_COMMENT,
+        @Query("bookId") bookId: Int,
+        @Query("commentId") commentId: Int,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<String>
+    /**
+     * 取消点赞书籍评论
+     */
+    @POST()
+    suspend fun unLikeBookComment(
+        @Url url: String = NetProperty.UN_LIKE_BOOK_COMMENT,
+        @Query("bookId") bookId: Int,
+        @Query("commentId") commentId: Int,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<String>
 }

@@ -1,5 +1,6 @@
 package com.fingertip.uilib.viewmodel
 
+import android.R
 import androidx.lifecycle.MutableLiveData
 import com.fingertip.baselib.bean.BookComment
 import com.fingertip.baselib.bean.BookThemeEntity
@@ -88,5 +89,15 @@ class BookshelfVM: TopVMImp() {
         }, {
             bookCommentResult.value = failResult(it.errorCode)
         }, showLoading = false, toastError = true)
+    }
+    fun likeBookComment(bookId: Int,commentId: Int,like: Boolean,onResult: (success: Boolean) -> Unit) {
+        call({
+            if (like) NetManager.getApi().likeBookComment(bookId = bookId, commentId = commentId)
+            else NetManager.getApi().unLikeBookComment(bookId = bookId, commentId = commentId)
+        }, {
+            onResult(true)
+        }, {
+            onResult(false)
+        }, showLoading = false, toastError = false)
     }
 }
