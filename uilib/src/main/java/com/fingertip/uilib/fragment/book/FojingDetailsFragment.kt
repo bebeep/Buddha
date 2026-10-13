@@ -1,5 +1,6 @@
 package com.fingertip.uilib.fragment.book
 
+import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.ComponentName
@@ -75,6 +76,7 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
         }
     }
 
+    @SuppressLint("WrongConstant")
     override fun initShiTu() {
         bookId = arguments?.getInt(BOOK_ID, 0) ?: 0
         if (bookId <= 0) {
@@ -124,7 +126,7 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
                 ToastUtil.showMessage("抄经模式")
                 start(FojingCopyFragment())
             }
-            R.id.tv_add_shelf -> ToastUtil.showMessage("加入书架")
+            R.id.tv_add_shelf -> switchShelf()
         }
     }
 
@@ -272,6 +274,45 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
         super.onDestroy()
     }
 
+    /**
+     * 加入/移出书架
+     */
+    private fun switchShelf() {
+        val book = bookInfo ?: return
+        val addToShelf = !book.isInShelf
+        if (addToShelf) {
+            mViewModel.addToBookShelf(bookId) { success ->
+                onShelfResult(success, addToShelf)
+            }
+        } else {
+            mViewModel.removeFromBookShelf(bookId) { success ->
+                onShelfResult(success, addToShelf)
+            }
+        }
+    }
+
+    /**
+     * 书架操作结果
+     */
+    private fun onShelfResult(success: Boolean, addToShelf: Boolean) {
+        if (!isAdded) return
+        if (success) {
+            bookInfo?.isInShelf = addToShelf
+            refreshShelfBtn()
+            ToastUtil.showMessage(if (addToShelf) "已加入书架" else "已移出书架")
+        } else {
+            ToastUtil.showMessage(if (addToShelf) "加入书架失败" else "移出书架失败")
+        }
+    }
+
+    /**
+     * 刷新书架按钮文案
+     */
+    private fun refreshShelfBtn() {
+        binding.tvAddShelf.isSelected = bookInfo?.isInShelf ?: false
+        binding.tvAddShelf.text = if (bookInfo?.isInShelf ?: false) "已加入书架" else "加入书架"
+    }
+
     private fun refreshUI()
     {
         if (bookInfo == null) return
@@ -285,8 +326,8 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
         binding.tvBookIntro.text = bookInfo?.bookIntro
         binding.tvRead.text = "已阅读 ${bookInfo?.readPercent}%"
         binding.tvCopy.text = "已抄写 ${bookInfo?.copyPercent}%"
-        binding.tvAddShelf.isSelected = bookInfo?.isInShelf ?: false
-        binding.tvAddShelf.text = if (bookInfo?.isInShelf ?: false) "已加入书架" else "加入书架"
+        refreshShelfBtn()
+
 
         bookInfo?.masterRecommend?.let { masterRecommend ->
             recommendAdapter.initData(masterRecommend)

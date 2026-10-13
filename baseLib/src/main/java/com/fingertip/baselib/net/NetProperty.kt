@@ -194,4 +194,14 @@ object NetProperty {
      * 取消点赞书籍评论
      */
     const val UN_LIKE_BOOK_COMMENT                    = "book/unLikeBookComment"
+
+    /**
+     * 加入书架
+     */
+    const val ADD_TO_BOOK_SHELF                       = "book/addToBookShelf"
+
+    /**
+     * 移出书架
+     */
+    const val REMOVE_FROM_BOOK_SHELF                  = "book/removeFromBookShelf"
 }

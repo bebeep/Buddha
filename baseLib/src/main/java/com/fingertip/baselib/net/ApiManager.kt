@@ -269,4 +269,24 @@ interface ApiManager {
         @Query("commentId") commentId: Int,
         @Query("session") session: String = GlobalConfig.session
     ): RequestRsp<String>
+
+    /**
+     * 加入书架
+     */
+    @POST()
+    suspend fun addToBookShelf(
+        @Url url: String = NetProperty.ADD_TO_BOOK_SHELF,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("bookId") bookId: Int
+    ): RequestRsp<String>
+
+    /**
+     * 移出书架
+     */
+    @POST()
+    suspend fun removeFromBookShelf(
+        @Url url: String = NetProperty.REMOVE_FROM_BOOK_SHELF,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("bookId") bookId: Int
+    ): RequestRsp<String>
 }

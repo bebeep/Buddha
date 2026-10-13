@@ -100,4 +100,30 @@ class BookshelfVM: TopVMImp() {
             onResult(false)
         }, showLoading = false, toastError = false)
     }
+
+    /**
+     * 加入书架
+     */
+    fun addToBookShelf(bookId: Int, onResult: (success: Boolean) -> Unit) {
+        call({
+            NetManager.getApi().addToBookShelf(bookId = bookId)
+        }, {
+            onResult(true)
+        }, {
+            onResult(false)
+        }, showLoading = false, toastError = false)
+    }
+
+    /**
+     * 移出书架
+     */
+    fun removeFromBookShelf(bookId: Int, onResult: (success: Boolean) -> Unit) {
+        call({
+            NetManager.getApi().removeFromBookShelf(bookId = bookId)
+        }, {
+            onResult(true)
+        }, {
+            onResult(false)
+        }, showLoading = false, toastError = false)
+    }
 }
