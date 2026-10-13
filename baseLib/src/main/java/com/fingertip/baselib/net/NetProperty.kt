@@ -25,8 +25,8 @@ object NetProperty {
     /**
      * 测试服
      */
-    var TEST_URL            = "http://192.168.10.195:8888/buddha/"   //公司
-//    var TEST_URL            = "http://192.168.1.249:8888/buddha/"   //家里
+//    var TEST_URL            = "http://192.168.10.195:8888/buddha/"   //公司
+    var TEST_URL            = "http://192.168.1.249:8888/buddha/"   //家里
 //    var TEST_URL            = "https://soonturn.com/buddha"
 
     /**

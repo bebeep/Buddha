@@ -399,7 +399,7 @@
             android:layout_marginBottom="14dp"
             android:layout_width="match_parent"
             android:background="@drawable/bg_button"
-            android:text="加入书架"
+            android:hint="加入书架"
             android:gravity="center"
             android:textSize="16sp"
             app:zdyFont="bold"
