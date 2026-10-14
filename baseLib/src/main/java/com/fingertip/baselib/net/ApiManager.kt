@@ -289,4 +289,15 @@ interface ApiManager {
         @Query("session") session: String = GlobalConfig.session,
         @Query("bookId") bookId: Int
     ): RequestRsp<String>
+
+    /**
+     * 添加书籍评论
+     */
+    @POST()
+    suspend fun addBookComment(
+        @Url url: String = NetProperty.ADD_BOOK_COMMENT,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("bookId") bookId: Int,
+        @Query("textContent") textContent: String
+    ): RequestRsp<BookComment>
 }

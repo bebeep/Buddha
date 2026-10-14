@@ -2,7 +2,6 @@ package com.fingertip.baselib.constant
 
 import com.blankj.utilcode.util.GsonUtils
 import com.blankj.utilcode.util.SPUtils
-import com.fingertip.baselib.bean.BuddhaConfig
 import com.fingertip.baselib.bean.GlobalParam
 import com.fingertip.baselib.bean.PersonData
 import com.fingertip.baselib.bean.ServerConfigBean
@@ -14,6 +13,16 @@ import com.fingertip.baselib.bean.VersionInfo
 object GlobalConfig {
 
 
+    /**
+     * 角色类型
+     */
+     object ROLE_TYPE {
+        //普通用户
+        const val ROLE_TYPE_NORMAL: Int = 1
+
+        //认证大师
+        const val ROLE_TYPE_MASTER: Int = 2
+    }
 
     const val spName = "YHManager"
 

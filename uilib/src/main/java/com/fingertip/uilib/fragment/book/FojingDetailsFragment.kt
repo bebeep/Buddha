@@ -7,15 +7,22 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.Rect
 import android.os.Build
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
+import android.view.ViewGroup
+import android.view.ViewTreeObserver
+import android.view.inputmethod.InputMethodManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
 import com.fingertip.baselib.bean.BuddhaBook
 import com.fingertip.baselib.constant.GlobalConfig
+import com.fingertip.baselib.constant.SPConstant
 import com.fingertip.baselib.log
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.FojingCommentAdapter
@@ -27,6 +34,8 @@ import com.fingertip.baselib.util.ToastUtil
 import com.fingertip.baselib.util.loadImg
 import com.fingertip.uilib.databinding.FragFojingDetailsBinding
 import com.google.android.material.appbar.AppBarLayout
+import com.lzlz.toplib.extention.gone
+import com.lzlz.toplib.extention.isVisible
 import com.lzlz.toplib.extention.toPx
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener
@@ -61,6 +70,19 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
     var bookId: Int = 0
     var currPage : Int = 0
     var bookInfo: BuddhaBook ? = null
+
+    private var keyboardListener: ViewTreeObserver.OnGlobalLayoutListener? = null
+
+    /**
+     * 注册监听的 ViewTreeObserver。
+     * 保存该实例用于反注册，避免视图销毁后 mBinding 为 null 时取不到 ViewTreeObserver。
+     */
+    private var keyboardObserver: ViewTreeObserver? = null
+
+    /**
+     * 键盘隐藏时可视区域底部的屏幕坐标，用于计算真实键盘高度（消除状态栏/导航栏误差）
+     */
+    private var lastVisibleBottom = 0
 
     /**
      * 用户在分享面板中选中目标应用后的回调（并非分享真正完成，系统分享没有完成回调）
@@ -106,12 +128,25 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
             mViewModel.getBookInfoByBookId(bookId)
             mViewModel.getBookComment(bookId,currPage)
         }
+
+        //根据 et_comment 是否输入内容控制 iv_send 是否可点击
+        binding.etComment.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable?) {
+                binding.ivSend.isEnabled = !s.isNullOrBlank()
+            }
+        })
+        binding.ivSend.isEnabled = !binding.etComment.text.isNullOrBlank()
+
+        setupKeyboardListener()
+
         mViewModel.getBookInfoByBookId(bookId)
         mViewModel.getBookComment(bookId,currPage)
     }
 
     override fun getClickViews(): List<View> {
-        return listOf(binding.vBack.ivBack, binding.ivShare, binding.tvRead, binding.tvCopy, binding.tvAddShelf)
+        return listOf(binding.vBack.ivBack, binding.ivShare, binding.tvRead, binding.tvCopy, binding.btnAddShelf, binding.btnAddComment, binding.ivSend)
     }
 
     override fun onSingleClick(v: View?) {
@@ -126,7 +161,9 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
                 ToastUtil.showMessage("抄经模式")
                 start(FojingCopyFragment())
             }
-            R.id.tv_add_shelf -> switchShelf()
+            R.id.btn_add_shelf -> switchShelf()
+            R.id.btn_add_comment -> showCommentInput()
+            R.id.iv_send -> sendComment()
         }
     }
 
@@ -271,7 +308,149 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
 
     override fun onDestroy() {
         runCatching { activity?.unregisterReceiver(shareChosenReceiver) }
+        removeKeyboardListener()
         super.onDestroy()
+    }
+
+    /**
+     * 显示评论输入框，弹出软键盘
+     */
+    private fun showCommentInput() {
+        binding.clBottom.visibility = View.GONE
+        binding.llInput.visibility = View.VISIBLE
+        binding.etComment.isFocusable = true
+        binding.etComment.isFocusableInTouchMode = true
+        binding.etComment.requestFocus()
+        binding.etComment.setSelection(binding.etComment.text?.length ?: 0)
+        showSoftInput(binding.etComment)
+    }
+
+    /**
+     * 隐藏评论输入框，收起软键盘
+     */
+    private fun hideCommentInput() {
+        hideSoftInput()
+        binding.llInput.visibility = View.INVISIBLE
+        binding.clBottom.visibility = View.VISIBLE
+        //重置输入框底部边距
+        setInputBottomMargin(binding, 0)
+    }
+
+    /**
+     * 监听键盘高度变化，手动调整 ll_input 位置
+     * 因为 SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN 导致 adjustResize 失效
+     */
+    private fun setupKeyboardListener() {
+        val root = binding.root
+        val observer = root.viewTreeObserver
+        keyboardObserver = observer
+        keyboardListener = ViewTreeObserver.OnGlobalLayoutListener {
+            //视图销毁(mBinding 被置空)后该回调仍可能触发，这里判空避免空指针崩溃
+            val b = mBinding as? FragFojingDetailsBinding ?: return@OnGlobalLayoutListener
+            val rect = Rect()
+            b.root.getWindowVisibleDisplayFrame(rect)
+            val screenHeight = b.root.rootView.height
+            val invisibleBottom = screenHeight - rect.bottom
+
+            if (invisibleBottom > screenHeight / 4) {
+                //键盘显示：用可视区域底部的位移量作为键盘高度，避免导航栏造成的偏差
+                val keyboardHeight = lastVisibleBottom - rect.bottom
+                if (keyboardHeight > 0) {
+                    setInputBottomMargin(b, keyboardHeight)
+                }
+            } else {
+                //键盘隐藏：记录基准位置并复位
+                lastVisibleBottom = rect.bottom
+                setInputBottomMargin(b, 0)
+            }
+        }
+        observer.addOnGlobalLayoutListener(keyboardListener)
+    }
+
+    /**
+     * 反注册键盘监听。
+     * 使用注册时保存的 ViewTreeObserver，不依赖 binding，保证视图销毁后也能反注册成功
+     */
+    private fun removeKeyboardListener() {
+        val observer = keyboardObserver
+        val listener = keyboardListener
+        if (observer != null && listener != null) {
+            runCatching { observer.removeOnGlobalLayoutListener(listener) }
+        }
+        keyboardObserver = null
+        keyboardListener = null
+    }
+
+    override fun onDestroyView() {
+        //必须在 super.onDestroyView()（其中会把 mBinding 置空）之前反注册
+        removeKeyboardListener()
+        super.onDestroyView()
+    }
+
+    /**
+     * 设置 ll_input 底部边距
+     */
+    private fun setInputBottomMargin(binding: FragFojingDetailsBinding, bottomMargin: Int) {
+        val lp = binding.llInput.layoutParams as? ViewGroup.MarginLayoutParams ?: return
+        if (lp.bottomMargin != bottomMargin) {
+            lp.bottomMargin = bottomMargin
+            binding.llInput.layoutParams = lp
+        }
+    }
+
+    /**
+     * 弹出软键盘
+     */
+    override fun showSoftInput(view: View) {
+        view.postDelayed({
+            val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+            imm?.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
+        }, 100)
+    }
+
+    /**
+     * 收起软键盘
+     */
+    override fun hideSoftInput() {
+        val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+        imm?.hideSoftInputFromWindow(binding.etComment.windowToken, 0)
+    }
+
+    /**
+     * 发送评论
+     */
+    private fun sendComment() {
+        val text = binding.etComment.text?.toString()?.trim().orEmpty()
+        if (text.isEmpty()) {
+            ToastUtil.showMessage("请输入评论内容")
+            return
+        }
+        if (bookId <= 0) {
+            ToastUtil.showMessage("书籍信息异常")
+            return
+        }
+        mViewModel.addBookComment(bookId, text) { success,comment ->
+            if (!isAdded) return@addBookComment
+            if (success) {
+                binding.etComment.setText("")
+                hideCommentInput()
+                ToastUtil.showMessage("发布成功")
+                //刷新评论列表
+                comment?.let {
+                    if (GlobalConfig.userData?.roleType == GlobalConfig.ROLE_TYPE.ROLE_TYPE_MASTER)
+                    {
+                        recommendAdapter.addData(comment,0)
+                    }
+                    else
+                    {
+                        commentAdapter.addData(comment,0)
+                    }
+                }
+                binding.btnAddComment.gone()
+            } else {
+                ToastUtil.showMessage("发布失败，请重试")
+            }
+        }
     }
 
     /**
@@ -282,11 +461,11 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
         val addToShelf = !book.isInShelf
         if (addToShelf) {
             mViewModel.addToBookShelf(bookId) { success ->
-                onShelfResult(success, addToShelf)
+                onShelfResult(success, true)
             }
         } else {
             mViewModel.removeFromBookShelf(bookId) { success ->
-                onShelfResult(success, addToShelf)
+                onShelfResult(success, false)
             }
         }
     }
@@ -309,8 +488,7 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
      * 刷新书架按钮文案
      */
     private fun refreshShelfBtn() {
-        binding.tvAddShelf.isSelected = bookInfo?.isInShelf ?: false
-        binding.tvAddShelf.text = if (bookInfo?.isInShelf ?: false) "已加入书架" else "加入书架"
+        binding.btnAddShelf.isSelected = bookInfo?.isInShelf ?: false
     }
 
     private fun refreshUI()
@@ -326,6 +504,7 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
         binding.tvBookIntro.text = bookInfo?.bookIntro
         binding.tvRead.text = "已阅读 ${bookInfo?.readPercent}%"
         binding.tvCopy.text = "已抄写 ${bookInfo?.copyPercent}%"
+        binding.btnAddComment.isVisible = !(bookInfo?.hasComment?:false)
         refreshShelfBtn()
 
 

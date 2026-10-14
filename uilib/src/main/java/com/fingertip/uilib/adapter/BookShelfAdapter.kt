@@ -12,7 +12,7 @@ import com.weikaiyun.fragmentation.SupportActivity
 /**
  * 书架
  */
-class BookShelfAdapter(context: Context):TopRcAdapter<BuddhaBook,TopRcAdapter.TopRcViewHolder>(context) {
+class BookShelfAdapter(context: Context,val onItemClick:(viewId:Int,position:Int)-> Unit):TopRcAdapter<BuddhaBook,TopRcAdapter.TopRcViewHolder>(context) {
     override fun initLayoutId(viewType: Int) = R.layout.item_book_shelf
 
     override fun onBindViewHolder(holder: TopRcViewHolder, position: Int) {
@@ -29,8 +29,8 @@ class BookShelfAdapter(context: Context):TopRcAdapter<BuddhaBook,TopRcAdapter.To
                 binding.tvReadStatus.text = "已读${book.readPercent}%"
             }
 
-            holder.itemView.setOnClickListener {
-                (context as? SupportActivity)?.start(FojingDetailsFragment.newInstance(book.bookId))
+            binding.clItemParent.setOnClickListener {
+                onItemClick(binding.clItemParent.id,position)
             }
         }
     }

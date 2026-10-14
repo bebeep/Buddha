@@ -349,6 +349,7 @@
     </com.fingertip.baselib.view.FullTopConstraintLayout>
 
     <com.hjq.shape.layout.ShapeConstraintLayout
+        android:id="@+id/cl_bottom"
         android:layout_width="match_parent"
         app:shape_topLeftRadius="24dp"
         app:shape_topRightRadius="24dp"
@@ -357,7 +358,7 @@
         app:shape_solidColor="@color/white"
         app:shape_shadowColor="#1A000000"
         app:shape_shadowOffsetY="2dp"
-        android:layout_height="wrap_content">
+        android:layout_height="48dp">
 
         <com.fingertip.baselib.view.MyTextView
             android:id="@+id/tv_read"
@@ -390,21 +391,70 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-
-        <com.fingertip.baselib.view.MyTextView
-            android:id="@+id/tv_add_shelf"
-            app:layout_constraintTop_toBottomOf="@+id/tv_read"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="14dp"
-            android:layout_width="match_parent"
-            android:background="@drawable/bg_button"
-            android:hint="加入书架"
-            android:gravity="center"
-            android:textSize="16sp"
-            app:zdyFont="bold"
-            android:textColor="@color/tv_button"
-            android:layout_height="50dp"/>
     </com.hjq.shape.layout.ShapeConstraintLayout>
+
+    <ImageView
+        android:id="@+id/btn_add_shelf"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/cl_bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/btn_add_shelf"
+        android:padding="10dp"
+        android:layout_marginEnd="14dp"
+        />
+
+    <ImageView
+        android:id="@+id/btn_add_comment"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_add_shelf"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@mipmap/icon_add_book_comment"
+        android:padding="10dp"
+        android:layout_marginEnd="14dp"
+        />
+
+
+    <FrameLayout
+        android:id="@+id/ll_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_input"
+        android:minHeight="48dp"
+        android:paddingRight="10dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+
+        <com.fingertip.baselib.view.MyEditText
+            android:id="@+id/et_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="48dp"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="加入讨论吧"
+            android:imeOptions="actionSend"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="4dp"
+            android:maxHeight="96dp"
+            android:maxLength="300"
+            android:minHeight="48dp"
+            android:paddingLeft="15dp"
+            android:textColor="#050505"
+            android:textCursorDrawable="@drawable/bg_comment_curser"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/iv_send"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_gravity="right|center_vertical"
+            android:padding="6dp"
+            android:src="@drawable/bg_iv_send" />
+    </FrameLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

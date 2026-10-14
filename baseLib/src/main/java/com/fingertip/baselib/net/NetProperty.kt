@@ -25,8 +25,8 @@ object NetProperty {
     /**
      * 测试服
      */
-//    var TEST_URL            = "http://192.168.10.195:8888/buddha/"   //公司
-    var TEST_URL            = "http://192.168.1.249:8888/buddha/"   //家里
+    var TEST_URL            = "http://192.168.10.195:8888/buddha/"   //公司
+//    var TEST_URL            = "http://192.168.1.249:8888/buddha/"   //家里
 //    var TEST_URL            = "https://soonturn.com/buddha"
 
     /**
@@ -204,4 +204,9 @@ object NetProperty {
      * 移出书架
      */
     const val REMOVE_FROM_BOOK_SHELF                  = "book/removeFromBookShelf"
+
+    /**
+     * 添加书籍评论
+     */
+    const val ADD_BOOK_COMMENT                        = "book/addBookComment"
 }

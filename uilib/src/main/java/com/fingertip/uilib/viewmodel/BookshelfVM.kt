@@ -126,4 +126,17 @@ class BookshelfVM: TopVMImp() {
             onResult(false)
         }, showLoading = false, toastError = false)
     }
+
+    /**
+     * 添加书籍评论
+     */
+    fun addBookComment(bookId: Int, textContent: String, onResult: (success: Boolean,comment:BookComment?) -> Unit) {
+        call({
+            NetManager.getApi().addBookComment(bookId = bookId, textContent = textContent)
+        }, {
+            onResult(true,it)
+        }, {
+            onResult(false,null)
+        }, showLoading = false, toastError = false)
+    }
 }

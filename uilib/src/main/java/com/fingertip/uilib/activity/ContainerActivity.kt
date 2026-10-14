@@ -22,6 +22,24 @@ class ContainerActivity : TopActivity() {
         initGalleryPicker()
     }
 
+    /**
+     * 返回处理。
+     *
+     * 该 fork(SFragmentation 1.8.4) 默认的 onBackPressedSupport() 是按
+     * Fragment 上的 canPop / startByFragmentation 标记来统计的：一旦容器里
+     * 找不到「可 pop」的 Fragment，就直接 finishAfterTransition() 退出应用。
+     * 二级页面(如 BuddhaTextsFragment、GongFoFragment)是挂在 MainFragment 之上
+     * 的普通栈页，返回时应回到 MainFragment，而不是退出。
+     * 这里改为：容器里还有上一层就 pop，只有只剩根页面时才退出。
+     */
+    override fun onBackPressedSupport() {
+        if (supportFragmentManager.fragments.size > 1) {
+            pop()
+        } else {
+            super.onBackPressedSupport()
+        }
+    }
+
 
     // 初始化图片选择器
     private fun initGalleryPicker() {

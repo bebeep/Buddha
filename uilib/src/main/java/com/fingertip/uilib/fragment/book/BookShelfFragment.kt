@@ -29,7 +29,11 @@ class BookShelfFragment :TopVMFragment<BookshelfVM>(){
 
 
     private fun initAdapter(){
-        adapter = BookShelfAdapter(requireContext())
+        adapter = BookShelfAdapter(requireContext()){ viewId,position ->
+            (parentFragment as? BuddhaTextsFragment)?.start(
+                FojingDetailsFragment.newInstance(adapter.mlist[position].bookId)
+            )
+        }
         binding.recyclerview.layoutManager = GridLayoutManager(requireContext(),3)
         binding.recyclerview.adapter = adapter
     }
