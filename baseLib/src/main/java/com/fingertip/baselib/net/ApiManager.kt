@@ -300,4 +300,14 @@ interface ApiManager {
         @Query("bookId") bookId: Int,
         @Query("textContent") textContent: String
     ): RequestRsp<BookComment>
+
+    /**
+     * 删除书籍评论
+     */
+    @POST()
+    suspend fun removeBookComment(
+        @Url url: String = NetProperty.REMOVE_BOOK_COMMENT,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("commentId") commentId: Int
+    ): RequestRsp<String>
 }

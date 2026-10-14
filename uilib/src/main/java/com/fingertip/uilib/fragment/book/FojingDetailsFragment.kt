@@ -20,9 +20,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
+import com.fingertip.baselib.bean.BookComment
 import com.fingertip.baselib.bean.BuddhaBook
 import com.fingertip.baselib.constant.GlobalConfig
 import com.fingertip.baselib.constant.SPConstant
+import com.fingertip.baselib.dialog.RemindAllDialog
 import com.fingertip.baselib.log
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.FojingCommentAdapter
@@ -195,7 +197,7 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
 
 
     private fun initAdapter(){
-        recommendAdapter = FojingRecommendAdapter(requireContext()) { viewId, data ->
+        recommendAdapter = FojingRecommendAdapter(requireContext(),{ viewId, data ->
             when(viewId){
                 //点赞
                 R.id.ll_like -> {
@@ -209,11 +211,16 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
                     })
                 }
             }
-        }
+        },{ viewId, entity ->
+            when(viewId){
+                //长按评论内容
+                R.id.tv_master_content -> showDeleteCommentDialog(entity)
+            }
+        })
         binding.rvRecommend.layoutManager = LinearLayoutManager(requireContext())
         binding.rvRecommend.adapter = recommendAdapter
 
-        commentAdapter = FojingCommentAdapter(requireContext()){ viewId, data ->
+        commentAdapter = FojingCommentAdapter(requireContext(), onItemClick = { viewId, data ->
             when(viewId){
                 //点赞
                 R.id.ll_like -> {
@@ -227,10 +234,60 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
                     })
                 }
             }
-        }
+        }, onItemLongClick = { viewId, data ->
+            when(viewId){
+                //长按评论内容
+                R.id.tv_comment_content -> showDeleteCommentDialog(data)
+            }
+        })
         binding.rvComment.layoutManager = LinearLayoutManager(requireContext())
         binding.rvComment.adapter = commentAdapter
 
+    }
+
+    /**
+     * 长按评论内容：仅自己发布的评论可删除，二次确认后调接口删除并刷新列表
+     */
+    private fun showDeleteCommentDialog(comment: BookComment) {
+        //判断该评论是否由自己发布
+        val myAccountId = GlobalConfig.userData?.accountId ?: 0
+        if (myAccountId <= 0 || comment.accountId != myAccountId) {
+            return
+        }
+        RemindAllDialog(
+            requireActivity(),
+            endAction = {
+                mViewModel.removeBookComment(comment.id) { success ->
+                    if (!isAdded) return@removeBookComment
+                    if (!success) {
+                        ToastUtil.showMessage("删除失败，请重试")
+                        return@removeBookComment
+                    }
+                    if (comment.isMasterRecommend)
+                    {
+                        val index = recommendAdapter.mlist.indexOf(comment)
+                        if (index >= 0)
+                        {
+                            recommendAdapter.mlist.removeAt(index)
+                            recommendAdapter.notifyItemRemoved(index)
+                        }
+                    }
+                    else
+                    {
+                        val index = commentAdapter.mlist.indexOf(comment)
+                        if (index >= 0) {
+                            commentAdapter.mlist.removeAt(index)
+                            commentAdapter.notifyItemRemoved(index)
+                        }
+                    }
+                    ToastUtil.showMessage("评论已删除")
+                }
+            },
+            tvContent = "确定要删除这条评论吗",
+            tvTitle = "提示",
+            textNo = "取消",
+            textYes = "删除"
+        ).show()
     }
 
     /**

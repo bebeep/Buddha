@@ -10,7 +10,11 @@ import com.fingertip.uilib.databinding.ItemBookCommentBinding
 /**
  * 经书-佛友评论
  */
-class FojingCommentAdapter(context: Context,val onItemClick: (viewId: Int, entity: BookComment) -> Unit):TopRcAdapter<BookComment,TopRcAdapter.TopRcViewHolder>(context) {
+class FojingCommentAdapter(
+    context: Context,
+    val onItemClick: (viewId: Int, entity: BookComment) -> Unit,
+    val onItemLongClick: ((viewId: Int, entity: BookComment) -> Unit)? = null
+):TopRcAdapter<BookComment,TopRcAdapter.TopRcViewHolder>(context) {
     override fun initLayoutId(viewType: Int) = R.layout.item_book_comment
 
     companion object {
@@ -30,6 +34,12 @@ class FojingCommentAdapter(context: Context,val onItemClick: (viewId: Int, entit
 
             binding.llLike.setOnClickListener { v->
                 onItemClick.invoke(v.id,comment)
+            }
+
+            //长按评论内容（用于删除自己发布的评论）
+            binding.tvCommentContent.setOnLongClickListener { v->
+                onItemLongClick?.invoke(v.id,comment)
+                onItemLongClick != null
             }
         }
     }

@@ -209,4 +209,9 @@ object NetProperty {
      * 添加书籍评论
      */
     const val ADD_BOOK_COMMENT                        = "book/addBookComment"
+
+    /**
+     * 删除书籍评论
+     */
+    const val REMOVE_BOOK_COMMENT                     = "book/removeBookComment"
 }

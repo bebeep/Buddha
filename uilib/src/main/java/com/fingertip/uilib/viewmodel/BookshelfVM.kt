@@ -139,4 +139,17 @@ class BookshelfVM: TopVMImp() {
             onResult(false,null)
         }, showLoading = false, toastError = false)
     }
+
+    /**
+     * 删除书籍评论
+     */
+    fun removeBookComment(commentId: Int, onResult: (success: Boolean) -> Unit) {
+        call({
+            NetManager.getApi().removeBookComment(commentId = commentId)
+        }, {
+            onResult(true)
+        }, {
+            onResult(false)
+        }, showLoading = false, toastError = false)
+    }
 }

@@ -10,7 +10,9 @@ import com.fingertip.uilib.databinding.ItemBookRecommendBinding
 /**
  * 大师推荐
  */
-class FojingRecommendAdapter(context: Context,val onItemClick: (viewId: Int, entity: BookComment) -> Unit):TopRcAdapter<BookComment,TopRcAdapter.TopRcViewHolder>(context) {
+class FojingRecommendAdapter(context: Context,
+                             val onItemClick: (viewId: Int, entity: BookComment) -> Unit,
+                             val onItemLongClick: ((viewId: Int, entity: BookComment) -> Unit)):TopRcAdapter<BookComment,TopRcAdapter.TopRcViewHolder>(context) {
     override fun initLayoutId(viewType: Int) = R.layout.item_book_recommend
 
     companion object {
@@ -30,6 +32,10 @@ class FojingRecommendAdapter(context: Context,val onItemClick: (viewId: Int, ent
 
             binding.llLike.setOnClickListener { v->
                 onItemClick.invoke(v.id,comment)
+            }
+            binding.tvMasterContent.setOnLongClickListener { v->
+                onItemLongClick(v.id,comment)
+                return@setOnLongClickListener true
             }
         }
     }
