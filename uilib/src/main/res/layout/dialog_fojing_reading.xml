@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_rec_top_24dp"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingHorizontal="24dp"
+    android:paddingTop="28dp"
+    android:paddingBottom="24dp">
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#2C1900"
+        android:textSize="30sp"
+        app:zdyFont="bold" />
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_reading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="#8C6B3F"
+        android:textSize="18sp" />
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/bg_fojing_reading_play"
+        android:drawableStart="@drawable/ic_fojing_play"
+        android:drawablePadding="6dp"
+        android:gravity="center"
+        android:paddingHorizontal="18dp"
+        android:paddingVertical="9dp"
+        android:text="听读音"
+        android:textColor="#8C6B3F"
+        android:textSize="14sp" />
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_kind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:textColor="#B3A48E"
+        android:textSize="12sp" />
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:text="点任意处关闭"
+        android:textColor="#C4B7A4"
+        android:textSize="11sp" />
+
+</LinearLayout>

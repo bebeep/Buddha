@@ -1,0 +1,19 @@
+{
+  "folder": "031_大方广佛华严经_T0293",
+  "work": "T0293",
+  "canon": "T",
+  "title_trad": "大方廣佛華嚴經",
+  "title_simp": "大方广佛华严经",
+  "byline": "唐 般若譯",
+  "creators": "般若",
+  "dynasty": "唐",
+  "category": "華嚴部類",
+  "vol": "T10",
+  "juan_count": 40,
+  "cbeta_cjk_chars": 260968,
+  "extracted_chars_with_punc": 280766,
+  "file_count": 251,
+  "chunk_size": 1000,
+  "source": "CBETA 大正新脩大藏經 T0293",
+  "source_url": "https://cbetaonline.dila.edu.tw/zh/T0293"
+}

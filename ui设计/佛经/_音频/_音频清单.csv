@@ -1,0 +1,224 @@
+﻿id,priority,term,reading,kind,file,durationMs,bytes
+1,P1,般若,bō rě,法数,001_bo_re.mp3,469,3134
+2,P1,般若波罗蜜,bō rě bō luó mì,法数,002_bo_re_bo_luo_mi.mp3,969,6269
+3,P1,舍利,shè lì,器物,003_she_li.mp3,489,3291
+4,P1,舍利弗,shè lì fú,声闻,004_she_li_fu.mp3,709,4702
+5,P1,舍卫国,shè wèi guó,处所,005_she_wei_guo.mp3,749,4859
+6,P1,辟支佛,pì zhī fó,果位,006_pi_zhi_fo.mp3,689,4545
+7,P1,王舍城,wáng shè chéng,处所,007_wang_she_cheng.mp3,769,5015
+8,P1,萨婆若,sà pó rě,法数,008_sa_po_re.mp3,720,4702
+9,P1,师子吼,shī zǐ hǒu,法数,009_shi_zi_hou.mp3,640,4232
+10,P1,转轮圣王,zhuàn lún shèng wáng,果位,010_zhuan_lun_sheng_wang.mp3,929,5956
+11,P1,干闼婆,gān tà pó,众生,011_gan_ta_po.mp3,760,5015
+12,P1,弥勒,mí lè,菩萨,012_mi_le.mp3,440,2978
+13,P1,兜率天,dōu shuài tiān,处所,013_dou_shuai_tian.mp3,740,4859
+14,P1,法藏,fǎ zàng,菩萨,014_fa_zang.mp3,529,3605
+15,P1,地藏,dì zàng,菩萨,015_di_zang.mp3,429,2978
+16,P1,给孤独园,jǐ gū dú yuán,处所,016_ji_gu_du_yuan.mp3,920,5956
+17,P1,目揵连,mù jiān lián,声闻,017_mu_jian_lian.mp3,729,4702
+18,P1,摩睺罗伽,mó hóu luó qié,众生,018_mo_hou_luo_qie.mp3,800,5172
+19,P1,维摩诘,wéi mó jié,菩萨,019_wei_mo_jie.mp3,769,5015
+20,P1,罗刹,luó chà,众生,020_luo_cha.mp3,460,3134
+21,P1,栏楯,lán shǔn,器物,021_lan_shun.mp3,589,3918
+22,P1,刹那,chà nà,法数,022_cha_na.mp3,509,3448
+23,P1,祇树给孤独园,qí shù jǐ gū dú yuán,处所,023_qi_shu_ji_gu_du_yuan.mp3,1289,8150
+24,P1,南无,ná mó,咒语,024_na_mo.mp3,569,3761
+25,P1,耆阇崛山,qí shé jué shān,处所,025_qi_she_jue_shan.mp3,920,5956
+26,P1,大目揵连,dà mù jiān lián,声闻,026_da_mu_jian_lian.mp3,869,5642
+27,P1,金刚藏,jīn gāng zàng,菩萨,027_jin_gang_zang.mp3,769,5015
+28,P1,阿赖耶,ā lài yē,法数,028_a_lai_ye.mp3,529,3605
+29,P1,舍卫城,shè wèi chéng,处所,029_she_wei_cheng.mp3,709,4702
+30,P1,楞伽,léng qié,法数,030_leng_qie.mp3,489,3291
+31,P1,瑜伽,yú qié,法数,031_yu_qie.mp3,429,2978
+32,P1,兜率陀天,dōu shuài tuó tiān,处所,032_dou_shuai_tuo_tian.mp3,920,5956
+33,P1,伽陀,qié tuó,法数,033_qie_tuo.mp3,589,3918
+34,P1,僧伽,sēng qié,戒律,034_seng_qie.mp3,589,3918
+35,P1,那伽,nà qié,众生,035_na_qie.mp3,489,3291
+36,P1,华鬘,huā mán,器物,036_hua_man.mp3,509,3448
+37,P1,阿兰若,ā lán rě,法数,037_a_lan_re.mp3,620,4075
+38,P1,阿赖耶识,ā lài yē shí,法数,038_a_lai_ye_shi.mp3,749,4859
+39,P1,阿练若,ā liàn rě,法数,039_a_lian_re.mp3,569,3761
+40,P1,卢舍那,lú shè nà,佛号,040_lu_she_na.mp3,580,3918
+41,P1,虚空藏,xū kōng zàng,菩萨,041_xu_kong_zang.mp3,820,5329
+42,P1,无尽意,wú jìn yì,菩萨,042_wu_jin_yi.mp3,669,4388
+43,P1,华藏世界,huá zàng shì jiè,处所,043_hua_zang_shi_jie.mp3,860,5485
+44,P1,僧伽梨,sēng qié lí,器物,044_seng_qie_li.mp3,760,5015
+45,P1,舍利子,shè lì zǐ,声闻,045_she_li_zi.mp3,640,4232
+46,P1,婆伽婆,pó qié pó,佛号,046_po_qie_po.mp3,700,4545
+47,P1,刹帝利,chà dì lì,戒律,047_cha_di_li.mp3,660,4388
+48,P1,摩诃般若,mó hē bō rě,法数,048_mo_he_bo_re.mp3,809,5329
+49,P1,薄伽梵,bó qié fàn,佛号,049_bo_qie_fan.mp3,680,4545
+50,P1,无间地狱,wú jiàn dì yù,处所,050_wu_jian_di_yu.mp3,800,5172
+51,P1,揵闼婆,jiān tà pó,众生,051_jian_ta_po.mp3,820,5329
+52,P1,摩诃波阇波提,mó hē bō shé bō tí,声闻,052_mo_he_bo_she_bo_ti.mp3,1269,7993
+53,P1,般若波罗蜜多,bō rě bō luó mì duō,法数,053_bo_re_bo_luo_mi_duo.mp3,1209,7680
+54,P1,阿阇梨,ā shé lí,戒律,054_a_she_li.mp3,600,3918
+55,P1,末伽梨,mò qié lí,天众,055_mo_qie_li.mp3,669,4388
+56,P1,耶输陀罗,yē shū tuó luó,声闻,056_ye_shu_tuo_luo.mp3,909,5799
+57,P1,迦陵频伽,jiā líng pín qié,众生,057_jia_ling_pin_qie.mp3,780,5015
+58,P1,毗舍离,pí shè lí,处所,058_pi_she_li.mp3,669,4388
+59,P1,莎婆诃,suō pó hē,咒语,059_suo_po_he.mp3,689,4545
+60,P1,月藏,yuè zàng,菩萨,060_yue_zang.mp3,469,3134
+61,P1,阇陀伽,shé tuó qié,法数,061_she_tuo_qie.mp3,660,4388
+62,P1,罗刹娑,luó chà suō,众生,062_luo_cha_suo.mp3,669,4388
+63,P1,舍利塔,shè lì tǎ,器物,063_she_li_ta.mp3,649,4232
+64,P1,蠰佉,shāng qū,天众,064_shang_qu.mp3,589,3918
+65,P1,阿鞞跋致,ā pí bá zhì,果位,065_a_pi_ba_zhi.mp3,869,5642
+66,P1,竹林精舍,zhú lín jīng shè,处所,066_zhu_lin_jing_she.mp3,869,5642
+67,P2,如来,rú lái,佛号,067_ru_lai.mp3,429,2978
+68,P2,世尊,shì zūn,佛号,068_shi_zun.mp3,540,3605
+69,P2,菩提,pú tí,法数,069_pu_ti.mp3,489,3291
+70,P2,比丘,bǐ qiū,戒律,070_bi_qiu.mp3,480,3291
+71,P2,波罗蜜,bō luó mì,法数,071_bo_luo_mi.mp3,560,3761
+72,P2,摩诃萨,mó hē sà,果位,072_mo_he_sa.mp3,580,3918
+73,P2,菩萨摩诃萨,pú sà mó hē sà,果位,073_pu_sa_mo_he_sa.mp3,940,5956
+74,P2,三昧,sān mèi,法数,074_san_mei.mp3,480,3291
+75,P2,涅槃,niè pán,法数,075_nie_pan.mp3,600,3918
+76,P2,须菩提,xū pú tí,声闻,076_xu_pu_ti.mp3,689,4545
+77,P2,婆罗门,pó luó mén,戒律,077_po_luo_men.mp3,629,4232
+78,P2,阿耨多罗,ā nòu duō luó,法数,078_a_nou_duo_luo.mp3,829,5329
+79,P2,阿难,ā nán,声闻,079_a_nan.mp3,480,3291
+80,P2,三藐三菩提,sān miǎo sān pú tí,法数,080_san_miao_san_pu_ti.mp3,1129,7210
+81,P2,声闻,shēng wén,果位,081_sheng_wen.mp3,569,3761
+82,P2,阿耨多罗三藐三菩提,ā nòu duō luó sān miǎo sān pú tí,法数,082_a_nou_duo_luo_san_miao_san_pu_ti.mp3,1749,10814
+83,P2,摩尼,mó ní,器物,083_mo_ni.mp3,560,3761
+84,P2,迦叶,jiā shè,声闻,084_jia_she.mp3,480,3291
+85,P2,善财,shàn cái,菩萨,085_shan_cai.mp3,629,4232
+86,P2,僧祇,sēng qí,法数,086_seng_qi.mp3,660,4388
+87,P2,阿僧祇,ā sēng qí,果位,087_a_seng_qi.mp3,729,4702
+88,P2,陀罗尼,tuó luó ní,法数,088_tuo_luo_ni.mp3,640,4232
+89,P2,普贤,pǔ xián,菩萨,089_pu_xian.mp3,520,3448
+90,P2,阿罗汉,ā luó hàn,果位,090_a_luo_han.mp3,529,3605
+91,P2,一切种智,yī qiè zhǒng zhì,法数,091_yi_qie_zhong_zhi.mp3,849,5485
+92,P2,由旬,yóu xún,法数,092_you_xun.mp3,529,3605
+93,P2,须陀洹,xū tuó huán,果位,093_xu_tuo_huan.mp3,720,4702
+94,P2,不动,bù dòng,佛号,094_bu_dong.mp3,380,2664
+95,P2,檀那,tán nà,法数,095_tan_na.mp3,480,3291
+96,P2,阿修罗,ā xiū luó,众生,096_a_xiu_luo.mp3,640,4232
+97,P2,比丘尼,bǐ qiū ní,戒律,097_bi_qiu_ni.mp3,689,4545
+98,P2,优婆塞,yōu pó sāi,戒律,098_you_po_sai.mp3,709,4702
+99,P2,帝释,dì shì,天众,099_di_shi.mp3,420,2978
+100,P2,璎珞,yīng luò,器物,100_ying_luo.mp3,469,3134
+101,P2,文殊师利,wén shū shī lì,菩萨,101_wen_shu_shi_li.mp3,809,5329
+102,P2,禅那,chán nà,法数,102_chan_na.mp3,489,3291
+103,P2,尸罗,shī luó,法数,103_shi_luo.mp3,540,3605
+104,P2,缘觉,yuán jué,果位,104_yuan_jue.mp3,569,3761
+105,P2,羼提,chàn tí,法数,105_chan_ti.mp3,609,4075
+106,P2,须弥山,xū mí shān,处所,106_xu_mi_shan.mp3,729,4702
+107,P2,阿那含,ā nà hán,果位,107_a_na_han.mp3,609,4075
+108,P2,释提桓因,shì tí huán yīn,天众,108_shi_ti_huan_yin.mp3,900,5799
+109,P2,琉璃,liú lí,器物,109_liu_li.mp3,509,3448
+110,P2,优婆夷,yōu pó yí,戒律,110_you_po_yi.mp3,649,4232
+111,P2,一阐提,yī chǎn tí,法数,111_yi_chan_ti.mp3,780,5015
+112,P2,无著,wú zhuó,菩萨,112_wu_zhuo.mp3,460,3134
+113,P2,斯陀含,sī tuó hán,果位,113_si_tuo_han.mp3,749,4859
+114,P2,不退转,bù tuì zhuǎn,果位,114_bu_tui_zhuan.mp3,649,4232
+115,P2,毘卢,pí lú,佛号,115_pi_lu.mp3,540,3605
+116,P2,夜叉,yè chā,众生,116_ye_cha.mp3,520,3448
+117,P3,迦兰陀,jiā lán tuó,处所,117_jia_lan_tuo.mp3,700,4545
+118,P3,摩诃衍,mó hē yǎn,法数,118_mo_he_yan.mp3,689,4545
+119,P3,毘卢遮那,pí lú zhē nà,佛号,119_pi_lu_zhe_na.mp3,780,5015
+120,P3,难陀,nán tuó,声闻,120_nan_tuo.mp3,569,3761
+121,P3,波旬,bō xún,天众,121_bo_xun.mp3,489,3291
+122,P3,梵王,fàn wáng,天众,122_fan_wang.mp3,509,3448
+123,P3,紧那罗,jǐn nà luó,众生,123_jin_na_luo.mp3,729,4702
+124,P3,阿惟越致,ā wéi yuè zhì,法数,124_a_wei_yue_zhi.mp3,749,4859
+125,P3,善逝,shàn shì,佛号,125_shan_shi.mp3,529,3605
+126,P3,迦旃延,jiā zhān yán,声闻,126_jia_zhan_yan.mp3,720,4702
+127,P3,日光,rì guāng,菩萨,127_ri_guang.mp3,549,3761
+128,P3,阿须伦,ā xū lún,众生,128_a_xu_lun.mp3,629,4232
+129,P3,迦楼罗,jiā lóu luó,众生,129_jia_lou_luo.mp3,640,4232
+130,P3,香水海,xiāng shuǐ hǎi,处所,130_xiang_shui_hai.mp3,709,4702
+131,P3,菩提树,pú tí shù,处所,131_pu_ti_shu.mp3,620,4075
+132,P3,瑠璃,liú lí,器物,132_liu_li.mp3,509,3448
+133,P3,释迦牟尼,shì jiā móu ní,佛号,133_shi_jia_mou_ni.mp3,849,5485
+134,P3,目犍连,mù jiān lián,声闻,134_mu_jian_lian.mp3,720,4702
+135,P3,释氏,shì shì,处所,135_shi_shi.mp3,489,3291
+136,P3,忉利天,dāo lì tiān,处所,136_dao_li_tian.mp3,689,4545
+137,P3,摩纳,mó nà,戒律,137_mo_na.mp3,500,3448
+138,P3,婆蹉,pó cuō,声闻,138_po_cuo.mp3,429,2978
+139,P3,波斯匿,bō sī nì,天众,139_bo_si_ni.mp3,629,4232
+140,P3,罗睺罗,luó hóu luó,声闻,140_luo_hou_luo.mp3,589,3918
+141,P3,奢摩他,shē mó tā,法数,141_she_mo_ta.mp3,700,4545
+142,P3,观世音,guān shì yīn,菩萨,142_guan_shi_yin.mp3,649,4232
+143,P3,波斯匿王,bō sī nì wáng,天众,143_bo_si_ni_wang.mp3,920,5956
+144,P3,阿僧祇劫,ā sēng qí jié,法数,144_a_seng_qi_jie.mp3,889,5799
+145,P3,大目犍连,dà mù jiān lián,声闻,145_da_mu_jian_lian.mp3,940,5956
+146,P3,旃陀罗,zhān tuó luó,戒律,146_zhan_tuo_luo.mp3,709,4702
+147,P3,阿那律,ā nà lǜ,声闻,147_a_na_lv.mp3,549,3761
+148,P3,摩竭,mó jié,处所,148_mo_jie.mp3,549,3761
+149,P3,观自在,guān zì zài,菩萨,149_guan_zi_zai.mp3,629,4232
+150,P3,跏趺,jiā fū,法数,150_jia_fu.mp3,469,3134
+151,P3,摩诃迦旃延,mó hē jiā zhān yán,声闻,151_mo_he_jia_zhan_yan.mp3,1060,6739
+152,P3,他化自在天,tā huà zì zài tiān,处所,152_ta_hua_zi_zai_tian.mp3,1060,6739
+153,P3,普眼,pǔ yǎn,菩萨,153_pu_yan.mp3,460,3134
+154,P3,阿阇世,ā dū shì,天众,154_a_du_shi.mp3,569,3761
+155,P3,幡盖,fān gài,器物,155_fan_gai.mp3,429,2978
+156,P3,宝盖,bǎo gài,器物,156_bao_gai.mp3,420,2978
+157,P3,月光,yuè guāng,菩萨,157_yue_guang.mp3,560,3761
+158,P3,药王,yào wáng,菩萨,158_yao_wang.mp3,489,3291
+159,P3,富楼那,fù lóu nà,声闻,159_fu_lou_na.mp3,520,3448
+160,P3,幢幡,chuáng fān,器物,160_chuang_fan.mp3,580,3918
+161,P3,无上士,wú shàng shì,佛号,161_wu_shang_shi.mp3,700,4545
+162,P3,正遍知,zhèng biàn zhī,佛号,162_zheng_bian_zhi.mp3,740,4859
+163,P3,无量寿,wú liàng shòu,佛号,163_wu_liang_shou.mp3,580,3918
+164,P3,波罗蜜多,bō luó mì duō,法数,164_bo_luo_mi_duo.mp3,760,5015
+165,P3,药叉,yào chā,众生,165_yao_cha.mp3,500,3448
+166,P3,波罗㮈,bō luó nài,处所,166_bo_luo_nai.mp3,589,3918
+167,P3,世间解,shì jiān jiě,佛号,167_shi_jian_jie.mp3,689,4545
+168,P3,应供,yīng gōng,佛号,168_ying_gong.mp3,509,3448
+169,P3,慈氏,cí shì,菩萨,169_ci_shi.mp3,509,3448
+170,P3,憍陈如,jiāo chén rú,声闻,170_jiao_chen_ru.mp3,809,5329
+171,P3,天人师,tiān rén shī,佛号,171_tian_ren_shi.mp3,689,4545
+172,P3,三摩地,sān mó dì,法数,172_san_mo_di.mp3,669,4388
+173,P3,夜摩天,yè mó tiān,处所,173_ye_mo_tian.mp3,700,4545
+174,P3,调御丈夫,diào yù zhàng fū,佛号,174_diao_yu_zhang_fu.mp3,820,5329
+175,P3,因陀罗,yīn tuó luó,天众,175_yin_tuo_luo.mp3,629,4232
+176,P3,明行足,míng xíng zú,佛号,176_ming_xing_zu.mp3,789,5172
+177,P3,无量光,wú liàng guāng,佛号,177_wu_liang_guang.mp3,700,4545
+178,P3,无生法忍,wú shēng fǎ rěn,法数,178_wu_sheng_fa_ren.mp3,809,5329
+179,P3,鹿野苑,lù yě yuàn,处所,179_lu_ye_yuan.mp3,609,4075
+180,P3,沙弥,shā mí,戒律,180_sha_mi.mp3,569,3761
+181,P3,阿阇世王,ā dū shì wáng,天众,181_a_du_shi_wang.mp3,769,5015
+182,P3,和尚,hé shàng,戒律,182_he_shang.mp3,469,3134
+183,P3,曼殊室利,màn shū shì lì,菩萨,183_man_shu_shi_li.mp3,840,5485
+184,P3,珊瑚,shān hú,器物,184_shan_hu.mp3,609,4075
+185,P3,泥洹,ní huán,法数,185_ni_huan.mp3,549,3761
+186,P3,曼陀罗,màn tuó luó,法数,186_man_tuo_luo.mp3,740,4859
+187,P3,化乐天,huà lè tiān,处所,187_hua_le_tian.mp3,640,4232
+188,P3,袈裟,jiā shā,器物,188_jia_sha.mp3,509,3448
+189,P3,安居,ān jū,戒律,189_an_ju.mp3,489,3291
+190,P3,阿弥陀,ā mí tuó,佛号,190_a_mi_tuo.mp3,609,4075
+191,P3,自恣,zì zì,戒律,191_zi_zi.mp3,480,3291
+192,P3,多宝,duō bǎo,佛号,192_duo_bao.mp3,480,3291
+193,P3,法王子,fǎ wáng zi,果位,193_fa_wang_zi.mp3,649,4232
+194,P3,拘尸那,jū shī nà,处所,194_ju_shi_na.mp3,569,3761
+195,P3,萨埵,sà duǒ,法数,195_sa_duo.mp3,560,3761
+196,P3,首楞严,shǒu léng yán,法数,196_shou_leng_yan.mp3,720,4702
+197,P3,不休息,bù xiū xī,菩萨,197_bu_xiu_xi.mp3,620,4075
+198,P3,大梵天王,dà fàn tiān wáng,天众,198_da_fan_tian_wang.mp3,909,5799
+199,P3,法慧,fǎ huì,菩萨,199_fa_hui.mp3,449,3134
+200,P3,解脱月,jiě tuō yuè,菩萨,200_jie_tuo_yue.mp3,660,4388
+201,P3,金刚幢,jīn gāng chuáng,菩萨,201_jin_gang_chuang.mp3,680,4545
+202,P3,宝积,bǎo jī,菩萨,202_bao_ji.mp3,480,3291
+203,P3,目连,mù lián,声闻,203_mu_lian.mp3,549,3761
+204,P3,波罗夷,bō luó yí,戒律,204_bo_luo_yi.mp3,660,4388
+205,P3,鸠槃荼,jiū pán tú,众生,205_jiu_pan_tu.mp3,729,4702
+206,P3,布萨,bù sà,戒律,206_bu_sa.mp3,420,2978
+207,P3,阿难陀,ā nán tuó,声闻,207_a_nan_tuo.mp3,729,4702
+208,P3,铁围山,tiě wéi shān,处所,208_tie_wei_shan.mp3,749,4859
+209,P3,首陀罗,shǒu tuó luó,戒律,209_shou_tuo_luo.mp3,729,4702
+210,P3,羯磨,jié mó,戒律,210_jie_mo.mp3,500,3448
+211,P3,大势至,dà shì zhì,菩萨,211_da_shi_zhi.mp3,660,4388
+212,P3,色究竟天,sè jiū jìng tiān,处所,212_se_jiu_jing_tian.mp3,1049,6739
+213,P3,阿閦,ā chù,佛号,213_a_chu.mp3,460,3134
+214,P3,波罗提木叉,bō luó tí mù chā,法数,214_bo_luo_ti_mu_cha.mp3,960,6112
+215,P3,支提,zhī tí,法数,215_zhi_ti.mp3,509,3448
+216,P3,泥犁,ní lí,处所,216_ni_li.mp3,480,3291
+217,P3,摩尼珠,mó ní zhū,器物,217_mo_ni_zhu.mp3,649,4232
+218,P3,阿逸多,ā yì duō,菩萨,218_a_yi_duo.mp3,549,3761
+219,P3,补处,bǔ chù,果位,219_bu_chu.mp3,529,3605
+220,P3,鸠槃茶,jiū pán chá,众生,220_jiu_pan_cha.mp3,700,4545
+221,P3,大迦叶,dà jiā shè,声闻,221_da_jia_she.mp3,580,3918
+222,P3,极乐世界,jí lè shì jiè,处所,222_ji_le_shi_jie.mp3,789,5172
+223,P3,阿须伦王,ā xū lún wáng,众生,223_a_xu_lun_wang.mp3,840,5485

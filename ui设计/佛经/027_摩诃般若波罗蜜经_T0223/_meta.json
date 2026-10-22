@@ -1,0 +1,19 @@
+{
+  "folder": "027_摩诃般若波罗蜜经_T0223",
+  "work": "T0223",
+  "canon": "T",
+  "title_trad": "摩訶般若波羅蜜經",
+  "title_simp": "摩诃般若波罗蜜经",
+  "byline": "後秦 鳩摩羅什譯",
+  "creators": "鳩摩羅什",
+  "dynasty": "後秦",
+  "category": "般若部類",
+  "vol": "T08",
+  "juan_count": 27,
+  "cbeta_cjk_chars": 287174,
+  "extracted_chars_with_punc": 338461,
+  "file_count": 327,
+  "chunk_size": 1000,
+  "source": "CBETA 大正新脩大藏經 T0223",
+  "source_url": "https://cbetaonline.dila.edu.tw/zh/T0223"
+}

@@ -1,0 +1,19 @@
+{
+  "folder": "012_无量义经_T0276",
+  "work": "T0276",
+  "canon": "T",
+  "title_trad": "無量義經",
+  "title_simp": "无量义经",
+  "byline": "蕭齊 曇摩伽陀耶舍譯",
+  "creators": "曇摩迦陀耶舍",
+  "dynasty": "蕭齊",
+  "category": "法華部類",
+  "vol": "T09",
+  "juan_count": 1,
+  "cbeta_cjk_chars": 8571,
+  "extracted_chars_with_punc": 9784,
+  "file_count": 10,
+  "chunk_size": 1000,
+  "source": "CBETA 大正新脩大藏經 T0276",
+  "source_url": "https://cbetaonline.dila.edu.tw/zh/T0276"
+}

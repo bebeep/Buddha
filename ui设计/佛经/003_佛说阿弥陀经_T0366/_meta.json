@@ -1,0 +1,19 @@
+{
+  "folder": "003_佛说阿弥陀经_T0366",
+  "work": "T0366",
+  "canon": "T",
+  "title_trad": "佛說阿彌陀經",
+  "title_simp": "佛说阿弥陀经",
+  "byline": "姚秦 鳩摩羅什譯",
+  "creators": "鳩摩羅什",
+  "dynasty": "姚秦",
+  "category": "寶積部類,淨土宗部類",
+  "vol": "T12",
+  "juan_count": 1,
+  "cbeta_cjk_chars": 2109,
+  "extracted_chars_with_punc": 2475,
+  "file_count": 3,
+  "chunk_size": 1000,
+  "source": "CBETA 大正新脩大藏經 T0366",
+  "source_url": "https://cbetaonline.dila.edu.tw/zh/T0366"
+}

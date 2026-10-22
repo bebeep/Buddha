@@ -1,0 +1,19 @@
+{
+  "folder": "015_佛说无量寿经_T0360",
+  "work": "T0360",
+  "canon": "T",
+  "title_trad": "佛說無量壽經",
+  "title_simp": "佛说无量寿经",
+  "byline": "曹魏 康僧鎧譯",
+  "creators": "康僧鎧",
+  "dynasty": "曹魏",
+  "category": "寶積部類,淨土宗部類",
+  "vol": "T12",
+  "juan_count": 2,
+  "cbeta_cjk_chars": 17423,
+  "extracted_chars_with_punc": 20156,
+  "file_count": 18,
+  "chunk_size": 1000,
+  "source": "CBETA 大正新脩大藏經 T0360",
+  "source_url": "https://cbetaonline.dila.edu.tw/zh/T0360"
+}

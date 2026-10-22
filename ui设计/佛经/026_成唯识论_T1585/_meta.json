@@ -1,0 +1,19 @@
+{
+  "folder": "026_成唯识论_T1585",
+  "work": "T1585",
+  "canon": "T",
+  "title_trad": "成唯識論",
+  "title_simp": "成唯识论",
+  "byline": "護法等菩薩造 唐 玄奘譯",
+  "creators": "護法,玄奘",
+  "dynasty": "唐",
+  "category": "瑜伽部類",
+  "vol": "T31",
+  "juan_count": 10,
+  "cbeta_cjk_chars": 80180,
+  "extracted_chars_with_punc": 96373,
+  "file_count": 96,
+  "chunk_size": 1000,
+  "source": "CBETA 大正新脩大藏經 T1585",
+  "source_url": "https://cbetaonline.dila.edu.tw/zh/T1585"
+}

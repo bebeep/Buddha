@@ -1,0 +1,19 @@
+{
+  "folder": "023_六祖大师法宝坛经_T2008",
+  "work": "T2008",
+  "canon": "T",
+  "title_trad": "六祖大師法寶壇經",
+  "title_simp": "六祖大师法宝坛经",
+  "byline": "元 宗寶編",
+  "creators": "宗寶",
+  "dynasty": "元",
+  "category": "禪宗部類",
+  "vol": "T48",
+  "juan_count": 1,
+  "cbeta_cjk_chars": 26432,
+  "extracted_chars_with_punc": 31435,
+  "file_count": 29,
+  "chunk_size": 1000,
+  "source": "CBETA 大正新脩大藏經 T2008",
+  "source_url": "https://cbetaonline.dila.edu.tw/zh/T2008"
+}

@@ -1,0 +1,19 @@
+{
+  "folder": "020_梵网经_T1484",
+  "work": "T1484",
+  "canon": "T",
+  "title_trad": "梵網經",
+  "title_simp": "梵网经",
+  "byline": "後秦 鳩摩羅什譯",
+  "creators": "鳩摩羅什",
+  "dynasty": "後秦",
+  "category": "律部類",
+  "vol": "T24",
+  "juan_count": 2,
+  "cbeta_cjk_chars": 16707,
+  "extracted_chars_with_punc": 19118,
+  "file_count": 19,
+  "chunk_size": 1000,
+  "source": "CBETA 大正新脩大藏經 T1484",
+  "source_url": "https://cbetaonline.dila.edu.tw/zh/T1484"
+}

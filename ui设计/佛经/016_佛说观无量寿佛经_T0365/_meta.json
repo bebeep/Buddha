@@ -1,0 +1,19 @@
+{
+  "folder": "016_佛说观无量寿佛经_T0365",
+  "work": "T0365",
+  "canon": "T",
+  "title_trad": "佛說觀無量壽佛經",
+  "title_simp": "佛说观无量寿佛经",
+  "byline": "宋 畺良耶舍譯",
+  "creators": "畺良耶舍",
+  "dynasty": "劉宋",
+  "category": "寶積部類,淨土宗部類",
+  "vol": "T12",
+  "juan_count": 1,
+  "cbeta_cjk_chars": 7967,
+  "extracted_chars_with_punc": 9164,
+  "file_count": 10,
+  "chunk_size": 1000,
+  "source": "CBETA 大正新脩大藏經 T0365",
+  "source_url": "https://cbetaonline.dila.edu.tw/zh/T0365"
+}

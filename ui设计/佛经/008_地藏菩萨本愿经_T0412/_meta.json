@@ -1,0 +1,19 @@
+{
+  "folder": "008_地藏菩萨本愿经_T0412",
+  "work": "T0412",
+  "canon": "T",
+  "title_trad": "地藏菩薩本願經",
+  "title_simp": "地藏菩萨本愿经",
+  "byline": "唐 實叉難陀譯",
+  "creators": "實叉難陀",
+  "dynasty": "唐",
+  "category": "大集部類",
+  "vol": "T13",
+  "juan_count": 2,
+  "cbeta_cjk_chars": 17098,
+  "extracted_chars_with_punc": 20459,
+  "file_count": 20,
+  "chunk_size": 1000,
+  "source": "CBETA 大正新脩大藏經 T0412",
+  "source_url": "https://cbetaonline.dila.edu.tw/zh/T0412"
+}

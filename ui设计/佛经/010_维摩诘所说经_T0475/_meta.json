@@ -1,0 +1,19 @@
+{
+  "folder": "010_维摩诘所说经_T0475",
+  "work": "T0475",
+  "canon": "T",
+  "title_trad": "維摩詰所說經",
+  "title_simp": "维摩诘所说经",
+  "byline": "姚秦 鳩摩羅什譯",
+  "creators": "鳩摩羅什",
+  "dynasty": "姚秦",
+  "category": "經集部類",
+  "vol": "T14",
+  "juan_count": 3,
+  "cbeta_cjk_chars": 27239,
+  "extracted_chars_with_punc": 32407,
+  "file_count": 33,
+  "chunk_size": 1000,
+  "source": "CBETA 大正新脩大藏經 T0475",
+  "source_url": "https://cbetaonline.dila.edu.tw/zh/T0475"
+}

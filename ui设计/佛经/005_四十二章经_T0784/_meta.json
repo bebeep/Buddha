@@ -1,0 +1,19 @@
+{
+  "folder": "005_四十二章经_T0784",
+  "work": "T0784",
+  "canon": "T",
+  "title_trad": "四十二章經",
+  "title_simp": "四十二章经",
+  "byline": "後漢 迦葉摩騰共法蘭譯",
+  "creators": "攝摩騰,竺法蘭",
+  "dynasty": "東漢",
+  "category": "經集部類",
+  "vol": "T17",
+  "juan_count": 1,
+  "cbeta_cjk_chars": 2495,
+  "extracted_chars_with_punc": 3153,
+  "file_count": 3,
+  "chunk_size": 1000,
+  "source": "CBETA 大正新脩大藏經 T0784",
+  "source_url": "https://cbetaonline.dila.edu.tw/zh/T0784"
+}

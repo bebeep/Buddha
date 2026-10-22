@@ -1,0 +1,19 @@
+{
+  "folder": "028_长阿含经_T0001",
+  "work": "T0001",
+  "canon": "T",
+  "title_trad": "長阿含經",
+  "title_simp": "长阿含经",
+  "byline": "後秦 佛陀耶舍共竺佛念譯",
+  "creators": "佛陀耶舍,竺佛念",
+  "dynasty": "後秦",
+  "category": "阿含部類",
+  "vol": "T01",
+  "juan_count": 22,
+  "cbeta_cjk_chars": 198436,
+  "extracted_chars_with_punc": 238409,
+  "file_count": 223,
+  "chunk_size": 1000,
+  "source": "CBETA 大正新脩大藏經 T0001",
+  "source_url": "https://cbetaonline.dila.edu.tw/zh/T0001"
+}

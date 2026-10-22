@@ -1,0 +1,19 @@
+{
+  "folder": "002_金刚般若波罗蜜经_T0235",
+  "work": "T0235",
+  "canon": "T",
+  "title_trad": "金剛般若波羅蜜經",
+  "title_simp": "金刚般若波罗蜜经",
+  "byline": "後秦 鳩摩羅什譯",
+  "creators": "鳩摩羅什",
+  "dynasty": "後秦",
+  "category": "般若部類",
+  "vol": "T08",
+  "juan_count": 1,
+  "cbeta_cjk_chars": 5191,
+  "extracted_chars_with_punc": 6450,
+  "file_count": 7,
+  "chunk_size": 1000,
+  "source": "CBETA 大正新脩大藏經 T0235",
+  "source_url": "https://cbetaonline.dila.edu.tw/zh/T0235"
+}

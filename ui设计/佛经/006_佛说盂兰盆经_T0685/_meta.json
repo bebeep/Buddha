@@ -1,0 +1,19 @@
+{
+  "folder": "006_佛说盂兰盆经_T0685",
+  "work": "T0685",
+  "canon": "T",
+  "title_trad": "佛說盂蘭盆經",
+  "title_simp": "佛说盂兰盆经",
+  "byline": "西晉 竺法護譯",
+  "creators": "竺法護",
+  "dynasty": "西晉",
+  "category": "經集部類",
+  "vol": "T16",
+  "juan_count": 1,
+  "cbeta_cjk_chars": 815,
+  "extracted_chars_with_punc": 938,
+  "file_count": 1,
+  "chunk_size": 1000,
+  "source": "CBETA 大正新脩大藏經 T0685",
+  "source_url": "https://cbetaonline.dila.edu.tw/zh/T0685"
+}

@@ -1,0 +1,19 @@
+{
+  "folder": "030_大方广佛华严经_T0279",
+  "work": "T0279",
+  "canon": "T",
+  "title_trad": "大方廣佛華嚴經",
+  "title_simp": "大方广佛华严经",
+  "byline": "唐 實叉難陀譯",
+  "creators": "實叉難陀",
+  "dynasty": "唐",
+  "category": "華嚴部類",
+  "vol": "T10",
+  "juan_count": 80,
+  "cbeta_cjk_chars": 593143,
+  "extracted_chars_with_punc": 621306,
+  "file_count": 557,
+  "chunk_size": 1000,
+  "source": "CBETA 大正新脩大藏經 T0279",
+  "source_url": "https://cbetaonline.dila.edu.tw/zh/T0279"
+}

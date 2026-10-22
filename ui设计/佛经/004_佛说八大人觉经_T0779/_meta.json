@@ -1,0 +1,19 @@
+{
+  "folder": "004_佛说八大人觉经_T0779",
+  "work": "T0779",
+  "canon": "T",
+  "title_trad": "佛說八大人覺經",
+  "title_simp": "佛说八大人觉经",
+  "byline": "後漢 安世高譯",
+  "creators": "安清",
+  "dynasty": "東漢",
+  "category": "經集部類",
+  "vol": "T17",
+  "juan_count": 1,
+  "cbeta_cjk_chars": 397,
+  "extracted_chars_with_punc": 463,
+  "file_count": 1,
+  "chunk_size": 1000,
+  "source": "CBETA 大正新脩大藏經 T0779",
+  "source_url": "https://cbetaonline.dila.edu.tw/zh/T0779"
+}

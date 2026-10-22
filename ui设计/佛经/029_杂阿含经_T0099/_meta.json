@@ -1,0 +1,19 @@
+{
+  "folder": "029_杂阿含经_T0099",
+  "work": "T0099",
+  "canon": "T",
+  "title_trad": "雜阿含經",
+  "title_simp": "杂阿含经",
+  "byline": "劉宋 求那跋陀羅譯",
+  "creators": "求那跋陀羅",
+  "dynasty": "劉宋",
+  "category": "阿含部類",
+  "vol": "T02",
+  "juan_count": 50,
+  "cbeta_cjk_chars": 470717,
+  "extracted_chars_with_punc": 554601,
+  "file_count": 1418,
+  "chunk_size": 1000,
+  "source": "CBETA 大正新脩大藏經 T0099",
+  "source_url": "https://cbetaonline.dila.edu.tw/zh/T0099"
+}

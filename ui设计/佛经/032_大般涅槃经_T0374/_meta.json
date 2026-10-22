@@ -1,0 +1,19 @@
+{
+  "folder": "032_大般涅槃经_T0374",
+  "work": "T0374",
+  "canon": "T",
+  "title_trad": "大般涅槃經",
+  "title_simp": "大般涅槃经",
+  "byline": "北涼 曇無讖譯",
+  "creators": "曇無讖",
+  "dynasty": "北涼",
+  "category": "涅槃部類",
+  "vol": "T12",
+  "juan_count": 40,
+  "cbeta_cjk_chars": 336029,
+  "extracted_chars_with_punc": 398996,
+  "file_count": 367,
+  "chunk_size": 1000,
+  "source": "CBETA 大正新脩大藏經 T0374",
+  "source_url": "https://cbetaonline.dila.edu.tw/zh/T0374"
+}

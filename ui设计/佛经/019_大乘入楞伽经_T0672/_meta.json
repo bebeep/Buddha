@@ -1,0 +1,19 @@
+{
+  "folder": "019_大乘入楞伽经_T0672",
+  "work": "T0672",
+  "canon": "T",
+  "title_trad": "大乘入楞伽經",
+  "title_simp": "大乘入楞伽经",
+  "byline": "唐 實叉難陀譯",
+  "creators": "實叉難陀",
+  "dynasty": "唐",
+  "category": "經集部類",
+  "vol": "T16",
+  "juan_count": 7,
+  "cbeta_cjk_chars": 60714,
+  "extracted_chars_with_punc": 58366,
+  "file_count": 56,
+  "chunk_size": 1000,
+  "source": "CBETA 大正新脩大藏經 T0672",
+  "source_url": "https://cbetaonline.dila.edu.tw/zh/T0672"
+}
