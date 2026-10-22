@@ -157,11 +157,10 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
             R.id.v_back -> pop()
             R.id.iv_share -> shareBook()
             R.id.tv_read -> {
-                start(FojingReadFragment())
+                start(FojingReadFragment.newInstance(bookId, bookInfo?.bookTitle ?: ""))
             }
             R.id.tv_copy -> {
-                ToastUtil.showMessage("抄经模式")
-                start(FojingCopyFragment())
+                start(FojingCopyFragment.newInstance(bookId, bookInfo?.bookTitle ?: ""))
             }
             R.id.btn_add_shelf -> switchShelf()
             R.id.btn_add_comment -> showCommentInput()

@@ -34,6 +34,8 @@ class ChoosePicDialog(
     }
 
     init {
+        //列表要在构造完成时就填好数据，视图绑定主动触发一次（只会执行一次）
+        ensureViewCreated()
         myAdapter?.apply {
             initData(mylist)
         }

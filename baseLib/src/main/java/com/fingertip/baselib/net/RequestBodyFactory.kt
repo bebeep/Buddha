@@ -157,4 +157,58 @@ object RequestBodyFactory {
         param["images"] = images
         return buildJsonRequestBody(param)
     }
+
+    /**
+     * 读经进度
+     */
+    fun buildReadProgressBody(bookId: Int, seq: Int, charOffset: Int): RequestBody {
+        val param = HashMap<String, Any>()
+        param["bookId"] = bookId
+        param["seq"] = seq
+        param["charOffset"] = charOffset
+        return buildJsonRequestBody(param)
+    }
+
+    /**
+     * 抄经进度
+     */
+    fun buildCopyProgressBody(bookId: Int, seq: Int, charOffset: Int, chars: Int,
+                              durationMs: Int, skippedChars: Int): RequestBody {
+        val param = HashMap<String, Any>()
+        param["bookId"] = bookId
+        param["seq"] = seq
+        param["charOffset"] = charOffset
+        param["chars"] = chars
+        param["durationMs"] = durationMs
+        param["skippedChars"] = skippedChars
+        return buildJsonRequestBody(param)
+    }
+
+    /**
+     * 抄经设置
+     */
+    fun buildCopySettingBody(defaultColor: Int, copyColor: Int,
+                             backgroundColor: Int, fontSizeLevel: Int): RequestBody {
+        val param = HashMap<String, Any>()
+        param["defaultColor"] = defaultColor
+        param["copyColor"] = copyColor
+        param["backgroundColor"] = backgroundColor
+        param["fontSizeLevel"] = fontSizeLevel
+        return buildJsonRequestBody(param)
+    }
+
+    /**
+     * 读经设置
+     */
+    fun buildReadSettingBody(textColor: Int, backgroundColor: Int, fontSizeLevel: Int,
+                             lineSpacingLevel: Int, keepScreenOn: Int, showTrad: Int): RequestBody {
+        val param = HashMap<String, Any>()
+        param["textColor"] = textColor
+        param["backgroundColor"] = backgroundColor
+        param["fontSizeLevel"] = fontSizeLevel
+        param["lineSpacingLevel"] = lineSpacingLevel
+        param["keepScreenOn"] = keepScreenOn
+        param["showTrad"] = showTrad
+        return buildJsonRequestBody(param)
+    }
 }

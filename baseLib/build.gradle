@@ -38,6 +38,10 @@ android {
         buildConfig true
         viewBinding true
     }
+    androidResources {
+        //读音音频要能按 fd 直接读，别让 aapt 压缩
+        noCompress.add("mp3")
+    }
 
 
 }
@@ -92,6 +96,11 @@ dependencies {
 
     //阿里云OSS Android SDK
     api 'com.aliyun.dpa:oss-android-sdk:2.9.21'
+
+    //佛经正文本地缓存
+    api room_libs["runtime"]
+    api room_libs["ktx"]
+    kapt room_libs["compiler"]
 
 }
 repositories {

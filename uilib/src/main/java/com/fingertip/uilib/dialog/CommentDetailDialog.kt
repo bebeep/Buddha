@@ -119,6 +119,8 @@ class CommentDetailDialog(context: Context) : TopDialogBottomSheetDialog(context
     fun show(parentCommentPosition:Int,parentComment: CommentEntity?)
     {
         if (parentComment == null) return
+        //视图绑定延后到了 onCreate，这里先用之前需要手动触发一次
+        ensureViewCreated()
         this.parentCommentPosition = parentCommentPosition
         this.parentComment = parentComment
 

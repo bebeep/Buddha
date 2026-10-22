@@ -1,6 +1,11 @@
 package com.fingertip.baselib.net
 
+import com.fingertip.baselib.bean.BookChapter
+import com.fingertip.baselib.bean.BookChapterItem
 import com.fingertip.baselib.bean.BookComment
+import com.fingertip.baselib.bean.BookCopySetting
+import com.fingertip.baselib.bean.BookProgress
+import com.fingertip.baselib.bean.BookReadSetting
 import com.fingertip.baselib.bean.BookThemeEntity
 import com.fingertip.baselib.bean.BookTypeConfig
 import com.fingertip.baselib.bean.BuddhaBook
@@ -310,4 +315,108 @@ interface ApiManager {
         @Query("session") session: String = GlobalConfig.session,
         @Query("commentId") commentId: Int
     ): RequestRsp<String>
+
+    /**
+     * 获取章节目录
+     */
+    @GET()
+    suspend fun getBookChapterList(
+        @Url url: String = NetProperty.GET_BOOK_CHAPTER_LIST,
+        @Query("bookId") bookId: Int,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<List<BookChapterItem>>
+
+    /**
+     * 获取单章正文
+     * contentHash：本地已有该章时传本地指纹，一致则服务端不下发正文
+     */
+    @GET()
+    suspend fun getBookChapter(
+        @Url url: String = NetProperty.GET_BOOK_CHAPTER,
+        @Query("bookId") bookId: Int,
+        @Query("seq") seq: Int,
+        @Query("contentHash") contentHash: String,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<BookChapter>
+
+    /**
+     * 批量获取正文
+     * 整部离线下载用，一次最多 20 章，含繁体正文
+     */
+    @GET()
+    suspend fun getBookChapters(
+        @Url url: String = NetProperty.GET_BOOK_CHAPTERS,
+        @Query("bookId") bookId: Int,
+        @Query("startSeq") startSeq: Int,
+        @Query("endSeq") endSeq: Int,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<List<BookChapter>>
+
+    /**
+     * 获取读经抄经进度
+     */
+    @GET()
+    suspend fun getBookProgress(
+        @Url url: String = NetProperty.GET_BOOK_PROGRESS,
+        @Query("bookId") bookId: Int,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<BookProgress>
+
+    /**
+     * 更新读经进度
+     */
+    @POST()
+    suspend fun updateReadProgress(
+        @Url url: String = NetProperty.UPDATE_READ_PROGRESS,
+        @Query("session") session: String = GlobalConfig.session,
+        @Body request: RequestBody?
+    ): RequestRsp<BookProgress>
+
+    /**
+     * 更新抄经进度
+     */
+    @POST()
+    suspend fun updateCopyProgress(
+        @Url url: String = NetProperty.UPDATE_COPY_PROGRESS,
+        @Query("session") session: String = GlobalConfig.session,
+        @Body request: RequestBody?
+    ): RequestRsp<BookProgress>
+
+    /**
+     * 获取抄经显示设置
+     */
+    @GET()
+    suspend fun getCopySetting(
+        @Url url: String = NetProperty.GET_COPY_SETTING,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<BookCopySetting>
+
+    /**
+     * 保存抄经显示设置
+     */
+    @POST()
+    suspend fun updateCopySetting(
+        @Url url: String = NetProperty.UPDATE_COPY_SETTING,
+        @Query("session") session: String = GlobalConfig.session,
+        @Body request: RequestBody?
+    ): RequestRsp<BookCopySetting>
+
+    /**
+     * 获取读经显示设置
+     */
+    @GET()
+    suspend fun getReadSetting(
+        @Url url: String = NetProperty.GET_READ_SETTING,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<BookReadSetting>
+
+    /**
+     * 保存读经显示设置
+     */
+    @POST()
+    suspend fun updateReadSetting(
+        @Url url: String = NetProperty.UPDATE_READ_SETTING,
+        @Query("session") session: String = GlobalConfig.session,
+        @Body request: RequestBody?
+    ): RequestRsp<BookReadSetting>
 }

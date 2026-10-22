@@ -214,4 +214,54 @@ object NetProperty {
      * 删除书籍评论
      */
     const val REMOVE_BOOK_COMMENT                     = "book/removeBookComment"
+
+    /**
+     * 获取章节目录
+     */
+    const val GET_BOOK_CHAPTER_LIST                   = "book/getBookChapterList"
+
+    /**
+     * 获取单章正文
+     */
+    const val GET_BOOK_CHAPTER                        = "book/getBookChapter"
+
+    /**
+     * 批量获取正文（整部离线下载，一次最多 20 章）
+     */
+    const val GET_BOOK_CHAPTERS                       = "book/getBookChapters"
+
+    /**
+     * 获取读经抄经进度
+     */
+    const val GET_BOOK_PROGRESS                       = "book/getBookProgress"
+
+    /**
+     * 更新读经进度
+     */
+    const val UPDATE_READ_PROGRESS                    = "book/updateReadProgress"
+
+    /**
+     * 更新抄经进度
+     */
+    const val UPDATE_COPY_PROGRESS                    = "book/updateCopyProgress"
+
+    /**
+     * 获取抄经显示设置
+     */
+    const val GET_COPY_SETTING                        = "book/getCopySetting"
+
+    /**
+     * 保存抄经显示设置
+     */
+    const val UPDATE_COPY_SETTING                     = "book/updateCopySetting"
+
+    /**
+     * 获取读经显示设置
+     */
+    const val GET_READ_SETTING                        = "book/getReadSetting"
+
+    /**
+     * 保存读经显示设置
+     */
+    const val UPDATE_READ_SETTING                     = "book/updateReadSetting"
 }
