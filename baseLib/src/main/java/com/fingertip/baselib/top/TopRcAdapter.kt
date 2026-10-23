@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
+import java.lang.reflect.Method
 
 @Suppress("UNCHECKED_CAST")
 abstract class TopRcAdapter<T, VH : TopRcAdapter.TopRcViewHolder>(
@@ -15,6 +16,9 @@ abstract class TopRcAdapter<T, VH : TopRcAdapter.TopRcViewHolder>(
     val TAG by lazy { javaClass.simpleName }
 
     val mlist = ArrayList<T>()
+
+    /** layoutId -> Binding.bind(View) 方法，找不到时也缓存 null，避免反复 Class.forName */
+    private val bindMethodCache = HashMap<Int, Method?>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val layoutId = initLayoutId(viewType)
@@ -84,6 +88,21 @@ abstract class TopRcAdapter<T, VH : TopRcAdapter.TopRcViewHolder>(
      * 搜索策略: 资源所在包 → 子类所在包 → 应用包名
      */
     private fun createBindingFromView(view: View, layoutId: Int): ViewBinding? {
+        //Class.forName + getMethod 比较贵，滑动时每个 item 都做一次会掉帧，按 layoutId 缓存结果
+        //（用 containsKey 判断，找不到时也把 null 缓存下来，否则每次都要重新 Class.forName 一次失败）
+        val bindMethod = if (bindMethodCache.containsKey(layoutId)) {
+            bindMethodCache[layoutId]
+        } else {
+            findBindMethod(context, layoutId).also { bindMethodCache[layoutId] = it }
+        } ?: return null
+        return try {
+            bindMethod.invoke(null, view) as? ViewBinding
+        } catch (e: Exception) {
+            null
+        }
+    }
+
+    private fun findBindMethod(context: Context, layoutId: Int): Method? {
         return try {
             val res = context.resources
             val layoutName = res.getResourceEntryName(layoutId)
@@ -93,7 +112,6 @@ abstract class TopRcAdapter<T, VH : TopRcAdapter.TopRcViewHolder>(
             val subClassPackage = javaClass.`package`?.name
             findBindingClass(className, resPackage, subClassPackage)
                 ?.getMethod("bind", View::class.java)
-                ?.invoke(null, view) as? ViewBinding
         } catch (e: Exception) {
             null
         }

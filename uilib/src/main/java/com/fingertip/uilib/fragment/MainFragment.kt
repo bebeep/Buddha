@@ -11,6 +11,7 @@ import com.fingertip.baselib.top.TopVMFragment
 import com.fingertip.baselib.util.PicUtils
 import com.fingertip.uilib.R
 import com.fingertip.uilib.databinding.FragmentMainBinding
+import com.fingertip.uilib.dialog.ExitConfirmDialog
 import com.fingertip.uilib.fragment.moment.MomentFragment
 import com.fingertip.uilib.fragment.worshiping.WorshipFragment
 import com.fingertip.uilib.viewmodel.MainVM
@@ -126,5 +127,49 @@ class MainFragment : TopVMFragment<MainVM>(), BottomMenu.MenuSelectCallback {
     @Subscribe
     fun onMessageEvent(event: MessageEvent) {
 
+    }
+
+    //------------------------- 返回键 -------------------------
+
+    private var exitDialog: ExitConfirmDialog? = null
+
+    /**
+     * 5 个 tab 都是 multi_container 里的根 Fragment（canPop = false），
+     * 所以返回键会一路冒泡到这里（ContainerActivity 的 onBackPressedSupport 只管二级页面）。
+     *
+     * 规则：
+     * - 不在首页 → 切回首页，不退出
+     * - 已在首页 → 弹确认框，确认后才退出
+     */
+    override fun onBackPressedSupport(): Boolean {
+        val dialog = exitDialog
+        if (dialog != null && dialog.isShowing) {
+            //确认框开着的时候，返回键只关弹窗
+            dialog.dismiss()
+            return true
+        }
+        if (lastIndex != 0) {
+            binding.bottomMenu.selectTab(0)
+            return true
+        }
+        showExitConfirm()
+        return true
+    }
+
+    private fun showExitConfirm() {
+        if (exitDialog?.isShowing == true) return
+        val ctx = context ?: return
+        if (exitDialog == null) {
+            exitDialog = ExitConfirmDialog(ctx) {
+                activity?.finishAfterTransition()
+            }
+        }
+        exitDialog?.show()
+    }
+
+    override fun onDestroyView() {
+        exitDialog?.dismiss()
+        exitDialog = null
+        super.onDestroyView()
     }
 }

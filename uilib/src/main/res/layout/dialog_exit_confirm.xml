@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  退出应用确认弹窗。
+  只在首页(HostFragment)按返回时出现，其余 tab 返回是切回首页，不提示。
+-->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.fingertip.baselib.view.shapeview.ShapeConstraintLayout
+        android:id="@+id/cl_content"
+        style="@style/constraint_center"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        app:gdBgColor="#FFFEFA"
+        app:gdRadius="12dp">
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="确认退出"
+            android:textColor="#2C1900"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:zdyFont="bold" />
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:lineSpacingExtra="3dp"
+            android:text="确定要退出应用吗？"
+            android:textColor="#8A8A8A"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+        <LinearLayout
+            android:id="@+id/ll_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_content">
+
+            <com.fingertip.baselib.view.shapeview.ShapeTextView
+                android:id="@+id/btn_cancel"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="取消"
+                android:textColor="#8A8A8A"
+                android:textSize="15sp"
+                app:gdBgColor="#F2F0EC"
+                app:gdRadius="22dp"
+                app:zdyFont="bold" />
+
+            <com.fingertip.baselib.view.shapeview.ShapeTextView
+                android:id="@+id/btn_exit"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="退出"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:gdEndColor="#FFD543"
+                app:gdGradientOrientation="LEFT_RIGHT"
+                app:gdRadius="22dp"
+                app:gdStartColor="#FFA030"
+                app:zdyFont="bold" />
+        </LinearLayout>
+    </com.fingertip.baselib.view.shapeview.ShapeConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

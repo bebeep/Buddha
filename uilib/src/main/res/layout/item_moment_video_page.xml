@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 短视频全屏页：一个页面一条视频，信息在左下，操作在右下 -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+
+    <!-- 播放器容器：clipChildren=true 负责把超出的画面裁掉，gravity=center 保证画面居中
+         （播放器按 SCREEN_TYPE_FULL 测量，会等比放大到铺满，超出的部分被这里裁掉） -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="true">
+
+        <com.fingertip.baselib.view.SampleCoverVideo
+            android:id="@+id/video"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center" />
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_video_feed_scrim" />
+
+    <!-- 透明层：单击暂停/继续。放在面板下面，不影响按钮点击 -->
+    <View
+        android:id="@+id/v_tap"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent" />
+
+    <LinearLayout
+        android:id="@+id/ll_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginEnd="88dp"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="44dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.fingertip.baselib.view.shapeview.ShapeImageView
+                android:id="@+id/iv_head"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/icon_default_head"
+                app:radius="18dp" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:shadowColor="#66000000"
+                android:shadowDx="0"
+                android:shadowDy="1"
+                android:shadowRadius="2"
+                android:textColor="@android:color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:text="用户名" />
+        </LinearLayout>
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:shadowColor="#66000000"
+            android:shadowDx="0"
+            android:shadowDy="1"
+            android:shadowRadius="2"
+            android:ellipsize="end"
+            android:lineSpacingExtra="4dp"
+            android:maxLines="3"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            tools:text="动态正文，最多三行" />
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:shadowColor="#66000000"
+            android:shadowDx="0"
+            android:shadowDy="1"
+            android:shadowRadius="2"
+            android:textColor="#CCFFFFFF"
+            android:textSize="12sp"
+            tools:text="四川 · 1小时前" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="12dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingBottom="44dp">
+
+        <ImageView
+            android:id="@+id/iv_like"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/bg_moment_like"
+            android:contentDescription="点赞" />
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            tools:text="12" />
+
+        <ImageView
+            android:id="@+id/iv_comment"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="20dp"
+            android:contentDescription="评论"
+            android:src="@mipmap/icon_moment_comment" />
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            tools:text="3" />
+    </LinearLayout>
+
+</FrameLayout>

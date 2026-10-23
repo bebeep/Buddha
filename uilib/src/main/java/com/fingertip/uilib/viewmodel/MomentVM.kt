@@ -70,7 +70,7 @@ class MomentVM:TopVMImp() {
         }, {
             momentCommentListResult.value = successResult(it)
         }, {
-            momentCommentListResult.value = failResult(it.errorCode)
+            momentCommentListResult.value = failResult(it.errorCode, it.errorMsg)
         }, showLoading = false, toastError = false)
     }
 
@@ -91,7 +91,7 @@ class MomentVM:TopVMImp() {
         }, {
             commentResult.value = successResult(it)
         }, {
-            commentResult.value = failResult(it.errorCode)
+            commentResult.value = failResult(it.errorCode, it.errorMsg)
         }, showLoading = false, toastError = false)
     }
 

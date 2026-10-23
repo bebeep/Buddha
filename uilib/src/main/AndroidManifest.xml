@@ -39,6 +39,13 @@
             android:screenOrientation="portrait">
         </activity>
 
+        <!--佛友圈短视频全屏浏览-->
+        <activity
+            android:name=".activity.MomentVideoFeedActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Buddha.VideoFeed" />
+
 
         <!--佛像模型文件后台下载服务-->
         <service

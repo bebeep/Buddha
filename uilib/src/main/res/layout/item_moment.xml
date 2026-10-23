@@ -112,6 +112,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
+            <!-- 透明层：接住点击，进全屏短视频页。播放器自己的手势在这里不需要 -->
+            <View
+                android:id="@+id/v_video_tap"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent" />
+
         </androidx.cardview.widget.CardView>
 
         <androidx.recyclerview.widget.RecyclerView
