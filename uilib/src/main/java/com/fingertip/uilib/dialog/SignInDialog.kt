@@ -15,8 +15,12 @@ import com.fingertip.uilib.databinding.DialogSignInBinding
 class SignInDialog(context: Context) : TopDialog(context) {
 
     companion object {
-        //服务端「今天已经签到过了」
+        //服务端「今天已经签到过了」，只用来把按钮锁成「今日已签到」，提示文案仍用服务端的 msg
         private const val CODE_TODAY_SIGNED = -24
+
+        //服务端没给 msg 时（正常不会发生）兜底
+        private const val TIP_LOAD_FAILED = "签到信息加载失败，请稍后再试"
+        private const val TIP_SIGN_IN_FAILED = "签到失败，请稍后再试"
     }
 
     private lateinit var binding: DialogSignInBinding
@@ -71,14 +75,14 @@ class SignInDialog(context: Context) : TopDialog(context) {
     }
 
     /**
-     * 拉签到信息失败
+     * 拉签到信息失败。文案用服务端回来的 msg，没有才用本地兜底
      */
-    fun showLoadError() {
+    fun showLoadError(msg: String? = null) {
         loadFailed = true
         signing = false
         data = null
         binding.tvContinuousDays.text = "-"
-        binding.tvTotalDays.text = "签到信息加载失败，请稍后再试"
+        binding.tvTotalDays.text = msg.orDefault(TIP_LOAD_FAILED)
         binding.llDaily.visibility = View.GONE
         binding.llContinuous.visibility = View.GONE
         binding.tvSignIn.text = "重新加载"
@@ -175,16 +179,16 @@ class SignInDialog(context: Context) : TopDialog(context) {
     }
 
     /**
-     * 签到失败，-24 是今天已经签过，其他情况提示重试
+     * 签到失败，提示文案直接用服务端的 msg。
+     * -24 是「今天已经签到过了」，除了提示还要把按钮锁上
      */
-    fun onSignInFailed(errorCode: Int) {
+    fun onSignInFailed(errorCode: Int, msg: String? = null) {
         signing = false
-        if (errorCode == CODE_TODAY_SIGNED) {
-            data?.hasSignIn = true
-            ToastUtil.showMessage("今天已经签到过了")
-        } else {
-            ToastUtil.showMessage("签到失败，请稍后再试")
-        }
+        if (errorCode == CODE_TODAY_SIGNED) data?.hasSignIn = true
+        ToastUtil.showMessage(msg.orDefault(TIP_SIGN_IN_FAILED))
         renderButton()
     }
+
+    private fun String?.orDefault(def: String): String =
+        if (this.isNullOrBlank()) def else this
 }

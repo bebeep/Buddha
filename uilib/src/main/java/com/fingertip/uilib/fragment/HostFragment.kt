@@ -42,7 +42,7 @@ class HostFragment : TopVMFragment<SignInVM>() {
             if (result.success) {
                 signInDialog?.render(result.data)
             } else {
-                signInDialog?.showLoadError()
+                signInDialog?.showLoadError(result.errorMsg)
             }
         }
 
@@ -53,7 +53,7 @@ class HostFragment : TopVMFragment<SignInVM>() {
                 //连签天数和下一档都变了，重新拉一次
                 mViewModel.loadSignInData()
             } else {
-                signInDialog?.onSignInFailed(result.errorCode)
+                signInDialog?.onSignInFailed(result.errorCode, result.errorMsg)
             }
         }
     }

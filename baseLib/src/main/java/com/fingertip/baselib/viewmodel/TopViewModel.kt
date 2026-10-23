@@ -23,7 +23,7 @@ open class TopViewModel : ViewModel(), LifecycleObserver {
 
 
     fun<T> successResult(data: T?) = RequestResult(true, data)
-    fun failResult(code: Int = -1) = RequestResult(false, null, code)
+    fun failResult(code: Int = -1, msg: String? = null) = RequestResult(false, null, code, msg)
 
     fun launchUI(block: suspend CoroutineScope.() -> Unit) {
         viewModelScope.launch {

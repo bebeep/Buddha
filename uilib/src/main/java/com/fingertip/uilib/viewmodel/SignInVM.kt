@@ -35,7 +35,7 @@ class SignInVM : TopVMImp() {
             latestData = it
             signInDataResult.value = successResult(it)
         }, {
-            signInDataResult.value = failResult(it.errorCode)
+            signInDataResult.value = failResult(it.errorCode, it.errorMsg)
         }, showLoading = false, toastError = false)
     }
 
@@ -49,7 +49,7 @@ class SignInVM : TopVMImp() {
             addRewardToLocal()
             signInResult.value = successResult(it)
         }, {
-            signInResult.value = failResult(it.errorCode)
+            signInResult.value = failResult(it.errorCode, it.errorMsg)
         }, showLoading = false, toastError = false)
     }
 
