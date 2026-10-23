@@ -7,7 +7,7 @@ import com.fingertip.baselib.bean.BannerEntity
 import com.fingertip.baselib.bean.HostMenu
 import com.fingertip.baselib.event_bus.MessageEvent
 import com.fingertip.baselib.log
-import com.fingertip.baselib.top.TopFragment
+import com.fingertip.baselib.top.TopVMFragment
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.HostBannerAdapter
 import com.fingertip.uilib.adapter.HostMarqueeAdapter
@@ -16,17 +16,60 @@ import com.fingertip.uilib.databinding.FragmentHostBinding
 import com.fingertip.uilib.dialog.SignInDialog
 import com.fingertip.uilib.fragment.game.FangShengFragment
 import com.fingertip.uilib.fragment.worshiping.GongFoFragment
+import com.fingertip.uilib.viewmodel.SignInVM
 import com.youth.banner.Banner
 import org.greenrobot.eventbus.Subscribe
 
 /**
  * 首页
  */
-class HostFragment : TopFragment() {
+class HostFragment : TopVMFragment<SignInVM>() {
 
     private val binding get() = mBinding as FragmentHostBinding
 
     override fun layoutId() = R.layout.fragment_host
+
+    override fun initVM() = SignInVM()
+
+    //签到弹窗，数据回来后由这里转给它
+    private var signInDialog: SignInDialog? = null
+
+    override fun initObserver() {
+        super.initObserver()
+
+        mViewModel.signInDataResult.observe(viewLifecycleOwner) { result ->
+            if (!isAdded) return@observe
+            if (result.success) {
+                signInDialog?.render(result.data)
+            } else {
+                signInDialog?.showLoadError()
+            }
+        }
+
+        mViewModel.signInResult.observe(viewLifecycleOwner) { result ->
+            if (!isAdded) return@observe
+            if (result.success) {
+                signInDialog?.onSignInSuccess()
+                //连签天数和下一档都变了，重新拉一次
+                mViewModel.loadSignInData()
+            } else {
+                signInDialog?.onSignInFailed(result.errorCode)
+            }
+        }
+    }
+
+    /**
+     * 打开签到弹窗。先弹出来显示加载态，数据回来再填
+     */
+    private fun showSignInDialog() {
+        val dialog = SignInDialog(requireContext())
+        dialog.onSignIn = { mViewModel.signIn() }
+        dialog.onReload = { mViewModel.loadSignInData() }
+        dialog.setOnDismissListener { signInDialog = null }
+        signInDialog = dialog
+        dialog.show()
+        mViewModel.loadSignInData()
+    }
 
     override fun initShiTu() {
 
@@ -121,7 +164,7 @@ class HostFragment : TopFragment() {
         when (v) {
             binding.tvSign -> {//签到
                 log(value = "签到")
-                SignInDialog(requireContext()).show("每日签到领取----")
+                showSignInDialog()
             }
             binding.ivBaifo -> {//拜佛
 

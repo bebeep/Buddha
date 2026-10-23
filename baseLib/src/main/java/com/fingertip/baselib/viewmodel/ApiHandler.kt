@@ -60,7 +60,7 @@ object ApiHandler {
     ) {
         coroutineScope {
             if (response.code == 0)  success(response.data)
-            else throw ResponseThrowable(response.code, response.message)
+            else throw ResponseThrowable(response.code, response.msg)
         }
     }
 

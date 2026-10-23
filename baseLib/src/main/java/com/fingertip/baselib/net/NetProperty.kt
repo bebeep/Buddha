@@ -264,4 +264,14 @@ object NetProperty {
      * 保存读经显示设置
      */
     const val UPDATE_READ_SETTING                     = "book/updateReadSetting"
+
+    /**
+     * 获取签到信息
+     */
+    const val GET_SIGN_IN_DATA                        = "account/getSignInData"
+
+    /**
+     * 签到
+     */
+    const val SIGN_IN                                 = "account/signIn"
 }

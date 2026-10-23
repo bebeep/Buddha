@@ -15,6 +15,7 @@ import com.fingertip.baselib.bean.MomentEntity
 import com.fingertip.baselib.bean.OssConfig
 import com.fingertip.baselib.bean.PersonData
 import com.fingertip.baselib.bean.RequestRsp
+import com.fingertip.baselib.bean.SignInData
 import com.fingertip.baselib.bean.VersionInfo
 import com.fingertip.baselib.constant.GlobalConfig
 import com.fingertip.baselib.util.DeviceIdUtils
@@ -419,4 +420,22 @@ interface ApiManager {
         @Query("session") session: String = GlobalConfig.session,
         @Body request: RequestBody?
     ): RequestRsp<BookReadSetting>
+
+    /**
+     * 获取签到信息：基础奖励、下一档连签奖励、当前连签天数
+     */
+    @GET()
+    suspend fun getSignInData(
+        @Url url: String = NetProperty.GET_SIGN_IN_DATA,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<SignInData>
+
+    /**
+     * 签到
+     */
+    @POST()
+    suspend fun signIn(
+        @Url url: String = NetProperty.SIGN_IN,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<String>
 }
