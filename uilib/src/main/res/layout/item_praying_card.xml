@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    福卡 item：内容 + 祝福数 + 付费封面角标
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="4dp">
+
+    <LinearLayout
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_praying_card"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingStart="14dp"
+        android:paddingTop="18dp"
+        android:paddingEnd="14dp"
+        android:paddingBottom="14dp">
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:lineSpacingExtra="6dp"
+            android:minLines="2"
+            android:textColor="#6B4A17"
+            android:textSize="16sp"
+            app:zdyFont="bold"
+            tools:text="为天下苍生祈福" />
+
+        <TextView
+            android:id="@+id/tv_bless_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="#B08A4A"
+            android:textSize="11sp"
+            tools:text="88人已祝福" />
+
+        <TextView
+            android:id="@+id/tv_cover_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/bg_wish_tag"
+            android:paddingStart="6dp"
+            android:paddingTop="1dp"
+            android:paddingEnd="6dp"
+            android:paddingBottom="1dp"
+            android:text="祈福卡"
+            android:textColor="#C87A2B"
+            android:textSize="10sp" />
+    </LinearLayout>
+</FrameLayout>

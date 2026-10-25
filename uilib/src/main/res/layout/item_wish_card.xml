@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 许愿树上的愿望卡 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_wish_card"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingStart="12dp"
+    android:paddingTop="16dp"
+    android:paddingEnd="12dp"
+    android:paddingBottom="14dp">
+
+    <TextView
+        android:id="@+id/tv_wish_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:lineSpacingExtra="3dp"
+        android:maxLines="4"
+        android:minLines="2"
+        android:textColor="#2C1900"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_wish_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textColor="#B08A4A"
+        android:textSize="11sp" />
+
+</LinearLayout>

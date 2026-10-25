@@ -1,0 +1,1407 @@
+﻿<project version="2.9" name="指尖佛" ID="E7BE8243-D26B-47D8-AD7B-BBEC0D18FB53">
+  <params>
+    <pageParam version="5.3" minAllowVersion="5.3"/>
+    <projectParam version="2.9" minAllowVersion="2.9" platform="MtMobile" orientation="MoPortrait" mobileScreenScale="1.77777779102325" mobileType="mmtIOS" pageSize="(375,667)" backgroundColor="4294967295" fontSize="0" fontFamily="" projectType="ptPersonalProject" isShowTitleIndex="False"/>
+    <previewParam version="1.0"/>
+    <colorParam version="1.0"/>
+  </params>
+  <pages>
+    <page name="修行" ID="6CEA7874-9ABA-400D-AF75-A7A3F2BBA6EF" expanded="True" status="psGreen" isfolder="True" isshownode="True">
+      <page name="首页" ID="A033B0C0-7F85-4206-9963-F05E3466EECE" expanded="False" status="psGreen" isfolder="True" isshownode="True">
+        <page name="修行" ID="837BB844-86FF-4561-A20F-0678DAEBF667" expanded="True" code="ouBVpys98Z" thumbCode="ouBVpys98Z" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="C10EAF94EC9FAD410532453C1E3F2B31.png"/>
+            <image key="2826DBA63FE4728F9480E919DDF13314.png"/>
+            <image key="8AA29A99D569513D2A1B60AFC8D8DD4A.svg"/>
+            <image key="A5F7C25877E3EBABC118F84D12154512.png"/>
+            <image key="E717495DB260FC942CF44E2394DA401E.png"/>
+            <image key="7AF3186D3AA4551F92452D7539C5B114.png"/>
+            <image key="4D53ADEBDA671399C2A1B2F3739CCB19.png"/>
+            <image key="978081CFEEABB38A6EA66862FD03784D.png"/>
+            <image key="0CF7133147F0FF2A316B730CF65CA8CA.png"/>
+            <image key="AC467B3ED79E38C964F69CA389D3B58F.png"/>
+            <image key="FD80B0FD35F2B7F4BA95455FB534B43C.png"/>
+            <image key="C068A17AE7644512CD1925511AF671D7.png"/>
+          </images>
+        </page>
+        <page name="修行值增加的动画" ID="189A0878-58B6-4447-A172-5BFB43A8D38A" expanded="True" code="bKwsWPsQdT" thumbCode="bKwsWPsQdT" status="psWhite" isfolder="False" isshownode="True"/>
+      </page>
+      <page name="签到" ID="E7EE3845-75CC-420F-A1B5-536712C5C1A4" expanded="True" status="psGreen" isfolder="True" isshownode="True">
+        <page name="签到" ID="E4C16365-1170-4070-8112-C021E77382C8" expanded="True" code="iIlTsheHWb" thumbCode="iIlTsheHWb" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="68D76EBAC7E568A83A45719A263CF0EC.png"/>
+            <image key="BA3016F024C738C0822EC6D781D7D22D.png"/>
+          </images>
+        </page>
+      </page>
+      <page name="祭怀" ID="760DE9E1-AEFD-42DA-A69D-B309EA8740BE" expanded="False" status="psGreen" isfolder="True" isshownode="True">
+        <page name="牌位列表" ID="2DABE723-67A8-49B3-801A-223B553D0647" expanded="True" code="WChC8C1Pcy" thumbCode="WChC8C1Pcy" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="9E508B9E8F1F66D382B752F74AF947E4.jpg"/>
+            <image key="EF63E78415B479830B7C97645C9338AE.png"/>
+            <image key="BA3016F024C738C0822EC6D781D7D22D.png"/>
+          </images>
+        </page>
+        <page name="单牌位" ID="6C07BC64-E8AC-46CF-A5BC-1D02331BE871" expanded="True" code="rmyQBBU6us" thumbCode="rmyQBBU6us" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="9E508B9E8F1F66D382B752F74AF947E4.jpg"/>
+            <image key="EF63E78415B479830B7C97645C9338AE.png"/>
+            <image key="BA3016F024C738C0822EC6D781D7D22D.png"/>
+            <image key="9547E5ABACB2EFF235BEFD97A9DE214A.png"/>
+          </images>
+        </page>
+        <page name="双牌位" ID="807B52BA-9138-4138-9B99-58B1B4E35FF7" expanded="True" code="FUzL5tTIiO" thumbCode="FUzL5tTIiO" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="9E508B9E8F1F66D382B752F74AF947E4.jpg"/>
+            <image key="EF63E78415B479830B7C97645C9338AE.png"/>
+            <image key="BA3016F024C738C0822EC6D781D7D22D.png"/>
+            <image key="9547E5ABACB2EFF235BEFD97A9DE214A.png"/>
+          </images>
+        </page>
+        <page name="设立牌位·定制牌位" ID="1052FB9E-1E8D-4C36-B6A1-7B93246B58B5" expanded="True" code="QERmWPZjfU" thumbCode="QERmWPZjfU" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="BA3016F024C738C0822EC6D781D7D22D.png"/>
+            <image key="BAC6A6B817BA50CCA0F0EC42A6DE25B7.jpg"/>
+            <image key="1EF6079357C476B5F91C67A73521C83F.jpg"/>
+          </images>
+          <page name="定制牌位-详情" ID="8E6EB317-52F6-445E-AC88-78E09ACCD5C5" expanded="False" code="1mkWlAHAXS" thumbCode="1mkWlAHAXS" status="psWhite" isfolder="False" isshownode="True">
+            <images>
+              <image key="D97D5F8967661407272EDA00175A09B8.png"/>
+              <image key="9E508B9E8F1F66D382B752F74AF947E4.jpg"/>
+              <image key="EF63E78415B479830B7C97645C9338AE.png"/>
+              <image key="BA3016F024C738C0822EC6D781D7D22D.png"/>
+            </images>
+          </page>
+        </page>
+        <page name="设立牌位·定制场景（初始状态）" ID="EE7AE61A-3CB4-4719-BCA4-6708D9D390CE" expanded="True" code="XqBkWdcBAo" thumbCode="XqBkWdcBAo" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="9E508B9E8F1F66D382B752F74AF947E4.jpg"/>
+            <image key="BA3016F024C738C0822EC6D781D7D22D.png"/>
+            <image key="1EF6079357C476B5F91C67A73521C83F.jpg"/>
+          </images>
+          <page name="定制场景-选择场景后" ID="5564AD53-0120-4740-A5D4-0322C02074F6" expanded="False" code="kj4K29OfGy" thumbCode="kj4K29OfGy" status="psWhite" isfolder="False" isshownode="True">
+            <images>
+              <image key="9E508B9E8F1F66D382B752F74AF947E4.jpg"/>
+              <image key="BA3016F024C738C0822EC6D781D7D22D.png"/>
+              <image key="660D613D2C06EFE78CBE1FA22343DB3D.jpg"/>
+              <image key="AA2D80E6C4633C02F2D27A5AE42AD725.png"/>
+            </images>
+          </page>
+          <page name="定制场景-详情" ID="02FDD7DE-EFA5-4BA2-A293-75F5176A4039" expanded="True" code="5uEb5un1hX" thumbCode="5uEb5un1hX" status="psWhite" isfolder="False" isshownode="True">
+            <images>
+              <image key="D97D5F8967661407272EDA00175A09B8.png"/>
+              <image key="BA3016F024C738C0822EC6D781D7D22D.png"/>
+            </images>
+          </page>
+        </page>
+        <page name="设立牌位·摆放香烛" ID="7A210471-84E7-4906-B7DF-6AE0F1FE81E2" expanded="False" code="nAbBVPAEVA" thumbCode="nAbBVPAEVA" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="9E508B9E8F1F66D382B752F74AF947E4.jpg"/>
+            <image key="BA3016F024C738C0822EC6D781D7D22D.png"/>
+            <image key="9547E5ABACB2EFF235BEFD97A9DE214A.png"/>
+            <image key="660D613D2C06EFE78CBE1FA22343DB3D.jpg"/>
+          </images>
+        </page>
+        <page name="设立牌位·摆放贡品" ID="168F2985-FEFF-4837-9BC4-2536DED685C2" expanded="False" code="jhJUvaBPxG" thumbCode="jhJUvaBPxG" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="9E508B9E8F1F66D382B752F74AF947E4.jpg"/>
+            <image key="BA3016F024C738C0822EC6D781D7D22D.png"/>
+            <image key="9547E5ABACB2EFF235BEFD97A9DE214A.png"/>
+            <image key="660D613D2C06EFE78CBE1FA22343DB3D.jpg"/>
+          </images>
+        </page>
+        <page name="设立牌位·完成" ID="C194E05F-283C-49F5-A5DA-AF40CAB233FA" expanded="True" code="HOsdqMALCR" thumbCode="HOsdqMALCR" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="D97D5F8967661407272EDA00175A09B8.png"/>
+            <image key="9E508B9E8F1F66D382B752F74AF947E4.jpg"/>
+            <image key="BA3016F024C738C0822EC6D781D7D22D.png"/>
+            <image key="9547E5ABACB2EFF235BEFD97A9DE214A.png"/>
+            <image key="660D613D2C06EFE78CBE1FA22343DB3D.jpg"/>
+          </images>
+        </page>
+        <page name="祭拜" ID="152ECA80-C7B6-4260-A77A-A5AB040EBC98" expanded="False" code="tLuvX64fpC" thumbCode="tLuvX64fpC" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="0644D07A249A3027871C639036C79113.png"/>
+          </images>
+        </page>
+      </page>
+      <page name="供佛" ID="9705CC31-3EFA-4676-8895-FBBF5648E4C9" expanded="False" status="psGreen" isfolder="True" isshownode="True">
+        <page name="选择佛像" ID="93AC7128-8476-41D1-A444-2AF49894102B" expanded="True" code="RLmpzsdVy1" thumbCode="RLmpzsdVy1" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="9FABC172F378DDAA99357DA8C20607C2.jpg"/>
+            <image key="4D53ADEBDA671399C2A1B2F3739CCB19.png"/>
+          </images>
+        </page>
+        <page name="佛像详情" ID="191270C6-234F-4845-B021-12447B848A6C" expanded="False" code="QsQwpJ6io1" thumbCode="QsQwpJ6io1" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="F70420FF9FA273EC9C6CBE1EAF4327A9.png"/>
+            <image key="6BA55AAC7CE86CB81D943CFE2D94026F.png"/>
+            <image key="7FA18EA3C1806FA398D2E9FE967B8FB0.png"/>
+            <image key="4D99D285DF3073ED396C43820D574B4A.png"/>
+            <image key="BA3016F024C738C0822EC6D781D7D22D.png"/>
+            <image key="0D2485D95D51752CC12B86716BC7C5AA.png"/>
+            <image key="3ED2F6C397F1D4BAD481A9E2062515C6.png"/>
+            <image key="55288A5CA1C02131D56068BC6EA3C7FF.png"/>
+            <image key="B8314FC1D92934DC7328807EE17C317C.png"/>
+            <image key="72D19F1256A22821621F0BF1E0542181.png"/>
+          </images>
+        </page>
+        <page name="供香烛" ID="360DE466-7B45-43E6-B993-D0325103ECF5" expanded="False" code="KHaEFuwH1k" thumbCode="KHaEFuwH1k" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="2219CCB797695387FB6136B91E670071.png"/>
+            <image key="4904BAAA51DB96E902167FF726700546.jpg"/>
+            <image key="9FABC172F378DDAA99357DA8C20607C2.jpg"/>
+            <image key="A8F503613493EDE95D8C3DB2F61D2CB5.png"/>
+            <image key="9547E5ABACB2EFF235BEFD97A9DE214A.png"/>
+          </images>
+        </page>
+        <page name="供佛灯" ID="45309B77-6DF1-43C7-88A1-217E829C1022" expanded="False" code="JlvAoDKdiR" thumbCode="FdzhL67jB7" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="2219CCB797695387FB6136B91E670071.png"/>
+            <image key="9FABC172F378DDAA99357DA8C20607C2.jpg"/>
+            <image key="9D03CA56645D823AA074D6E70FAD5AF7.png"/>
+            <image key="A8F503613493EDE95D8C3DB2F61D2CB5.png"/>
+            <image key="9547E5ABACB2EFF235BEFD97A9DE214A.png"/>
+          </images>
+        </page>
+        <page name="进贡说明" ID="EFC861D7-B3E1-483A-BA22-9862CD5243B3" expanded="False" code="IfEAnl8fxI" thumbCode="IfEAnl8fxI" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="2219CCB797695387FB6136B91E670071.png"/>
+            <image key="9FABC172F378DDAA99357DA8C20607C2.jpg"/>
+            <image key="9547E5ABACB2EFF235BEFD97A9DE214A.png"/>
+          </images>
+        </page>
+      </page>
+      <page name="佛经" ID="F3292ABC-56FC-4FC9-A9D7-D03B51756048" expanded="False" status="psGreen" isfolder="True" isshownode="True">
+        <page name="经书列表-书架" ID="A5703D05-82EB-4E4C-AA78-6787BD7C4AAF" expanded="False" code="9LHhiShA2r" thumbCode="9LHhiShA2r" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="6BA55AAC7CE86CB81D943CFE2D94026F.png"/>
+            <image key="2D4BE998596822AB2C343A5899CBBD9F.png"/>
+            <image key="84C100A81C8126600404988A739760C8.png"/>
+            <image key="3ED2F6C397F1D4BAD481A9E2062515C6.png"/>
+            <image key="B8314FC1D92934DC7328807EE17C317C.png"/>
+          </images>
+        </page>
+        <page name="经书列表-佛经" ID="DC2402F9-0B90-443E-AF8B-23ED54F3C41C" expanded="False" code="JChP46Uesq" thumbCode="JChP46Uesq" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="6BA55AAC7CE86CB81D943CFE2D94026F.png"/>
+            <image key="B630878B3EECF34D3CE946E0ED9A8631.png"/>
+            <image key="A8F503613493EDE95D8C3DB2F61D2CB5.png"/>
+            <image key="55288A5CA1C02131D56068BC6EA3C7FF.png"/>
+            <image key="3ED2F6C397F1D4BAD481A9E2062515C6.png"/>
+            <image key="B8314FC1D92934DC7328807EE17C317C.png"/>
+            <image key="082B85A51A8ADB685D829D02921C7412.png"/>
+          </images>
+        </page>
+        <page name="经书分类" ID="91303FB6-BF40-438E-88B3-7DE0B6243A7D" expanded="False" code="HkMBl6r6hu" thumbCode="HkMBl6r6hu" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="6BA55AAC7CE86CB81D943CFE2D94026F.png"/>
+            <image key="55288A5CA1C02131D56068BC6EA3C7FF.png"/>
+            <image key="3ED2F6C397F1D4BAD481A9E2062515C6.png"/>
+            <image key="B8314FC1D92934DC7328807EE17C317C.png"/>
+          </images>
+        </page>
+        <page name="经书专题-专题列表" ID="F8BA7DDE-80C5-45ED-9F77-58AC3A39D08F" expanded="True" code="kSJWWyVIKd" thumbCode="kSJWWyVIKd" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="6E19EFC2F971B2999E557BB64BFA7CFF.png"/>
+            <image key="93D58923614829FA2FB2C6607F5325E2.png"/>
+            <image key="55288A5CA1C02131D56068BC6EA3C7FF.png"/>
+          </images>
+        </page>
+        <page name="经书专题-经书列表" ID="4BE4ACCC-D3A4-4416-A653-EE0676EC2189" expanded="False" code="DW9RnPbLRd" thumbCode="DW9RnPbLRd" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="936859FD95A1422D8EE1088E813FB826.png"/>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="6BA55AAC7CE86CB81D943CFE2D94026F.png"/>
+            <image key="2AAC76BC41ECA5ED43B67C81F6B0D983.jpg"/>
+            <image key="55288A5CA1C02131D56068BC6EA3C7FF.png"/>
+            <image key="3ED2F6C397F1D4BAD481A9E2062515C6.png"/>
+            <image key="B8314FC1D92934DC7328807EE17C317C.png"/>
+          </images>
+        </page>
+        <page name="经书详情" ID="30B838F3-40CF-4C31-BB86-47082AE1FD35" expanded="False" code="9dzGShbo74" thumbCode="eQ9cJgeNAN" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="6BA55AAC7CE86CB81D943CFE2D94026F.png"/>
+            <image key="700F2C2BF1286B5233E6837EC90237F0.png"/>
+            <image key="734C4AACC4C4D7DA4015310D9C2E93F8.png"/>
+            <image key="47C50AAD2908D2BD81E015C3BE30B88D.png"/>
+            <image key="0DE8B6396D87F52087EB664ECA9A20DD.png"/>
+            <image key="6659F9ED9F9516B42188B441994A7884.png"/>
+            <image key="C69973CF22A8C3998B39ECEABC8338F5.png"/>
+          </images>
+        </page>
+        <page name="抄经" ID="C21AB77C-9D07-46B4-BAC3-3770FE4E00F7" expanded="True" code="8Hixz8pO1V" thumbCode="8Hixz8pO1V" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="CE2F33F47B95D031CC40CB73CC5847F9.png"/>
+          </images>
+        </page>
+        <page name="抄经-设置" ID="81427732-DE3E-4AED-910E-4957A46B5A6C" expanded="False" code="5IshG88qzu" thumbCode="5IshG88qzu" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="CE2F33F47B95D031CC40CB73CC5847F9.png"/>
+          </images>
+        </page>
+        <page name="阅读模式" ID="F447CD43-AADD-4119-94AD-DED4814581B9" expanded="False" code="6ud3ABjgSk" thumbCode="6ud3ABjgSk" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="FB779CED8CE62C02FF9AD40706C88BF7.png"/>
+            <image key="CE2F33F47B95D031CC40CB73CC5847F9.png"/>
+          </images>
+        </page>
+        <page name="迭代功能-批注" ID="578E1DAA-60C5-4278-B971-578961B24468" expanded="True" code="tl6OQCA8LJ" thumbCode="tl6OQCA8LJ" status="psWhite" isfolder="False" isshownode="True"/>
+      </page>
+      <page name="功德" ID="1005BF1C-4DCF-4A25-A6C3-D17E09508878" expanded="False" status="psGreen" isfolder="True" isshownode="True">
+        <page name="佛像列表" ID="5F317097-07AE-46E7-B991-EBDE36CC5908" expanded="False" code="1R5Tgd2gaF" thumbCode="1R5Tgd2gaF" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="6692E39D318C8BB707D5B5A5AB5DC704.png"/>
+            <image key="6C598416A1B4F39568D473A27BDBC8A7.png"/>
+          </images>
+        </page>
+        <page name="功德详情" ID="A5FFB5F8-29FF-4369-A896-2B53F6F8AF72" expanded="True" code="8pr5GPfBbn" thumbCode="8pr5GPfBbn" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="751EC5DBB6960144DF543286A629A3EA.png"/>
+            <image key="9FABC172F378DDAA99357DA8C20607C2.jpg"/>
+            <image key="A8F503613493EDE95D8C3DB2F61D2CB5.png"/>
+            <image key="0CF7133147F0FF2A316B730CF65CA8CA.png"/>
+            <image key="860FB329705E171F20CE5906E3856F56.png"/>
+            <image key="B8E06A1297BD33532C7686609B84D430.png"/>
+          </images>
+        </page>
+        <page name="功德详情-功德捐赠" ID="3AE026A4-81CC-4204-91D3-5FFBE9E1DDE9" expanded="True" code="IUcEBc2EHT" thumbCode="IUcEBc2EHT" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="751EC5DBB6960144DF543286A629A3EA.png"/>
+            <image key="9FABC172F378DDAA99357DA8C20607C2.jpg"/>
+            <image key="D97D5F8967661407272EDA00175A09B8.png"/>
+            <image key="A8F503613493EDE95D8C3DB2F61D2CB5.png"/>
+            <image key="0CF7133147F0FF2A316B730CF65CA8CA.png"/>
+            <image key="860FB329705E171F20CE5906E3856F56.png"/>
+            <image key="B8E06A1297BD33532C7686609B84D430.png"/>
+          </images>
+        </page>
+        <page name="功德详情-功德捐赠-功德币不足" ID="DD720E10-8E57-4B4F-A6FE-E38512448AD9" expanded="False" code="YCH8W4CZWm" thumbCode="YCH8W4CZWm" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="751EC5DBB6960144DF543286A629A3EA.png"/>
+            <image key="9FABC172F378DDAA99357DA8C20607C2.jpg"/>
+            <image key="D97D5F8967661407272EDA00175A09B8.png"/>
+            <image key="A8F503613493EDE95D8C3DB2F61D2CB5.png"/>
+            <image key="0CF7133147F0FF2A316B730CF65CA8CA.png"/>
+            <image key="860FB329705E171F20CE5906E3856F56.png"/>
+            <image key="B8E06A1297BD33532C7686609B84D430.png"/>
+          </images>
+        </page>
+        <page name="捐赠记录" ID="2204AC79-1CC8-43FE-89B8-2A1D11B91004" expanded="True" code="TKPbhKfhHC" thumbCode="TKPbhKfhHC" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="A7E8C93FF4F71E4A1A3D93DB88F94D39.png"/>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+          </images>
+        </page>
+      </page>
+      <page name="祈福" ID="E6D7564C-8323-4201-8CB1-9AB1D16B056A" expanded="False" status="psGreen" isfolder="True" isshownode="True">
+        <page name="祈福-列表" ID="830ADA36-49E1-4D28-8AD8-A4C4C2F95760" expanded="True" code="5odRxmkNhp" thumbCode="5odRxmkNhp" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="5400FAF2276F4A7D93432DA3D9781FC7.png"/>
+            <image key="A8F503613493EDE95D8C3DB2F61D2CB5.png"/>
+            <image key="761F6BDE53BF2DC70BC3FD895FD33027.jpg"/>
+            <image key="40326ED394E0A1FDBA0307081DE74A6B.png"/>
+            <image key="C9B1018355504EC8AA33C820518123AC.png"/>
+          </images>
+        </page>
+        <page name="祈福-主页" ID="35BF3C6E-8FE5-4317-AB11-BA849584987C" expanded="False" code="mbzqrZhzDY" thumbCode="mbzqrZhzDY" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="FE6C3E29C97FB144793E5B68E983F670.png"/>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="72A2E3B4FFE231D21730B579A1405326.png"/>
+            <image key="0DE8B6396D87F52087EB664ECA9A20DD.png"/>
+            <image key="FD80B0FD35F2B7F4BA95455FB534B43C.png"/>
+          </images>
+        </page>
+        <page name="祈福-主题介绍" ID="517B1EF8-3D4E-4294-BCD0-FD146D1ED4ED" expanded="True" code="iT6I3uhQWR" thumbCode="iT6I3uhQWR" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="FE6C3E29C97FB144793E5B68E983F670.png"/>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="72A2E3B4FFE231D21730B579A1405326.png"/>
+            <image key="761F6BDE53BF2DC70BC3FD895FD33027.jpg"/>
+            <image key="0DE8B6396D87F52087EB664ECA9A20DD.png"/>
+            <image key="FD80B0FD35F2B7F4BA95455FB534B43C.png"/>
+            <image key="C9B1018355504EC8AA33C820518123AC.png"/>
+            <image key="C4242DD7BBF8F1E13B7E0B002A3F340C.png"/>
+          </images>
+        </page>
+        <page name="祈福-编辑祈福" ID="89D466C3-2C0C-41DA-A4EF-F724B68DF3CD" expanded="True" code="YLy6aXE6Q4" thumbCode="YLy6aXE6Q4" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="FE6C3E29C97FB144793E5B68E983F670.png"/>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="72A2E3B4FFE231D21730B579A1405326.png"/>
+            <image key="D97D5F8967661407272EDA00175A09B8.png"/>
+            <image key="C1720E36A0E5AAD94590521645A46194.png"/>
+            <image key="0DE8B6396D87F52087EB664ECA9A20DD.png"/>
+            <image key="96F9F0F66A6A07A422C0CC07697DF875.png"/>
+            <image key="FD80B0FD35F2B7F4BA95455FB534B43C.png"/>
+          </images>
+        </page>
+        <page name="祈福-拆福卡" ID="8DAB1743-D38B-4AF3-BE7A-45E338305DB7" expanded="True" code="hMNTK7XyrY" thumbCode="hMNTK7XyrY" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="FE6C3E29C97FB144793E5B68E983F670.png"/>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="72A2E3B4FFE231D21730B579A1405326.png"/>
+            <image key="0DE8B6396D87F52087EB664ECA9A20DD.png"/>
+            <image key="B132895807F9DE622E96FE9317A853F6.png"/>
+            <image key="FD80B0FD35F2B7F4BA95455FB534B43C.png"/>
+          </images>
+        </page>
+        <page name="祈福-查看所有祈福" ID="B62B1F49-1535-4FA2-B57D-0FC91344A1A6" expanded="False" code="MgLl9S59g7" thumbCode="MgLl9S59g7" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="FE6C3E29C97FB144793E5B68E983F670.png"/>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="62BA49531D2E06B629601EBA46F7B7E6.png"/>
+            <image key="72A2E3B4FFE231D21730B579A1405326.png"/>
+            <image key="0DE8B6396D87F52087EB664ECA9A20DD.png"/>
+            <image key="6659F9ED9F9516B42188B441994A7884.png"/>
+            <image key="031CF1477C55345E111E8CD93F901415.png"/>
+            <image key="FD80B0FD35F2B7F4BA95455FB534B43C.png"/>
+            <image key="C4242DD7BBF8F1E13B7E0B002A3F340C.png"/>
+          </images>
+        </page>
+        <page name="祈福-我的祈福" ID="6F3EC309-76A9-4DD4-AD21-95964DE69327" expanded="False" code="keBbAsMwU3" thumbCode="keBbAsMwU3" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="E47150CD661E5C59FA78327F298B217E.png"/>
+          </images>
+        </page>
+        <page name="祈福-规则" ID="749D5CF2-582A-4BEF-A175-9D2FA0B47756" expanded="True" code="dJARgrWOpA" thumbCode="dJARgrWOpA" status="psWhite" isfolder="False" isshownode="True"/>
+      </page>
+      <page name="许愿" ID="8979AEFA-8ABA-48CD-99D2-78B3E6F0313B" expanded="False" status="psGreen" isfolder="True" isshownode="True">
+        <page name="许愿树-主页" ID="A656A3D0-7DE8-4C29-8784-EA99A200FC94" expanded="True" code="fZy2y7BkKB" thumbCode="fZy2y7BkKB" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="B38A8FC2C68322087F1E829080EBBF07.png"/>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="2C6694149FCEFCD5AAE534BCDB01168F.png"/>
+          </images>
+        </page>
+        <page name="许愿-编辑愿望" ID="2F1C54B2-BF0E-47EF-9B50-D4C02A4D5EB0" expanded="False" code="Ig7YoB1zyf" thumbCode="Ig7YoB1zyf" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="B38A8FC2C68322087F1E829080EBBF07.png"/>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="EB5FBF254ABC21984280EBBC910E26F6.jpg"/>
+            <image key="D97D5F8967661407272EDA00175A09B8.png"/>
+            <image key="C1720E36A0E5AAD94590521645A46194.png"/>
+            <image key="2C6694149FCEFCD5AAE534BCDB01168F.png"/>
+          </images>
+        </page>
+        <page name="许愿-查看愿望并为他人祝愿" ID="2977AE17-D939-4636-84C3-51E698EDB566" expanded="True" code="XuDMPznYRm" thumbCode="GT6SwKuS5h" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="B38A8FC2C68322087F1E829080EBBF07.png"/>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="EB5FBF254ABC21984280EBBC910E26F6.jpg"/>
+            <image key="6659F9ED9F9516B42188B441994A7884.png"/>
+            <image key="2C6694149FCEFCD5AAE534BCDB01168F.png"/>
+          </images>
+        </page>
+        <page name="许愿-我的愿望" ID="D55119B4-A37F-4A8C-99E8-2BA983958485" expanded="True" code="wH6YuL9VnX" thumbCode="wH6YuL9VnX" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="E47150CD661E5C59FA78327F298B217E.png"/>
+          </images>
+        </page>
+        <page name="许愿-我的祝愿" ID="E60FDCC6-1341-4592-A921-93E1CC95E5A7" expanded="True" code="wwOmapFIoX" thumbCode="wwOmapFIoX" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="A8F503613493EDE95D8C3DB2F61D2CB5.png"/>
+            <image key="6659F9ED9F9516B42188B441994A7884.png"/>
+          </images>
+        </page>
+      </page>
+      <page name="放生" ID="1112DDEF-EEE7-49FA-8FF9-354C33062791" expanded="False" status="psGreen" isfolder="True" isshownode="True">
+        <page name="放生-总览" ID="EE220A28-A2AB-4E8B-B030-33F8E7832742" expanded="True" code="1RYaOYULOe" thumbCode="1RYaOYULOe" status="psWhite" isfolder="False" isshownode="True"/>
+      </page>
+      <page name="行善" ID="93386ABC-E9CC-408C-81C2-9130852E00B3" expanded="False" status="psGreen" isfolder="True" isshownode="True">
+        <page name="行善-规则" ID="253147D7-4712-4F15-849A-99871F548EC7" expanded="False" code="CEJPaxedjr" thumbCode="CEJPaxedjr" status="psWhite" isfolder="False" isshownode="True"/>
+        <page name="行善-列表" ID="5419364B-CAC6-43A1-9DBE-75F1569FB8C7" expanded="True" code="iO1UO6cLCO" thumbCode="iO1UO6cLCO" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="B06261EB95AE01CCF1D8CF93192BBE91.png"/>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="80FE661FE8C255B9B5471704C04D0B8D.png"/>
+            <image key="D97D5F8967661407272EDA00175A09B8.png"/>
+            <image key="E717495DB260FC942CF44E2394DA401E.png"/>
+            <image key="40326ED394E0A1FDBA0307081DE74A6B.png"/>
+            <image key="C69973CF22A8C3998B39ECEABC8338F5.png"/>
+            <image key="6659F9ED9F9516B42188B441994A7884.png"/>
+          </images>
+        </page>
+        <page name="行善-详情页" ID="74319246-1D26-4261-8F51-66B0C260E568" expanded="True" code="SIOlcyxyCG" thumbCode="SIOlcyxyCG" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="B06261EB95AE01CCF1D8CF93192BBE91.png"/>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="D97D5F8967661407272EDA00175A09B8.png"/>
+            <image key="E717495DB260FC942CF44E2394DA401E.png"/>
+            <image key="AB772322330C44C2D26E2B7170D4BEB2.png"/>
+            <image key="6659F9ED9F9516B42188B441994A7884.png"/>
+            <image key="C69973CF22A8C3998B39ECEABC8338F5.png"/>
+            <image key="0D2485D95D51752CC12B86716BC7C5AA.png"/>
+            <image key="C9B1018355504EC8AA33C820518123AC.png"/>
+          </images>
+        </page>
+        <page name="行善-善行记录" ID="D6A045BA-3A1D-4312-8B6E-0D398268193F" expanded="True" code="v6PdhNaggc" thumbCode="v6PdhNaggc" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="D97D5F8967661407272EDA00175A09B8.png"/>
+          </images>
+        </page>
+        <page name="行善-发布记录" ID="839154FE-9DF6-4EDA-84DE-9F1ECB74974F" expanded="False" code="qFENroDZIR" thumbCode="qFENroDZIR" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="C69973CF22A8C3998B39ECEABC8338F5.png"/>
+          </images>
+        </page>
+        <page name="行善-发布页面" ID="252233BD-1361-49E3-9A8A-3B719B035FCC" expanded="True" code="B1DHSvYaE6" thumbCode="B1DHSvYaE6" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="2E02A8862499274B19EF6AF5945DB983.png"/>
+            <image key="904E6CF8278BED86919E9F50705DBFB0.jpg"/>
+            <image key="E04D55EB46FB5C24864C86A2DDE7D01B.png"/>
+            <image key="934544AB9C097935D66689F76C7775A8.png"/>
+            <image key="C4242DD7BBF8F1E13B7E0B002A3F340C.png"/>
+          </images>
+        </page>
+        <page name="行善-受惠记录" ID="863ABEAE-8FEF-43DE-9B8E-75D1B74FC2FC" expanded="True" code="MdFzSDG1YM" thumbCode="MdFzSDG1YM" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="D97D5F8967661407272EDA00175A09B8.png"/>
+            <image key="6659F9ED9F9516B42188B441994A7884.png"/>
+          </images>
+        </page>
+      </page>
+      <page name="寺庙" ID="CEF39442-1EF2-468F-B05F-1F1759ADC672" expanded="False" status="psGreen" isfolder="True" isshownode="True">
+        <page name="寺庙列表" ID="FE1E483C-9E80-48EE-B3F7-E3881A752863" expanded="False" code="VKRMFZguX4" thumbCode="VKRMFZguX4" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="BA3016F024C738C0822EC6D781D7D22D.png"/>
+            <image key="FD880A4D79BB8A7ED85A7DC18471E2BE.png"/>
+            <image key="CEA1747F820EDD28091CD0A92E8C2D38.png"/>
+          </images>
+        </page>
+        <page name="寺庙详情" ID="8540CD0C-19F1-4FEE-AEE4-37B8B46CD23D" expanded="False" code="oDF54qvyAz" thumbCode="oDF54qvyAz" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="A89CA27B34FF241EBF0BA3B272345A24.png"/>
+            <image key="734C4AACC4C4D7DA4015310D9C2E93F8.png"/>
+            <image key="D0DD53AE2F589B808952E3C186546759.jpg"/>
+            <image key="6659F9ED9F9516B42188B441994A7884.png"/>
+            <image key="BA3016F024C738C0822EC6D781D7D22D.png"/>
+            <image key="0D2485D95D51752CC12B86716BC7C5AA.png"/>
+            <image key="287D16567ED34CBC135C5762F73545AE.png"/>
+            <image key="9A7EA0DD729C0656D0AF248095C5ABE3.jpg"/>
+            <image key="2C6694149FCEFCD5AAE534BCDB01168F.png"/>
+          </images>
+        </page>
+        <page name="搜索" ID="2FC88566-9202-444F-B9E2-51D8330D253F" expanded="True" code="PqyhV5qLhp" thumbCode="PqyhV5qLhp" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="86A0012D7A1D3BF2A4530DD2187E91B6.png"/>
+            <image key="C4242DD7BBF8F1E13B7E0B002A3F340C.png"/>
+          </images>
+        </page>
+        <page name="搜索结果页" ID="1567174B-C234-4B29-A4E9-0F86C9725D44" expanded="False" code="aaGBpPwwDk" thumbCode="aaGBpPwwDk" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="871B11AD813FF5FE06898F5B56758371.png"/>
+            <image key="314E5686254C8310232AC526D6BE8597.png"/>
+            <image key="E3697812B142B44EBBD20963D00AD470.png"/>
+            <image key="40326ED394E0A1FDBA0307081DE74A6B.png"/>
+            <image key="FD880A4D79BB8A7ED85A7DC18471E2BE.png"/>
+            <image key="9A7EA0DD729C0656D0AF248095C5ABE3.jpg"/>
+            <image key="C4242DD7BBF8F1E13B7E0B002A3F340C.png"/>
+          </images>
+        </page>
+      </page>
+    </page>
+    <page name="佛友圈" ID="A4B40BEC-A962-44FE-B8FF-2B9E011A1026" expanded="False" status="psGreen" isfolder="True" isshownode="True">
+      <page name="发布" ID="43396220-4CF7-4A1B-9C2F-3FB90AE03019" expanded="True" code="IAchPeIZ8a" thumbCode="IAchPeIZ8a" status="psWhite" isfolder="False" isshownode="True">
+        <images>
+          <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+          <image key="871B11AD813FF5FE06898F5B56758371.png"/>
+          <image key="5C2F7FBF0CFFAF1B45BB90725C402FE2.png"/>
+          <image key="904E6CF8278BED86919E9F50705DBFB0.jpg"/>
+          <image key="AD20302C34A9AF94BD02412145B4B564.png"/>
+          <image key="1EF5BA905952350FDCE2E5442626B197.png"/>
+          <image key="E04D55EB46FB5C24864C86A2DDE7D01B.png"/>
+          <image key="BA3006545AEDE1C22693EB262A7F5D15.png"/>
+          <image key="189B1242276B9DA91100296E61C183AB.png"/>
+        </images>
+      </page>
+      <page name="列表" ID="BF27B36A-8719-48B4-A258-EFBF19269BB4" expanded="False" code="5821UOYtnJ" thumbCode="VVWAhXL6oj" status="psWhite" isfolder="False" isshownode="True">
+        <images>
+          <image key="80BC365E553D3A9E7A119CD456842AC4.png"/>
+          <image key="871B11AD813FF5FE06898F5B56758371.png"/>
+          <image key="C940264DB444E85F1867819714A3BA6F.png"/>
+          <image key="734C4AACC4C4D7DA4015310D9C2E93F8.png"/>
+          <image key="2887D67AA0CC394B5015D53AA205F8BE.png"/>
+          <image key="9B3419BB06FDECDEA96B7F7B023E81EC.png"/>
+          <image key="6659F9ED9F9516B42188B441994A7884.png"/>
+          <image key="C69973CF22A8C3998B39ECEABC8338F5.png"/>
+          <image key="FD880A4D79BB8A7ED85A7DC18471E2BE.png"/>
+          <image key="0D2485D95D51752CC12B86716BC7C5AA.png"/>
+          <image key="C9B1018355504EC8AA33C820518123AC.png"/>
+          <image key="C4242DD7BBF8F1E13B7E0B002A3F340C.png"/>
+        </images>
+      </page>
+      <page name="详情页-有标题" ID="A688A47A-E297-4980-8D80-AB7E0E94BFB1" expanded="True" status="psGreen" isfolder="True" isshownode="True">
+        <page name="图" ID="623C49B4-C742-4968-BE5D-3ACBBA5FE6B0" expanded="False" code="3616EyLvma" thumbCode="3616EyLvma" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="871B11AD813FF5FE06898F5B56758371.png"/>
+            <image key="734C4AACC4C4D7DA4015310D9C2E93F8.png"/>
+            <image key="6659F9ED9F9516B42188B441994A7884.png"/>
+            <image key="C69973CF22A8C3998B39ECEABC8338F5.png"/>
+            <image key="0D2485D95D51752CC12B86716BC7C5AA.png"/>
+            <image key="2C6694149FCEFCD5AAE534BCDB01168F.png"/>
+          </images>
+        </page>
+        <page name="视频" ID="E308799A-BB84-45E0-B8AA-7D3C16AA27BD" expanded="False" code="iyUxuEtG9i" thumbCode="iyUxuEtG9i" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="871B11AD813FF5FE06898F5B56758371.png"/>
+            <image key="734C4AACC4C4D7DA4015310D9C2E93F8.png"/>
+            <image key="6659F9ED9F9516B42188B441994A7884.png"/>
+            <image key="C69973CF22A8C3998B39ECEABC8338F5.png"/>
+            <image key="0D2485D95D51752CC12B86716BC7C5AA.png"/>
+            <image key="2C6694149FCEFCD5AAE534BCDB01168F.png"/>
+            <image key="C9B1018355504EC8AA33C820518123AC.png"/>
+          </images>
+        </page>
+      </page>
+      <page name="详情页-无标题" ID="23F1B36D-7366-4C63-A9CC-F807D26E457A" expanded="True" code="gEAd5FD6MO" thumbCode="gEAd5FD6MO" status="psWhite" isfolder="False" isshownode="True">
+        <images>
+          <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+          <image key="871B11AD813FF5FE06898F5B56758371.png"/>
+          <image key="734C4AACC4C4D7DA4015310D9C2E93F8.png"/>
+          <image key="6659F9ED9F9516B42188B441994A7884.png"/>
+          <image key="C69973CF22A8C3998B39ECEABC8338F5.png"/>
+          <image key="0D2485D95D51752CC12B86716BC7C5AA.png"/>
+          <image key="2C6694149FCEFCD5AAE534BCDB01168F.png"/>
+        </images>
+      </page>
+      <page name="消息" ID="99946767-3B93-418F-8DAB-79C41EFEF05E" expanded="True" status="psGreen" isfolder="True" isshownode="True">
+        <page name="消息-回复我的" ID="48BE6789-4EF8-4D2C-9D68-A123A95A906E" expanded="True" code="OGsrtHzztr" thumbCode="OGsrtHzztr" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="6659F9ED9F9516B42188B441994A7884.png"/>
+          </images>
+        </page>
+        <page name="消息-@我的" ID="4FE21C46-4376-4A98-90C7-CAB0158EB31E" expanded="False" code="HEtGDZsisf" thumbCode="HEtGDZsisf" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="6659F9ED9F9516B42188B441994A7884.png"/>
+          </images>
+        </page>
+        <page name="系统消息" ID="D501463A-7239-4FB3-9D6F-5545A5325D45" expanded="True" code="qKqUQqNUIv" thumbCode="qKqUQqNUIv" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+          </images>
+        </page>
+      </page>
+      <page name="搜索" ID="006D51B0-72B4-4368-A464-26726806B68F" expanded="True" status="psGreen" isfolder="True" isshownode="True">
+        <page name="搜索" ID="C6D51894-0B15-425D-8D0A-78E0C9FE4697" expanded="True" code="YvV4XEyPrA" thumbCode="YvV4XEyPrA" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="86A0012D7A1D3BF2A4530DD2187E91B6.png"/>
+            <image key="C4242DD7BBF8F1E13B7E0B002A3F340C.png"/>
+          </images>
+        </page>
+        <page name="搜索结果页" ID="977BA0B7-4961-4F9C-874A-FBBF6AF869ED" expanded="False" code="5iTvXvLylq" thumbCode="5iTvXvLylq" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="871B11AD813FF5FE06898F5B56758371.png"/>
+            <image key="734C4AACC4C4D7DA4015310D9C2E93F8.png"/>
+            <image key="2887D67AA0CC394B5015D53AA205F8BE.png"/>
+            <image key="9B3419BB06FDECDEA96B7F7B023E81EC.png"/>
+            <image key="E3697812B142B44EBBD20963D00AD470.png"/>
+            <image key="6659F9ED9F9516B42188B441994A7884.png"/>
+            <image key="FD880A4D79BB8A7ED85A7DC18471E2BE.png"/>
+            <image key="C69973CF22A8C3998B39ECEABC8338F5.png"/>
+            <image key="0D2485D95D51752CC12B86716BC7C5AA.png"/>
+            <image key="C9B1018355504EC8AA33C820518123AC.png"/>
+            <image key="C4242DD7BBF8F1E13B7E0B002A3F340C.png"/>
+          </images>
+        </page>
+      </page>
+    </page>
+    <page name="拜佛" ID="08EDDADF-017C-4632-9950-8487E4AC6591" expanded="False" status="psGreen" isfolder="True" isshownode="True">
+      <page name="首页" ID="89930A69-0FC9-4009-B816-02425DC20A07" expanded="False" code="IkMGOLjyY9" thumbCode="IkMGOLjyY9" status="psWhite" isfolder="False" isshownode="True">
+        <images>
+          <image key="2219CCB797695387FB6136B91E670071.png"/>
+          <image key="751EC5DBB6960144DF543286A629A3EA.png"/>
+          <image key="9FABC172F378DDAA99357DA8C20607C2.jpg"/>
+          <image key="0CF7133147F0FF2A316B730CF65CA8CA.png"/>
+          <image key="9547E5ABACB2EFF235BEFD97A9DE214A.png"/>
+          <image key="D599A27F2BC723DF3E40D8721FED4D32.png"/>
+        </images>
+      </page>
+      <page name="拜佛" ID="474C6E52-A285-4BBE-B317-D81E01B2E841" expanded="False" code="c7ej727CpY" thumbCode="c7ej727CpY" status="psWhite" isfolder="False" isshownode="True">
+        <images>
+          <image key="0644D07A249A3027871C639036C79113.png"/>
+        </images>
+      </page>
+    </page>
+    <page name="排行" ID="CC218CB6-F127-4C74-9C1B-91BB7C02D3C5" expanded="False" status="psGreen" isfolder="True" isshownode="True">
+      <page name="规则" ID="94EE4D5D-56AA-4750-A5E4-A88E79C9086B" expanded="False" code="i3juZNbKCS" thumbCode="viJICVWiec" status="psWhite" isfolder="False" isshownode="True"/>
+      <page name="功德榜" ID="4CF04EEF-A8F0-425A-A595-77C554661DB4" expanded="True" code="cwIlAh7sB1" thumbCode="cwIlAh7sB1" status="psWhite" isfolder="False" isshownode="True">
+        <images>
+          <image key="2826DBA63FE4728F9480E919DDF13314.png"/>
+          <image key="CD4C7C920C4BC2BB3D1740B2E7A2C09F.png"/>
+          <image key="4228442EEBC8F2469901E0A71BDBF34C.png"/>
+          <image key="E717495DB260FC942CF44E2394DA401E.png"/>
+          <image key="7AF3186D3AA4551F92452D7539C5B114.png"/>
+          <image key="6659F9ED9F9516B42188B441994A7884.png"/>
+          <image key="0CF7133147F0FF2A316B730CF65CA8CA.png"/>
+          <image key="82CA79FC4013AC52269AD2C044BBA46D.png"/>
+          <image key="FD80B0FD35F2B7F4BA95455FB534B43C.png"/>
+          <image key="AC467B3ED79E38C964F69CA389D3B58F.png"/>
+          <image key="2B3621C68BC70BED60231EF8E99973A2.png"/>
+          <image key="DAEFBFA3B3D8C075CA011452BB8E95A3.png"/>
+        </images>
+      </page>
+      <page name="等级榜" ID="041A7A75-328E-4489-99F8-01548F3F8E5C" expanded="False" code="EMFXvrvqyP" thumbCode="EMFXvrvqyP" status="psWhite" isfolder="False" isshownode="True">
+        <images>
+          <image key="2826DBA63FE4728F9480E919DDF13314.png"/>
+          <image key="CD4C7C920C4BC2BB3D1740B2E7A2C09F.png"/>
+          <image key="4228442EEBC8F2469901E0A71BDBF34C.png"/>
+          <image key="B822BC53F589C751871D71C8E48CFBF0.png"/>
+          <image key="E717495DB260FC942CF44E2394DA401E.png"/>
+          <image key="7AF3186D3AA4551F92452D7539C5B114.png"/>
+          <image key="6659F9ED9F9516B42188B441994A7884.png"/>
+          <image key="2B3621C68BC70BED60231EF8E99973A2.png"/>
+          <image key="82CA79FC4013AC52269AD2C044BBA46D.png"/>
+          <image key="FD80B0FD35F2B7F4BA95455FB534B43C.png"/>
+          <image key="AC467B3ED79E38C964F69CA389D3B58F.png"/>
+          <image key="DAEFBFA3B3D8C075CA011452BB8E95A3.png"/>
+        </images>
+      </page>
+      <page name="祈福榜" ID="336D56C4-93A1-4751-AD18-01E84FDABA67" expanded="True" code="1ln29L1EV3" thumbCode="1ln29L1EV3" status="psWhite" isfolder="False" isshownode="True">
+        <images>
+          <image key="2826DBA63FE4728F9480E919DDF13314.png"/>
+          <image key="CD4C7C920C4BC2BB3D1740B2E7A2C09F.png"/>
+          <image key="4228442EEBC8F2469901E0A71BDBF34C.png"/>
+          <image key="E717495DB260FC942CF44E2394DA401E.png"/>
+          <image key="7AF3186D3AA4551F92452D7539C5B114.png"/>
+          <image key="6659F9ED9F9516B42188B441994A7884.png"/>
+          <image key="2B3621C68BC70BED60231EF8E99973A2.png"/>
+          <image key="82CA79FC4013AC52269AD2C044BBA46D.png"/>
+          <image key="FD80B0FD35F2B7F4BA95455FB534B43C.png"/>
+          <image key="AC467B3ED79E38C964F69CA389D3B58F.png"/>
+          <image key="DAEFBFA3B3D8C075CA011452BB8E95A3.png"/>
+          <image key="D599A27F2BC723DF3E40D8721FED4D32.png"/>
+        </images>
+      </page>
+      <page name="放生榜" ID="4DE28C62-0248-4D6C-B277-FD3A150D4E04" expanded="False" code="sPBCmxc8Ae" thumbCode="sPBCmxc8Ae" status="psWhite" isfolder="False" isshownode="True">
+        <images>
+          <image key="2826DBA63FE4728F9480E919DDF13314.png"/>
+          <image key="CD4C7C920C4BC2BB3D1740B2E7A2C09F.png"/>
+          <image key="4228442EEBC8F2469901E0A71BDBF34C.png"/>
+          <image key="E717495DB260FC942CF44E2394DA401E.png"/>
+          <image key="2B3621C68BC70BED60231EF8E99973A2.png"/>
+          <image key="6659F9ED9F9516B42188B441994A7884.png"/>
+          <image key="10C8DDD5235CCDDDE09F4ED9B8B243F2.png"/>
+          <image key="FD80B0FD35F2B7F4BA95455FB534B43C.png"/>
+          <image key="80178905E8F6758ECC49E934517E9784.png"/>
+          <image key="7AF3186D3AA4551F92452D7539C5B114.png"/>
+          <image key="82CA79FC4013AC52269AD2C044BBA46D.png"/>
+          <image key="AC467B3ED79E38C964F69CA389D3B58F.png"/>
+          <image key="DAEFBFA3B3D8C075CA011452BB8E95A3.png"/>
+          <image key="D0CD5F369FE1B983BC44FA61F2CA6985.png"/>
+        </images>
+      </page>
+      <page name="善行榜" ID="ED8EF466-7C1A-4372-8E41-C2BA63252B75" expanded="False" code="28m9Y9LhCo" thumbCode="28m9Y9LhCo" status="psWhite" isfolder="False" isshownode="True">
+        <images>
+          <image key="2826DBA63FE4728F9480E919DDF13314.png"/>
+          <image key="CD4C7C920C4BC2BB3D1740B2E7A2C09F.png"/>
+          <image key="4228442EEBC8F2469901E0A71BDBF34C.png"/>
+          <image key="E717495DB260FC942CF44E2394DA401E.png"/>
+          <image key="7AF3186D3AA4551F92452D7539C5B114.png"/>
+          <image key="6659F9ED9F9516B42188B441994A7884.png"/>
+          <image key="2B3621C68BC70BED60231EF8E99973A2.png"/>
+          <image key="82CA79FC4013AC52269AD2C044BBA46D.png"/>
+          <image key="FD80B0FD35F2B7F4BA95455FB534B43C.png"/>
+          <image key="AC467B3ED79E38C964F69CA389D3B58F.png"/>
+          <image key="DAEFBFA3B3D8C075CA011452BB8E95A3.png"/>
+          <image key="99A48367F46FC4ADF8F9DD41C4829BD3.png"/>
+        </images>
+      </page>
+      <page name="排行奖励" ID="22F83EBF-AE67-48DD-89A2-90E2E977F2AE" expanded="True" code="xmxzYyV1wh" thumbCode="xmxzYyV1wh" status="psWhite" isfolder="False" isshownode="True">
+        <images>
+          <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+          <image key="E717495DB260FC942CF44E2394DA401E.png"/>
+        </images>
+      </page>
+    </page>
+    <page name="个人中心" ID="6BCC71EF-A2CF-4AC0-A6C5-22675891615B" expanded="False" status="psGreen" isfolder="True" isshownode="True">
+      <page name="放生记录" ID="D3440072-F7CC-4F9B-B1C8-AA29FAA39D80" expanded="True" code="Se8bSN2FvN" thumbCode="Se8bSN2FvN" status="psWhite" isfolder="False" isshownode="True">
+        <images>
+          <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+          <image key="C69973CF22A8C3998B39ECEABC8338F5.png"/>
+          <image key="E858468847A5B4344C951F204185B258.png"/>
+        </images>
+      </page>
+      <page name="个人中心" ID="2E02ED30-B00D-47D4-ADE8-F9AB36C7B012" expanded="True" code="HTTkjIzHes" thumbCode="HTTkjIzHes" status="psWhite" isfolder="False" isshownode="True">
+        <images>
+          <image key="2826DBA63FE4728F9480E919DDF13314.png"/>
+          <image key="779939312FE514A77334FDCD908F9A80.png"/>
+          <image key="E717495DB260FC942CF44E2394DA401E.png"/>
+          <image key="39563987F2AA770C2CA532FB64C87EFA.png"/>
+          <image key="6659F9ED9F9516B42188B441994A7884.png"/>
+          <image key="A0656ACD4F6A93209701919ADDE873D8.png"/>
+          <image key="FD80B0FD35F2B7F4BA95455FB534B43C.png"/>
+          <image key="0E029FB660586BF9A0D2785468548838.png"/>
+          <image key="3014C55C08CCAD37791CC64AEF6C0626.png"/>
+          <image key="995C6FB6DBB77C210DE21FFE10E3C72F.png"/>
+          <image key="7AF3186D3AA4551F92452D7539C5B114.png"/>
+          <image key="AC467B3ED79E38C964F69CA389D3B58F.png"/>
+          <image key="99CCE825C4BEABAADBBDBB6E35CCB005.png"/>
+        </images>
+      </page>
+      <page name="编辑用户信息" ID="149721F3-0BC0-4F6C-BF03-A860B8A4B15C" expanded="True" code="NR7rBjDZEJ" thumbCode="NR7rBjDZEJ" status="psWhite" isfolder="False" isshownode="True">
+        <images>
+          <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+          <image key="A8F503613493EDE95D8C3DB2F61D2CB5.png"/>
+          <image key="A0656ACD4F6A93209701919ADDE873D8.png"/>
+          <image key="6659F9ED9F9516B42188B441994A7884.png"/>
+        </images>
+      </page>
+      <page name="登录注册" ID="35F03C25-41CE-416D-9C86-68F3E2C3BF7B" expanded="False" status="psGreen" isfolder="True" isshownode="True">
+        <page name="绑定手机或者邮箱" ID="8FA5D359-94EA-409D-AF2D-583FA4733717" expanded="True" code="41ynYXBPkX" thumbCode="41ynYXBPkX" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+          </images>
+        </page>
+        <page name="登录" ID="8D151471-BD5B-448A-9AA7-E0C036238020" expanded="True" code="tVSZwsvYZD" thumbCode="tVSZwsvYZD" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="729DA24C3088BE61DB98C2C79AFC2E51.png"/>
+            <image key="6444473E221A0B6EA679BCA42005CAEF.png"/>
+            <image key="2E02A8862499274B19EF6AF5945DB983.png"/>
+            <image key="ED6E9896C7E72BF6638AA5AE195BD5CA.png"/>
+            <image key="4B3E3858843EDDA37A5A8A63AFB28E1E.jpg"/>
+            <image key="88416ECB025425DA106C1643E21B734F.png"/>
+          </images>
+        </page>
+        <page name="注册" ID="0795292A-9EC5-43D0-BEE9-C859924EC96D" expanded="False" code="jqjxiF71e3" thumbCode="jqjxiF71e3" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="729DA24C3088BE61DB98C2C79AFC2E51.png"/>
+            <image key="2E02A8862499274B19EF6AF5945DB983.png"/>
+            <image key="4B3E3858843EDDA37A5A8A63AFB28E1E.jpg"/>
+          </images>
+        </page>
+        <page name="找回密码" ID="5C1A047D-8C15-4C89-83E1-1F2309DED21C" expanded="False" code="3oJ2yFWQAj" thumbCode="3oJ2yFWQAj" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="729DA24C3088BE61DB98C2C79AFC2E51.png"/>
+            <image key="4B3E3858843EDDA37A5A8A63AFB28E1E.jpg"/>
+          </images>
+        </page>
+      </page>
+      <page name="功德币 充值" ID="56312E8E-F341-467F-8CB3-5168D7AC0C5E" expanded="False" status="psGreen" isfolder="True" isshownode="True">
+        <page name="功德币" ID="CBA981E2-5D34-4FB6-88B5-696145751F25" expanded="True" code="J63RDC2ABD" thumbCode="J63RDC2ABD" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="729DA24C3088BE61DB98C2C79AFC2E51.png"/>
+            <image key="BEEF25735702BE9FEC5D1A99508CF629.png"/>
+          </images>
+        </page>
+        <page name="充值" ID="CCB27501-C34F-4223-857C-98B9F82CDA7C" expanded="True" code="YlnOPx7sis" thumbCode="YlnOPx7sis" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="DCE6BA9FD7B947D10666715ADC4A85EB.png"/>
+            <image key="729DA24C3088BE61DB98C2C79AFC2E51.png"/>
+            <image key="C4410D5CE9A53F63B825042C68ABBD08.png"/>
+          </images>
+        </page>
+        <page name="明细记录" ID="B31A60A4-1C95-48A9-A4D6-56F7E6603767" expanded="True" code="Ynqc9IZaVn" thumbCode="Ynqc9IZaVn" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="729DA24C3088BE61DB98C2C79AFC2E51.png"/>
+            <image key="2E02A8862499274B19EF6AF5945DB983.png"/>
+          </images>
+        </page>
+        <page name="充值记录" ID="0E538C82-798F-4A1A-82FC-B20489136615" expanded="False" code="jMgKaWO6Nv" thumbCode="jMgKaWO6Nv" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="A7E8C93FF4F71E4A1A3D93DB88F94D39.png"/>
+            <image key="729DA24C3088BE61DB98C2C79AFC2E51.png"/>
+            <image key="02696829B3FCAFFE69346FD9C945AD2D.png"/>
+            <image key="E04D55EB46FB5C24864C86A2DDE7D01B.png"/>
+          </images>
+        </page>
+      </page>
+      <page name="修行值" ID="F655F886-F795-4222-A2C4-9AF834B54A78" expanded="False" status="psGreen" isfolder="True" isshownode="True">
+        <page name="修行值" ID="15B45D20-C406-440F-9C6B-FADCD098D1F9" expanded="False" code="5badjPltUF" thumbCode="5badjPltUF" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="729DA24C3088BE61DB98C2C79AFC2E51.png"/>
+            <image key="BAE8633606AC9A7280D025C8440F35D6.png"/>
+          </images>
+        </page>
+        <page name="修行值获取记录" ID="73FFAD90-A036-4CC4-93D6-74BEFDFDC584" expanded="False" code="U7yqajPixn" thumbCode="U7yqajPixn" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="729DA24C3088BE61DB98C2C79AFC2E51.png"/>
+            <image key="2E02A8862499274B19EF6AF5945DB983.png"/>
+          </images>
+        </page>
+      </page>
+      <page name="任务" ID="464A9875-9A64-473F-8A4A-B16F7CAC185F" expanded="False" status="psGreen" isfolder="True" isshownode="True">
+        <page name="任务列表" ID="5C9DEA97-322A-4041-91EC-6E23CB658930" expanded="True" code="ZaOsQzltEw" thumbCode="ZaOsQzltEw" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="729DA24C3088BE61DB98C2C79AFC2E51.png"/>
+          </images>
+        </page>
+      </page>
+      <page name="兑换中心" ID="B78ED30A-2D3D-4084-976E-CC8C163959A0" expanded="False" status="psGreen" isfolder="True" isshownode="True">
+        <page name="兑换列表" ID="4E3E2135-032C-47D6-BF3D-3583C4A69CF6" expanded="True" code="pz4dAwLAs8" thumbCode="pz4dAwLAs8" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="3A1427972063EA6DC281D65441FC1EB0.png"/>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="C9529838295F7955AD785395AF933B09.jpg"/>
+            <image key="7EC22758566B42A4D471557C948BCA70.jpg"/>
+            <image key="0CF7133147F0FF2A316B730CF65CA8CA.png"/>
+          </images>
+        </page>
+        <page name="供品兑换" ID="9E4F6F26-F3C8-4E77-9CD7-86C2BBAF31A7" expanded="True" code="3tElEmXPN1" thumbCode="3tElEmXPN1" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="C9529838295F7955AD785395AF933B09.jpg"/>
+          </images>
+        </page>
+        <page name="供品兑换-选择数量" ID="721EF59F-CCDE-44A7-AE7E-F0B272E72B14" expanded="True" code="8r3aBSRTSQ" thumbCode="8r3aBSRTSQ" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="C9529838295F7955AD785395AF933B09.jpg"/>
+            <image key="C82C5CAEE345DB3EEED30665BF70EE85.png"/>
+            <image key="BD93E9F4A55794E94E21C738A7150023.png"/>
+            <image key="934544AB9C097935D66689F76C7775A8.png"/>
+          </images>
+        </page>
+      </page>
+      <page name="我的物品" ID="C9A3C9E1-469D-43DE-B901-7D96DB2CF61B" expanded="False" status="psGreen" isfolder="True" isshownode="True">
+        <page name="我的物品" ID="DCE18B08-3B16-4B4D-8EEA-0305F2C59A2C" expanded="True" code="X8ARQTn8a6" thumbCode="X8ARQTn8a6" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="729DA24C3088BE61DB98C2C79AFC2E51.png"/>
+            <image key="C9529838295F7955AD785395AF933B09.jpg"/>
+            <image key="7EC22758566B42A4D471557C948BCA70.jpg"/>
+          </images>
+        </page>
+        <page name="物品详情页" ID="33CE3D5E-6C61-421A-9B95-3C1233582C8A" expanded="False" code="nD32aw28Nc" thumbCode="nD32aw28Nc" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="C9529838295F7955AD785395AF933B09.jpg"/>
+          </images>
+        </page>
+      </page>
+      <page name="我的足迹" ID="0339A531-6C87-4068-9029-1B07D6841182" expanded="False" status="psGreen" isfolder="True" isshownode="True">
+        <page name="我的足迹" ID="615C1C5B-B2E9-4D7B-9044-9990384D431D" expanded="True" code="GBObx3Q5tG" thumbCode="GBObx3Q5tG" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="729DA24C3088BE61DB98C2C79AFC2E51.png"/>
+            <image key="A0656ACD4F6A93209701919ADDE873D8.png"/>
+          </images>
+        </page>
+      </page>
+      <page name="我的感悟" ID="0EFF1E84-A194-4249-9754-A3E4BFA8D5E4" expanded="True" status="psGreen" isfolder="True" isshownode="True">
+        <page name="我的感悟" ID="F1FFD6EF-0A9B-4C48-A330-1595DE98D9BB" expanded="True" code="hRpkSfy6gU" thumbCode="hRpkSfy6gU" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="729DA24C3088BE61DB98C2C79AFC2E51.png"/>
+            <image key="734C4AACC4C4D7DA4015310D9C2E93F8.png"/>
+            <image key="2887D67AA0CC394B5015D53AA205F8BE.png"/>
+            <image key="0D2485D95D51752CC12B86716BC7C5AA.png"/>
+            <image key="C9B1018355504EC8AA33C820518123AC.png"/>
+          </images>
+        </page>
+      </page>
+      <page name="修行攻略" ID="0DE47B94-9D9E-4BB9-B242-44144BCBE550" expanded="False" status="psGreen" isfolder="True" isshownode="True">
+        <page name="修行攻略" ID="83A0E6C4-826B-4E86-8C4F-DAD670293B70" expanded="True" code="GXYhFQtzwf" thumbCode="GXYhFQtzwf" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="729DA24C3088BE61DB98C2C79AFC2E51.png"/>
+            <image key="FD880A4D79BB8A7ED85A7DC18471E2BE.png"/>
+          </images>
+        </page>
+      </page>
+      <page name="设置" ID="B3DBCAFD-0F3C-4133-B034-374404E8ACA7" expanded="False" status="psGreen" isfolder="True" isshownode="True">
+        <page name="设置" ID="4ADB5C56-E897-44CD-A49B-A02D1981AAC5" expanded="True" code="5cMVExlaAl" thumbCode="5cMVExlaAl" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="729DA24C3088BE61DB98C2C79AFC2E51.png"/>
+            <image key="A0656ACD4F6A93209701919ADDE873D8.png"/>
+          </images>
+        </page>
+        <page name="意见建议" ID="B03D27FC-8D82-4DED-97C1-D4F19D299EF9" expanded="True" code="QINrbxa1s2" thumbCode="QINrbxa1s2" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="729DA24C3088BE61DB98C2C79AFC2E51.png"/>
+            <image key="1EF5BA905952350FDCE2E5442626B197.png"/>
+          </images>
+        </page>
+      </page>
+      <page name="关注与被关注" ID="C157F5E2-C1F6-48BC-94EA-DD50D75209F1" expanded="True" status="psGreen" isfolder="True" isshownode="True">
+        <page name="关注" ID="2C1F1371-4563-4E9D-A99A-0B01E228E095" expanded="True" code="W6QiFfy4gl" thumbCode="W6QiFfy4gl" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="6659F9ED9F9516B42188B441994A7884.png"/>
+          </images>
+        </page>
+        <page name="佛友（粉丝）" ID="1434B0E0-D2E6-4627-8CD3-A797A1C81DFD" expanded="False" code="qIEZvqRSNW" thumbCode="qIEZvqRSNW" status="psWhite" isfolder="False" isshownode="True">
+          <images>
+            <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+            <image key="6659F9ED9F9516B42188B441994A7884.png"/>
+          </images>
+        </page>
+      </page>
+    </page>
+    <page name="用户信息" ID="DD9EB308-4003-4AD8-A6A4-DE21FF6AA839" expanded="False" status="psGreen" isfolder="True" isshownode="True">
+      <page name="用户信息" ID="1EA3EA45-9E7D-4E32-910E-FD3EDE713739" expanded="True" code="ErhUSLXl7s" thumbCode="ErhUSLXl7s" status="psWhite" isfolder="False" isshownode="True">
+        <images>
+          <image key="8BBF1ED0EEE50940B94ECFBF95A11B9E.png"/>
+          <image key="734C4AACC4C4D7DA4015310D9C2E93F8.png"/>
+          <image key="A5F7C25877E3EBABC118F84D12154512.png"/>
+          <image key="E717495DB260FC942CF44E2394DA401E.png"/>
+          <image key="2887D67AA0CC394B5015D53AA205F8BE.png"/>
+          <image key="6659F9ED9F9516B42188B441994A7884.png"/>
+          <image key="AADBFA2ACAD1B6600435D1AF6658220D.png"/>
+          <image key="0E029FB660586BF9A0D2785468548838.png"/>
+          <image key="C068A17AE7644512CD1925511AF671D7.png"/>
+          <image key="C9B1018355504EC8AA33C820518123AC.png"/>
+          <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+          <image key="995C6FB6DBB77C210DE21FFE10E3C72F.png"/>
+          <image key="0D2485D95D51752CC12B86716BC7C5AA.png"/>
+          <image key="AC467B3ED79E38C964F69CA389D3B58F.png"/>
+        </images>
+      </page>
+      <page name="用户信息-善迹" ID="A57C4F37-0A69-42D4-8DDF-BA876481685E" expanded="True" code="oiqclYPKkG" thumbCode="oiqclYPKkG" status="psWhite" isfolder="False" isshownode="True">
+        <images>
+          <image key="A5F7C25877E3EBABC118F84D12154512.png"/>
+          <image key="AC467B3ED79E38C964F69CA389D3B58F.png"/>
+          <image key="C068A17AE7644512CD1925511AF671D7.png"/>
+        </images>
+      </page>
+    </page>
+    <page name="设定" ID="861FC48A-73C7-482A-AAA2-D913DA8CD9AF" expanded="False" status="psGreen" isfolder="True" isshownode="True">
+      <page name="功德币、修行值" ID="AB125F79-3DA2-4F1D-A57B-01504031133E" expanded="True" code="7dPe1IgiCw" thumbCode="7dPe1IgiCw" status="psWhite" isfolder="False" isshownode="True"/>
+      <page name="用户等级" ID="73D84585-A2BF-44E4-871A-E6F49AB6476B" expanded="False" code="OPfDECvMth" thumbCode="OPfDECvMth" status="psWhite" isfolder="False" isshownode="True"/>
+      <page name="排行榜" ID="DA2A2B20-B0E1-466A-AAFB-B7E87AB34049" expanded="False" code="A495etEVQZ" thumbCode="A495etEVQZ" status="psWhite" isfolder="False" isshownode="True"/>
+    </page>
+  </pages>
+  <trash>
+    <page name="发布_视频发布" ID="2FE921E4-F9B3-4D51-9014-2F2FB5070D02" expanded="False" code="GbQAYfj8Kx" thumbCode="OTGSkXdt92" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True">
+      <images>
+        <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+        <image key="871B11AD813FF5FE06898F5B56758371.png"/>
+        <image key="5C2F7FBF0CFFAF1B45BB90725C402FE2.png"/>
+        <image key="AD20302C34A9AF94BD02412145B4B564.png"/>
+        <image key="1EF5BA905952350FDCE2E5442626B197.png"/>
+        <image key="E04D55EB46FB5C24864C86A2DDE7D01B.png"/>
+        <image key="BA3006545AEDE1C22693EB262A7F5D15.png"/>
+        <image key="189B1242276B9DA91100296E61C183AB.png"/>
+      </images>
+    </page>
+    <page name="提醒谁看" ID="36213C7C-3BBB-4A83-9B21-D09210B5CBF7" expanded="False" code="CBlCBPk9Hy" thumbCode="cr8gTbeO73" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True">
+      <images>
+        <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+      </images>
+    </page>
+    <page name="拜佛" ID="26FCC85C-47FE-43B3-8E80-D440ADE8049C" expanded="False" code="d9jS1jUCno" thumbCode="dmYGuFWdBP" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True">
+      <images>
+        <image key="91ED44CD80FFEAF688EE1816ECDC4C92.png"/>
+        <image key="A8F503613493EDE95D8C3DB2F61D2CB5.png"/>
+        <image key="0644D07A249A3027871C639036C79113.png"/>
+        <image key="750A9E26947C09372E6C7EB99095C0F9.png"/>
+      </images>
+    </page>
+    <page name="页面" ID="D893F21F-CC16-4B88-9259-7F2BBB162A77" expanded="False" code="qlM3gtCRsD" thumbCode="GO4f8bjmqN" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True"/>
+    <page name="经书排行榜" ID="1698CC66-377E-40D3-81E2-595F581C0921" expanded="False" code="vbEuUVV5bJ" thumbCode="wqFg1wP63w" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True"/>
+    <page name="诵经" ID="18EA604D-FC47-44CE-B3B5-C169BDC00414" expanded="True" code="7AJVWzvIC9" thumbCode="AppAP8ZFWw" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True"/>
+    <page name="功德详情-抢福袋弹窗" ID="3D7ED443-24B0-4E92-8E9F-ED97C3FA4D40" expanded="True" code="xrIwcnQRwY" thumbCode="kuHrHL54An" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True">
+      <images>
+        <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+        <image key="751EC5DBB6960144DF543286A629A3EA.png"/>
+        <image key="9FABC172F378DDAA99357DA8C20607C2.jpg"/>
+        <image key="A8F503613493EDE95D8C3DB2F61D2CB5.png"/>
+        <image key="0CF7133147F0FF2A316B730CF65CA8CA.png"/>
+        <image key="860FB329705E171F20CE5906E3856F56.png"/>
+        <image key="B8E06A1297BD33532C7686609B84D430.png"/>
+      </images>
+    </page>
+    <page name="功德-充值弹窗" ID="6E08B975-8BC4-4BF8-8B34-6A3A85690B56" expanded="True" code="DMDCzWHeQM" thumbCode="nyDvhkV6FK" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True"/>
+    <page name="许愿-编辑愿望" ID="DCB997DB-3688-4423-960C-CD400E8EBB82" expanded="True" code="THkDZZiw4C" thumbCode="HEWu15EN6f" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True"/>
+    <page name="定制牌位-添加生平事迹" ID="0D9DFC30-5736-4FE7-BEC4-85F396386A59" expanded="True" code="thf74gaSui" thumbCode="NvEp9j9fUT" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True">
+      <images>
+        <image key="BA3016F024C738C0822EC6D781D7D22D.png"/>
+      </images>
+    </page>
+    <page name="定制场景-详情" ID="299D7A86-DF52-4818-9B7F-5323E06570AD" expanded="False" code="yHQXza79Yu" thumbCode="" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True">
+      <images>
+        <image key="D97D5F8967661407272EDA00175A09B8.png"/>
+        <image key="BA3016F024C738C0822EC6D781D7D22D.png"/>
+        <image key="7450ED2D4099523B4CD4A321789EDD19.png"/>
+      </images>
+    </page>
+    <page name="修心-空白页" ID="E4A5B8BB-D402-4425-AC56-2AB3143B5EE2" expanded="False" code="5vrzFyBYrK" thumbCode="KmZuJaUepT" status="psWhite" isfolder="False" isshownode="True">
+      <images>
+        <image key="C940264DB444E85F1867819714A3BA6F.png"/>
+        <image key="BA3016F024C738C0822EC6D781D7D22D.png"/>
+      </images>
+    </page>
+    <page name="修心-新增" ID="CE791FDC-8CA5-4113-B1BE-030AF982438A" expanded="True" code="bFid7D1AUJ" thumbCode="DlTUy5qIEd" status="psWhite" isfolder="False" isshownode="True">
+      <images>
+        <image key="BA3016F024C738C0822EC6D781D7D22D.png"/>
+      </images>
+    </page>
+    <page name="修心-列表页" ID="2DB9840B-38F6-4F49-B380-13996E25F4FE" expanded="True" code="nilQtzENRQ" thumbCode="uJE3zYRzm6" status="psWhite" isfolder="False" isshownode="True">
+      <images>
+        <image key="E3BDD538E5D1A4931357C0E3E0D01545.png"/>
+        <image key="DC4798C9A3FE9BF80F990ECB1DA4769F.jpg"/>
+        <image key="5A6BBDD5ADE75A4E1292D5B9D339403B.jpg"/>
+        <image key="C940264DB444E85F1867819714A3BA6F.png"/>
+        <image key="734C4AACC4C4D7DA4015310D9C2E93F8.png"/>
+        <image key="2AAC76BC41ECA5ED43B67C81F6B0D983.jpg"/>
+        <image key="BA3016F024C738C0822EC6D781D7D22D.png"/>
+        <image key="01CC5A4CB1B11BE2C3AA162302A9AC73.png"/>
+        <image key="CF16771A7AD3DA890512B803D1FA2F4E.jpg"/>
+      </images>
+    </page>
+    <page name="行善-进度弹窗" ID="1F0E66C3-0360-419C-9B20-D78B175D8FFD" expanded="False" code="qxHF5QbyIN" thumbCode="vHY1A12Nnk" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True">
+      <images>
+        <image key="0D2485D95D51752CC12B86716BC7C5AA.png"/>
+      </images>
+    </page>
+    <page name="新" ID="63860A58-B4F8-4EF7-9EDC-5D527C7FB89E" expanded="False" code="uOXJZnjOSA" thumbCode="taKKn8nwPR" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True"/>
+    <page name="拜佛-拜佛说明" ID="6094B32C-2391-4907-BC96-BA5242B059F4" expanded="False" code="hCIbBfPYxQ" thumbCode="lCTaqwww2w" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True">
+      <images>
+        <image key="A8F503613493EDE95D8C3DB2F61D2CB5.png"/>
+        <image key="BA3016F024C738C0822EC6D781D7D22D.png"/>
+        <image key="0644D07A249A3027871C639036C79113.png"/>
+        <image key="D599A27F2BC723DF3E40D8721FED4D32.png"/>
+      </images>
+    </page>
+    <page name="请佛_瞻仰金身" ID="FBFF84B7-CBC7-41F8-9783-514EAD5B1919" expanded="False" code="TPYjZKnuQW" thumbCode="ggCOglRJad" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True">
+      <images>
+        <image key="9FABC172F378DDAA99357DA8C20607C2.jpg"/>
+      </images>
+    </page>
+    <page name="菜单展开" ID="DC1A9092-25C0-4E26-9C3B-BE7B66D8D953" expanded="True" code="vkrQoByYAP" thumbCode="FrfJMPNNYd" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True">
+      <images>
+        <image key="2219CCB797695387FB6136B91E670071.png"/>
+        <image key="9FABC172F378DDAA99357DA8C20607C2.jpg"/>
+        <image key="D7B9D65F486FC71B26F47A6781609909.png"/>
+      </images>
+    </page>
+    <page name="拜佛教程" ID="19E7E323-D556-47D7-BAED-6B3F1BA012E5" expanded="True" code="gQkUWSAx2Z" thumbCode="rwbV5iS1BT" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True">
+      <images>
+        <image key="936859FD95A1422D8EE1088E813FB826.png"/>
+        <image key="7FA18EA3C1806FA398D2E9FE967B8FB0.png"/>
+        <image key="4D99D285DF3073ED396C43820D574B4A.png"/>
+        <image key="BA3016F024C738C0822EC6D781D7D22D.png"/>
+        <image key="0D2485D95D51752CC12B86716BC7C5AA.png"/>
+        <image key="72D19F1256A22821621F0BF1E0542181.png"/>
+      </images>
+    </page>
+    <page name="双牌位" ID="3FFA98A1-BD9A-4C30-8364-FAE3D7395B1E" expanded="True" code="yDoczrgFDn" thumbCode="Fs6R1PoGep" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True">
+      <images>
+        <image key="9E508B9E8F1F66D382B752F74AF947E4.jpg"/>
+        <image key="BA3016F024C738C0822EC6D781D7D22D.png"/>
+        <image key="9547E5ABACB2EFF235BEFD97A9DE214A.png"/>
+        <image key="1EF6079357C476B5F91C67A73521C83F.jpg"/>
+        <image key="EFE073454B2C9812AC9FD5F7208796C0.png"/>
+        <image key="9B377360C1AF68300A0CD75950331ED1.png"/>
+      </images>
+    </page>
+    <page name="三牌位" ID="1CFE56F7-8AC4-4FA3-A4AC-991E5478CD92" expanded="False" code="xlMUgz9idt" thumbCode="rYWOFW3yN1" status="psWhite" isfolder="False" isshownode="True">
+      <images>
+        <image key="9E508B9E8F1F66D382B752F74AF947E4.jpg"/>
+        <image key="BA3016F024C738C0822EC6D781D7D22D.png"/>
+        <image key="9547E5ABACB2EFF235BEFD97A9DE214A.png"/>
+        <image key="1EF6079357C476B5F91C67A73521C83F.jpg"/>
+        <image key="9B377360C1AF68300A0CD75950331ED1.png"/>
+      </images>
+    </page>
+    <page name="功德详情-福袋捐赠" ID="A89D16C5-AC4E-4162-A72D-F83C755BE16D" expanded="False" code="ufzyAIZir6" thumbCode="ENu1fCobce" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True">
+      <images>
+        <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+        <image key="751EC5DBB6960144DF543286A629A3EA.png"/>
+        <image key="9FABC172F378DDAA99357DA8C20607C2.jpg"/>
+        <image key="D97D5F8967661407272EDA00175A09B8.png"/>
+        <image key="A8F503613493EDE95D8C3DB2F61D2CB5.png"/>
+        <image key="3606A9FA83556D714EB313AF643B35E3.png"/>
+        <image key="0CF7133147F0FF2A316B730CF65CA8CA.png"/>
+        <image key="860FB329705E171F20CE5906E3856F56.png"/>
+        <image key="B8E06A1297BD33532C7686609B84D430.png"/>
+      </images>
+    </page>
+    <page name="祈福-特殊日期 活动" ID="CCA41088-5A73-4C72-8CE8-70B8C0108345" expanded="False" code="zTLCNCYuWs" thumbCode="RWtBTvxri6" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True">
+      <images>
+        <image key="FE6C3E29C97FB144793E5B68E983F670.png"/>
+        <image key="53833C31FACE3B72A24EE481DB69B3F5.png"/>
+        <image key="FD80B0FD35F2B7F4BA95455FB534B43C.png"/>
+        <image key="16A44B71CA909DC5ADBCBEF07D6C9639.png"/>
+      </images>
+    </page>
+    <page name="祈福-特殊日期 展开" ID="170DD338-FE73-4E2E-A58B-A15526021735" expanded="True" code="VEvl85SqeD" thumbCode="MUmJrkxrjW" status="psWhite" isfolder="False" isshownode="True">
+      <images>
+        <image key="FE6C3E29C97FB144793E5B68E983F670.png"/>
+        <image key="53833C31FACE3B72A24EE481DB69B3F5.png"/>
+        <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+        <image key="AAE3A0812AEEA570F48011B2CF26C9BA.png"/>
+        <image key="12B2EB32C229B41543D0C0526499F694.png"/>
+        <image key="D8C2AC738483D3AEC7808867CE42C447.jpg"/>
+        <image key="A8F503613493EDE95D8C3DB2F61D2CB5.png"/>
+        <image key="FD80B0FD35F2B7F4BA95455FB534B43C.png"/>
+      </images>
+    </page>
+    <page name="许愿-规则" ID="5DF1B475-86A1-4A8D-A793-C4F61333761F" expanded="True" code="LLxZlVOeWJ" thumbCode="jPVpXgNnmS" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True"/>
+    <page name="消息分类" ID="5329E172-2DAC-4077-AC89-A76910B4DDFF" expanded="True" code="YD94caPhW3" thumbCode="DKugCr3oLs" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True">
+      <images>
+        <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+        <image key="314E5686254C8310232AC526D6BE8597.png"/>
+        <image key="A0656ACD4F6A93209701919ADDE873D8.png"/>
+        <image key="BA3006545AEDE1C22693EB262A7F5D15.png"/>
+        <image key="CF5B99A159BE28E1066644AEFFC673D5.png"/>
+      </images>
+    </page>
+    <page name="客服推送" ID="AD3A6698-7956-47D4-980D-B793966F95A3" expanded="False" code="5XmzOyFRno" thumbCode="3vLfYiGWve" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True">
+      <images>
+        <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+      </images>
+    </page>
+    <page name="用户善迹" ID="15888B0E-F4CF-4CBE-9E33-95875648A267" expanded="True" code="p2VyowUhhz" thumbCode="DPFK3x7jsY" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True">
+      <images>
+        <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+        <image key="A5F7C25877E3EBABC118F84D12154512.png"/>
+        <image key="AC467B3ED79E38C964F69CA389D3B58F.png"/>
+        <image key="C068A17AE7644512CD1925511AF671D7.png"/>
+      </images>
+    </page>
+    <page name="行善榜" ID="5B90D9F2-20CC-4E25-A445-140EAE4C2D48" expanded="True" code="ynMmAeNiOy" thumbCode="TEOWgDk1ec" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True">
+      <images>
+        <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+      </images>
+    </page>
+    <page name="全屏播放视频" ID="F0CA6764-4127-4FBD-B806-D7B72C78A283" expanded="True" code="PyXKs5gpbD" thumbCode="RavOkFQ1Pt" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True"/>
+    <page name="规则" ID="323DDA7A-A5A8-48EE-9056-ADADC4C59AD8" expanded="True" code="29lNx93fPd" thumbCode="pJMQ9HICfm" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True"/>
+    <page name="注册" ID="647D7ADD-1184-48BD-BCFB-27BD1E149F95" expanded="True" code="g6K7olOFAx" thumbCode="QkQrR1vSFn" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True"/>
+    <page name="充值流水" ID="BF98FAB2-B953-435B-ACA6-DDAE480D5DAA" expanded="False" code="vNxEGMruWh" thumbCode="8xk6rKXtiQ" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True">
+      <images>
+        <image key="729DA24C3088BE61DB98C2C79AFC2E51.png"/>
+      </images>
+    </page>
+    <page name="签到排行" ID="71F28ECB-CC93-4733-BB62-D7BD838678C3" expanded="False" code="DBJekqYzAT" thumbCode="bkoMsIabF3" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True">
+      <images>
+        <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+        <image key="B822BC53F589C751871D71C8E48CFBF0.png"/>
+        <image key="734C4AACC4C4D7DA4015310D9C2E93F8.png"/>
+        <image key="A8F503613493EDE95D8C3DB2F61D2CB5.png"/>
+        <image key="6659F9ED9F9516B42188B441994A7884.png"/>
+        <image key="AADBFA2ACAD1B6600435D1AF6658220D.png"/>
+        <image key="0D2485D95D51752CC12B86716BC7C5AA.png"/>
+        <image key="031CF1477C55345E111E8CD93F901415.png"/>
+      </images>
+    </page>
+    <page name="功德排行" ID="F04F7E09-02AA-4A30-A20D-80B88A047214" expanded="True" code="RYmskA3Xd1" thumbCode="iaTQW3lG4j" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True">
+      <images>
+        <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+        <image key="734C4AACC4C4D7DA4015310D9C2E93F8.png"/>
+        <image key="A8F503613493EDE95D8C3DB2F61D2CB5.png"/>
+        <image key="6659F9ED9F9516B42188B441994A7884.png"/>
+        <image key="031CF1477C55345E111E8CD93F901415.png"/>
+      </images>
+    </page>
+    <page name="许愿-主页" ID="B595A896-93E9-4DCD-AD09-F7D3FA1B262B" expanded="True" code="LPoXgmOq7J" thumbCode="aVbXSHu4DH" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True">
+      <images>
+        <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+        <image key="E3A12B93B15C17B41A36A79C69559ECB.png"/>
+        <image key="B55FA7AC626CF340812CDCAD23616BB4.png"/>
+        <image key="47AE05995C907D8C23A0B9A794BB88F4.jpg"/>
+        <image key="C0CA8108EF19EA63565BF323F2BBF516.jpg"/>
+        <image key="CE8159E32ABCE96F67C78BD37286923C.png"/>
+        <image key="2C6694149FCEFCD5AAE534BCDB01168F.png"/>
+      </images>
+    </page>
+    <page name="鱼" ID="202F0619-412B-41C5-913A-F89CE57CBDF9" expanded="True" code="jDULaYrfGd" thumbCode="3b6zQhr5XX" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True"/>
+    <page name="龟" ID="3252DAEA-A11D-44A8-A8D7-91AC948ADB31" expanded="True" code="f5h9N9SpGJ" thumbCode="mcEHeCco4z" status="psWhite" isfolder="False" isshownode="True"/>
+    <page name="蟾" ID="2957D7FB-DA30-4033-88A2-E551D2317D4D" expanded="True" code="G9vzlQhGev" thumbCode="bGPvNtqHwA" status="psWhite" isfolder="False" isshownode="True"/>
+    <page name="放生榜" ID="A0B4765E-5009-445E-A1CF-28D29F011B2B" expanded="True" code="DSN1lWiNAL" thumbCode="s4fwI8I8m2" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True">
+      <images>
+        <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+        <image key="734C4AACC4C4D7DA4015310D9C2E93F8.png"/>
+        <image key="6659F9ED9F9516B42188B441994A7884.png"/>
+        <image key="031CF1477C55345E111E8CD93F901415.png"/>
+        <image key="2C6694149FCEFCD5AAE534BCDB01168F.png"/>
+      </images>
+    </page>
+    <page name="放生选择列表" ID="07C91296-585F-4033-A893-E5601776F79D" expanded="True" code="4LZjFqTbsn" thumbCode="D7C3OldoZv" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True">
+      <images>
+        <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+        <image key="2C6694149FCEFCD5AAE534BCDB01168F.png"/>
+      </images>
+    </page>
+  </trash>
+  <deletes/>
+  <masters/>
+  <images>
+    <image key="4228442EEBC8F2469901E0A71BDBF34C.png"/>
+    <image key="3A1427972063EA6DC281D65441FC1EB0.png"/>
+    <image key="DC4798C9A3FE9BF80F990ECB1DA4769F.jpg"/>
+    <image key="C940264DB444E85F1867819714A3BA6F.png"/>
+    <image key="91ED44CD80FFEAF688EE1816ECDC4C92.png"/>
+    <image key="A0656ACD4F6A93209701919ADDE873D8.png"/>
+    <image key="C69973CF22A8C3998B39ECEABC8338F5.png"/>
+    <image key="CEA1747F820EDD28091CD0A92E8C2D38.png"/>
+    <image key="189B1242276B9DA91100296E61C183AB.png"/>
+    <image key="7450ED2D4099523B4CD4A321789EDD19.png"/>
+    <image key="750A9E26947C09372E6C7EB99095C0F9.png"/>
+    <image key="A7E8C93FF4F71E4A1A3D93DB88F94D39.png"/>
+    <image key="53833C31FACE3B72A24EE481DB69B3F5.png"/>
+    <image key="B8E06A1297BD33532C7686609B84D430.png"/>
+    <image key="62BA49531D2E06B629601EBA46F7B7E6.png"/>
+    <image key="EB5FBF254ABC21984280EBBC910E26F6.jpg"/>
+    <image key="AD20302C34A9AF94BD02412145B4B564.png"/>
+    <image key="93D58923614829FA2FB2C6607F5325E2.png"/>
+    <image key="0CF7133147F0FF2A316B730CF65CA8CA.png"/>
+    <image key="660D613D2C06EFE78CBE1FA22343DB3D.jpg"/>
+    <image key="CF16771A7AD3DA890512B803D1FA2F4E.jpg"/>
+    <image key="D599A27F2BC723DF3E40D8721FED4D32.png"/>
+    <image key="C10EAF94EC9FAD410532453C1E3F2B31.png"/>
+    <image key="80BC365E553D3A9E7A119CD456842AC4.png"/>
+    <image key="734C4AACC4C4D7DA4015310D9C2E93F8.png"/>
+    <image key="C1720E36A0E5AAD94590521645A46194.png"/>
+    <image key="01CC5A4CB1B11BE2C3AA162302A9AC73.png"/>
+    <image key="68D76EBAC7E568A83A45719A263CF0EC.png"/>
+    <image key="C9B1018355504EC8AA33C820518123AC.png"/>
+    <image key="B06261EB95AE01CCF1D8CF93192BBE91.png"/>
+    <image key="5A6BBDD5ADE75A4E1292D5B9D339403B.jpg"/>
+    <image key="D7B9D65F486FC71B26F47A6781609909.png"/>
+    <image key="6692E39D318C8BB707D5B5A5AB5DC704.png"/>
+    <image key="978081CFEEABB38A6EA66862FD03784D.png"/>
+    <image key="0644D07A249A3027871C639036C79113.png"/>
+    <image key="40326ED394E0A1FDBA0307081DE74A6B.png"/>
+    <image key="EF63E78415B479830B7C97645C9338AE.png"/>
+    <image key="EFE073454B2C9812AC9FD5F7208796C0.png"/>
+    <image key="4B3E3858843EDDA37A5A8A63AFB28E1E.jpg"/>
+    <image key="B38A8FC2C68322087F1E829080EBBF07.png"/>
+    <image key="779939312FE514A77334FDCD908F9A80.png"/>
+    <image key="2E02A8862499274B19EF6AF5945DB983.png"/>
+    <image key="3606A9FA83556D714EB313AF643B35E3.png"/>
+    <image key="1EF5BA905952350FDCE2E5442626B197.png"/>
+    <image key="4D99D285DF3073ED396C43820D574B4A.png"/>
+    <image key="2B3621C68BC70BED60231EF8E99973A2.png"/>
+    <image key="934544AB9C097935D66689F76C7775A8.png"/>
+    <image key="BEEF25735702BE9FEC5D1A99508CF629.png"/>
+    <image key="751EC5DBB6960144DF543286A629A3EA.png"/>
+    <image key="2D4BE998596822AB2C343A5899CBBD9F.png"/>
+    <image key="A8F503613493EDE95D8C3DB2F61D2CB5.png"/>
+    <image key="E04D55EB46FB5C24864C86A2DDE7D01B.png"/>
+    <image key="47AE05995C907D8C23A0B9A794BB88F4.jpg"/>
+    <image key="4D53ADEBDA671399C2A1B2F3739CCB19.png"/>
+    <image key="0D2485D95D51752CC12B86716BC7C5AA.png"/>
+    <image key="B132895807F9DE622E96FE9317A853F6.png"/>
+    <image key="761F6BDE53BF2DC70BC3FD895FD33027.jpg"/>
+    <image key="2C6694149FCEFCD5AAE534BCDB01168F.png"/>
+    <image key="C4242DD7BBF8F1E13B7E0B002A3F340C.png"/>
+    <image key="082B85A51A8ADB685D829D02921C7412.png"/>
+    <image key="F70420FF9FA273EC9C6CBE1EAF4327A9.png"/>
+    <image key="936859FD95A1422D8EE1088E813FB826.png"/>
+    <image key="8BBF1ED0EEE50940B94ECFBF95A11B9E.png"/>
+    <image key="8AA29A99D569513D2A1B60AFC8D8DD4A.svg"/>
+    <image key="B822BC53F589C751871D71C8E48CFBF0.png"/>
+    <image key="700F2C2BF1286B5233E6837EC90237F0.png"/>
+    <image key="DAEFBFA3B3D8C075CA011452BB8E95A3.png"/>
+    <image key="39563987F2AA770C2CA532FB64C87EFA.png"/>
+    <image key="BD93E9F4A55794E94E21C738A7150023.png"/>
+    <image key="6444473E221A0B6EA679BCA42005CAEF.png"/>
+    <image key="CE8159E32ABCE96F67C78BD37286923C.png"/>
+    <image key="9A7EA0DD729C0656D0AF248095C5ABE3.jpg"/>
+    <image key="729DA24C3088BE61DB98C2C79AFC2E51.png"/>
+    <image key="C82C5CAEE345DB3EEED30665BF70EE85.png"/>
+    <image key="72A2E3B4FFE231D21730B579A1405326.png"/>
+    <image key="02696829B3FCAFFE69346FD9C945AD2D.png"/>
+    <image key="2219CCB797695387FB6136B91E670071.png"/>
+    <image key="E717495DB260FC942CF44E2394DA401E.png"/>
+    <image key="0DE8B6396D87F52087EB664ECA9A20DD.png"/>
+    <image key="BAE8633606AC9A7280D025C8440F35D6.png"/>
+    <image key="10C8DDD5235CCDDDE09F4ED9B8B243F2.png"/>
+    <image key="CF5B99A159BE28E1066644AEFFC673D5.png"/>
+    <image key="16A44B71CA909DC5ADBCBEF07D6C9639.png"/>
+    <image key="BAC6A6B817BA50CCA0F0EC42A6DE25B7.jpg"/>
+    <image key="6C598416A1B4F39568D473A27BDBC8A7.png"/>
+    <image key="80178905E8F6758ECC49E934517E9784.png"/>
+    <image key="98A872D87D17CA4171C7C0595BDBCD2E.png"/>
+    <image key="C9529838295F7955AD785395AF933B09.jpg"/>
+    <image key="AAE3A0812AEEA570F48011B2CF26C9BA.png"/>
+    <image key="995C6FB6DBB77C210DE21FFE10E3C72F.png"/>
+    <image key="B630878B3EECF34D3CE946E0ED9A8631.png"/>
+    <image key="9B3419BB06FDECDEA96B7F7B023E81EC.png"/>
+    <image key="AB772322330C44C2D26E2B7170D4BEB2.png"/>
+    <image key="314E5686254C8310232AC526D6BE8597.png"/>
+    <image key="84C100A81C8126600404988A739760C8.png"/>
+    <image key="E3A12B93B15C17B41A36A79C69559ECB.png"/>
+    <image key="D0DD53AE2F589B808952E3C186546759.jpg"/>
+    <image key="1EF6079357C476B5F91C67A73521C83F.jpg"/>
+    <image key="904E6CF8278BED86919E9F50705DBFB0.jpg"/>
+    <image key="9D03CA56645D823AA074D6E70FAD5AF7.png"/>
+    <image key="D0CD5F369FE1B983BC44FA61F2CA6985.png"/>
+    <image key="CD4C7C920C4BC2BB3D1740B2E7A2C09F.png"/>
+    <image key="C4410D5CE9A53F63B825042C68ABBD08.png"/>
+    <image key="6BA55AAC7CE86CB81D943CFE2D94026F.png"/>
+    <image key="9FABC172F378DDAA99357DA8C20607C2.jpg"/>
+    <image key="FB779CED8CE62C02FF9AD40706C88BF7.png"/>
+    <image key="5400FAF2276F4A7D93432DA3D9781FC7.png"/>
+    <image key="6E19EFC2F971B2999E557BB64BFA7CFF.png"/>
+    <image key="2AAC76BC41ECA5ED43B67C81F6B0D983.jpg"/>
+    <image key="B55FA7AC626CF340812CDCAD23616BB4.png"/>
+    <image key="E47150CD661E5C59FA78327F298B217E.png"/>
+    <image key="287D16567ED34CBC135C5762F73545AE.png"/>
+    <image key="ED6E9896C7E72BF6638AA5AE195BD5CA.png"/>
+    <image key="C068A17AE7644512CD1925511AF671D7.png"/>
+    <image key="A89CA27B34FF241EBF0BA3B272345A24.png"/>
+    <image key="DCE6BA9FD7B947D10666715ADC4A85EB.png"/>
+    <image key="7EC22758566B42A4D471557C948BCA70.jpg"/>
+    <image key="D97D5F8967661407272EDA00175A09B8.png"/>
+    <image key="86A0012D7A1D3BF2A4530DD2187E91B6.png"/>
+    <image key="AA2D80E6C4633C02F2D27A5AE42AD725.png"/>
+    <image key="E3697812B142B44EBBD20963D00AD470.png"/>
+    <image key="AC467B3ED79E38C964F69CA389D3B58F.png"/>
+    <image key="3ED2F6C397F1D4BAD481A9E2062515C6.png"/>
+    <image key="C0CA8108EF19EA63565BF323F2BBF516.jpg"/>
+    <image key="9B377360C1AF68300A0CD75950331ED1.png"/>
+    <image key="2826DBA63FE4728F9480E919DDF13314.png"/>
+    <image key="88416ECB025425DA106C1643E21B734F.png"/>
+    <image key="47C50AAD2908D2BD81E015C3BE30B88D.png"/>
+    <image key="12B2EB32C229B41543D0C0526499F694.png"/>
+    <image key="2887D67AA0CC394B5015D53AA205F8BE.png"/>
+    <image key="A5F7C25877E3EBABC118F84D12154512.png"/>
+    <image key="CE2F33F47B95D031CC40CB73CC5847F9.png"/>
+    <image key="9E508B9E8F1F66D382B752F74AF947E4.jpg"/>
+    <image key="BA3016F024C738C0822EC6D781D7D22D.png"/>
+    <image key="9547E5ABACB2EFF235BEFD97A9DE214A.png"/>
+    <image key="FD80B0FD35F2B7F4BA95455FB534B43C.png"/>
+    <image key="0E029FB660586BF9A0D2785468548838.png"/>
+    <image key="860FB329705E171F20CE5906E3856F56.png"/>
+    <image key="4904BAAA51DB96E902167FF726700546.jpg"/>
+    <image key="99A48367F46FC4ADF8F9DD41C4829BD3.png"/>
+    <image key="99CCE825C4BEABAADBBDBB6E35CCB005.png"/>
+    <image key="FE6C3E29C97FB144793E5B68E983F670.png"/>
+    <image key="5C2F7FBF0CFFAF1B45BB90725C402FE2.png"/>
+    <image key="6659F9ED9F9516B42188B441994A7884.png"/>
+    <image key="AADBFA2ACAD1B6600435D1AF6658220D.png"/>
+    <image key="031CF1477C55345E111E8CD93F901415.png"/>
+    <image key="55288A5CA1C02131D56068BC6EA3C7FF.png"/>
+    <image key="96F9F0F66A6A07A422C0CC07697DF875.png"/>
+    <image key="72D19F1256A22821621F0BF1E0542181.png"/>
+    <image key="E3BDD538E5D1A4931357C0E3E0D01545.png"/>
+    <image key="80FE661FE8C255B9B5471704C04D0B8D.png"/>
+    <image key="871B11AD813FF5FE06898F5B56758371.png"/>
+    <image key="3014C55C08CCAD37791CC64AEF6C0626.png"/>
+    <image key="7FA18EA3C1806FA398D2E9FE967B8FB0.png"/>
+    <image key="D8C2AC738483D3AEC7808867CE42C447.jpg"/>
+    <image key="7AF3186D3AA4551F92452D7539C5B114.png"/>
+    <image key="BA3006545AEDE1C22693EB262A7F5D15.png"/>
+    <image key="FD880A4D79BB8A7ED85A7DC18471E2BE.png"/>
+    <image key="E858468847A5B4344C951F204185B258.png"/>
+    <image key="82CA79FC4013AC52269AD2C044BBA46D.png"/>
+    <image key="B8314FC1D92934DC7328807EE17C317C.png"/>
+  </images>
+</project>

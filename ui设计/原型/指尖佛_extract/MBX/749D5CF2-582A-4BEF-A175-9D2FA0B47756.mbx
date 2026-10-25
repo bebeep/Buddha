@@ -1,0 +1,15 @@
+﻿<mockup version="5.3" minAllowVersion="5.3" ID="749D5CF2-582A-4BEF-A175-9D2FA0B47756" platform="MtMobile" defaultW="375" defaultH="667" measureW="375" measureH="667" screenOrientation="MoPortrait" mobileScreenScale="1.77777779102325" clipArea="(0,0,0,0)">
+  <controls controlCount="1">
+    <control controlID="4893209B-39D9-471B-AACE-00A7C1EA8A9A" controlTypeID="TextArea" x="9" y="16" w="356" h="631" zOrder="0">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E5%AE%98%E6%96%B9%E5%8F%91%E5%B8%83%E7%A5%88%E7%A6%8F%E4%B8%BB%E9%A2%98%E6%B5%B7%E6%8A%A5%E6%88%96%E8%80%85%E8%A7%86%E9%A2%91%EF%BC%8C%E7%94%A8%E6%88%B7%E4%BB%A5%E8%AF%84%E8%AE%BA%E6%96%B9%E5%BC%8F%E7%A5%88%E7%A6%8F%E3%80%82%0D%0A%0D%0A%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%EF%BC%9A%E8%B9%AD%E7%83%AD%E5%BA%A6%0D%0A%0D%0A%E6%B6%88%E8%80%97%E5%8A%9F%E5%BE%B7%E5%B8%81%EF%BC%9A%E7%A5%88%E7%A6%8F%E5%8D%A1%E5%B0%81%E9%9D%A2%EF%BC%8C%E4%BD%BF%E7%94%A8%E4%BA%86%E5%B0%81%E9%9D%A2%E7%9A%84%E7%A6%8F%E5%8D%A1%E4%BC%98%E5%85%88%E6%98%BE%E7%A4%BA%EF%BC%8C%E5%B9%B6%E4%B8%94%E4%BC%9A%E6%AF%94%E6%99%AE%E9%80%9A%E7%A6%8F%E5%8D%A1%E5%A4%A7%0D%0A%0D%0A%0D%0A%0D%0A1%E3%80%81%E6%AF%8F%E4%B8%AA%E7%94%A8%E6%88%B7%E7%A5%9D%E7%A6%8F%E7%9A%84%E5%89%8D5%E6%AC%A1%E5%A2%9E%E5%8A%A0%E4%BF%AE%E8%A1%8C%E5%80%BC%EF%BC%8C%E5%BD%93%E6%97%A524%EF%BC%9A00%E9%87%8D%E7%BD%AE%EF%BC%9B%0D%0A2%E3%80%81%E7%A5%88%E7%A6%8F%E6%88%90%E5%8A%9F%E5%A2%9E%E5%8A%A0%E4%BF%AE%E8%A1%8C%E5%80%BC20%EF%BC%9B%0D%0A3%E3%80%81%E7%A5%9D%E7%A6%8F%E6%88%90%E5%8A%9F%E5%A2%9E%E5%8A%A0%E4%BF%AE%E8%A1%8C%E5%80%BC5%2F%E6%AC%A1%EF%BC%9B%0D%0A%0D%0A</text>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+  </controls>
+  <param>
+    <backgroundColor>4294967295</backgroundColor>
+    <fontSize>0</fontSize>
+    <fontFamily/>
+    <guideLines/>
+  </param>
+</mockup>

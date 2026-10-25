@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 功德捐赠记录 item -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_buddha_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#4A3413"
+            android:textSize="13sp"
+            tools:text="三世佛像" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#B08A4A"
+            android:textSize="11sp"
+            tools:text="2022-02-02 12:00" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_coin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#C87A2B"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        tools:text="-100" />
+</LinearLayout>

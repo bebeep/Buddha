@@ -1,0 +1,70 @@
+﻿<mockup version="5.3" minAllowVersion="5.3" ID="360DE466-7B45-43E6-B993-D0325103ECF5" platform="MtMobile" defaultW="375" defaultH="667" measureW="375" measureH="667" screenOrientation="MoPortrait" mobileScreenScale="1.77777779102325" clipArea="(0,0,0,0)">
+  <controls controlCount="10">
+    <control controlID="8BF779EC-AA0B-472D-AC07-523253DB84A1" controlTypeID="Image" x="0" y="0" w="376" h="667" zOrder="0">
+      <caption>%E8%83%8C%E6%99%AF%E5%9B%BE</caption>
+      <URL>9FABC172F378DDAA99357DA8C20607C2.jpg</URL>
+    </control>
+    <control controlID="5A6F25FB-46EC-4B6A-8B7B-039BFC2C904D" controlTypeID="Image" x="-1" y="409" w="377" h="260" zOrder="1">
+      <URL>9547E5ABACB2EFF235BEFD97A9DE214A.png</URL>
+    </control>
+    <control controlID="02517AEF-8710-4A58-BA3F-C91B07C4B477" controlTypeID="Button" x="20" y="70" w="68" h="148" zOrder="2">
+      <caption>%E4%BD%9B%E5%83%8F%E5%90%8D%E7%A7%B0</caption>
+      <color>4293637480</color>
+      <borderColor>1801872998</borderColor>
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E8%A7%82%0D%0A%E4%B8%96%0D%0A%E9%9F%B3%0D%0A%E8%8F%A9%0D%0A%E8%90%A8</text>
+      <textColor>4294967295</textColor>
+      <lineSpacing>0</lineSpacing>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="4A908EBC-5A70-4C1A-B71B-FA9ABFF8D3FD" controlTypeID="Label" x="28" y="200" w="52" h="14" zOrder="3">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>(999%E4%BA%BA%E5%B7%B2%E4%BE%9B)</text>
+      <textColor>1174339584</textColor>
+      <textSize>10</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="E5E30785-F14A-484C-B6DF-5120E1C141E9" controlTypeID="Image" x="31" y="285" w="85" h="98" zOrder="4">
+      <caption>%E7%81%AF-%E5%B7%A6</caption>
+      <URL>2219CCB797695387FB6136B91E670071.png</URL>
+    </control>
+    <control controlID="9DF2C11C-DE76-4430-8441-AEC2F76CD5A6" controlTypeID="Image" x="224" y="285" w="85" h="98" zOrder="5">
+      <caption>%E7%81%AF-%E5%8F%B3</caption>
+      <URL>2219CCB797695387FB6136B91E670071.png</URL>
+    </control>
+    <control controlID="2DDCA570-F17F-4DDC-86DA-C446EA903EFE" controlTypeID="__group__" x="71" y="84" w="232" h="490" zOrder="6">
+      <groupChildrenDescriptors>
+        <control controlID="551F6773-CA75-46D9-A7ED-5124BC14BC1D" controlTypeID="Shape" x="0" y="0" w="232" h="490" zOrder="0">
+          <color>2573624934</color>
+          <borderColor>535094500</borderColor>
+          <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+          <textSize>14</textSize>
+          <selectedIndex>-1</selectedIndex>
+          <radius>8</radius>
+        </control>
+        <control controlID="ACBD6268-242F-4C30-A993-A84DF70E9BDB" controlTypeID="Label" x="88" y="10" w="56" h="18" zOrder="1">
+          <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+          <text>%E8%BF%9B%E8%B4%A1%E8%AF%B4%E6%98%8E</text>
+          <textColor>4294967295</textColor>
+          <lineSpacing>0</lineSpacing>
+          <selectedIndex>-1</selectedIndex>
+        </control>
+        <control controlID="908F0389-5E75-418E-B4FE-0DD4F8B1A7FF" controlTypeID="TextArea" x="10" y="47" w="212" h="396" zOrder="2">
+          <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+          <text>%E6%82%A8%E5%8F%AF%E4%BB%A5%E5%89%8D%E5%BE%80%E5%85%91%E6%8D%A2%E4%B8%AD%E5%BF%83%E4%BD%BF%E7%94%A8%E5%8A%9F%E5%BE%B7%E5%B8%81%E5%85%91%E6%8D%A2%E7%9B%B8%E5%BA%94%E7%89%A9%E5%93%81%EF%BC%8C%E7%84%B6%E5%90%8E%E5%9C%A8%E6%AD%A4%E9%A1%B5%E9%9D%A2%E8%BF%9B%E8%A1%8C%E6%95%AC%E4%BE%9B%E3%80%82%0D%0A1%E3%80%81%E7%82%B9%E5%87%BB%E5%B7%B2%E5%85%91%E6%8D%A2%E7%9A%84%E7%89%A9%E5%93%81%E4%B9%8B%E5%90%8E%E4%BC%9A%E5%87%BA%E7%8E%B0%E5%9C%A8%E5%B7%B2%E9%80%89%E5%88%97%E8%A1%A8%EF%BC%8C%E6%AF%8F%E5%B0%8A%E4%BD%9B%E5%83%8F%E7%9A%84%E5%B7%B2%E9%80%89%E7%89%A9%E5%93%81%E4%BA%92%E7%9B%B8%E7%8B%AC%E7%AB%8B%E3%80%82%0D%0A2%E3%80%81%E6%AF%8F%E7%B1%BB%E7%89%A9%E5%93%81%E4%BC%9A%E6%8C%89%E7%85%A7%E9%80%89%E6%8B%A9%E7%9A%84%E9%A1%BA%E5%BA%8F%E7%9B%B8%E7%BB%A7%E6%B6%88%E8%80%97%E3%80%82%0D%0A3%E3%80%81%E6%9A%82%E6%9C%AA%E6%B6%88%E8%80%97%E7%9A%84%E7%89%A9%E5%93%81%E5%8F%AF%E4%BB%A5%E7%A7%BB%E9%99%A4%EF%BC%8C%E7%A7%BB%E9%99%A4%E4%BC%9A%E4%BD%BF%E7%89%A9%E5%93%81%E9%87%8D%E6%96%B0%E5%9B%9E%E5%88%B0%E6%82%A8%E7%9A%84%E5%BE%85%E9%80%89%E6%8B%A9%E5%88%97%E8%A1%A8%E4%B8%AD%E3%80%82%0D%0A4%E3%80%81%E9%95%BF%E6%8C%89%E5%B7%B2%E9%80%89%E7%89%A9%E5%93%81%E5%8F%AF%E4%BB%A5%E8%B0%83%E6%95%B4%E6%B6%88%E8%80%97%E7%9A%84%E9%A1%BA%E5%BA%8F%E3%80%82%0D%0A5%E3%80%81%E6%AF%8F%E6%B6%88%E8%80%97%E4%B8%80%E4%BB%B6%E7%89%A9%E5%93%81%E6%82%A8%E4%BC%9A%E8%8E%B7%E5%BE%97%E7%9B%B8%E5%BA%94%E7%9A%84%E4%BF%AE%E8%A1%8C%E5%80%BC%E3%80%82%0D%0A6%E3%80%81%E5%B7%B2%E9%80%89%E5%88%97%E8%A1%A8%E4%B8%AD%EF%BC%8C%E5%8D%8A%E9%80%8F%E6%98%8E%E9%81%AE%E7%BD%A9%E7%9A%84%E9%AB%98%E5%BA%A6%E8%A1%A8%E7%A4%BA%E5%BD%93%E5%89%8D%E6%AD%A3%E5%9C%A8%E6%B6%88%E8%80%97%E7%9A%84%E7%89%A9%E5%93%81%E7%9A%84%E5%89%A9%E4%BD%99%E6%97%B6%E9%97%B4%EF%BC%8C%E6%AD%A4%E6%97%B6%E4%B8%8D%E8%83%BD%E5%86%8D%E6%93%8D%E4%BD%9C%E8%AF%A5%E7%89%A9%E5%93%81</text>
+          <textColor>4294967295</textColor>
+          <selectedIndex>-1</selectedIndex>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+  </controls>
+  <param>
+    <backgroundColor>4294967295</backgroundColor>
+    <fontSize>0</fontSize>
+    <fontFamily/>
+    <guideLines/>
+    <remark>%E8%87%B3%E5%B0%91%E6%B7%BB%E5%8A%A0%E9%A6%99%E7%83%9B%E5%B9%B6%E5%BC%80%E5%A7%8B%E6%95%AC%E4%BE%9B%E6%89%8D%E7%AE%97%E8%AF%B7%E4%BD%9B%E6%88%90%E5%8A%9F%EF%BC%9B%0D%0A%0D%0A%E8%B4%A1%E5%93%81%E5%92%8C%E4%BD%9B%E7%81%AF%E5%8D%95%E6%AC%A1%E6%97%B6%E9%95%BF%E5%BF%85%E9%A1%BB%E5%B0%8F%E4%BA%8E%E9%A6%99%E7%83%9B%E5%8D%95%E6%AC%A1%E6%97%B6%E9%95%BF%EF%BC%9B%0D%0A%0D%0A%E5%BD%93%E6%9C%80%E5%90%8E%E4%B8%80%E4%BB%BD%E9%A6%99%E7%83%9B%E8%80%97%E5%B0%BD%E6%97%B6%EF%BC%9A%0D%0A%E5%A6%82%E6%9E%9C%E6%B2%A1%E6%9C%89%E5%BE%85%E6%B6%88%E8%80%97%E7%9A%84%E8%B4%A1%E5%93%81%E6%88%96%E8%80%85%E4%BD%9B%E7%81%AF%EF%BC%8C%E5%88%99%E7%AB%8B%E5%8D%B3%E7%BB%93%E6%9D%9F%E4%BE%9B%E4%BD%9B%EF%BC%9B%0D%0A%E5%A6%82%E6%9E%9C%E8%BF%98%E6%9C%89%E8%B4%A1%E5%93%81%E5%92%8C%E4%BD%9B%E7%81%AF%EF%BC%8C%E5%88%99%E5%B0%86%E4%BE%9B%E4%BD%9B%E6%97%B6%E9%95%BF%E5%BB%B6%E9%95%BF%E8%87%B3%E5%8D%95%E6%AC%A1%E8%B4%A1%E5%93%81%E5%92%8C%E5%8D%95%E6%AC%A1%E4%BD%9B%E7%81%AF%E7%9A%84%E6%9C%80%E5%90%8E%E6%97%B6%E9%97%B4%E3%80%82%0D%0A%0D%0A%E6%9C%AA%E6%B6%88%E8%80%97%E7%9A%84%E8%B4%A1%E5%93%81%E5%92%8C%E4%BD%9B%E7%81%AF%E5%B0%86%E5%8F%8D%E8%BF%98%E7%BB%99%E7%94%A8%E6%88%B7%EF%BC%9B%0D%0A%0D%0A%E7%82%B9%E5%87%BB%E2%80%99%E6%88%91%E7%9A%84%E9%A6%99%E7%83%9B%E2%80%98%E4%B8%AD%E5%88%97%E8%A1%A8%E9%A1%B9%EF%BC%8C%E5%B0%86%E9%80%89%E4%B8%AD%E7%9A%84%E9%A6%99%E7%83%9B%E7%A7%BB%E5%8A%A8%E5%88%B0%E4%B8%8B%E9%9D%A2%E2%80%99%E5%B7%B2%E6%95%AC%E4%BE%9B%E7%9A%84%E9%A6%99%E7%83%9B%E2%80%98%EF%BC%8C%E8%8B%A5%E4%B8%8B%E9%9D%A2%E5%88%97%E8%A1%A8%E4%B8%AD%E5%B7%B2%E5%AD%98%E5%9C%A8%EF%BC%8C%E5%88%99%E5%A2%9E%E5%8A%A0%E7%9B%B8%E5%BA%94%E6%95%B0%E9%87%8F%E3%80%82%E5%8F%8D%E4%B9%8B%EF%BC%8C%E5%B0%86%E9%A6%99%E7%83%9B%E7%A7%BB%E5%8A%A8%E5%88%B0%E4%B8%8A%E9%9D%A2%E5%88%97%E8%A1%A8%E4%B8%AD%EF%BC%8C%E4%BB%A5%E4%BE%BF%E5%9C%A8%E5%85%B6%E4%BB%96%E4%BE%9B%E4%BD%9B%E4%B8%AD%E4%BD%BF%E7%94%A8%E3%80%82%0D%0A%0D%0A%E5%8B%BE%E9%80%89%E8%87%AA%E5%8A%A8%E5%BB%B6%E7%BB%AD%E5%90%8E%EF%BC%8C%E5%90%8E%E7%BB%AD%E8%8E%B7%E5%BE%97%E7%9A%84%E6%89%80%E6%9C%89%E9%A6%99%E7%83%9B%E3%80%81%E8%B4%A1%E5%93%81%E3%80%81%E4%BD%9B%E7%81%AF%E5%B0%86%E8%87%AA%E5%8A%A8%E6%B6%88%E8%80%97%0D%0A%0D%0A%0D%0A%E5%8B%BE%E9%80%89%E8%87%AA%E5%8A%A8%E7%BB%AD%E6%8E%A5%E4%B9%8B%E5%90%8E%EF%BC%8C%E5%88%99%E6%88%91%E7%9A%84%E9%A6%99%E7%83%9B%E7%BD%AE%E7%81%B0%EF%BC%8C%E4%B8%8D%E5%8F%AF%E6%BB%91%E5%8A%A8%E6%88%96%E7%82%B9%E5%87%BB%EF%BC%8C%E7%82%B9%E5%BC%80%E5%A7%8B%E6%95%AC%E4%BE%9B%E4%B9%8B%E5%90%8E%EF%BC%8C%E5%88%99%E5%B0%86%E6%88%91%E7%9A%84%E9%A6%99%E7%83%9B%E5%85%A8%E9%83%A8%E7%A7%BB%E5%8A%A8%E5%88%B0%E5%B7%B2%E6%95%AC%E4%BE%9B%E9%A6%99%E7%83%9B%E5%88%97%E8%A1%A8%E4%B8%AD%EF%BC%88%E8%A7%86%E4%B8%BA%E6%B6%88%E8%80%97%EF%BC%8C%E5%9C%A8%E5%85%B6%E4%BB%96%E4%BE%9B%E4%BD%9B%E4%B8%AD%E2%80%99%E6%88%91%E7%9A%84%E9%A6%99%E7%83%9B%E2%80%98%E4%B8%8D%E5%86%8D%E5%87%BA%E7%8E%B0%EF%BC%89%E3%80%82%0D%0A%0D%0A</remark>
+  </param>
+</mockup>

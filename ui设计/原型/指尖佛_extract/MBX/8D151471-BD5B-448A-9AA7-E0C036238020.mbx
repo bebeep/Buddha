@@ -1,0 +1,162 @@
+﻿<mockup version="5.3" minAllowVersion="5.3" ID="8D151471-BD5B-448A-9AA7-E0C036238020" platform="MtMobile" defaultW="375" defaultH="667" measureW="375" measureH="667" screenOrientation="MoPortrait" mobileScreenScale="1.77777779102325">
+  <controls controlCount="24">
+    <control controlID="38B90FFC-8220-43B5-BD03-180AD4B626AB" controlTypeID="Image" x="0" y="0" w="375" h="670" zOrder="0">
+      <URL>4B3E3858843EDDA37A5A8A63AFB28E1E.jpg</URL>
+    </control>
+    <control controlID="3F4293AC-4053-4AEA-90E1-9E675393CD2A" controlTypeID="Label" x="76" y="183" w="132" h="28" zOrder="1">
+      <font family="Segoe+UI" displayName="Segoe+UI+Bold" postScript="" weightStyle="Bold" weight="700" isBold="True" isItalic="False"/>
+      <text>%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95</text>
+      <textSize>22</textSize>
+      <lineSpacing>0</lineSpacing>
+      <textStyles>[fsBold]</textStyles>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="433F101B-4192-45DA-9629-F9C30C818DB7" controlTypeID="Label" x="216" y="188" w="90" h="23" zOrder="2">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E9%AA%8C%E8%AF%81%E7%A0%81%E7%99%BB%E5%BD%95</text>
+      <textSize>18</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="DF58B1CD-3438-40FB-8F2C-3BCFDAEA5115" controlTypeID="Shape" x="68" y="233" w="240" h="42" zOrder="3">
+      <borderColor>1332110950</borderColor>
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <textSize>14</textSize>
+      <selectedIndex>-1</selectedIndex>
+      <radius>4</radius>
+    </control>
+    <control controlID="E2F12814-A963-48E2-A896-BB51CACFE7A2" controlTypeID="Label" x="81" y="244" w="151" h="19" zOrder="4">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E8%AF%B7%E8%BE%93%E5%85%A5%E8%B4%A6%E5%8F%B7%2F%E6%89%8B%E6%9C%BA%E5%8F%B7%2F%E9%82%AE%E7%AE%B1</text>
+      <textColor>4284900966</textColor>
+      <lineSpacing>0</lineSpacing>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="68EEE1F8-05ED-4263-946B-45103F7E29B1" controlTypeID="Shape" x="68" y="348" w="139" h="42" zOrder="5">
+      <borderColor>1332110950</borderColor>
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <textSize>14</textSize>
+      <selectedIndex>-1</selectedIndex>
+      <radius>4</radius>
+    </control>
+    <control controlID="83810D1B-8A02-4C8E-9F73-A91CE78CBD45" controlTypeID="Label" x="81" y="359" w="84" h="18" zOrder="6">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E8%AF%B7%E8%BE%93%E5%85%A5%E9%AA%8C%E8%AF%81%E7%A0%81</text>
+      <textColor>4284900966</textColor>
+      <lineSpacing>0</lineSpacing>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="EDE4E096-726F-4E64-9B0B-D275F21899FC" controlTypeID="Shape" x="213" y="348" w="96" h="42" zOrder="7">
+      <borderColor>1332110950</borderColor>
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <textSize>14</textSize>
+      <selectedIndex>-1</selectedIndex>
+      <radius>4</radius>
+    </control>
+    <control controlID="D626296A-4B8D-4486-8EAE-D98F54158C44" controlTypeID="Label" x="226" y="360" w="70" h="18" zOrder="8">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E8%8E%B7%E5%8F%96%E9%AA%8C%E8%AF%81%E7%A0%81</text>
+      <textColor>4281571839</textColor>
+      <lineSpacing>0</lineSpacing>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="AF33B1C9-1E7A-4B7E-8039-8DD3888D97F9" controlTypeID="Shape" x="69" y="425" w="240" h="42" zOrder="9">
+      <color>4281571839</color>
+      <borderColor>1332110950</borderColor>
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E7%99%BB%E5%BD%95</text>
+      <textColor>4294967295</textColor>
+      <textSize>16</textSize>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+      <radius>4</radius>
+    </control>
+    <control controlID="E8696A1E-D91C-4B31-87EB-DBFAA16CAAE0" controlTypeID="Shape" x="68" y="289" w="240" h="42" zOrder="10">
+      <borderColor>1332110950</borderColor>
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <textSize>14</textSize>
+      <selectedIndex>-1</selectedIndex>
+      <radius>4</radius>
+    </control>
+    <control controlID="E6DD9B64-EC1F-44A3-B697-9C4CF976F509" controlTypeID="Label" x="81" y="300" w="70" h="18" zOrder="11">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E8%AF%B7%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81</text>
+      <textColor>4284900966</textColor>
+      <lineSpacing>0</lineSpacing>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="9D50CA90-A55F-4F42-8B5F-5570F353A4A1" controlTypeID="Circle" x="33" y="601" w="15" h="15" zOrder="12">
+      <borderColor>1332110950</borderColor>
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <textSize>14</textSize>
+      <selectedIndex>-1</selectedIndex>
+      <shapeBorderType>SbEllipse</shapeBorderType>
+    </control>
+    <control controlID="5E4454C7-F4BA-4E20-8772-599B4BD4AC31" controlTypeID="Image" x="32" y="621" w="15" h="15" zOrder="13">
+      <URL>2E02A8862499274B19EF6AF5945DB983.png</URL>
+    </control>
+    <control controlID="C8E46E6E-6E0A-443E-9815-10BD970BB28B" controlTypeID="Label" x="58" y="600" w="98" h="18" zOrder="14">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E6%88%91%E5%B7%B2%E9%98%85%E8%AF%BB%E5%B9%B6%E5%90%8C%E6%84%8F</text>
+      <textColor>4294967295</textColor>
+      <lineSpacing>0</lineSpacing>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="BA79D221-BDD3-44C9-9E6E-B5BC08F555E7" controlTypeID="Label" x="158" y="600" w="84" h="18" zOrder="15">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E3%80%8A%E7%94%A8%E6%88%B7%E5%8D%8F%E8%AE%AE%E3%80%8B</text>
+      <textColor>4293637480</textColor>
+      <lineSpacing>0</lineSpacing>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="775E2447-ED19-4026-8EFF-1030DCF84F15" controlTypeID="Label" x="243" y="600" w="14" h="18" zOrder="16">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E5%92%8C</text>
+      <textColor>4294967295</textColor>
+      <lineSpacing>0</lineSpacing>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="83209AA9-BFA5-4E64-B142-F99A24BA5F59" controlTypeID="Label" x="262" y="600" w="84" h="18" zOrder="17">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E3%80%8A%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96%E3%80%8B</text>
+      <textColor>4293637480</textColor>
+      <lineSpacing>0</lineSpacing>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="4ECFDA3B-373E-471A-8482-2A36EF2027A5" controlTypeID="Label" x="280" y="479" w="28" h="18" zOrder="18">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E6%B3%A8%E5%86%8C</text>
+      <textColor>4293637480</textColor>
+      <lineSpacing>0</lineSpacing>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="C9B8CDBD-7290-48C2-904C-93840EEF4B85" controlTypeID="Label" x="68" y="479" w="56" h="18" zOrder="19">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E6%89%BE%E5%9B%9E%E5%AF%86%E7%A0%81</text>
+      <textColor>4293637480</textColor>
+      <lineSpacing>0</lineSpacing>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="F32132A4-0E6D-4358-B7B0-89E48465363A" controlTypeID="Image" x="17" y="20" w="30" h="30" zOrder="20">
+      <URL>729DA24C3088BE61DB98C2C79AFC2E51.png</URL>
+    </control>
+    <control controlID="5BE6F664-40B7-4CE2-BD4E-18A7395E556E" controlTypeID="Image" x="174" y="553" w="28" h="28" zOrder="21">
+      <URL>ED6E9896C7E72BF6638AA5AE195BD5CA.png</URL>
+    </control>
+    <control controlID="E3834F1C-A448-4FE8-9E5C-001FEB713352" controlTypeID="Image" x="94" y="552" w="30" h="30" zOrder="22">
+      <URL>6444473E221A0B6EA679BCA42005CAEF.png</URL>
+    </control>
+    <control controlID="0AD5BC12-E8AA-41DD-9C95-F0ED4F8C38A7" controlTypeID="Image" x="256" y="555" w="25" h="25" zOrder="23">
+      <URL>88416ECB025425DA106C1643E21B734F.png</URL>
+    </control>
+  </controls>
+  <param>
+    <backgroundColor>4294967295</backgroundColor>
+    <fontSize>0</fontSize>
+    <fontFamily/>
+    <guideLines/>
+    <remark>%E8%83%8C%E6%99%AF%E4%B8%BAGIF%E5%8A%A8%E5%9B%BE%EF%BC%8C%E9%9C%80%E8%A6%81%E8%AE%BE%E8%AE%A1%E3%80%82%0D%0A%0D%0A%E4%B8%BB%E9%A2%98%E4%B8%BA%E8%AE%A9%E4%BA%BA%E6%84%9F%E5%8F%97%E5%88%B0%E5%AE%89%E5%AE%81%EF%BC%8C%E5%A6%82%EF%BC%9A%0D%0A%0D%0A%E7%AB%B9%E6%9E%97%E8%90%BD%E5%8F%B6%E5%B0%8F%E5%83%A7%E6%89%93%E5%9D%90%E3%80%81%0D%0A%0D%0A%E5%B1%B1%E6%B3%89%E6%B5%81%E6%B0%B4%E4%BD%9B%E5%85%89%E5%88%9D%E7%8E%B0%E3%80%81%0D%0A%0D%0A%E5%B1%B1%E4%B8%AD%E9%9A%90%E5%AF%BA%E7%83%9F%E9%9B%BE%E7%BC%AD%E7%BB%95%0D%0A%0D%0A%E7%AD%89%E7%AD%89%0D%0A%0D%0A%0D%0A%0D%0A%E7%99%BB%E5%BD%95%E6%96%B9%E5%BC%8F%0D%0A%0D%0A%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81%0D%0A%0D%0A%E6%89%8B%E6%9C%BA%2F%E9%82%AE%E7%AE%B1%E9%AA%8C%E8%AF%81%E7%A0%81%0D%0A%0D%0A%0D%0A%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95%E6%88%90%E5%8A%9F%E5%90%8E%E5%BC%B9%E5%87%BA%E7%BB%91%E5%AE%9A%E6%89%8B%E6%9C%BA%2F%E9%82%AE%E7%AE%B1%E5%BC%B9%E7%AA%97%0D%0A</remark>
+  </param>
+</mockup>

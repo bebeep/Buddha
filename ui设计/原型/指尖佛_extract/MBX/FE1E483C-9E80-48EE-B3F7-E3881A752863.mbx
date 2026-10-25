@@ -1,0 +1,26 @@
+﻿<mockup version="5.3" minAllowVersion="5.3" ID="FE1E483C-9E80-48EE-B3F7-E3881A752863" platform="MtMobile" defaultW="375" defaultH="667" measureW="375" measureH="680" screenOrientation="MoPortrait" mobileScreenScale="1.77777779102325" clipArea="(0,0,375,680)">
+  <controls controlCount="4">
+    <control controlID="11A0C28B-BDB4-424D-817C-A5C1B8D38E9B" controlTypeID="Image" x="-2" y="0" w="377" h="682" zOrder="0">
+      <URL>CEA1747F820EDD28091CD0A92E8C2D38.png</URL>
+    </control>
+    <control controlID="DAEF5E98-DB5E-470E-953C-DD11D71F66E9" controlTypeID="Image" x="10" y="10" w="40" h="40" zOrder="1">
+      <URL>BA3016F024C738C0822EC6D781D7D22D.png</URL>
+    </control>
+    <control controlID="B907756B-014D-4DE3-A717-AA5E03399A1F" controlTypeID="Label" x="172" y="21" w="28" h="18" zOrder="2">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E5%AF%BA%E5%BA%99</text>
+      <lineSpacing>0</lineSpacing>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="4A418DC6-A726-42B9-9EA5-A065A61526C3" controlTypeID="Image" x="325" y="10" w="40" h="40" zOrder="3">
+      <URL>FD880A4D79BB8A7ED85A7DC18471E2BE.png</URL>
+    </control>
+  </controls>
+  <param>
+    <backgroundColor>4294967295</backgroundColor>
+    <fontSize>0</fontSize>
+    <fontFamily/>
+    <guideLines/>
+    <remark>https%3A%2F%2Fgithub.com%2Fbebeep%2FRowingView%0D%0A%0D%0A%0D%0A%E5%88%97%E8%A1%A8%E5%8F%AA%E6%8F%90%E4%BE%9B%E5%AF%BA%E5%BA%99%E5%90%8D%E7%A7%B0%E3%80%81%E5%8D%A1%E9%80%9A%E5%9B%BE%E3%80%81%E8%B7%9D%E7%A6%BB%E3%80%82</remark>
+  </param>
+</mockup>

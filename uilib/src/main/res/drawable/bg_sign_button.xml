@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 立即签到按钮：橙色圆角，按下变深 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#E58B1F" />
+            <corners android:radius="26dp" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#FFA030" />
+            <corners android:radius="26dp" />
+        </shape>
+    </item>
+</selector>

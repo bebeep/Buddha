@@ -1,0 +1,398 @@
+﻿<mockup version="5.3" minAllowVersion="5.3" ID="D55119B4-A37F-4A8C-99E8-2BA983958485" platform="MtMobile" defaultW="375" defaultH="667" measureW="375" measureH="667" screenOrientation="MoPortrait" mobileScreenScale="1.77777779102325">
+  <controls controlCount="48">
+    <control controlID="E42C1042-DCDF-4D7E-9964-538E635E3D16" controlTypeID="Image" x="0" y="0" w="375" h="220" zOrder="0">
+      <URL>E47150CD661E5C59FA78327F298B217E.png</URL>
+    </control>
+    <control controlID="F0D76DB0-B52F-4894-A9EA-B2C3287CFB71" controlTypeID="Image" x="10" y="9" w="25" h="25" zOrder="1">
+      <URL>98A872D87D17CA4171C7C0595BDBCD2E.png</URL>
+    </control>
+    <control controlID="8732B468-98AA-4B5D-A88F-A26AB98D8958" controlTypeID="Label" x="40" y="152" w="64" h="21" zOrder="2">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E6%88%91%E7%9A%84%E6%84%BF%E6%9C%9B</text>
+      <textColor>4294967295</textColor>
+      <textSize>16</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="41CD1C1B-9A66-4E28-A883-C35CA7C44479" controlTypeID="Shape" x="-1" y="230" w="60" h="24" zOrder="3">
+      <color>4293190884</color>
+      <borderVisible>False</borderVisible>
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E5%B7%B2%E8%BF%98%E6%84%BF</text>
+      <textColor>4284900966</textColor>
+      <textSize>11</textSize>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+      <radius>2</radius>
+    </control>
+    <control controlID="19525F7E-E3CC-49D5-AD04-076777BAA8F2" controlTypeID="TextArea" x="14" y="259" w="344" h="43" zOrder="4">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E4%BB%A5%E6%88%91%E4%BD%9B%E6%85%88%E6%82%B2%EF%BC%8C%E7%A5%88%E5%A4%A9%E4%B8%8B%E8%8B%8D%E7%94%9F%E5%B9%B8%E7%A6%8F%E5%AE%89%E5%BA%B7%EF%BC%8C%E6%97%A0%E7%81%BE%E6%97%A0%E7%96%BE%EF%BC%8C%E5%A4%9A%E7%A6%8F%E5%A4%9A%E5%AF%BF%EF%BC%8C%E9%98%BF%E5%BC%A5%E9%99%80%E4%BD%9B%E3%80%82</text>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="B5487E47-DCDB-4CB1-9468-BEA175E02C79" controlTypeID="Label" x="334" y="234" w="24" h="16" zOrder="5">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E5%88%9A%E5%88%9A</text>
+      <textColor>4291085174</textColor>
+      <textSize>12</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="B92CB885-4834-47C5-8565-EA8DA299FE15" controlTypeID="Label" x="14" y="305" w="33" h="14" zOrder="6">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E5%91%A8%E6%98%9F%E9%A9%B0</text>
+      <textColor>4281571839</textColor>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="85BF2A1F-4AC2-4F10-8650-79371C4A374E" controlTypeID="Label" x="50" y="305" w="11" h="14" zOrder="7">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E3%80%81</text>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="C8BAD19E-CD22-41BE-A2B5-2F54B1A4BDB6" controlTypeID="Label" x="57" y="305" w="33" h="14" zOrder="8">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E6%A2%81%E6%9C%9D%E4%BC%9F</text>
+      <textColor>4281571839</textColor>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="CB78415F-DD4F-47E3-97C2-36C845B69F34" controlTypeID="Label" x="93" y="305" w="11" h="14" zOrder="9">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E3%80%81</text>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="3EF5125E-3E21-471F-B853-3DF5D94F8AE6" controlTypeID="Label" x="100" y="305" w="33" h="14" zOrder="10">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E7%8E%8B%E7%A5%96%E8%B4%A4</text>
+      <textColor>4281571839</textColor>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="E9D7A148-B02F-49F1-B1DD-3737DB97E2DB" controlTypeID="Label" x="136" y="305" w="11" h="14" zOrder="11">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E3%80%81</text>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="03F3C85F-EC43-42B6-BBBE-034CB6FB517F" controlTypeID="Label" x="143" y="305" w="33" h="14" zOrder="12">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E5%88%98%E5%BE%B7%E5%8D%8E</text>
+      <textColor>4281571839</textColor>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="BAA60D21-6034-457F-89AC-D75CADCB7CAA" controlTypeID="Label" x="179" y="305" w="11" h="14" zOrder="13">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E3%80%81</text>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="62756DA7-0C9E-42FB-920C-1FF17A96DC2E" controlTypeID="Label" x="186" y="305" w="33" h="14" zOrder="14">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E5%90%B4%E5%BD%A6%E7%A5%96</text>
+      <textColor>4281571839</textColor>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="C9D3D470-91F9-4B69-A7BB-082AF92BE23C" controlTypeID="Label" x="222" y="305" w="33" h="14" zOrder="15">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E5%B7%B2%E7%A5%9D%E6%84%BF</text>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="8BBD6F6E-36EA-4BC8-B784-59D6AB1AA93D" controlTypeID="HRule" x="13" y="324" w="362" h="12" zOrder="16">
+      <color>4291611852</color>
+      <thickness>1</thickness>
+    </control>
+    <control controlID="3E8C7B0E-A63A-4677-864E-3CB0CC254D16" controlTypeID="Shape" x="-1" y="343" w="58" h="24" zOrder="17">
+      <color>4209751400</color>
+      <borderVisible>False</borderVisible>
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>+%E8%BF%98%E6%84%BF</text>
+      <textColor>4294967295</textColor>
+      <textSize>11</textSize>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+      <radius>2</radius>
+    </control>
+    <control controlID="D5533341-098A-4260-B607-4776ACD4CD90" controlTypeID="TextArea" x="14" y="372" w="344" h="43" zOrder="18">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E4%BB%A5%E6%88%91%E4%BD%9B%E6%85%88%E6%82%B2%EF%BC%8C%E7%A5%88%E5%A4%A9%E4%B8%8B%E8%8B%8D%E7%94%9F%E5%B9%B8%E7%A6%8F%E5%AE%89%E5%BA%B7%EF%BC%8C%E6%97%A0%E7%81%BE%E6%97%A0%E7%96%BE%EF%BC%8C%E5%A4%9A%E7%A6%8F%E5%A4%9A%E5%AF%BF%EF%BC%8C%E9%98%BF%E5%BC%A5%E9%99%80%E4%BD%9B%E3%80%82</text>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="46A29070-B939-435E-B76D-F5A086232527" controlTypeID="Label" x="309" y="345" w="49" h="17" zOrder="19">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>12%E5%B0%8F%E6%97%B6%E5%89%8D</text>
+      <textColor>4291085174</textColor>
+      <textSize>12</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="6D87F4FE-7B20-40D3-A03A-650B13FA60F9" controlTypeID="Label" x="14" y="418" w="33" h="14" zOrder="20">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E5%91%A8%E6%98%9F%E9%A9%B0</text>
+      <textColor>4281571839</textColor>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="D5BCE79A-110B-4CCB-A76F-30881725BF22" controlTypeID="Label" x="50" y="418" w="11" h="14" zOrder="21">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E3%80%81</text>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="46FDC2FB-350D-4295-94DD-B183A6263868" controlTypeID="Label" x="57" y="418" w="33" h="14" zOrder="22">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E6%A2%81%E6%9C%9D%E4%BC%9F</text>
+      <textColor>4281571839</textColor>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="FB40CF0A-0D57-4CB9-ADF2-6491C693C42A" controlTypeID="Label" x="93" y="418" w="11" h="14" zOrder="23">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E3%80%81</text>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="3684A1CF-42C1-458E-B172-EC4ACFBD8176" controlTypeID="Label" x="100" y="418" w="33" h="14" zOrder="24">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E7%8E%8B%E7%A5%96%E8%B4%A4</text>
+      <textColor>4281571839</textColor>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="FC367A3A-0C5D-45C2-B4D9-2CE77D72D82B" controlTypeID="Label" x="136" y="418" w="11" h="14" zOrder="25">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E3%80%81</text>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="D7BB9BF3-1AB3-4476-85F0-39D93B900563" controlTypeID="Label" x="143" y="418" w="33" h="14" zOrder="26">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E5%88%98%E5%BE%B7%E5%8D%8E</text>
+      <textColor>4281571839</textColor>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="96FBAC8C-E612-40F4-9674-C69822D77043" controlTypeID="Label" x="179" y="418" w="11" h="14" zOrder="27">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E3%80%81</text>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="2D3237C8-5564-45BA-9C56-77E5EC188893" controlTypeID="Label" x="186" y="418" w="33" h="14" zOrder="28">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E5%90%B4%E5%BD%A6%E7%A5%96</text>
+      <textColor>4281571839</textColor>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="06F652A2-DF53-41EF-A98D-4AF6A9A836FB" controlTypeID="Label" x="222" y="418" w="33" h="14" zOrder="29">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E5%B7%B2%E7%A5%9D%E6%84%BF</text>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="CC8B3D34-F660-4FEE-AF63-80BC13BCA7CD" controlTypeID="HRule" x="13" y="433" w="362" h="12" zOrder="30">
+      <color>4291611852</color>
+      <thickness>1</thickness>
+    </control>
+    <control controlID="6BA91F6B-93A4-4BFC-B0A6-0AF4040EF486" controlTypeID="Label" x="69" y="234" w="48" h="14" zOrder="31">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E4%BF%AE%E8%A1%8C%E5%80%BC%2B25</text>
+      <textColor>4284900966</textColor>
+      <textSize>10</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="DEFA3676-06B3-4097-9B3E-441DB3FA95F2" controlTypeID="Label" x="69" y="347" w="48" h="14" zOrder="32">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E4%BF%AE%E8%A1%8C%E5%80%BC%2B15</text>
+      <textColor>4284900966</textColor>
+      <textSize>10</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="13011F4E-711E-40A1-83C2-2C5FAA3BB888" controlTypeID="Shape" x="-1" y="447" w="144" h="24" zOrder="33">
+      <color>4209751400</color>
+      <borderVisible>False</borderVisible>
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>7%E5%B0%8F%E6%97%B659%E5%88%8656%E7%A7%92%E5%90%8E+%E5%8F%AF%E8%BF%98%E6%84%BF</text>
+      <textColor>4294967295</textColor>
+      <textSize>11</textSize>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+      <radius>2</radius>
+    </control>
+    <control controlID="A78F61BC-7E28-4FA1-9B8F-9B5B829E7A9B" controlTypeID="TextArea" x="14" y="476" w="344" h="43" zOrder="34">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E4%BB%A5%E6%88%91%E4%BD%9B%E6%85%88%E6%82%B2%EF%BC%8C%E7%A5%88%E5%A4%A9%E4%B8%8B%E8%8B%8D%E7%94%9F%E5%B9%B8%E7%A6%8F%E5%AE%89%E5%BA%B7%EF%BC%8C%E6%97%A0%E7%81%BE%E6%97%A0%E7%96%BE%EF%BC%8C%E5%A4%9A%E7%A6%8F%E5%A4%9A%E5%AF%BF%EF%BC%8C%E9%98%BF%E5%BC%A5%E9%99%80%E4%BD%9B%E3%80%82</text>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="B6DAA29E-6BFF-40AE-BBF0-5E2D35BBCF7F" controlTypeID="Label" x="309" y="449" w="49" h="17" zOrder="35">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>12%E5%B0%8F%E6%97%B6%E5%89%8D</text>
+      <textColor>4291085174</textColor>
+      <textSize>12</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="02FCA896-9EFC-4AE5-AB7E-98F4B9AEF67A" controlTypeID="Label" x="14" y="522" w="33" h="14" zOrder="36">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E5%91%A8%E6%98%9F%E9%A9%B0</text>
+      <textColor>4281571839</textColor>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="6D069E1B-36DF-46D2-888C-EFAD774BE46D" controlTypeID="Label" x="50" y="522" w="11" h="14" zOrder="37">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E3%80%81</text>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="63D81933-4891-4CF2-BAAA-EC1ACAA5A7CE" controlTypeID="Label" x="57" y="522" w="33" h="14" zOrder="38">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E6%A2%81%E6%9C%9D%E4%BC%9F</text>
+      <textColor>4281571839</textColor>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="438B95F0-4F83-4749-BC67-519B261857DF" controlTypeID="Label" x="93" y="522" w="11" h="14" zOrder="39">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E3%80%81</text>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="3065C244-41C2-4522-B944-8E1DD265B025" controlTypeID="Label" x="100" y="522" w="33" h="14" zOrder="40">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E7%8E%8B%E7%A5%96%E8%B4%A4</text>
+      <textColor>4281571839</textColor>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="E4A81C70-8FD7-4DED-8EB5-A601793B0991" controlTypeID="Label" x="136" y="522" w="11" h="14" zOrder="41">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E3%80%81</text>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="4A44F901-7BE9-498C-9D02-28B499CE2030" controlTypeID="Label" x="143" y="522" w="33" h="14" zOrder="42">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E5%88%98%E5%BE%B7%E5%8D%8E</text>
+      <textColor>4281571839</textColor>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="FF060291-6DEE-4B59-82C9-E89C959D88CF" controlTypeID="Label" x="179" y="522" w="11" h="14" zOrder="43">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E3%80%81</text>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="B5A7BDA0-B7E7-4295-9BA9-167BA1C437D3" controlTypeID="Label" x="186" y="522" w="33" h="14" zOrder="44">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E5%90%B4%E5%BD%A6%E7%A5%96</text>
+      <textColor>4281571839</textColor>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="1384A453-1FAB-41A4-BEE0-FAFB6EF67CA0" controlTypeID="Label" x="222" y="522" w="33" h="14" zOrder="45">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E5%B7%B2%E7%A5%9D%E6%84%BF</text>
+      <textSize>11</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="E4264D78-9EB6-4D4D-9580-29B8BE940495" controlTypeID="HRule" x="13" y="537" w="362" h="12" zOrder="46">
+      <color>4291611852</color>
+      <thickness>1</thickness>
+    </control>
+    <control controlID="08E8BB75-2689-4FC5-BCCC-2DB0444BE364" controlTypeID="Label" x="148" y="452" w="48" h="14" zOrder="47">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E4%BF%AE%E8%A1%8C%E5%80%BC%2B15</text>
+      <textColor>4284900966</textColor>
+      <textSize>10</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+  </controls>
+  <param>
+    <backgroundColor>4294967295</backgroundColor>
+    <fontSize>0</fontSize>
+    <fontFamily/>
+    <guideLines/>
+    <remark>%E8%87%AA%E5%B7%B1%E5%8F%91%E5%B8%83%E7%9A%84%E8%AE%B8%E6%84%BF%E8%AE%B0%E5%BD%95%E3%80%82%0D%0A%0D%0A%0D%0A%E6%8C%89%E6%97%B6%E9%97%B4%E6%8E%92%E5%BA%8F%E3%80%82</remark>
+  </param>
+</mockup>

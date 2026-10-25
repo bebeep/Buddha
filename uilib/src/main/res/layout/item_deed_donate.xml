@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    行善捐赠记录 item：捐赠人 + 留言 + xN
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:paddingStart="2dp"
+    android:paddingTop="8dp"
+    android:paddingEnd="2dp"
+    android:paddingBottom="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#4A3413"
+            android:textSize="13sp"
+            tools:text="施慧" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#B08A4A"
+            android:textSize="11sp"
+            tools:text=" · 2022-02-02" />
+
+        <TextView
+            android:id="@+id/tv_coins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="#C87A2B"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            tools:text="x5" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:textColor="#8A6B3A"
+        android:textSize="12sp"
+        tools:text="祝佛友幸福安康" />
+</LinearLayout>

@@ -1,0 +1,29 @@
+﻿<mockup version="5.3" minAllowVersion="5.3" ID="CE791FDC-8CA5-4113-B1BE-030AF982438A" platform="MtMobile" defaultW="375" defaultH="667" measureW="375" measureH="667" screenOrientation="MoPortrait" mobileScreenScale="1.77777779102325" clipArea="(0,0,0,0)">
+  <controls controlCount="3">
+    <control controlID="0952925D-DF65-4DC6-8F3C-54482B91025F" controlTypeID="Image" x="10" y="10" w="40" h="40" zOrder="0">
+      <URL>BA3016F024C738C0822EC6D781D7D22D.png</URL>
+    </control>
+    <control controlID="D478A9E1-D8F6-479D-B5ED-32F4B7256457" controlTypeID="Label" x="167" y="21" w="42" h="18" zOrder="1">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E4%BF%AE%E5%BF%83%E5%BF%97</text>
+      <lineSpacing>0</lineSpacing>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="0353A782-1DC4-4A25-BB8C-A6EA5AFD2C53" controlTypeID="Line" x="0" y="54" w="376" h="1" zOrder="2">
+      <color>644245094</color>
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <textSize>14</textSize>
+      <lineSpacing>0</lineSpacing>
+      <selectedIndex>-1</selectedIndex>
+      <controlPoint>(188,0)</controlPoint>
+      <startPoint>(0,0)</startPoint>
+      <endPoint>(376,0)</endPoint>
+    </control>
+  </controls>
+  <param>
+    <backgroundColor>4294967295</backgroundColor>
+    <fontSize>0</fontSize>
+    <fontFamily/>
+    <guideLines/>
+  </param>
+</mockup>

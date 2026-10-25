@@ -1,0 +1,37 @@
+﻿<mockup version="5.3" minAllowVersion="5.3" ID="6C07BC64-E8AC-46CF-A5BC-1D02331BE871" platform="MtMobile" defaultW="375" defaultH="667" measureW="375" measureH="667" screenOrientation="MoPortrait" mobileScreenScale="1.77777779102325">
+  <controls controlCount="6">
+    <control controlID="B97086C6-827A-4AFC-9316-B767B932E83C" controlTypeID="Image" x="0" y="407" w="377" h="260" zOrder="0">
+      <URL>9547E5ABACB2EFF235BEFD97A9DE214A.png</URL>
+    </control>
+    <control controlID="5C57A6F1-0C8E-49D5-B98D-873A48B6593D" controlTypeID="Image" x="128" y="179" w="120" h="228" zOrder="1">
+      <URL>9E508B9E8F1F66D382B752F74AF947E4.jpg</URL>
+    </control>
+    <control controlID="80217D73-DBE1-4EDD-8D56-C535BF68B79B" controlTypeID="TextArea" x="180" y="227" w="17" h="157" zOrder="2">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>X%0D%0AX%0D%0A%E8%80%81%0D%0A%E5%A4%A7%0D%0A%E4%BA%BA%0D%0A%E4%B9%8B%0D%0A%E4%BD%8D</text>
+      <textColor>4294940928</textColor>
+      <textAlign>HaCenter</textAlign>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="4FC9C54E-A25B-45D3-82F2-295CFC468E68" controlTypeID="Image" x="10" y="10" w="40" h="40" zOrder="3">
+      <URL>BA3016F024C738C0822EC6D781D7D22D.png</URL>
+    </control>
+    <control controlID="63451BD0-3E61-48FD-A98A-600009E3E4C7" controlTypeID="Button" x="128" y="620" w="125" h="37" zOrder="4">
+      <caption>menu%E4%BF%AE%E8%A1%8C</caption>
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E7%A5%AD%E6%8B%9C</text>
+      <lineSpacing>0</lineSpacing>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="66BD2EBD-F68A-41E8-9259-9B0ED143177A" controlTypeID="Image" x="345" y="20" w="20" h="20" zOrder="5">
+      <URL>EF63E78415B479830B7C97645C9338AE.png</URL>
+    </control>
+  </controls>
+  <param>
+    <backgroundColor>4294967295</backgroundColor>
+    <fontSize>0</fontSize>
+    <fontFamily/>
+    <guideLines/>
+    <remark>%E8%83%8C%E6%99%AF%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%BE%E7%BD%AE%EF%BC%9A%0D%0A1%E3%80%81%E7%B3%BB%E7%BB%9F%E8%87%AA%E5%B8%A6%E8%83%8C%E6%99%AF%EF%BC%9B%0D%0A2%E3%80%81%E7%94%A8%E6%88%B7%E8%87%AA%E8%A1%8C%E4%B8%8A%E4%BC%A0%E3%80%82%0D%0A%0D%0A%E9%95%BF%E6%98%8E%E7%81%AF%0D%0A%0D%0A%E7%82%B9%E5%87%BB%E9%BB%91%E7%99%BD%E5%A4%B4%E5%83%8F%E5%8F%AF%E4%BB%A5%E8%BF%9B%E5%85%A5%E9%80%9D%E8%80%85%E7%9A%84%E7%94%9F%E5%B9%B3%E4%BB%8B%E7%BB%8D%0D%0A%0D%0A%0D%0A%E7%82%B9%E5%87%BB%E7%A5%AD%E6%8B%9C%E5%B1%95%E7%A4%BA%E7%A5%AD%E6%8B%9C%E5%8A%A8%E7%94%BB%0D%0A%0D%0A</remark>
+  </param>
+</mockup>

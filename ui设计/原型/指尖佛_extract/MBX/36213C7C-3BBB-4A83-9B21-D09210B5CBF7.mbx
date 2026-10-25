@@ -1,0 +1,23 @@
+﻿<mockup version="5.3" minAllowVersion="5.3" ID="36213C7C-3BBB-4A83-9B21-D09210B5CBF7" platform="MtMobile" defaultW="375" defaultH="667" measureW="375" measureH="667" screenOrientation="MoPortrait" mobileScreenScale="1.77777779102325">
+  <controls controlCount="3">
+    <control controlID="60EC02BA-424E-4403-B1A5-E2887F40051C" controlTypeID="Image" x="10" y="9" w="25" h="25" zOrder="0">
+      <URL>98A872D87D17CA4171C7C0595BDBCD2E.png</URL>
+    </control>
+    <control controlID="C1C10F51-ED9C-4962-B032-B5D973A87118" controlTypeID="HRule" x="0" y="40" w="375" h="12" zOrder="1">
+      <color>4291611852</color>
+      <thickness>1</thickness>
+    </control>
+    <control controlID="5F5E8E0D-BEF2-4E36-9133-0B7F8961C148" controlTypeID="Label" x="130" y="12" w="56" h="18" zOrder="2">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E5%8D%95%E8%A1%8C%E6%96%87%E5%AD%97</text>
+      <lineSpacing>0</lineSpacing>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+  </controls>
+  <param>
+    <backgroundColor>4294967295</backgroundColor>
+    <fontSize>0</fontSize>
+    <fontFamily/>
+    <guideLines/>
+  </param>
+</mockup>

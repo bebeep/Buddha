@@ -1,0 +1,14 @@
+﻿<mockup version="5.3" minAllowVersion="5.3" ID="474C6E52-A285-4BBE-B317-D81E01B2E841" platform="MtMobile" defaultW="375" defaultH="667" measureW="375" measureH="667" screenOrientation="MoPortrait" mobileScreenScale="1.77777779102325">
+  <controls controlCount="1">
+    <control controlID="E8F7BD52-8B28-4C85-AFE0-59A385D6274C" controlTypeID="Image" x="-5" y="-1" w="380" h="668" zOrder="0">
+      <URL>0644D07A249A3027871C639036C79113.png</URL>
+    </control>
+  </controls>
+  <param>
+    <backgroundColor>4294967295</backgroundColor>
+    <fontSize>0</fontSize>
+    <fontFamily/>
+    <guideLines/>
+    <remark>%E6%8B%9C%E4%BD%9B%E5%8A%A8%E4%BD%9C%0D%0A%0D%0A%0D%0A%E6%8B%9C%E4%BD%9B%E5%8A%A8%E4%BD%9C%E4%B8%BA%E4%B8%80%E7%BB%84svga%E5%8A%A8%E7%94%BB%EF%BC%8C%E6%AF%8F%E6%AC%A1%E6%8B%9C%E4%BD%9B%E5%B0%86%E9%9A%8F%E6%9C%BA%E9%80%89%E4%B8%80%E4%B8%AA%E5%8A%A8%E7%94%BB%E6%92%AD%E6%94%BE%EF%BC%8C%E6%AF%8F%E7%A7%8D%E5%8A%A8%E7%94%BB%E5%A4%A7%E6%A6%82%E6%8C%81%E7%BB%AD5%E7%A7%92%0D%0A%0D%0A%E6%AF%8F%E5%A4%A9%E9%A6%96%E6%AC%A1%E6%8B%9C%E4%BD%9B%E5%A2%9E%E5%8A%A0%E4%BF%AE%E8%A1%8C%E5%80%BC20%0D%0A%0D%0A%E2%80%9C%E9%A6%96%E6%8B%9C%E2%80%9D</remark>
+  </param>
+</mockup>

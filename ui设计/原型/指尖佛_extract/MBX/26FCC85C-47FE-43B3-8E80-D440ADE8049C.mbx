@@ -1,0 +1,30 @@
+﻿<mockup version="5.3" minAllowVersion="5.3" ID="26FCC85C-47FE-43B3-8E80-D440ADE8049C" platform="MtMobile" defaultW="375" defaultH="667" measureW="375" measureH="667" screenOrientation="MoPortrait" mobileScreenScale="1.77777779102325">
+  <controls controlCount="5">
+    <control controlID="E8F7BD52-8B28-4C85-AFE0-59A385D6274C" controlTypeID="Image" x="-5" y="-1" w="380" h="668" zOrder="0">
+      <URL>0644D07A249A3027871C639036C79113.png</URL>
+    </control>
+    <control controlID="F198606F-13CE-4381-9460-EAE628F4C36B" controlTypeID="Image" x="83" y="597" w="40" h="40" zOrder="1">
+      <URL>750A9E26947C09372E6C7EB99095C0F9.png</URL>
+    </control>
+    <control controlID="C38C8CD4-B270-415D-AD24-5CA99D85E0C9" controlTypeID="Image" x="247" y="597" w="40" h="40" zOrder="2">
+      <URL>91ED44CD80FFEAF688EE1816ECDC4C92.png</URL>
+    </control>
+    <control controlID="702DC9EB-123E-48E2-A385-316533CBAEA1" controlTypeID="Image" x="165" y="597" w="40" h="40" zOrder="3">
+      <URL>A8F503613493EDE95D8C3DB2F61D2CB5.png</URL>
+    </control>
+    <control controlID="2262C8B1-6F20-4A1E-8C78-407C738BCD84" controlTypeID="Label" x="132" y="525" w="112" h="18" zOrder="4">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E7%82%B9%E5%87%BB%E5%B1%8F%E5%B9%95%E5%BC%80%E5%A7%8B%E6%8B%9C%E4%BD%9B</text>
+      <textColor>4281571839</textColor>
+      <lineSpacing>0</lineSpacing>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+  </controls>
+  <param>
+    <backgroundColor>4294967295</backgroundColor>
+    <fontSize>0</fontSize>
+    <fontFamily/>
+    <guideLines/>
+    <remark>%E6%8B%9C%E4%BD%9B%E5%8A%A8%E4%BD%9C+-+%E6%8C%81%E7%BB%AD5%E7%A7%92%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%E7%BB%99%E5%87%BA%E5%BC%95%E5%AF%BC%E6%96%87%E5%AD%97%0D%0A%E8%AE%A9%E7%94%A8%E6%88%B7%E4%B8%8E%E7%95%8C%E9%9D%A2%E4%B8%AD%E4%BA%BA%E7%89%A9%E5%8A%A8%E4%BD%9C%E4%B8%80%E8%87%B4%0D%0A%0D%0A%E7%A4%BA%E4%BE%8B%E5%8A%A8%E7%94%BB%E5%85%A5%E5%8F%A3%0D%0A%0D%0A</remark>
+  </param>
+</mockup>

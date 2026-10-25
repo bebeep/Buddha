@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    编辑祈福弹窗，对应原型「祈福-编辑祈福」：
+    内容输入(0/20)、推荐标签、祈福卡封面选择（默认免费/付费5功德币）、开始祈福
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_wish_card"
+    android:orientation="vertical"
+    android:padding="18dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="编辑祈福内容..."
+        android:textColor="#8A6B3A"
+        android:textSize="13sp" />
+
+    <EditText
+        android:id="@+id/et_praying_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@null"
+        android:gravity="top"
+        android:hint="写下你的祈福，为亲友为众生"
+        android:maxLength="20"
+        android:minLines="2"
+        android:textColor="#4A3413"
+        android:textColorHint="#C0A878"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/tv_content_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:text="0/20"
+        android:textColor="#B08A4A"
+        android:textSize="12sp" />
+
+    <!-- 推荐标签，代码动态填充 -->
+    <LinearLayout
+        android:id="@+id/ll_tags"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:orientation="horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="祈福卡"
+        android:textColor="#4A3413"
+        android:textSize="14sp" />
+
+    <!-- 封面选择：默认 + 祈福卡(5功德币) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_cover_default"
+            android:layout_width="88dp"
+            android:layout_height="56dp"
+            android:background="@drawable/bg_praying_cover_selected"
+            android:gravity="center"
+            android:text="默认"
+            android:textColor="#6B4A17"
+            android:textSize="13sp" />
+
+        <LinearLayout
+            android:layout_width="88dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/bg_praying_cover_normal"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="祈福卡"
+                android:textColor="#C87A2B"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5功德币"
+                android:textColor="#B08A4A"
+                android:textSize="10sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_submit"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_sign_button"
+        android:gravity="center"
+        android:text="开始祈福"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+</LinearLayout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    祈福规则弹窗
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_wish_card"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="祈福规则"
+        android:textColor="#4A3413"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:lineSpacingExtra="5dp"
+        android:text="1、点击福卡可查看详情并为他人祝福，每日可祝福5次，每次祝福可获得5点修行值。\n\n2、点击右下角「祈」发布自己的福卡，内容限20字；他人可查看并祝福你的福卡。\n\n3、默认封面免费；选择「祈福卡」付费封面将消耗5功德币，使用了封面的福卡会优先显示。\n\n4、请勿发布违反法律法规的内容，违规福卡将被隐藏。"
+        android:textColor="#6B4A17"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/tv_close"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_sign_button"
+        android:gravity="center"
+        android:text="我知道了"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+</LinearLayout>

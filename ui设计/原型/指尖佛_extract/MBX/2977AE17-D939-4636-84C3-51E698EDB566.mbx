@@ -1,0 +1,87 @@
+﻿<mockup version="5.3" minAllowVersion="5.3" ID="2977AE17-D939-4636-84C3-51E698EDB566" platform="MtMobile" defaultW="375" defaultH="667" measureW="375" measureH="667" screenOrientation="MoPortrait" mobileScreenScale="1.77777779102325" clipArea="(0,0,0,0)">
+  <controls controlCount="14">
+    <control controlID="91AEAD90-287C-4D9C-B8B7-506BAE92A1CE" controlTypeID="Image" x="22" y="201" w="333" h="301" zOrder="0">
+      <URL>B38A8FC2C68322087F1E829080EBBF07.png</URL>
+    </control>
+    <control controlID="FE69993F-8350-4B56-A35B-88314AAC8063" controlTypeID="Shape" x="0" y="0" w="375" h="667" zOrder="1">
+      <color>1640811724</color>
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <textSize>14</textSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="60F01CD3-0BA3-4931-82E0-674630B72BBE" controlTypeID="Shape" x="0" y="265" w="375" h="402" zOrder="2">
+      <color>4291741860</color>
+      <borderVisible>False</borderVisible>
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <textSize>14</textSize>
+      <selectedIndex>-1</selectedIndex>
+      <radius>4</radius>
+    </control>
+    <control controlID="28E30E1B-954E-4234-8C9E-A787AE8E3609" controlTypeID="Image" x="10" y="9" w="25" h="25" zOrder="3">
+      <URL>98A872D87D17CA4171C7C0595BDBCD2E.png</URL>
+    </control>
+    <control controlID="9D561FBC-56FE-46A4-9FA9-34289539DBF8" controlTypeID="Image" x="339" y="10" w="25" h="25" zOrder="4">
+      <URL>2C6694149FCEFCD5AAE534BCDB01168F.png</URL>
+    </control>
+    <control controlID="412E31C2-AF44-4AA5-8FB3-659BCF006CCB" controlTypeID="Image" x="147" y="466" w="90" h="90" zOrder="5"/>
+    <control controlID="6FE2F5FA-E327-4AE2-937E-07B02E1004CB" controlTypeID="Shape" x="159" y="296" w="66" h="4" zOrder="6">
+      <color>1810609512</color>
+      <borderVisible>False</borderVisible>
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <textSize>14</textSize>
+      <selectedIndex>-1</selectedIndex>
+      <radius>2</radius>
+    </control>
+    <control controlID="C28709DD-E1BD-43F0-8F81-C2B050FDDA62" controlTypeID="Label" x="100" y="427" w="176" h="19" zOrder="7">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%5B%E7%A5%9D%E7%A5%96%E5%9B%BD%E7%B9%81%E8%8D%A3%E6%98%8C%E7%9B%9B%E3%80%81%E6%97%A5%E7%9B%8A%E5%BC%BA%E5%A4%A7%5D</text>
+      <lineSpacing>0</lineSpacing>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="C456C4E8-16B8-4676-AFCB-304EFC55BA8F" controlTypeID="Image" x="128" y="326" w="40" h="40" zOrder="8">
+      <URL>6659F9ED9F9516B42188B441994A7884.png</URL>
+    </control>
+    <control controlID="0C62C94F-4875-42BE-BE84-FE0FB4E156ED" controlTypeID="Label" x="179" y="328" w="70" h="18" zOrder="9">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E6%B8%A9%E6%B1%9F%E5%88%98%E5%BE%B7%E5%8D%8E</text>
+      <lineSpacing>0</lineSpacing>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="67EA3DB9-FF90-4456-A25D-948305C27CFE" controlTypeID="Label" x="178" y="349" w="66" h="17" zOrder="10">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>lv1+%E4%BD%9B%E9%97%A8%E5%88%9D%E6%8E%A2</text>
+      <textColor>4284900966</textColor>
+      <textSize>12</textSize>
+      <lineSpacing>0</lineSpacing>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="E444F149-AFCB-4F80-80E0-8A23489FDB8E" controlTypeID="Shape" x="159" y="623" w="58" h="24" zOrder="11">
+      <color>4209751400</color>
+      <borderVisible>False</borderVisible>
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%E7%A5%9D%E6%84%BF</text>
+      <textColor>4294967295</textColor>
+      <textSize>11</textSize>
+      <useDefaultTextSize>False</useDefaultTextSize>
+      <selectedIndex>-1</selectedIndex>
+      <radius>2</radius>
+    </control>
+    <control controlID="AF5A95D3-85FE-49F1-B575-8EF74D795C90" controlTypeID="Image" x="141" y="459" w="99" h="148" zOrder="12">
+      <rotationAngle>TdOneHundredEighty</rotationAngle>
+      <URL>EB5FBF254ABC21984280EBBC910E26F6.jpg</URL>
+    </control>
+    <control controlID="13EDB536-B68E-4766-A807-377CA1D9EF38" controlTypeID="TextArea" x="20" y="71" w="317" h="95" zOrder="13">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%0D%0A%E5%8C%BF%E5%90%8D%E8%AE%B8%E6%84%BF%E5%8D%A1%EF%BC%9A%E7%82%B9%E5%87%BB%E5%90%8E%E6%97%8B%E8%BD%AC%E6%94%BE%E5%A4%A7%EF%BC%8C%E5%BC%B9%E5%87%BA%E5%BA%95%E9%83%A8%E5%BC%B9%E7%AA%97%0D%0A%E9%9D%9E%E5%8C%BF%E5%90%8D%E8%AE%B8%E6%84%BF%E5%8D%A1%EF%BC%9A%E7%82%B9%E5%87%BB%E5%90%8E%E6%94%BE%E5%A4%A7%EF%BC%8C%E5%BC%B9%E5%87%BA%E5%BA%95%E9%83%A8%E5%BC%B9%E7%AA%97%0D%0A%0D%0A%E7%82%B9%E5%87%BB%E2%80%9C%E7%A5%9D%E6%84%BF%E2%80%9D%E6%8C%89%E9%92%AE%E5%90%8E%EF%BC%8C%E5%BC%B9%E7%AA%97%E6%B8%90%E9%9A%90%0D%0A%0D%0A</text>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+  </controls>
+  <param>
+    <backgroundColor>4294967295</backgroundColor>
+    <fontSize>0</fontSize>
+    <fontFamily/>
+    <guideLines/>
+    <remark>%0D%0A%E5%8C%BF%E5%90%8D%E8%AE%B8%E6%84%BF%E5%8D%A1%EF%BC%9A%E7%82%B9%E5%87%BB%E5%90%8E%E6%97%8B%E8%BD%AC%E6%94%BE%E5%A4%A7%EF%BC%8C%E5%BC%B9%E5%87%BA%E5%BA%95%E9%83%A8%E5%BC%B9%E7%AA%97%0D%0A%E9%9D%9E%E5%8C%BF%E5%90%8D%E8%AE%B8%E6%84%BF%E5%8D%A1%EF%BC%9A%E7%82%B9%E5%87%BB%E5%90%8E%E6%94%BE%E5%A4%A7%EF%BC%8C%E5%BC%B9%E5%87%BA%E5%BA%95%E9%83%A8%E5%BC%B9%E7%AA%97%0D%0A%0D%0A%E7%82%B9%E5%87%BB%E2%80%9C%E7%A5%9D%E6%84%BF%E2%80%9D%E6%8C%89%E9%92%AE%E5%90%8E%EF%BC%8C%E5%BC%B9%E7%AA%97%E6%B8%90%E9%9A%90%0D%0A%0D%0A%0D%0A</remark>
+  </param>
+</mockup>

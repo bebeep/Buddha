@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    捐功德币弹窗（功德捐赠）：快捷金额 + 自定义
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_wish_card"
+    android:orientation="vertical"
+    android:padding="18dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="功德捐赠"
+        android:textColor="#4A3413"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_buddha_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:gravity="center"
+        android:textColor="#8A6B3A"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_amount_10"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_praying_cover_selected"
+            android:gravity="center"
+            android:text="10"
+            android:textColor="#C87A2B"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_amount_66"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_praying_cover_normal"
+            android:gravity="center"
+            android:text="66"
+            android:textColor="#8A6B3A"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_amount_888"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_praying_cover_normal"
+            android:gravity="center"
+            android:text="888"
+            android:textColor="#8A6B3A"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/et_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_wish_entry"
+        android:hint="自定义功德币数"
+        android:inputType="number"
+        android:padding="12dp"
+        android:textColor="#4A3413"
+        android:textColorHint="#C0A878"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_sign_button"
+        android:gravity="center"
+        android:text="诚心捐献"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+</LinearLayout>

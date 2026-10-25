@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    拆福卡详情弹窗，对应原型「祈福-拆福卡」：
+    福卡内容、N人已祝福、最近祝福者、祝福按钮
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_praying_dialog_card"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:lineSpacingExtra="8dp"
+            android:textColor="#6B4A17"
+            android:textSize="20sp"
+            app:zdyFont="bold" />
+
+        <TextView
+            android:id="@+id/tv_bless_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:textColor="#B08A4A"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_blessers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textColor="#C0A878"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_bless"
+        android:layout_width="160dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/bg_sign_button"
+        android:gravity="center"
+        android:text="祝福"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_bless_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="祝福一次可获得5点修行值"
+        android:textColor="#B08A4A"
+        android:textSize="11sp" />
+</LinearLayout>
