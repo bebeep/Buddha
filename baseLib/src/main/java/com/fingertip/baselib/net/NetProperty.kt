@@ -25,8 +25,8 @@ object NetProperty {
     /**
      * 测试服
      */
-    var TEST_URL            = "http://192.168.10.195:8888/buddha/"   //公司
-//    var TEST_URL            = "http://192.168.1.249:8888/buddha/"   //家里
+//    var TEST_URL            = "http://192.168.10.195:8888/buddha/"   //公司
+    var TEST_URL            = "http://192.168.1.249:8888/buddha/"   //家里
 //    var TEST_URL            = "https://soonturn.com/buddha"
 
     /**
@@ -274,4 +274,204 @@ object NetProperty {
      * 签到
      */
     const val SIGN_IN                                 = "account/signIn"
+
+    /**
+     * 获取月历（含整月签到状态与今日宜忌详情），仅限当前时间前后一年
+     */
+    const val GET_MONTH_CALENDAR                      = "account/getMonthCalendar"
+
+    /**
+     * 获取许愿文本示例
+     */
+    const val GET_WISHING_TAG                         = "wishingTree/getWishingTag"
+
+    /**
+     * 许愿
+     */
+    const val POST_WISHING                            = "wishingTree/postWishing"
+
+    /**
+     * 删除许愿
+     */
+    const val DELETE_WISHING                          = "wishingTree/deleteWishing"
+
+    /**
+     * 添加祝福
+     */
+    const val BLESS_WISHING                           = "wishingTree/blessWishing"
+
+    /**
+     * 设置愿望已读
+     */
+    const val READ_WISHING                            = "wishingTree/readWishing"
+
+    /**
+     * 获取许愿树信息
+     */
+    const val GET_WISHING_TREE                        = "wishingTree/getWishingTree"
+
+    /**
+     * 获取我的许愿记录
+     */
+    const val GET_MY_WISHING_RECORD                   = "wishingTree/getMyWishingRecord"
+
+    /**
+     * 获取我的祝福记录
+     */
+    const val GET_MY_BLESS_RECORD                     = "wishingTree/getMyBlessRecord"
+
+    /**
+     * 根据愿望id获取祝福记录
+     */
+    const val GET_BLESS_RECORD_BY_WISHING_ID          = "wishingTree/getBlessRecordByWishingId"
+
+    /**
+     * 福卡墙
+     */
+    const val GET_PRAYING_WALL                        = "blessing/getPrayingWall"
+
+    /**
+     * 所有祈福（分页）
+     */
+    const val GET_ALL_PRAYING_RECORD                  = "blessing/getAllPrayingRecord"
+
+    /**
+     * 我的祈福（分页）
+     */
+    const val GET_MY_PRAYING_RECORD                   = "blessing/getMyPrayingRecord"
+
+    /**
+     * 发布祈福
+     */
+    const val POST_PRAYING                            = "blessing/postPraying"
+
+    /**
+     * 删除祈福
+     */
+    const val DELETE_PRAYING                          = "blessing/deletePraying"
+
+    /**
+     * 祝福福卡
+     */
+    const val BLESS_PRAYING                           = "blessing/blessPraying"
+
+    /**
+     * 今日已祝福次数
+     */
+    const val GET_PRAYING_STATUS                      = "blessing/getPrayingStatus"
+
+    /**
+     * 善行列表（分页）
+     */
+    const val GET_GOOD_DEED_LIST                      = "goodDeed/getGoodDeedList"
+
+    /**
+     * 善行详情
+     */
+    const val GET_GOOD_DEED_INFO                      = "goodDeed/getGoodDeedInfo"
+
+    /**
+     * 发布求助
+     */
+    const val POST_GOOD_DEED                          = "goodDeed/postGoodDeed"
+
+    /**
+     * 删除求助
+     */
+    const val DELETE_GOOD_DEED                        = "goodDeed/deleteGoodDeed"
+
+    /**
+     * 捐赠功德币
+     */
+    const val DONATE_GOOD_DEED                        = "goodDeed/donateGoodDeed"
+
+    /**
+     * 分享助力
+     */
+    const val SHARE_GOOD_DEED                         = "goodDeed/shareGoodDeed"
+
+    /**
+     * 善行捐赠记录（分页）
+     */
+    const val GET_DEED_DONATE_RECORD                  = "goodDeed/getDeedDonateRecord"
+
+    /**
+     * 我发布的求助（分页）
+     */
+    const val GET_MY_DEED_RECORD                      = "goodDeed/getMyDeedRecord"
+
+    /**
+     * 我捐赠的善行（分页）
+     */
+    const val GET_MY_DONATE_DEED_RECORD               = "goodDeed/getMyDonateDeedRecord"
+
+    /**
+     * 寺庙列表（分页）
+     */
+    const val GET_TEMPLE_LIST                         = "temple/getTempleList"
+
+    /**
+     * 寺庙详情
+     */
+    const val GET_TEMPLE_INFO                         = "temple/getTempleInfo"
+
+    /**
+     * 提交推荐 1推荐 2不推荐
+     */
+    const val POST_RECOMMEND_STATUS                   = "temple/postRecommendStatus"
+
+    /**
+     * 发表寺庙评论
+     */
+    const val POST_TEMPLE_COMMENT                     = "temple/postComment"
+
+    /**
+     * 寺庙评论列表（分页）
+     */
+    const val GET_TEMPLE_COMMENT                      = "temple/getTempleComment"
+
+    /**
+     * 功德佛像列表
+     */
+    const val GET_DONATE_BUDDHA_LIST                  = "donate/getDonateBuddhaList"
+
+    /**
+     * 功德佛像详情
+     */
+    const val GET_DONATE_BUDDHA_DETAIL                = "donate/getDonateBuddhaDetail"
+
+    /**
+     * 功德捐赠
+     */
+    const val DONATE_BUDDHA                           = "donate/donateBuddha"
+
+    /**
+     * 功德捐赠记录
+     */
+    const val GET_DONATE_RECORD                       = "donate/getDonateRecord"
+
+    /**
+     * 福袋领取
+     */
+    const val GAIN_LUCKY_BAG                          = "donate/gainLuckyBag"
+
+    /**
+     * 获取用户信息
+     */
+    const val GET_USER_INFO                           = "account/getUserInfo"
+
+    /**
+     * 修改个人资料
+     */
+    const val MODIFY_PROFILE                          = "account/modifyProfile"
+
+    /**
+     * 关注
+     */
+    const val FOLLOW                                  = "account/follow"
+
+    /**
+     * 取消关注
+     */
+    const val UN_FOLLOW                               = "account/unFollow"
 }

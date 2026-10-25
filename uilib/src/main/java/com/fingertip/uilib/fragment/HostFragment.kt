@@ -3,6 +3,8 @@ package com.fingertip.uilib.fragment
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.fingertip.uilib.fragment.book.BuddhaTextsFragment
+import com.fingertip.uilib.fragment.blessing.BlessingFragment
+import com.fingertip.uilib.fragment.worshiping.DonateFragment
 import com.fingertip.baselib.bean.BannerEntity
 import com.fingertip.baselib.bean.HostMenu
 import com.fingertip.baselib.event_bus.MessageEvent
@@ -16,6 +18,8 @@ import com.fingertip.uilib.databinding.FragmentHostBinding
 import com.fingertip.uilib.dialog.SignInDialog
 import com.fingertip.uilib.fragment.game.FangShengFragment
 import com.fingertip.uilib.fragment.worshiping.GongFoFragment
+import com.fingertip.uilib.fragment.worshiping.SignInFragment
+import com.fingertip.uilib.fragment.wishing.WishTreeFragment
 import com.fingertip.uilib.viewmodel.SignInVM
 import com.youth.banner.Banner
 import org.greenrobot.eventbus.Subscribe
@@ -92,13 +96,13 @@ class HostFragment : TopVMFragment<SignInVM>() {
                     (parentFragment as? MainFragment)?.start(BuddhaTextsFragment())
                 }
                 2 -> {//功德
-
+                    (parentFragment as? MainFragment)?.start(DonateFragment())
                 }
                 3 -> {//祈福
-
+                    (parentFragment as? MainFragment)?.start(BlessingFragment())
                 }
                 4 -> {//许愿
-
+                    (parentFragment as? MainFragment)?.start(WishTreeFragment())
                 }
                 5 -> {//放生
                     (parentFragment as? MainFragment)?.start(FangShengFragment())
@@ -164,7 +168,7 @@ class HostFragment : TopVMFragment<SignInVM>() {
         when (v) {
             binding.tvSign -> {//签到
                 log(value = "签到")
-                showSignInDialog()
+                (parentFragment as? MainFragment)?.start(SignInFragment())
             }
             binding.ivBaifo -> {//拜佛
 

@@ -211,4 +211,31 @@ object RequestBodyFactory {
         param["showTrad"] = showTrad
         return buildJsonRequestBody(param)
     }
+
+    /**
+     * 许愿入参
+     */
+    fun wishBody(wishContent: String): RequestBody {
+        val param = HashMap<String, Any>()
+        param["wishContent"] = wishContent
+        return buildJsonRequestBody(param)
+    }
+
+    /**
+     * 送祝福入参
+     */
+    fun blessBody(wishingId: Int, blessContent: String): RequestBody {
+        val param = HashMap<String, Any>()
+        param["wishingId"] = wishingId
+        param["blessContent"] = blessContent
+        return buildJsonRequestBody(param)
+    }
+
+    /**
+     * 愿望已读入参。服务端 @RequestBody List<Integer>，要裸 JSON 数组，如 [1,2,3]
+     */
+    fun wishReadBody(wishingIds: List<Int>): RequestBody {
+        val mediaType = "application/json;charset=UTF-8".toMediaTypeOrNull()
+        return GsonUtils.toJson(wishingIds).toRequestBody(mediaType)
+    }
 }

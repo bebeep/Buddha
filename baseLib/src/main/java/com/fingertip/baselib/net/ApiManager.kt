@@ -13,6 +13,17 @@ import com.fingertip.baselib.bean.BuddhaConfig
 import com.fingertip.baselib.bean.CommentEntity
 import com.fingertip.baselib.bean.MomentEntity
 import com.fingertip.baselib.bean.OssConfig
+import com.fingertip.baselib.bean.CalendarSimpleRsp
+import com.fingertip.baselib.bean.BlessRecordBean
+import com.fingertip.baselib.bean.WishRecordBean
+import com.fingertip.baselib.bean.PrayingBean
+import com.fingertip.baselib.bean.DeedBean
+import com.fingertip.baselib.bean.DeedDonateBean
+import com.fingertip.baselib.bean.TempleBean
+import com.fingertip.baselib.bean.TempleCommentBean
+import com.fingertip.baselib.bean.DonateBuddhaBean
+import com.fingertip.baselib.bean.DonateRecordBean
+import com.fingertip.baselib.bean.LuckyBagBean
 import com.fingertip.baselib.bean.PersonData
 import com.fingertip.baselib.bean.RequestRsp
 import com.fingertip.baselib.bean.SignInData
@@ -438,4 +449,444 @@ interface ApiManager {
         @Url url: String = NetProperty.SIGN_IN,
         @Query("session") session: String = GlobalConfig.session
     ): RequestRsp<String>
+
+    /**
+     * 获取月历：整月格子（公历+农历+是否签到）与今日详情（佛历/干支/宜忌）
+     * year、month 不传默认当月，仅限当前时间前后一年
+     */
+    @GET()
+    suspend fun getMonthCalendar(
+        @Url url: String = NetProperty.GET_MONTH_CALENDAR,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("year") year: Int = 0,
+        @Query("month") month: Int = 0
+    ): RequestRsp<CalendarSimpleRsp>
+
+    /**
+     * 获取许愿文本示例
+     */
+    @GET()
+    suspend fun getWishingTag(
+        @Url url: String = NetProperty.GET_WISHING_TAG,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<List<String>>
+
+    /**
+     * 许愿
+     */
+    @POST()
+    suspend fun postWishing(
+        @Url url: String = NetProperty.POST_WISHING,
+        @Query("session") session: String = GlobalConfig.session,
+        @Body request: RequestBody
+    ): RequestRsp<String>
+
+    /**
+     * 删除许愿
+     */
+    @POST()
+    suspend fun deleteWishing(
+        @Url url: String = NetProperty.DELETE_WISHING,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("wishingId") wishingId: Int
+    ): RequestRsp<String>
+
+    /**
+     * 添加祝福
+     */
+    @POST()
+    suspend fun blessWishing(
+        @Url url: String = NetProperty.BLESS_WISHING,
+        @Query("session") session: String = GlobalConfig.session,
+        @Body request: RequestBody
+    ): RequestRsp<String>
+
+    /**
+     * 设置愿望已读，body 是裸 JSON 数组
+     */
+    @POST()
+    suspend fun readWishing(
+        @Url url: String = NetProperty.READ_WISHING,
+        @Query("session") session: String = GlobalConfig.session,
+        @Body request: RequestBody
+    ): RequestRsp<String>
+
+    /**
+     * 获取许愿树：随机 20 条近 90 天、近 30 天未看过的愿望
+     */
+    @GET()
+    suspend fun getWishingTree(
+        @Url url: String = NetProperty.GET_WISHING_TREE,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<List<WishRecordBean>>
+
+    /**
+     * 获取我的许愿记录，pageNum 从 0 开始
+     */
+    @GET()
+    suspend fun getMyWishingRecord(
+        @Url url: String = NetProperty.GET_MY_WISHING_RECORD,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("pageNum") pageNum: Int
+    ): RequestRsp<List<WishRecordBean>>
+
+    /**
+     * 获取我的祝福记录，pageNum 从 0 开始
+     */
+    @GET()
+    suspend fun getMyBlessRecord(
+        @Url url: String = NetProperty.GET_MY_BLESS_RECORD,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("pageNum") pageNum: Int
+    ): RequestRsp<List<BlessRecordBean>>
+
+    /**
+     * 根据愿望id获取祝福记录，pageNum 从 0 开始
+     */
+    @GET()
+    suspend fun getBlessRecordByWishingId(
+        @Url url: String = NetProperty.GET_BLESS_RECORD_BY_WISHING_ID,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("wishingId") wishingId: Int,
+        @Query("pageNum") pageNum: Int
+    ): RequestRsp<List<BlessRecordBean>>
+
+    //region 祈福
+
+    /**
+     * 福卡墙，随机20张
+     */
+    @GET()
+    suspend fun getPrayingWall(
+        @Url url: String = NetProperty.GET_PRAYING_WALL,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<List<PrayingBean>>
+
+    /**
+     * 所有祈福，pageNum 从 0 开始
+     */
+    @GET()
+    suspend fun getAllPrayingRecord(
+        @Url url: String = NetProperty.GET_ALL_PRAYING_RECORD,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("pageNum") pageNum: Int
+    ): RequestRsp<List<PrayingBean>>
+
+    /**
+     * 我的祈福，pageNum 从 0 开始
+     */
+    @GET()
+    suspend fun getMyPrayingRecord(
+        @Url url: String = NetProperty.GET_MY_PRAYING_RECORD,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("pageNum") pageNum: Int
+    ): RequestRsp<List<PrayingBean>>
+
+    /**
+     * 发布祈福，内容限20字；coverType>0 为付费封面，消耗5功德币
+     */
+    @POST()
+    suspend fun postPraying(
+        @Url url: String = NetProperty.POST_PRAYING,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("content") content: String,
+        @Query("coverType") coverType: Int = 0
+    ): RequestRsp<String>
+
+    /**
+     * 删除祈福
+     */
+    @POST()
+    suspend fun deletePraying(
+        @Url url: String = NetProperty.DELETE_PRAYING,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("prayingId") prayingId: Int
+    ): RequestRsp<String>
+
+    /**
+     * 祝福福卡，每日5次，每次得5修行值
+     */
+    @POST()
+    suspend fun blessPraying(
+        @Url url: String = NetProperty.BLESS_PRAYING,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("prayingId") prayingId: Int
+    ): RequestRsp<String>
+
+    /**
+     * 今日已祝福次数
+     */
+    @GET()
+    suspend fun getPrayingStatus(
+        @Url url: String = NetProperty.GET_PRAYING_STATUS,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<Int>
+
+    //endregion
+
+    //region 行善
+
+    /**
+     * 善行列表，currPage 从 0 开始；category 传空为全部
+     */
+    @GET()
+    suspend fun getGoodDeedList(
+        @Url url: String = NetProperty.GET_GOOD_DEED_LIST,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("currPage") currPage: Int,
+        @Query("category") category: String? = ""
+    ): RequestRsp<List<DeedBean>>
+
+    /**
+     * 善行详情（含我的捐赠统计）
+     */
+    @GET()
+    suspend fun getGoodDeedInfo(
+        @Url url: String = NetProperty.GET_GOOD_DEED_INFO,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("deedId") deedId: Int
+    ): RequestRsp<DeedBean>
+
+    /**
+     * 发布求助：标题限32字，目标功德币>0
+     */
+    @POST()
+    suspend fun postGoodDeed(
+        @Url url: String = NetProperty.POST_GOOD_DEED,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("title") title: String,
+        @Query("content") content: String,
+        @Query("category") category: String? = "",
+        @Query("isUrgent") isUrgent: Int = 0,
+        @Query("targetCoins") targetCoins: Int
+    ): RequestRsp<String>
+
+    /**
+     * 删除求助
+     */
+    @POST()
+    suspend fun deleteGoodDeed(
+        @Url url: String = NetProperty.DELETE_GOOD_DEED,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("deedId") deedId: Int
+    ): RequestRsp<String>
+
+    /**
+     * 行善捐赠功德币
+     */
+    @POST()
+    suspend fun donateGoodDeed(
+        @Url url: String = NetProperty.DONATE_GOOD_DEED,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("deedId") deedId: Int,
+        @Query("coins") coins: Int,
+        @Query("message") message: String? = null
+    ): RequestRsp<String>
+
+    /**
+     * 分享助力
+     */
+    @POST()
+    suspend fun shareGoodDeed(
+        @Url url: String = NetProperty.SHARE_GOOD_DEED,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("deedId") deedId: Int
+    ): RequestRsp<String>
+
+    /**
+     * 善行捐赠记录，pageNum 从 0 开始
+     */
+    @GET()
+    suspend fun getDeedDonateRecord(
+        @Url url: String = NetProperty.GET_DEED_DONATE_RECORD,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("deedId") deedId: Int,
+        @Query("pageNum") pageNum: Int
+    ): RequestRsp<List<DeedDonateBean>>
+
+    /**
+     * 我发布的求助，pageNum 从 0 开始
+     */
+    @GET()
+    suspend fun getMyDeedRecord(
+        @Url url: String = NetProperty.GET_MY_DEED_RECORD,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("pageNum") pageNum: Int
+    ): RequestRsp<List<DeedBean>>
+
+    /**
+     * 我捐赠的善行，pageNum 从 0 开始
+     */
+    @GET()
+    suspend fun getMyDonateDeedRecord(
+        @Url url: String = NetProperty.GET_MY_DONATE_DEED_RECORD,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("pageNum") pageNum: Int
+    ): RequestRsp<List<DeedBean>>
+
+    //endregion
+
+    //region 寺庙
+
+    /**
+     * 寺庙列表，currPage 从 0 开始；经纬度可不传（传0）
+     */
+    @GET()
+    suspend fun getTempleList(
+        @Url url: String = NetProperty.GET_TEMPLE_LIST,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("currPage") currPage: Int,
+        @Query("latitude") latitude: Float = 0f,
+        @Query("longitude") longitude: Float = 0f
+    ): RequestRsp<List<TempleBean>>
+
+    /**
+     * 寺庙详情
+     */
+    @GET()
+    suspend fun getTempleInfo(
+        @Url url: String = NetProperty.GET_TEMPLE_INFO,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("templeId") templeId: Int,
+        @Query("latitude") latitude: Float = 0f,
+        @Query("longitude") longitude: Float = 0f
+    ): RequestRsp<TempleBean>
+
+    /**
+     * 提交推荐，recommendStatus 1推荐 2不推荐
+     */
+    @POST()
+    suspend fun postRecommendStatus(
+        @Url url: String = NetProperty.POST_RECOMMEND_STATUS,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("templeId") templeId: Int,
+        @Query("recommendStatus") recommendStatus: Int
+    ): RequestRsp<String>
+
+    /**
+     * 发表寺庙评论
+     */
+    @POST()
+    suspend fun postTempleComment(
+        @Url url: String = NetProperty.POST_TEMPLE_COMMENT,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("templeId") templeId: Int,
+        @Query("comment") comment: String
+    ): RequestRsp<String>
+
+    /**
+     * 寺庙评论列表，pageNum 从 0 开始
+     */
+    @GET()
+    suspend fun getTempleComment(
+        @Url url: String = NetProperty.GET_TEMPLE_COMMENT,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("templeId") templeId: Int,
+        @Query("pageNum") pageNum: Int
+    ): RequestRsp<List<TempleCommentBean>>
+
+    //endregion
+
+    //region 功德捐赠
+
+    /**
+     * 功德佛像列表
+     */
+    @GET()
+    suspend fun getDonateBuddhaList(
+        @Url url: String = NetProperty.GET_DONATE_BUDDHA_LIST,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<List<DonateBuddhaBean>>
+
+    /**
+     * 功德佛像详情
+     */
+    @GET()
+    suspend fun getDonateBuddhaDetail(
+        @Url url: String = NetProperty.GET_DONATE_BUDDHA_DETAIL,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("buddhaId") buddhaId: Int
+    ): RequestRsp<DonateBuddhaBean>
+
+    /**
+     * 功德捐赠，返回最新账户信息
+     */
+    @POST()
+    suspend fun donateBuddha(
+        @Url url: String = NetProperty.DONATE_BUDDHA,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("buddhaId") buddhaId: Int,
+        @Query("coins") coins: Int
+    ): RequestRsp<PersonData>
+
+    /**
+     * 功德捐赠记录，buddhaId 传0获取所有记录，pageNum 从 0 开始
+     */
+    @GET()
+    suspend fun getDonateRecord(
+        @Url url: String = NetProperty.GET_DONATE_RECORD,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("buddhaId") buddhaId: Int = 0,
+        @Query("pageNum") pageNum: Int
+    ): RequestRsp<List<DonateRecordBean>>
+
+    /**
+     * 福袋领取
+     */
+    @POST()
+    suspend fun gainLuckyBag(
+        @Url url: String = NetProperty.GAIN_LUCKY_BAG,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("buddhaId") buddhaId: Int
+    ): RequestRsp<LuckyBagBean>
+
+    //endregion
+
+    //region 用户
+
+    /**
+     * 获取用户信息
+     */
+    @GET()
+    suspend fun getUserInfo(
+        @Url url: String = NetProperty.GET_USER_INFO,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("accountId") accountId: Int
+    ): RequestRsp<PersonData>
+
+    /**
+     * 修改个人资料，传空字符串表示不修改该项
+     */
+    @POST()
+    suspend fun modifyProfile(
+        @Url url: String = NetProperty.MODIFY_PROFILE,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("userName") userName: String? = null,
+        @Query("avatar") avatar: String? = null,
+        @Query("mood") mood: String? = null,
+        @Query("gender") gender: Int = -1,
+        @Query("cover") cover: String? = null
+    ): RequestRsp<String>
+
+    /**
+     * 关注
+     */
+    @POST()
+    suspend fun follow(
+        @Url url: String = NetProperty.FOLLOW,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("targetAccountId") targetAccountId: Int
+    ): RequestRsp<String>
+
+    /**
+     * 取消关注
+     */
+    @POST()
+    suspend fun unFollow(
+        @Url url: String = NetProperty.UN_FOLLOW,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("targetAccountId") targetAccountId: Int
+    ): RequestRsp<String>
+
+    //endregion
 }
