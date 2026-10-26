@@ -26,7 +26,7 @@ class BuddhaBannerAdapter(
 
     override fun onBindView(holder: BannerVH, data: BuddhaConfig?, position: Int, size: Int) {
         val iv = holder.itemView.findViewById<ImageView>(R.id.iv_banner_buddha)
-        iv.loadImgNoHolder(data?.buddhaModuleUrl)
+        iv.loadImgNoHolder(data?.buddhaPicture)
     }
 
     class BannerVH(view: View) : RecyclerView.ViewHolder(view)

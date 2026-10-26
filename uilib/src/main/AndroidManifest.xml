@@ -46,6 +46,13 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Buddha.VideoFeed" />
 
+        <!--佛像介绍视频全屏播放-->
+        <activity
+            android:name=".activity.BuddhaVideoPlayActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Buddha.VideoFeed" />
+
 
         <!--佛像模型文件后台下载服务-->
         <service

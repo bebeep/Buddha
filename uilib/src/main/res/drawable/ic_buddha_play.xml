@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 视频简介卡片：白描边圆圈 + 白三角播放钮 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="40dp"
+    android:height="40dp"
+    android:viewportWidth="46"
+    android:viewportHeight="46">
+    <path
+        android:fillColor="#E6FFFFFF"
+        android:fillType="evenOdd"
+        android:pathData="M23,3 C34.05,3 43,11.95 43,23 C43,34.05 34.05,43 23,43 C11.95,43 3,34.05 3,23 C3,11.95 11.95,3 23,3 Z M23,6.5 C13.89,6.5 6.5,13.89 6.5,23 C6.5,32.11 13.89,39.5 23,39.5 C32.11,39.5 39.5,32.11 39.5,23 C39.5,13.89 32.11,6.5 23,6.5 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M18.5,14.5 L32.5,23 L18.5,31.5 Z" />
+</vector>

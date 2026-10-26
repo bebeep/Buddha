@@ -898,5 +898,16 @@ interface ApiManager {
         @Query("targetAccountId") targetAccountId: Int
     ): RequestRsp<String>
 
+    /**
+     * 供佛：按价目选择供奉天数，扣功德币；已在供则顺延
+     * body 用 RequestBodyFactory.worshipBody(buddhaId, days) 构建
+     */
+    @POST()
+    suspend fun worshipBuddha(
+        @Url url: String = NetProperty.WORSHIP_BUDDHA,
+        @Query("session") session: String = GlobalConfig.session,
+        @Body body: RequestBody
+    ): RequestRsp<String>
+
     //endregion
 }

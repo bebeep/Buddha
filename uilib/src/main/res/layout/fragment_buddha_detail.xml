@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.fingertip.baselib.view.FullTopConstraintLayout
+        android:id="@+id/cl_title"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:paddingBottom="12dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@mipmap/icon_back_black"
+            android:layout_marginStart="8dp"
+            android:layout_width="38dp"
+            android:layout_height="38dp"/>
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_name"
+            android:text="佛像详情"
+            android:textSize="18sp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:layout_marginHorizontal="60dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@+id/iv_back"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_back"
+            app:zdyFont="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </com.fingertip.baselib.view.FullTopConstraintLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:overScrollMode="never"
+        app:layout_constraintTop_toBottomOf="@+id/cl_title"
+        app:layout_constraintBottom_toTopOf="@+id/cl_altar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="24dp">
+
+            <!-- 佛像主图 -->
+            <ImageView
+                android:id="@+id/iv_cover"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:scaleType="centerCrop"
+                tools:src="@mipmap/bg_buddha_default" />
+
+            <!-- 法相 -->
+            <com.fingertip.baselib.view.MyTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:text="法相"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:zdyFont="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_photos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:clipToPadding="false"
+                android:paddingHorizontal="16dp"
+                android:orientation="horizontal" />
+
+            <!-- 诞辰 / 主佑 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <com.fingertip.baselib.view.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="诞辰"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:zdyFont="bold" />
+
+                <com.fingertip.baselib.view.MyTextView
+                    android:id="@+id/tv_birthday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    tools:text="农历四月初八" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <com.fingertip.baselib.view.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="主佑"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:zdyFont="bold" />
+
+                <LinearLayout
+                    android:id="@+id/ll_tags"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:orientation="horizontal" />
+            </LinearLayout>
+
+            <!-- 推荐佛经 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <com.fingertip.baselib.view.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="推荐佛经"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:zdyFont="bold" />
+
+                <com.fingertip.baselib.view.MyTextView
+                    android:id="@+id/tv_book_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="更多>>"
+                    android:textColor="#C89A5B"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_books"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:clipToPadding="false"
+                android:paddingHorizontal="16dp"
+                android:orientation="horizontal" />
+
+            <!-- 简介 -->
+            <com.fingertip.baselib.view.MyTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:text="简介"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:zdyFont="bold" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_intro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:lineSpacingExtra="4dp"
+                android:textColor="#666666"
+                android:textSize="14sp"
+                tools:text="观世音菩萨（梵文：Avalokiteśvara），观世音来自于竺法护与其弟子译于长安敦煌寺的《正法华经》。" />
+
+            <!-- 视频简介：横向翻页视频卡片，一屏一卡、左右露出相邻页 -->
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_video_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:text="视频简介"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:zdyFont="bold" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vp_videos"
+                android:layout_width="match_parent"
+                android:layout_height="131dp"
+                android:layout_marginTop="10dp"
+                android:clipChildren="false" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- 底部供奉区 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_altar"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/img_altar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- 遮罩，保证文字可读 -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#66000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_worship">
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_worship_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="尚未供奉"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:zdyFont="bold" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_worship_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="剩余 00:00:00"
+                android:textColor="#FFD9A8"
+                android:textSize="12sp"
+                android:visibility="gone"
+                tools:visibility="visible" />
+        </LinearLayout>
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_worship"
+            android:layout_width="110dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/bg_button"
+            android:gravity="center"
+            android:text="供 佛"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:zdyFont="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

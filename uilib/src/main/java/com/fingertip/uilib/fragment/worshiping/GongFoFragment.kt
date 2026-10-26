@@ -83,6 +83,7 @@ class GongFoFragment : TopPmFragment<WorshipVM>() {
                 adapter.setSelectedPosition(position)
                 binding.rcFo.smoothScrollToPosition(position)
                 isSyncing = false
+                updatePeopleCount(buddhaList.getOrNull(position) ?: return)
             }
             override fun onPageScrollStateChanged(state: Int) {}
         })
@@ -111,6 +112,7 @@ class GongFoFragment : TopPmFragment<WorshipVM>() {
                     if (centerPos >= 0) {
                         adapter.setSelectedPosition(centerPos)
                         syncBannerTo(centerPos)
+                        updatePeopleCount(buddhaList.getOrNull(centerPos) ?: return)
                     }
                 }
             }
@@ -191,7 +193,20 @@ class GongFoFragment : TopPmFragment<WorshipVM>() {
         if (list.isNotEmpty()) {
             adapter.setSelectedPosition(0)
             binding.bannerFo.setCurrentItem(0, false)
+            updatePeopleCount(list[0])
         }
+    }
+
+    /**
+     * 更新「(N人已供)」人数文案
+     */
+    private var lastPeopleBuddhaId = -1
+    private fun updatePeopleCount(buddha: BuddhaConfig) {
+        if (buddha.id == lastPeopleBuddhaId) return
+        lastPeopleBuddhaId = buddha.id
+        binding.tvGfPeople.text = "(${buddha.worshipCount}人已供)"
+        //已供状态提示
+        binding.tvGf.text = if (buddha.isWorshipping) "继续供佛" else "供佛"
     }
 
     override fun getClickViews(): List<View> {
@@ -200,6 +215,19 @@ class GongFoFragment : TopPmFragment<WorshipVM>() {
 
     override fun onSingleClick(v: View?) {
         super.onSingleClick(v)
+        when (v) {
+            binding.ivBack -> pop()
+            //供佛按钮 → 进入佛像详情页，由详情页选择供奉时长并完成供佛
+            binding.tvGf -> {
+                val position = binding.bannerFo.currentItem
+                val buddha = buddhaList.getOrNull(position) ?: buddhaList.firstOrNull()
+                if (buddha == null) {
+                    com.fingertip.baselib.util.ToastUtil.showMessage("佛像数据加载中，请稍候")
+                    return
+                }
+                start(BuddhaDetailFragment.newInstance(buddha))
+            }
+        }
     }
 
     @Subscribe

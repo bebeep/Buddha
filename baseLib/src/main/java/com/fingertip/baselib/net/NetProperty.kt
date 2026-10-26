@@ -479,4 +479,9 @@ object NetProperty {
      * 取消关注
      */
     const val UN_FOLLOW                               = "account/unFollow"
+
+    /**
+     * 供佛（选择供奉天数，扣功德币）
+     */
+    const val WORSHIP_BUDDHA                          = "account/worshipBuddha"
 }

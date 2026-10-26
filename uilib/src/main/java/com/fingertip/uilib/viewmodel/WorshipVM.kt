@@ -8,7 +8,9 @@ import com.fingertip.baselib.bean.CommentEntity
 import com.fingertip.baselib.constant.GlobalConfig
 import com.fingertip.baselib.log
 import com.fingertip.baselib.loge
+import com.blankj.utilcode.util.GsonUtils
 import com.fingertip.baselib.net.NetManager
+import com.fingertip.baselib.net.RequestBodyFactory
 import com.fingertip.baselib.viewmodel.RequestResult
 import com.fingertip.baselib.viewmodel.TopVMImp
 import com.fingertip.uilib.service.ModuleDownloadService
@@ -30,6 +32,18 @@ class WorshipVM : TopVMImp() {
     companion object {
         private const val TAG = "WorshipVM"
         const val MODEL_ID = "worship_bee"
+
+        /**
+         * 解析佛像供奉价目 priceField，如 [{"days":2,"price":98},{"days":8,"price":298}]
+         */
+        fun parsePriceField(priceField: String?): List<PriceItem> {
+            if (priceField.isNullOrBlank()) return emptyList()
+            return try {
+                GsonUtils.fromJson(priceField, GsonUtils.getListType(PriceItem::class.java)) ?: emptyList()
+            } catch (e: Exception) {
+                emptyList()
+            }
+        }
     }
 
     /** 下载进度 0.0 ~ 1.0 */
@@ -142,4 +156,25 @@ class WorshipVM : TopVMImp() {
             buddhaConfigResult.value = failResult(it.errorCode)
         }, showLoading = false, toastError = false)
     }
+
+    /** 供佛结果：成功后返回新的供奉剩余秒数（服务端不回，由页面重拉列表） */
+    val worshipResult = MutableLiveData<RequestResult<String>>()
+
+    /**
+     * 供佛：按价目选择供奉天数，服务端扣功德币；已在供则顺延
+     */
+    fun worshipBuddha(buddhaId: Int, days: Int) {
+        call({
+            NetManager.getApi().worshipBuddha(
+                body = RequestBodyFactory.worshipBody(buddhaId, days)
+            )
+        }, {
+            worshipResult.value = successResult(it)
+        }, {
+            worshipResult.value = failResult(it.errorCode)
+        })
+    }
+
+    /** 供奉价目项（对应服务端 PriceFieldConfig） */
+    data class PriceItem(val days: Int = 0, val price: Int = 0)
 }

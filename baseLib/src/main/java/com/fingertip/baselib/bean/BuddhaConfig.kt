@@ -48,4 +48,10 @@ class BuddhaConfig: TopData() {
     //"供奉价目表"
     var priceField: String? = ""
 
+    //"已供奉人数"
+    var worshipCount: Int = 0
+
+    //"拥有人数"
+    var ownCount: Int = 0
+
 }

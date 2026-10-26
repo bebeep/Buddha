@@ -26,7 +26,7 @@ class BuddhaListAdapter(
         val item = get(position) ?: return
 
         // 加载佛像图片（buddhaModuleUrl）
-        binding.ivBuddha.loadImgNoHolder(item.buddhaModuleUrl)
+        binding.ivBuddha.loadImgNoHolder(item.buddhaPicture)
         binding.tvBuddhaName.text = item.buddhaName ?: ""
 
         // 选中态样式

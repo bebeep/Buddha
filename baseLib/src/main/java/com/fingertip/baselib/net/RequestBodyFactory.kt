@@ -238,4 +238,14 @@ object RequestBodyFactory {
         val mediaType = "application/json;charset=UTF-8".toMediaTypeOrNull()
         return GsonUtils.toJson(wishingIds).toRequestBody(mediaType)
     }
+
+    /**
+     * 供佛入参（选择供奉天数）
+     */
+    fun worshipBody(buddhaId: Int, days: Int): RequestBody {
+        val param = HashMap<String, Any>()
+        param["buddhaId"] = buddhaId
+        param["days"] = days
+        return buildJsonRequestBody(param)
+    }
 }
