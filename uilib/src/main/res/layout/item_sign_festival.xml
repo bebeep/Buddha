@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    本月佛历节日列表的一行：左侧色条按级别区分，右侧倒计时。
+    整行可点，点开看节日简介。
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingTop="9dp"
+    android:paddingBottom="9dp">
+
+    <View
+        android:id="@+id/v_accent"
+        android:layout_width="3dp"
+        android:layout_height="30dp"
+        android:background="#D9432E" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="#2C1900"
+            android:textSize="14sp"
+            app:zdyFont="bold" />
+
+        <TextView
+            android:id="@+id/tv_meta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="#999999"
+            android:textSize="11sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_countdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="#C8860D"
+        android:textSize="11sp" />
+
+</LinearLayout>

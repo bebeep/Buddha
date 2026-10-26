@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 下个佛历节日横幅：比今日淡一档，不抢今日的分量 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:angle="0"
+        android:endColor="#FBF3E5"
+        android:startColor="#FFFDF9" />
+    <corners android:radius="12dp" />
+    <stroke
+        android:width="0.5dp"
+        android:color="#33C89A5B" />
+</shape>

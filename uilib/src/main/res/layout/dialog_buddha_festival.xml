@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    佛历节日简介弹窗：点日历下方的节日列表弹出。
+    内容全部来自月历接口的 festivals，不再单独请求。
+-->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.fingertip.baselib.view.shapeview.ShapeConstraintLayout
+        android:id="@+id/cl_content"
+        style="@style/constraint_center"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:gdBgColor="#FFFEFA"
+        app:gdRadius="12dp">
+
+        <TextView
+            android:id="@+id/tv_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_festival_tag_major"
+            android:paddingStart="6dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="6dp"
+            android:paddingBottom="2dp"
+            android:text="佛历节日"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:textColor="#D9432E"
+            android:textSize="19sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_tag"
+            app:zdyFont="bold" />
+
+        <TextView
+            android:id="@+id/tv_meta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="24dp"
+            android:textColor="#A9805A"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+        <View
+            android:id="@+id/v_divider"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="24dp"
+            android:background="#14000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_meta" />
+
+        <TextView
+            android:id="@+id/tv_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="24dp"
+            android:lineSpacingExtra="5dp"
+            android:textColor="#5A4632"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/v_divider" />
+
+        <TextView
+            android:id="@+id/tv_buddha"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="24dp"
+            android:textColor="#C89A5B"
+            android:textSize="12sp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_desc" />
+
+        <com.fingertip.baselib.view.shapeview.ShapeTextView
+            android:id="@+id/btn_confirm"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:text="知道了"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:gdEndColor="#FFD543"
+            app:gdGradientOrientation="LEFT_RIGHT"
+            app:gdRadius="22dp"
+            app:gdStartColor="#FFA030"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_buddha"
+            app:zdyFont="bold" />
+
+    </com.fingertip.baselib.view.shapeview.ShapeConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

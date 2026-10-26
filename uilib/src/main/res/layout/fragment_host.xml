@@ -14,26 +14,30 @@
         android:background="@drawable/bg_host_top"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!-- 顶部佛历日期，内容由 account/getTodayBuddhaInfo 下发：佛历 2569 年  农历丙午年 九月初六 -->
         <com.fingertip.baselib.view.MyTextView
             android:id="@+id/tv_date"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="22dp"
             android:layout_marginStart="24dp"
-            android:text="佛历 2558 年  农历庚子年 二月初二"
             android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+        <!-- 今日佛事：佛历节日 > 传统节日 > 节气 > 斋日 > 农历，服务端降级后下发，必不为空 -->
         <com.fingertip.baselib.view.MyTextView
             android:id="@+id/tv_mood"
             app:layout_constraintTop_toBottomOf="@+id/tv_date"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_sign"
             android:layout_marginTop="4dp"
             android:layout_marginStart="24dp"
-            android:text="惊蛰六祖慧能圣诞，观音斋"
+            android:layout_marginEnd="8dp"
             app:zdyFont="bold"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:textColor="@color/white"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"/>
 
         <com.fingertip.baselib.view.MyTextView

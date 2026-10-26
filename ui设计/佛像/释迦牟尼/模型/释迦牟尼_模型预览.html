@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>释迦牟尼佛 · 3D 模型预览</title>
+  <script type="module"
+    src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.0.0/dist/model-viewer.min.js"></script>
+  <style>
+    html, body { margin: 0; height: 100%; background: #0f1218; }
+    model-viewer { width: 100%; height: 100%; --poster-color: transparent; background: #0f1218; }
+    .hud {
+      position: fixed; left: 16px; bottom: 16px; color: #9aa4b2;
+      font: 13px/1.6 -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+      pointer-events: none;
+    }
+    .hud b { color: #e8eef7; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <model-viewer
+    src="释迦牟尼_模型_2048.glb"
+    alt="释迦牟尼佛 3D 模型"
+    camera-controls
+    auto-rotate
+    auto-rotate-delay="800"
+    rotation-per-second="18deg"
+    environment-image="neutral"
+    exposure="1.1"
+    shadow-intensity="0.9"
+    shadow-softness="0.8"
+    interaction-prompt="auto"
+    touch-action="pan-y">
+  </model-viewer>
+  <div class="hud">
+    <b>释迦牟尼佛</b> · 60,000 面 · 2048 贴图 · 3.4MB<br>
+    拖动旋转 / 双指缩放，验证 Filament 上的实际观感
+  </div>
+</body>
+</html>

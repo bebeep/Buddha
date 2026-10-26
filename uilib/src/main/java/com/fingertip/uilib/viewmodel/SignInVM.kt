@@ -2,6 +2,7 @@ package com.fingertip.uilib.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import com.fingertip.baselib.bean.SignInData
+import com.fingertip.baselib.bean.TodayBuddhaInfo
 import com.fingertip.baselib.constant.GlobalConfig
 import com.fingertip.baselib.net.NetManager
 import com.fingertip.baselib.viewmodel.RequestResult
@@ -22,8 +23,25 @@ class SignInVM : TopVMImp() {
     val signInDataResult = MutableLiveData<RequestResult<SignInData>>()
     val signInResult = MutableLiveData<RequestResult<String>>()
 
+    //首页顶部佛历文案
+    val todayBuddhaResult = MutableLiveData<RequestResult<TodayBuddhaInfo>>()
+
     //最近一次拉到的签到信息，签到成功算本次发了多少金币要用
     private var latestData: SignInData? = null
+
+    /**
+     * 今日佛历信息，首页顶部两行文案用。
+     * 失败不弹提示，前端保留原样即可
+     */
+    fun loadTodayBuddhaInfo() {
+        call({
+            NetManager.getApi().getTodayBuddhaInfo()
+        }, {
+            todayBuddhaResult.value = successResult(it)
+        }, {
+            todayBuddhaResult.value = failResult(it.errorCode, it.errorMsg)
+        }, showLoading = false, toastError = false)
+    }
 
     /**
      * 签到信息：基础奖励、下一档连签奖励、当前连签天数

@@ -7,6 +7,7 @@ import com.fingertip.uilib.fragment.blessing.BlessingFragment
 import com.fingertip.uilib.fragment.worshiping.DonateFragment
 import com.fingertip.baselib.bean.BannerEntity
 import com.fingertip.baselib.bean.HostMenu
+import com.fingertip.baselib.bean.TodayBuddhaInfo
 import com.fingertip.baselib.event_bus.MessageEvent
 import com.fingertip.baselib.log
 import com.fingertip.baselib.top.TopVMFragment
@@ -23,6 +24,10 @@ import com.fingertip.uilib.fragment.wishing.WishTreeFragment
 import com.fingertip.uilib.viewmodel.SignInVM
 import com.youth.banner.Banner
 import org.greenrobot.eventbus.Subscribe
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
 /**
  * 首页
@@ -40,6 +45,13 @@ class HostFragment : TopVMFragment<SignInVM>() {
 
     override fun initObserver() {
         super.initObserver()
+
+        mViewModel.todayBuddhaResult.observe(viewLifecycleOwner) { result ->
+            if (!isAdded) return@observe
+            if (result.success) {
+                renderTodayBuddha(result.data)
+            }
+        }
 
         mViewModel.signInDataResult.observe(viewLifecycleOwner) { result ->
             if (!isAdded) return@observe
@@ -63,6 +75,41 @@ class HostFragment : TopVMFragment<SignInVM>() {
     }
 
     /**
+     * 顶部今日佛历文案。
+     *
+     * 接口已把 佛历节日 > 传统节日 > 节气 > 斋日 > 农历 的降级做完了，
+     * 这里拿到什么显示什么；万一是空的再退回本地公历，避免顶部塌成一条
+     */
+    private fun renderTodayBuddha(info: TodayBuddhaInfo?) {
+        val dateText = info?.dateText
+        binding.tvDate.text = if (dateText.isNullOrBlank()) localDateText() else dateText
+
+        val moodText = info?.moodText
+        binding.tvMood.text = moodText.orEmpty()
+        //用 INVISIBLE 占位，免得数据回来顶部高度跳一下
+        binding.tvMood.visibility = if (moodText.isNullOrBlank()) View.INVISIBLE else View.VISIBLE
+    }
+
+    //没网时的兜底：佛历年份 + 公历日期，农历算不了就不硬编
+    private fun localDateText(): String {
+        val year = Calendar.getInstance().get(Calendar.YEAR) + 543
+        return "佛历 $year 年  ${SimpleDateFormat("M月d日", Locale.getDefault()).format(Date())}"
+    }
+
+    /**
+     * 今日佛历一天拉一次即可，回到前台跨天了才会重新请求
+     */
+    private fun loadTodayBuddhaIfNeed() {
+        val today = SimpleDateFormat("yyyyMMdd", Locale.getDefault()).format(Date())
+        if (todayBuddhaLoadedDate == today) return
+        todayBuddhaLoadedDate = today
+        mViewModel.loadTodayBuddhaInfo()
+    }
+
+    //本次已请求过的日期，yyyyMMdd
+    private var todayBuddhaLoadedDate: String? = null
+
+    /**
      * 打开签到弹窗。先弹出来显示加载态，数据回来再填
      */
     private fun showSignInDialog() {
@@ -80,6 +127,11 @@ class HostFragment : TopVMFragment<SignInVM>() {
         initMenu()
         initBanner()
         initMarqueeView()
+
+        //先铺本地公历，接口回来再覆盖，避免顶部空一截
+        binding.tvDate.text = localDateText()
+        binding.tvMood.visibility = View.INVISIBLE
+        loadTodayBuddhaIfNeed()
     }
 
 
@@ -185,6 +237,8 @@ class HostFragment : TopVMFragment<SignInVM>() {
     override fun onVisible() {
         super.onVisible()
         binding.vMarquee.startFlipping()
+        //从别的页面切回来可能已经跨天，跨天才重新拉
+        loadTodayBuddhaIfNeed()
     }
 
     override fun onInvisible() {

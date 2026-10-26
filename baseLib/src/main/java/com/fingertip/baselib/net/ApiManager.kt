@@ -14,6 +14,7 @@ import com.fingertip.baselib.bean.CommentEntity
 import com.fingertip.baselib.bean.MomentEntity
 import com.fingertip.baselib.bean.OssConfig
 import com.fingertip.baselib.bean.CalendarSimpleRsp
+import com.fingertip.baselib.bean.TodayBuddhaInfo
 import com.fingertip.baselib.bean.BlessRecordBean
 import com.fingertip.baselib.bean.WishRecordBean
 import com.fingertip.baselib.bean.PrayingBean
@@ -461,6 +462,15 @@ interface ApiManager {
         @Query("year") year: Int = 0,
         @Query("month") month: Int = 0
     ): RequestRsp<CalendarSimpleRsp>
+
+    /**
+     * 获取今日佛历信息：首页顶部「佛历 XXX 年 农历…」与今日佛事/节气/斋日
+     */
+    @GET()
+    suspend fun getTodayBuddhaInfo(
+        @Url url: String = NetProperty.GET_TODAY_BUDDHA_INFO,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<TodayBuddhaInfo>
 
     /**
      * 获取许愿文本示例

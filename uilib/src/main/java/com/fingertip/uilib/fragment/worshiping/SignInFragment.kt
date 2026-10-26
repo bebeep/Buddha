@@ -1,11 +1,13 @@
 package com.fingertip.uilib.fragment.worshiping
 
 import android.graphics.Color
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
+import com.fingertip.baselib.bean.BuddhaFestival
 import com.fingertip.baselib.bean.CalendarSimpleRsp
 import com.fingertip.baselib.bean.SignInData
 import com.fingertip.baselib.log
@@ -14,6 +16,8 @@ import com.fingertip.baselib.util.ToastUtil
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.CalendarDayAdapter
 import com.fingertip.uilib.databinding.FragmentSignInBinding
+import com.fingertip.uilib.databinding.ItemSignFestivalBinding
+import com.fingertip.uilib.dialog.BuddhaFestivalDialog
 import com.fingertip.uilib.viewmodel.SignInCalendarVM
 import java.util.Calendar
 
@@ -21,7 +25,11 @@ import java.util.Calendar
  * 签到页，对应原型「签到」与接口 account/getMonthCalendar
  *
  * 服务端按 ISO 周序排格子（周一开头），上/下月补位日期一并返回并淡化显示；
- * 签到成功后重新拉月历刷新格子与按钮状态
+ * 签到成功后重新拉月历刷新格子与按钮状态。
+ *
+ * 佛历节日（佛菩萨圣诞/成道/出家/涅槃、盂兰盆/卫塞节等）也随月历一起回来：
+ * 格子里用节日短名替换农历日，页面上方给今日/下一个节日横幅，日历下方列本月节日，
+ * 点条目看简介。数据全部来自一次月历请求，不额外发接口。
  */
 class SignInFragment : TopPmFragment<SignInCalendarVM>() {
 
@@ -36,6 +44,12 @@ class SignInFragment : TopPmFragment<SignInCalendarVM>() {
 
         //服务端「今天已经签到过了」
         private const val CODE_TODAY_SIGNED = -24
+
+        //佛菩萨圣诞/成道/出家/涅槃
+        private const val FESTIVAL_COLOR_MAJOR = "#D9432E"
+
+        //盂兰盆、卫塞节等佛教节日
+        private const val FESTIVAL_COLOR_MINOR = "#C8860D"
     }
 
     override fun layoutId(): Int = R.layout.fragment_sign_in
@@ -169,13 +183,92 @@ class SignInFragment : TopPmFragment<SignInCalendarVM>() {
     }
 
     /**
-     * 渲染月历：格子 + 今日详情卡 + 签到按钮
+     * 渲染月历：格子 + 佛历节日 + 今日详情卡 + 签到按钮
      */
     private fun renderCalendar(rsp: CalendarSimpleRsp?) {
         if (rsp == null) return
         calendarAdapter.setData(showYear, showMonth, rsp)
+        renderFestivals(rsp)
         renderTodayInfo(rsp)
         renderSignButton()
+    }
+
+    /**
+     * 佛历节日两块：顶部横幅（今天有节日显示今天，否则显示下一个节日倒计时）
+     * 和日历下方「本月佛历节日」列表
+     */
+    private fun renderFestivals(rsp: CalendarSimpleRsp) {
+        renderFestivalBanner(rsp)
+        renderFestivalList(rsp.festivals)
+    }
+
+    private fun renderFestivalBanner(rsp: CalendarSimpleRsp) {
+        val today = rsp.todayFestival
+        val target = today ?: rsp.nextFestival
+        if (target == null) {
+            binding.llFestivalBanner.visibility = View.GONE
+            return
+        }
+        val isToday = today != null
+        binding.llFestivalBanner.visibility = View.VISIBLE
+        binding.llFestivalBanner.setBackgroundResource(
+            if (isToday) R.drawable.bg_sign_festival_today else R.drawable.bg_sign_festival_next
+        )
+        binding.tvFestivalTag.text = if (isToday) "今日" else "下一个"
+        binding.tvFestivalTag.setBackgroundResource(
+            if (isToday) R.drawable.bg_festival_tag_major else R.drawable.bg_festival_tag_minor
+        )
+
+        binding.tvFestivalName.text = target.name.orEmpty()
+        binding.tvFestivalName.setTextColor(
+            Color.parseColor(if (isToday) FESTIVAL_COLOR_MAJOR else FESTIVAL_COLOR_MINOR)
+        )
+        binding.tvFestivalCountdown.text = if (isToday) "" else "还有${target.daysFromToday}天"
+
+        binding.tvFestivalMeta.text = listOfNotNull(
+            target.lunarDate?.takeIf { it.isNotBlank() }?.let { "农历$it" },
+            target.dateLabel().takeIf { it.isNotBlank() }
+        ).joinToString("  ·  ")
+
+        val desc = target.description?.takeIf { it.isNotBlank() }
+        binding.tvFestivalDesc.visibility = if (desc == null) View.GONE else View.VISIBLE
+        binding.tvFestivalDesc.text = desc.orEmpty()
+    }
+
+    /**
+     * 本月佛历节日列表，条目点开看简介
+     */
+    private fun renderFestivalList(festivals: List<BuddhaFestival>?) {
+        val items = festivals.orEmpty()
+        binding.llFestivalCard.visibility = if (items.isEmpty()) View.GONE else View.VISIBLE
+        binding.tvFestivalCount.text = "共${items.size}个"
+        binding.llFestivalItems.removeAllViews()
+
+        val inflater = LayoutInflater.from(requireContext())
+        items.forEach { festival ->
+            val itemBinding = ItemSignFestivalBinding.inflate(inflater, binding.llFestivalItems, false)
+            val color = Color.parseColor(
+                if (festival.level == BuddhaFestival.LEVEL_FESTIVAL) FESTIVAL_COLOR_MINOR else FESTIVAL_COLOR_MAJOR
+            )
+            itemBinding.vAccent.setBackgroundColor(color)
+            itemBinding.tvName.text = festival.name.orEmpty()
+            itemBinding.tvMeta.text = listOfNotNull(
+                festival.lunarDate?.takeIf { it.isNotBlank() }?.let { "农历$it" },
+                festival.dateLabel().takeIf { it.isNotBlank() }
+            ).joinToString("  ·  ")
+            itemBinding.tvCountdown.text = festival.countdownLabel()
+            itemBinding.tvCountdown.setTextColor(
+                when {
+                    festival.daysFromToday == 0 -> color
+                    festival.daysFromToday > 0 -> Color.parseColor(FESTIVAL_COLOR_MINOR)
+                    else -> Color.parseColor("#C0C0C0")
+                }
+            )
+            itemBinding.root.setOnClickListener {
+                BuddhaFestivalDialog(requireContext(), festival).show()
+            }
+            binding.llFestivalItems.addView(itemBinding.root)
+        }
     }
 
     /**

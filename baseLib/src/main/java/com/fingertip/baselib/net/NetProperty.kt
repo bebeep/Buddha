@@ -281,6 +281,11 @@ object NetProperty {
     const val GET_MONTH_CALENDAR                      = "account/getMonthCalendar"
 
     /**
+     * 获取今日佛历信息（首页顶部佛历日期与今日佛事）
+     */
+    const val GET_TODAY_BUDDHA_INFO                   = "account/getTodayBuddhaInfo"
+
+    /**
      * 获取许愿文本示例
      */
     const val GET_WISHING_TAG                         = "wishingTree/getWishingTag"
