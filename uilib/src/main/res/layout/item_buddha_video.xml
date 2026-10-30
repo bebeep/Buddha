@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 视频简介卡片：封面 + 播放钮 + 时长 + 底部标题条（含页码） -->
+<!-- 高度必须 match_parent：ViewPager2 1.0.0 要求页面宽高都填满，实际高度由 vp_videos 的 131dp 控制 -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="131dp"
+    android:layout_height="match_parent"
     android:background="@drawable/bg_buddha_video_card"
     android:clipToOutline="true">
 

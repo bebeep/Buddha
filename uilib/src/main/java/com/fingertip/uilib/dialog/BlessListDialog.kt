@@ -53,6 +53,7 @@ class BlessListDialog(context: Context) : TopDialogBottomSheetDialog(context) {
      * 渲染祝福列表。append=false 首页全量替换，true 追加下一页
      */
     fun render(list: List<BlessRecordBean>?, append: Boolean) {
+        ensureViewCreated()
         loading = false
         val data = list.orEmpty()
         //一页不满说明到底了

@@ -53,6 +53,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Buddha.VideoFeed" />
 
+        <!--通用 H5 展示页（修行攻略/活动页等）-->
+        <activity
+            android:name=".activity.CommonWebViewActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
+
 
         <!--佛像模型文件后台下载服务-->
         <service

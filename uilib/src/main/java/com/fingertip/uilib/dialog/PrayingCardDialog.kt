@@ -32,6 +32,7 @@ class PrayingCardDialog(context: Context) : TopDialogBottomSheetDialog(context) 
     }
 
     fun render(praying: PrayingBean) {
+        ensureViewCreated()
         item = praying
         binding.tvContent.text = praying.content
         binding.tvBlessCount.text = "${praying.blessCount}人已祝福"

@@ -40,6 +40,7 @@ class BlessDialog(context: Context) : TopDialogBottomSheetDialog(context) {
      * 填充愿望内容
      */
     fun render(wishRecord: WishRecordBean?) {
+        ensureViewCreated()
         this.wishRecord = wishRecord
         binding.tvWishContent.text = wishRecord?.wishContent.orEmpty()
     }

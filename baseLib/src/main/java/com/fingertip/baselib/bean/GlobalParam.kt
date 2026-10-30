@@ -32,6 +32,10 @@ class GlobalParam: TopData() {
 
     //("oss文件上传地址bucketName")
     var bucketName : String? = ""
+
+    //修行攻略等 H5 页面地址，由服务端下发热更新
+    var guideUrl : String? = ""
+
     //佛像配置
     var buddhaConfig : List<BuddhaConfig>?=null
 }

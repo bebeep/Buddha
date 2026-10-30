@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="修行攻略：佛学修行 App 新手指南，了解供佛、读经、抄经、功德、许愿等核心玩法与基本规则。">
+<title>修行攻略 · 新手指南</title>
+<style>
+  :root{
+    --bg:#FAF6EF;
+    --card:#FFFFFF;
+    --ink:#3B2A18;
+    --ink-2:#8A7458;
+    --gold:#C8871E;
+    --gold-2:#E8A93C;
+    --amber:#FFA030;
+    --line:#EFE5D4;
+    --red:#C0442A;
+    --hero-a:#241708;
+    --hero-b:#4A3212;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:480px;margin:0 auto;padding:0 16px 64px}
+
+  /* ---------- 顶部 ---------- */
+  .hero{
+    background:linear-gradient(160deg,var(--hero-a),var(--hero-b));
+    color:#F5E7CD;
+    padding:52px 16px 40px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;inset:auto -60px -110px -60px;height:180px;
+    background:radial-gradient(closest-side,rgba(255,160,48,.28),transparent 70%);
+  }
+  .hero .motto{font-size:12px;letter-spacing:.5em;color:#C9A468;text-indent:.5em}
+  .hero h1{font-size:34px;letter-spacing:.12em;margin:14px 0 6px;font-weight:700;color:#FBEFD8}
+  .hero p.sub{font-size:13px;color:#C9AE7F;max-width:320px;margin:0 auto;position:relative;z-index:1}
+  .hero .ver{display:inline-block;margin-top:18px;font-size:11px;color:#9C8258;border:1px solid #4E3B1F;border-radius:999px;padding:4px 14px;position:relative;z-index:1}
+
+  /* ---------- 吸顶导航 ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(250,246,239,.94);
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .nav-in{max-width:480px;margin:0 auto;display:flex;overflow-x:auto;padding:0 10px;scrollbar-width:none}
+  nav .nav-in::-webkit-scrollbar{display:none}
+  nav a{
+    flex:none;padding:11px 13px;font-size:13px;color:var(--ink-2);text-decoration:none;white-space:nowrap;
+    border-bottom:2px solid transparent;
+  }
+  nav a:active,nav a:hover{color:var(--gold);border-bottom-color:var(--gold)}
+
+  /* ---------- 通用区块 ---------- */
+  section{margin-top:34px;scroll-margin-top:56px}
+  .sec-head{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
+  .sec-head .no{font-size:12px;color:var(--gold);letter-spacing:.15em;font-weight:600}
+  .sec-head h2{font-size:20px;letter-spacing:.06em}
+  .sec-head .bar{flex:1;height:1px;background:var(--line)}
+
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:18px 16px;margin-bottom:12px;
+  }
+  .card h3{font-size:16px;margin-bottom:8px}
+  .card p{font-size:13.5px;color:#5C4A32}
+  .card p + p{margin-top:6px}
+  .muted{color:var(--ink-2);font-size:12px}
+  .tag{
+    display:inline-block;font-size:11px;color:var(--gold);
+    border:1px solid #EBD9B4;border-radius:999px;padding:1px 10px;margin-left:8px;vertical-align:2px;
+  }
+  .hl{color:var(--gold);font-weight:600}
+  .warn{color:var(--red);font-weight:600}
+
+  /* ---------- 数值对比 ---------- */
+  .duo{display:flex;gap:12px}
+  .duo .card{flex:1;margin-bottom:0}
+  .duo .coin-t{color:var(--gold);font-weight:700}
+  .duo .exp-t{color:var(--red);font-weight:700}
+  .duo .big{font-size:17px;margin-bottom:6px}
+
+  /* ---------- 每日清单 ---------- */
+  .todo{list-style:none}
+  .todo li{
+    display:flex;gap:12px;padding:12px 0;border-bottom:1px dashed var(--line);
+  }
+  .todo li:last-child{border-bottom:none}
+  .todo .dot{
+    flex:none;width:22px;height:22px;border-radius:50%;margin-top:3px;
+    background:linear-gradient(135deg,var(--amber),var(--gold-2));
+    color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;
+  }
+  .todo b{font-size:14px}
+  .todo p{font-size:13px;color:#5C4A32}
+
+  /* ---------- 玩法网格 ---------- */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .play{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 14px}
+  .play .p-name{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;margin-bottom:6px}
+  .play .p-name i{
+    font-style:normal;flex:none;width:26px;height:26px;border-radius:8px;
+    background:linear-gradient(135deg,#FFD543,var(--amber));
+    color:#5A3B00;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;
+  }
+  .play p{font-size:12.5px;color:#6B573B}
+  .play .p-tip{margin-top:8px;font-size:11.5px;color:var(--ink-2);border-top:1px dashed var(--line);padding-top:8px}
+  .play.full{grid-column:1 / -1}
+
+  /* ---------- 流程 ---------- */
+  .flow{display:flex;align-items:stretch;gap:0;margin:6px 0 2px}
+  .flow .step{flex:1;text-align:center;position:relative}
+  .flow .step:not(:last-child)::after{
+    content:"";position:absolute;right:0;top:14px;bottom:14px;width:1px;background:var(--line);
+  }
+  .flow .num{
+    width:28px;height:28px;margin:0 auto 8px;border-radius:50%;
+    border:1px solid #EBD9B4;color:var(--gold);font-size:13px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;background:#FFFDF7;
+  }
+  .flow b{font-size:13px;display:block}
+  .flow p{font-size:11.5px;color:var(--ink-2);padding:0 6px}
+
+  /* ---------- 规则条文 ---------- */
+  .rules{list-style:none;counter-reset:r}
+  .rules li{
+    counter-increment:r;position:relative;padding:9px 0 9px 34px;font-size:13.5px;color:#5C4A32;
+    border-bottom:1px dashed var(--line);
+  }
+  .rules li:last-child{border-bottom:none}
+  .rules li::before{
+    content:counter(r,cjk-ideographic);
+    position:absolute;left:0;top:9px;width:22px;height:22px;border-radius:6px;
+    background:#F6ECD9;color:var(--gold);font-size:12px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+  }
+
+  /* ---------- FAQ ---------- */
+  details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:10px;overflow:hidden}
+  summary{
+    list-style:none;cursor:pointer;padding:14px 16px;font-size:14px;font-weight:600;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";color:var(--gold);font-size:18px;font-weight:400;transition:.2s}
+  details[open] summary::after{transform:rotate(45deg)}
+  details .ans{padding:0 16px 14px;font-size:13px;color:#5C4A32}
+
+  /* ---------- 尾部 ---------- */
+  footer{margin-top:40px;text-align:center;color:#B49F7E;font-size:11.5px;line-height:2}
+  footer .seal{
+    width:44px;height:44px;margin:0 auto 10px;border-radius:10px;
+    background:var(--red);color:#FBEFD8;font-size:11px;letter-spacing:1px;
+    display:flex;align-items:center;justify-content:center;line-height:1.2;
+  }
+
+  @media (min-width:520px){
+    body{background:linear-gradient(180deg,#F3EADA,var(--bg))}
+    .hero{border-radius:0 0 24px 24px}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="motto">日行一善 · 功不唐捐</div>
+  <h1>修行攻略</h1>
+  <p class="sub">一篇看懂 App 的核心玩法与基本规则，从第一次签到到日日精进。</p>
+  <span class="ver">适用版本 2026.10 · 内容随版本更新</span>
+</header>
+
+<nav>
+  <div class="nav-in">
+    <a href="#value">核心数值</a>
+    <a href="#daily">每日修行</a>
+    <a href="#play">六大玩法</a>
+    <a href="#worship">供佛详解</a>
+    <a href="#merit">功德与善行</a>
+    <a href="#rule">平台规则</a>
+    <a href="#faq">常见问题</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- 核心数值 -->
+  <section id="value">
+    <div class="sec-head"><span class="no">壹</span><h2>先认识两个数值</h2><span class="bar"></span></div>
+    <div class="duo">
+      <div class="card">
+        <div class="big coin-t">功德币</div>
+        <p><b>用来花</b>的修行通货。供佛、为佛像添功德、支持善行项目都要消耗它。</p>
+        <p class="muted">获得：每日签到、捐赠福袋加成等</p>
+      </div>
+      <div class="card">
+        <div class="big exp-t">修行值</div>
+        <p><b>用来成长</b>的经验值。记录你的精进程度，也是个人等级与功德榜的重要依据。</p>
+        <p class="muted">获得：签到、读经、抄经、许愿祈福等</p>
+      </div>
+    </div>
+    <div class="card" style="margin-top:12px">
+      <p><span class="hl">一句话记住：</span>功德币是「財布施」，修行值是「自身精进」——前者助人，后者修己，两条线一起走。</p>
+    </div>
+  </section>
+
+  <!-- 每日修行 -->
+  <section id="daily">
+    <div class="sec-head"><span class="no">贰</span><h2>每日修行清单</h2><span class="bar"></span></div>
+    <div class="card">
+      <ul class="todo">
+        <li>
+          <span class="dot">1</span>
+          <div><b>首页签到</b>
+            <p>每天进入首页即可签到，领取功德币与修行值；<span class="hl">连续签到天数越多，当日奖励越高</span>，中断后重新累计。具体奖励数额以签到面板展示为准。</p>
+          </div>
+        </li>
+        <li>
+          <span class="dot">2</span>
+          <div><b>读一部佛经</b>
+            <p>在「佛经」中选择经文在线阅读，阅读进度自动保存，下次接着读。诵毕功德自然增长。</p>
+          </div>
+        </li>
+        <li>
+          <span class="dot">3</span>
+          <div><b>抄一段经文</b>
+            <p>选择经文进入抄经模式，一笔一画手写描摹。抄经比读经更耗费心力，<span class="hl">修行值奖励也更丰厚</span>，完成的作品可留存回看。</p>
+          </div>
+        </li>
+        <li>
+          <span class="dot">4</span>
+          <div><b>拜一拜今日佛</b>
+            <p>首页顶部每天展示当日佛历——今天是哪位菩萨的圣诞、什么节气、是否斋日，一目了然。遇佛诞日礼拜，别有一番意义。</p>
+          </div>
+        </li>
+        <li>
+          <span class="dot">5</span>
+          <div><b>看一眼佛历日历</b>
+            <p>签到页的日历标注了全月佛诞日与重要节日，点开可以查看节日详细介绍，提前安排自己的共修与供奉。</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 六大玩法 -->
+  <section id="play">
+    <div class="sec-head"><span class="no">叁</span><h2>首页六大入口</h2><span class="bar"></span></div>
+    <div class="grid">
+      <div class="play">
+        <div class="p-name"><i>供</i>供佛</div>
+        <p>挑选心仪的佛像，用功德币选择时长供奉。供奉期间佛像前长明灯不灭，功德日增。</p>
+        <div class="p-tip">供奉中可续供顺延，到期自动结束</div>
+      </div>
+      <div class="play">
+        <div class="p-name"><i>经</i>佛经</div>
+        <p>在线阅读与手抄佛经，支持进度记忆与书架收藏，是修行值最稳定的来源。</p>
+        <div class="p-tip">部分佛像详情页有专属推荐经单</div>
+      </div>
+      <div class="play">
+        <div class="p-name"><i>功</i>功德</div>
+        <p>为佛像添功德、支持善行项目。捐赠后可抢福袋，开出额外功德币。</p>
+        <div class="p-tip">善行由用户发起，平台审核后展示</div>
+      </div>
+      <div class="play">
+        <div class="p-name"><i>祈</i>祈福</div>
+        <p>写下心愿挂在祈福墙上，也为他人的愿望送上祝福。收到祝福同样有修行值奖励。</p>
+        <div class="p-tip">内容经审核后公开展示</div>
+      </div>
+      <div class="play">
+        <div class="p-name"><i>愿</i>许愿</div>
+        <p>在许愿树许下心愿，佛友们可以互相祝愿、彼此成就，是社区氛围最温暖的地方。</p>
+        <div class="p-tip">每日许愿与祝愿次数有限制，见下方规则</div>
+      </div>
+      <div class="play">
+        <div class="p-name"><i>生</i>放生</div>
+        <p>放生善念记录板块，正在筹备中，敬请期待。</p>
+        <div class="p-tip">上线后将第一时间在 App 内公告</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 供佛详解 -->
+  <section id="worship">
+    <div class="sec-head"><span class="no">肆</span><h2>供佛全流程</h2><span class="bar"></span></div>
+    <div class="card">
+      <p>供佛是 App 里最具仪式感的玩法，四步完成：</p>
+      <div class="flow" style="margin-top:14px">
+        <div class="step"><span class="num">一</span><b>选佛像</b><p>在列表中滑动浏览各尊佛像，点「供佛」进入详情</p></div>
+        <div class="step"><span class="num">二</span><b>看介绍</b><p>佛像立图、诞辰、简介、视频与 3D 模型任你端详</p></div>
+        <div class="step"><span class="num">三</span><b>选时长</b><p>按价目表选供奉天数，用功德币支付</p></div>
+        <div class="step"><span class="num">四</span><b>续或止</b><p>供奉期间功德日增，可随时续供顺延</p></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>3D 礼佛</h3>
+      <p>每尊佛像都配有可旋转缩放的 3D 模型，进入详情页即可拖动把玩，如同亲临殿中绕佛。首次加载会自动下载模型文件，之后打开秒进。</p>
+    </div>
+    <div class="card">
+      <h3>规则要点</h3>
+      <ul class="rules" style="margin-top:6px">
+        <li>供奉时长与价格以当期价目表为准，支付即从功德币余额扣除。</li>
+        <li>供奉中的佛像可「继续供佛」，剩余时间自动顺延，不浪费一天。</li>
+        <li>供奉到期后自动结束，可重新发起，供奉记录与累计功德永久保留。</li>
+        <li>「已供人数」是所有用户的真实累计，你也是其中之一。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 功德与善行 -->
+  <section id="merit">
+    <div class="sec-head"><span class="no">伍</span><h2>功德与善行</h2><span class="bar"></span></div>
+    <div class="card">
+      <h3>添功德与福袋</h3>
+      <p>在功德页可为你供奉或心仪的佛像添功德。每次捐赠后有<span class="hl">福袋</span>可以开启——除了捐出的部分，福袋会随机开出额外功德币，运气好命中奖池还有翻倍加成。</p>
+    </div>
+    <div class="card">
+      <h3>善行项目</h3>
+      <p>善行是由用户发起的公益募捐项目：发起人设定善行说明与<span class="hl">目标功德币</span>，其他用户量力捐入，也可以通过分享邀请佛友助力。</p>
+      <ul class="rules" style="margin-top:8px">
+        <li>发起善行需填写标题（32 字以内）、说明、分类与目标功德币。</li>
+        <li>善行内容<span class="warn">须经平台审核</span>通过后才会公开展示。</li>
+        <li>项目页实时展示进度、参与人数与捐赠名单（分页公开）。</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>功德榜</h3>
+      <p>排行榜按累计功德排序，供佛、捐赠、善行支持都会计入。榜单每日更新，是「日行一善」最好的见证。</p>
+    </div>
+  </section>
+
+  <!-- 平台规则 -->
+  <section id="rule">
+    <div class="sec-head"><span class="no">陆</span><h2>平台基本规则</h2><span class="bar"></span></div>
+    <div class="card">
+      <h3>许愿与祝愿</h3>
+      <ul class="rules" style="margin-top:6px">
+        <li>每个用户每天限许愿 1 次，当日 24:00 重置。</li>
+        <li>每个用户每天限祝愿 5 次，当日 24:00 重置。</li>
+        <li>许愿成功增加修行值，收到祝福也有修行值奖励。</li>
+        <li>愿望内容经审核后展示，请文明许愿。</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>社区（佛友动态）</h3>
+      <p>在动态广场可以发布图文分享修行日常，也能刷到佛友们的短视频。给喜欢的动态点赞、评论，一起营造清净和合的社区。</p>
+      <ul class="rules" style="margin-top:8px">
+        <li>发布内容须遵守法律法规与公序良俗，违规内容将被处理。</li>
+        <li>评论、点赞等互动数据实时同步，尊重每一位佛友的表达。</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>通用约定</h3>
+      <ul class="rules" style="margin-top:6px">
+        <li>功德币与修行值均为 App 内虚拟数值，仅用于本 App 内的玩法与记录，不可转让、不可兑现。</li>
+        <li>各玩法奖励数额以 App 内当期页面展示为准，可能随活动调整。</li>
+        <li>一切内容经审核后展示，文明互动，共同维护道场清净。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="sec-head"><span class="no">柒</span><h2>常见问题</h2><span class="bar"></span></div>
+    <details>
+      <summary>功德币不够供佛怎么办？</summary>
+      <div class="ans">坚持每日签到是最稳定的来源；另外捐赠后开启福袋、参与善行互动都可能获得额外功德币。</div>
+    </details>
+    <details>
+      <summary>连续签到断了会怎样？</summary>
+      <div class="ans">连签天数清零并从第一天重新累计，已获得的奖励不受影响。所以别忘了每天打开 App 签到。</div>
+    </details>
+    <details>
+      <summary>抄经作品保存在哪里？</summary>
+      <div class="ans">完成的抄经作品与阅读进度都自动保存在「佛经」的书架与个人记录中，可随时回看。</div>
+    </details>
+    <details>
+      <summary>为什么我的愿望没有立刻显示？</summary>
+      <div class="ans">所有公开内容（许愿、祈福、善行、动态）都需要先经平台审核，通过后即可看到。</div>
+    </details>
+    <details>
+      <summary>供奉到期后佛像上的记录还在吗？</summary>
+      <div class="ans">在的。累计功德、供奉记录与「已供人数」都会永久保留，可随时重新发起供奉。</div>
+    </details>
+    <details>
+      <summary>功德币和修行值能提现或转赠吗？</summary>
+      <div class="ans">不能。两者均为 App 内虚拟数值，用于玩法与修行记录，不可转让、不可兑现。</div>
+    </details>
+  </section>
+
+  <footer>
+    <div class="seal">修行<br>攻略</div>
+    愿以此功德 · 庄严佛净土<br>
+    内容对应 App 当前版本，玩法与奖励以 App 内实时展示为准
+  </footer>
+
+</div>
+
+<script>
+  /* App 通用 WebView 打开本页时会自动拼 ?session=xxx（或 &session=xxx）。
+     这里仅预留读取：存入 localStorage，后续 H5 需要登录态（如个性化内容）时直接取用。 */
+  (function () {
+    var m = location.search.match(/[?&]session=([^&]+)/);
+    if (m && m[1]) {
+      try { localStorage.setItem("appSession", decodeURIComponent(m[1])); } catch (e) {}
+    }
+  })();
+</script>
+</body>
+</html>

@@ -42,6 +42,7 @@ class DonateCoinDialog(context: Context) : TopDialogBottomSheetDialog(context) {
     }
 
     fun render(buddhaName: String?) {
+        ensureViewCreated()
         binding.tvBuddhaName.text = "为「${buddhaName ?: "佛像"}」添功德"
     }
 

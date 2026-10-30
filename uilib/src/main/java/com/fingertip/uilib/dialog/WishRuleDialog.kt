@@ -27,6 +27,7 @@ class WishRuleDialog(context: Context) : TopDialogBottomSheetDialog(context) {
     }
 
     fun render(rule: String?) {
+        ensureViewCreated()
         binding.tvRuleContent.text = rule?.takeIf { it.isNotBlank() } ?: DEFAULT_RULE
     }
 }

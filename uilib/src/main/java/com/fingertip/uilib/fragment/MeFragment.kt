@@ -29,8 +29,8 @@ import kotlin.math.min
  * 个人中心主页，对应原型「个人中心」：
  * 用户信息头（头像/昵称/等级/签名/关注/佛友）、功德币/修行值、功能入口列表
  *
- * 已接通：我的祈福/放生记录/我的行善/编辑资料；其余入口（任务中心/兑换中心/我的物品/
- * 功德记录/我的足迹/我的感悟/修行攻略/设置）后端或页面未完成，toast 提示建设中
+ * 已接通：我的祈福/放生记录/我的行善/编辑资料/修行攻略(H5)；其余入口（任务中心/兑换中心/我的物品/
+ * 功德记录/我的足迹/我的感悟/设置）后端或页面未完成，toast 提示建设中
  */
 class MeFragment : TopPmFragment<UserVM>() {
     override fun layoutId(): Int = R.layout.fragment_me
@@ -126,7 +126,11 @@ class MeFragment : TopPmFragment<UserVM>() {
             binding.llMind -> ToastUtil.showMessage("我的感悟建设中")
             binding.llBless -> (parentFragment as? MainFragment)?.start(PrayingMineFragment.newInstance(false))
             binding.llReborn -> (parentFragment as? MainFragment)?.start(FangShengFragment())
-            binding.llIntro -> ToastUtil.showMessage("修行攻略建设中")
+
+            //修行攻略：H5 地址由 globalParam.guideUrl 下发，可热更新
+            binding.llIntro -> com.fingertip.uilib.activity.CommonWebViewActivity.start(
+                requireContext(), "修行攻略", GlobalConfig.globalParam?.guideUrl
+            )
         }
     }
 

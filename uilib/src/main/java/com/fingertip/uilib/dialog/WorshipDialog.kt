@@ -42,9 +42,10 @@ class WorshipDialog(context: Context) : TopDialogBottomSheetDialog(context) {
     }
 
     /**
-     * 填充佛像与价目
+     * 填充佛像与价目。调用方在 show() 之前调，必须先 ensureViewCreated 初始化 binding
      */
     fun render(buddha: BuddhaConfig) {
+        ensureViewCreated()
         binding.tvBuddhaName.text = "供奉「${buddha.buddhaName ?: ""}」"
         binding.tvBalance.text = "我的功德币：${GlobalConfig.userData?.coin ?: 0}"
         prices = WorshipVM.parsePriceField(buddha.priceField)

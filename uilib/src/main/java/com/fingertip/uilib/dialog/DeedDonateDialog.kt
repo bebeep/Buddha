@@ -46,6 +46,7 @@ class DeedDonateDialog(context: Context) : TopDialogBottomSheetDialog(context) {
     }
 
     fun render(title: String?) {
+        ensureViewCreated()
         binding.tvDeedTitle.text = title ?: ""
     }
 
