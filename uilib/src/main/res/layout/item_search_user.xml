@@ -20,7 +20,7 @@
 
     <com.fingertip.baselib.view.MyTextView
         android:id="@+id/tv_name"
-        android:textColor="#333333"
+        android:textColor="#EDE3D2"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/iv_head"
         android:text="匿名用户"
@@ -50,8 +50,8 @@
         android:paddingVertical="2dp"
         android:textSize="12sp"
         android:layout_marginEnd="24dp"
-        android:textColor="@color/tv_select"
-        android:background="@drawable/bg_follow"
+        android:textColor="@color/tv_follow_dark"
+        android:background="@drawable/bg_follow_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_name"
         app:layout_constraintBottom_toBottomOf="@+id/tv_name"

@@ -27,9 +27,9 @@ abstract class TopActivity : SupportActivity(), View.OnClickListener {
         activity = this
         FullTopUtil.setStatusTranslucent(this)
         FullTopUtil.FitsSystemWindows(this, !isFullTopBar())
-        if (!FullTopUtil.setStatusBarDarkTheme(this, true)) {
-            //不支持设置深色风格 总不能让状态栏都是白色,设置一个状态栏颜色为半透明,
-            //半透明+白=灰
+        //海外版全局暗底：状态栏字体/图标用白色（dark=false 即不亮色状态栏=白字）
+        if (!FullTopUtil.setStatusBarDarkTheme(this, false)) {
+            //不支持设置状态栏字体风格时，兜底给状态栏垫半透明黑，保证白字可读
             FullTopUtil.setWindowStatusBarColor(this, 0x55000000);
         }
         initShiTu()

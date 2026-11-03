@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    佛历订阅提醒（我的 → 佛历订阅提醒）
+    三张规则卡 + 节日预告，全部走服务端配置，客户端不存任何本地调度状态。
+-->
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#251C10"
+    android:fillViewport="true"
+    android:overScrollMode="never"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="32dp">
+
+        <com.fingertip.baselib.view.FullTopConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="8dp"
+                android:src="@mipmap/icon_back_black"
+                android:tint="#EDE3D2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/remind_title"
+                android:textColor="#EDE3D2"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:zdyFont="bold" />
+
+        </com.fingertip.baselib.view.FullTopConstraintLayout>
+
+        <com.fingertip.baselib.view.MyTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/remind_sub"
+            android:textColor="#8C8069"
+            android:textSize="11sp" />
+
+        <!-- 没有通知权限时才有意义：提醒靠系统推送，权限没开配了也收不到 -->
+        <LinearLayout
+            android:id="@+id/ll_push_tip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/bg_remind_notice"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="14dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="14dp"
+            android:paddingBottom="12dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <com.fingertip.baselib.view.MyTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/remind_push_off_title"
+                    android:textColor="#EDE3D2"
+                    android:textSize="13sp"
+                    app:zdyFont="bold" />
+
+                <com.fingertip.baselib.view.MyTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/remind_push_off_desc"
+                    android:textColor="#8C8069"
+                    android:textSize="10.5sp" />
+
+            </LinearLayout>
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_push_tip_action"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginStart="12dp"
+                android:background="@drawable/bg_home_inner_gold"
+                android:gravity="center"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:text="@string/remind_push_off_action"
+                android:textColor="#C4A265"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <!-- 一、佛历节日提醒 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/bg_home_card_a"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="6dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.fingertip.baselib.view.MyTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/remind_festival_name"
+                        android:textColor="#EDE3D2"
+                        android:textSize="14.5sp"
+                        app:zdyFont="bold" />
+
+                    <com.fingertip.baselib.view.MyTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/remind_festival_desc"
+                        android:textColor="#8C8069"
+                        android:textSize="10.5sp" />
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_festival"
+                    android:layout_width="40dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="12dp"
+                    android:thumb="@drawable/switch_thumb_gold"
+                    app:switchPadding="3dp"
+                    app:track="@drawable/switch_track_gold" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="14dp"
+                android:background="#1FC4A265" />
+
+            <LinearLayout
+                android:id="@+id/ll_festival_time"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <com.fingertip.baselib.view.MyTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/remind_time_label"
+                    android:textColor="#B8AC96"
+                    android:textSize="12.5sp" />
+
+                <com.fingertip.baselib.view.MyTextView
+                    android:id="@+id/tv_festival_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#C4A265"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginStart="4dp"
+                    android:src="@mipmap/icon_me_arrow_right"
+                    android:tint="#6E6455" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#1FC4A265" />
+
+            <LinearLayout
+                android:id="@+id/ll_festival_offset"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <com.fingertip.baselib.view.MyTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/remind_offset_label"
+                    android:textColor="#B8AC96"
+                    android:textSize="12.5sp" />
+
+                <com.fingertip.baselib.view.MyTextView
+                    android:id="@+id/tv_festival_offset"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#C4A265"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginStart="4dp"
+                    android:src="@mipmap/icon_me_arrow_right"
+                    android:tint="#6E6455" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- 二、斋日提醒 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/bg_home_card_a"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="6dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.fingertip.baselib.view.MyTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/remind_zhai_name"
+                        android:textColor="#EDE3D2"
+                        android:textSize="14.5sp"
+                        app:zdyFont="bold" />
+
+                    <com.fingertip.baselib.view.MyTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/remind_zhai_desc"
+                        android:textColor="#8C8069"
+                        android:textSize="10.5sp" />
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_zhai"
+                    android:layout_width="40dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="12dp"
+                    android:thumb="@drawable/switch_thumb_gold"
+                    app:switchPadding="3dp"
+                    app:track="@drawable/switch_track_gold" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="14dp"
+                android:background="#1FC4A265" />
+
+            <LinearLayout
+                android:id="@+id/ll_zhai_time"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <com.fingertip.baselib.view.MyTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/remind_time_label"
+                    android:textColor="#B8AC96"
+                    android:textSize="12.5sp" />
+
+                <com.fingertip.baselib.view.MyTextView
+                    android:id="@+id/tv_zhai_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#C4A265"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginStart="4dp"
+                    android:src="@mipmap/icon_me_arrow_right"
+                    android:tint="#6E6455" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- 三、每日自定义提醒 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/bg_home_card_a"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.fingertip.baselib.view.MyTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/remind_custom_name"
+                        android:textColor="#EDE3D2"
+                        android:textSize="14.5sp"
+                        app:zdyFont="bold" />
+
+                    <com.fingertip.baselib.view.MyTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/remind_custom_desc"
+                        android:textColor="#8C8069"
+                        android:textSize="10.5sp" />
+
+                </LinearLayout>
+
+                <com.fingertip.baselib.view.MyTextView
+                    android:id="@+id/tv_add_custom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="12dp"
+                    android:background="@drawable/bg_home_inner_gold"
+                    android:gravity="center"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:text="@string/remind_custom_add"
+                    android:textColor="#C4A265"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_custom_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="vertical" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_custom_empty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/remind_custom_empty"
+                android:textColor="#6E6455"
+                android:textSize="11.5sp" />
+
+        </LinearLayout>
+
+        <!-- 四、接下来的节日预告 -->
+        <com.fingertip.baselib.view.MyTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/remind_preview_title"
+            android:textColor="#EDE3D2"
+            android:textSize="13.5sp"
+            app:zdyFont="bold" />
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_preview_empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/remind_preview_empty"
+            android:textColor="#6E6455"
+            android:textSize="11.5sp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/ll_preview_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/bg_home_card_a"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingTop="6dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="6dp" />
+
+        <com.fingertip.baselib.view.MyTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="18dp"
+            android:text="@string/remind_timezone_tip"
+            android:textColor="#6E6455"
+            android:textSize="10.5sp" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

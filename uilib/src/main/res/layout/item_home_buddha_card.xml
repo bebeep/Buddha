@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    首页区块 1：佛历头卡
+    左侧佛历年份 / 公历大日期（宋体）/ 今日佛事 / 农历，右侧金色圆环签到进度。
+    整卡可点，进签到日历页；接口没回来时先铺本地公历，失败也不塌。
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="12dp"
+    android:layout_marginEnd="16dp"
+    android:background="@drawable/bg_home_card_b"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="18dp">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_buddhist_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:letterSpacing="0.08"
+            android:text="佛历 2569 年"
+            android:textColor="#C4A265"
+            android:textSize="10.5sp" />
+
+        <!-- 大字号日期走系统 serif，接近宋体的观感；换自定义字体会多背一套字库 -->
+        <TextView
+            android:id="@+id/tv_date_big"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="serif"
+            android:text="11月2日"
+            android:textColor="#EDE3D2"
+            android:textSize="28sp" />
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_mood"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="#E3C88B"
+            android:textSize="13sp" />
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_lunar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="#8C8069"
+            android:textSize="11sp" />
+
+    </LinearLayout>
+
+    <!-- 签到进度环：进度 = 7 天小周期，中间两行字由代码填 -->
+    <com.fingertip.uilib.widgets.RingProgressView
+        android:id="@+id/rpv_sign"
+        android:layout_width="76dp"
+        android:layout_height="76dp"
+        android:layout_marginStart="12dp" />
+
+</LinearLayout>

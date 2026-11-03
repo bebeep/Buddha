@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    商品预览占位块：一期没有 CDN 图，用暗金渐变垫底 + 居中一个大字（取商品名首字），
+    比空白灰块体面，也不至于让用户以为是图挂了。
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:angle="270"
+        android:startColor="#453723"
+        android:endColor="#282013" />
+    <corners android:radius="12dp" />
+    <stroke
+        android:width="0.5dp"
+        android:color="#26C4A265" />
+</shape>

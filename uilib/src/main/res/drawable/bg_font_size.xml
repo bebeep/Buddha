@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 覆盖 baseLib 同名资源：经文字号选择底，暗调金（§12.6 暗调禅金） -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="6dp" />
+    <solid android:color="#C4A265" />
+</shape>

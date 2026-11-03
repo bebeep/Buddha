@@ -28,12 +28,13 @@ class MomentVM:TopVMImp() {
                    videoWidth: Int = 0,
                    videoHeight: Int = 0,
                    isAnonymous: Boolean = false,
+                   isCheckIn: Boolean = false,
                    location: String = "",
                    remindAccountIds: List<Int> = emptyList()) {
         call({
             NetManager.getApi().postMoment(request = RequestBodyFactory.postMomentBody(textContent,
                 videoUrl,videoCover,imageUrl,videoDuration,videoWidth,videoHeight,
-                isAnonymous,location,remindAccountIds))
+                isAnonymous,location,remindAccountIds,checkIn = isCheckIn))
         }, {
             postMomentResult.value = successResult(it)
         }, {
@@ -41,10 +42,15 @@ class MomentVM:TopVMImp() {
         }, showLoading = false, toastError = true)
     }
 
-    fun getMomentList(pageCount: Int,momentType: Int) {
+    /**
+     * 动态列表：0 推荐(热) 1 关注 2 共修打卡 3 最新
+     */
+    fun getMomentList(pageCount: Int,listType: Int) {
         call({
-            when(momentType){
+            when(listType){
                 1 -> NetManager.getApi().getMomentListFollowed(pageCount = pageCount)
+                2 -> NetManager.getApi().getMomentListCheckIn(pageCount = pageCount)
+                3 -> NetManager.getApi().getMomentListNew(pageCount = pageCount)
                 else -> NetManager.getApi().getMomentListHot(pageCount = pageCount)
             }
         }, {
@@ -52,6 +58,39 @@ class MomentVM:TopVMImp() {
         }, {
             momentListResult.value = failResult(it.errorCode)
         }, showLoading = false, toastError = true)
+    }
+
+    //我的感悟 / 他人主页的动态列表
+    val momentByAccountResult = MutableLiveData<RequestResult<List<MomentEntity>>>()
+    val deleteMomentResult = MutableLiveData<RequestResult<String>>()
+
+    /**
+     * 某人的动态列表
+     * @param targetAccountId 传 0 查自己
+     */
+    fun getMomentListByAccount(targetAccountId: Int, pageCount: Int) {
+        call({
+            NetManager.getApi().getMomentListByAccount(
+                targetAccountId = targetAccountId, pageCount = pageCount
+            )
+        }, {
+            momentByAccountResult.value = successResult(it)
+        }, {
+            momentByAccountResult.value = failResult(it.errorCode, it.errorMsg)
+        }, showLoading = false, toastError = false)
+    }
+
+    /**
+     * 删除自己的动态
+     */
+    fun deleteMoment(momentId: Int) {
+        call({
+            NetManager.getApi().deleteMoment(momentId = momentId)
+        }, {
+            deleteMomentResult.value = successResult(it)
+        }, {
+            deleteMomentResult.value = failResult(it.errorCode, it.errorMsg)
+        }, showLoading = true, toastError = false)
     }
 
     fun getMomentDetails(momentId: Int) {
@@ -122,6 +161,28 @@ class MomentVM:TopVMImp() {
             else NetManager.getApi().unLikeMomentComment(commentId = commentId)
         }, {
         }, {
+        }, showLoading = false, toastError = false)
+    }
+
+    //举报结果（UGC 合规：举报成功给个轻提示即可，不暴露处理细节）
+    val reportResult = MutableLiveData<RequestResult<String>>()
+
+    /**
+     * 举报动态或评论
+     * @param targetAccountId 被举报内容的作者
+     * @param reportType 1动态 2评论
+     * @param tag 举报原因，见 ReportDialog.TAG_*
+     * @param content 附加说明，一期留空
+     */
+    fun report(targetAccountId: Int, reportType: Int, tag: String, content: String = "") {
+        call({
+            NetManager.getApi().report(
+                body = RequestBodyFactory.reportBody(targetAccountId, reportType, tag, content)
+            )
+        }, {
+            reportResult.value = successResult(it)
+        }, {
+            reportResult.value = failResult(it.errorCode, it.errorMsg)
         }, showLoading = false, toastError = false)
     }
 

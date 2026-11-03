@@ -17,7 +17,7 @@
         android:layout_weight="1"
         android:ellipsize="end"
         android:singleLine="true"
-        android:textColor="#2C1900"
+        android:textColor="#B5A78F"
         android:textSize="14sp"
         app:zdyFont="bold" />
 

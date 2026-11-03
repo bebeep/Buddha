@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="#2C1900"
+            android:textColor="#B5A78F"
             android:textSize="14sp"
             app:zdyFont="bold" />
 
@@ -43,7 +43,7 @@
             android:layout_marginTop="2dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="#999999"
+            android:textColor="#8C8069"
             android:textSize="11sp" />
 
     </LinearLayout>

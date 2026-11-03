@@ -117,7 +117,7 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
             val slideOffset = min(abs(scrollY * 1.0f / 100.toPx()), 1f)
             binding.clTitle.setBackgroundColor(
                 ColorUtil.changeAlpha(
-                    resources.getColor(R.color.white),
+                    resources.getColor(R.color.me_title_base),
                     slideOffset
                 )
             )

@@ -56,8 +56,12 @@ class CommonWebViewActivity : TopActivity() {
 
         /**
          * 通用 session 拼接：已带 session 参数不重复拼，带 ? 用 &，否则用 ?
+         *
+         * 本地 assets（协议页）不拼：file:// 路径带 query 在部分 ROM 上会解析失败，
+         * 表现为白屏。本地页面本来也拿不到、不需要 session。
          */
         fun appendSession(url: String): String = when {
+            url.startsWith("file://") -> url
             url.contains("session=") -> url
             url.contains("?") -> "$url&session=${GlobalConfig.session}"
             else -> "$url?session=${GlobalConfig.session}"

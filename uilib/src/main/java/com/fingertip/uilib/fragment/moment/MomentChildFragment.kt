@@ -26,8 +26,18 @@ class MomentChildFragment : TopPmFragment<MomentVM>() {
 
     companion object {
         const val FOLLOW = "FOLLOW" //关注
-        const val MOMENT = "MOMENT" //佛友圈
+        const val MOMENT = "MOMENT" //佛友圈-推荐
+        const val CHECKIN = "CHECKIN" //共修打卡
+        const val NEW = "NEW" //最新
         const val TYPE_STRING = "typeString"
+
+        /** 页面类型 → 接口列表类型：0 推荐(热) 1 关注 2 共修打卡 3 最新 */
+        fun listTypeOf(typeString: String): Int = when (typeString) {
+            FOLLOW -> 1
+            CHECKIN -> 2
+            NEW -> 3
+            else -> 0
+        }
 
         /** 视频至少露出这么多才自动播放 */
         private const val MIN_VISIBLE_RATIO = 0.5f
@@ -69,7 +79,7 @@ class MomentChildFragment : TopPmFragment<MomentVM>() {
     override fun initShiTu() {
         momentType = arguments?.getString(TYPE_STRING, MOMENT) ?: MOMENT
         initAdapter()
-        mViewModel.getMomentList(pageCount, if (momentType == FOLLOW) 1 else 0)
+        mViewModel.getMomentList(pageCount, MomentChildFragment.listTypeOf(momentType))
     }
 
     private fun initAdapter() {
@@ -99,12 +109,12 @@ class MomentChildFragment : TopPmFragment<MomentVM>() {
         binding.srl.setOnRefreshLoadMoreListener(object : com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener {
             override fun onRefresh(refreshLayout: RefreshLayout) {
                 pageCount = 0
-                mViewModel.getMomentList(pageCount, if (momentType == FOLLOW) 1 else 0)
+                mViewModel.getMomentList(pageCount, MomentChildFragment.listTypeOf(momentType))
             }
 
             override fun onLoadMore(refreshLayout: RefreshLayout) {
                 pageCount++
-                mViewModel.getMomentList(pageCount, if (momentType == FOLLOW) 1 else 0)
+                mViewModel.getMomentList(pageCount, MomentChildFragment.listTypeOf(momentType))
             }
         })
     }
@@ -321,6 +331,25 @@ class MomentChildFragment : TopPmFragment<MomentVM>() {
                     list[position] = momentEntity
                     //只刷这一条，别整表刷新，否则正在播的视频会被重置
                     adapter?.notifyItemChanged(position)
+                }
+            }
+
+            EventConstant.EVENT_BLOCK_ACCOUNT -> {
+                //拉黑后服务端已经不再下发这个人的内容，这里把本地列表里的旧数据摘掉，
+                //免得用户返回列表还能看见刚才拉黑的人
+                val accountId = event.`object` as? Int ?: return
+                var removed = false
+                for (i in list.indices.reversed()) {
+                    if (list[i].postAccountId == accountId) {
+                        list.removeAt(i)
+                        adapter?.notifyItemRemoved(i)
+                        removed = true
+                    }
+                }
+                if (removed) {
+                    //位置全变了，正在播的那条已经对不上，重新挑一条
+                    currentPlayingPosition = -1
+                    binding.recyclerview.post { playBestVisible() }
                 }
             }
         }

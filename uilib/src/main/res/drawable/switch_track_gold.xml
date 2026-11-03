@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 暗调禅金开关：轨道。开启为禅金，关闭为暗棕，避免白底灰轨在深色页上过亮 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_checked="true">
+        <shape>
+            <solid android:color="#C4A265" />
+            <corners android:radius="10dp" />
+        </shape>
+    </item>
+
+    <item>
+        <shape>
+            <solid android:color="#3A3228" />
+            <corners android:radius="10dp" />
+        </shape>
+    </item>
+
+</selector>

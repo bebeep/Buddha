@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF7EA">
+    android:background="#2F2518">
 
     <com.fingertip.baselib.view.FullTopConstraintLayout
         android:id="@+id/cl_title"
@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="我的行善"
-            android:textColor="@color/black"
+            android:textColor="#EDE3D2"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +58,7 @@
             android:background="@drawable/bg_praying_cover_selected"
             android:gravity="center"
             android:text="我发布的"
-            android:textColor="#C87A2B"
+            android:textColor="#C4A265"
             android:textSize="14sp" />
 
         <TextView
@@ -70,7 +70,7 @@
             android:background="@drawable/bg_praying_cover_normal"
             android:gravity="center"
             android:text="善行记录"
-            android:textColor="#8A6B3A"
+            android:textColor="#B5A78F"
             android:textSize="14sp" />
     </LinearLayout>
 
@@ -90,7 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="暂无记录"
-        android:textColor="#B08A4A"
+        android:textColor="#C4A265"
         android:textSize="14sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"

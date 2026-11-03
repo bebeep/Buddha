@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 举报弹窗：单选原因 + 取消/提交。UGC 合规要求必须有举报入口，原因需覆盖平台常见违规项 -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.fingertip.baselib.view.shapeview.ShapeConstraintLayout
+        style="@style/constraint_center"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:gdBgColor="#FFFEFA"
+        app:gdRadius="12dp">
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:text="@string/report_title"
+            android:textColor="#B5A78F"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:zdyFont="bold" />
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_sub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="22dp"
+            android:layout_marginTop="6dp"
+            android:gravity="center"
+            android:text="@string/report_sub"
+            android:textColor="#8C8069"
+            android:textSize="12sp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+        <LinearLayout
+            android:id="@+id/ll_reasons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/tv_sub">
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_reason_1"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:text="@string/report_reason_1"
+                android:textColor="#B5A78F"
+                android:textSize="14sp" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_reason_2"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:text="@string/report_reason_2"
+                android:textColor="#B5A78F"
+                android:textSize="14sp" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_reason_3"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:text="@string/report_reason_3"
+                android:textColor="#B5A78F"
+                android:textSize="14sp" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_reason_4"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:text="@string/report_reason_4"
+                android:textColor="#B5A78F"
+                android:textSize="14sp" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_reason_5"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:text="@string/report_reason_5"
+                android:textColor="#B5A78F"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="18dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_reasons">
+
+            <com.fingertip.baselib.view.shapeview.ShapeTextView
+                android:id="@+id/btn_cancel"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/report_cancel"
+                android:textColor="#8C8069"
+                android:textSize="15sp"
+                app:gdBgColor="#F2F0EC"
+                app:gdRadius="22dp"
+                app:zdyFont="bold" />
+
+            <com.fingertip.baselib.view.shapeview.ShapeTextView
+                android:id="@+id/btn_submit"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/report_submit"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:gdEndColor="#FFD543"
+                app:gdGradientOrientation="LEFT_RIGHT"
+                app:gdRadius="22dp"
+                app:gdStartColor="#C4A265"
+                app:zdyFont="bold" />
+
+        </LinearLayout>
+
+    </com.fingertip.baselib.view.shapeview.ShapeConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

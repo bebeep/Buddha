@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    供灯记录（我的 → 供灯记录）
+    上半是当前灯状态卡（可直接去续燃），下半是历史记录列表。
+    每条记录都带 IAP 订单号——这是恢复购买和客诉追溯的唯一凭证，所以列表不能省订单号。
+-->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#251C10">
+
+    <com.fingertip.baselib.view.FullTopConstraintLayout
+        android:id="@+id/cl_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="8dp"
+            android:src="@mipmap/icon_back_black"
+            android:tint="#EDE3D2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.fingertip.baselib.view.MyTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lamp_record_title"
+            android:textColor="#EDE3D2"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:zdyFont="bold" />
+
+    </com.fingertip.baselib.view.FullTopConstraintLayout>
+
+    <!-- 当前灯状态 -->
+    <LinearLayout
+        android:id="@+id/ll_current"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/bg_home_card_b"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/cl_title">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_current_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#EDE3D2"
+                android:textSize="14sp" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_current_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="#8C8069"
+                android:textSize="10.5sp" />
+
+        </LinearLayout>
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_current_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/bg_home_pill_outline"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            android:textColor="#C4A265"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_list_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="18dp"
+        android:letterSpacing="0.04"
+        android:text="@string/lamp_record_history"
+        android:textColor="#EDE3D2"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_current" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rc_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="10dp"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toTopOf="@+id/tv_tip"
+        app:layout_constraintTop_toBottomOf="@+id/tv_list_title" />
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lamp_record_empty"
+        android:textColor="#6E6455"
+        android:textSize="11.5sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/rc_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/rc_list" />
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_tip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="14dp"
+        android:gravity="center"
+        android:text="@string/lamp_record_tip"
+        android:textColor="#6E6455"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

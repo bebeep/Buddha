@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.fingertip.buddha">
 
+    <!-- Android 13+ 通知权限：OneSignal 5.x 的清单里也会声明，这里显式写一份，
+         避免因模块合并顺序导致 targetSdk 35 下漏掉 -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
 
     <application

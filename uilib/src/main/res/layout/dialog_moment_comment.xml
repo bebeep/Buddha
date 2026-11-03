@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="@drawable/bg_rec_top_24dp"
+        android:background="@drawable/bg_sheet_top_dark_24"
         android:clickable="true"
         android:focusable="true"
         android:orientation="vertical">
@@ -31,7 +31,7 @@
             android:layout_height="4dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
-            android:background="@drawable/bg_comment_drag_handle" />
+            android:background="@drawable/bg_comment_drag_dark" />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start|center_vertical"
                 android:layout_marginStart="16dp"
-                android:textColor="#2D2D2D"
+                android:textColor="#EDE3D2"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 app:zdyFont="medium"
@@ -63,7 +63,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#F7F7F7" />
+            android:background="#1FC4A265" />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="还没有评论，来说两句"
-                android:textColor="#AAAAAA"
+                android:textColor="#8C8069"
                 android:textSize="13sp"
                 android:visibility="gone" />
         </FrameLayout>
@@ -102,7 +102,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#F7F7F7" />
+            android:background="#1FC4A265" />
 
         <!-- 输入区：输入框常驻，点击某条评论会切成「回复 xxx」 -->
         <LinearLayout
@@ -119,7 +119,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/bg_moment_comment_input"
+                android:background="@drawable/bg_comment_input_dark"
                 android:minHeight="40dp">
 
                 <com.fingertip.baselib.view.MyEditText
@@ -138,7 +138,7 @@
                     android:maxLength="300"
                     android:maxLines="4"
                     android:minHeight="40dp"
-                    android:textColor="#050505"
+                    android:textColor="#EDE3D2"
                     android:textCursorDrawable="@drawable/bg_comment_curser"
                     android:textSize="14sp" />
 

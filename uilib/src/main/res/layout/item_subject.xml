@@ -26,7 +26,7 @@
     <com.fingertip.baselib.view.MyTextView
         android:id="@+id/tv_title"
         android:text="南无阿弥陀佛"
-        android:textColor="#FF9600"
+        android:textColor="#C4A265"
         android:textSize="24sp"
         app:zdyFont="bold"
         app:layout_constraintTop_toTopOf="@+id/iv_bg"
@@ -42,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_marginTop="4dp"
-        android:textColor="#CBB491"
+        android:textColor="#B5A78F"
         android:textSize="12sp"
         android:maxLines="3"
         android:ellipsize="end"

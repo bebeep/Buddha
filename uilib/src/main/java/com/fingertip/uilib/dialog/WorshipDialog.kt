@@ -85,7 +85,7 @@ class WorshipDialog(context: Context) : TopDialogBottomSheetDialog(context) {
         tv.setBackgroundResource(
             if (selected) R.drawable.bg_worship_price_selected else R.drawable.bg_worship_price_normal
         )
-        tv.setTextColor(if (selected) Color.parseColor("#FFA030") else Color.parseColor("#666666"))
+        tv.setTextColor(if (selected) Color.parseColor("#C4A265") else Color.parseColor("#8C8069"))
     }
 
     /**

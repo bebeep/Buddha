@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 首页强调卡（佛历头卡/灯条/可玩游戏）：底 #3D301E，圆角 16，0.5dp 金线 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#3D301E" />
+    <corners android:radius="16dp" />
+    <stroke
+        android:width="0.5dp"
+        android:color="#29C4A265" />
+</shape>

@@ -20,7 +20,7 @@
         app:tl_textBold="SELECT"
         app:tl_indicator_color="#FFF4E5"
         app:tl_indicator_corner_radius="12.5dp"
-        app:tl_textSelectColor="#FF9600"
+        app:tl_textSelectColor="#C4A265"
         app:tl_textUnselectColor="#AAAAAA"
         app:tl_indicator_style="BLOCK"
         />

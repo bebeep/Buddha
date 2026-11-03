@@ -24,11 +24,14 @@ import kotlinx.coroutines.runBlocking
 import org.greenrobot.eventbus.Subscribe
 
 import com.fingertip.uilib.fragment.HostFragment
-import com.fingertip.uilib.fragment.RankFragment
 import com.fingertip.uilib.fragment.MeFragment
 
 /**
  * 主Fragment
+ *
+ * 海外版信息架构（2026-11 调整）：
+ *   首页 / 拜佛(含供灯) / 佛友圈 / 我的 —— 共 4 个 tab
+ * 排行榜（RankFragment）整体下线；游戏（放生/禅院）不做 tab，收进首页游戏卡区。
  */
 class MainFragment : TopVMFragment<MainVM>(), BottomMenu.MenuSelectCallback {
 
@@ -45,15 +48,14 @@ class MainFragment : TopVMFragment<MainVM>(), BottomMenu.MenuSelectCallback {
 
         if (findChildFragment(HostFragment::class.java) != null) {
             fragmentList.add(findChildFragment(HostFragment::class.java))
-            fragmentList.add(findChildFragment(MomentFragment::class.java))
             fragmentList.add(findChildFragment(WorshipFragment::class.java))
-            fragmentList.add(findChildFragment(RankFragment::class.java))
+            fragmentList.add(findChildFragment(MomentFragment::class.java))
             fragmentList.add(findChildFragment(MeFragment::class.java))
         } else {
+            // 顺序必须与底部菜单一致：首页 / 拜佛 / 佛友圈 / 我的
             fragmentList.add(HostFragment())
-            fragmentList.add(MomentFragment())
             fragmentList.add(WorshipFragment())
-            fragmentList.add(RankFragment())
+            fragmentList.add(MomentFragment())
             fragmentList.add(MeFragment())
 
             loadMultipleRootFragment(R.id.multi_container, 0, *fragmentList.toTypedArray())
@@ -63,9 +65,10 @@ class MainFragment : TopVMFragment<MainVM>(), BottomMenu.MenuSelectCallback {
 
         binding.bottomMenu.also {
             it.menuSelectCallback = this
+            // 4 个 tab 图标兜底（tabBarConfig 未下发时使用），顺序同 fragmentList
             it.addMenuItem(BottomMenuItem(R.mipmap.icon_menu, true))
             it.addMenuItem(BottomMenuItem(R.mipmap.icon_menu))
-            it.addMenuItem(BottomMenuItem(R.mipmap.icon_menu))
+            // 佛友圈带未读红点（原第 4 位消息角标平移到第 3 位）
             it.addMenuItem(BottomMenuItem(R.mipmap.icon_menu, hasMsg = true))
             it.addMenuItem(BottomMenuItem(R.mipmap.icon_menu))
         }
@@ -109,12 +112,25 @@ class MainFragment : TopVMFragment<MainVM>(), BottomMenu.MenuSelectCallback {
 
 
 
+    /**
+     * 供子页面（首页各区块）切换底部 tab。
+     *
+     * 只暴露这一个入口，内部仍走 BottomMenu.selectTab → 子 View 的 performClick，
+     * 这样选中态、onMenuSelect 回调和 lastIndex 都由现有逻辑统一处理，
+     * 子页面不需要也不应该去 findViewById 拿 BottomMenu。
+     *
+     * @param index 0首页 1拜佛 2佛友圈 3我的
+     */
+    fun selectTab(index: Int) {
+        binding.bottomMenu.selectTab(index)
+    }
+
     var lastIndex = 0
-    override fun onMenuSelect(pos: Int) {
-        showHideFragment(fragmentList[pos], lastFragment)
+    override fun onMenuSelect(pos: Int) {        showHideFragment(fragmentList[pos], lastFragment)
         lastFragment = fragmentList[pos]
         lastIndex = pos
-        if (pos == 2) {
+        // 拜佛 tab 现在是第 2 位（index=1），原 index=2 的特殊处理保留但已无匹配
+        if (pos == 1) {
 //            binding.multiContainer.gone()
 //            binding.bottomMenu.alpha = 0.2f
         } else {
@@ -134,7 +150,7 @@ class MainFragment : TopVMFragment<MainVM>(), BottomMenu.MenuSelectCallback {
     private var exitDialog: ExitConfirmDialog? = null
 
     /**
-     * 5 个 tab 都是 multi_container 里的根 Fragment（canPop = false），
+     * 4 个 tab 都是 multi_container 里的根 Fragment（canPop = false），
      * 所以返回键会一路冒泡到这里（ContainerActivity 的 onBackPressedSupport 只管二级页面）。
      *
      * 规则：

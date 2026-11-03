@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 首页常规卡：底 #342919，圆角 16，0.5dp 金线（alpha 16%） -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#342919" />
+    <corners android:radius="16dp" />
+    <stroke
+        android:width="0.5dp"
+        android:color="#29C4A265" />
+</shape>

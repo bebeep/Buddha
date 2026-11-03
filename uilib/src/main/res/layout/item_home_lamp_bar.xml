@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    首页区块 3：供灯状态条
+    三态由代码切背景与文案：
+      无灯   —— 虚线描边 +「点一盏灯」（引导首购）
+      燃烧中 —— 常规卡 + 静默小字显示剩余时长
+      将熄   —— 金描边高亮 +「去续燃」（剩余 <= 3 小时）
+    点击整条切到拜佛 tab 的供灯场景（不是新页面）。
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_lamp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="16dp"
+    android:background="@drawable/bg_home_card_a"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingStart="14dp"
+    android:paddingEnd="14dp"
+    android:paddingTop="12dp"
+    android:paddingBottom="12dp">
+
+    <ImageView
+        android:id="@+id/iv_lamp_icon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="10dp"
+        android:src="@mipmap/icon_worship_candle" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_lamp_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/home_lamp_none"
+            android:textColor="#EDE3D2"
+            android:textSize="12.5sp" />
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_lamp_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/home_lamp_none_desc"
+            android:textColor="#8C8069"
+            android:textSize="10.5sp" />
+
+    </LinearLayout>
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_lamp_action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/bg_home_pill_outline"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text="@string/home_lamp_relight"
+        android:textColor="#C4A265"
+        android:textSize="11sp" />
+
+</LinearLayout>

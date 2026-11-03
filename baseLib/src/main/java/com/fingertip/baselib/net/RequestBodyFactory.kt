@@ -33,20 +33,102 @@ object RequestBodyFactory {
     }
 
     /**
-     * 登录参数
+     * 设备公共参数。海外版所有登录方式都要带，抽出来避免五处各写一遍。
      */
-    fun loginBody(phoneNumber: String, psw: String): RequestBody {
+    private fun deviceParams(): HashMap<String, Any> {
         val param = HashMap<String, Any>()
-
         param["platform"] = NetProperty.PLATFORM
         param["channelId"] = NetProperty.CHANNEL
         param["clientVersion"] = DeviceIdUtils.getVersionName()
         param["deviceName"] = TopUtils.sjInfo
         param["deviceUUID"] = DeviceIdUtils.getDeviceChannleID(TopApplication.instance)
-        param["phoneNumber"] = phoneNumber
-        param["password"] = psw
-        param["sign"] = makeMd5Sign(NetProperty.PLATFORM.toString(),NetProperty.CHANNEL.toString(),
-            DeviceIdUtils.getVersionName(),DeviceIdUtils.getDeviceChannleID(TopApplication.instance), phoneNumber, psw, NetProperty.API_KEY)
+        // 时区随每次登录上报：用户换国家后早课跨天与推送时间要跟着变
+        param["timeZone"] = TimeZone.getDefault().id
+        return param
+    }
+
+    /**
+     * 登录方式，与服务端 AccountServiceImpl.LOGIN_TYPE_* 对齐
+     */
+    const val LOGIN_TYPE_EMAIL = 1
+    const val LOGIN_TYPE_GOOGLE = 2
+    const val LOGIN_TYPE_APPLE = 3
+
+    /**
+     * 邮箱登录
+     * @param email 邮箱
+     * @param pswMd5 已做 MD5 的密码
+     */
+    fun emailLoginBody(email: String, pswMd5: String): RequestBody {
+        val param = deviceParams()
+        param["loginType"] = LOGIN_TYPE_EMAIL
+        param["email"] = email.trim().lowercase()
+        param["password"] = pswMd5
+        return buildJsonRequestBody(param)
+    }
+
+    /**
+     * 邮箱注册
+     */
+    fun registerBody(email: String, pswMd5: String): RequestBody {
+        val param = deviceParams()
+        param["loginType"] = LOGIN_TYPE_EMAIL
+        param["email"] = email.trim().lowercase()
+        param["password"] = pswMd5
+        return buildJsonRequestBody(param)
+    }
+
+    /**
+     * 第三方登录
+     * @param loginType LOGIN_TYPE_GOOGLE / LOGIN_TYPE_APPLE
+     * @param idToken Google idToken 或 Apple identityToken
+     */
+    fun thirdLoginBody(loginType: Int, idToken: String): RequestBody {
+        val param = deviceParams()
+        param["loginType"] = loginType
+        param["thirdToken"] = idToken
+        return buildJsonRequestBody(param)
+    }
+
+    /**
+     * 绑定第三方账号 / 补绑邮箱
+     */
+    fun bindThirdBody(loginType: Int, email: String = "", idToken: String = ""): RequestBody {
+        val param = deviceParams()
+        param["loginType"] = loginType
+        if (email.isNotEmpty()) param["email"] = email.trim().lowercase()
+        if (idToken.isNotEmpty()) param["thirdToken"] = idToken
+        return buildJsonRequestBody(param)
+    }
+
+    /**
+     * 游客登录（保留：卸载重装后同一设备仍能找回未注册账号的数据）
+     */
+    fun guestLoginBody(): RequestBody {
+        val param = deviceParams()
+        param["sign"] = makeMd5Sign(
+            NetProperty.PLATFORM.toString(), NetProperty.CHANNEL.toString(),
+            DeviceIdUtils.getVersionName(), DeviceIdUtils.getDeviceChannleID(TopApplication.instance),
+            NetProperty.API_KEY
+        )
+        return buildJsonRequestBody(param)
+    }
+
+    /**
+     * 推送订阅上报
+     */
+    fun pushRegisterBody(
+        subscriptionId: String,
+        pushToken: String,
+        timeZone: String,
+        lang: String
+    ): RequestBody {
+        val param = HashMap<String, Any>()
+        param["subscriptionId"] = subscriptionId
+        param["platform"] = NetProperty.PLATFORM
+        param["pushToken"] = pushToken
+        param["timeZone"] = timeZone
+        param["lang"] = lang
         return buildJsonRequestBody(param)
     }
 
@@ -56,7 +138,7 @@ object RequestBodyFactory {
      */
     fun postMomentBody(textContent: String,videoUrl: String,videoCover: String,imageUrl: String,
                        videoDuration: Int,videoWidth: Int,videoHeight: Int,isAnonymous: Boolean,
-                       location: String,remindAccountIds: List<Int>): RequestBody {
+                       location: String,remindAccountIds: List<Int>,checkIn: Boolean = false): RequestBody {
         val param = HashMap<String, Any>()
 
         param["textContent"] = textContent
@@ -65,6 +147,7 @@ object RequestBodyFactory {
         param["videoWidth"] = videoWidth
         param["videoHeight"] = videoHeight
         param["isAnonymous"] = isAnonymous
+        param["checkIn"] = checkIn
         param["location"] = location
         param["remindAccountIds"] = remindAccountIds
         param["videoCover"] = videoCover
@@ -246,6 +329,130 @@ object RequestBodyFactory {
         val param = HashMap<String, Any>()
         param["buddhaId"] = buddhaId
         param["days"] = days
+        return buildJsonRequestBody(param)
+    }
+
+    /**
+     * 装扮佩戴入参。wear=true 佩戴，false 摘下
+     * 对应服务端 WearReq{dressId, wear}
+     */
+    fun dressWearBody(dressId: Int, wear: Boolean): RequestBody {
+        val param = HashMap<String, Any>()
+        param["dressId"] = dressId
+        param["wear"] = wear
+        return buildJsonRequestBody(param)
+    }
+
+    /**
+     * IAP 验单入参，对应服务端 IapVerifyReq{orderNo, platform, payOrderId}
+     * @param orderNo 服务端 createOrder 返回的内部订单号
+     * @param platform 1 Android 2 iOS
+     * @param payOrderId 平台交易号（Google purchaseToken / Apple originalTransactionId）
+     */
+    fun iapVerifyBody(orderNo: String, platform: Int, payOrderId: String): RequestBody {
+        val param = HashMap<String, Any>()
+        param["orderNo"] = orderNo
+        param["platform"] = platform
+        param["payOrderId"] = payOrderId
+        return buildJsonRequestBody(param)
+    }
+
+    /**
+     * 恢复购买入参
+     * @param payOrderIds 平台侧取回的交易号列表
+     */
+    fun restoreBody(payOrderIds: List<String>): RequestBody {
+        val param = HashMap<String, Any>()
+        param["payOrderIds"] = payOrderIds
+        return buildJsonRequestBody(param)
+    }
+
+    /**
+     * 早课提交入参
+     * @param stepData 五步明细 json，形如 {"worship":3,"chantSeconds":62,"nianfo":21,"vow":"..."}
+     * @param totalSeconds 从开始早课到提交的总秒数，服务端据此做时长下限校验
+     * @param timeZone 用户时区 id，如 Asia/Singapore，服务端按它判定早课/晚课与"今天"
+     */
+    fun practiceSubmitBody(stepData: String, totalSeconds: Int, timeZone: String): RequestBody {
+        val param = HashMap<String, Any>()
+        param["stepData"] = stepData
+        param["totalSeconds"] = totalSeconds
+        param["timeZone"] = timeZone
+        return buildJsonRequestBody(param)
+    }
+
+    /**
+     * 念佛计数上报入参
+     * @param countDate 记账日期（用户本地时区的 yyyy-MM-dd），服务端按它算"单日上限"
+     */
+    fun meditationReportBody(
+        buddhaName: String,
+        addCount: Int,
+        addSeconds: Int,
+        countDate: String
+    ): RequestBody {
+        val param = HashMap<String, Any>()
+        param["buddhaName"] = buddhaName
+        param["addCount"] = addCount
+        param["addSeconds"] = addSeconds
+        param["countDate"] = countDate
+        return buildJsonRequestBody(param)
+    }
+
+    /**
+     * 举报入参
+     * @param targetAccountId 被举报内容的作者账号 id
+     * @param reportType 举报场景 1动态 2动态评论
+     * @param reportTag 举报原因标签（spam/porn/abuse/fraud/other）
+     * @param reportContent 附加说明，可空（后台存 json 便于扩展）
+     */
+    fun reportBody(
+        targetAccountId: Int,
+        reportType: Int,
+        reportTag: String,
+        reportContent: String
+    ): RequestBody {
+        val param = HashMap<String, Any>()
+        param["targetAccountId"] = targetAccountId
+        param["reportType"] = reportType
+        param["reportTag"] = reportTag
+        param["reportContent"] = reportContent
+        return buildJsonRequestBody(param)
+    }
+
+    /**
+     * 收藏 / 取消收藏
+     *
+     * @param targetType 1佛经 2感悟 3寺庙
+     * @param targetId 目标 id
+     */
+    fun collectBody(targetType: Int, targetId: Int): RequestBody {
+        val param = HashMap<String, Any>()
+        param["targetType"] = targetType
+        param["targetId"] = targetId
+        return buildJsonRequestBody(param)
+    }
+
+    /**
+     * 保存佛历提醒规则
+     *
+     * @param id 0 新建，>0 更新
+     * @param remindType 1节日 2斋日 3自定义
+     * @param festivalKey 自定义提醒的文案，节日/斋日传空串
+     * @param remindOffset 提前天数，0当天、-1前一天（只对节日提醒有效）
+     * @param hour 0-23，用户本地时区的整点
+     * @param enabled 0停用 1启用
+     */
+    fun remindBody(id: Int, remindType: Int, festivalKey: String, remindOffset: Int,
+                   hour: Int, enabled: Int): RequestBody {
+        val param = HashMap<String, Any>()
+        param["id"] = id
+        param["remindType"] = remindType
+        param["festivalKey"] = festivalKey
+        param["remindOffset"] = remindOffset
+        // 服务端是 java.util.Date(HH:mm:ss)，带上秒避免两边对「07:00」的理解不一致
+        param["remindTime"] = String.format(Locale.US, "%02d:00:00", hour)
+        param["isEnabled"] = enabled
         return buildJsonRequestBody(param)
     }
 }

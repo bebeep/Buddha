@@ -15,7 +15,7 @@
         android:paddingStart="18dp"
         android:paddingEnd="18dp"
         android:text="收到的祝福"
-        android:textColor="#2C1900"
+        android:textColor="#B5A78F"
         android:textSize="16sp"
         android:textStyle="bold" />
 
@@ -33,7 +33,7 @@
         android:layout_gravity="center_horizontal"
         android:padding="30dp"
         android:text="还没有人祝愿"
-        android:textColor="#AAAAAA"
+        android:textColor="#8C8069"
         android:textSize="13sp"
         android:visibility="gone" />
 

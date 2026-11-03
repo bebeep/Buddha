@@ -54,7 +54,7 @@ class WishEditDialog(context: Context) : TopDialogBottomSheetDialog(context) {
             val tv = TextView(context)
             tv.text = tag
             tv.textSize = 12f
-            tv.setTextColor(Color.parseColor("#FFA030"))
+            tv.setTextColor(Color.parseColor("#C4A265"))
             tv.setBackgroundResource(R.drawable.bg_wish_tag)
             tv.setPadding(30, 12, 30, 12)
             tv.gravity = Gravity.CENTER

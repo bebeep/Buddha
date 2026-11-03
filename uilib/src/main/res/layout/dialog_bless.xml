@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="为他人的愿望祝愿"
-        android:textColor="#2C1900"
+        android:textColor="#B5A78F"
         android:textSize="16sp"
         android:textStyle="bold" />
 
@@ -27,7 +27,7 @@
         android:background="@drawable/bg_wish_card"
         android:lineSpacingExtra="3dp"
         android:padding="12dp"
-        android:textColor="#2C1900"
+        android:textColor="#B5A78F"
         android:textSize="14sp" />
 
     <EditText
@@ -41,8 +41,8 @@
         android:maxLength="255"
         android:minLines="2"
         android:padding="10dp"
-        android:textColor="#2C1900"
-        android:textColorHint="#BBBBBB"
+        android:textColor="#B5A78F"
+        android:textColorHint="#6E6455"
         android:textSize="13sp" />
 
     <TextView

@@ -8,4 +8,19 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <!--
+        海外版暗调禅金 token（与 docs/海外版改造方案-v1.md 第 12 节一致）
+        只在 Kotlin 里需要取色的地方用；布局里仍直接写十六进制，和现有页面保持同一写法。
+    -->
+    <!-- 页面底色 #251C10 -->
+    <color name="shop_bg">#FF251C10</color>
+    <!-- 主金 #C4A265 -->
+    <color name="shop_gold">#FFC4A265</color>
+    <!-- 主文字 #EDE3D2 -->
+    <color name="shop_text">#FFEDE3D2</color>
+    <!-- 次文字 / 禁用态 #8C8069 -->
+    <color name="shop_text_disabled">#FF8C8069</color>
+    <!-- 个人中心收起标题栏底色（滚动渐显，changeAlpha 用） -->
+    <color name="me_title_base">#FF251C10</color>
+
 </resources>

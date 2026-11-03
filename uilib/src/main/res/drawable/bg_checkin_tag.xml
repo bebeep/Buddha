@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 共修打卡徽标：亮金描边，不抢金色实底 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="3dp" />
+    <stroke android:width="0.5dp" android:color="#66E3C88B" />
+    <solid android:color="#1FE3C88B" />
+</shape>

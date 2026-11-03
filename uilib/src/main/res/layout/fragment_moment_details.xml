@@ -6,7 +6,7 @@
     android:id="@+id/cl_moment_parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#251C10"
     android:descendantFocusability="blocksDescendants"
     android:focusable="true"
     android:focusableInTouchMode="true">
@@ -15,7 +15,7 @@
 <!--            android:id="@+id/cl_moment_parent"-->
 <!--            xmlns:tools="http://schemas.android.com/tools"-->
 <!--            android:layout_width="match_parent"-->
-<!--            android:background="@color/white"-->
+<!--            android:background="#251C10"-->
 <!--            android:focusableInTouchMode="true"-->
 <!--            android:focusable="true"-->
 <!--            android:descendantFocusability="blocksDescendants"-->
@@ -58,7 +58,7 @@
             android:layout_marginStart="6dp"
             app:layout_constraintBottom_toTopOf="@+id/tv_level"
             android:textSize="15sp"
-            android:textColor="#333333"
+            android:textColor="#EDE3D2"
             tools:text="吴彦祖"
             app:layout_constraintVertical_chainStyle="packed"
             android:layout_width="wrap_content"
@@ -72,7 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_marginStart="8dp"
             android:textSize="10sp"
-            android:textColor="#AAAAAA"
+            android:textColor="#8C8069"
             android:layout_marginTop="2dp"
             tools:text="lv1 佛门初探 | 3分钟前"
             android:layout_height="wrap_content"/>
@@ -97,8 +97,8 @@
             android:paddingVertical="2dp"
             android:textSize="10sp"
             android:layout_marginStart="4dp"
-            android:textColor="@color/tv_select"
-            android:background="@drawable/bg_follow"
+            android:textColor="@color/tv_follow_dark"
+            android:background="@drawable/bg_follow_dark"
             app:layout_constraintStart_toEndOf="@+id/tv_nickname"
             app:layout_constraintTop_toTopOf="@+id/tv_nickname"
             app:layout_constraintBottom_toBottomOf="@+id/tv_nickname"
@@ -144,7 +144,7 @@
                         android:lineSpacingExtra="5dp"
                         android:paddingHorizontal="15dp"
                         android:paddingBottom="10dp"
-                        android:textColor="@color/black"
+                        android:textColor="#EDE3D2"
                         android:textColorLink="#32c5f3"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -210,13 +210,25 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:includeFontPadding="false"
-                    android:textColor="#848F9B"
+                    android:textColor="#8C8069"
                     android:textSize="14sp"
                     android:gravity="center_vertical"
                     android:drawableStart="@mipmap/icon_moment_locate_gray"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/dc_container"
                     tools:text="四川省成都市天府广场101号" />
+
+                <!-- 收藏：与分享/点赞同一行，图标颜色区分是否已收藏 -->
+                <ImageView
+                    android:id="@+id/iv_collect"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_marginEnd="18dp"
+                    android:contentDescription="@string/collect_title"
+                    android:src="@drawable/ic_collect_star"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_share"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_share"
+                    app:layout_constraintTop_toTopOf="@+id/tv_share" />
 
                 <com.fingertip.baselib.view.shapeview.ShapeTextView
                     android:id="@+id/tv_share"
@@ -227,7 +239,7 @@
                     android:drawablePadding="4dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:textColor="#2C1900"
+                    android:textColor="#B5A78F"
                     android:textSize="14sp"
                     app:layout_constraintTop_toTopOf="@+id/tv_like"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_like"
@@ -247,7 +259,7 @@
                     android:layout_marginEnd="16dp"
                     android:drawablePadding="4dp"
                     android:gravity="center"
-                    android:textColor="#2C1900"
+                    android:textColor="#B5A78F"
                     android:textSize="14sp"
                     tools:text="25" />
 
@@ -258,7 +270,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="24dp"
-                    android:background="#F7F7F7"
+                    android:background="#1FC4A265"
                     app:layout_constraintTop_toBottomOf="@+id/tv_like" />
 
 
@@ -269,7 +281,7 @@
                     android:layout_marginHorizontal="15dp"
                     android:layout_marginTop="24dp"
                     android:text="评论(899)"
-                    android:textColor="#2D2D2D"
+                    android:textColor="#EDE3D2"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/v_line"
@@ -289,7 +301,7 @@
                 <com.fingertip.baselib.view.MyTextView
                     android:id="@+id/iv_empty"
                     android:text="暂无内容"
-                    android:textColor="#FFDBD7F4"
+                    android:textColor="#8C8069"
                     android:layout_width="wrap_content"
                     android:gravity="center"
                     android:layout_gravity="center"
@@ -312,7 +324,7 @@
         android:id="@+id/fl_input"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@drawable/bg_input"
+        android:background="@drawable/bg_input_dark"
         android:paddingHorizontal="16dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
@@ -336,7 +348,7 @@
         android:id="@+id/ll_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_input"
+        android:background="@drawable/bg_input_dark"
         android:minHeight="48dp"
         android:paddingRight="10dp"
         android:visibility="invisible"
@@ -359,7 +371,7 @@
             android:maxLength="300"
             android:minHeight="48dp"
             android:paddingLeft="15dp"
-            android:textColor="#050505"
+            android:textColor="#EDE3D2"
             android:textCursorDrawable="@drawable/bg_comment_curser"
             android:textSize="15sp" />
 

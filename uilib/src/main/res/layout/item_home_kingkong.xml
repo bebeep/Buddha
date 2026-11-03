@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    首页区块 4：金刚区（4 宫格）
+    纯功能入口：佛经 / 许愿树 / 寺庙 / 念佛计数。
+    有现成图标的用 mipmap，没有的用文字圆角方块占位（寺庙、念佛），
+    等美术出图后只换 ImageView 的 src，不用改代码。
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="16dp"
+    android:background="@drawable/bg_home_card_a"
+    android:orientation="horizontal"
+    android:paddingTop="14dp"
+    android:paddingBottom="14dp">
+
+    <LinearLayout
+        android:id="@+id/ll_kk_1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="40dp"
+            android:layout_height="40dp">
+
+            <ImageView
+                android:id="@+id/iv_kk_1"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/icon_menu_fojing" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_kk_1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_home_inner"
+                android:gravity="center"
+                android:text="经"
+                android:textColor="#C4A265"
+                android:textSize="14sp"
+                android:visibility="gone" />
+
+        </FrameLayout>
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_kk_1_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/home_kingkong_fojing"
+            android:textColor="#B5A78F"
+            android:textSize="11sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_kk_2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="40dp"
+            android:layout_height="40dp">
+
+            <ImageView
+                android:id="@+id/iv_kk_2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/icon_menu_xuyuan" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_kk_2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_home_inner"
+                android:gravity="center"
+                android:text="愿"
+                android:textColor="#C4A265"
+                android:textSize="14sp"
+                android:visibility="gone" />
+
+        </FrameLayout>
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_kk_2_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/home_kingkong_wish"
+            android:textColor="#B5A78F"
+            android:textSize="11sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_kk_3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="40dp"
+            android:layout_height="40dp">
+
+            <ImageView
+                android:id="@+id/iv_kk_3"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:visibility="gone" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_kk_3"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_home_inner"
+                android:gravity="center"
+                android:text="寺"
+                android:textColor="#C4A265"
+                android:textSize="14sp" />
+
+        </FrameLayout>
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_kk_3_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/home_kingkong_temple"
+            android:textColor="#B5A78F"
+            android:textSize="11sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_kk_4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="40dp"
+            android:layout_height="40dp">
+
+            <ImageView
+                android:id="@+id/iv_kk_4"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:visibility="gone" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_kk_4"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_home_inner"
+                android:gravity="center"
+                android:text="念"
+                android:textColor="#C4A265"
+                android:textSize="14sp" />
+
+        </FrameLayout>
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_kk_4_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/home_kingkong_nianfo"
+            android:textColor="#B5A78F"
+            android:textSize="11sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

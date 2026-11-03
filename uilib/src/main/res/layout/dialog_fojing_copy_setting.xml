@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:text="原文"
         android:textSize="14sp"
-        android:textColor="#AAAAAA"
+        android:textColor="#8C8069"
         android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="24dp"/>
@@ -63,7 +63,7 @@
         android:layout_marginTop="12dp"
         android:text="抄文"
         android:textSize="14sp"
-        android:textColor="#AAAAAA"
+        android:textColor="#8C8069"
         android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="24dp"/>
@@ -111,7 +111,7 @@
         android:layout_marginTop="12dp"
         android:text="背景"
         android:textSize="14sp"
-        android:textColor="#AAAAAA"
+        android:textColor="#8C8069"
         android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="24dp"/>
@@ -161,7 +161,7 @@
         android:layout_marginTop="12dp"
         android:text="字号"
         android:textSize="14sp"
-        android:textColor="#AAAAAA"
+        android:textColor="#8C8069"
         android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="24dp"/>
@@ -190,7 +190,7 @@
         android:background="@drawable/bg_font_size"
         android:layout_marginStart="2dp"
         android:gravity="center"
-        android:textColor="#666666"
+        android:textColor="#8C8069"
         android:layout_height="wrap_content"/>
     <com.fingertip.baselib.view.MyTextView
         android:id="@+id/tv_font2"
@@ -204,7 +204,7 @@
         app:zdyFont="bold"
         android:background="@drawable/bg_font_size"
         android:gravity="center"
-        android:textColor="#666666"
+        android:textColor="#8C8069"
         android:layout_height="wrap_content"/>
     <com.fingertip.baselib.view.MyTextView
         android:id="@+id/tv_font3"
@@ -218,7 +218,7 @@
         app:zdyFont="bold"
         android:background="@drawable/bg_font_size"
         android:gravity="center"
-        android:textColor="#666666"
+        android:textColor="#8C8069"
         android:layout_height="wrap_content"/>
     <com.fingertip.baselib.view.MyTextView
         android:id="@+id/tv_font4"
@@ -233,7 +233,7 @@
         android:background="@drawable/bg_font_size"
         android:layout_marginEnd="2dp"
         android:gravity="center"
-        android:textColor="#666666"
+        android:textColor="#8C8069"
         android:layout_height="wrap_content"/>
 
 

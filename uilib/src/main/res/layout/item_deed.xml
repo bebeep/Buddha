@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textColor="#4A3413"
+        android:textColor="#EDE3D2"
         android:textSize="15sp"
         android:textStyle="bold"
         tools:text="【成都】九旬老人无后人可依，急需救助" />
@@ -40,7 +40,7 @@
         android:ellipsize="end"
         android:lineSpacingExtra="3dp"
         android:maxLines="2"
-        android:textColor="#8A6B3A"
+        android:textColor="#B5A78F"
         android:textSize="13sp"
         tools:text="成都市龙泉驿区……" />
 
@@ -64,7 +64,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="#C87A2B"
+            android:textColor="#C4A265"
             android:textSize="12sp"
             tools:text="已筹 645/1000 功德币" />
 
@@ -72,7 +72,7 @@
             android:id="@+id/tv_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#B08A4A"
+            android:textColor="#C4A265"
             android:textSize="11sp"
             tools:text="星驰 · 2022-02-02" />
     </LinearLayout>

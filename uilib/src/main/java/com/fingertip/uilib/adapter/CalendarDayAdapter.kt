@@ -65,7 +65,10 @@ class CalendarDayAdapter(context: Context) : TopRcAdapter<CalendarSimpleInfo, To
             }
         )
         //今天白字压在橙圆上，其余深色
-        binding.tvSolar.setTextColor(if (isToday) Color.WHITE else Color.parseColor("#2C1900"))
+        //今天：金圆底压深字（对比 9:1，白字在金底上只有 2:1）；其余：暗底亮字
+        binding.tvSolar.setTextColor(
+            if (isToday) Color.parseColor("#2C1900") else Color.parseColor("#EDE3D2")
+        )
 
         //副标题：节日优先，其次农历；颜色服务端可指定（如节假日红字），格式「0xffffff」
         binding.tvLunar.text = item.subtitle()

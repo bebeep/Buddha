@@ -2,7 +2,7 @@
 <com.fingertip.baselib.view.FullTopConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFEFA"
+    android:background="#2A2014"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.viewpager2.widget.ViewPager2
@@ -27,7 +27,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/v_back"
         android:text="心经"
         android:textSize="18sp"
-        android:textColor="#2C1900"
+        android:textColor="#B5A78F"
         app:zdyFont="bold"
         app:layout_constraintStart_toEndOf="@+id/v_back"
         app:layout_constraintEnd_toStartOf="@+id/tv_catalog"

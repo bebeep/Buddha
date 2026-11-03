@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 节日预告单条：公历日期 + 节日名 + 农历 + 倒计时 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingTop="11dp"
+    android:paddingBottom="11dp">
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_date"
+        android:layout_width="52dp"
+        android:layout_height="wrap_content"
+        android:textColor="#C4A265"
+        android:textSize="11.5sp"
+        tools:text="12-08" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="#EDE3D2"
+            android:textSize="12.5sp"
+            tools:text="释迦牟尼佛成道日" />
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_lunar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:textColor="#8C8069"
+            android:textSize="10.5sp"
+            tools:text="农历腊月初八" />
+
+    </LinearLayout>
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_countdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textColor="#8C8069"
+        android:textSize="10.5sp"
+        tools:text="还有 12 天" />
+
+</LinearLayout>

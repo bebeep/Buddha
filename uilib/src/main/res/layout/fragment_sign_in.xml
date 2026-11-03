@@ -8,7 +8,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFEFA">
+    android:background="#2A2014">
 
     <com.fingertip.baselib.view.FullTopConstraintLayout
         android:id="@+id/cl_title"
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="签到"
-            android:textColor="@color/black"
+            android:textColor="#EDE3D2"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +72,7 @@
                     android:layout_height="32dp"
                     android:gravity="center"
                     android:text="‹"
-                    android:textColor="#666666"
+                    android:textColor="#8C8069"
                     android:textSize="20sp" />
 
                 <com.fingertip.baselib.view.MyTextView
@@ -82,7 +82,7 @@
                     android:minWidth="110dp"
                     android:gravity="center"
                     android:text="2026年10月"
-                    android:textColor="#2C1900"
+                    android:textColor="#B5A78F"
                     android:textSize="17sp"
                     app:zdyFont="bold" />
 
@@ -92,7 +92,7 @@
                     android:layout_height="32dp"
                     android:gravity="center"
                     android:text="›"
-                    android:textColor="#666666"
+                    android:textColor="#8C8069"
                     android:textSize="20sp" />
 
             </LinearLayout>
@@ -156,7 +156,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:textColor="#A9805A"
+                    android:textColor="#B08F52"
                     android:textSize="11sp" />
 
                 <TextView
@@ -225,7 +225,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_weight="1"
                         android:text="本月佛历节日"
-                        android:textColor="#2C1900"
+                        android:textColor="#B5A78F"
                         android:textSize="15sp"
                         app:zdyFont="bold" />
 
@@ -233,7 +233,7 @@
                         android:id="@+id/tv_festival_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#B0B0B0"
+                        android:textColor="#6E6455"
                         android:textSize="11sp" />
 
                 </LinearLayout>
@@ -266,7 +266,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textColor="#FFA030"
+                    android:textColor="#C4A265"
                     android:textSize="26sp"
                     app:zdyFont="bold" />
 
@@ -275,7 +275,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:text="天"
-                    android:textColor="#2C1900"
+                    android:textColor="#B5A78F"
                     android:textSize="14sp"
                     app:zdyFont="bold" />
 
@@ -284,7 +284,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:text="已连续签到"
-                    android:textColor="#2C1900"
+                    android:textColor="#B5A78F"
                     android:textSize="14sp" />
 
                 <LinearLayout
@@ -321,7 +321,7 @@
                         android:id="@+id/tv_buddhist_year"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#FFA030"
+                        android:textColor="#C4A265"
                         android:textSize="15sp"
                         app:zdyFont="bold" />
 
@@ -332,7 +332,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
                         android:gravity="end"
-                        android:textColor="#2C1900"
+                        android:textColor="#B5A78F"
                         android:textSize="14sp" />
 
                 </LinearLayout>
@@ -342,7 +342,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    android:textColor="#8A8A8A"
+                    android:textColor="#8C8069"
                     android:textSize="13sp" />
 
                 <View
@@ -365,7 +365,7 @@
                         android:background="@drawable/bg_sign_circle_tip"
                         android:gravity="center"
                         android:text="宜"
-                        android:textColor="#FFA030"
+                        android:textColor="#C4A265"
                         android:textSize="13sp" />
 
                     <TextView
@@ -375,7 +375,7 @@
                         android:layout_marginStart="12dp"
                         android:layout_weight="1"
                         android:lineSpacingExtra="3dp"
-                        android:textColor="#2C1900"
+                        android:textColor="#B5A78F"
                         android:textSize="13sp" />
 
                 </LinearLayout>
@@ -394,7 +394,7 @@
                         android:background="@drawable/bg_sign_circle_tip"
                         android:gravity="center"
                         android:text="忌"
-                        android:textColor="#FFA030"
+                        android:textColor="#C4A265"
                         android:textSize="13sp" />
 
                     <TextView
@@ -404,7 +404,7 @@
                         android:layout_marginStart="12dp"
                         android:layout_weight="1"
                         android:lineSpacingExtra="3dp"
-                        android:textColor="#2C1900"
+                        android:textColor="#B5A78F"
                         android:textSize="13sp" />
 
                 </LinearLayout>
@@ -444,7 +444,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="签到功能每日6:00-22:00开放"
-            android:textColor="#AAAAAA"
+            android:textColor="#8C8069"
             android:textSize="11sp" />
 
     </LinearLayout>

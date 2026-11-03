@@ -10,10 +10,13 @@ import com.fingertip.baselib.bean.BookThemeEntity
 import com.fingertip.baselib.bean.BookTypeConfig
 import com.fingertip.baselib.bean.BuddhaBook
 import com.fingertip.baselib.bean.BuddhaConfig
+import com.fingertip.baselib.bean.BuddhaFestival
+import com.fingertip.baselib.bean.CalendarRemindData
 import com.fingertip.baselib.bean.CommentEntity
 import com.fingertip.baselib.bean.MomentEntity
 import com.fingertip.baselib.bean.OssConfig
 import com.fingertip.baselib.bean.CalendarSimpleRsp
+import com.fingertip.baselib.bean.HomeSummaryData
 import com.fingertip.baselib.bean.TodayBuddhaInfo
 import com.fingertip.baselib.bean.BlessRecordBean
 import com.fingertip.baselib.bean.WishRecordBean
@@ -27,12 +30,20 @@ import com.fingertip.baselib.bean.DonateRecordBean
 import com.fingertip.baselib.bean.LuckyBagBean
 import com.fingertip.baselib.bean.PersonData
 import com.fingertip.baselib.bean.RequestRsp
+import com.fingertip.baselib.bean.MyDressData
+import com.fingertip.baselib.bean.ShopDressConfig
 import com.fingertip.baselib.bean.SignInData
+import com.fingertip.baselib.bean.PracticeStatisticData
+import com.fingertip.baselib.bean.LampDetailData
+import com.fingertip.baselib.bean.LampRecordData
+import com.fingertip.baselib.bean.UserBlockData
+import com.fingertip.baselib.bean.CollectData
 import com.fingertip.baselib.bean.VersionInfo
 import com.fingertip.baselib.constant.GlobalConfig
 import com.fingertip.baselib.util.DeviceIdUtils
 import okhttp3.RequestBody
 import retrofit2.http.*
+import java.util.TimeZone
 
 interface ApiManager {
 
@@ -67,6 +78,101 @@ interface ApiManager {
     ): RequestRsp<PersonData?>
 
     /**
+     * 邮箱注册
+     */
+    @POST()
+    suspend fun register(
+        @Url url: String = NetProperty.ACCOUNT_REGISTER,
+        @Body request: RequestBody?
+    ): RequestRsp<PersonData?>
+
+    /**
+     * 邮箱是否可用
+     */
+    @GET()
+    suspend fun checkEmail(
+        @Url url: String = NetProperty.ACCOUNT_CHECK_EMAIL,
+        @Query("email") email: String
+    ): RequestRsp<String?>
+
+    /**
+     * 绑定第三方账号 / 补绑邮箱
+     */
+    @POST()
+    suspend fun bindThird(
+        @Url url: String = NetProperty.ACCOUNT_BIND_THIRD,
+        @Query("session") session: String = GlobalConfig.session,
+        @Body request: RequestBody?
+    ): RequestRsp<String?>
+
+    /**
+     * 设置/修改密码
+     */
+    @POST()
+    suspend fun setPassword(
+        @Url url: String = NetProperty.ACCOUNT_SET_PASSWORD,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("password") password: String
+    ): RequestRsp<String?>
+
+    /**
+     * session 续期（启动时自动登录）
+     */
+    @POST()
+    suspend fun refreshSession(
+        @Url url: String = NetProperty.ACCOUNT_REFRESH_SESSION,
+        @Query("session") session: String
+    ): RequestRsp<PersonData?>
+
+    /**
+     * 游客登录：服务端按设备号创建/找回游客号，后续第三方登录会绑到同一账号
+     */
+    @POST()
+    suspend fun tryPlay(
+        @Url url: String = NetProperty.ACCOUNT_TRY_PLAY,
+        @Body request: RequestBody
+    ): RequestRsp<PersonData?>
+
+    /**
+     * 保存最近选中的佛像（拜佛页切换时上报，登录后各端恢复）
+     */
+    @POST()
+    suspend fun saveLastBuddha(
+        @Url url: String = NetProperty.ACCOUNT_SAVE_LAST_BUDDHA,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("buddhaId") buddhaId: Int
+    ): RequestRsp<String>
+
+    /**
+     * 注册推送设备订阅
+     */
+    @POST()
+    suspend fun registerPush(
+        @Url url: String = NetProperty.PUSH_REGISTER,
+        @Query("session") session: String = GlobalConfig.session,
+        @Body request: RequestBody?
+    ): RequestRsp<String?>
+
+    /**
+     * 解绑推送设备订阅
+     */
+    @POST()
+    suspend fun unregisterPush(
+        @Url url: String = NetProperty.PUSH_UNREGISTER,
+        @Query("subscriptionId") subscriptionId: String
+    ): RequestRsp<String?>
+
+    /**
+     * 账号级推送开关
+     */
+    @POST()
+    suspend fun switchPush(
+        @Url url: String = NetProperty.PUSH_SWITCH,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("enabled") enabled: Int
+    ): RequestRsp<String?>
+
+    /**
      * 发布动态
      */
     @POST()
@@ -97,6 +203,26 @@ interface ApiManager {
     ): RequestRsp<List<MomentEntity>>
 
     /**
+     * 动态列表-最新
+     */
+    @GET()
+    suspend fun getMomentListNew(
+        @Url url: String = NetProperty.GET_MOMENT_LIST_NEW,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("pageCount") pageCount: Int = 0,
+    ): RequestRsp<List<MomentEntity>>
+
+    /**
+     * 动态列表-共修打卡
+     */
+    @GET()
+    suspend fun getMomentListCheckIn(
+        @Url url: String = NetProperty.GET_MOMENT_LIST_CHECKIN,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("pageCount") pageCount: Int = 0,
+    ): RequestRsp<List<MomentEntity>>
+
+    /**
      * 动态详情
      */
     @GET()
@@ -105,6 +231,28 @@ interface ApiManager {
         @Query("session") session: String = GlobalConfig.session,
         @Query("momentId") momentId: Int = 0,
     ): RequestRsp<MomentEntity>
+
+    /**
+     * 某人的动态列表（我的感悟 / 他人主页）
+     * @param targetAccountId 传 0 查自己
+     */
+    @GET()
+    suspend fun getMomentListByAccount(
+        @Url url: String = NetProperty.MOMENT_LIST_BY_ACCOUNT,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("targetAccountId") targetAccountId: Int = 0,
+        @Query("pageCount") pageCount: Int = 0,
+    ): RequestRsp<List<MomentEntity>>
+
+    /**
+     * 删除自己的动态（服务端软删，只能删自己的）
+     */
+    @POST()
+    suspend fun deleteMoment(
+        @Url url: String = NetProperty.MOMENT_DELETE,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("momentId") momentId: Int = 0,
+    ): RequestRsp<String>
 
     /**
      * 动态详情
@@ -471,6 +619,17 @@ interface ApiManager {
         @Url url: String = NetProperty.GET_TODAY_BUDDHA_INFO,
         @Query("session") session: String = GlobalConfig.session
     ): RequestRsp<TodayBuddhaInfo>
+
+    /**
+     * 获取首页聚合数据：修持进度、供灯状态、禅值余额、连续天数、区块配置
+     * timeZone 传用户时区（如 Asia/Singapore），空则由服务端按服务器时区算
+     */
+    @GET()
+    suspend fun getHomeSummary(
+        @Url url: String = NetProperty.HOME_SUMMARY,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("timeZone") timeZone: String = TimeZone.getDefault().id
+    ): RequestRsp<HomeSummaryData>
 
     /**
      * 获取许愿文本示例
@@ -908,6 +1067,322 @@ interface ApiManager {
         @Query("session") session: String = GlobalConfig.session,
         @Body body: RequestBody
     ): RequestRsp<String>
+
+    //endregion
+
+    //region 装扮商城
+
+    /**
+     * 商城商品列表
+     * @param dressType 1灯具 2佛龛 3头像框 4昵称3D 5灯油
+     *
+     * 商品列表是公开信息，游客也能拉（未登录只能逛，不能下单）。
+     */
+    @GET()
+    suspend fun getDressList(
+        @Url url: String = NetProperty.DRESS_LIST,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("dressType") dressType: Int
+    ): RequestRsp<List<ShopDressConfig>>
+
+    /**
+     * 我的装扮（持有列表 + 当前佩戴状态）
+     */
+    @GET()
+    suspend fun getMyDress(
+        @Url url: String = NetProperty.DRESS_MY,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<MyDressData>
+
+    /**
+     * 佩戴/摘下装扮
+     * body 用 RequestBodyFactory.dressWearBody(dressId, wear)
+     */
+    @POST()
+    suspend fun wearDress(
+        @Url url: String = NetProperty.DRESS_WEAR,
+        @Query("session") session: String = GlobalConfig.session,
+        @Body body: RequestBody
+    ): RequestRsp<String>
+
+    /**
+     * 创建 IAP 订单，返回内部订单号（验单时回传）
+     *
+     * 顺序必须是：先建单拿 orderNo，再拉起商店支付，最后用 orderNo + 平台交易号验单发货。
+     */
+    @POST()
+    suspend fun createDressOrder(
+        @Url url: String = NetProperty.DRESS_CREATE_ORDER,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("dressId") dressId: Int,
+        @Query("platform") platform: Int = NetProperty.PLATFORM,
+        @Query("buddhaId") buddhaId: Int = 0
+    ): RequestRsp<String>
+
+    /**
+     * IAP 验单并发货
+     * body 用 RequestBodyFactory.iapVerifyBody(orderNo, platform, payOrderId)
+     */
+    @POST()
+    suspend fun verifyIapOrder(
+        @Url url: String = NetProperty.DRESS_VERIFY,
+        @Query("session") session: String = GlobalConfig.session,
+        @Body body: RequestBody
+    ): RequestRsp<String>
+
+    /**
+     * 恢复购买：把平台侧的交易号交给服务端补发，返回恢复件数
+     * body 用 RequestBodyFactory.restoreBody(payOrderIds)
+     */
+    @POST()
+    suspend fun restorePurchase(
+        @Url url: String = NetProperty.DRESS_RESTORE,
+        @Query("session") session: String = GlobalConfig.session,
+        @Body body: RequestBody
+    ): RequestRsp<Int>
+
+    //endregion
+
+    //region 禅值
+
+    /**
+     * 禅值余额
+     */
+    @GET()
+    suspend fun getMeritBalance(
+        @Url url: String = NetProperty.MERIT_BALANCE,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<Int>
+
+    //endregion
+
+    //region 早课修持
+
+    /**
+     * 提交早课/晚课
+     * body 用 RequestBodyFactory.practiceSubmitBody(stepData, totalSeconds, timeZone)
+     *
+     * 一人一天一条，服务端按 timeZone 判定早课(4:00-12:00)/晚课，重复提交返回 fail。
+     */
+    @POST()
+    suspend fun submitPractice(
+        @Url url: String = NetProperty.PRACTICE_SUBMIT,
+        @Query("session") session: String = GlobalConfig.session,
+        @Body body: RequestBody
+    ): RequestRsp<String>
+
+    /**
+     * 早课连续统计（连续天数 / 最长连续 / 累计次数 / 已领里程碑）
+     */
+    @GET()
+    suspend fun getPracticeStatistic(
+        @Url url: String = NetProperty.PRACTICE_STATISTIC,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<PracticeStatisticData>
+
+    /**
+     * 念佛计数上报
+     * body 用 RequestBodyFactory.meditationReportBody(buddhaName, addCount, addSeconds, countDate)
+     */
+    @POST()
+    suspend fun reportMeditation(
+        @Url url: String = NetProperty.PRACTICE_MEDITATION_REPORT,
+        @Query("session") session: String = GlobalConfig.session,
+        @Body body: RequestBody
+    ): RequestRsp<String>
+
+    /**
+     * 累计念佛总声数
+     */
+    @GET()
+    suspend fun getMeditationTotal(
+        @Url url: String = NetProperty.PRACTICE_MEDITATION_TOTAL,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<Int>
+
+    //endregion
+
+    //region 供灯
+
+    /**
+     * 当前供灯状态（0无灯 1燃烧中 2将熄）
+     */
+    @GET()
+    suspend fun getLampStatus(
+        @Url url: String = NetProperty.LAMP_STATUS,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("buddhaId") buddhaId: Int = 0
+    ): RequestRsp<LampDetailData>
+
+    /**
+     * 供灯历史
+     * @param pageNum 从 0 起，每页 20 条
+     */
+    @GET()
+    suspend fun getLampHistory(
+        @Url url: String = NetProperty.LAMP_HISTORY,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("pageNum") pageNum: Int = 0
+    ): RequestRsp<List<LampRecordData>>
+
+    //endregion
+
+    //region 账号（设置页）
+
+    /**
+     * 退出登录：服务端清 session
+     */
+    @POST()
+    suspend fun logout(
+        @Url url: String = NetProperty.ACCOUNT_LOGOUT,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<String>
+
+    /**
+     * 注销账号：删除账号及其数据（Google Play 账号删除政策要求）
+     */
+    @POST()
+    suspend fun deleteAccount(
+        @Url url: String = NetProperty.ACCOUNT_DELETE,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<String>
+
+    /**
+     * 举报动态/评论
+     * body 用 RequestBodyFactory.reportBody(targetAccountId, reportType, reportTag, reportContent)
+     */
+    @POST()
+    suspend fun report(
+        @Url url: String = NetProperty.ACCOUNT_REPORT,
+        @Query("session") session: String = GlobalConfig.session,
+        @Body body: RequestBody
+    ): RequestRsp<String>
+
+    //endregion
+
+    //region 拉黑（UGC 合规）
+
+    /**
+     * 拉黑用户（幂等，重复调用不报错）
+     */
+    @POST()
+    suspend fun addBlock(
+        @Url url: String = NetProperty.USERTOOL_ADD_BLOCK,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("targetAccountId") targetAccountId: Int
+    ): RequestRsp<String>
+
+    /**
+     * 取消拉黑
+     */
+    @POST()
+    suspend fun cancelBlock(
+        @Url url: String = NetProperty.USERTOOL_CANCEL_BLOCK,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("targetAccountId") targetAccountId: Int
+    ): RequestRsp<String>
+
+    /**
+     * 我的拉黑列表
+     */
+    @GET()
+    suspend fun getBlockList(
+        @Url url: String = NetProperty.USERTOOL_BLOCK_LIST,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<List<UserBlockData>>
+
+    //endregion
+
+    //region 收藏（佛经/感悟/寺庙统一收藏）
+
+    /**
+     * 收藏列表
+     * @param targetType 1佛经 2感悟 3寺庙，0查全部
+     * @param pageNum 从 0 起
+     */
+    @GET()
+    suspend fun getCollectList(
+        @Url url: String = NetProperty.USERTOOL_COLLECT_LIST,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("targetType") targetType: Int = 0,
+        @Query("pageNum") pageNum: Int = 0
+    ): RequestRsp<List<CollectData>>
+
+    /**
+     * 添加收藏（同一目标重复收藏服务端幂等）
+     */
+    @POST()
+    suspend fun addCollect(
+        @Url url: String = NetProperty.USERTOOL_ADD_COLLECT,
+        @Query("session") session: String = GlobalConfig.session,
+        @Body body: RequestBody
+    ): RequestRsp<String>
+
+    /**
+     * 取消收藏
+     */
+    @POST()
+    suspend fun cancelCollect(
+        @Url url: String = NetProperty.USERTOOL_CANCEL_COLLECT,
+        @Query("session") session: String = GlobalConfig.session,
+        @Body body: RequestBody
+    ): RequestRsp<String>
+
+    /**
+     * 是否已收藏
+     */
+    @GET()
+    suspend fun isCollected(
+        @Url url: String = NetProperty.USERTOOL_IS_COLLECTED,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("targetType") targetType: Int,
+        @Query("targetId") targetId: Int
+    ): RequestRsp<Boolean>
+
+    //endregion
+
+    //region 佛历订阅提醒
+
+    /**
+     * 提醒规则列表。首次调用服务端会补「节日提醒」「斋日提醒」两条默认规则，
+     * 所以这里拿到的永远是可以直接渲染的完整列表，不用客户端拼模板
+     */
+    @GET()
+    suspend fun getRemindList(
+        @Url url: String = NetProperty.USERTOOL_REMIND_LIST,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<List<CalendarRemindData>>
+
+    /**
+     * 保存规则（id=0 新建，id>0 更新）
+     */
+    @POST()
+    suspend fun saveRemind(
+        @Url url: String = NetProperty.USERTOOL_REMIND_SAVE,
+        @Query("session") session: String = GlobalConfig.session,
+        @Body body: RequestBody
+    ): RequestRsp<String>
+
+    /**
+     * 删除规则（只有自定义提醒给删，节日/斋日只能关）
+     */
+    @POST()
+    suspend fun deleteRemind(
+        @Url url: String = NetProperty.USERTOOL_REMIND_DELETE,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("remindId") remindId: Int
+    ): RequestRsp<String>
+
+    /**
+     * 未来一段时间内的佛历节日，提醒页底部「接下来会提醒你」用
+     * @param days 往后看多少天，服务端上限 366
+     */
+    @GET()
+    suspend fun getFestivalList(
+        @Url url: String = NetProperty.USERTOOL_FESTIVAL_LIST,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("days") days: Int = 90
+    ): RequestRsp<List<BuddhaFestival>>
 
     //endregion
 }

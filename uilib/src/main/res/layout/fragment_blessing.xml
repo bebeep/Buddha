@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FDF2DD">
+    android:background="#3D301E">
 
     <com.fingertip.baselib.view.FullTopConstraintLayout
         android:id="@+id/cl_title"
@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="祈福"
-            android:textColor="@color/black"
+            android:textColor="#EDE3D2"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +45,7 @@
             android:layout_marginEnd="14dp"
             android:padding="4dp"
             android:text="规则"
-            android:textColor="#FFA030"
+            android:textColor="#C4A265"
             android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="今日已祝福 0/5 次"
-            android:textColor="#8A6B3A"
+            android:textColor="#B5A78F"
             android:textSize="13sp" />
 
         <TextView
@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:padding="4dp"
             android:text="查看所有祈福"
-            android:textColor="#FFA030"
+            android:textColor="#C4A265"
             android:textSize="13sp" />
     </LinearLayout>
 
@@ -110,7 +110,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="福卡都被祝福完啦，发一张给大家沾沾福气"
-        android:textColor="#B08A4A"
+        android:textColor="#C4A265"
         android:textSize="14sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"

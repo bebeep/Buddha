@@ -35,7 +35,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="0dp"
         android:text="Wuyanzu asdasdasdas asddkj asdj as d见客户"
-        android:textColor="#FF9600"
+        android:textColor="#C4A265"
         android:textSize="14sp"
         android:ellipsize="end"
         app:zdyFont="bold"
@@ -59,7 +59,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:layout_width="0dp"
-        app:gdBgColor="#F2F4F6"
+        app:gdBgColor="#3D301E"
         app:gdRadius="4dp"
         android:padding="8dp"
         android:layout_height="wrap_content">
@@ -69,7 +69,7 @@
             android:text="这里是回复的内容klasjdkasjdklasjdklasjdkjaksljdkjaskdjaskdjklasjdklasjdkjaskdjkasjdkadja"
             android:layout_width="wrap_content"
             android:textSize="14sp"
-            android:textColor="#2C1900"
+            android:textColor="#B5A78F"
             android:lineSpacingExtra="4dp"
             android:layout_height="wrap_content"/>
 
@@ -77,7 +77,7 @@
             android:id="@+id/tv_more"
             android:layout_gravity="end"
             android:text="展开"
-            android:textColor="#FF9600"
+            android:textColor="#C4A265"
             android:paddingTop="4dp"
             android:paddingStart="4dp"
             android:layout_width="wrap_content"
@@ -92,7 +92,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="0dp"
         android:text="5 mins ago"
-        android:textColor="#FF9D9D9D"
+        android:textColor="#8C8069"
         android:textSize="12sp"
         android:layout_marginTop="5dp"
         android:includeFontPadding="false"
@@ -109,7 +109,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_reply_date"
         android:layout_marginTop="16dp"
         android:layout_marginHorizontal="16dp"
-        android:background="#F2F4F6"
+        android:background="#1FC4A265"
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
 

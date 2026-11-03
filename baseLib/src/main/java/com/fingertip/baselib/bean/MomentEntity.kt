@@ -33,6 +33,9 @@ class MomentEntity: TopData() {
     //"是否匿名"
     var isAnonymous = false
 
+    //"是否共修打卡"（服务端 JSON 字段名 checkIn）
+    var checkIn = false
+
     //"文本内容"
     var textContent: String? = null
 

@@ -2,24 +2,23 @@ package com.fingertip.uilib.fragment
 
 import android.view.View
 import androidx.lifecycle.lifecycleScope
-import com.fingertip.baselib.bean.BannerEntity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.fingertip.baselib.bean.MyDressData
 import com.fingertip.baselib.bean.PersonData
 import com.fingertip.baselib.constant.GlobalConfig
 import com.fingertip.baselib.event_bus.MessageEvent
 import com.fingertip.baselib.log
 import com.fingertip.baselib.top.TopPmFragment
 import com.fingertip.baselib.util.ColorUtil
-import com.fingertip.baselib.util.ToastUtil
 import com.fingertip.baselib.util.loadHead
 import com.fingertip.uilib.R
-import com.fingertip.uilib.adapter.MeBannerAdapter
+import com.fingertip.uilib.adapter.DressCaseAdapter
 import com.fingertip.uilib.databinding.FragmentMeBinding
 import com.fingertip.uilib.fragment.blessing.PrayingMineFragment
 import com.fingertip.uilib.fragment.game.FangShengFragment
 import com.fingertip.uilib.fragment.user.ProfileEditFragment
 import com.fingertip.uilib.viewmodel.UserVM
 import com.lzlz.toplib.extention.toPx
-import com.youth.banner.Banner
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.Subscribe
@@ -29,8 +28,9 @@ import kotlin.math.min
  * 个人中心主页，对应原型「个人中心」：
  * 用户信息头（头像/昵称/等级/签名/关注/佛友）、功德币/修行值、功能入口列表
  *
- * 已接通：我的祈福/放生记录/我的行善/编辑资料/修行攻略(H5)；其余入口（任务中心/兑换中心/我的物品/
- * 功德记录/我的足迹/我的感悟/设置）后端或页面未完成，toast 提示建设中
+ * 已接通：我的祈福/放生记录/我的行善/编辑资料/修行攻略(H5)/装扮商城/我的装扮/我的收藏/
+ * 供灯记录/我的感悟/佛历订阅提醒/设置；「任务中心」后端未完成，布局里直接 gone
+ * （App Store 审核对“点了弹建设中”的入口按功能不完整处理，不留活口）
  */
 class MeFragment : TopPmFragment<UserVM>() {
     override fun layoutId(): Int = R.layout.fragment_me
@@ -39,16 +39,20 @@ class MeFragment : TopPmFragment<UserVM>() {
     private val binding get() = mBinding as FragmentMeBinding
 
     override fun initShiTu() {
-        initBanner()
         renderUser(GlobalConfig.userData)
 
         binding.nsl.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
             val slideOffset = min(scrollY * 1.0f / 88.toPx(), 1f)
-            binding.clTitle.setBackgroundColor(ColorUtil.changeAlpha(resources.getColor(R.color.white), slideOffset))
+            binding.clTitle.setBackgroundColor(ColorUtil.changeAlpha(resources.getColor(R.color.me_title_base), slideOffset))
         }
 
         //拉一次最新用户信息（功德币/修行值可能刚变动）
         GlobalConfig.userData?.accountId?.let { mViewModel.loadUserInfo(it) }
+
+        //三格数据（禅值/连续修持/累计诵经）+ 装扮橱窗（§12.6）
+        mViewModel.loadPracticeStats()
+        mViewModel.loadMeditationTotal()
+        mViewModel.loadMyDress()
     }
 
     private fun renderUser(user: PersonData?) {
@@ -65,21 +69,6 @@ class MeFragment : TopPmFragment<UserVM>() {
         binding.tvExp.text = "${user.userExp ?: 0}"
     }
 
-    var bannerAdapter: MeBannerAdapter? = null
-    var bannerList = ArrayList<BannerEntity>()
-    private fun initBanner() {
-        bannerList.add(BannerEntity().apply { imgUrl = "https://pics1.baidu.com/feed/d62a6059252dd42a73c6e9397669febec8eab837.jpeg@f_auto?token=75b8e8ee466dbf0e56f425b47d7af74b" })
-        bannerList.add(BannerEntity().apply { imgUrl = "https://pics1.baidu.com/feed/d62a6059252dd42a73c6e9397669febec8eab837.jpeg@f_auto?token=75b8e8ee466dbf0e56f425b47d7af74b" })
-        bannerList.add(BannerEntity().apply { imgUrl = "https://pics1.baidu.com/feed/d62a6059252dd42a73c6e9397669febec8eab837.jpeg@f_auto?token=75b8e8ee466dbf0e56f425b47d7af74b" })
-        bannerAdapter = MeBannerAdapter(requireContext(), bannerList) { viewId, pos ->
-
-        }
-        val bannerView = binding.banner
-        (bannerView as? Banner<BannerEntity, MeBannerAdapter>)?.setAdapter(bannerAdapter)
-        bannerView.visibility = if (bannerList.isNullOrEmpty()) View.GONE else View.VISIBLE
-        (bannerView as? Banner<BannerEntity, MeBannerAdapter>)?.setIndicator(binding.indicator, false)
-    }
-
     override fun initObserver() {
         super.initObserver()
 
@@ -93,17 +82,62 @@ class MeFragment : TopPmFragment<UserVM>() {
                 log("MeFragment", "用户信息获取失败：${result.errorCode} ${result.errorMsg}")
             }
         }
+
+        //三格数据：连续修持天数 / 累计诵经次数（服务端为准）
+        mViewModel.practiceStatsResult.observe(viewLifecycleOwner) { result ->
+            if (result.success) {
+                result.data?.let {
+                    binding.tvStreak.text = "${it.currentStreak}"
+                    binding.tvSutra.text = "${it.totalCount}"
+                }
+            }
+        }
+        //三格数据：禅值（念佛/禅修累计）
+        mViewModel.meditationTotalResult.observe(viewLifecycleOwner) { result ->
+            if (result.success) {
+                binding.tvZen.text = "${result.data ?: 0}"
+            }
+        }
+        //装扮橱窗
+        mViewModel.myDressResult.observe(viewLifecycleOwner) { result ->
+            if (result.success) {
+                renderDressCase(result.data)
+            }
+        }
+    }
+
+    private var dressCaseAdapter: DressCaseAdapter? = null
+    private fun renderDressCase(data: MyDressData?) {
+        data ?: return
+        val dresses = data.dresses.orEmpty()
+        binding.tvDressEmpty.visibility = if (dresses.isEmpty()) View.VISIBLE else View.GONE
+        binding.rvDressCase.visibility = if (dresses.isEmpty()) View.GONE else View.VISIBLE
+        if (dresses.isEmpty()) return
+        if (dressCaseAdapter == null) {
+            dressCaseAdapter = DressCaseAdapter(requireContext(), data) {
+                //点橱窗项进我的装扮（与菜单入口同页）
+                (parentFragment as? MainFragment)?.start(
+                    com.fingertip.uilib.fragment.shop.MyDressFragment()
+                )
+            }
+            binding.rvDressCase.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            binding.rvDressCase.adapter = dressCaseAdapter
+        }
+        dressCaseAdapter?.initData(ArrayList(dresses))
     }
 
     override fun getClickViews(): List<View> = mutableListOf(
         binding.ivSetting, binding.ivEdit, binding.ivAvatar, binding.tvNickname,
-        binding.llTask, binding.llExchange, binding.llItem, binding.llPunna,
+        binding.llExchange, binding.llItem, binding.llCollect, binding.llPunna,
         binding.llHistory, binding.llMind, binding.llBless, binding.llReborn, binding.llIntro
     )
 
     override fun onSingleClick(v: View?) {
         when (v) {
-            binding.ivSetting -> ToastUtil.showMessage("设置页建设中")
+            binding.ivSetting -> (parentFragment as? MainFragment)?.start(
+                com.fingertip.uilib.fragment.setting.SettingFragment()
+            )
 
             binding.ivEdit -> {
                 (parentFragment as? MainFragment)?.start(ProfileEditFragment())
@@ -118,12 +152,29 @@ class MeFragment : TopPmFragment<UserVM>() {
                 }
             }
 
-            binding.llTask -> ToastUtil.showMessage("任务中心建设中")
-            binding.llExchange -> ToastUtil.showMessage("兑换中心建设中")
-            binding.llItem -> ToastUtil.showMessage("我的物品建设中")
-            binding.llPunna -> ToastUtil.showMessage("功德记录建设中")
-            binding.llHistory -> ToastUtil.showMessage("我的足迹建设中")
-            binding.llMind -> ToastUtil.showMessage("我的感悟建设中")
+            //海外版：「兑换中心」改为装扮商城入口，「我的物品」改为我的装扮
+            binding.llExchange -> (parentFragment as? MainFragment)?.start(
+                com.fingertip.uilib.fragment.shop.ShopFragment.newInstance()
+            )
+            binding.llItem -> (parentFragment as? MainFragment)?.start(
+                com.fingertip.uilib.fragment.shop.MyDressFragment()
+            )
+            //我的收藏：佛经 / 感悟 / 寺庙三类内容统一入口
+            binding.llCollect -> (parentFragment as? MainFragment)?.start(
+                com.fingertip.uilib.fragment.user.CollectListFragment()
+            )
+            //海外版：功德捐赠功能已下线，这一格改为供灯记录（订单与灯油状态的凭证页）
+            binding.llPunna -> (parentFragment as? MainFragment)?.start(
+                com.fingertip.uilib.fragment.worshiping.LampRecordFragment()
+            )
+            //佛历订阅提醒：原「我的足迹」的坑位。提醒是拉日活最实在的一环，优先做实
+            binding.llHistory -> (parentFragment as? MainFragment)?.start(
+                com.fingertip.uilib.fragment.setting.CalendarRemindFragment()
+            )
+            //我的感悟：自己发过的动态，长按可删除（UGC 政策要求用户能删自己的内容）
+            binding.llMind -> (parentFragment as? MainFragment)?.start(
+                com.fingertip.uilib.fragment.moment.MyMomentFragment()
+            )
             binding.llBless -> (parentFragment as? MainFragment)?.start(PrayingMineFragment.newInstance(false))
             binding.llReborn -> (parentFragment as? MainFragment)?.start(FangShengFragment())
 

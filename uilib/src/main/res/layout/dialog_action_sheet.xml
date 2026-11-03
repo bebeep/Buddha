@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  通用底部操作菜单。
+  条目由代码动态塞进 ll_items（每个条目一个 item_action_sheet，文案与颜色不同），
+  所以这里只放骨架：遮罩 + 面板 + 标题 + 条目容器 + 取消。
+
+  为什么不用 AlertDialog.setItems：那套是系统浅色弹窗，和我们整体版式不搭，
+  而且没法做「危险项标红」这种区分。
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 半透明遮罩：点空白关闭 -->
+    <View
+        android:id="@+id/v_outside"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#66000000" />
+
+    <LinearLayout
+        android:id="@+id/ll_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@drawable/bg_action_sheet"
+        android:orientation="vertical">
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="18dp"
+            android:paddingBottom="10dp"
+            android:textColor="#8C8069"
+            android:textSize="13sp"
+            android:visibility="gone"
+            tools:text="对该内容"
+            tools:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/ll_items"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="6dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="#F2F0EC" />
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:minHeight="52dp"
+            android:paddingVertical="14dp"
+            android:text="@string/action_cancel"
+            android:textColor="#B5A78F"
+            android:textSize="15sp"
+            app:zdyFont="medium" />
+
+    </LinearLayout>
+
+</FrameLayout>

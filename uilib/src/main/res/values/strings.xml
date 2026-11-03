@@ -8,5 +8,362 @@
     <string name="uselib_net4">Unknown error</string>
     <string name="uselib_net5">No Connection</string>
 
+    <!-- ============ 首页（海外版·暗调禅金） ============ -->
+    <string name="home_block_practice">今日修持</string>
+    <string name="home_block_game">禅意小游戏</string>
+    <string name="home_block_moment">佛友圈精选</string>
+    <string name="home_btn_start_practice">开始早课</string>
+    <string name="home_streak_days">连续 %1$d 天</string>
+    <string name="home_practice_done_today">今日已完成</string>
+    <string name="home_practice_todo_today">今日还未开始</string>
+    <string name="home_slot_chant">诵经</string>
+    <string name="home_slot_copy">抄经</string>
+    <string name="home_slot_sign">签到</string>
+    <string name="home_slot_go">去完成</string>
+    <string name="home_slot_done">已完成</string>
+    <string name="home_sign_ring">签到</string>
+    <string name="home_sign_ring_sub">连签 %1$d 天</string>
+    <string name="home_sign_done">已签到</string>
+    <string name="home_lamp_default_name">长明灯</string>
+    <string name="home_lamp_none">点一盏灯</string>
+    <string name="home_lamp_none_desc">供一盏长明灯，护持日常修持</string>
+    <string name="home_lamp_burning">长明灯燃烧中</string>
+    <string name="home_lamp_remain">剩余 %1$d 小时</string>
+    <string name="home_lamp_dying">长明灯即将熄灭</string>
+    <string name="home_lamp_dying_desc">剩余不足 3 小时，续燃可继续供灯</string>
+    <string name="home_lamp_relight">去续燃</string>
+    <string name="home_kingkong_fojing">佛经</string>
+    <string name="home_kingkong_wish">许愿</string>
+    <string name="home_kingkong_temple">寺庙</string>
+    <string name="home_kingkong_nianfo">念佛</string>
+    <string name="home_game_zen">禅院</string>
+    <string name="home_game_fangsheng">放生</string>
+    <string name="home_game_shop">禅值商店</string>
+    <string name="home_game_coming">敬请期待</string>
+    <string name="home_game_available">今日可玩</string>
+    <string name="home_game_soon">即将上线</string>
+    <string name="home_game_merit">禅值 %1$d</string>
+    <string name="home_moment_empty">精选内容筹备中，先去佛友圈看看大家的修行分享</string>
+    <string name="home_moment_more">查看全部</string>
+    <string name="home_load_fail">首页加载失败，请稍后重试</string>
+    <string name="home_retry">重新加载</string>
+    <string name="home_coming_soon">即将上线</string>
+
+    <!-- ============ 早课 ============ -->
+    <string name="early_practice_title">早课</string>
+    <string name="early_practice_developing">早课流程开发中</string>
+    <string name="early_practice_desc">礼佛 · 诵经 · 称念 · 发愿 · 回向，五步引导式晨间修持，后续版本开放。</string>
+    <string name="early_practice_disclaimer">仅记录个人修持，不构成任何现实回报承诺</string>
+    <string name="early_practice_step_worship">礼佛</string>
+    <string name="early_practice_step_chant">诵经</string>
+    <string name="early_practice_step_nianfo">称念</string>
+    <string name="early_practice_step_vow">发愿</string>
+    <string name="early_practice_step_share">回向</string>
+
+    <!-- ============ 念佛计数 ============ -->
+    <string name="meditation_title">念佛</string>
+    <string name="meditation_today">今日</string>
+    <string name="meditation_total">累计</string>
+    <string name="meditation_tap_hint">轻触念珠，计一声佛号</string>
+    <string name="meditation_holy_amitabha">阿弥陀佛</string>
+    <string name="meditation_holy_guanyin">观音圣号</string>
+    <string name="meditation_holy_mantra">六字大明咒</string>
+
+    <!-- ============ 供灯 ============ -->
+    <string name="lamp_title">供灯</string>
+    <string name="lamp_relight">续燃</string>
+    <string name="lamp_relight_soon">供灯续燃即将上线</string>
+    <string name="lamp_dress_title">装扮</string>
+    <string name="lamp_dress_oil">灯油</string>
+    <string name="lamp_scene_placeholder">灯位场景筹备中</string>
+
+    <!-- ============ 装扮商店 ============ -->
+    <string name="shop_title">装扮商店</string>
+    <string name="shop_my_dress">我的装扮</string>
+    <string name="shop_cat_lamp">灯具</string>
+    <string name="shop_cat_shrine">佛龛</string>
+    <string name="shop_cat_frame">头像框</string>
+    <string name="shop_cat_name3d">昵称 3D</string>
+    <string name="shop_cat_oil">灯油</string>
+    <string name="shop_action_buy">购买</string>
+    <string name="shop_action_wear">佩戴</string>
+    <string name="shop_action_take_off">卸下</string>
+    <string name="shop_action_in_use">使用中</string>
+    <string name="shop_empty">该分类暂无商品</string>
+    <string name="shop_my_dress_empty">还没有装扮，去商城挑一件</string>
+    <string name="shop_go_shop">去商城</string>
+    <!-- 合规：虚拟物品退款说明 + 恢复购买入口，审核会看 -->
+    <string name="shop_tip">虚拟物品一经购买不支持退款\n换机或重装后，可在「设置 - 恢复购买」找回已购内容</string>
+    <string name="shop_login_first">登录后才能购买，游客可先逛逛</string>
+    <string name="shop_pay_title">确认购买</string>
+    <string name="shop_pay_confirm">确认支付</string>
+    <string name="shop_pay_cancel">取消</string>
+    <string name="shop_pay_hint">支付将在 Google Play / App Store 完成，金额以商店显示为准</string>
+    <string name="shop_pay_hint_oil">灯油为消耗品，每次点燃长明灯都需要购买一次</string>
+    <string name="shop_pay_mock_hint">当前为开发环境，走模拟支付，不会产生真实扣款</string>
+    <string name="shop_pay_creating">正在创建订单…</string>
+    <string name="shop_pay_checking">正在确认支付结果…</string>
+    <string name="shop_pay_success">已到账，装扮已为你佩戴</string>
+    <string name="shop_pay_success_oil">灯油已到账，去拜佛页点亮长明灯</string>
+    <string name="shop_pay_fail">支付未完成，请稍后重试</string>
+    <string name="shop_verify_fail">支付校验失败，订单已记录，请联系客服</string>
+    <string name="shop_wear_success">已更换装扮</string>
+    <string name="shop_take_off_success">已卸下装扮</string>
+    <string name="shop_load_fail">加载失败，请稍后再试</string>
+
+    <!-- ============ 早课五步流程 ============ -->
+    <string name="ep_step_of">第 %1$d / 5 步</string>
+    <string name="ep_next">下一步</string>
+    <string name="ep_need_current">请先完成当前步骤</string>
+    <string name="ep_login_first">登录后才能记录早课</string>
+    <string name="ep_submit_fail">提交失败，请稍后重试</string>
+
+    <!-- 第一步 礼佛 -->
+    <string name="ep_worship_tip">轻触佛像，礼佛三拜</string>
+    <string name="ep_worship_count">已礼 %1$d / 3 拜</string>
+    <string name="ep_worship_tap">礼佛</string>
+
+    <!-- 第二步 诵经 -->
+    <string name="ep_chant_tip">静心读诵，读满 60 秒进入下一步</string>
+    <string name="ep_chant_start">开始诵经</string>
+    <string name="ep_chant_counting">诵经中… %1$d 秒</string>
+    <string name="ep_chant_done">诵经完成</string>
+    <string name="ep_chant_text">观自在菩萨，行深般若波罗蜜多时，照见五蕴皆空，度一切苦厄。\n\n舍利子，色不异空，空不异色，色即是空，空即是色，受想行识，亦复如是。\n\n舍利子，是诸法空相，不生不灭，不垢不净，不增不减。</string>
+
+    <!-- 第三步 称念 -->
+    <string name="ep_nianfo_tip">轻触念珠，称念佛号二十一声</string>
+    <string name="ep_nianfo_count">已称念 %1$d / 21 声</string>
+
+    <!-- 第四步 发愿 -->
+    <string name="ep_vow_tip">写下今日一愿，仅保存在本机，不上传</string>
+    <string name="ep_vow_hint">愿……</string>
+
+    <!-- 第五步 回向 -->
+    <string name="ep_review_title">回向</string>
+    <string name="ep_review_tip">愿以此功德，回向众生</string>
+    <string name="ep_review_worship">礼佛 %1$d 拜</string>
+    <string name="ep_review_chant">诵经 %1$d 秒</string>
+    <string name="ep_review_nianfo">称念 %1$d 声</string>
+    <string name="ep_review_vow">今日愿：%1$s</string>
+    <string name="ep_finish">完成早课</string>
+    <string name="ep_back">返回</string>
+
+    <!-- 结果态 -->
+    <string name="ep_done_title">早课已完成</string>    <string name="ep_done_desc">今日禅值 +%1$d，连续修持 %2$d 天</string>
+    <string name="ep_done_milestone">再修 %1$d 天达成下一个里程碑</string>
+    <string name="ep_already_title">今天已完成早课</string>
+    <string name="ep_already_desc">一天一记录，明天再来。也可以去念佛、抄经继续修持</string>
+
+    <!-- ============ 拜佛 tab ============ -->
+    <string name="worship_title">拜佛</string>
+    <string name="worship_loading">佛像加载中…</string>
+    <string name="worship_light_lamp">点一盏灯</string>
+    <string name="worship_relight">续燃</string>
+    <string name="worship_offer_action">供奉</string>
+    <string name="worship_offer_success">供奉成功，功德无量</string>
+    <string name="worship_offer_fail">供奉失败，请稍后再试</string>
+
+    <!-- ============ 供灯记录 ============ -->
+    <string name="lamp_record_title">供灯记录</string>
+    <string name="lamp_record_history">历史记录</string>
+    <string name="lamp_record_empty">还没有供灯记录</string>
+    <string name="lamp_record_none">尚未供灯</string>
+    <string name="lamp_record_none_desc">点一盏长明灯，护持日常修持</string>
+    <string name="lamp_record_remain">剩余 %1$d 小时</string>
+    <string name="lamp_record_relight_desc">剩余不足 3 小时，续燃可继续供灯</string>
+    <!-- 合规：订单号是恢复购买凭证，说明清楚查不到时怎么办 -->
+    <string name="lamp_record_tip">每条记录对应一次 Google Play / App Store 订单，可作为恢复购买凭证</string>
+
+    <!-- ============ 设置 ============ -->
+    <string name="setting_title">设置</string>
+    <string name="setting_group_account">账号</string>
+    <string name="setting_group_legal">隐私与合规</string>
+    <string name="setting_group_about">关于</string>
+    <string name="setting_logout">退出登录</string>
+    <string name="setting_delete_account">注销账号</string>
+    <string name="setting_privacy">隐私政策</string>
+    <string name="setting_terms">用户协议</string>
+    <string name="setting_license">开源许可</string>
+    <string name="setting_version">版本</string>
+    <string name="setting_footer">愿众生离苦得乐</string>
+    <string name="setting_not_login">当前未登录</string>
+    <string name="setting_logout_title">退出登录</string>
+    <string name="setting_logout_msg">退出后需要重新登录才能记录修持、使用装扮。已购装扮与禅值不会丢失。</string>
+    <string name="setting_logout_done">已退出登录</string>
+    <string name="setting_logout_fail">退出失败，请稍后重试</string>
+    <string name="setting_delete_title">注销账号</string>
+    <string name="setting_delete_msg">注销后，修持记录、禅值、已购装扮将无法恢复，且不可撤销。确定继续？</string>
+    <string name="setting_delete_confirm">确认注销</string>
+    <string name="setting_delete_done">账号已注销</string>
+    <string name="setting_delete_fail">注销失败，请稍后重试</string>
+
+    <!-- ============ 举报（UGC 合规） ============ -->
+    <string name="report_title">举报内容</string>
+    <string name="report_sub">请选择举报原因，我们会尽快核实处理</string>
+    <string name="report_reason_1">垃圾广告或引流</string>
+    <string name="report_reason_2">色情低俗内容</string>
+    <string name="report_reason_3">辱骂、骚扰或人身攻击</string>
+    <string name="report_reason_4">假借宗教名义诈骗或收费</string>
+    <string name="report_reason_5">其他违规内容</string>
+    <string name="report_cancel">取消</string>
+    <string name="report_submit">提交举报</string>
+    <string name="report_pick_reason">请选择举报原因</string>
+    <string name="report_done">已收到举报，我们会尽快核实</string>
+    <string name="report_fail">举报提交失败，请稍后重试</string>
+
+    <!-- ============ 拉黑（UGC 合规） ============ -->
+    <string name="action_cancel">取消</string>
+    <string name="action_more">更多</string>
+    <string name="action_report">举报</string>
+    <string name="action_block">拉黑 TA</string>
+    <string name="action_unblock">取消拉黑</string>
+    <string name="block_title">对该内容</string>
+    <string name="block_sub">拉黑后不再看到 TA 的动态与评论</string>
+    <string name="block_done">已拉黑，将不再看到 TA 的内容</string>
+    <string name="block_fail">拉黑失败，请稍后重试</string>
+    <string name="unblock_done">已取消拉黑</string>
+    <string name="unblock_fail">操作失败，请稍后重试</string>
+    <string name="block_confirm_title">拉黑这位佛友</string>
+    <string name="block_confirm_msg">拉黑后，你将不再看到 TA 发布的动态和评论，对方也不会收到通知。可随时在「设置 - 已拉黑用户」中取消。</string>
+    <string name="block_confirm_ok">确认拉黑</string>
+
+    <!-- ============ 已拉黑用户（设置页二级） ============ -->
+    <string name="setting_restore">恢复购买</string>
+    <string name="setting_restore_not_login">登录后才能恢复购买</string>
+    <string name="setting_restore_none">没有找到可恢复的购买记录</string>
+    <string name="setting_restore_done">已恢复 %1$d 件已购内容</string>
+    <string name="setting_restore_fail">恢复失败，请稍后重试</string>
+    <string name="setting_block_list">已拉黑用户</string>
+    <string name="block_list_title">已拉黑用户</string>
+    <string name="block_list_sub">拉黑后不再看到 TA 的动态与评论，可随时解除</string>
+    <string name="block_list_empty">还没有拉黑任何人</string>
+    <string name="block_list_unblock">解除</string>
+    <string name="block_list_date">%s 拉黑</string>
+    <string name="block_list_name_unknown">用户 #%d</string>
+    <string name="block_list_confirm_title">解除拉黑</string>
+    <string name="block_list_confirm_msg">解除后，你会重新看到 TA 发布的动态与评论。</string>
+    <string name="block_list_confirm_msg_named">解除对「%s」的拉黑？解除后，你会重新看到 TA 发布的动态与评论。</string>
+    <string name="block_list_confirm_ok">解除</string>
+
+    <!-- ============ 我的收藏 ============ -->
+    <string name="collect_title">我的收藏</string>
+    <string name="collect_cover">收藏封面</string>
+    <string name="collect_tab_all">全部</string>
+    <string name="collect_tab_sutra">佛经</string>
+    <string name="collect_tab_moment">感悟</string>
+    <string name="collect_tab_temple">寺庙</string>
+    <string name="collect_cancel">取消收藏</string>
+    <string name="collect_add_done">已收藏</string>
+    <string name="collect_add_fail">收藏失败，请稍后重试</string>
+    <string name="collect_cancel_done">已取消收藏</string>
+    <string name="collect_cancel_fail">操作失败，请稍后重试</string>
+    <string name="collect_empty">还没有收藏内容</string>
+    <string name="collect_untitled">内容已下架</string>
+    <string name="me_collect">我的收藏</string>
+
+    <!-- ============ 我的感悟（UGC 可删除自己的内容） ============ -->
+    <string name="my_moment_title">我的感悟</string>
+    <string name="my_moment_empty">还没有发过感悟</string>
+    <string name="my_moment_delete">删除</string>
+    <string name="my_moment_delete_title">删除这条感悟</string>
+    <string name="my_moment_delete_msg">删除后不可恢复，也不会再出现在佛友圈。确定继续？</string>
+    <string name="my_moment_delete_ok">删除</string>
+    <string name="my_moment_delete_done">已删除</string>
+    <string name="my_moment_delete_fail">删除失败，请稍后重试</string>
+    <string name="my_moment_tip">长按可删除自己的感悟</string>
+
+    <!-- ============ 登录 / 注册（海外版：Google + 邮箱，无手机号） ============ -->
+    <string name="login_brand">禅 心</string>
+    <string name="login_slogan">以禅养心 · 以心会友</string>
+    <string name="login_google">使用 Google 账号继续</string>
+    <string name="login_or_email">或使用邮箱</string>
+    <string name="login_guest">游客进入</string>
+    <string name="login_guest_fail">游客登录失败，请检查网络后重试</string>
+    <!-- 游客绑定引导：设置页常驻行 + 购买前弹窗 -->
+    <string name="setting_bind_hint">游客账号 · 绑定后进度不会丢失</string>
+    <string name="shop_guest_bind_title">游客账号提醒</string>
+    <string name="shop_guest_bind_msg">你当前是游客账号，卸载重装后进度无法找回。绑定 Google / Apple 账号后，修持记录与已购内容永久保留。</string>
+    <string name="shop_guest_bind_go">去绑定</string>
+    <string name="shop_guest_bind_continue">继续购买</string>
+    <string name="login_email_hint">邮箱地址</string>
+    <string name="login_password_hint">密码（至少 8 位）</string>
+    <string name="login_password_again_hint">再输一次密码</string>
+    <string name="login_action_login">登 录</string>
+    <string name="login_action_register">注 册</string>
+    <string name="login_to_register">还没有账号？立即注册</string>
+    <string name="login_to_login">已有账号？去登录</string>
+    <string name="login_agreement_prefix">继续即表示同意</string>
+    <string name="login_terms">《用户协议》</string>
+    <string name="login_privacy">《隐私政策》</string>
+    <string name="login_and">和</string>
+    <string name="login_email_invalid">请输入有效的邮箱地址</string>
+    <string name="login_pwd_short">密码至少 8 位</string>
+    <string name="login_pwd_not_match">两次输入的密码不一致</string>
+    <string name="login_email_exist">这个邮箱已经注册过了</string>
+    <string name="login_email_ok">邮箱可用</string>
+    <string name="login_google_no_account">本机没有可用的 Google 账号，请先在系统设置里登录</string>
+    <string name="login_google_fail">Google 登录失败，请稍后重试</string>
+    <string name="login_third_fail">登录失败，请稍后重试</string>
+    <string name="login_agree_first">请先阅读并同意用户协议与隐私政策</string>
+    <string name="login_welcome_back">欢迎回来</string>
+
+    <!-- 佛历订阅提醒 -->
+    <string name="remind_title">佛历订阅提醒</string>
+    <string name="remind_sub">提醒按你手机所在时区发送，节日当天只推一条</string>
+    <string name="remind_push_off_title">通知未开启</string>
+    <string name="remind_push_off_desc">没有通知权限，下面配的提醒也收不到</string>
+    <string name="remind_push_off_action">去开启</string>
+    <string name="remind_festival_name">佛历节日提醒</string>
+    <string name="remind_festival_desc">佛菩萨圣诞、成道、涅槃等重要节日</string>
+    <string name="remind_zhai_name">斋日提醒</string>
+    <string name="remind_zhai_desc">农历初一、十五，宜持斋诵经</string>
+    <string name="remind_time_label">提醒时间</string>
+    <string name="remind_offset_label">提前提醒</string>
+    <string name="remind_custom_name">每日提醒</string>
+    <string name="remind_custom_desc">每天固定时刻提醒你诵经、打坐、晚课</string>
+    <string name="remind_custom_add">添加</string>
+    <string name="remind_custom_empty">还没有自定义提醒，点「添加」写一条</string>
+    <string name="remind_preview_title">接下来的节日</string>
+    <string name="remind_preview_empty">近三个月没有佛历节日</string>
+    <string name="remind_timezone_tip">提醒时间以手机时区为准，出差或出国无需修改</string>
+    <string name="remind_delete">删除</string>
+    <string name="remind_enabled">已开启</string>
+    <string name="remind_disabled">已关闭</string>
+    <string name="remind_dialog_time_title">设置提醒时间</string>
+    <string name="remind_dialog_time_sub">选择你本地的时间，整点提醒</string>
+    <string name="remind_dialog_text_hint">例如：晚课诵经</string>
+    <string name="remind_dialog_cancel">取消</string>
+    <string name="remind_dialog_confirm">保存</string>
+    <string name="remind_dialog_text_empty">先写一句提醒内容</string>
+    <string name="remind_offset_dialog_title">提前多久提醒</string>
+    <string name="remind_offset_today">当天</string>
+    <string name="remind_offset_days">提前 %1$d 天</string>
+    <string name="remind_save_done">已保存</string>
+    <string name="remind_save_fail">保存失败，请重试</string>
+    <string name="remind_delete_title">删除提醒</string>
+    <string name="remind_delete_msg">删除后不再收到「%1$s」的提醒</string>
+    <string name="remind_delete_done">已删除</string>
+    <string name="remind_custom_limit">最多添加 %1$d 条自定义提醒</string>
+    <string name="remind_preview_today">今天</string>
+    <string name="remind_preview_days">还有 %1$d 天</string>
+    <string name="me_remind">佛历订阅提醒</string>
+
+    <string name="profile_edit_title">编辑资料</string>
+    <string name="profile_edit_wear_hint">佩戴装扮 · 点击管理</string>
+    <string name="profile_edit_nickname">昵称</string>
+    <string name="profile_edit_nickname_hint">20 字以内</string>
+    <string name="profile_edit_3d_badge">3D 效果</string>
+    <string name="profile_edit_3d_hint">昵称展示特效</string>
+    <string name="profile_edit_3d_synced">装扮状态已更新</string>
+    <string name="profile_edit_mood">个性签名</string>
+    <string name="profile_edit_mood_hint">写点什么介绍自己吧（100 字内）</string>
+    <string name="profile_edit_gender">性别</string>
+    <string name="gender_secret">保密</string>
+    <string name="gender_male">男</string>
+    <string name="gender_female">女</string>
+    <string name="profile_edit_save">保存</string>
+    <string name="profile_edit_save_ok">保存成功</string>
+    <string name="profile_edit_save_fail">保存失败，请稍后再试</string>
+    <string name="profile_edit_name_empty">昵称不能为空</string>
 
 </resources>

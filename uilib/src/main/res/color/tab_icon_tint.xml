@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    底部 tab 图标染色：图标是单色 glyph PNG，
+    原配色（未选中深棕 / 选中橙）在暗底 tab 栏上对比度不够。
+    未选中用次文字色 #8C8069，选中用主金 #C4A265，与整体暗金主题对齐。
+-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="#FFC4A265" android:state_selected="true" />
+    <item android:color="#FF8C8069" />
+</selector>

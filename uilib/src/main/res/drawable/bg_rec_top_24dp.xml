@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 覆盖 baseLib 同名资源：面板顶圆角，暗调（§12.6 暗调禅金） -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#2A2014" />
+    <corners android:topLeftRadius="24dp" android:topRightRadius="24dp" />
+</shape>

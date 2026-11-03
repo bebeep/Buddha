@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    早课五步流程（礼佛 → 诵经 → 称念 → 发愿 → 回向）
+
+    单页五步状态机：五个 step 容器叠在 fl_content 里靠显隐切换，
+    不用 Fragment 嵌套也不用 ViewPager——步骤间要传状态（礼佛次数/诵经秒数/佛号数/愿文），
+    同页持有最省事，返回键也只需要处理"上一步"。
+    底部 tv_action 是全页唯一金色实底，完成态换成"回我的"。
+-->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#251C10">
+
+    <com.fingertip.baselib.view.FullTopConstraintLayout
+        android:id="@+id/cl_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="8dp"
+            android:src="@mipmap/icon_back_black"
+            android:tint="#EDE3D2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.fingertip.baselib.view.MyTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/early_practice_title"
+            android:textColor="#EDE3D2"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:zdyFont="bold" />
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_step"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:textColor="#C4A265"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </com.fingertip.baselib.view.FullTopConstraintLayout>
+
+    <!-- 五步进度点：完成=金实底，当前=金描边，未到=暗色 -->
+    <LinearLayout
+        android:id="@+id/ll_dots"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        app:layout_constraintTop_toBottomOf="@+id/cl_title">
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_dot1"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:gravity="center"
+            android:text="1"
+            android:textSize="11sp" />
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_dot2"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:text="2"
+            android:textSize="11sp" />
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_dot3"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:text="3"
+            android:textSize="11sp" />
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_dot4"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:text="4"
+            android:textSize="11sp" />
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_dot5"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:text="5"
+            android:textSize="11sp" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_action"
+        app:layout_constraintTop_toBottomOf="@+id/ll_dots">
+
+        <!-- ============ 第一步：礼佛 ============ -->
+        <LinearLayout
+            android:id="@+id/ll_step1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_home_card_a"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="26dp"
+            android:paddingBottom="26dp">
+
+            <com.fingertip.baselib.view.MyTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ep_worship_tip"
+                android:textColor="#B5A78F"
+                android:textSize="12sp" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_worship_btn"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/bg_ep_orb"
+                android:gravity="center"
+                android:text="@string/ep_worship_tap"
+                android:textColor="#E3C88B"
+                android:textSize="22sp"
+                app:zdyFont="bold" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_worship_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:textColor="#C4A265"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <!-- ============ 第二步：诵经 ============ -->
+        <LinearLayout
+            android:id="@+id/ll_step2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_home_card_a"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:visibility="gone">
+
+            <com.fingertip.baselib.view.MyTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ep_chant_tip"
+                android:textColor="#B5A78F"
+                android:textSize="12sp" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_home_inner"
+                android:overScrollMode="never"
+                android:padding="14dp">
+
+                <com.fingertip.baselib.view.MyTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="7dp"
+                    android:text="@string/ep_chant_text"
+                    android:textColor="#EDE3D2"
+                    android:textSize="14sp" />
+
+            </ScrollView>
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_chant_timer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:gravity="center"
+                android:textColor="#C4A265"
+                android:textSize="12sp" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_chant_start"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_home_pill_outline"
+                android:gravity="center"
+                android:text="@string/ep_chant_start"
+                android:textColor="#C4A265"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <!-- ============ 第三步：称念 ============ -->
+        <LinearLayout
+            android:id="@+id/ll_step3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_home_card_a"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="26dp"
+            android:paddingBottom="26dp"
+            android:visibility="gone">
+
+            <com.fingertip.baselib.view.MyTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ep_nianfo_tip"
+                android:textColor="#B5A78F"
+                android:textSize="12sp" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_nianfo_btn"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/bg_ep_orb"
+                android:gravity="center"
+                android:text="@string/meditation_title"
+                android:textColor="#E3C88B"
+                android:textSize="22sp"
+                app:zdyFont="bold" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_nianfo_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:textColor="#C4A265"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <!-- ============ 第四步：发愿 ============ -->
+        <LinearLayout
+            android:id="@+id/ll_step4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_home_card_a"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:visibility="gone">
+
+            <com.fingertip.baselib.view.MyTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ep_vow_tip"
+                android:textColor="#B5A78F"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/et_vow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_home_inner"
+                android:gravity="top|start"
+                android:hint="@string/ep_vow_hint"
+                android:inputType="textMultiLine"
+                android:lineSpacingExtra="6dp"
+                android:maxLength="120"
+                android:minLines="5"
+                android:padding="14dp"
+                android:textColor="#EDE3D2"
+                android:textColorHint="#6E6455"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <!-- ============ 第五步：回向 ============ -->
+        <LinearLayout
+            android:id="@+id/ll_step5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_home_card_a"
+            android:orientation="vertical"
+            android:padding="18dp"
+            android:visibility="gone">
+
+            <com.fingertip.baselib.view.MyTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ep_review_title"
+                android:textColor="#E3C88B"
+                android:textSize="16sp"
+                app:zdyFont="bold" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/ep_review_tip"
+                android:textColor="#B5A78F"
+                android:textSize="11.5sp" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_review_worship"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_home_inner"
+                android:padding="12dp"
+                android:textColor="#EDE3D2"
+                android:textSize="13sp" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_review_chant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_home_inner"
+                android:padding="12dp"
+                android:textColor="#EDE3D2"
+                android:textSize="13sp" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_review_nianfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_home_inner"
+                android:padding="12dp"
+                android:textColor="#EDE3D2"
+                android:textSize="13sp" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_review_vow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_home_inner"
+                android:padding="12dp"
+                android:textColor="#EDE3D2"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <!-- ============ 结果态：完成 / 今日已完成 ============ -->
+        <LinearLayout
+            android:id="@+id/ll_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_home_card_b"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="30dp"
+            android:paddingBottom="30dp"
+            android:visibility="gone">
+
+            <com.fingertip.baselib.view.MyTextView
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="@drawable/bg_home_dot_gold"
+                android:gravity="center"
+                android:text="✓"
+                android:textColor="#14100C"
+                android:textSize="18sp" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_result_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:textColor="#E3C88B"
+                android:textSize="18sp"
+                app:zdyFont="bold" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_result_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:textColor="#B5A78F"
+                android:textSize="12.5sp" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_result_milestone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:textColor="#8C8069"
+                android:textSize="11sp" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_action"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/bg_ep_primary_off"
+        android:gravity="center"
+        android:text="@string/ep_next"
+        android:textColor="#8C8069"
+        android:textSize="13.5sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_disclaimer" />
+
+    <!-- 合规小字：不做任何现实回报承诺，审核会看 -->
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_disclaimer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:gravity="center"
+        android:text="@string/early_practice_disclaimer"
+        android:textColor="#6E6455"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

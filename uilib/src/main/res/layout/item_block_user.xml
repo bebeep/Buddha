@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 已拉黑用户单条：头像 + 昵称 + 拉黑时间 + 解除按钮。整行不设点击，避免误入对方主页 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/bg_home_card_a"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="14dp">
+
+    <com.fingertip.baselib.view.CircleImageView
+        android:id="@+id/iv_avatar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@mipmap/icon_default_head"
+        app:civ_border_color="#33C4A265"
+        app:civ_border_width="1dp" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="#EDE3D2"
+            android:textSize="13.5sp"
+            tools:text="某某佛友" />
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="#8C8069"
+            android:textSize="10.5sp"
+            tools:text="2026-11-02 14:20 拉黑" />
+
+    </LinearLayout>
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_unblock"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="12dp"
+        android:background="@drawable/bg_block_unblock"
+        android:gravity="center"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
+        android:text="@string/block_list_unblock"
+        android:textColor="#C4A265"
+        android:textSize="12sp" />
+
+</LinearLayout>

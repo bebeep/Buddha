@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 佛像 chip 选中态：2dp 禅金圆环（与资料编辑头像金环同款） -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#00000000" />
+            <stroke
+                android:width="2dp"
+                android:color="#C4A265" />
+        </shape>
+    </item>
+</layer-list>

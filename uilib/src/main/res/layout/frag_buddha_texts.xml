@@ -12,14 +12,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tl_indicator_color="#FF9600"
+        app:tl_indicator_color="#C4A265"
         app:tl_indicator_corner_radius="16dp"
         app:tl_indicator_height="4dp"
         app:tl_indicator_horizontal="CENTER"
         app:tl_indicator_width="15dp"
         app:tl_tab_padding="10dp"
         app:tl_textBold="BOTH"
-        app:tl_textSelectColor="#FF9600"
+        app:tl_textSelectColor="#C4A265"
         app:tl_textUnselectColor="#AAAAAA" />
 
 
@@ -46,7 +46,7 @@
         android:layout_width="match_parent"
         app:layout_constraintTop_toBottomOf="@+id/tab_layout"
         android:layout_marginHorizontal="16dp"
-        android:background="#F7F7F7"
+        android:background="#2F2518"
         android:layout_height="1dp"/>
 
 

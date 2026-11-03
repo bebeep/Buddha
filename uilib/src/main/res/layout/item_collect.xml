@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    我的收藏单条
+    左侧封面（佛经有封面图，感悟/寺庙可能为空，用同色底兜住），
+    中间标题 + 类型标签 + 收藏日期，右侧「取消收藏」。
+    整项点击进对应详情页，收藏的意义就是把内容再打开一次。
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/bg_home_card_a"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="12dp">
+
+    <ImageView
+        android:id="@+id/iv_cover"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:background="@drawable/bg_collect_cover"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/collect_cover" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="#EDE3D2"
+            android:textSize="13.5sp"
+            tools:text="般若波罗蜜多心经" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_collect_tag"
+                android:paddingStart="5dp"
+                android:paddingTop="1dp"
+                android:paddingEnd="5dp"
+                android:paddingBottom="1dp"
+                android:textColor="#C4A265"
+                android:textSize="9.5sp"
+                tools:text="佛经" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:textColor="#6E6455"
+                android:textSize="9.5sp"
+                tools:text="2026-11-02" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/bg_block_unblock"
+        android:gravity="center"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:text="@string/collect_cancel"
+        android:textColor="#8C8069"
+        android:textSize="11sp" />
+
+</LinearLayout>

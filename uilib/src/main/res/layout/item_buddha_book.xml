@@ -21,6 +21,6 @@
         android:gravity="center"
         android:lineSpacingExtra="2dp"
         android:maxLines="2"
-        android:textColor="#333333"
+        android:textColor="#EDE3D2"
         android:textSize="12sp" />
 </LinearLayout>

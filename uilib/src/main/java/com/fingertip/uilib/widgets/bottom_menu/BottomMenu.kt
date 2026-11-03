@@ -31,7 +31,14 @@ class BottomMenu @JvmOverloads constructor(
     private lateinit var tabBarNormal :ArrayList<String>
     private lateinit var tabBarSelect :ArrayList<String>
     private lateinit var imageViewList :ArrayList<ImageView>
-    private val localIcon = listOf(R.drawable.tab_host_selector,R.drawable.tab_post_selector,R.drawable.tab_baifo_selector,R.drawable.tab_rank_selector,R.drawable.tab_me_selector)
+    // 本地兜底图标，顺序必须与 MainFragment 的 fragmentList 一致
+    // 海外版 4 tab：首页 / 拜佛 / 佛友圈 / 我的（排行榜已下线）
+    private val localIcon = listOf(
+        R.drawable.tab_host_selector,
+        R.drawable.tab_baifo_selector,
+        R.drawable.tab_post_selector,
+        R.drawable.tab_me_selector
+    )
 
     fun initTabBarUrl(){
         tabBarNormal = ArrayList()
@@ -66,6 +73,7 @@ class BottomMenu @JvmOverloads constructor(
         }
 
 
+        // 第 3 个菜单（index=2）= 佛友圈，动态红点挂这里
         if (count == 3) momentMenu = menuItemView
 
         if (menuItem.initSelect) {

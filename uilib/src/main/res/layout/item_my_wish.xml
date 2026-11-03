@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:lineSpacingExtra="3dp"
-        android:textColor="#2C1900"
+        android:textColor="#B5A78F"
         android:textSize="14sp" />
 
     <LinearLayout
@@ -33,14 +33,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="#AAAAAA"
+            android:textColor="#8C8069"
             android:textSize="11sp" />
 
         <TextView
             android:id="@+id/tv_wish_bless_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#FFA030"
+            android:textColor="#C4A265"
             android:textSize="12sp" />
 
         <TextView
@@ -50,7 +50,7 @@
             android:layout_marginStart="12dp"
             android:padding="2dp"
             android:text="删除"
-            android:textColor="#999999"
+            android:textColor="#8C8069"
             android:textSize="12sp" />
 
     </LinearLayout>

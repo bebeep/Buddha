@@ -32,7 +32,7 @@
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#4A3413"
+                android:textColor="#EDE3D2"
                 android:textSize="13sp"
                 tools:text="吴彦祖" />
 
@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
-                android:textColor="#C87A2B"
+                android:textColor="#C4A265"
                 android:textSize="11sp"
                 tools:text="lv5" />
 
@@ -50,7 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:textColor="#B08A4A"
+                android:textColor="#C4A265"
                 android:textSize="11sp"
                 tools:text="2022-02-02" />
         </LinearLayout>
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:lineSpacingExtra="3dp"
-            android:textColor="#6B4A17"
+            android:textColor="#B5A78F"
             android:textSize="13sp"
             tools:text="这是评论的内容，可以多行显示" />
     </LinearLayout>

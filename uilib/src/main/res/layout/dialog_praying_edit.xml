@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="编辑祈福内容..."
-        android:textColor="#8A6B3A"
+        android:textColor="#B5A78F"
         android:textSize="13sp" />
 
     <EditText
@@ -27,8 +27,8 @@
         android:hint="写下你的祈福，为亲友为众生"
         android:maxLength="20"
         android:minLines="2"
-        android:textColor="#4A3413"
-        android:textColorHint="#C0A878"
+        android:textColor="#EDE3D2"
+        android:textColorHint="#B5A78F"
         android:textSize="15sp" />
 
     <TextView
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:gravity="end"
         android:text="0/20"
-        android:textColor="#B08A4A"
+        android:textColor="#C4A265"
         android:textSize="12sp" />
 
     <!-- 推荐标签，代码动态填充 -->
@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="祈福卡"
-        android:textColor="#4A3413"
+        android:textColor="#EDE3D2"
         android:textSize="14sp" />
 
     <!-- 封面选择：默认 + 祈福卡(5功德币) -->
@@ -70,7 +70,7 @@
             android:background="@drawable/bg_praying_cover_selected"
             android:gravity="center"
             android:text="默认"
-            android:textColor="#6B4A17"
+            android:textColor="#B5A78F"
             android:textSize="13sp" />
 
         <LinearLayout
@@ -85,14 +85,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="祈福卡"
-                android:textColor="#C87A2B"
+                android:textColor="#C4A265"
                 android:textSize="13sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="5功德币"
-                android:textColor="#B08A4A"
+                android:textColor="#C4A265"
                 android:textSize="10sp" />
         </LinearLayout>
     </LinearLayout>

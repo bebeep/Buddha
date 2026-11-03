@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 修持格未开始态：虚线框 + 禁用色 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#2F2518" />
+    <corners android:radius="10dp" />
+    <stroke
+        android:width="0.5dp"
+        android:color="#59C4A265"
+        android:dashWidth="4dp"
+        android:dashGap="3dp" />
+</shape>

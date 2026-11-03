@@ -10,6 +10,7 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         style="@style/constraint_center"
+        android:tint="@color/tab_icon_tint"
         android:src="@drawable/tab_me_selector"/>
 
     <com.fingertip.baselib.view.shapeview.ShapeTextView

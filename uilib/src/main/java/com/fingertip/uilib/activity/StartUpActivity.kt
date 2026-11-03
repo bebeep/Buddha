@@ -9,7 +9,6 @@ import com.fingertip.baselib.dialog.RemindAllDialog
 import com.fingertip.baselib.top.TopVMActivity
 import com.fingertip.baselib.util.ToastUtil
 import com.fingertip.uilib.databinding.ActivityStartupBinding
-import com.fingertip.uilib.service.ModuleDownloadService
 import com.fingertip.uilib.viewmodel.StartUpVM
 import com.lzlz.toplib.extention.visible
 
@@ -62,17 +61,16 @@ class StartUpActivity : TopVMActivity<StartUpVM>() {
             when(it.data?.versionStatus){
                 1->{//正常
                     GlobalConfig.globalParam = it.data?.globalParam
-                    //后台下载佛像模型文件(普通模型+3D模型)
-                    GlobalConfig.globalParam?.buddhaConfig?.let { config ->
-                        ModuleDownloadService.start(this, config[0])
-                    }
-                    val username = SPUtils.getInstance(SPConstant.SP_ACCOUNT).getString(SPConstant.SP_ACCOUNT_USERNAME)
-                    val password = SPUtils.getInstance(SPConstant.SP_ACCOUNT).getString(SPConstant.SP_ACCOUNT_PASSWORD)
-                    if (username.isNotEmpty() && password.isNotEmpty()){//情况正常，并且本地保存了账号密码 直接登录
-                        mViewModel.login(username,password)
-                    }
-                    else
-                    {
+                    // 冷启动自动登录：只用 session 续期。
+                    // 旧版存的是「手机号+明文密码」，升级上来的机器没有 session，直接去登录页，
+                    // 同时把旧的明文凭证清掉。
+                    val sp = SPUtils.getInstance(SPConstant.SP_ACCOUNT)
+                    val session = sp.getString(SPConstant.SP_SESSION)
+                    if (session.isNotEmpty()) {
+                        mViewModel.refreshSession(session)
+                    } else {
+                        sp.remove(SPConstant.SP_ACCOUNT_PASSWORD)
+                        sp.remove(SPConstant.SP_ACCOUNT_USERNAME)
                         startActivity(Intent(this, LoginRegisterActivity::class.java))
                         finish()
                     }
@@ -104,8 +102,11 @@ class StartUpActivity : TopVMActivity<StartUpVM>() {
             }
         }
         mViewModel.loginResult.observe(this) {
-            if (it.success && it.data != null) {//跳转到主页
-                GlobalConfig.userData = it.data
+            val data = it.data
+            if (it.success && data != null) {//跳转到主页
+                GlobalConfig.userData = data
+                // 必须在 GlobalConfig.userData 赋值之后再绑定：上报订阅时要用到 session
+                com.fingertip.uilib.push.PushManager.bind(data.accountId)
                 binding.ivBanner.visible()
                 binding.ivBanner.isEnabled = true
                 binding.ivBanner.postDelayed({

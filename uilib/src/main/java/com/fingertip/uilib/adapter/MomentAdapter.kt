@@ -25,7 +25,9 @@ import com.fingertip.uilib.databinding.ItemMomentBinding
 class MomentAdapter(
     context: Context,
     val onItemClick: (entity: MomentEntity) -> Unit,
-    val onVideoClick: (entity: MomentEntity) -> Unit = {}
+    val onVideoClick: (entity: MomentEntity) -> Unit = {},
+    //长按：目前只有「我的感悟」用（删自己的内容），列表页不传就不生效
+    val onItemLongClick: ((entity: MomentEntity) -> Unit)? = null
 ) : TopRcAdapter<MomentEntity, MomentAdapter.MomentVH>(context) {
 
     /** 视频容器最大宽度（屏宽 - 左右各 16dp 边距，和布局里的 margin 对齐） */
@@ -56,6 +58,7 @@ class MomentAdapter(
         binding.tvContent.text = entity.textContent
         binding.tvName.text = entity.postUserName
         binding.tvLevel.text = "lv.${entity.userLevel}"
+        binding.tvCheckinTag.visibility = if (entity.checkIn) View.VISIBLE else View.GONE
         binding.ivHead.loadHead(entity.postAvatar)
         binding.tvLike.text = "${entity.likeCount}"
         binding.tvComment.text = "${entity.commentCount}"
@@ -69,6 +72,15 @@ class MomentAdapter(
         }
 
         holder.itemView.setOnClickListener { onItemClick(entity) }
+        onItemLongClick?.let { cb ->
+            holder.itemView.setOnLongClickListener {
+                cb(entity)
+                true
+            }
+        } ?: run {
+            //复用 holder 时要把长按清掉，否则从「我的感悟」滑回列表页会带着上一个绑定
+            holder.itemView.setOnLongClickListener(null)
+        }
     }
 
     private fun bindVideo(holder: MomentVH, entity: MomentEntity) {

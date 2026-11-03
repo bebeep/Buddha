@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 关注按钮文字色（暗金版，对应原 tv_select：选中主金 / 未选中次文字） -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="#FFC4A265" android:state_selected="true" />
+    <item android:color="#FF8C8069" />
+</selector>

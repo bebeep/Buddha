@@ -25,7 +25,7 @@ object NetProperty {
     /**
      * 测试服
      */
-    var TEST_URL            = "http://192.168.10.195:8888/buddha/"   //公司
+    var TEST_URL            = "http://192.168.10.195:8888/buddha/"   //公司（本机 jar 跑 8899）
 //    var TEST_URL            = "http://192.168.1.249:8888/buddha/"   //家里
 //    var TEST_URL            = "https://soonturn.com/buddha"
 
@@ -69,9 +69,49 @@ object NetProperty {
 
 
     /**
-     * 登录
+     * 登录（loginType=1 邮箱密码 2 Google 3 Apple）
      */
     const val LOGIN                           = "account/login"
+
+    /**
+     * 邮箱注册
+     */
+    const val ACCOUNT_REGISTER                = "account/register"
+
+    /**
+     * 邮箱是否可用
+     */
+    const val ACCOUNT_CHECK_EMAIL             = "account/checkEmail"
+
+    /**
+     * 绑定第三方账号 / 补绑邮箱
+     */
+    const val ACCOUNT_BIND_THIRD              = "account/bindThird"
+
+    /**
+     * 设置/修改密码（第三方注册的账号补密码）
+     */
+    const val ACCOUNT_SET_PASSWORD            = "account/setPassword"
+
+    /**
+     * session 续期（启动时自动登录）
+     */
+    const val ACCOUNT_REFRESH_SESSION         = "account/refreshSession"
+
+    /**
+     * 注册推送设备订阅
+     */
+    const val PUSH_REGISTER                   = "push/register"
+
+    /**
+     * 解绑推送设备订阅
+     */
+    const val PUSH_UNREGISTER                 = "push/unregister"
+
+    /**
+     * 账号级推送开关
+     */
+    const val PUSH_SWITCH                     = "push/switch"
 
 
     /**
@@ -97,6 +137,8 @@ object NetProperty {
      * 获取动态列表-FOLLOWED
      */
     const val GET_MOMENT_LIST_FOLLOWED                     = "moment/getMomentListFollowed"
+    const val GET_MOMENT_LIST_NEW                          = "moment/getMomentListNew"
+    const val GET_MOMENT_LIST_CHECKIN                      = "moment/getMomentListCheckIn"
 
 
     /**
@@ -284,6 +326,11 @@ object NetProperty {
      * 获取今日佛历信息（首页顶部佛历日期与今日佛事）
      */
     const val GET_TODAY_BUDDHA_INFO                   = "account/getTodayBuddhaInfo"
+
+    /**
+     * 获取首页聚合数据（修持进度 + 供灯状态 + 禅值余额 + 连续天数 + 区块配置）
+     */
+    const val HOME_SUMMARY                            = "home/getSummary"
 
     /**
      * 获取许愿文本示例
@@ -484,4 +531,190 @@ object NetProperty {
      * 供佛（选择供奉天数，扣功德币）
      */
     const val WORSHIP_BUDDHA                          = "account/worshipBuddha"
+
+
+    /********************** 海外版：装扮商城 **********************/
+
+    /**
+     * 商城商品列表。dressType 1灯具 2佛龛 3头像框 4昵称3D 5灯油
+     * 公开接口，游客可逛
+     */
+    const val DRESS_LIST                              = "dress/getList"
+
+    /**
+     * 我的装扮（持有列表 + 佩戴状态），需登录
+     */
+    const val DRESS_MY                                = "dress/getMy"
+
+    /**
+     * 佩戴/摘下装扮，需登录
+     */
+    const val DRESS_WEAR                              = "dress/wear"
+
+    /**
+     * 创建 IAP 订单（返回内部订单号）
+     */
+    const val DRESS_CREATE_ORDER                      = "dress/createOrder"
+
+    /**
+     * IAP 验单并发货
+     */
+    const val DRESS_VERIFY                            = "dress/verify"
+
+
+    /********************** 海外版：禅值 **********************/
+
+    /**
+     * 禅值余额
+     */
+    const val MERIT_BALANCE                           = "merit/getBalance"
+
+
+    /********************** 海外版：早课修持 **********************/
+
+    /**
+     * 提交早课/晚课（一人一天一条，服务端按 timeZone 判定早/晚课）
+     */
+    const val PRACTICE_SUBMIT                         = "practice/submit"
+
+    /**
+     * 早课连续统计（连续天数 / 最长连续 / 累计次数 / 已领里程碑）
+     */
+    const val PRACTICE_STATISTIC                      = "practice/getStatistic"
+
+    /**
+     * 念佛计数上报（每满 108 声发 1 禅值，单日单佛号封顶）
+     */
+    const val PRACTICE_MEDITATION_REPORT              = "practice/meditationReport"
+
+    /**
+     * 累计念佛总声数
+     */
+    const val PRACTICE_MEDITATION_TOTAL               = "practice/getMeditationTotal"
+
+
+    /********************** 海外版：供灯 **********************/
+
+    /**
+     * 当前供灯状态（0无灯 1燃烧中 2将熄），查询前服务端会惰性收掉过期灯
+     */
+    const val LAMP_STATUS                             = "lamp/getStatus"
+
+    /**
+     * 供灯历史（点亮/续燃记录，每条绑 IAP 订单号）
+     */
+    const val LAMP_HISTORY                            = "lamp/getHistory"
+
+
+    /********************** 海外版：账号（设置页） **********************/
+
+    /**
+     * 退出登录（服务端清 session）
+     */
+    const val ACCOUNT_LOGOUT                          = "account/logout"
+
+    /**
+     * 注销账号（Google Play 账号删除政策要求 App 内可发起）
+     */
+    const val ACCOUNT_DELETE                          = "account/deleteAccount"
+
+    /**
+     * 举报（UGC 合规件：动态/评论）
+     */
+    const val ACCOUNT_REPORT                          = "account/report"
+
+
+    /********************** 海外版：拉黑（UGC 合规） **********************/
+
+    /**
+     * 拉黑用户
+     */
+    const val USERTOOL_ADD_BLOCK                      = "userTool/addBlock"
+
+    /**
+     * 取消拉黑
+     */
+    const val USERTOOL_CANCEL_BLOCK                   = "userTool/cancelBlock"
+
+    /**
+     * 我的拉黑列表
+     */
+    const val USERTOOL_BLOCK_LIST                     = "userTool/getBlockList"
+
+
+    /********************** 海外版：收藏（佛经/感悟/寺庙统一收藏） **********************/
+
+    /**
+     * 收藏列表（targetType 1佛经 2感悟 3寺庙，0查全部）
+     */
+    const val USERTOOL_COLLECT_LIST                   = "userTool/getCollectList"
+
+    /**
+     * 添加收藏
+     */
+    const val USERTOOL_ADD_COLLECT                    = "userTool/addCollect"
+
+    /**
+     * 取消收藏
+     */
+    const val USERTOOL_CANCEL_COLLECT                 = "userTool/cancelCollect"
+
+    /**
+     * 是否已收藏（详情页初始化收藏按钮状态）
+     */
+    const val USERTOOL_IS_COLLECTED                   = "userTool/isCollected"
+
+
+    /********************** 海外版：恢复购买（App Store 3.1.1 要求） **********************/
+
+    /**
+     * 按平台交易号补发已付款未发货的订单
+     */
+    const val DRESS_RESTORE                           = "dress/restore"
+
+
+    /********************** 海外版：我的感悟（UGC 可删除自己的内容） **********************/
+
+    /**
+     * 某人的动态列表（targetAccountId 传 0 查自己）
+     */
+    const val MOMENT_LIST_BY_ACCOUNT                  = "moment/getMomentListByAccount"
+
+    /**
+     * 删除自己的动态（软删）
+     */
+    const val MOMENT_DELETE                           = "moment/deleteMoment"
+
+
+    /********************** 海外版：佛历订阅提醒 **********************/
+
+    /**
+     * 提醒规则列表（首次调用服务端会补两条默认规则）
+     */
+    const val USERTOOL_REMIND_LIST                    = "userTool/getRemindList"
+
+    /**
+     * 保存提醒规则（id=0 新建，id>0 更新）
+     */
+    const val USERTOOL_REMIND_SAVE                    = "userTool/saveRemind"
+
+    /**
+     * 删除提醒规则
+     */
+    const val USERTOOL_REMIND_DELETE                  = "userTool/deleteRemind"
+
+    /**
+     * 未来一段时间的佛历节日（提醒页预告列表）
+     */
+    const val USERTOOL_FESTIVAL_LIST                  = "userTool/getFestivalList"
+
+    /**
+     * 保存最近选中的佛像（拜佛页切换时上报，登录后各端恢复）
+     */
+    const val ACCOUNT_SAVE_LAST_BUDDHA                = "account/saveLastBuddha"
+
+    /**
+     * 游客登录（服务端按设备号建/找回游客号，享正式账号全部功能）
+     */
+    const val ACCOUNT_TRY_PLAY                        = "account/tryPlay"
 }

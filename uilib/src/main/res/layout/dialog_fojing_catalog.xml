@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start|center_vertical"
             android:text="目录"
-            android:textColor="#2C1900"
+            android:textColor="#B5A78F"
             android:textSize="18sp"
             app:zdyFont="bold" />
 

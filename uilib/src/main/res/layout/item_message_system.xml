@@ -12,7 +12,7 @@
     <com.fingertip.baselib.view.MyTextView
         android:id="@+id/tv_title"
         android:textSize="14sp"
-        android:textColor="#2D2D2D"
+        android:textColor="#EDE3D2"
         app:zdyFont="bold"
         android:text="系统消息标题。。。"
         android:layout_width="match_parent"
@@ -21,14 +21,14 @@
         android:id="@+id/tv_content"
         android:textSize="14sp"
         android:layout_marginTop="8dp"
-        android:textColor="#2C1900"
+        android:textColor="#B5A78F"
         android:text="系统消息内容克拉斯建档立卡时间段克拉斯进度款拉时间段啊阿卡丽三等奖卡洛斯大家阿卡丽三等奖阿达是的阿斯卡来得及阿萨德"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <com.fingertip.baselib.view.MyTextView
         android:id="@+id/tv_date"
-        android:textColor="#AAAAAA"
+        android:textColor="#8C8069"
         android:textSize="14sp"
         android:layout_gravity="end"
         android:text="5分钟前"
@@ -40,7 +40,7 @@
     <View
         android:id="@+id/v_line_bottom"
         android:layout_marginTop="8dp"
-        android:background="#F2F4F6"
+        android:background="#1FC4A265"
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
 </LinearLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 覆盖 baseLib 同名资源：中性按钮底，暗调卡色（§12.6 暗调禅金） -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="22dp" />
+    <solid android:color="#3D301E" />
+    <stroke android:width="0.5dp" android:color="#4F4839" />
+</shape>

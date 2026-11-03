@@ -8,7 +8,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF7EA">
+    android:background="#2F2518">
 
     <com.fingertip.baselib.view.FullTopConstraintLayout
         android:id="@+id/cl_title"
@@ -41,6 +41,18 @@
             android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 更多：举报 / 拉黑。UGC 合规要求针对「人」也要有一级入口，不能只做在内容上 -->
+        <ImageView
+            android:id="@+id/iv_more"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginEnd="4dp"
+            android:contentDescription="@string/action_more"
+            android:src="@mipmap/icon_menu"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_follow"
             app:layout_constraintTop_toTopOf="parent" />
     </com.fingertip.baselib.view.FullTopConstraintLayout>
 
@@ -83,7 +95,7 @@
                         android:id="@+id/tv_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#4A3413"
+                        android:textColor="#EDE3D2"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         tools:text="吴彦祖" />
@@ -93,7 +105,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:textColor="#C87A2B"
+                        android:textColor="#C4A265"
                         android:textSize="12sp"
                         tools:text="lv1 佛门初探" />
                 </LinearLayout>
@@ -102,7 +114,7 @@
                     android:id="@+id/tv_display_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#B08A4A"
+                    android:textColor="#C4A265"
                     android:textSize="11sp"
                     tools:text="ID:888888" />
             </LinearLayout>
@@ -112,7 +124,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textColor="#8A6B3A"
+                android:textColor="#B5A78F"
                 android:textSize="13sp"
                 tools:text="这里是个性签名" />
 
@@ -135,7 +147,7 @@
                         android:id="@+id/tv_followings"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#C87A2B"
+                        android:textColor="#C4A265"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         tools:text="6" />
@@ -144,7 +156,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="关注"
-                        android:textColor="#B08A4A"
+                        android:textColor="#C4A265"
                         android:textSize="11sp" />
                 </LinearLayout>
 
@@ -159,7 +171,7 @@
                         android:id="@+id/tv_followers"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#C87A2B"
+                        android:textColor="#C4A265"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         tools:text="657" />
@@ -168,7 +180,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="佛友"
-                        android:textColor="#B08A4A"
+                        android:textColor="#C4A265"
                         android:textSize="11sp" />
                 </LinearLayout>
 
@@ -183,7 +195,7 @@
                         android:id="@+id/tv_donate_total"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#C87A2B"
+                        android:textColor="#C4A265"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         tools:text="8888" />
@@ -192,7 +204,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="功德捐赠"
-                        android:textColor="#B08A4A"
+                        android:textColor="#C4A265"
                         android:textSize="11sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -202,7 +214,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="TA的感悟"
-                android:textColor="#4A3413"
+                android:textColor="#EDE3D2"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -213,7 +225,7 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="TA还没有发表过感悟"
-                android:textColor="#B08A4A"
+                android:textColor="#C4A265"
                 android:textSize="13sp"
                 android:visibility="gone" />
 

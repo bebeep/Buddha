@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 通知未开启提示条：暖棕底 + 金边，比警告红更符合禅意，也不至于被忽略 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#453723" />
+    <corners android:radius="12dp" />
+    <stroke
+        android:width="0.5dp"
+        android:color="#66C4A265" />
+</shape>

@@ -6,6 +6,3 @@ include ':FlycoTabLayout'
 include ':fragmentation_core'
 include ':tiny'
 include ':PhotoPicker'
-
-// Sceneform-EQR (EQ-Renderer) 3D渲染引擎 - 本地源码模块
-include ':eq-renderer'

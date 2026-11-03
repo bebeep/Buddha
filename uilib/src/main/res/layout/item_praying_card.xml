@@ -28,7 +28,7 @@
             android:gravity="center"
             android:lineSpacingExtra="6dp"
             android:minLines="2"
-            android:textColor="#6B4A17"
+            android:textColor="#B5A78F"
             android:textSize="16sp"
             app:zdyFont="bold"
             tools:text="为天下苍生祈福" />
@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textColor="#B08A4A"
+            android:textColor="#C4A265"
             android:textSize="11sp"
             tools:text="88人已祝福" />
 
@@ -53,7 +53,7 @@
             android:paddingEnd="6dp"
             android:paddingBottom="1dp"
             android:text="祈福卡"
-            android:textColor="#C87A2B"
+            android:textColor="#C4A265"
             android:textSize="10sp" />
     </LinearLayout>
 </FrameLayout>

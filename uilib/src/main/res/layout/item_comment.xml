@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_marginStart="8dp"
         android:textSize="10sp"
-        android:textColor="#AAAAAA"
+        android:textColor="#8C8069"
         android:layout_marginTop="2dp"
         android:text="lv1 佛门初探 | 3分钟前"
         android:layout_height="wrap_content"/>
@@ -56,7 +56,7 @@
         android:paddingHorizontal="16dp"
         android:paddingVertical="4dp"
         android:drawableStart="@drawable/bg_comment_like"
-        android:textColor="#2D2D2D"
+        android:textColor="#EDE3D2"
         android:textSize="11sp"
         android:text="88"
         android:gravity="center"
@@ -76,7 +76,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_level"
         android:gravity="start"
         android:text="Wuyanzu is 帅哥asd;aldlasd;a;lsd;las'dlas;d;las;dlas;ldasdasd;asld;las;ld"
-        android:textColor="#2D2D2D"
+        android:textColor="#EDE3D2"
         android:textSize="14sp"
         />
 
@@ -132,6 +132,6 @@
         android:layout_width="0dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:background="#F7F7F7"
+        android:background="#1FC4A265"
         android:layout_height="1dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

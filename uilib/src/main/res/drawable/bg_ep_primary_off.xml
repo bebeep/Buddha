@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 早课主按钮不可点态：压在卡片底上的深色，不用灰色（暗底上灰色发脏） -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#463924" />
+    <corners android:radius="100dp" />
+</shape>

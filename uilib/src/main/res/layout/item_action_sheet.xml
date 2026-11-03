@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  底部操作菜单的单个条目。
+  根节点就是可点击的文本本身——调用方 inflate 后直接 cast 成 MyTextView 设置文案，
+  不需要再去找子控件。
+  minHeight 兜底：万一某处 inflate 时丢了 LayoutParams，高度也不会塌。
+-->
+<com.fingertip.baselib.view.MyTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:gravity="center"
+    android:minHeight="52dp"
+    android:paddingVertical="14dp"
+    android:textColor="#B5A78F"
+    android:textSize="15sp"
+    app:zdyFont="medium" />

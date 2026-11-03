@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="确认退出"
-            android:textColor="#2C1900"
+            android:textColor="#B5A78F"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +38,7 @@
             android:gravity="center"
             android:lineSpacingExtra="3dp"
             android:text="确定要退出应用吗？"
-            android:textColor="#8A8A8A"
+            android:textColor="#8C8069"
             android:textSize="14sp"
             app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
@@ -61,7 +61,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="取消"
-                android:textColor="#8A8A8A"
+                android:textColor="#8C8069"
                 android:textSize="15sp"
                 app:gdBgColor="#F2F0EC"
                 app:gdRadius="22dp"
@@ -80,7 +80,7 @@
                 app:gdEndColor="#FFD543"
                 app:gdGradientOrientation="LEFT_RIGHT"
                 app:gdRadius="22dp"
-                app:gdStartColor="#FFA030"
+                app:gdStartColor="#C4A265"
                 app:zdyFont="bold" />
         </LinearLayout>
     </com.fingertip.baselib.view.shapeview.ShapeConstraintLayout>

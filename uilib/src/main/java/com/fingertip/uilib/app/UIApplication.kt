@@ -36,6 +36,10 @@ class UIApplication: TopApplication() {
         CrashReport.initCrashReport(applicationContext, "111", false)
         initRefresh()
         initFragment()
+        // 推送初始化放最后：它内部有 try-catch，任何异常都不该影响启动
+        com.fingertip.uilib.push.PushManager.init(this)
+        // Billing 连接放到启动阶段异步建好，等用户点购买时就不用再等握手
+        com.fingertip.uilib.pay.BillingManager.init(this)
     }
 
 

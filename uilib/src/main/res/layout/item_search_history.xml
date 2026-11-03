@@ -6,7 +6,7 @@
     android:paddingTop="8dp"
     android:paddingEnd="10dp"
     android:textSize="14sp"
-    android:textColor="#66262628"
+    android:textColor="#8C8069"
     tools:text="成都昭觉寺将于6月初6举行开光仪式"
     android:drawableStart="@mipmap/icon_search_history_tag"
     android:drawablePadding="4dp"

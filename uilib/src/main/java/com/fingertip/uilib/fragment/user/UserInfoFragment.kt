@@ -2,14 +2,25 @@ package com.fingertip.uilib.fragment.user
 
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.fingertip.baselib.bean.PersonData
 import com.fingertip.baselib.constant.GlobalConfig
+import com.fingertip.baselib.event_bus.EventBusProxy
+import com.fingertip.baselib.event_bus.EventConstant
+import com.fingertip.baselib.event_bus.MessageEvent
 import com.fingertip.baselib.log
 import com.fingertip.baselib.top.TopPmFragment
 import com.fingertip.baselib.util.ToastUtil
 import com.fingertip.baselib.util.loadHead
 import com.fingertip.uilib.R
+import com.fingertip.uilib.adapter.MomentAdapter
 import com.fingertip.uilib.databinding.FragmentUserInfoBinding
+import com.fingertip.uilib.dialog.ActionSheetDialog
+import com.fingertip.uilib.dialog.ConfirmDialog
+import com.fingertip.uilib.dialog.ReportDialog
+import com.fingertip.uilib.fragment.MainFragment
+import com.fingertip.uilib.fragment.moment.MomentDetailsFragment
+import com.fingertip.uilib.viewmodel.MomentVM
 import com.fingertip.uilib.viewmodel.UserVM
 
 /**
@@ -42,16 +53,49 @@ class UserInfoFragment : TopPmFragment<UserVM>() {
     private var isSelf = false
     private var followed = false
 
+    //当前是否已拉黑对方。由 /userTool/getBlockList 反查得到，
+    //后端没有再单独提供 isBlocked 接口，列表通常就几条，本地遍历足够
+    private var blocked = false
+
+    //TA 的感悟：动态列表与用户资料是两套数据，单独用一个 MomentVM
+    private val momentVM = MomentVM()
+    private var momentAdapter: MomentAdapter? = null
+
     override fun initShiTu() {
         accountId = arguments?.getInt(ARG_ACCOUNT_ID, 0) ?: 0
         isSelf = accountId == (GlobalConfig.userData?.accountId ?: -1)
         binding.tvFollow.visibility = if (isSelf) View.GONE else View.VISIBLE
+        binding.ivMore.visibility = if (isSelf) View.GONE else View.VISIBLE
 
-        //后端暂无按用户的动态查询接口，先显示空态
-        binding.rcMoments.visibility = View.GONE
-        binding.tvMomentEmpty.visibility = View.VISIBLE
+        initMoments()
 
         mViewModel.loadUserInfo(accountId)
+        if (!isSelf && accountId > 0) {
+            mViewModel.loadBlockList()
+        }
+    }
+
+    /**
+     * TA 的感悟列表。
+     * 列表在 NestedScrollView 里，必须关掉自身滚动，否则滑动手势会被内层吃掉。
+     */
+    private fun initMoments() {
+        if (accountId <= 0) return
+        momentAdapter = MomentAdapter(
+            requireContext(),
+            onItemClick = { entity ->
+                (parentFragment as? MainFragment)
+                    ?.start(MomentDetailsFragment.newInstance(entity.momentId, entity))
+            },
+            onVideoClick = { entity ->
+                (parentFragment as? MainFragment)
+                    ?.start(MomentDetailsFragment.newInstance(entity.momentId, entity))
+            }
+        )
+        binding.rcMoments.layoutManager = LinearLayoutManager(requireContext())
+        binding.rcMoments.isNestedScrollingEnabled = false
+        binding.rcMoments.adapter = momentAdapter
+        momentVM.getMomentListByAccount(accountId, 0)
     }
 
     override fun initObserver() {
@@ -85,6 +129,50 @@ class UserInfoFragment : TopPmFragment<UserVM>() {
                 ToastUtil.showMessage(result.errorMsg ?: "操作失败")
             }
         }
+
+        mViewModel.blockListResult.observe(viewLifecycleOwner) { result ->
+            if (result.success) {
+                blocked = result.data?.any { it.targetAccountId == accountId } == true
+            }
+        }
+
+        mViewModel.reportResult.observe(viewLifecycleOwner) { result ->
+            ToastUtil.showMessage(
+                getString(if (result.success) R.string.report_done else R.string.report_fail)
+            )
+        }
+
+        //TA 的感悟列表：空列表时显示占位文案，而不是留一块空白
+        momentVM.momentByAccountResult.observe(viewLifecycleOwner) { result ->
+            if (!isAdded) return@observe
+            val data = if (result.success) result.data ?: emptyList() else emptyList()
+            momentAdapter?.initData(data)
+            binding.rcMoments.visibility = if (data.isEmpty()) View.GONE else View.VISIBLE
+            binding.tvMomentEmpty.visibility = if (data.isEmpty()) View.VISIBLE else View.GONE
+        }
+
+        mViewModel.blockResult.observe(viewLifecycleOwner) { result ->
+            if (result.success) {
+                blocked = true
+                ToastUtil.showMessage(getString(R.string.block_done))
+                //拉黑后关注关系没有意义了，界面上也别再显示"已关注"
+                binding.tvFollow.visibility = View.GONE
+                //通知各动态列表把 TA 的内容摘掉
+                EventBusProxy.post(MessageEvent(EventConstant.EVENT_BLOCK_ACCOUNT, accountId))
+            } else {
+                ToastUtil.showMessage(getString(R.string.block_fail))
+            }
+        }
+
+        mViewModel.unblockResult.observe(viewLifecycleOwner) { result ->
+            if (result.success) {
+                blocked = false
+                ToastUtil.showMessage(getString(R.string.unblock_done))
+                binding.tvFollow.visibility = View.VISIBLE
+            } else {
+                ToastUtil.showMessage(getString(R.string.unblock_fail))
+            }
+        }
     }
 
     private fun render(user: PersonData) {
@@ -101,7 +189,7 @@ class UserInfoFragment : TopPmFragment<UserVM>() {
         binding.tvDonateTotal.visibility = if (isSelf) View.VISIBLE else View.GONE
     }
 
-    override fun getClickViews(): List<View> = listOf(binding.ivBack, binding.tvFollow)
+    override fun getClickViews(): List<View> = listOf(binding.ivBack, binding.tvFollow, binding.ivMore)
 
     override fun onSingleClick(v: View?) {
         super.onSingleClick(v)
@@ -111,6 +199,45 @@ class UserInfoFragment : TopPmFragment<UserVM>() {
                 if (isSelf) return
                 if (followed) mViewModel.unFollow(accountId) else mViewModel.follow(accountId)
             }
+            binding.ivMore -> showMoreMenu()
         }
+    }
+
+    /**
+     * 更多：举报 / 拉黑 / 取消拉黑
+     *
+     * 他人主页是「针对人」操作的天然落点——用户从动态详情进来时可能只想看内容，
+     * 真想拉黑某个人时多半是先点进主页，所以这一层必须也有一级入口。
+     */
+    private fun showMoreMenu() {
+        if (isSelf || accountId <= 0) return
+
+        val items = mutableListOf(
+            ActionSheetDialog.Item(getString(R.string.action_report)) {
+                ReportDialog(requireContext()) { tag, content ->
+                    //reportType=3 针对用户（1动态 2评论），后端按此归类到用户维度
+                    mViewModel.report(accountId, 3, tag, content)
+                }.show()
+            }
+        )
+
+        if (blocked) {
+            items.add(ActionSheetDialog.Item(getString(R.string.action_unblock)) {
+                mViewModel.cancelBlock(accountId)
+            })
+        } else {
+            items.add(ActionSheetDialog.Item(getString(R.string.action_block), danger = true) {
+                ConfirmDialog(
+                    requireContext(),
+                    title = getString(R.string.block_confirm_title),
+                    message = getString(R.string.block_confirm_msg),
+                    confirmText = getString(R.string.block_confirm_ok)
+                ) {
+                    mViewModel.addBlock(accountId)
+                }.show()
+            })
+        }
+
+        ActionSheetDialog(requireContext(), getString(R.string.block_title), items).show()
     }
 }

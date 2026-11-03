@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 评论面板拖动条（暗色）：弱金 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#4F4839" />
+    <corners android:radius="2dp" />
+</shape>

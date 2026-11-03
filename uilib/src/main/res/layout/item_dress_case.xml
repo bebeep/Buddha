@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 装扮橱窗单项（§12.6 我的页） -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_marginEnd="12dp">
+
+    <com.fingertip.baselib.view.shapeview.ShapeImageView
+        android:id="@+id/iv_dress"
+        android:layout_width="92dp"
+        android:layout_height="92dp"
+        android:padding="4dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/icon_default_img"
+        android:background="@drawable/bg_dress_case_normal"
+        app:radius="14dp"/>
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_dress_name"
+        android:layout_width="92dp"
+        android:layout_marginTop="6dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:textColor="#B3A48D"
+        android:layout_height="wrap_content"/>
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_wearing"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="使用中"
+        android:textSize="10sp"
+        android:textColor="#E3C88B"
+        android:visibility="gone"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

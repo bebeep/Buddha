@@ -18,7 +18,7 @@
         android:id="@+id/iv_cover"
         android:layout_width="86dp"
         android:layout_height="86dp"
-        android:background="#F0E2C8"
+        android:background="#3D301E"
         android:scaleType="centerCrop" />
 
     <LinearLayout
@@ -38,7 +38,7 @@
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#4A3413"
+                android:textColor="#EDE3D2"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 tools:text="昭觉寺" />
@@ -48,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:textColor="#C87A2B"
+                android:textColor="#C4A265"
                 android:textSize="12sp"
                 tools:text="3.5km" />
         </LinearLayout>
@@ -60,7 +60,7 @@
             android:layout_marginTop="2dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="#C87A2B"
+            android:textColor="#C4A265"
             android:textSize="12sp"
             tools:text="川西第一禅林" />
 
@@ -72,7 +72,7 @@
             android:ellipsize="end"
             android:lineSpacingExtra="2dp"
             android:maxLines="2"
-            android:textColor="#8A6B3A"
+            android:textColor="#B5A78F"
             android:textSize="12sp"
             tools:text="昭觉寺，位于成都市北郊5公里，素有川西第一禅林之称……" />
 
@@ -83,7 +83,7 @@
             android:layout_marginTop="4dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="#B08A4A"
+            android:textColor="#C4A265"
             android:textSize="11sp"
             tools:text="成都市成华区昭青路333号" />
 
@@ -97,7 +97,7 @@
                 android:id="@+id/tv_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#C87A2B"
+                android:textColor="#C4A265"
                 android:textSize="11sp"
                 tools:text="推荐 25" />
 
@@ -106,7 +106,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:textColor="#B08A4A"
+                android:textColor="#C4A265"
                 android:textSize="11sp"
                 tools:text="不推荐 2" />
 
@@ -115,7 +115,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:textColor="#B08A4A"
+                android:textColor="#C4A265"
                 android:textSize="11sp"
                 tools:text="评论 999+" />
         </LinearLayout>

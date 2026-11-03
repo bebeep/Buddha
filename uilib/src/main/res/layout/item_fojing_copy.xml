@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:text="观"
         android:textSize="18sp"
-        android:textColor="#4D2C1900"
+        android:textColor="#33C4A265"
         android:gravity="center_horizontal|bottom"
         android:paddingBottom="4dp"
         android:layout_height="40dp"/>
@@ -55,7 +55,7 @@
         android:layout_width="match_parent"
         android:text="关"
         android:textSize="30sp"
-        android:textColor="@color/black"
+        android:textColor="#EDE3D2"
         android:gravity="center"
         android:background="@drawable/bg_fojing_copy_item"
         app:layout_constraintStart_toStartOf="parent"

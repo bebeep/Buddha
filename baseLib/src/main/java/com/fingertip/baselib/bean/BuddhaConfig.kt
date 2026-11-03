@@ -30,6 +30,9 @@ class BuddhaConfig: TopData() {
     //"3D模型文件更新时间戳"
     var buddha3DModuleUpdateDate: String? = ""
 
+    //"动态场景 Lottie JSON 地址（香烟/光晕/火焰，2D 分层渲染），素材未配时为空"
+    var sceneAnimUrl: String? = ""
+
     //"佛像标签（庇佑）"
     var buddhaTag: List<String?>? = null
 

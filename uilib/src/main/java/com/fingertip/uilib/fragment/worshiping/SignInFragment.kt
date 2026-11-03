@@ -74,8 +74,12 @@ class SignInFragment : TopPmFragment<SignInCalendarVM>() {
         initCalendar()
         initDots()
         initMonthSwitcher()
-        loadCurrentMonth()
-        mViewModel.loadSignInData()
+        //视图先铺好，数据等入栈动画放完再拉：loading 弹窗和数据请求挤在转场那几帧里，
+        //会变成「先弹加载动画、顿一下、页面才进来」；动画结束后 HUD 出现在本页上，观感正常
+        postOnEnterAnimationEnd {
+            loadCurrentMonth()
+            mViewModel.loadSignInData()
+        }
     }
 
     override fun initObserver() {

@@ -26,7 +26,7 @@
         android:layout_marginStart="8dp"
         android:hint="无心法师"
         android:textSize="14sp"
-        android:textColor="#FF9600"
+        android:textColor="#C4A265"
         android:layout_height="wrap_content"/>
 
 
@@ -66,7 +66,7 @@
         android:singleLine="true"
         android:textSize="12sp"
         app:layout_constraintEnd_toStartOf="@+id/ll_like"
-        android:textColor="#AAAAAA"
+        android:textColor="#8C8069"
         android:layout_height="wrap_content"/>
 
     <LinearLayout
@@ -91,7 +91,7 @@
         <com.fingertip.baselib.view.MyTextView
             android:id="@+id/tv_master_like"
             android:layout_marginStart="4dp"
-            android:textColor="#AAAAAA"
+            android:textColor="#8C8069"
             android:textSize="12sp"
             android:hint="999"
             android:layout_width="wrap_content"
@@ -107,7 +107,7 @@
         android:layout_width="match_parent"
         android:paddingVertical="10dp"
         android:textSize="14sp"
-        android:textColor="#666666"
+        android:textColor="#8C8069"
         android:hint="这里 录劳动的快乐爱上来到sk的力量"
         android:layout_height="wrap_content"/>
 

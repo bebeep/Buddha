@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFEFA">
+    android:background="#2A2014">
 
     <com.fingertip.baselib.view.FullTopConstraintLayout
         android:id="@+id/cl_title"
@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="我的祝愿"
-            android:textColor="@color/black"
+            android:textColor="#EDE3D2"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="还没有送出过祝福，去许愿树看看吧"
-        android:textColor="#B08A4A"
+        android:textColor="#C4A265"
         android:textSize="14sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"

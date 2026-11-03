@@ -23,10 +23,13 @@ class MomentFragment : TopFragment() {
 
     override fun initShiTu() {
 
-        val titles = mutableListOf("佛友圈","关注")
+        //四分流（§12.6）：关注 / 推荐 / 共修打卡 / 最新
+        val titles = mutableListOf("关注","推荐","共修打卡","最新")
         val fragments = mutableListOf<SupportFragment>(
+            MomentChildFragment.newInstance(MomentChildFragment.FOLLOW),
             MomentChildFragment.newInstance(MomentChildFragment.MOMENT),
-            MomentChildFragment.newInstance(MomentChildFragment.FOLLOW)
+            MomentChildFragment.newInstance(MomentChildFragment.CHECKIN),
+            MomentChildFragment.newInstance(MomentChildFragment.NEW)
         )
 
         binding.vp.offscreenPageLimit = fragments.size

@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.KeyboardUtils
+import com.fingertip.baselib.bean.CollectData
 import com.fingertip.baselib.bean.MomentEntity
+import com.fingertip.baselib.constant.GlobalConfig
 import com.fingertip.baselib.event_bus.EventBusProxy
 import com.fingertip.baselib.event_bus.EventConstant
 import com.fingertip.baselib.event_bus.MessageEvent
@@ -21,9 +23,14 @@ import com.fingertip.baselib.view.SampleCoverVideo
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.CommentAdapter
 import com.fingertip.uilib.adapter.MomentImageAdapter
+import com.fingertip.uilib.dialog.ActionSheetDialog
 import com.fingertip.uilib.dialog.CommentDetailDialog
+import com.fingertip.uilib.dialog.ConfirmDialog
+import com.fingertip.uilib.dialog.ReportDialog
 import com.fingertip.uilib.databinding.FragmentMomentDetailsBinding
 import com.fingertip.uilib.viewmodel.MomentVM
+import com.fingertip.uilib.viewmodel.UserToolVM
+import com.fingertip.uilib.viewmodel.UserVM
 import com.lzlz.toplib.extention.gone
 import com.lzlz.toplib.extention.invisible
 import com.lzlz.toplib.extention.visible
@@ -75,9 +82,21 @@ class MomentDetailsFragment: TopPmFragment<MomentVM>() {
 
     private var commentPageCount = 0
 
+    //拉黑/举报走独立的 UserVM：MomentVM 只服务于动态本身，混在一起会让两个页面的职责糊掉
+    private val userVM = UserVM()
+
+    //收藏走 UserToolVM（佛经/感悟/寺庙统一收藏）
+    private val userToolVM = UserToolVM()
+
+    //当前动态是否已收藏，按钮颜色由它决定
+    private var collected = false
+
+    //正在拉黑的对象，回调成功时用它判断该移除谁的内容
+    private var blockTarget = 0
+
     override fun getClickViews(): List<View> {
         return listOf(binding.ivBack,binding.ivHead,binding.tvNickname,binding.ivMenu,binding.tvFollow,
-            binding.tvShare,binding.tvLike,binding.tvInput,binding.ivSend,binding.flInput)
+            binding.tvShare,binding.ivCollect,binding.tvLike,binding.tvInput,binding.ivSend,binding.flInput)
     }
 
     override fun onNewBundle(args: Bundle?) {
@@ -101,6 +120,9 @@ class MomentDetailsFragment: TopPmFragment<MomentVM>() {
         setupDismissKeyboardOnTouch()
         // 进入详情时标记为已读
         mViewModel.viewMoment(listOf(momentId))
+        // 收藏状态单独查一次：列表接口不下发该字段，靠本地缓存匹配又可能落空
+        userToolVM.isCollected(CollectData.TYPE_MOMENT, momentId)
+        renderCollect()
         if (momentEntity == null)
         {
             mViewModel.getMomentDetails(momentId)
@@ -119,6 +141,58 @@ class MomentDetailsFragment: TopPmFragment<MomentVM>() {
 
     override fun initObserver() {
         super.initObserver()
+        //举报结果：成功给轻提示，失败提示重试。不做"已处理"之类的承诺——
+        //审核要求的是"能举报且有反馈"，不是"举报即删"
+        mViewModel.reportResult.observe(this) {
+            if (it.success) {
+                com.fingertip.baselib.util.ToastUtil.showMessage(getString(R.string.report_done))
+            } else {
+                com.fingertip.baselib.util.ToastUtil.showMessage(getString(R.string.report_fail))
+            }
+        }
+        //拉黑结果：成功后把该用户的内容从列表里摘掉并退回上一页，
+        //否则用户会觉得自己"拉黑了但还看得见"
+        userVM.blockResult.observe(this) {
+            if (it.success) {
+                val target = blockTarget
+                blockTarget = 0
+                com.fingertip.baselib.util.ToastUtil.showMessage(getString(R.string.block_done))
+                if (target > 0) {
+                    EventBusProxy.post(MessageEvent(EventConstant.EVENT_BLOCK_ACCOUNT, target))
+                }
+                pop()
+            } else {
+                blockTarget = 0
+                com.fingertip.baselib.util.ToastUtil.showMessage(getString(R.string.block_fail))
+            }
+        }
+
+        //收藏结果：成功后改图标颜色，只给轻提示，不弹窗打断阅读
+        userToolVM.isCollectedResult.observe(this) {
+            if (it.success) {
+                collected = it.data == true
+                renderCollect()
+            }
+        }
+        userToolVM.addCollectResult.observe(this) {
+            if (it.success) {
+                collected = true
+                renderCollect()
+                com.fingertip.baselib.util.ToastUtil.showMessage(getString(R.string.collect_add_done))
+            } else {
+                com.fingertip.baselib.util.ToastUtil.showMessage(getString(R.string.collect_add_fail))
+            }
+        }
+        userToolVM.cancelCollectResult.observe(this) {
+            if (it.success) {
+                collected = false
+                renderCollect()
+                com.fingertip.baselib.util.ToastUtil.showMessage(getString(R.string.collect_cancel_done))
+            } else {
+                com.fingertip.baselib.util.ToastUtil.showMessage(getString(R.string.collect_cancel_fail))
+            }
+        }
+
         mViewModel.momentDetailsResult.observe(this){
             if (it.success)
             {
@@ -311,14 +385,24 @@ class MomentDetailsFragment: TopPmFragment<MomentVM>() {
             R.id.iv_head,R.id.tv_nickname -> {//跳转资料页
 
             }
-            R.id.iv_menu -> {//举报
-
+            R.id.iv_menu -> {//举报 / 拉黑
+                val target = momentEntity?.postAccountId ?: 0
+                if (target <= 0) return
+                showMoreMenu(target)
             }
             R.id.tv_follow -> {//关注
 
             }
             R.id.tv_share -> {//分享
 
+            }
+            R.id.iv_collect -> {
+                if (momentId <= 0) return
+                if (collected) {
+                    userToolVM.cancelCollect(CollectData.TYPE_MOMENT, momentId)
+                } else {
+                    userToolVM.addCollect(CollectData.TYPE_MOMENT, momentId)
+                }
             }
             R.id.tv_like -> {//点赞
                 mViewModel.likeMoment(momentId,!momentEntity?.isLiked!!)
@@ -491,6 +575,15 @@ class MomentDetailsFragment: TopPmFragment<MomentVM>() {
         keyboardListener = null
     }
 
+    /**
+     * 收藏图标状态：已收藏金色、未收藏灰色。
+     * 用 tint 而不是换图，省一张切图，状态也只有两种。
+     */
+    private fun renderCollect() {
+        val color = if (collected) 0xFFC4A265.toInt() else 0xFFB8B8B8.toInt()
+        binding.ivCollect.imageTintList = android.content.res.ColorStateList.valueOf(color)
+    }
+
     override fun onDestroyView() {
         removeKeyboardListener()
         releaseVideo()
@@ -513,5 +606,35 @@ class MomentDetailsFragment: TopPmFragment<MomentVM>() {
 
     fun notifyMomentListUpdate() {
         EventBusProxy.post(MessageEvent(EventConstant.EVENT_NOTIFY_MOMENT_LIST,momentEntity))
+    }
+
+    /**
+     * 右上角更多：举报 / 拉黑
+     * 两项都要能在**同一个面板**里点到——Apple 1.2 与 Google UGC 政策查的是
+     * 「违规内容可举报 + 骚扰用户可拉黑」，把拉黑藏进举报的二级弹窗容易被判缺失。
+     */
+    private fun showMoreMenu(targetAccountId: Int) {
+        //自己的内容没有举报/拉黑的道理，直接不响应
+        if (targetAccountId == (GlobalConfig.userData?.accountId ?: -1)) return
+
+        ActionSheetDialog(requireContext(), getString(R.string.block_title), listOf(
+            ActionSheetDialog.Item(getString(R.string.action_report)) {
+                //reportType=1 动态；评论举报走评论项菜单（后续接）
+                ReportDialog(requireContext()) { tag, content ->
+                    mViewModel.report(targetAccountId, 1, tag, content)
+                }.show()
+            },
+            ActionSheetDialog.Item(getString(R.string.action_block), danger = true) {
+                ConfirmDialog(
+                    requireContext(),
+                    title = getString(R.string.block_confirm_title),
+                    message = getString(R.string.block_confirm_msg),
+                    confirmText = getString(R.string.block_confirm_ok)
+                ) {
+                    blockTarget = targetAccountId
+                    userVM.addBlock(targetAccountId)
+                }.show()
+            }
+        )).show()
     }
 }

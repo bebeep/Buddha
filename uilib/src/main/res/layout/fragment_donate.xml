@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FDF2DD">
+    android:background="#3D301E">
 
     <com.fingertip.baselib.view.FullTopConstraintLayout
         android:id="@+id/cl_title"
@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="功德"
-            android:textColor="@color/black"
+            android:textColor="#EDE3D2"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +45,7 @@
             android:layout_marginEnd="14dp"
             android:padding="4dp"
             android:text="捐赠记录"
-            android:textColor="#FFA030"
+            android:textColor="#C4A265"
             android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -92,7 +92,7 @@
                     android:id="@+id/tv_buddha_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#4A3413"
+                    android:textColor="#EDE3D2"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -102,7 +102,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:lineSpacingExtra="3dp"
-                    android:textColor="#8A6B3A"
+                    android:textColor="#B5A78F"
                     android:textSize="12sp" />
 
                 <LinearLayout
@@ -122,7 +122,7 @@
                             android:id="@+id/tv_own_count"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#C87A2B"
+                            android:textColor="#C4A265"
                             android:textSize="17sp"
                             android:textStyle="bold" />
 
@@ -130,7 +130,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="在供人数"
-                            android:textColor="#B08A4A"
+                            android:textColor="#C4A265"
                             android:textSize="11sp" />
                     </LinearLayout>
 
@@ -145,7 +145,7 @@
                             android:id="@+id/tv_total_income"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#C87A2B"
+                            android:textColor="#C4A265"
                             android:textSize="17sp"
                             android:textStyle="bold" />
 
@@ -153,7 +153,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="累计功德"
-                            android:textColor="#B08A4A"
+                            android:textColor="#C4A265"
                             android:textSize="11sp" />
                     </LinearLayout>
 
@@ -168,7 +168,7 @@
                             android:id="@+id/tv_today_reward"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#C87A2B"
+                            android:textColor="#C4A265"
                             android:textSize="17sp"
                             android:textStyle="bold" />
 
@@ -176,7 +176,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="今日剩余福袋"
-                            android:textColor="#B08A4A"
+                            android:textColor="#C4A265"
                             android:textSize="11sp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -194,7 +194,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textColor="#8A6B3A"
+                        android:textColor="#B5A78F"
                         android:textSize="12sp" />
 
                     <!-- 贡献榜前3头像，代码动态填充 -->
@@ -235,7 +235,7 @@
                     android:background="@drawable/bg_wish_entry"
                     android:gravity="center"
                     android:text="抢福袋"
-                    android:textColor="#C87A2B"
+                    android:textColor="#C4A265"
                     android:textSize="15sp" />
             </LinearLayout>
         </LinearLayout>

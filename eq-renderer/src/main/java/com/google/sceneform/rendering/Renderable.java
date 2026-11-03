@@ -143,6 +143,19 @@ public abstract class Renderable {
     }
 
     /**
+     * 渲染体包围盒中心（模型本地坐标）。
+     * glTF 资产来自 filamentAsset.getBoundingBox()，在 setRenderable 时同步计算好。
+     * 用于把模型的视觉中心对齐到节点原点（模型原点常不在几何中心，直接摆节点会偏）。
+     * 未设置碰撞体时返回零向量。
+     */
+    public com.google.sceneform.math.Vector3 getRenderCenter() {
+        if (collisionShape instanceof Box) {
+            return ((Box) collisionShape).getCenter();
+        }
+        return com.google.sceneform.math.Vector3.zero();
+    }
+
+    /**
      * 返回绑定到第一个子网格的材质
      */
     public Material getMaterial() {

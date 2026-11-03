@@ -21,4 +21,21 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">15dp</item>
     </style>
+
+    <!--
+        商城分类 chip 基础样式（未选中态）。
+        选中态由代码切成 bg_shop_chip_on + 深色字，样式里只放尺寸与默认配色。
+    -->
+    <style name="shop_chip">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:background">@drawable/bg_home_pill_solid</item>
+        <item name="android:paddingStart">14dp</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingEnd">14dp</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:textColor">#B5A78F</item>
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>

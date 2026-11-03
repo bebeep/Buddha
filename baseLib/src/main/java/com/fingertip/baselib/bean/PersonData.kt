@@ -62,6 +62,17 @@ class PersonData : TopData {
     var userExp: Int? = 0
     //用户等级
     var userLevel: Int? = 0
+    //邮箱（海外版主账号标识，第三方登录注册的可能为空）
+    var email: String? = ""
+    //Google 账号 sub，未绑定为 null
+    var googleId: String? = null
+    //Apple 账号 sub，未绑定为 null
+    var appleId: String? = null
+    //用户时区
+    var timeZone: String? = ""
+    //最近选中的佛像id（拜佛页恢复用，0=从未选过）。服务端 account/saveLastBuddha 保存，
+    //登录/续期响应随 Account 带回，GlobalConfig.userData 落 SP 时自动跨端同步
+    var lastBuddhaId: Int? = 0
 
 
 

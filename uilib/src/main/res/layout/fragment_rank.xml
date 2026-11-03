@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:text="排行榜"
         android:textSize="30sp"
-        android:textColor="@color/black"
+        android:textColor="#EDE3D2"
         style="@style/constraint_center"/>
 
 

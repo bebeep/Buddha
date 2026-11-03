@@ -28,9 +28,9 @@
 
             <com.fingertip.baselib.view.shapeview.ShapeView
                 android:layout_width="6dp"
-                app:gdBgColor="#FFCE53"
+                app:gdBgColor="#E3C88B"
                 app:gdRadius="3dp"
-                app:gdBorderColor="#FF9600"
+                app:gdBorderColor="#C4A265"
                 app:gdBorderWidth="1dp"
                 android:layout_height="6dp"/>
 
@@ -38,7 +38,7 @@
                 android:id="@+id/tv_finish_status"
                 android:text="未完成"
                 android:textSize="12sp"
-                android:textColor="#AAAAAA"
+                android:textColor="#8C8069"
                 android:layout_marginStart="2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -59,7 +59,7 @@
             android:text="今日早课"
             android:textSize="12sp"
             android:layout_marginEnd="4dp"
-            android:textColor="#2C1900"
+            android:textColor="#B5A78F"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

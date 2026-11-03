@@ -7,7 +7,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF7EA">
+    android:background="#2F2518">
 
     <com.fingertip.baselib.view.FullTopConstraintLayout
         android:id="@+id/cl_title"
@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="行善"
-            android:textColor="@color/black"
+            android:textColor="#EDE3D2"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -57,7 +57,7 @@
                 android:id="@+id/tv_deed_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#4A3413"
+                android:textColor="#EDE3D2"
                 android:textSize="17sp"
                 android:textStyle="bold"
                 tools:text="【成都】九旬老人急需救助" />
@@ -73,7 +73,7 @@
                     android:id="@+id/tv_author"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#8A6B3A"
+                    android:textColor="#B5A78F"
                     android:textSize="12sp"
                     tools:text="星驰" />
 
@@ -82,7 +82,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:textColor="#B08A4A"
+                    android:textColor="#C4A265"
                     android:textSize="11sp"
                     tools:text="2022-02-02" />
             </LinearLayout>
@@ -93,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:lineSpacingExtra="5dp"
-                android:textColor="#6B4A17"
+                android:textColor="#B5A78F"
                 android:textSize="14sp"
                 tools:text="成都市龙泉驿区……" />
 
@@ -103,7 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="当前进度"
-                android:textColor="#4A3413"
+                android:textColor="#EDE3D2"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -120,7 +120,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:textColor="#C87A2B"
+                android:textColor="#C4A265"
                 android:textSize="13sp"
                 tools:text="已捐赠 645/1000 功德币 · 23人参与" />
 
@@ -133,7 +133,7 @@
                 android:background="@drawable/bg_wish_entry"
                 android:lineSpacingExtra="4dp"
                 android:padding="10dp"
-                android:textColor="#8A6B3A"
+                android:textColor="#B5A78F"
                 android:textSize="12sp"
                 tools:text="达到求助目标后，平台会通过官方渠道转赠善款。" />
 
@@ -143,7 +143,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="捐赠列表"
-                android:textColor="#4A3413"
+                android:textColor="#EDE3D2"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -189,7 +189,7 @@
             android:background="@drawable/bg_wish_entry"
             android:gravity="center"
             android:text="分享助力"
-            android:textColor="#C87A2B"
+            android:textColor="#C4A265"
             android:textSize="15sp" />
     </LinearLayout>
 

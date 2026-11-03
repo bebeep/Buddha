@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Google 登录按钮：白底。Google 品牌规范要求按钮为白/浅色底配深色文字，不能用品牌金 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#FFFFFF" />
+    <corners android:radius="100dp" />
+</shape>

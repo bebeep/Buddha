@@ -14,7 +14,7 @@
         android:id="@+id/tv_word"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#2C1900"
+        android:textColor="#B5A78F"
         android:textSize="30sp"
         app:zdyFont="bold" />
 

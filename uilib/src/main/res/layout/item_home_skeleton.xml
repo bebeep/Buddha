@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    首页加载骨架：聚合接口回来之前先铺这一块，
+    尺寸贴近佛历头卡 + 修持卡的高度，数据到了再整段换掉，避免首屏高度跳动。
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="12dp"
+    android:layout_marginEnd="16dp"
+    android:background="@drawable/bg_home_card_a"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <View
+        android:layout_width="90dp"
+        android:layout_height="10dp"
+        android:background="@drawable/bg_home_skeleton" />
+
+    <View
+        android:layout_width="150dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_home_skeleton" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_home_skeleton" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_home_skeleton" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="2.5dp"
+            android:layout_marginEnd="2.5dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_home_skeleton" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_home_skeleton" />
+
+    </LinearLayout>
+
+</LinearLayout>

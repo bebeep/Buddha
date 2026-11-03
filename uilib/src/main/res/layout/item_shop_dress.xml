@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    商城商品卡（网格 2 列）
+
+    三种状态由代码切换右侧动作文字：
+      未拥有 →「购买」（金色描边）
+      已拥有未佩戴 →「佩戴」
+      佩戴中 →「使用中」（灰字，不可点）
+    灯油是消耗品，永远走「购买」，不存在拥有态。
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="5dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginEnd="5dp"
+    android:layout_marginBottom="5dp"
+    android:background="@drawable/bg_home_card_a"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        android:background="@drawable/bg_shop_preview">
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_preview_char"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#C4A265"
+            android:textSize="26sp"
+            app:zdyFont="bold" />
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="6dp"
+            android:textColor="#8C8069"
+            android:textSize="9.5sp" />
+
+    </FrameLayout>
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="#EDE3D2"
+        android:textSize="13sp" />
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="#8C8069"
+        android:textSize="10.5sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#C4A265"
+            android:textSize="13sp"
+            app:zdyFont="bold" />
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_home_pill_outline"
+            android:paddingStart="12dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="5dp"
+            android:text="@string/shop_action_buy"
+            android:textColor="#C4A265"
+            android:textSize="11sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    首页区块 5：游戏卡（三卡横排）
+    禅院（未上线，置灰「敬请期待」）/ 放生（可玩）/ 禅值商店（即将上线）。
+    游戏入口全部收在这一块，不再占底部 tab。
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="16dp"
+    android:background="@drawable/bg_home_card_a"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.fingertip.baselib.view.MyTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:letterSpacing="0.04"
+            android:text="@string/home_block_game"
+            android:textColor="#EDE3D2"
+            android:textSize="13sp" />
+
+        <!-- 禅值余额，聚合接口带回来 -->
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_merit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#C4A265"
+            android:textSize="10.5sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_game_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_home_inner"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp">
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_game_1_char"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/bg_home_circle"
+                android:gravity="center"
+                android:text="禅"
+                android:textColor="#6E6455"
+                android:textSize="13sp" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_game_1_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/home_game_zen"
+                android:textColor="#6E6455"
+                android:textSize="12sp" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_game_1_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/home_game_coming"
+                android:textColor="#4F4839"
+                android:textSize="9.5sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_game_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2.5dp"
+            android:layout_marginEnd="2.5dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_home_inner_gold"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp">
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_game_2_char"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/bg_home_circle"
+                android:gravity="center"
+                android:text="生"
+                android:textColor="#C4A265"
+                android:textSize="13sp" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_game_2_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/home_game_fangsheng"
+                android:textColor="#EDE3D2"
+                android:textSize="12sp" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_game_2_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/home_game_available"
+                android:textColor="#E3C88B"
+                android:textSize="9.5sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_game_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_home_inner"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp">
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_game_3_char"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/bg_home_circle"
+                android:gravity="center"
+                android:text="值"
+                android:textColor="#8C8069"
+                android:textSize="13sp" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_game_3_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/home_game_shop"
+                android:textColor="#B5A78F"
+                android:textSize="12sp" />
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_game_3_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/home_game_soon"
+                android:textColor="#6E6455"
+                android:textSize="9.5sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

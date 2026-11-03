@@ -51,8 +51,11 @@ class WishTreeFragment : TopPmFragment<WishVM>() {
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         binding.rcWishTree.adapter = adapter
 
-        mViewModel.loadWishTree()
-        checkTodayWished()
+        //许愿树数据带 loading HUD，等入栈动画放完再拉，转场不被抢帧
+        postOnEnterAnimationEnd {
+            mViewModel.loadWishTree()
+            checkTodayWished()
+        }
     }
 
     override fun initObserver() {

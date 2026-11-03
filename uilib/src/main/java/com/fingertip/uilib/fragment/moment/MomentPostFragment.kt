@@ -106,7 +106,8 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
                 }
                 else if (binding.etMomentContent.text.toString().trim().isNotEmpty())//纯文本提交
                 {
-                    mViewModel.postMoment(textContent = binding.etMomentContent.text.toString().trim())
+                    mViewModel.postMoment(textContent = binding.etMomentContent.text.toString().trim(),
+                        isCheckIn = binding.switchCheckin.isChecked)
                 }
             }
         }
@@ -316,6 +317,7 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
                                 videoWidth = videoMedia?.width?:0,
                                 videoHeight = videoMedia?.height?:0,
                                 isAnonymous = binding.switchHideName.isChecked,
+                                isCheckIn = binding.switchCheckin.isChecked,
                                 location = binding.tvLocate.text.toString().trim(),
                                 remindAccountIds = mutableListOf(1,2,3))
                         }
@@ -338,6 +340,7 @@ class MomentPostFragment:TopPmFragment<MomentVM>() {
                             mViewModel.postMoment(textContent = binding.etMomentContent.text.toString().trim(),
                                 imageUrl = imageUrl,
                                 isAnonymous = binding.switchHideName.isChecked,
+                                isCheckIn = binding.switchCheckin.isChecked,
                                 location = binding.tvLocate.text.toString().trim(),
                                 remindAccountIds = mutableListOf(1,2,3))
                         }

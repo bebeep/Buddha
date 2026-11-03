@@ -49,7 +49,8 @@ class TempleListFragment : TopPmFragment<TempleVM>() {
             }
         })
 
-        mViewModel.loadList(0)
+        //首页列表等入栈动画放完再拉（带 loading HUD），转场不被抢帧；滚动加载不受影响
+        postOnEnterAnimationEnd { mViewModel.loadList(0) }
     }
 
     override fun initObserver() {
