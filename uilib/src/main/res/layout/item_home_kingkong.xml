@@ -33,7 +33,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:src="@mipmap/icon_menu_fojing" />
+                android:src="@drawable/icon_menu_fojing" />
 
             <com.fingertip.baselib.view.MyTextView
                 android:id="@+id/tv_kk_1"
@@ -42,7 +42,7 @@
                 android:background="@drawable/bg_home_inner"
                 android:gravity="center"
                 android:text="经"
-                android:textColor="#C4A265"
+                android:textColor="@color/c_gold"
                 android:textSize="14sp"
                 android:visibility="gone" />
 
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/home_kingkong_fojing"
-            android:textColor="#B5A78F"
+            android:textColor="@color/c_text_third"
             android:textSize="11sp" />
 
     </LinearLayout>
@@ -76,7 +76,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:src="@mipmap/icon_menu_xuyuan" />
+                android:src="@drawable/icon_menu_xuyuan" />
 
             <com.fingertip.baselib.view.MyTextView
                 android:id="@+id/tv_kk_2"
@@ -85,7 +85,7 @@
                 android:background="@drawable/bg_home_inner"
                 android:gravity="center"
                 android:text="愿"
-                android:textColor="#C4A265"
+                android:textColor="@color/c_gold"
                 android:textSize="14sp"
                 android:visibility="gone" />
 
@@ -97,7 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/home_kingkong_wish"
-            android:textColor="#B5A78F"
+            android:textColor="@color/c_text_third"
             android:textSize="11sp" />
 
     </LinearLayout>
@@ -119,7 +119,8 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:visibility="gone" />
+                android:src="@drawable/icon_menu_temple"
+                android:visibility="visible" />
 
             <com.fingertip.baselib.view.MyTextView
                 android:id="@+id/tv_kk_3"
@@ -128,8 +129,9 @@
                 android:background="@drawable/bg_home_inner"
                 android:gravity="center"
                 android:text="寺"
-                android:textColor="#C4A265"
-                android:textSize="14sp" />
+                android:textColor="@color/c_gold"
+                android:textSize="14sp"
+                android:visibility="gone" />
 
         </FrameLayout>
 
@@ -139,7 +141,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/home_kingkong_temple"
-            android:textColor="#B5A78F"
+            android:textColor="@color/c_text_third"
             android:textSize="11sp" />
 
     </LinearLayout>
@@ -161,7 +163,8 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:visibility="gone" />
+                android:src="@drawable/icon_menu_beads"
+                android:visibility="visible" />
 
             <com.fingertip.baselib.view.MyTextView
                 android:id="@+id/tv_kk_4"
@@ -170,8 +173,9 @@
                 android:background="@drawable/bg_home_inner"
                 android:gravity="center"
                 android:text="念"
-                android:textColor="#C4A265"
-                android:textSize="14sp" />
+                android:textColor="@color/c_gold"
+                android:textSize="14sp"
+                android:visibility="gone" />
 
         </FrameLayout>
 
@@ -181,7 +185,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/home_kingkong_nianfo"
-            android:textColor="#B5A78F"
+            android:textColor="@color/c_text_third"
             android:textSize="11sp" />
 
     </LinearLayout>

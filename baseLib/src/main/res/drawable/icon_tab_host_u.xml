@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    底部 tab 图标（tint 染色）
+    2026-11 矢量图标改造：替换同名 mipmap 位图（24dp 线性风格，暗金主题）
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp"
+    android:viewportWidth="24" android:viewportHeight="24">
+    <path android:pathData="M3.5,10.4 L12,4.2 L20.5,10.4" android:strokeColor="#FFFFFF" android:strokeWidth="1.60" android:strokeLineCap="round" android:strokeLineJoin="round"/><path android:pathData="M6.2,10.4 V17.4 M12,10.4 V17.4 M17.8,10.4 V17.4" android:strokeColor="#FFFFFF" android:strokeWidth="1.60" android:strokeLineCap="round" android:strokeLineJoin="round"/><path android:pathData="M4.5,17.4 H19.5" android:strokeColor="#FFFFFF" android:strokeWidth="1.60" android:strokeLineCap="round" android:strokeLineJoin="round"/><path android:pathData="M12,4.2 V2.4" android:strokeColor="#FFFFFF" android:strokeWidth="1.60" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+</vector>

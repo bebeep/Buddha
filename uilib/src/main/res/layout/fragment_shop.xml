@@ -9,7 +9,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#251C10">
+    android:background="@color/c_bg_page">
 
     <com.fingertip.baselib.view.FullTopConstraintLayout
         android:id="@+id/cl_title"
@@ -23,8 +23,8 @@
             android:layout_width="38dp"
             android:layout_height="38dp"
             android:layout_marginStart="8dp"
-            android:src="@mipmap/icon_back_black"
-            android:tint="#EDE3D2"
+            android:src="@drawable/icon_back_black"
+            android:tint="@color/c_text_main"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/shop_title"
-            android:textColor="#EDE3D2"
+            android:textColor="@color/c_text_main"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -52,7 +52,7 @@
             android:paddingEnd="12dp"
             android:paddingBottom="5dp"
             android:text="@string/shop_my_dress"
-            android:textColor="#C4A265"
+            android:textColor="@color/c_gold"
             android:textSize="11sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -123,7 +123,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/shop_empty"
-        android:textColor="#8C8069"
+        android:textColor="@color/c_text_second"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/rc_list"
@@ -141,7 +141,7 @@
         android:gravity="center"
         android:lineSpacingExtra="2dp"
         android:text="@string/shop_tip"
-        android:textColor="#6E6455"
+        android:textColor="@color/c_text_hint"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent" />
 

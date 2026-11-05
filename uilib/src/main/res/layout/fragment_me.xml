@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#251C10"
+    android:background="@color/c_bg_page"
     android:layout_height="match_parent">
 
 
@@ -43,7 +43,7 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="56dp"
                     app:civ_border_width="2dp"
-                    app:civ_border_color="#C4A265"
+                    app:civ_border_color="@color/c_gold"
                     app:civ_border_overlay="true"
                     android:src="@mipmap/icon_default_head"
                     android:layout_width="68dp"
@@ -56,7 +56,7 @@
                     android:id="@+id/tv_nickname"
                     tools:text="Nickname"
                     android:textSize="24sp"
-                    android:textColor="#EDE3D2"
+                    android:textColor="@color/c_text_main"
                     android:textStyle="bold"
                     app:layout_constraintTop_toTopOf="@+id/iv_avatar"
                     android:elevation="2dp"
@@ -66,24 +66,35 @@
                     android:layout_marginStart="12dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
+                <!-- 等级徽章：服务端按级下发的药丸图，lv 数字画在图里 -->
+                <ImageView
+                    android:id="@+id/iv_level_tag"
+                    android:layout_width="42dp"
+                    android:layout_height="14dp"
+                    android:elevation="2dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_level"
+                    app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+                    app:layout_constraintTop_toTopOf="@+id/tv_level"
+                    android:layout_marginStart="12dp"/>
+
                 <com.fingertip.baselib.view.MyTextView
                     android:id="@+id/tv_level"
-                    tools:text="lv1 初入佛门"
+                    tools:text="初入佛门"
                     android:textSize="16sp"
                     android:layout_marginTop="2dp"
-                    android:textColor="#B3A48D"
+                    android:textColor="@color/c_text_beige2"
                     app:layout_constraintTop_toBottomOf="@+id/tv_nickname"
                     android:elevation="2dp"
-                    app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+                    app:layout_constraintStart_toEndOf="@+id/iv_level_tag"
                     app:layout_constraintBottom_toBottomOf="@+id/iv_avatar"
-                    android:layout_marginStart="12dp"
+                    android:layout_marginStart="6dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
                 <com.fingertip.baselib.view.MyTextView
                     android:id="@+id/tv_note"
                     android:text="这里是个性签名辣精神达克拉接口的asjdkajskdljaskldjkl奥抗了三等奖奥施康定…"
-                    android:textColor="#B3A48D"
+                    android:textColor="@color/c_text_beige2"
                     android:textSize="14sp"
                     android:maxLines="2"
                     android:ellipsize="end"
@@ -99,25 +110,25 @@
                     android:id="@+id/tv_followers"
                     android:text="8888"
                     android:textSize="16sp"
-                    android:textColor="#EDE3D2"
+                    android:textColor="@color/c_text_main"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/iv_avatar"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="24dp"
                     android:drawablePadding="4dp"
-                    android:drawableStart="@mipmap/icon_me_followers"
+                    android:drawableStart="@drawable/icon_me_followers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <com.fingertip.baselib.view.MyTextView
                     android:id="@+id/tv_followings"
                     android:text="88"
                     android:textSize="16sp"
-                    android:textColor="#EDE3D2"
+                    android:textColor="@color/c_text_main"
                     app:layout_constraintEnd_toStartOf="@+id/tv_followers"
                     app:layout_constraintTop_toTopOf="@+id/tv_followers"
                     android:layout_marginEnd="16dp"
                     android:drawablePadding="4dp"
-                    android:drawableStart="@mipmap/icon_me_following"
+                    android:drawableStart="@drawable/icon_me_following"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </com.fingertip.baselib.view.FullTopConstraintLayout>
@@ -150,7 +161,7 @@
                     <com.fingertip.baselib.view.MyTextView
                         android:id="@+id/tv_coins"
                         android:text="888"
-                        android:textColor="#C4A265"
+                        android:textColor="@color/c_gold"
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:layout_width="wrap_content"
@@ -158,8 +169,8 @@
                     <com.fingertip.baselib.view.MyTextView
                         android:text="功德币"
                         android:drawablePadding="6dp"
-                        android:drawableStart="@mipmap/icon_me_coin"
-                        android:textColor="#8C8069"
+                        android:drawableStart="@drawable/icon_me_coin"
+                        android:textColor="@color/c_text_second"
                         android:textStyle="bold"
                         android:textSize="12sp"
                         android:layout_marginTop="10dp"
@@ -170,7 +181,7 @@
                 <View
                     android:id="@+id/v_vertical"
                     android:layout_width="1dp"
-                    android:background="#1FC4A265"
+                    android:background="@color/c_gold_12"
                     app:layout_constraintTop_toTopOf="@+id/ll_coins"
                     app:layout_constraintBottom_toBottomOf="@+id/ll_coins"
                     app:layout_constraintStart_toEndOf="@+id/ll_coins"
@@ -192,7 +203,7 @@
                     <com.fingertip.baselib.view.MyTextView
                         android:id="@+id/tv_exp"
                         android:text="888"
-                        android:textColor="#C4A265"
+                        android:textColor="@color/c_gold"
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:layout_width="wrap_content"
@@ -200,8 +211,9 @@
                     <com.fingertip.baselib.view.MyTextView
                         android:text="修行值"
                         android:drawablePadding="6dp"
-                        android:drawableStart="@mipmap/icon_me_exp"
-                        android:textColor="#8C8069"
+                        android:drawableStart="@drawable/icon_me_exp"
+                        android:drawableEnd="@drawable/icon_me_arrow_right"
+                        android:textColor="@color/c_text_second"
                         android:textStyle="bold"
                         android:textSize="12sp"
                         android:layout_marginTop="10dp"
@@ -210,7 +222,9 @@
                 </LinearLayout>
 
 
-                <!-- 三格数据：禅值/连续修持/累计诵经（§12.6 我的页） -->
+                <!-- 三格数据：念佛声数/连续修持/累计诵经（§12.6 我的页）
+                     第一格原本标「禅值」，但接口给它的是累计念佛声数（practice/getMeditationTotal），
+                     禅值体系已废，这里按真实语义显示声数 -->
                 <LinearLayout
                     android:id="@+id/ll_stats"
                     android:layout_width="match_parent"
@@ -228,14 +242,14 @@
                         <com.fingertip.baselib.view.MyTextView
                             android:id="@+id/tv_zen"
                             android:text="0"
-                            android:textColor="#EDE3D2"
+                            android:textColor="@color/c_text_main"
                             android:textStyle="bold"
                             android:textSize="18sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                         <com.fingertip.baselib.view.MyTextView
-                            android:text="禅值"
-                            android:textColor="#8C8069"
+                            android:text="念佛(声)"
+                            android:textColor="@color/c_text_second"
                             android:textSize="12sp"
                             android:layout_marginTop="6dp"
                             android:layout_width="wrap_content"
@@ -244,7 +258,7 @@
 
                     <View
                         android:layout_width="1dp"
-                        android:background="#1FC4A265"
+                        android:background="@color/c_gold_12"
                         android:layout_height="30dp"/>
 
                     <LinearLayout
@@ -261,14 +275,14 @@
                             <com.fingertip.baselib.view.MyTextView
                                 android:id="@+id/tv_streak"
                                 android:text="0"
-                                android:textColor="#EDE3D2"
+                                android:textColor="@color/c_text_main"
                                 android:textStyle="bold"
                                 android:textSize="18sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
                             <com.fingertip.baselib.view.MyTextView
                                 android:text=" 天"
-                                android:textColor="#EDE3D2"
+                                android:textColor="@color/c_text_main"
                                 android:textStyle="bold"
                                 android:textSize="13sp"
                                 android:layout_width="wrap_content"
@@ -276,7 +290,7 @@
                         </LinearLayout>
                         <com.fingertip.baselib.view.MyTextView
                             android:text="连续修持"
-                            android:textColor="#8C8069"
+                            android:textColor="@color/c_text_second"
                             android:textSize="12sp"
                             android:layout_marginTop="6dp"
                             android:layout_width="wrap_content"
@@ -285,7 +299,7 @@
 
                     <View
                         android:layout_width="1dp"
-                        android:background="#1FC4A265"
+                        android:background="@color/c_gold_12"
                         android:layout_height="30dp"/>
 
                     <LinearLayout
@@ -302,14 +316,14 @@
                             <com.fingertip.baselib.view.MyTextView
                                 android:id="@+id/tv_sutra"
                                 android:text="0"
-                                android:textColor="#EDE3D2"
+                                android:textColor="@color/c_text_main"
                                 android:textStyle="bold"
                                 android:textSize="18sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
                             <com.fingertip.baselib.view.MyTextView
                                 android:text=" 次"
-                                android:textColor="#EDE3D2"
+                                android:textColor="@color/c_text_main"
                                 android:textStyle="bold"
                                 android:textSize="13sp"
                                 android:layout_width="wrap_content"
@@ -317,7 +331,7 @@
                         </LinearLayout>
                         <com.fingertip.baselib.view.MyTextView
                             android:text="累计诵经"
-                            android:textColor="#8C8069"
+                            android:textColor="@color/c_text_second"
                             android:textSize="12sp"
                             android:layout_marginTop="6dp"
                             android:layout_width="wrap_content"
@@ -336,7 +350,7 @@
 
                     <com.fingertip.baselib.view.MyTextView
                         android:text="我的装扮橱窗"
-                        android:textColor="#EDE3D2"
+                        android:textColor="@color/c_text_main"
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:layout_marginStart="24dp"
@@ -355,7 +369,7 @@
                     <com.fingertip.baselib.view.MyTextView
                         android:id="@+id/tv_dress_empty"
                         android:text="还没有装扮，去商城逛逛"
-                        android:textColor="#8C8069"
+                        android:textColor="@color/c_text_second"
                         android:textSize="12sp"
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="4dp"
@@ -382,13 +396,13 @@
                     <ImageView
                         android:layout_marginStart="24dp"
                         android:layout_width="22dp"
-                        android:src="@mipmap/icon_me_task"
-                        android:tint="#8C8069"
+                        android:src="@drawable/icon_me_task"
+                        android:tint="@color/c_text_second"
                         android:layout_height="22dp"/>
 
                     <com.fingertip.baselib.view.MyTextView
                         android:text="任务中心"
-                        android:textColor="#EDE3D2"
+                        android:textColor="@color/c_text_main"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_marginStart="8dp"
@@ -403,15 +417,15 @@
                     <com.fingertip.baselib.view.MyTextView
                         android:id="@+id/tv_task_count"
                         android:text="1/10"
-                        android:textColor="#EDE3D2"
+                        android:textColor="@color/c_text_main"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
                     <ImageView
-                        android:src="@mipmap/icon_me_arrow_right"
-                        android:tint="#6E6455"
+                        android:src="@drawable/icon_me_arrow_right"
+                        android:tint="@color/c_text_hint"
                         android:layout_width="18dp"
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="24dp"
@@ -430,13 +444,13 @@
                     <ImageView
                         android:layout_marginStart="24dp"
                         android:layout_width="22dp"
-                        android:src="@mipmap/icon_me_task"
-                        android:tint="#8C8069"
+                        android:src="@drawable/icon_me_task"
+                        android:tint="@color/c_text_second"
                         android:layout_height="22dp"/>
 
                     <com.fingertip.baselib.view.MyTextView
                         android:text="装扮商城"
-                        android:textColor="#EDE3D2"
+                        android:textColor="@color/c_text_main"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_marginStart="8dp"
@@ -449,8 +463,8 @@
                         android:layout_height="match_parent"/>
 
                     <ImageView
-                        android:src="@mipmap/icon_me_arrow_right"
-                        android:tint="#6E6455"
+                        android:src="@drawable/icon_me_arrow_right"
+                        android:tint="@color/c_text_hint"
                         android:layout_width="18dp"
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="24dp"
@@ -469,13 +483,13 @@
                     <ImageView
                         android:layout_marginStart="24dp"
                         android:layout_width="22dp"
-                        android:src="@mipmap/icon_me_task"
-                        android:tint="#8C8069"
+                        android:src="@drawable/icon_me_task"
+                        android:tint="@color/c_text_second"
                         android:layout_height="22dp"/>
 
                     <com.fingertip.baselib.view.MyTextView
                         android:text="我的装扮"
-                        android:textColor="#EDE3D2"
+                        android:textColor="@color/c_text_main"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_marginStart="8dp"
@@ -488,8 +502,8 @@
                         android:layout_height="match_parent"/>
 
                     <ImageView
-                        android:src="@mipmap/icon_me_arrow_right"
-                        android:tint="#6E6455"
+                        android:src="@drawable/icon_me_arrow_right"
+                        android:tint="@color/c_text_hint"
                         android:layout_width="18dp"
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="24dp"
@@ -509,13 +523,13 @@
                     <ImageView
                         android:layout_marginStart="24dp"
                         android:layout_width="22dp"
-                        android:src="@mipmap/icon_me_task"
-                        android:tint="#8C8069"
+                        android:src="@drawable/icon_me_task"
+                        android:tint="@color/c_text_second"
                         android:layout_height="22dp"/>
 
                     <com.fingertip.baselib.view.MyTextView
                         android:text="@string/me_collect"
-                        android:textColor="#EDE3D2"
+                        android:textColor="@color/c_text_main"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_marginStart="8dp"
@@ -528,8 +542,8 @@
                         android:layout_height="match_parent"/>
 
                     <ImageView
-                        android:src="@mipmap/icon_me_arrow_right"
-                        android:tint="#6E6455"
+                        android:src="@drawable/icon_me_arrow_right"
+                        android:tint="@color/c_text_hint"
                         android:layout_width="18dp"
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="24dp"
@@ -548,13 +562,13 @@
                     <ImageView
                         android:layout_marginStart="24dp"
                         android:layout_width="22dp"
-                        android:src="@mipmap/icon_me_task"
-                        android:tint="#8C8069"
+                        android:src="@drawable/icon_me_task"
+                        android:tint="@color/c_text_second"
                         android:layout_height="22dp"/>
 
                     <com.fingertip.baselib.view.MyTextView
                         android:text="供灯记录"
-                        android:textColor="#EDE3D2"
+                        android:textColor="@color/c_text_main"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_marginStart="8dp"
@@ -567,8 +581,8 @@
                         android:layout_height="match_parent"/>
 
                     <ImageView
-                        android:src="@mipmap/icon_me_arrow_right"
-                        android:tint="#6E6455"
+                        android:src="@drawable/icon_me_arrow_right"
+                        android:tint="@color/c_text_hint"
                         android:layout_width="18dp"
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="24dp"
@@ -588,13 +602,13 @@
                     <ImageView
                         android:layout_marginStart="24dp"
                         android:layout_width="22dp"
-                        android:src="@mipmap/icon_me_task"
-                        android:tint="#8C8069"
+                        android:src="@drawable/icon_me_task"
+                        android:tint="@color/c_text_second"
                         android:layout_height="22dp"/>
 
                     <com.fingertip.baselib.view.MyTextView
                         android:text="@string/me_remind"
-                        android:textColor="#EDE3D2"
+                        android:textColor="@color/c_text_main"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_marginStart="8dp"
@@ -607,8 +621,8 @@
                         android:layout_height="match_parent"/>
 
                     <ImageView
-                        android:src="@mipmap/icon_me_arrow_right"
-                        android:tint="#6E6455"
+                        android:src="@drawable/icon_me_arrow_right"
+                        android:tint="@color/c_text_hint"
                         android:layout_width="18dp"
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="24dp"
@@ -627,13 +641,13 @@
                     <ImageView
                         android:layout_marginStart="24dp"
                         android:layout_width="22dp"
-                        android:src="@mipmap/icon_me_task"
-                        android:tint="#8C8069"
+                        android:src="@drawable/icon_me_task"
+                        android:tint="@color/c_text_second"
                         android:layout_height="22dp"/>
 
                     <com.fingertip.baselib.view.MyTextView
                         android:text="我的感悟"
-                        android:textColor="#EDE3D2"
+                        android:textColor="@color/c_text_main"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_marginStart="8dp"
@@ -646,8 +660,8 @@
                         android:layout_height="match_parent"/>
 
                     <ImageView
-                        android:src="@mipmap/icon_me_arrow_right"
-                        android:tint="#6E6455"
+                        android:src="@drawable/icon_me_arrow_right"
+                        android:tint="@color/c_text_hint"
                         android:layout_width="18dp"
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="24dp"
@@ -666,13 +680,13 @@
                     <ImageView
                         android:layout_marginStart="24dp"
                         android:layout_width="22dp"
-                        android:src="@mipmap/icon_me_task"
-                        android:tint="#8C8069"
+                        android:src="@drawable/icon_me_task"
+                        android:tint="@color/c_text_second"
                         android:layout_height="22dp"/>
 
                     <com.fingertip.baselib.view.MyTextView
                         android:text="我的祈福"
-                        android:textColor="#EDE3D2"
+                        android:textColor="@color/c_text_main"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_marginStart="8dp"
@@ -685,8 +699,8 @@
                         android:layout_height="match_parent"/>
 
                     <ImageView
-                        android:src="@mipmap/icon_me_arrow_right"
-                        android:tint="#6E6455"
+                        android:src="@drawable/icon_me_arrow_right"
+                        android:tint="@color/c_text_hint"
                         android:layout_width="18dp"
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="24dp"
@@ -705,13 +719,13 @@
                     <ImageView
                         android:layout_marginStart="24dp"
                         android:layout_width="22dp"
-                        android:src="@mipmap/icon_me_task"
-                        android:tint="#8C8069"
+                        android:src="@drawable/icon_me_task"
+                        android:tint="@color/c_text_second"
                         android:layout_height="22dp"/>
 
                     <com.fingertip.baselib.view.MyTextView
                         android:text="放生记录"
-                        android:textColor="#EDE3D2"
+                        android:textColor="@color/c_text_main"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_marginStart="8dp"
@@ -724,8 +738,8 @@
                         android:layout_height="match_parent"/>
 
                     <ImageView
-                        android:src="@mipmap/icon_me_arrow_right"
-                        android:tint="#6E6455"
+                        android:src="@drawable/icon_me_arrow_right"
+                        android:tint="@color/c_text_hint"
                         android:layout_width="18dp"
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="24dp"
@@ -744,13 +758,13 @@
                     <ImageView
                         android:layout_marginStart="24dp"
                         android:layout_width="22dp"
-                        android:src="@mipmap/icon_me_task"
-                        android:tint="#8C8069"
+                        android:src="@drawable/icon_me_task"
+                        android:tint="@color/c_text_second"
                         android:layout_height="22dp"/>
 
                     <com.fingertip.baselib.view.MyTextView
                         android:text="修行攻略"
-                        android:textColor="#EDE3D2"
+                        android:textColor="@color/c_text_main"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_marginStart="8dp"
@@ -763,8 +777,8 @@
                         android:layout_height="match_parent"/>
 
                     <ImageView
-                        android:src="@mipmap/icon_me_arrow_right"
-                        android:tint="#6E6455"
+                        android:src="@drawable/icon_me_arrow_right"
+                        android:tint="@color/c_text_hint"
                         android:layout_width="18dp"
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="24dp"
@@ -796,8 +810,8 @@
             android:id="@+id/iv_edit"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/iv_setting"
-            android:src="@mipmap/icon_me_edit"
-            android:tint="#EDE3D2"
+            android:src="@drawable/icon_me_edit"
+            android:tint="@color/c_text_main"
             android:layout_width="38dp"
             android:layout_height="44dp"/>
 
@@ -806,8 +820,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="12dp"
-            android:src="@mipmap/icon_me_edit"
-            android:tint="#EDE3D2"
+            android:src="@drawable/icon_me_edit"
+            android:tint="@color/c_text_main"
             android:layout_width="38dp"
             android:layout_height="44dp"/>
 
@@ -829,7 +843,7 @@
             tools:text="nickname"
             android:textSize="16sp"
             android:layout_marginStart="8dp"
-            android:textColor="#EDE3D2"
+            android:textColor="@color/c_text_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

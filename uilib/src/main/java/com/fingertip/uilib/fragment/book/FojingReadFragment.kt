@@ -20,6 +20,8 @@ import com.fingertip.uilib.dialog.FojingCatalogDialog
 import com.fingertip.uilib.dialog.FojingReadSettingDialog
 import com.fingertip.uilib.dialog.FojingReadingDialog
 import com.fingertip.uilib.viewmodel.ReadVM
+import com.fingertip.baselib.top.TopApplication
+import com.fingertip.baselib.R as BaseR
 
 
 /**
@@ -120,8 +122,8 @@ class FojingReadFragment : TopVMFragment<ReadVM>() {
         val night = setting.isNight()
         binding.root.setBackgroundColor(setting.bgColor())
         binding.tvTitle.setTextColor(setting.titleColor())
-        binding.tvPage.setTextColor(if (night) 0x80FFFEFA.toInt() else 0xFFB3A48E.toInt())
-        binding.tvCatalog.setTextColor(if (night) 0xFFFFD08A.toInt() else 0xFF8C6B3F.toInt())
+        binding.tvPage.setTextColor(if (night) TopApplication.instance.getColor(BaseR.color.c_page_text_night) else TopApplication.instance.getColor(BaseR.color.c_text_beige))
+        binding.tvCatalog.setTextColor(if (night) TopApplication.instance.getColor(BaseR.color.c_gold_night) else TopApplication.instance.getColor(BaseR.color.c_brown_book))
         //深色底上图标要反白，不然看不见
         if (night) {
             binding.vBack.ivBack.setColorFilter(Color.WHITE)

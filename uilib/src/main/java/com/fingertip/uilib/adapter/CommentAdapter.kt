@@ -33,7 +33,9 @@ class CommentAdapter(context: Context, val onItemClick:(position:Int,innerPositi
             binding.tvMore.visibility = if ((it.childComment?.size?:0)>maxChildCommentCount) View.VISIBLE else View.GONE
 
             binding.ivHead.loadImg(it.senderAvatar, width = 60, height = 60)
-            binding.tvLevel.text = "lv.${it.senderLevel}·${TimeUtil.dateFormateTime(it.commentDate)}"
+            com.fingertip.uilib.utils.LevelUi.bindTag(binding.ivLevelTag, it.senderLevel)
+            binding.tvLevel.text = com.fingertip.uilib.utils.LevelUi.tagTitle(it.senderLevel) +
+                "·" + TimeUtil.dateFormateTime(it.commentDate)
             binding.tvNickname.text = it.senderNickName
             binding.tvComment.text = it.textContent.clearFirstLine()
             binding.tvMore.text = "查看更多${it.childCommentCount - maxChildCommentCount}条回复"

@@ -9,6 +9,8 @@ import com.fingertip.baselib.bean.DeedBean
 import com.fingertip.baselib.top.TopRcAdapter
 import com.fingertip.uilib.R
 import com.fingertip.uilib.databinding.ItemDeedBinding
+import com.fingertip.baselib.top.TopApplication
+import com.fingertip.baselib.R as BaseR
 
 /**
  * 行善列表卡片 Adapter
@@ -41,9 +43,9 @@ class DeedListAdapter(
     private fun renderTags(binding: ItemDeedBinding, item: DeedBean) {
         val container = binding.llTags
         container.removeAllViews()
-        if (item.isOfficial == 1) addTag(container, "官", Color.parseColor("#C0392B"))
-        if (item.isUrgent == 1) addTag(container, "急", Color.parseColor("#E67E22"))
-        item.category?.takeIf { it.isNotBlank() }?.let { addTag(container, it, Color.parseColor("#8A6B3A")) }
+        if (item.isOfficial == 1) addTag(container, "官", TopApplication.instance.getColor(BaseR.color.c_tag_red))
+        if (item.isUrgent == 1) addTag(container, "急", TopApplication.instance.getColor(BaseR.color.c_tag_urgent))
+        item.category?.takeIf { it.isNotBlank() }?.let { addTag(container, it, TopApplication.instance.getColor(BaseR.color.c_tag_brown)) }
     }
 
     private fun addTag(container: LinearLayout, text: String, color: Int) {

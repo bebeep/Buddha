@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginHorizontal="4dp"
     android:layout_marginBottom="24dp"
-    android:background="#2A2014"
+    android:background="@color/c_bg_card2"
     android:layout_height="match_parent">
 
 
@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:lineSpacingExtra="10dp"
         android:layout_marginHorizontal="16dp"
-        android:textColor="#B5A78F"
+        android:textColor="@color/c_text_third"
         android:textSize="16sp"
         android:layout_height="match_parent"/>
 

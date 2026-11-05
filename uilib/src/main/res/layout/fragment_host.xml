@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2A2014"
+    android:background="@color/c_bg_card2"
     xmlns:tools="http://schemas.android.com/tools">
 
     <com.fingertip.baselib.view.FullTopConstraintLayout
@@ -21,7 +21,7 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="22dp"
             android:layout_marginStart="24dp"
-            android:textColor="@color/white"
+            android:textColor="@color/c_text_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <!-- 今日佛事：佛历节日 > 传统节日 > 节气 > 斋日 > 农历，服务端降级后下发，必不为空 -->
@@ -36,14 +36,14 @@
             app:zdyFont="bold"
             android:maxLines="1"
             android:ellipsize="end"
-            android:textColor="@color/white"
+            android:textColor="@color/c_text_main"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
 
         <com.fingertip.baselib.view.MyTextView
             android:id="@+id/tv_sign"
             android:text="签到"
-            android:textColor="@color/white"
+            android:textColor="@color/c_text_main"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -77,8 +77,8 @@
                 android:id="@+id/banner"
                 app:banner_indicator_normal_width="6dp"
                 app:banner_indicator_selected_width="10dp"
-                app:banner_indicator_normal_color="#D4D5D8"
-                app:banner_indicator_selected_color="#FFC34D"
+                app:banner_indicator_normal_color="@color/c_ffd4d5d8"
+                app:banner_indicator_selected_color="@color/c_ffffc34d"
                 app:banner_indicator_space="10dp"
                 app:banner_indicator_height="6dp"
                 app:banner_indicator_radius="3dp"
@@ -130,9 +130,9 @@
                 android:text="12:59"
                 android:paddingEnd="10dp"
                 android:gravity="center_vertical"
-                android:drawableStart="@mipmap/icon_left_time"
+                android:drawableStart="@drawable/icon_left_time"
                 android:layout_width="wrap_content"
-                android:textColor="#E3C88B"
+                android:textColor="@color/c_gold_light"
                 android:paddingStart="4dp"
                 android:drawablePadding="4dp"
                 android:textSize="14sp"
@@ -146,9 +146,9 @@
                 android:text="12:59"
                 android:paddingEnd="4dp"
                 android:gravity="center_vertical"
-                android:drawableStart="@mipmap/icon_left_time"
+                android:drawableStart="@drawable/icon_left_time"
                 android:layout_width="wrap_content"
-                android:textColor="#E3C88B"
+                android:textColor="@color/c_gold_light"
                 android:paddingStart="10dp"
                 android:drawablePadding="4dp"
                 android:textSize="14sp"
@@ -176,11 +176,11 @@
                 android:layout_marginHorizontal="8dp"
                 android:layout_width="match_parent"
                 app:shape_shadowSize="8dp"
-                app:shape_shadowColor="#FFE7C4"
+                app:shape_shadowColor="@color/c_gold_15"
                 app:shape_shadowOffsetY="2dp"
                 app:shape_radius="20dp"
                 android:padding="8dp"
-                app:shape_solidColor="@color/white"
+                app:shape_solidColor="@color/c_stroke_soft"
                 android:layout_height="wrap_content">
 
                 <com.fingertip.baselib.view.MyTextView
@@ -189,7 +189,7 @@
                     android:drawableStart="@mipmap/icon_moment_title"
                     android:gravity="center_vertical"
                     android:drawablePadding="4dp"
-                    android:textColor="#B5A78F"
+                    android:textColor="@color/c_text_third"
                     android:textSize="16sp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -206,7 +206,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_moment_title"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:background="#B3E5E5E5"/>
+                    android:background="@color/c_gold_20"/>
 
                 <com.stx.xmarqueeview.XMarqueeView
                     android:id="@+id/v_marquee"

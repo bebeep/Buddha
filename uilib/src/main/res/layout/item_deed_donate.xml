@@ -24,7 +24,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="#EDE3D2"
+            android:textColor="@color/c_text_main"
             android:textSize="13sp"
             tools:text="施慧" />
 
@@ -32,7 +32,7 @@
             android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#C4A265"
+            android:textColor="@color/c_gold"
             android:textSize="11sp"
             tools:text=" · 2022-02-02" />
 
@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:textColor="#C4A265"
+            android:textColor="@color/c_gold"
             android:textSize="13sp"
             android:textStyle="bold"
             tools:text="x5" />
@@ -52,7 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:textColor="#B5A78F"
+        android:textColor="@color/c_text_third"
         android:textSize="12sp"
         tools:text="祝佛友幸福安康" />
 </LinearLayout>

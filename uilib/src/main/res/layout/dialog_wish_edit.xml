@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="许愿"
-        android:textColor="#B5A78F"
+        android:textColor="@color/c_text_third"
         android:textSize="17sp"
         android:textStyle="bold" />
 
@@ -30,8 +30,8 @@
         android:maxLength="500"
         android:minLines="4"
         android:padding="12dp"
-        android:textColor="#B5A78F"
-        android:textColorHint="#6E6455"
+        android:textColor="@color/c_text_third"
+        android:textColorHint="@color/c_text_hint"
         android:textSize="14sp" />
 
     <TextView
@@ -41,7 +41,7 @@
         android:layout_gravity="end"
         android:layout_marginTop="4dp"
         android:text="0/500"
-        android:textColor="#8C8069"
+        android:textColor="@color/c_text_second"
         android:textSize="11sp" />
 
     <TextView
@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:text="许愿卡"
-        android:textColor="#B5A78F"
+        android:textColor="@color/c_text_third"
         android:textSize="13sp"
         android:textStyle="bold" />
 
@@ -76,7 +76,7 @@
         android:background="@drawable/bg_sign_button"
         android:gravity="center"
         android:text="开始许愿"
-        android:textColor="@color/white"
+        android:textColor="@color/c_text_on_gold"
         android:textSize="15sp"
         android:textStyle="bold" />
 

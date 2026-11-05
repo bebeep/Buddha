@@ -2,7 +2,7 @@
 <com.fingertip.baselib.view.FullTopConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2A2014"
+    android:background="@color/c_bg_card2"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.viewpager2.widget.ViewPager2
@@ -27,7 +27,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/v_back"
         android:text="心经"
         android:textSize="18sp"
-        android:textColor="#B5A78F"
+        android:textColor="@color/c_text_third"
         app:zdyFont="bold"
         app:layout_constraintStart_toEndOf="@+id/v_back"
         app:layout_constraintEnd_toStartOf="@+id/tv_catalog"
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:text="目录"
         android:textSize="14sp"
-        android:textColor="#8C6B3F"
+        android:textColor="@color/c_text_second"
         android:paddingHorizontal="8dp"
         android:paddingVertical="6dp"
         app:layout_constraintTop_toTopOf="@+id/v_back"
@@ -54,7 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="14dp"
         android:layout_width="38dp"
-        android:src="@mipmap/icon_fojing_setting"
+        android:src="@drawable/icon_fojing_setting"
         android:layout_height="38dp"/>
 
     <com.fingertip.baselib.view.MyTextView
@@ -64,7 +64,7 @@
         android:text="1 / 1"
         android:gravity="center"
         android:textSize="12sp"
-        android:textColor="#B3A48E"
+        android:textColor="@color/c_text_beige"
         android:paddingVertical="8dp"
         app:layout_constraintBottom_toBottomOf="parent"/>
 

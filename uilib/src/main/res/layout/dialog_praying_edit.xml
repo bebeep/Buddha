@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="编辑祈福内容..."
-        android:textColor="#B5A78F"
+        android:textColor="@color/c_text_third"
         android:textSize="13sp" />
 
     <EditText
@@ -27,8 +27,8 @@
         android:hint="写下你的祈福，为亲友为众生"
         android:maxLength="20"
         android:minLines="2"
-        android:textColor="#EDE3D2"
-        android:textColorHint="#B5A78F"
+        android:textColor="@color/c_text_main"
+        android:textColorHint="@color/c_text_third"
         android:textSize="15sp" />
 
     <TextView
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:gravity="end"
         android:text="0/20"
-        android:textColor="#C4A265"
+        android:textColor="@color/c_gold"
         android:textSize="12sp" />
 
     <!-- 推荐标签，代码动态填充 -->
@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="祈福卡"
-        android:textColor="#EDE3D2"
+        android:textColor="@color/c_text_main"
         android:textSize="14sp" />
 
     <!-- 封面选择：默认 + 祈福卡(5功德币) -->
@@ -70,7 +70,7 @@
             android:background="@drawable/bg_praying_cover_selected"
             android:gravity="center"
             android:text="默认"
-            android:textColor="#B5A78F"
+            android:textColor="@color/c_text_third"
             android:textSize="13sp" />
 
         <LinearLayout
@@ -85,14 +85,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="祈福卡"
-                android:textColor="#C4A265"
+                android:textColor="@color/c_gold"
                 android:textSize="13sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="5功德币"
-                android:textColor="#C4A265"
+                android:textColor="@color/c_gold"
                 android:textSize="10sp" />
         </LinearLayout>
     </LinearLayout>
@@ -105,7 +105,7 @@
         android:background="@drawable/bg_sign_button"
         android:gravity="center"
         android:text="开始祈福"
-        android:textColor="@color/white"
+        android:textColor="@color/c_text_on_gold"
         android:textSize="15sp"
         android:textStyle="bold" />
 </LinearLayout>

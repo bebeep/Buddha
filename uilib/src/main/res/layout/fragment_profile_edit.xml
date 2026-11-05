@@ -9,7 +9,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#251C10">
+    android:background="@color/c_bg_page">
 
     <com.fingertip.baselib.view.FullTopConstraintLayout
         android:id="@+id/cl_title"
@@ -23,8 +23,8 @@
             android:layout_width="38dp"
             android:layout_height="38dp"
             android:layout_marginStart="8dp"
-            android:src="@mipmap/icon_back_black"
-            android:tint="#EDE3D2"
+            android:src="@drawable/icon_back_black"
+            android:tint="@color/c_text_main"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/profile_edit_title"
-            android:textColor="#EDE3D2"
+            android:textColor="@color/c_text_main"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -82,7 +82,7 @@
                 android:paddingBottom="3dp"
                 android:background="@drawable/bg_home_inner_gold"
                 android:text="@string/profile_edit_wear_hint"
-                android:textColor="#C4A265"
+                android:textColor="@color/c_gold"
                 android:textSize="11sp" />
 
             <!-- 昵称卡 -->
@@ -98,7 +98,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/profile_edit_nickname"
-                    android:textColor="#8C8069"
+                    android:textColor="@color/c_text_second"
                     android:textSize="12sp" />
 
                 <EditText
@@ -111,8 +111,8 @@
                     android:maxLength="20"
                     android:maxLines="1"
                     android:padding="12dp"
-                    android:textColor="#EDE3D2"
-                    android:textColorHint="#6B6152"
+                    android:textColor="@color/c_text_main"
+                    android:textColorHint="@color/c_ff6b6152"
                     android:textSize="14sp" />
 
                 <!-- 3D 效果徽章开关：仅当拥有昵称3D装扮时显示，开关即佩戴/摘下，立即生效 -->
@@ -134,7 +134,7 @@
                         android:paddingEnd="8dp"
                         android:paddingBottom="2dp"
                         android:text="@string/profile_edit_3d_badge"
-                        android:textColor="#C4A265"
+                        android:textColor="@color/c_gold"
                         android:textSize="11sp"
                         app:zdyFont="bold" />
 
@@ -144,7 +144,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_weight="1"
                         android:text="@string/profile_edit_3d_hint"
-                        android:textColor="#8C8069"
+                        android:textColor="@color/c_text_second"
                         android:textSize="11sp" />
 
                     <androidx.appcompat.widget.SwitchCompat
@@ -170,7 +170,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/profile_edit_mood"
-                    android:textColor="#8C8069"
+                    android:textColor="@color/c_text_second"
                     android:textSize="12sp" />
 
                 <EditText
@@ -184,8 +184,8 @@
                     android:maxLength="100"
                     android:minLines="3"
                     android:padding="12dp"
-                    android:textColor="#EDE3D2"
-                    android:textColorHint="#6B6152"
+                    android:textColor="@color/c_text_main"
+                    android:textColorHint="@color/c_ff6b6152"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -202,7 +202,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/profile_edit_gender"
-                    android:textColor="#8C8069"
+                    android:textColor="@color/c_text_second"
                     android:textSize="12sp" />
 
                 <RadioGroup
@@ -216,10 +216,10 @@
                         android:id="@+id/rb_secret"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:buttonTint="#C4A265"
+                        android:buttonTint="@color/c_gold"
                         android:checked="true"
                         android:text="@string/gender_secret"
-                        android:textColor="#B8AC96"
+                        android:textColor="@color/c_text_sand"
                         android:textSize="14sp" />
 
                     <RadioButton
@@ -227,9 +227,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:buttonTint="#C4A265"
+                        android:buttonTint="@color/c_gold"
                         android:text="@string/gender_male"
-                        android:textColor="#B8AC96"
+                        android:textColor="@color/c_text_sand"
                         android:textSize="14sp" />
 
                     <RadioButton
@@ -237,9 +237,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:buttonTint="#C4A265"
+                        android:buttonTint="@color/c_gold"
                         android:text="@string/gender_female"
-                        android:textColor="#B8AC96"
+                        android:textColor="@color/c_text_sand"
                         android:textSize="14sp" />
                 </RadioGroup>
             </LinearLayout>
@@ -256,7 +256,7 @@
         android:background="@drawable/bg_home_gold_btn"
         android:gravity="center"
         android:text="@string/profile_edit_save"
-        android:textColor="#3A2E12"
+        android:textColor="@color/c_stroke_deep"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent" />

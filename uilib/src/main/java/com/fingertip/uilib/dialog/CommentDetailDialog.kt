@@ -1,5 +1,7 @@
 package com.fingertip.uilib.dialog
 
+import com.fingertip.baselib.R as BaseR
+import com.fingertip.baselib.top.TopApplication
 import android.content.Context
 import android.util.DisplayMetrics
 import android.view.View
@@ -128,13 +130,15 @@ class CommentDetailDialog(context: Context) : TopDialogBottomSheetDialog(context
         // 初始化主评论头部
         binding.ivHead.loadHead(parentComment.senderAvatar)
         binding.tvNickname.text = parentComment.senderNickName
+        com.fingertip.uilib.utils.LevelUi.bindTag(binding.ivLevelTag, parentComment.senderLevel)
         binding.tvLevel.text =
-            "lv.${parentComment.senderLevel}·${TimeUtil.dateFormateTime(parentComment.commentDate)}"
+            com.fingertip.uilib.utils.LevelUi.tagTitle(parentComment.senderLevel) + "·" +
+                TimeUtil.dateFormateTime(parentComment.commentDate)
         binding.tvComment.text = parentComment.textContent?.clearFirstLine() ?: ""
         if (!parentComment.replyNickName.isNullOrEmpty()) {
             binding.tvComment.setColoredText(
                 "回复 ${parentComment.replyNickName}: ${parentComment.textContent?.clearFirstLine() ?: ""}",
-                parentComment.replyNickName!!, "#33000000"
+                parentComment.replyNickName!!, TopApplication.instance.getColor(BaseR.color.color_bla_20)
             )
         }
 

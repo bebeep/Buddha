@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="许愿规则"
-        android:textColor="#B5A78F"
+        android:textColor="@color/c_text_third"
         android:textSize="17sp"
         android:textStyle="bold" />
 
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
         android:lineSpacingExtra="5dp"
-        android:textColor="#B5A78F"
+        android:textColor="@color/c_text_third"
         android:textSize="14sp" />
 
     <TextView

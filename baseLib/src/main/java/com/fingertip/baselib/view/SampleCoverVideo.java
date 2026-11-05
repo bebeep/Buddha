@@ -351,7 +351,7 @@ public class SampleCoverVideo extends StandardGSYVideoPlayer {
         if (mCurrentState == CURRENT_STATE_AUTO_COMPLETE && isIfCurrentIsFullscreen()){ //全屏状态下播放结束则显示重播
             btn_start.setImageResource(R.mipmap.icon_video_replay);
         }else {
-            btn_start.setImageResource(R.mipmap.icon_play);
+            btn_start.setImageResource(R.drawable.icon_play);
         }
     }
 }

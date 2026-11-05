@@ -20,6 +20,10 @@
     <color name="shop_text">#FFEDE3D2</color>
     <!-- 次文字 / 禁用态 #8C8069 -->
     <color name="shop_text_disabled">#FF8C8069</color>
+    <!-- 金色实底上的文字（分类 chip 选中 / 佩戴中动作按钮） #14100C -->
+    <color name="shop_text_on_gold">#FF14100C</color>
+    <!-- 分类 chip 未选中文字 #B5A78F（与 baseLib c_text_third 同值，跨模块 R 取不到才在此另存一份） -->
+    <color name="shop_text_chip_off">#FFB5A78F</color>
     <!-- 个人中心收起标题栏底色（滚动渐显，changeAlpha 用） -->
     <color name="me_title_base">#FF251C10</color>
 

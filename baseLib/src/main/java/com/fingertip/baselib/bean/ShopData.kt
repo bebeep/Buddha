@@ -12,7 +12,7 @@ package com.fingertip.baselib.bean
  */
 class ShopDressConfig {
     var id: Int = 0
-    //1灯具外观 2佛龛场景 3头像框 4昵称3D效果 5灯油(消耗品)
+    //1灯具外观 2佛龛场景 3头像框 4昵称3D效果 5灯油(消耗品) 6香烛(供佛档次) 7贡品(供佛档次)
     var dressType: Int = 0
     var dressName: String? = null
     var dressDesc: String? = null
@@ -20,9 +20,13 @@ class ShopDressConfig {
     var previewImage: String? = null
     //资源标识：3D 类=glb key，头像框=drawable 名，昵称3D=样式模板 key
     var resKey: String? = null
-    //商店后台的商品 id，格式 android:xxx,ios:xxx
+    //场景渲染大图（1080x2400 透明 PNG，佛前分层素材统一从这里取）
+    var resUrl: String? = null
+    //装扮动画 Lottie JSON 地址（佛龛氛围/灯焰/香烟），可空
+    var sceneAnimUrl: String? = null
+    //商店后台的商品 id，格式 android:xxx,ios:xxx（仅 IAP 充值用；商城购买已改功德币）
     var iapProductId: String? = null
-    //展示价格（美分）。仅用于展示与订单快照，真实扣款以商店价格为准
+    //价格（功德币）：1 分 = 1 币，数值即币数
     var priceCents: Int = 0
     //灯油有效天数；装扮类 0 = 永久
     var durationDays: Int = 0
@@ -35,8 +39,8 @@ class ShopDressConfig {
     /** 永久买断类（可佩戴），灯油不是 */
     fun isPermanent() = dressType in TYPE_LAMP..TYPE_NAME3D
 
-    /** 是否已拥有（仅在包里查得到时才为 true，由页面传入的持有集合决定） */
-    fun priceText(): String = String.format("$%.2f", priceCents / 100.0)
+    /** 价格文案：全站统一用功德币，1 分 = 1 功德币（priceCents 数值直接当币数） */
+    fun priceText(): String = if (priceCents <= 0) "免费" else "$priceCents 功德币"
 
     /** 时长文案：灯油显示「7 天」，永久显示「永久」 */
     fun durationText(): String = if (isOil()) "$durationDays 天" else "永久"
@@ -64,9 +68,11 @@ class ShopDressConfig {
         const val TYPE_FRAME = 3
         const val TYPE_NAME3D = 4
         const val TYPE_OIL = 5
+        const val TYPE_INCENSE = 6
+        const val TYPE_OFFERING = 7
 
-        /** 分类 tab 文案，下标与品类一致（0 位占位不用） */
-        val TYPE_NAMES = arrayOf("", "灯具", "佛龛", "头像框", "昵称 3D", "灯油")
+        /** 分类 tab 文案，下标与品类一致（0 位占位不用）；香烛/贡品不入商城，无 tab */
+        val TYPE_NAMES = arrayOf("", "灯具", "佛龛", "头像框", "昵称 3D", "灯油", "香烛", "贡品")
     }
 }
 
@@ -94,7 +100,7 @@ class MyDressItem {
     var id: Int = 0
     var accountId: Int = 0
     var dressId: Int = 0
-    //来源 1 IAP购买 2 早课里程碑奖励 3 运营赠送
+    //来源 1 IAP购买 2 功德币购买 3 运营赠送/里程碑奖励
     var source: Int = 0
     var iapOrderId: String? = null
     var isDel: Int = 0
@@ -105,6 +111,10 @@ class MyDressItem {
     var dressDesc: String? = null
     var previewImage: String? = null
     var resKey: String? = null
+    //场景渲染大图（1080x2400 透明 PNG）
+    var resUrl: String? = null
+    //装扮动画 Lottie JSON 地址，可空
+    var sceneAnimUrl: String? = null
     var priceCents: Int = 0
     var durationDays: Int = 0
 

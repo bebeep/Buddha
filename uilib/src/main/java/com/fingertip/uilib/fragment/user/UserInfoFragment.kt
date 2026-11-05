@@ -178,7 +178,8 @@ class UserInfoFragment : TopPmFragment<UserVM>() {
     private fun render(user: PersonData) {
         binding.ivAvatar.loadHead(user.avatar)
         binding.tvName.text = user.userName
-        binding.tvLevel.text = "lv${user.userLevel}"
+        com.fingertip.uilib.utils.LevelUi.bindTag(binding.ivLevelTag, user.userLevel ?: 0)
+        binding.tvLevel.text = com.fingertip.uilib.utils.LevelUi.tagTitle(user.userLevel ?: 0)
         binding.tvMood.text = user.mood
         binding.tvDisplayId.text = "ID:${user.displayAccountId ?: ""}"
         binding.tvFollowings.text = "${user.followingCount ?: 0}"

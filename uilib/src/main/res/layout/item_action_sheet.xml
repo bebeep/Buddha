@@ -13,6 +13,6 @@
     android:gravity="center"
     android:minHeight="52dp"
     android:paddingVertical="14dp"
-    android:textColor="#B5A78F"
+    android:textColor="@color/c_text_third"
     android:textSize="15sp"
     app:zdyFont="medium" />

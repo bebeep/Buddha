@@ -12,6 +12,8 @@ import com.fingertip.baselib.util.ToastUtil
 import com.fingertip.uilib.R
 import com.fingertip.uilib.databinding.FragmentDeedPostBinding
 import com.fingertip.uilib.viewmodel.GoodDeedVM
+import com.fingertip.baselib.top.TopApplication
+import com.fingertip.baselib.R as BaseR
 
 /**
  * 发布求助页，对应原型「行善-发布页面」的自主发布
@@ -46,7 +48,7 @@ class GoodDeedPostFragment : TopPmFragment<GoodDeedVM>() {
             tv.setPadding(28, 10, 28, 10)
             tv.gravity = Gravity.CENTER
             tv.setBackgroundResource(R.drawable.bg_praying_cover_normal)
-            tv.setTextColor(Color.parseColor("#8A6B3A"))
+            tv.setTextColor(TopApplication.instance.getColor(BaseR.color.c_tag_brown))
             tv.setOnClickListener {
                 //单选，再点一次取消
                 category = if (category == name) "" else name
@@ -69,7 +71,7 @@ class GoodDeedPostFragment : TopPmFragment<GoodDeedVM>() {
             tv.setBackgroundResource(
                 if (selected) R.drawable.bg_praying_cover_selected else R.drawable.bg_praying_cover_normal
             )
-            tv.setTextColor(if (selected) Color.parseColor("#C87A2B") else Color.parseColor("#8A6B3A"))
+            tv.setTextColor(if (selected) TopApplication.instance.getColor(BaseR.color.c_tag_orange) else TopApplication.instance.getColor(BaseR.color.c_tag_brown))
         }
     }
 

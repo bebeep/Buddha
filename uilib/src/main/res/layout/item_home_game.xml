@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
     首页区块 5：游戏卡（三卡横排）
-    禅院（未上线，置灰「敬请期待」）/ 放生（可玩）/ 禅值商店（即将上线）。
+    禅院（未上线，置灰「敬请期待」）/ 放生（可玩）/ 功德币商店（即将上线）。
     游戏入口全部收在这一块，不再占底部 tab。
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -26,15 +26,15 @@
             android:layout_weight="1"
             android:letterSpacing="0.04"
             android:text="@string/home_block_game"
-            android:textColor="#EDE3D2"
+            android:textColor="@color/c_text_main"
             android:textSize="13sp" />
 
-        <!-- 禅值余额，聚合接口带回来 -->
+        <!-- 功德币余额，聚合接口带回来 -->
         <com.fingertip.baselib.view.MyTextView
             android:id="@+id/tv_merit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#C4A265"
+            android:textColor="@color/c_gold"
             android:textSize="10.5sp" />
 
     </LinearLayout>
@@ -64,7 +64,7 @@
                 android:background="@drawable/bg_home_circle"
                 android:gravity="center"
                 android:text="禅"
-                android:textColor="#6E6455"
+                android:textColor="@color/c_text_hint"
                 android:textSize="13sp" />
 
             <com.fingertip.baselib.view.MyTextView
@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/home_game_zen"
-                android:textColor="#6E6455"
+                android:textColor="@color/c_text_hint"
                 android:textSize="12sp" />
 
             <com.fingertip.baselib.view.MyTextView
@@ -82,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:text="@string/home_game_coming"
-                android:textColor="#4F4839"
+                android:textColor="@color/c_text_hint2"
                 android:textSize="9.5sp" />
 
         </LinearLayout>
@@ -107,7 +107,7 @@
                 android:background="@drawable/bg_home_circle"
                 android:gravity="center"
                 android:text="生"
-                android:textColor="#C4A265"
+                android:textColor="@color/c_gold"
                 android:textSize="13sp" />
 
             <com.fingertip.baselib.view.MyTextView
@@ -116,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/home_game_fangsheng"
-                android:textColor="#EDE3D2"
+                android:textColor="@color/c_text_main"
                 android:textSize="12sp" />
 
             <com.fingertip.baselib.view.MyTextView
@@ -125,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:text="@string/home_game_available"
-                android:textColor="#E3C88B"
+                android:textColor="@color/c_gold_light"
                 android:textSize="9.5sp" />
 
         </LinearLayout>
@@ -149,7 +149,7 @@
                 android:background="@drawable/bg_home_circle"
                 android:gravity="center"
                 android:text="值"
-                android:textColor="#8C8069"
+                android:textColor="@color/c_text_second"
                 android:textSize="13sp" />
 
             <com.fingertip.baselib.view.MyTextView
@@ -158,7 +158,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/home_game_shop"
-                android:textColor="#B5A78F"
+                android:textColor="@color/c_text_third"
                 android:textSize="12sp" />
 
             <com.fingertip.baselib.view.MyTextView
@@ -167,7 +167,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:text="@string/home_game_soon"
-                android:textColor="#6E6455"
+                android:textColor="@color/c_text_hint"
                 android:textSize="9.5sp" />
 
         </LinearLayout>

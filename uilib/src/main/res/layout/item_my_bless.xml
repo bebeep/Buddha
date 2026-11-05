@@ -35,17 +35,31 @@
                 android:id="@+id/tv_user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#B5A78F"
+                android:textColor="@color/c_text_third"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tv_user_level"
+            <!-- 等级徽章：服务端按级下发的药丸图，lv 数字画在图里 -->
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:textColor="#C4A265"
-                android:textSize="11sp" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iv_level_tag"
+                    android:layout_width="42dp"
+                    android:layout_height="14dp" />
+
+                <TextView
+                    android:id="@+id/tv_user_level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/c_gold"
+                    android:textSize="11sp" />
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -53,7 +67,7 @@
             android:id="@+id/tv_bless_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#8C8069"
+            android:textColor="@color/c_text_second"
             android:textSize="11sp" />
 
     </LinearLayout>
@@ -64,7 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:lineSpacingExtra="3dp"
-        android:textColor="#B5A78F"
+        android:textColor="@color/c_text_third"
         android:textSize="13sp" />
 
     <TextView
@@ -73,7 +87,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:lineSpacingExtra="3dp"
-        android:textColor="#C4A265"
+        android:textColor="@color/c_gold"
         android:textSize="13sp" />
 
 </LinearLayout>

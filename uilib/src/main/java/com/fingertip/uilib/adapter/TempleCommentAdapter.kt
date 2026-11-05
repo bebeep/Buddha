@@ -20,7 +20,8 @@ class TempleCommentAdapter(context: Context) :
         val item = get(position) ?: return
 
         binding.tvName.text = item.nickName ?: "佛友"
-        binding.tvLevel.text = "lv${item.userLevel}"
+        com.fingertip.uilib.utils.LevelUi.bindTag(binding.ivLevelTag, item.userLevel)
+        binding.tvLevel.text = com.fingertip.uilib.utils.LevelUi.tagTitle(item.userLevel)
         binding.tvDate.text = item.commentDate?.take(10).orEmpty()
         binding.tvContent.text = item.content
         binding.ivAvatar.loadHead(item.avatar)

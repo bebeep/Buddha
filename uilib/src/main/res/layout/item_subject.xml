@@ -26,7 +26,7 @@
     <com.fingertip.baselib.view.MyTextView
         android:id="@+id/tv_title"
         android:text="南无阿弥陀佛"
-        android:textColor="#C4A265"
+        android:textColor="@color/c_gold"
         android:textSize="24sp"
         app:zdyFont="bold"
         app:layout_constraintTop_toTopOf="@+id/iv_bg"
@@ -42,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_marginTop="4dp"
-        android:textColor="#B5A78F"
+        android:textColor="@color/c_text_third"
         android:textSize="12sp"
         android:maxLines="3"
         android:ellipsize="end"
@@ -58,9 +58,9 @@
         android:text="9999"
         android:textSize="14sp"
         android:layout_marginBottom="16dp"
-        android:textColor="#C19357"
+        android:textColor="@color/c_gold_antique"
         android:drawablePadding="4dp"
-        android:drawableStart="@mipmap/icon_subject_follow"
+        android:drawableStart="@drawable/icon_subject_follow"
         android:layout_height="wrap_content"/>
     <com.fingertip.baselib.view.MyTextView
         android:id="@+id/tv_book_count"
@@ -71,9 +71,9 @@
         android:layout_width="wrap_content"
         android:text="23"
         android:textSize="14sp"
-        android:textColor="#C19357"
+        android:textColor="@color/c_gold_antique"
         android:drawablePadding="4dp"
-        android:drawableStart="@mipmap/icon_subject_book_count"
+        android:drawableStart="@drawable/icon_subject_book_count"
         android:layout_height="wrap_content"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

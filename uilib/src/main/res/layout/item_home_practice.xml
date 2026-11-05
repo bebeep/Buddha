@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:letterSpacing="0.04"
             android:text="@string/home_block_practice"
-            android:textColor="#EDE3D2"
+            android:textColor="@color/c_text_main"
             android:textSize="13sp" />
 
         <com.fingertip.baselib.view.MyTextView
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_weight="1"
-            android:textColor="#8C8069"
+            android:textColor="@color/c_text_second"
             android:textSize="10.5sp" />
 
         <!-- 全页唯一金色实底，别再往这一屏加第二个 -->
@@ -49,7 +49,7 @@
             android:paddingTop="6dp"
             android:paddingBottom="6dp"
             android:text="@string/home_btn_start_practice"
-            android:textColor="#5A4A22"
+            android:textColor="@color/c_ff5a4a22"
             android:textSize="12sp"
             app:zdyFont="bold" />
 
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:text="@string/home_practice_todo_today"
-        android:textColor="#8C8069"
+        android:textColor="@color/c_text_second"
         android:textSize="10.5sp" />
 
     <LinearLayout
@@ -94,7 +94,7 @@
                     android:background="@drawable/bg_home_circle"
                     android:gravity="center"
                     android:text="诵"
-                    android:textColor="#C4A265"
+                    android:textColor="@color/c_gold"
                     android:textSize="15sp" />
 
                 <com.fingertip.baselib.view.MyTextView
@@ -105,7 +105,7 @@
                     android:background="@drawable/bg_home_dot_gold"
                     android:gravity="center"
                     android:text="✓"
-                    android:textColor="#14100C"
+                    android:textColor="@color/c_text_on_gold"
                     android:textSize="9sp"
                     android:visibility="gone" />
 
@@ -117,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/home_slot_chant"
-                android:textColor="#EDE3D2"
+                android:textColor="@color/c_text_main"
                 android:textSize="11.5sp" />
 
             <com.fingertip.baselib.view.MyTextView
@@ -126,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:text="@string/home_slot_go"
-                android:textColor="#6E6455"
+                android:textColor="@color/c_text_hint"
                 android:textSize="9.5sp" />
 
         </LinearLayout>
@@ -156,7 +156,7 @@
                     android:background="@drawable/bg_home_circle"
                     android:gravity="center"
                     android:text="抄"
-                    android:textColor="#C4A265"
+                    android:textColor="@color/c_gold"
                     android:textSize="15sp" />
 
                 <com.fingertip.baselib.view.MyTextView
@@ -167,7 +167,7 @@
                     android:background="@drawable/bg_home_dot_gold"
                     android:gravity="center"
                     android:text="✓"
-                    android:textColor="#14100C"
+                    android:textColor="@color/c_text_on_gold"
                     android:textSize="9sp"
                     android:visibility="gone" />
 
@@ -179,7 +179,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/home_slot_copy"
-                android:textColor="#EDE3D2"
+                android:textColor="@color/c_text_main"
                 android:textSize="11.5sp" />
 
             <com.fingertip.baselib.view.MyTextView
@@ -188,7 +188,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:text="@string/home_slot_go"
-                android:textColor="#6E6455"
+                android:textColor="@color/c_text_hint"
                 android:textSize="9.5sp" />
 
         </LinearLayout>
@@ -217,7 +217,7 @@
                     android:background="@drawable/bg_home_circle"
                     android:gravity="center"
                     android:text="签"
-                    android:textColor="#C4A265"
+                    android:textColor="@color/c_gold"
                     android:textSize="15sp" />
 
                 <com.fingertip.baselib.view.MyTextView
@@ -228,7 +228,7 @@
                     android:background="@drawable/bg_home_dot_gold"
                     android:gravity="center"
                     android:text="✓"
-                    android:textColor="#14100C"
+                    android:textColor="@color/c_text_on_gold"
                     android:textSize="9sp"
                     android:visibility="gone" />
 
@@ -240,7 +240,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/home_slot_sign"
-                android:textColor="#EDE3D2"
+                android:textColor="@color/c_text_main"
                 android:textSize="11.5sp" />
 
             <com.fingertip.baselib.view.MyTextView
@@ -249,7 +249,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:text="@string/home_slot_go"
-                android:textColor="#6E6455"
+                android:textColor="@color/c_text_hint"
                 android:textSize="9.5sp" />
 
         </LinearLayout>

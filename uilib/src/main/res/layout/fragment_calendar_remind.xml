@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#251C10"
+    android:background="@color/c_bg_page"
     android:fillViewport="true"
     android:overScrollMode="never"
     android:scrollbars="none">
@@ -28,8 +28,8 @@
                 android:layout_width="38dp"
                 android:layout_height="38dp"
                 android:layout_marginStart="8dp"
-                android:src="@mipmap/icon_back_black"
-                android:tint="#EDE3D2"
+                android:src="@drawable/icon_back_black"
+                android:tint="@color/c_text_main"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/remind_title"
-                android:textColor="#EDE3D2"
+                android:textColor="@color/c_text_main"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -55,7 +55,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="16dp"
             android:text="@string/remind_sub"
-            android:textColor="#8C8069"
+            android:textColor="@color/c_text_second"
             android:textSize="11sp" />
 
         <!-- 没有通知权限时才有意义：提醒靠系统推送，权限没开配了也收不到 -->
@@ -85,7 +85,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/remind_push_off_title"
-                    android:textColor="#EDE3D2"
+                    android:textColor="@color/c_text_main"
                     android:textSize="13sp"
                     app:zdyFont="bold" />
 
@@ -94,7 +94,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="@string/remind_push_off_desc"
-                    android:textColor="#8C8069"
+                    android:textColor="@color/c_text_second"
                     android:textSize="10.5sp" />
 
             </LinearLayout>
@@ -109,7 +109,7 @@
                 android:paddingStart="14dp"
                 android:paddingEnd="14dp"
                 android:text="@string/remind_push_off_action"
-                android:textColor="#C4A265"
+                android:textColor="@color/c_gold"
                 android:textSize="12sp" />
 
         </LinearLayout>
@@ -144,7 +144,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/remind_festival_name"
-                        android:textColor="#EDE3D2"
+                        android:textColor="@color/c_text_main"
                         android:textSize="14.5sp"
                         app:zdyFont="bold" />
 
@@ -153,7 +153,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="@string/remind_festival_desc"
-                        android:textColor="#8C8069"
+                        android:textColor="@color/c_text_second"
                         android:textSize="10.5sp" />
 
                 </LinearLayout>
@@ -173,7 +173,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:layout_marginTop="14dp"
-                android:background="#1FC4A265" />
+                android:background="@color/c_gold_12" />
 
             <LinearLayout
                 android:id="@+id/ll_festival_time"
@@ -187,29 +187,29 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/remind_time_label"
-                    android:textColor="#B8AC96"
+                    android:textColor="@color/c_text_sand"
                     android:textSize="12.5sp" />
 
                 <com.fingertip.baselib.view.MyTextView
                     android:id="@+id/tv_festival_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#C4A265"
+                    android:textColor="@color/c_gold"
                     android:textSize="13sp" />
 
                 <ImageView
                     android:layout_width="14dp"
                     android:layout_height="14dp"
                     android:layout_marginStart="4dp"
-                    android:src="@mipmap/icon_me_arrow_right"
-                    android:tint="#6E6455" />
+                    android:src="@drawable/icon_me_arrow_right"
+                    android:tint="@color/c_text_hint" />
 
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:background="#1FC4A265" />
+                android:background="@color/c_gold_12" />
 
             <LinearLayout
                 android:id="@+id/ll_festival_offset"
@@ -223,22 +223,22 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/remind_offset_label"
-                    android:textColor="#B8AC96"
+                    android:textColor="@color/c_text_sand"
                     android:textSize="12.5sp" />
 
                 <com.fingertip.baselib.view.MyTextView
                     android:id="@+id/tv_festival_offset"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#C4A265"
+                    android:textColor="@color/c_gold"
                     android:textSize="13sp" />
 
                 <ImageView
                     android:layout_width="14dp"
                     android:layout_height="14dp"
                     android:layout_marginStart="4dp"
-                    android:src="@mipmap/icon_me_arrow_right"
-                    android:tint="#6E6455" />
+                    android:src="@drawable/icon_me_arrow_right"
+                    android:tint="@color/c_text_hint" />
 
             </LinearLayout>
 
@@ -274,7 +274,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/remind_zhai_name"
-                        android:textColor="#EDE3D2"
+                        android:textColor="@color/c_text_main"
                         android:textSize="14.5sp"
                         app:zdyFont="bold" />
 
@@ -283,7 +283,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="@string/remind_zhai_desc"
-                        android:textColor="#8C8069"
+                        android:textColor="@color/c_text_second"
                         android:textSize="10.5sp" />
 
                 </LinearLayout>
@@ -303,7 +303,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:layout_marginTop="14dp"
-                android:background="#1FC4A265" />
+                android:background="@color/c_gold_12" />
 
             <LinearLayout
                 android:id="@+id/ll_zhai_time"
@@ -317,22 +317,22 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/remind_time_label"
-                    android:textColor="#B8AC96"
+                    android:textColor="@color/c_text_sand"
                     android:textSize="12.5sp" />
 
                 <com.fingertip.baselib.view.MyTextView
                     android:id="@+id/tv_zhai_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#C4A265"
+                    android:textColor="@color/c_gold"
                     android:textSize="13sp" />
 
                 <ImageView
                     android:layout_width="14dp"
                     android:layout_height="14dp"
                     android:layout_marginStart="4dp"
-                    android:src="@mipmap/icon_me_arrow_right"
-                    android:tint="#6E6455" />
+                    android:src="@drawable/icon_me_arrow_right"
+                    android:tint="@color/c_text_hint" />
 
             </LinearLayout>
 
@@ -368,7 +368,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/remind_custom_name"
-                        android:textColor="#EDE3D2"
+                        android:textColor="@color/c_text_main"
                         android:textSize="14.5sp"
                         app:zdyFont="bold" />
 
@@ -377,7 +377,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="@string/remind_custom_desc"
-                        android:textColor="#8C8069"
+                        android:textColor="@color/c_text_second"
                         android:textSize="10.5sp" />
 
                 </LinearLayout>
@@ -392,7 +392,7 @@
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
                     android:text="@string/remind_custom_add"
-                    android:textColor="#C4A265"
+                    android:textColor="@color/c_gold"
                     android:textSize="12sp" />
 
             </LinearLayout>
@@ -410,7 +410,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:text="@string/remind_custom_empty"
-                android:textColor="#6E6455"
+                android:textColor="@color/c_text_hint"
                 android:textSize="11.5sp" />
 
         </LinearLayout>
@@ -423,7 +423,7 @@
             android:layout_marginTop="22dp"
             android:layout_marginEnd="16dp"
             android:text="@string/remind_preview_title"
-            android:textColor="#EDE3D2"
+            android:textColor="@color/c_text_main"
             android:textSize="13.5sp"
             app:zdyFont="bold" />
 
@@ -434,7 +434,7 @@
             android:layout_marginStart="18dp"
             android:layout_marginTop="10dp"
             android:text="@string/remind_preview_empty"
-            android:textColor="#6E6455"
+            android:textColor="@color/c_text_hint"
             android:textSize="11.5sp"
             android:visibility="gone" />
 
@@ -459,7 +459,7 @@
             android:layout_marginTop="14dp"
             android:layout_marginEnd="18dp"
             android:text="@string/remind_timezone_tip"
-            android:textColor="#6E6455"
+            android:textColor="@color/c_text_hint"
             android:textSize="10.5sp" />
 
     </LinearLayout>

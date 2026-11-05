@@ -48,12 +48,25 @@ class LampDetailData {
     var lampStatus: Int = 0
     //剩余小时数，不足 1 小时按 0 计
     var remainHours: Int = 0
+    //本次点燃的总小时数（灯油天数*24），算燃烧比例用
+    var totalHours: Int = 0
+    //燃烧剩余比例（千分比 0~1000），灯焰动画按它缩放体现"油在变少"
+    var remainRatio: Int = 0
+    //当前生效的灯具外观id（0=默认灯）
+    var lampDressId: Int = 0
+    //灯具场景大图（1080x2400透明PNG），服务端按佩戴灯/默认灯下发
+    var lampResUrl: String? = null
+    //灯焰动画 Lottie JSON
+    var lampAnimUrl: String? = null
     //灯具外观名称，默认灯时为空
     var lampName: String? = null
 
     fun isNone() = lampStatus == 0
 
     fun isDying() = lampStatus == 2
+
+    /** 灯焰缩放系数：0.4~1，油越少火越小 */
+    fun flameScale(): Float = 0.4f + 0.6f * (remainRatio.coerceIn(0, 1000) / 1000f)
 
     fun displayName(): String = lampName?.takeIf { it.isNotBlank() } ?: "长明灯"
 }

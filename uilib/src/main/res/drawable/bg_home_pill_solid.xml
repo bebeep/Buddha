@@ -2,9 +2,9 @@
 <!-- 未选中的佛号 chip -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-    <solid android:color="#2F2518" />
+    <solid android:color="@color/c_bg_card" />
     <corners android:radius="100dp" />
     <stroke
         android:width="0.5dp"
-        android:color="#33C4A265" />
+        android:color="@color/c_gold_20" />
 </shape>

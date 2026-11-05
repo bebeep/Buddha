@@ -8,7 +8,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#251C10">
+    android:background="@color/c_bg_page">
 
     <com.fingertip.baselib.view.FullTopConstraintLayout
         android:id="@+id/cl_title"
@@ -22,8 +22,8 @@
             android:layout_width="38dp"
             android:layout_height="38dp"
             android:layout_marginStart="8dp"
-            android:src="@mipmap/icon_back_black"
-            android:tint="#EDE3D2"
+            android:src="@drawable/icon_back_black"
+            android:tint="@color/c_text_main"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/collect_title"
-            android:textColor="#EDE3D2"
+            android:textColor="@color/c_text_main"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +64,7 @@
             android:paddingStart="14dp"
             android:paddingEnd="14dp"
             android:text="@string/collect_tab_all"
-            android:textColor="#E3C88B"
+            android:textColor="@color/c_gold_light"
             android:textSize="12sp" />
 
         <com.fingertip.baselib.view.MyTextView
@@ -77,7 +77,7 @@
             android:paddingStart="14dp"
             android:paddingEnd="14dp"
             android:text="@string/collect_tab_sutra"
-            android:textColor="#8C8069"
+            android:textColor="@color/c_text_second"
             android:textSize="12sp" />
 
         <com.fingertip.baselib.view.MyTextView
@@ -90,7 +90,7 @@
             android:paddingStart="14dp"
             android:paddingEnd="14dp"
             android:text="@string/collect_tab_moment"
-            android:textColor="#8C8069"
+            android:textColor="@color/c_text_second"
             android:textSize="12sp" />
 
         <com.fingertip.baselib.view.MyTextView
@@ -102,7 +102,7 @@
             android:paddingStart="14dp"
             android:paddingEnd="14dp"
             android:text="@string/collect_tab_temple"
-            android:textColor="#8C8069"
+            android:textColor="@color/c_text_second"
             android:textSize="12sp" />
 
     </LinearLayout>
@@ -125,7 +125,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/collect_empty"
-        android:textColor="#6E6455"
+        android:textColor="@color/c_text_hint"
         android:textSize="12.5sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"

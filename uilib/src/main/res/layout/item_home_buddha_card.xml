@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:letterSpacing="0.08"
             android:text="佛历 2569 年"
-            android:textColor="#C4A265"
+            android:textColor="@color/c_gold"
             android:textSize="10.5sp" />
 
         <!-- 大字号日期走系统 serif，接近宋体的观感；换自定义字体会多背一套字库 -->
@@ -38,7 +38,7 @@
             android:layout_marginTop="6dp"
             android:fontFamily="serif"
             android:text="11月2日"
-            android:textColor="#EDE3D2"
+            android:textColor="@color/c_text_main"
             android:textSize="28sp" />
 
         <com.fingertip.baselib.view.MyTextView
@@ -48,7 +48,7 @@
             android:layout_marginTop="10dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="#E3C88B"
+            android:textColor="@color/c_gold_light"
             android:textSize="13sp" />
 
         <com.fingertip.baselib.view.MyTextView
@@ -58,7 +58,7 @@
             android:layout_marginTop="4dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="#8C8069"
+            android:textColor="@color/c_text_second"
             android:textSize="11sp" />
 
     </LinearLayout>

@@ -1,5 +1,7 @@
 package com.fingertip.uilib.dialog
 
+import com.fingertip.baselib.R as BaseR
+import com.fingertip.baselib.top.TopApplication
 import android.content.Context
 import android.graphics.Color
 import android.view.View
@@ -21,11 +23,11 @@ class BuddhaFestivalDialog(
 
     companion object {
         //佛菩萨圣诞/成道/出家/涅槃
-        private const val COLOR_MAJOR = "#D9432E"
+        private val COLOR_MAJOR = TopApplication.instance.getColor(BaseR.color.c_festival_red)
         //盂兰盆、卫塞节等佛教节日
-        private const val COLOR_MINOR = "#C8860D"
+        private val COLOR_MINOR = TopApplication.instance.getColor(BaseR.color.c_festival_amber)
         //传统节日
-        private const val COLOR_TRADITION = "#5A4632"
+        private val COLOR_TRADITION = TopApplication.instance.getColor(BaseR.color.c_festival_tradition)
     }
 
     private lateinit var binding: DialogBuddhaFestivalBinding
@@ -43,7 +45,7 @@ class BuddhaFestivalDialog(
         }
 
         binding.tvTitle.text = festival.name.orEmpty()
-        binding.tvTitle.setTextColor(Color.parseColor(color))
+        binding.tvTitle.setTextColor(color)
 
         binding.tvTag.setText(
             when {

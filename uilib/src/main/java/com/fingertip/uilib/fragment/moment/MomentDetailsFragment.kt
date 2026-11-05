@@ -37,6 +37,8 @@ import com.lzlz.toplib.extention.visible
 import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack
 import com.shuyu.gsyvideoplayer.video.base.GSYVideoView
+import com.fingertip.baselib.top.TopApplication
+import com.fingertip.baselib.R as BaseR
 
 class MomentDetailsFragment: TopPmFragment<MomentVM>() {
     override fun initVM() = MomentVM ()
@@ -335,7 +337,9 @@ class MomentDetailsFragment: TopPmFragment<MomentVM>() {
             binding.ivHead.loadHead(it.postAvatar)
             binding.tvNickname.text = it.postUserName
             binding.tvContent.text = it.textContent?:""
-            binding.tvLevel.text = "lv.${it.userLevel}·${TimeUtil.dateFormateTime(it.createDate)}"
+            com.fingertip.uilib.utils.LevelUi.bindTag(binding.ivLevelTag, it.userLevel)
+            binding.tvLevel.text = com.fingertip.uilib.utils.LevelUi.tagTitle(it.userLevel) +
+                "·" + TimeUtil.dateFormateTime(it.createDate)
             binding.tvFollow.isSelected = it.isFollowed
             binding.tvFollow.text = if (it.isFollowed) "已关注" else "+关注"
             binding.tvContent.visibility = if (it.textContent.isNullOrEmpty()) View.GONE else View.VISIBLE
@@ -580,7 +584,7 @@ class MomentDetailsFragment: TopPmFragment<MomentVM>() {
      * 用 tint 而不是换图，省一张切图，状态也只有两种。
      */
     private fun renderCollect() {
-        val color = if (collected) 0xFFC4A265.toInt() else 0xFFB8B8B8.toInt()
+        val color = if (collected) TopApplication.instance.getColor(BaseR.color.c_gold) else TopApplication.instance.getColor(BaseR.color.c_gray_b8)
         binding.ivCollect.imageTintList = android.content.res.ColorStateList.valueOf(color)
     }
 

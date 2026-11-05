@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-    首页区块 6：佛友圈精选（占位）
-    精选源要等运营推荐池上线，先把入口和文案铺好；
-    「查看全部」切到佛友圈 tab，不新开页面。
+<?xml version="1.0" encoding="utf-8"?><!--
+    首页区块 6：佛友圈精选。
+    横向 1.2 张露出，暗示可滑；不往下堆条数，首页已经够长了。
+    数据来自 home/getSummary 的 featuredMoments（官方开示 + 社区热帖混合），
+    为空时由 DailyQuotes 的禅语卡补齐，所以这里没有空态。
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="16dp"
@@ -13,13 +14,17 @@
     android:layout_marginBottom="8dp"
     android:background="@drawable/bg_home_card_a"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:paddingStart="16dp"
+    android:paddingTop="16dp"
+    android:paddingEnd="0dp"
+    android:paddingBottom="14dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingEnd="16dp">
 
         <com.fingertip.baselib.view.MyTextView
             android:layout_width="0dp"
@@ -27,29 +32,32 @@
             android:layout_weight="1"
             android:letterSpacing="0.04"
             android:text="@string/home_block_moment"
-            android:textColor="#EDE3D2"
+            android:textColor="@color/c_text_main"
             android:textSize="13sp" />
 
         <com.fingertip.baselib.view.MyTextView
             android:id="@+id/tv_moment_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
             android:text="@string/home_moment_more"
-            android:textColor="#C4A265"
+            android:textColor="@color/c_gold"
             android:textSize="10.5sp" />
 
     </LinearLayout>
 
-    <com.fingertip.baselib.view.MyTextView
-        android:id="@+id/tv_moment_empty"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_moment_cards"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/bg_home_inner"
-        android:lineSpacingExtra="3dp"
-        android:padding="14dp"
-        android:text="@string/home_moment_empty"
-        android:textColor="#B5A78F"
-        android:textSize="11.5sp" />
+        android:layout_marginTop="11dp"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        android:overScrollMode="never"
+        android:paddingEnd="16dp"
+        android:scrollbars="none"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 </LinearLayout>

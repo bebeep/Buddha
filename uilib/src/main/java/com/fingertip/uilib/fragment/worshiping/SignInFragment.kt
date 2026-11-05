@@ -20,6 +20,8 @@ import com.fingertip.uilib.databinding.ItemSignFestivalBinding
 import com.fingertip.uilib.dialog.BuddhaFestivalDialog
 import com.fingertip.uilib.viewmodel.SignInCalendarVM
 import java.util.Calendar
+import com.fingertip.baselib.top.TopApplication
+import com.fingertip.baselib.R as BaseR
 
 /**
  * 签到页，对应原型「签到」与接口 account/getMonthCalendar
@@ -46,10 +48,10 @@ class SignInFragment : TopPmFragment<SignInCalendarVM>() {
         private const val CODE_TODAY_SIGNED = -24
 
         //佛菩萨圣诞/成道/出家/涅槃
-        private const val FESTIVAL_COLOR_MAJOR = "#D9432E"
+        private val FESTIVAL_COLOR_MAJOR = TopApplication.instance.getColor(BaseR.color.c_festival_red)
 
         //盂兰盆、卫塞节等佛教节日
-        private const val FESTIVAL_COLOR_MINOR = "#C8860D"
+        private val FESTIVAL_COLOR_MINOR = TopApplication.instance.getColor(BaseR.color.c_festival_amber)
     }
 
     override fun layoutId(): Int = R.layout.fragment_sign_in
@@ -132,7 +134,7 @@ class SignInFragment : TopPmFragment<SignInCalendarVM>() {
         WEEK_LABELS.forEach { label ->
             val tv = TextView(requireContext())
             tv.text = label
-            tv.setTextColor(Color.parseColor("#666666"))
+            tv.setTextColor(TopApplication.instance.getColor(BaseR.color.c_gray_666))
             tv.textSize = 13f
             tv.gravity = android.view.Gravity.CENTER
             header.addView(tv, LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f))
@@ -225,7 +227,7 @@ class SignInFragment : TopPmFragment<SignInCalendarVM>() {
 
         binding.tvFestivalName.text = target.name.orEmpty()
         binding.tvFestivalName.setTextColor(
-            Color.parseColor(if (isToday) FESTIVAL_COLOR_MAJOR else FESTIVAL_COLOR_MINOR)
+            if (isToday) FESTIVAL_COLOR_MAJOR else FESTIVAL_COLOR_MINOR
         )
         binding.tvFestivalCountdown.text = if (isToday) "" else "还有${target.daysFromToday}天"
 
@@ -251,9 +253,7 @@ class SignInFragment : TopPmFragment<SignInCalendarVM>() {
         val inflater = LayoutInflater.from(requireContext())
         items.forEach { festival ->
             val itemBinding = ItemSignFestivalBinding.inflate(inflater, binding.llFestivalItems, false)
-            val color = Color.parseColor(
-                if (festival.level == BuddhaFestival.LEVEL_FESTIVAL) FESTIVAL_COLOR_MINOR else FESTIVAL_COLOR_MAJOR
-            )
+            val color = if (festival.level == BuddhaFestival.LEVEL_FESTIVAL) FESTIVAL_COLOR_MINOR else FESTIVAL_COLOR_MAJOR
             itemBinding.vAccent.setBackgroundColor(color)
             itemBinding.tvName.text = festival.name.orEmpty()
             itemBinding.tvMeta.text = listOfNotNull(
@@ -264,8 +264,8 @@ class SignInFragment : TopPmFragment<SignInCalendarVM>() {
             itemBinding.tvCountdown.setTextColor(
                 when {
                     festival.daysFromToday == 0 -> color
-                    festival.daysFromToday > 0 -> Color.parseColor(FESTIVAL_COLOR_MINOR)
-                    else -> Color.parseColor("#C0C0C0")
+                    festival.daysFromToday > 0 -> FESTIVAL_COLOR_MINOR
+                    else -> TopApplication.instance.getColor(BaseR.color.c_silver)
                 }
             )
             itemBinding.root.setOnClickListener {
@@ -318,7 +318,7 @@ class SignInFragment : TopPmFragment<SignInCalendarVM>() {
             tv.setBackgroundResource(
                 if (isReached) R.drawable.bg_sign_dot_reached else R.drawable.bg_sign_dot_normal
             )
-            tv.setTextColor(if (isReached) Color.WHITE else Color.parseColor("#C89A5B"))
+            tv.setTextColor(if (isReached) Color.WHITE else TopApplication.instance.getColor(BaseR.color.c_gold_warm))
         }
     }
 

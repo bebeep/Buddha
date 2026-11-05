@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start|center_vertical"
                 android:layout_marginStart="16dp"
-                android:textColor="#EDE3D2"
+                android:textColor="@color/c_text_main"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 app:zdyFont="medium"
@@ -57,13 +57,13 @@
                 android:layout_marginEnd="12dp"
                 android:contentDescription="关闭"
                 android:padding="7dp"
-                android:src="@mipmap/icon_moment_close" />
+                android:src="@drawable/icon_moment_close" />
         </FrameLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#1FC4A265" />
+            android:background="@color/c_gold_12" />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="还没有评论，来说两句"
-                android:textColor="#8C8069"
+                android:textColor="@color/c_text_second"
                 android:textSize="13sp"
                 android:visibility="gone" />
         </FrameLayout>
@@ -102,7 +102,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#1FC4A265" />
+            android:background="@color/c_gold_12" />
 
         <!-- 输入区：输入框常驻，点击某条评论会切成「回复 xxx」 -->
         <LinearLayout
@@ -138,7 +138,7 @@
                     android:maxLength="300"
                     android:maxLines="4"
                     android:minHeight="40dp"
-                    android:textColor="#EDE3D2"
+                    android:textColor="@color/c_text_main"
                     android:textCursorDrawable="@drawable/bg_comment_curser"
                     android:textSize="14sp" />
 

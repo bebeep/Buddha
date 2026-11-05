@@ -37,7 +37,7 @@ class UserVM : TopVMImp() {
         }, showLoading = false, toastError = false)
     }
 
-    /** 禅值：念佛/禅修累计总数 */
+    /** 功德币：念佛/禅修累计总数 */
     fun loadMeditationTotal() {
         call({
             NetManager.getApi().getMeditationTotal()

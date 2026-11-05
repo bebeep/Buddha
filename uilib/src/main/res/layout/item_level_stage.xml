@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 十二重境界概览行：色点 + 境界名 + 等级区间 + 进入门槛 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingStart="16dp"
+    android:paddingTop="9dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="9dp">
+
+    <View
+        android:id="@+id/v_dot"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:background="@drawable/bg_level_dot" />
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_stage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/c_text_main"
+        android:textSize="13sp"
+        tools:text="居士" />
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_range"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_weight="1"
+        android:textColor="@color/c_text_second"
+        android:textSize="11sp"
+        tools:text="lv10 - lv18" />
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_need"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/c_text_second"
+        android:textSize="11sp"
+        tools:text="64 修行值" />
+</LinearLayout>

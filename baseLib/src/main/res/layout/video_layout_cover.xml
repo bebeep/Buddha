@@ -23,7 +23,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:background="#000000">
+        android:background="@color/black">
 
         <ImageView
             android:id="@+id/thumbImage"
@@ -38,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_alignParentBottom="true"
-        android:background="#99000000"
+        android:background="@color/color_bla_60"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:visibility="invisible">
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="00:00"
-            android:textColor="#ffffff" />
+            android:textColor="@color/white" />
 
         <SeekBar
             android:id="@+id/progress"
@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:text="00:00"
-            android:textColor="#ffffff" />
+            android:textColor="@color/white" />
 
         <ImageView
             android:id="@+id/fullscreen"
@@ -141,7 +141,7 @@
         android:id="@+id/btn_start"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@mipmap/icon_play"
+        android:src="@drawable/icon_play"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_gravity="center_vertical" />

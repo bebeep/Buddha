@@ -9,6 +9,8 @@ import com.fingertip.baselib.top.TopDialog
 import com.fingertip.baselib.view.MyTextView
 import com.fingertip.uilib.R
 import com.fingertip.uilib.databinding.DialogActionSheetBinding
+import com.fingertip.baselib.top.TopApplication
+import com.fingertip.baselib.R as BaseR
 
 /**
  * 通用底部操作菜单
@@ -84,6 +86,6 @@ class ActionSheetDialog(
 
     companion object {
         /** 与举报弹窗里的危险色保持同一支红 */
-        private val DANGER_COLOR = 0xFFB4453B.toInt()
+        private val DANGER_COLOR = TopApplication.instance.getColor(BaseR.color.c_danger)
     }
 }

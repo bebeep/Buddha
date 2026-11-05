@@ -14,6 +14,8 @@ import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.DeedListAdapter
 import com.fingertip.uilib.databinding.FragmentDeedListBinding
 import com.fingertip.uilib.viewmodel.GoodDeedVM
+import com.fingertip.baselib.top.TopApplication
+import com.fingertip.baselib.R as BaseR
 
 /**
  * 行善主页，对应原型「行善-列表」：
@@ -98,7 +100,7 @@ class GoodDeedListFragment : TopPmFragment<GoodDeedVM>() {
             tv.setBackgroundResource(
                 if (selected) R.drawable.bg_praying_cover_selected else R.drawable.bg_praying_cover_normal
             )
-            tv.setTextColor(if (selected) Color.parseColor("#C87A2B") else Color.parseColor("#8A6B3A"))
+            tv.setTextColor(if (selected) TopApplication.instance.getColor(BaseR.color.c_tag_orange) else TopApplication.instance.getColor(BaseR.color.c_tag_brown))
         }
     }
 

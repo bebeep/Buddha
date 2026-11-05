@@ -58,15 +58,18 @@ class WorshipVM : TopVMImp() {
     /**
      * 初始化佛像列表，并恢复上次选中的佛像。
      * 恢复优先级：本地 SP 记录（含登录时从服务端同步来的值）> 第一尊。
-     * globalParam 里已有列表就直接用（启动时下发，游客也能看），
-     * 为空（极少，globalParam 拉取失败）再调接口兜底。
+     * globalParam 里已有列表就先渲染首屏（启动时下发，游客也能看）；
+     * 但 globalParam 只有静态配置——供佛状态/香烛贡品档次/灯具素材这些
+     * 按账号的数据只有 getBuddhaConfig 接口才有，所以登录态必须再调一次
+     * 接口覆盖（未登录接口也无数据，globalParam 为空时才作为兜底去调）。
      */
     fun initBuddhaList() {
         val fromParam = GlobalConfig.globalParam?.buddhaConfig.orEmpty()
         if (fromParam.isNotEmpty()) {
             buddhaList = fromParam
             restoreLast(fromParam)
-        } else {
+        }
+        if (GlobalConfig.session.isNotBlank() || fromParam.isEmpty()) {
             getBuddhaConfig()
         }
     }

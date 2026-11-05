@@ -2,7 +2,8 @@
 <com.fingertip.baselib.view.FullTopConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/c_bg_page">
 
 
     <com.fingertip.baselib.view.tablayout.ScaleTabLayout
@@ -12,15 +13,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tl_indicator_color="#C4A265"
+        app:tl_indicator_color="@color/c_gold"
         app:tl_indicator_corner_radius="16dp"
         app:tl_indicator_height="4dp"
         app:tl_indicator_horizontal="CENTER"
         app:tl_indicator_width="15dp"
         app:tl_tab_padding="10dp"
         app:tl_textBold="BOTH"
-        app:tl_textSelectColor="#C4A265"
-        app:tl_textUnselectColor="#AAAAAA" />
+        app:tl_textSelectColor="@color/c_gold"
+        app:tl_textUnselectColor="@color/c_text_second" />
 
 
 
@@ -46,7 +47,7 @@
         android:layout_width="match_parent"
         app:layout_constraintTop_toBottomOf="@+id/tab_layout"
         android:layout_marginHorizontal="16dp"
-        android:background="#2F2518"
+        android:background="@color/c_bg_card"
         android:layout_height="1dp"/>
 
 

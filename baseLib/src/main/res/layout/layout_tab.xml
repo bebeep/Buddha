@@ -20,16 +20,16 @@
         android:layout_width="wrap_content"
         android:layout_height="12dp"
         android:gravity="center"
-        android:textColor="#ffffff"
+        android:textColor="@color/white"
         android:textSize="8sp"
         android:text="20"
         android:visibility="gone"
         android:minWidth="12dp"
         android:paddingHorizontal="4dp"
         android:includeFontPadding="false"
-        mv:mv_backgroundColor="#FD481F"
+        mv:mv_backgroundColor="@color/c_red_badge"
         mv:mv_isRadiusHalfHeight="true"
-        mv:mv_strokeColor="#ffffff"
+        mv:mv_strokeColor="@color/white"
         mv:mv_strokeWidth="1dp"/>
 
 </RelativeLayout>

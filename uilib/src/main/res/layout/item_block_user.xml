@@ -16,7 +16,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:src="@mipmap/icon_default_head"
-        app:civ_border_color="#33C4A265"
+        app:civ_border_color="@color/c_gold_20"
         app:civ_border_width="1dp" />
 
     <LinearLayout
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="#EDE3D2"
+            android:textColor="@color/c_text_main"
             android:textSize="13.5sp"
             tools:text="某某佛友" />
 
@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:textColor="#8C8069"
+            android:textColor="@color/c_text_second"
             android:textSize="10.5sp"
             tools:text="2026-11-02 14:20 拉黑" />
 
@@ -57,7 +57,7 @@
         android:paddingStart="14dp"
         android:paddingEnd="14dp"
         android:text="@string/block_list_unblock"
-        android:textColor="#C4A265"
+        android:textColor="@color/c_gold"
         android:textSize="12sp" />
 
 </LinearLayout>

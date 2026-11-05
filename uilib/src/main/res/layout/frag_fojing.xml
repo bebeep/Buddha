@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/c_bg_page"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.flyco.tablayout.SlidingTabLayout
@@ -18,10 +19,10 @@
         app:tl_indicator_margin_top="0dp"
         app:tl_indicator_margin_bottom="0dp"
         app:tl_textBold="SELECT"
-        app:tl_indicator_color="#FFF4E5"
+        app:tl_indicator_color="@color/c_gold"
         app:tl_indicator_corner_radius="12.5dp"
-        app:tl_textSelectColor="#C4A265"
-        app:tl_textUnselectColor="#AAAAAA"
+        app:tl_textSelectColor="@color/c_gold"
+        app:tl_textUnselectColor="@color/c_text_second"
         app:tl_indicator_style="BLOCK"
         />
 

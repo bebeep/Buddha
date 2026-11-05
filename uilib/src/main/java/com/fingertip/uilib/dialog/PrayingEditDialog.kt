@@ -10,6 +10,8 @@ import com.fingertip.baselib.top.TopDialogBottomSheetDialog
 import com.fingertip.baselib.util.ToastUtil
 import com.fingertip.uilib.R
 import com.fingertip.uilib.databinding.DialogPrayingEditBinding
+import com.fingertip.baselib.top.TopApplication
+import com.fingertip.baselib.R as BaseR
 
 /**
  * 编辑祈福弹窗，对应原型「祈福-编辑祈福」
@@ -84,7 +86,7 @@ class PrayingEditDialog(context: Context) : TopDialogBottomSheetDialog(context) 
             val tv = TextView(context)
             tv.text = tag
             tv.textSize = 12f
-            tv.setTextColor(Color.parseColor("#C4A265"))
+            tv.setTextColor(TopApplication.instance.getColor(BaseR.color.c_gold))
             tv.setBackgroundResource(R.drawable.bg_wish_tag)
             tv.setPadding(30, 12, 30, 12)
             tv.gravity = Gravity.CENTER

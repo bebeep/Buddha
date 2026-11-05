@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    拜佛 tab：佛龛场景 + 供灯状态 + 装扮入口
+    拜佛 tab：纯场景页。
 
-    场景层为 2D 分层结构：佛像本体（双 ImageView 交叉淡入 + 平移切换）
-    + 动态场景层（预留 Lottie：香烟/光晕/火焰，素材到位后挂进来）。
-    不再用 3D 渲染（eq-renderer 已移除依赖）——产品形态是固定机位看佛像，
-    无旋转/缩放交互，3D 只剩下崩溃风险和几十 MB 的模型下载。
-    UI 层是叠在场景上的两块：顶部标题、底部「灯状态卡 + 三格装扮」。
+    场景为 2D 全分层结构（分层在轮播单页内部 item_buddha_page.xml）：
+    佛龛 + 佛龛动画 + 佛光 + 佛像 + 净瓶 + 贡品 + 香烛 + 佛灯，随轮播一体滑动。
+    原底部「点一盏灯卡片 + 灯油/灯具/佛龛三格」已移除——与场景内佛灯/佛龛点击重复：
+    点场景里的佛龛/佛灯直接进装扮（已拥有→我的装扮，未拥有→商城分类），
+    灯没油或将熄时点佛灯直达灯油分类续燃。
 -->
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#251C10">
+    android:background="@color/c_bg_page">
 
     <!-- 佛龛轮播区域（全屏）：ViewPager2 手指跟手滑动，无限循环 -->
     <androidx.viewpager2.widget.ViewPager2
@@ -21,20 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <FrameLayout
-        android:id="@+id/fl_buddha_scene"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <!-- 动态场景层：Lottie 素材（香烟/光晕/火焰）到位后挂 LottieAnimationView。
-             纯容器不消费点击，触摸穿透给底下的 ViewPager2 -->
-        <FrameLayout
-            android:id="@+id/fl_scene_anim"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </FrameLayout>
-
-    <!-- 顶部导航栏（悬浮在3D场景上方） -->
+    <!-- 顶部导航栏（悬浮在场景上方） -->
     <com.fingertip.baselib.view.FullTopConstraintLayout
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
@@ -47,7 +34,7 @@
             android:layout_height="wrap_content"
             android:letterSpacing="0.12"
             android:text="@string/worship_title"
-            android:textColor="#EDE3D2"
+            android:textColor="@color/c_text_main"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -79,7 +66,7 @@
                 android:id="@+id/tv_buddha_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#EDE3D2"
+                android:textColor="@color/c_text_main"
                 android:textSize="20sp"
                 app:zdyFont="bold" />
 
@@ -102,184 +89,8 @@
             android:paddingTop="7dp"
             android:paddingBottom="7dp"
             android:text="@string/worship_offer_action"
-            android:textColor="#C4A265"
+            android:textColor="@color/c_gold"
             android:textSize="12sp" />
-
-    </LinearLayout>
-
-    <!-- ============ 底部面板：灯状态 + 装扮 ============ -->
-    <!-- 佛像切换不再摆选择条：左右滑佛龛区域循环切换 -->
-    <LinearLayout
-        android:id="@+id/ll_panel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="14dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <!-- 灯状态卡：三态由代码切换（无灯 / 燃烧中 / 将熄） -->
-        <LinearLayout
-            android:id="@+id/ll_lamp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_home_card_b"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="15dp">
-
-            <View
-                android:id="@+id/v_lamp_dot"
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_marginEnd="12dp"
-                android:background="@drawable/bg_home_dot_gold"
-                android:visibility="gone" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <com.fingertip.baselib.view.MyTextView
-                    android:id="@+id/tv_lamp_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/home_lamp_none"
-                    android:textColor="#EDE3D2"
-                    android:textSize="14sp" />
-
-                <com.fingertip.baselib.view.MyTextView
-                    android:id="@+id/tv_lamp_desc"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/home_lamp_none_desc"
-                    android:textColor="#8C8069"
-                    android:textSize="10.5sp" />
-
-            </LinearLayout>
-
-            <com.fingertip.baselib.view.MyTextView
-                android:id="@+id/tv_lamp_action"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:background="@drawable/bg_home_pill_outline"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:paddingTop="7dp"
-                android:paddingBottom="7dp"
-                android:text="@string/worship_light_lamp"
-                android:textColor="#C4A265"
-                android:textSize="12sp" />
-
-        </LinearLayout>
-
-        <!-- 装扮三格：直挂商城对应分类 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:id="@+id/ll_dress_lamp"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_home_inner"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingTop="12dp"
-                android:paddingBottom="12dp">
-
-                <com.fingertip.baselib.view.MyTextView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/bg_home_circle"
-                    android:gravity="center"
-                    android:text="灯"
-                    android:textColor="#C4A265"
-                    android:textSize="12sp" />
-
-                <com.fingertip.baselib.view.MyTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:text="@string/shop_cat_lamp"
-                    android:textColor="#B5A78F"
-                    android:textSize="11sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_dress_shrine"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_home_inner"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingTop="12dp"
-                android:paddingBottom="12dp">
-
-                <com.fingertip.baselib.view.MyTextView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/bg_home_circle"
-                    android:gravity="center"
-                    android:text="龛"
-                    android:textColor="#C4A265"
-                    android:textSize="12sp" />
-
-                <com.fingertip.baselib.view.MyTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:text="@string/shop_cat_shrine"
-                    android:textColor="#B5A78F"
-                    android:textSize="11sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_dress_oil"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_home_inner"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingTop="12dp"
-                android:paddingBottom="12dp">
-
-                <com.fingertip.baselib.view.MyTextView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/bg_home_circle"
-                    android:gravity="center"
-                    android:text="油"
-                    android:textColor="#C4A265"
-                    android:textSize="12sp" />
-
-                <com.fingertip.baselib.view.MyTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:text="@string/shop_cat_oil"
-                    android:textColor="#B5A78F"
-                    android:textSize="11sp" />
-
-            </LinearLayout>
-
-        </LinearLayout>
 
     </LinearLayout>
 

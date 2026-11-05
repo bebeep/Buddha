@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:lineSpacingExtra="8dp"
-            android:textColor="#B5A78F"
+            android:textColor="@color/c_text_third"
             android:textSize="20sp"
             app:zdyFont="bold" />
 
@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
-            android:textColor="#C4A265"
+            android:textColor="@color/c_gold"
             android:textSize="12sp" />
 
         <TextView
@@ -46,7 +46,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
-            android:textColor="#B5A78F"
+            android:textColor="@color/c_text_third"
             android:textSize="11sp" />
     </LinearLayout>
 
@@ -58,7 +58,7 @@
         android:background="@drawable/bg_sign_button"
         android:gravity="center"
         android:text="祝福"
-        android:textColor="@color/white"
+        android:textColor="@color/c_text_on_gold"
         android:textSize="16sp"
         android:textStyle="bold" />
 
@@ -68,6 +68,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:text="祝福一次可获得5点修行值"
-        android:textColor="#C4A265"
+        android:textColor="@color/c_gold"
         android:textSize="11sp" />
 </LinearLayout>

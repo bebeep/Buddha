@@ -4,8 +4,10 @@ import android.content.Context
 import android.view.View
 import com.fingertip.baselib.bean.HomeSummaryData
 import com.fingertip.baselib.bean.LampStatusData
+import com.fingertip.baselib.bean.MomentEntity
 import com.fingertip.baselib.bean.TodayBuddhaInfo
 import com.fingertip.baselib.top.TopRcAdapter
+import com.fingertip.uilib.utils.DailyQuotes
 import com.fingertip.uilib.R
 import com.fingertip.uilib.databinding.ItemHomeBuddhaCardBinding
 import com.fingertip.uilib.databinding.ItemHomeGameBinding
@@ -17,6 +19,8 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
+import com.fingertip.baselib.top.TopApplication
+import com.fingertip.baselib.R as BaseR
 
 /**
  * 首页六区块适配器，一个 RecyclerView 多 viewType。
@@ -84,11 +88,17 @@ class HomeSectionAdapter(context: Context) : TopRcAdapter<HomeSection, TopRcAdap
     //金刚区：0 佛经 1 许愿 2 寺庙 3 念佛
     var onKingKongClick: ((index: Int) -> Unit)? = null
 
-    //游戏卡：0 禅院 1 放生 2 禅值商店
+    //游戏卡：0 禅院 1 放生 2 功德币商店
     var onGameClick: ((index: Int) -> Unit)? = null
 
     //佛友圈精选「查看全部」
     var onMomentMoreClick: (() -> Unit)? = null
+
+    //佛友圈精选：单张卡点击，进动态详情
+    var onMomentClick: ((MomentEntity) -> Unit)? = null
+
+    //佛友圈精选：禅语日签卡点击，弹本地日签详情
+    var onQuoteClick: ((DailyQuotes.Quote) -> Unit)? = null
 
     override fun getItemViewType(position: Int): Int = get(position)?.type ?: TYPE_SKELETON
 
@@ -198,7 +208,7 @@ class HomeSectionAdapter(context: Context) : TopRcAdapter<HomeSection, TopRcAdap
         container.setBackgroundResource(if (done) R.drawable.bg_home_inner else R.drawable.bg_home_dashed)
         state.setText(if (done) R.string.home_slot_done else R.string.home_slot_go)
         state.setTextColor(
-            if (done) 0xFFE3C88B.toInt() else 0xFF6E6455.toInt()
+            if (done) TopApplication.instance.getColor(BaseR.color.c_gold_light) else TopApplication.instance.getColor(BaseR.color.c_text_hint)
         )
         container.setOnClickListener { onPracticeSlotClick?.invoke(slot) }
     }
@@ -216,7 +226,7 @@ class HomeSectionAdapter(context: Context) : TopRcAdapter<HomeSection, TopRcAdap
                 binding.llLamp.setBackgroundResource(R.drawable.bg_home_dashed)
                 binding.ivLampIcon.alpha = 0.45f
                 binding.tvLampTitle.setText(R.string.home_lamp_none)
-                binding.tvLampTitle.setTextColor(0xFFEDE3D2.toInt())
+                binding.tvLampTitle.setTextColor(TopApplication.instance.getColor(BaseR.color.c_text_main))
                 binding.tvLampDesc.setText(R.string.home_lamp_none_desc)
                 binding.tvLampAction.visibility = View.GONE
             }
@@ -225,7 +235,7 @@ class HomeSectionAdapter(context: Context) : TopRcAdapter<HomeSection, TopRcAdap
                 binding.llLamp.setBackgroundResource(R.drawable.bg_home_lamp_warn)
                 binding.ivLampIcon.alpha = 1f
                 binding.tvLampTitle.setText(R.string.home_lamp_dying)
-                binding.tvLampTitle.setTextColor(0xFFE3C88B.toInt())
+                binding.tvLampTitle.setTextColor(TopApplication.instance.getColor(BaseR.color.c_gold_light))
                 binding.tvLampDesc.setText(R.string.home_lamp_dying_desc)
                 binding.tvLampAction.visibility = View.VISIBLE
                 binding.tvLampAction.setText(R.string.home_lamp_relight)
@@ -235,7 +245,7 @@ class HomeSectionAdapter(context: Context) : TopRcAdapter<HomeSection, TopRcAdap
                 binding.llLamp.setBackgroundResource(R.drawable.bg_home_card_a)
                 binding.ivLampIcon.alpha = 1f
                 binding.tvLampTitle.setText(R.string.home_lamp_burning)
-                binding.tvLampTitle.setTextColor(0xFFEDE3D2.toInt())
+                binding.tvLampTitle.setTextColor(TopApplication.instance.getColor(BaseR.color.c_text_main))
                 binding.tvLampDesc.text = context.getString(R.string.home_lamp_remain, lamp.remainHours)
                 binding.tvLampAction.visibility = View.GONE
             }
@@ -256,12 +266,12 @@ class HomeSectionAdapter(context: Context) : TopRcAdapter<HomeSection, TopRcAdap
     }
 
     /**
-     * 区块 5：游戏卡。禅值余额来自聚合接口，三张卡片的置灰/高亮是布局写死的
+     * 区块 5：游戏卡。功德币余额来自聚合接口（全站唯一货币），三张卡片的置灰/高亮是布局写死的
      */
     private fun bindGame(holder: TopRcAdapter.TopRcViewHolder) {
         val binding = holder.getBinding<ItemHomeGameBinding>()
-        val merit = summary?.meritBalance
-        binding.tvMerit.text = if (merit == null) "" else context.getString(R.string.home_game_merit, merit)
+        val coin = summary?.coin
+        binding.tvMerit.text = if (coin == null) "" else context.getString(R.string.home_game_merit, coin)
 
         binding.llGame1.setOnClickListener { onGameClick?.invoke(0) }
         binding.llGame2.setOnClickListener { onGameClick?.invoke(1) }
@@ -273,7 +283,26 @@ class HomeSectionAdapter(context: Context) : TopRcAdapter<HomeSection, TopRcAdap
      */
     private fun bindMoment(holder: TopRcAdapter.TopRcViewHolder) {
         val binding = holder.getBinding<ItemHomeMomentBinding>()
-        binding.root.setOnClickListener { onMomentMoreClick?.invoke() }
+        // 卡片适配器跟着 holder 走：RecyclerView 复用 holder 时不能每次重建，
+        // 否则横滑位置每次滚回首页都会跳回第一张
+        val cardAdapter = (binding.rvMomentCards.adapter as? HomeMomentCardAdapter)
+            ?: HomeMomentCardAdapter().also {
+                it.onItemClick = { card ->
+                    val entity = card.entity
+                    val quote = card.quote
+                    if (entity != null) {
+                        onMomentClick?.invoke(entity)
+                    } else if (quote != null) {
+                        // 禅语兜底卡没有动态 id，弹本地日签详情，别把用户甩去列表
+                        onQuoteClick?.invoke(quote)
+                    } else {
+                        onMomentMoreClick?.invoke()
+                    }
+                }
+                binding.rvMomentCards.adapter = it
+            }
+        cardAdapter.submit(cardAdapter.build(summary?.featuredMoments))
+
         binding.tvMomentMore.setOnClickListener { onMomentMoreClick?.invoke() }
     }
 }

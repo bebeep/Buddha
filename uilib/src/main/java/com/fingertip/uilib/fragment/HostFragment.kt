@@ -12,8 +12,10 @@ import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.HomeSection
 import com.fingertip.uilib.adapter.HomeSectionAdapter
 import com.fingertip.uilib.databinding.FragmentHomeBinding
+import com.fingertip.uilib.dialog.QuoteCardDialog
 import com.fingertip.uilib.fragment.book.BuddhaTextsFragment
 import com.fingertip.uilib.fragment.game.FangShengFragment
+import com.fingertip.uilib.fragment.moment.MomentDetailsFragment
 import com.fingertip.uilib.fragment.practice.EarlyPracticeFragment
 import com.fingertip.uilib.fragment.practice.MeditationFragment
 import com.fingertip.uilib.fragment.temple.TempleListFragment
@@ -33,8 +35,8 @@ import java.util.Locale
  *   2 今日修持（开始早课 + 诵经/抄经/签到三格）
  *   3 供灯状态条（三态，点击切拜佛 tab）
  *   4 金刚区（佛经/许愿/寺庙/念佛）
- *   5 游戏卡（禅院/放生/禅值商店）
- *   6 佛友圈精选（占位，点击切佛友圈 tab）
+ *   5 游戏卡（禅院/放生/功德币商店）
+ *   6 佛友圈精选（官方开示/社区热帖进详情，禅语日签弹日签卡）
  *
  * 排序逻辑沿用方案 10.2：日活锚（1-2）→ 转化（3）→ 导航（4）→ 时长（5-6），
  * 顺序和开关都读服务端 blocks，拿不到就用默认六区块。
@@ -111,11 +113,21 @@ class HostFragment : TopVMFragment<HomeVM>() {
                     0 -> ToastUtil.showMessage(getString(R.string.home_game_coming))
                     //放生是现成的 H5 游戏
                     1 -> openPage(FangShengFragment())
-                    //禅值商店要等商城上线
+                    //功德币商店要等商城上线
                     else -> ToastUtil.showMessage(getString(R.string.home_coming_soon))
                 }
             }
             onMomentMoreClick = { switchTab(TAB_MOMENT) }
+            //精选卡：有真实动态就进详情；禅语兜底卡没有 momentId，弹日签详情
+            onMomentClick = { entity ->
+                openPage(MomentDetailsFragment.newInstance(entity.momentId, entity))
+            }
+            onQuoteClick = { quote ->
+                QuoteCardDialog(requireContext()).apply {
+                    render(quote)
+                    onGoMoment = { switchTab(TAB_MOMENT) }
+                }.show()
+            }
         }
 
         binding.rvContent.layoutManager = LinearLayoutManager(requireContext())

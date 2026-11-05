@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+    首页精选卡：148dp 定宽，横滑第 2 张露出一截，暗示可滑。
+    三类来源共用这一张卡：官方开示 / 社区热帖 / 禅语日签，靠顶部标签区分，
+    这样用户一眼能看出"这句是官方说的"还是"佛友发的"。
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="148dp"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="9dp"
+    android:background="@drawable/bg_home_inner"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:id="@+id/v_source_dot"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:background="@drawable/bg_moment_dot_gold" />
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_source"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/c_gold"
+            android:textSize="10sp"
+            tools:text="官方开示" />
+
+    </LinearLayout>
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:lineSpacingExtra="2.5dp"
+        android:maxLines="3"
+        android:minHeight="52dp"
+        android:textColor="@color/c_text_main"
+        android:textSize="11.5sp"
+        tools:text="四大苦空，五阴无我。" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_author"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/c_text_second"
+            android:textSize="9.5sp"
+            tools:text="菩提讲堂" />
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/c_text_second"
+            android:textSize="9.5sp"
+            tools:text="1.2k" />
+
+    </LinearLayout>
+
+</LinearLayout>

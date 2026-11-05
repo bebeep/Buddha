@@ -66,11 +66,11 @@ class MainFragment : TopVMFragment<MainVM>(), BottomMenu.MenuSelectCallback {
         binding.bottomMenu.also {
             it.menuSelectCallback = this
             // 4 个 tab 图标兜底（tabBarConfig 未下发时使用），顺序同 fragmentList
-            it.addMenuItem(BottomMenuItem(R.mipmap.icon_menu, true))
-            it.addMenuItem(BottomMenuItem(R.mipmap.icon_menu))
+            it.addMenuItem(BottomMenuItem(com.fingertip.baselib.R.drawable.icon_tab_host_u, true))
+            it.addMenuItem(BottomMenuItem(com.fingertip.baselib.R.drawable.icon_tab_baifo_u))
             // 佛友圈带未读红点（原第 4 位消息角标平移到第 3 位）
-            it.addMenuItem(BottomMenuItem(R.mipmap.icon_menu, hasMsg = true))
-            it.addMenuItem(BottomMenuItem(R.mipmap.icon_menu))
+            it.addMenuItem(BottomMenuItem(com.fingertip.baselib.R.drawable.icon_tab_post_u, hasMsg = true))
+            it.addMenuItem(BottomMenuItem(com.fingertip.baselib.R.drawable.icon_tab_me_u))
         }
 
 

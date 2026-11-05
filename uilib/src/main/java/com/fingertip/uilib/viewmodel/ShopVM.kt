@@ -9,13 +9,13 @@ import com.fingertip.baselib.viewmodel.RequestResult
 import com.fingertip.baselib.viewmodel.TopVMImp
 
 /**
- * 装扮商城。对应服务端 dress 一组接口 + merit/getBalance。
+ * 装扮商城。对应服务端 dress 一组接口。
  *
- * 购买链路拆成两个方法，中间那步「拉起商店支付」由页面调 IapBridge 完成
- * （支付需要 Activity，不放进 VM）：
- *   createOrder(dressId) → 页面拉起支付 → verify(orderNo, payOrderId)
+ * 购买统一走功德币（全站唯一货币）：buyByCoin 一步完成「扣币 + 发货」，
+ * 成功返回扣费后的余额，页面直接回写 GlobalConfig.userData.coin 即可。
+ * 不再有「建单 → 商店支付 → 验单」三步——那是 IAP 时代的链路。
  *
- * 所有写操作（建单/验单/佩戴）都带 showLoading，用户点了要有反馈；
+ * 所有写操作都带 showLoading，用户点了要有反馈；
  * 错误不弹 toast，由页面决定怎么提示（避免 VM 弹一次、页面再弹一次）。
  */
 class ShopVM : TopVMImp() {
@@ -26,11 +26,8 @@ class ShopVM : TopVMImp() {
     //我持有的装扮 + 佩戴状态
     val myResult = MutableLiveData<RequestResult<MyDressData>>()
 
-    //建单成功，data 是服务端返回的内部订单号
-    val orderResult = MutableLiveData<RequestResult<String>>()
-
-    //验单发货结果
-    val verifyResult = MutableLiveData<RequestResult<String>>()
+    //功德币购买结果：data 是扣费后的功德币余额
+    val buyResult = MutableLiveData<RequestResult<String>>()
 
     //佩戴/摘下结果，data 是服务端原样返回的字符串
     val wearResult = MutableLiveData<RequestResult<String>>()
@@ -72,30 +69,16 @@ class ShopVM : TopVMImp() {
     }
 
     /**
-     * 建内部订单。成功后就该立刻拉起商店支付。
+     * 功德币购买。服务端扣币并发货，返回扣费后的余额。
+     * @param buddhaId 买灯油时目标佛像 id，其它品类传 0
      */
-    fun createOrder(dressId: Int, buddhaId: Int = 0) {
+    fun buyByCoin(dressId: Int, buddhaId: Int = 0) {
         call({
-            NetManager.getApi().createDressOrder(dressId = dressId, buddhaId = buddhaId)
+            NetManager.getApi().buyDressByCoin(dressId = dressId, buddhaId = buddhaId)
         }, {
-            orderResult.value = successResult(it)
+            buyResult.value = successResult(it)
         }, {
-            orderResult.value = failResult(it.errorCode, it.errorMsg)
-        }, showLoading = true, toastError = false)
-    }
-
-    /**
-     * 验单并发货。服务端幂等：重复调用只会返回成功，不会重复发货。
-     */
-    fun verify(orderNo: String, payOrderId: String) {
-        call({
-            NetManager.getApi().verifyIapOrder(
-                body = RequestBodyFactory.iapVerifyBody(orderNo, com.fingertip.baselib.net.NetProperty.PLATFORM, payOrderId)
-            )
-        }, {
-            verifyResult.value = successResult(it)
-        }, {
-            verifyResult.value = failResult(it.errorCode, it.errorMsg)
+            buyResult.value = failResult(it.errorCode, it.errorMsg)
         }, showLoading = true, toastError = false)
     }
 

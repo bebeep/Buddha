@@ -15,7 +15,7 @@
         android:layout_weight="1"
         android:ellipsize="end"
         android:singleLine="true"
-        android:textColor="#B5A78F"
+        android:textColor="@color/c_text_third"
         android:textSize="15sp" />
 
     <com.fingertip.baselib.view.MyTextView
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:textColor="#C4B7A4"
+        android:textColor="@color/c_ffc4b7a4"
         android:textSize="12sp" />
 
 </LinearLayout>

@@ -33,12 +33,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textColor="#ffffff"
+        android:textColor="@color/white"
         android:textSize="11.5sp"
         android:visibility="gone"
-        mv:mv_backgroundColor="#FD481F"
+        mv:mv_backgroundColor="@color/c_red_badge"
         mv:mv_isRadiusHalfHeight="true"
-        mv:mv_strokeColor="#ffffff"
+        mv:mv_strokeColor="@color/white"
         mv:mv_strokeWidth="1dp"/>
 
 </RelativeLayout>

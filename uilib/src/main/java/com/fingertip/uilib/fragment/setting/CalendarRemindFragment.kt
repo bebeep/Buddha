@@ -15,6 +15,8 @@ import com.fingertip.uilib.dialog.RemindEditDialog
 import com.fingertip.uilib.push.PushManager
 import com.fingertip.uilib.viewmodel.RemindVM
 import java.util.Locale
+import com.fingertip.baselib.top.TopApplication
+import com.fingertip.baselib.R as BaseR
 
 /**
  * 佛历订阅提醒（我的 → 佛历订阅提醒）
@@ -155,7 +157,7 @@ class CalendarRemindFragment : TopPmFragment<RemindVM>() {
                 if (rule.enabled()) R.string.remind_enabled else R.string.remind_disabled
             )
             item.tvSwitch.setTextColor(
-                if (rule.enabled()) 0xFFC4A265.toInt() else 0xFF8C8069.toInt()
+                if (rule.enabled()) TopApplication.instance.getColor(BaseR.color.c_gold) else TopApplication.instance.getColor(BaseR.color.c_text_second)
             )
             item.tvSwitch.setOnClickListener {
                 mViewModel.switchRemind(rule, !rule.enabled())

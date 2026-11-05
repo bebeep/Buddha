@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2F2518">
+    android:background="@color/c_bg_card">
 
     <com.fingertip.baselib.view.FullTopConstraintLayout
         android:id="@+id/cl_title"
@@ -20,7 +20,7 @@
             android:layout_width="38dp"
             android:layout_height="38dp"
             android:layout_marginStart="8dp"
-            android:src="@mipmap/icon_back_black"
+            android:src="@drawable/icon_back_black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="行善"
-            android:textColor="#EDE3D2"
+            android:textColor="@color/c_text_main"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +44,7 @@
             android:layout_marginEnd="14dp"
             android:padding="4dp"
             android:text="我的行善"
-            android:textColor="#C4A265"
+            android:textColor="@color/c_gold"
             android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="暂无善行，发布一条求助或静待善缘"
-        android:textColor="#C4A265"
+        android:textColor="@color/c_gold"
         android:textSize="14sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -104,7 +104,7 @@
         android:background="@drawable/bg_sign_button"
         android:gravity="center"
         android:text="发布"
-        android:textColor="@color/white"
+        android:textColor="@color/c_text_on_gold"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

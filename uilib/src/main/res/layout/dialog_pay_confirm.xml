@@ -14,7 +14,7 @@
         style="@style/constraint_center"
         android:layout_width="288dp"
         android:layout_height="wrap_content"
-        app:gdBgColor="#3D301E"
+        app:gdBgColor="@color/c_line"
         app:gdRadius="14dp">
 
         <com.fingertip.baselib.view.MyTextView
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
             android:text="@string/shop_pay_title"
-            android:textColor="#EDE3D2"
+            android:textColor="@color/c_text_main"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +38,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
             android:gravity="center"
-            android:textColor="#EDE3D2"
+            android:textColor="@color/c_text_main"
             android:textSize="14sp"
             app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center"
-            android:textColor="#C4A265"
+            android:textColor="@color/c_gold"
             android:textSize="20sp"
             app:layout_constraintTop_toBottomOf="@+id/tv_item"
             app:zdyFont="bold" />
@@ -62,7 +62,7 @@
             android:layout_marginEnd="24dp"
             android:gravity="center"
             android:lineSpacingExtra="2dp"
-            android:textColor="#8C8069"
+            android:textColor="@color/c_text_second"
             android:textSize="10.5sp"
             app:layout_constraintTop_toBottomOf="@+id/tv_price" />
 
@@ -86,9 +86,9 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/shop_pay_cancel"
-                android:textColor="#B5A78F"
+                android:textColor="@color/c_text_third"
                 android:textSize="14sp"
-                app:gdBgColor="#342919"
+                app:gdBgColor="@color/c_stroke_soft"
                 app:gdRadius="22dp"
                 app:zdyFont="bold" />
 
@@ -100,9 +100,9 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/shop_pay_confirm"
-                android:textColor="#14100C"
+                android:textColor="@color/c_text_on_gold"
                 android:textSize="14sp"
-                app:gdBgColor="#C4A265"
+                app:gdBgColor="@color/c_gold"
                 app:gdRadius="22dp"
                 app:zdyFont="bold" />
         </LinearLayout>

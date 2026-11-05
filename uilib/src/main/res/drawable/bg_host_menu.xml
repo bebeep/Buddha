@@ -7,14 +7,14 @@
         <shape
             android:shape="rectangle">
             <corners android:radius="28dp"/>
-            <solid android:color="#2F2518"/>
+            <solid android:color="@color/c_bg_card"/>
         </shape>
     </item>
     <item android:state_pressed="true">
         <shape
             android:shape="rectangle">
             <corners android:radius="28dp"/>
-            <solid android:color="#3D301E"/>
+            <solid android:color="@color/c_line"/>
         </shape>
     </item>
 </selector>

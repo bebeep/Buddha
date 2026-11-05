@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    修行值
+    2026-11 矢量图标改造：替换同名 mipmap 位图（24dp 线性风格，暗金主题）
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp"
+    android:viewportWidth="24" android:viewportHeight="24">
+    <path android:pathData="M13.6,2.8 L6.4,13.4 H10.8 L9.9,21.2 L17.6,10.2 H13.1 Z" android:fillColor="@color/c_gold"/>
+</vector>

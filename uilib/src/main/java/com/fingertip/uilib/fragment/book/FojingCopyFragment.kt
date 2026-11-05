@@ -4,7 +4,6 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import androidx.recyclerview.widget.GridLayoutManager
 import com.fingertip.baselib.bean.BookChapter
 import com.fingertip.baselib.bean.BookChapterItem
 import com.fingertip.baselib.bean.BookCopySetting
@@ -13,12 +12,13 @@ import com.fingertip.baselib.top.TopVMFragment
 import com.fingertip.baselib.util.ToastUtil
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.CopyCell
-import com.fingertip.uilib.adapter.FojingCopyAdapter
 import com.fingertip.uilib.databinding.FragFojingCopyBinding
 import com.fingertip.uilib.dialog.FojingCopySettingDialog
 import com.fingertip.uilib.viewmodel.CopyVM
 import com.lzlz.toplib.extention.onGlobalLayout
 import com.lzlz.toplib.extention.toPx
+import com.fingertip.baselib.top.TopApplication
+import com.fingertip.baselib.R as BaseR
 
 /**
  * 佛经-抄经
@@ -92,6 +92,9 @@ class FojingCopyFragment : TopVMFragment<CopyVM>() {
     //一屏能放多少格
     private var screenCount = 0
 
+    //棋盘列数
+    private var boardColumn = 0
+
     //目录和进度都到齐才能开始
     private var catalogReady = false
     private var progressReady = false
@@ -112,7 +115,8 @@ class FojingCopyFragment : TopVMFragment<CopyVM>() {
     //显示设置，进页面从服务端拉一次
     private var setting = BookCopySetting()
 
-    private var adapter: FojingCopyAdapter? = null
+    //棋盘布局是否就绪（onGlobalLayout 可能触发多次）
+    private var boardReady = false
 
     override fun initShiTu() {
         bookId = arguments?.getInt(BOOK_ID, 0) ?: 0
@@ -210,16 +214,16 @@ class FojingCopyFragment : TopVMFragment<CopyVM>() {
     }
 
     /**
-     * 按屏幕算一屏能放多少格，格子尺寸沿用原来设计的 40dp × 80dp
+     * 按可用空间算一屏能放多少格（沿用原设计：格 40dp 宽、85dp 高、左右留白 16dp）
      */
     private fun initAdapter() {
         binding.flContent.onGlobalLayout {
-            if (adapter == null) setupGrid()
+            if (!boardReady) setupGrid()
         }
     }
 
     private fun setupGrid() {
-        if (!isAdded || view == null || adapter != null) return
+        if (!isAdded || view == null || boardReady) return
         val flContent = binding.flContent
         if (flContent.height <= 0 || flContent.width <= 0) {
             //尺寸还没出来，下一帧再算
@@ -231,15 +235,11 @@ class FojingCopyFragment : TopVMFragment<CopyVM>() {
         if (row <= 0 || column <= 0) return
         log(value = "fl_content  $row   $column  ")
         screenCount = row * column
+        boardColumn = column
+        boardReady = true
 
-        val created = FojingCopyAdapter(requireContext(), column)
         //长按当前格跳过这个字
-        created.onCellLongClick = {
-            if (it === cells.getOrNull(cursor)) skipCurrent()
-        }
-        adapter = created
-        binding.rvContent.layoutManager = GridLayoutManager(requireContext(), column)
-        binding.rvContent.adapter = created
+        binding.boardContent.onCellLongClick = { skipCurrent() }
         applySetting()
 
         //布局算得晚时正文可能已经到了，补铺一屏
@@ -251,9 +251,10 @@ class FojingCopyFragment : TopVMFragment<CopyVM>() {
      * 显示设置：背景、标题色、格子里的字色字号
      */
     private fun applySetting() {
-        val dark = setting.backgroundColor == 2
+        //深底（1档暗金纸/2档深褐）走亮字白图标，按亮度判断，不再写死档位
+        val dark = !isBgLight(setting.bgColor())
         binding.root.setBackgroundColor(setting.bgColor())
-        binding.tvTitle.setTextColor(if (dark) 0xFFFFFEFA.toInt() else 0xFF2C1900.toInt())
+        binding.tvTitle.setTextColor(if (dark) TopApplication.instance.getColor(BaseR.color.c_text_main) else TopApplication.instance.getColor(BaseR.color.c_ink))
         //深色底上图标要反白，不然看不见
         if (dark) {
             binding.vBack.ivBack.setColorFilter(Color.WHITE)
@@ -262,11 +263,12 @@ class FojingCopyFragment : TopVMFragment<CopyVM>() {
             binding.vBack.ivBack.clearColorFilter()
             binding.ivSetting.clearColorFilter()
         }
-        adapter?.let {
+        binding.boardContent.let {
             it.defaultTextColor = setting.defaultTextColor()
             it.copyTextColor = setting.copyTextColor()
             it.copyTextSize = setting.copyTextSize()
-            it.notifyDataSetChanged()
+            it.defaultTextSize = setting.defaultTextSize()
+            it.refresh()
         }
     }
 
@@ -339,7 +341,7 @@ class FojingCopyFragment : TopVMFragment<CopyVM>() {
             cell.current = start == cursorScreenStart && i == cursor
             screen.add(cell)
         }
-        adapter?.initData(screen)
+        binding.boardContent.submit(screen, boardColumn)
         refreshScreenInfo()
         if (start == cursorScreenStart) updateOptions() else clearOptions()
     }
@@ -442,12 +444,10 @@ class FojingCopyFragment : TopVMFragment<CopyVM>() {
         if (cursor - cursorScreenStart >= screenCount) {
             //本屏抄满，换下一屏
             cursorScreenStart = cursor
-            adapter?.notifyItemChanged(donePos)
             showScreen(cursor)
         } else {
             cells[cursor].current = true
-            adapter?.notifyItemChanged(donePos)
-            adapter?.notifyItemChanged(cursor - viewStart)
+            binding.boardContent.refresh()
             refreshPercent()
             updateOptions()
         }
@@ -476,7 +476,7 @@ class FojingCopyFragment : TopVMFragment<CopyVM>() {
         loadedSeq = 0
         val next = chapters[index + 1]
         binding.tvScreen.text = next.displayTitle()
-        adapter?.initData(emptyList<CopyCell>())
+        binding.boardContent.submit(emptyList(), boardColumn)
         clearOptions()
         mViewModel.loadChapter(bookId, next.seq)
     }
@@ -562,6 +562,13 @@ class FojingCopyFragment : TopVMFragment<CopyVM>() {
         return count
     }
 
+    private fun isBgLight(color: Int): Boolean {
+        val r = (color shr 16) and 0xFF
+        val g = (color shr 8) and 0xFF
+        val b = color and 0xFF
+        return (r * 299 + g * 587 + b * 114) / 1000 > 150
+    }
+
     override fun onPause() {
         //离开抄经页把位置和字数交上去
         flushProgress()
@@ -569,8 +576,8 @@ class FojingCopyFragment : TopVMFragment<CopyVM>() {
     }
 
     override fun onDestroyView() {
-        binding.rvContent.adapter = null
-        adapter = null
+        binding.boardContent.onCellLongClick = null
+        boardReady = false
         super.onDestroyView()
     }
 }

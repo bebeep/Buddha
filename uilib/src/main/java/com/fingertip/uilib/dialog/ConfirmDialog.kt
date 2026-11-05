@@ -19,6 +19,8 @@ class ConfirmDialog(
     private val message: String,
     private val confirmText: String = "确定",
     private val cancelText: String = "取消",
+    /** 点取消时的回调；为空表示取消即仅关闭弹窗 */
+    private val onCancel: (() -> Unit)? = null,
     private val onConfirm: () -> Unit
 ) : TopDialog(context) {
 
@@ -33,7 +35,10 @@ class ConfirmDialog(
         binding.tvContent.text = message
         binding.btnExit.text = confirmText
         binding.btnCancel.text = cancelText
-        binding.btnCancel.setOnClickListener { dismiss() }
+        binding.btnCancel.setOnClickListener {
+            dismiss()
+            onCancel?.invoke()
+        }
         binding.btnExit.setOnClickListener {
             dismiss()
             onConfirm.invoke()

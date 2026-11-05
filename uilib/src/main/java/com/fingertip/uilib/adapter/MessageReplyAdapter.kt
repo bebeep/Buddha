@@ -1,5 +1,7 @@
 package com.fingertip.uilib.adapter
 
+import com.fingertip.baselib.R as BaseR
+import com.fingertip.baselib.top.TopApplication
 import android.content.Context
 import android.graphics.Color
 import android.view.View
@@ -18,7 +20,7 @@ class MessageReplyAdapter(context: Context, val onItemClick:(position:Int)->Unit
 
     override fun onBindViewHolder(holder: TopRcViewHolder, position: Int) {
         get(position)?.let{
-            holder.itemView.findViewById<View>(R.id.v_line_bottom).setBackgroundColor(Color.parseColor(if (position == mlist.size-1) "#00000000" else "#F2F4F6"))
+            holder.itemView.findViewById<View>(R.id.v_line_bottom).setBackgroundColor(if (position == mlist.size-1) TopApplication.instance.getColor(BaseR.color.transparent) else TopApplication.instance.getColor(BaseR.color.c_bg_card))
             holder.itemView.findViewById<View>(R.id.v_line_bottom).setHeight(if (position == mlist.size-1) 80.toPx() else 0)
 
             holder.itemView.findViewById<View>(R.id.cl_reply_parent).setOnClickListener { view-> onItemClick(position) }

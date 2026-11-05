@@ -17,7 +17,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:src="@mipmap/icon_back_black"
+            android:src="@drawable/icon_back_black"
             android:layout_marginStart="8dp"
             android:layout_width="38dp"
             android:layout_height="38dp"/>
@@ -25,7 +25,7 @@
 
         <com.fingertip.baselib.view.MyTextView
             android:text="消息"
-            android:textColor="#EDE3D2"
+            android:textColor="@color/c_text_main"
             android:textSize="18sp"
             app:layout_constraintTop_toTopOf="@+id/iv_back"
             app:layout_constraintStart_toEndOf="@+id/iv_back"
@@ -35,7 +35,7 @@
         <com.fingertip.baselib.view.MyTextView
             android:id="@+id/tv_read"
             android:text="一键已读"
-            android:textColor="#C4A265"
+            android:textColor="@color/c_gold"
             android:textSize="16sp"
             app:layout_constraintTop_toTopOf="@+id/iv_back"
             app:layout_constraintBottom_toBottomOf="@+id/iv_back"
@@ -58,15 +58,15 @@
         app:layout_constraintTop_toBottomOf="@+id/cl_title"
         app:tl_indicator_margin_top="0dp"
         app:tl_indicator_margin_bottom="0dp"
-        app:tl_indicator_color="#C4A265"
+        app:tl_indicator_color="@color/c_gold"
         app:tl_indicator_corner_radius="2dp"
         app:tl_indicator_height="4dp"
         app:tl_indicator_horizontal="CENTER"
         app:tl_indicator_width="15dp"
         app:tl_tab_padding="10dp"
         app:tl_textBold="SELECT"
-        app:tl_textSelectColor="#EDE3D2"
-        app:tl_textUnselectColor="#8C8069"
+        app:tl_textSelectColor="@color/c_text_main"
+        app:tl_textUnselectColor="@color/c_text_second"
         />
 
 

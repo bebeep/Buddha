@@ -328,7 +328,7 @@ object NetProperty {
     const val GET_TODAY_BUDDHA_INFO                   = "account/getTodayBuddhaInfo"
 
     /**
-     * 获取首页聚合数据（修持进度 + 供灯状态 + 禅值余额 + 连续天数 + 区块配置）
+     * 获取首页聚合数据（修持进度 + 供灯状态 + 功德币余额 + 连续天数 + 区块配置）
      */
     const val HOME_SUMMARY                            = "home/getSummary"
 
@@ -561,13 +561,28 @@ object NetProperty {
      */
     const val DRESS_VERIFY                            = "dress/verify"
 
+    /**
+     * 功德币购买装扮（APP 内唯一购买方式），成功返回剩余功德币
+     */
+    const val DRESS_BUY_COIN                          = "dress/buyByCoin"
 
-    /********************** 海外版：禅值 **********************/
+
+    /********************** 海外版：功德币充值 **********************/
 
     /**
-     * 禅值余额
+     * 充值档位列表（含 IAP 商品 id）
      */
-    const val MERIT_BALANCE                           = "merit/getBalance"
+    const val RECHARGE_CONFIG                         = "recharge/getConfig"
+
+    /**
+     * 创建充值订单，返回内部订单号
+     */
+    const val RECHARGE_CREATE_ORDER                   = "recharge/createOrder"
+
+    /**
+     * 充值验单到账，返回最新功德币余额
+     */
+    const val RECHARGE_VERIFY                         = "recharge/verify"
 
 
     /********************** 海外版：早课修持 **********************/
@@ -583,7 +598,7 @@ object NetProperty {
     const val PRACTICE_STATISTIC                      = "practice/getStatistic"
 
     /**
-     * 念佛计数上报（每满 108 声发 1 禅值，单日单佛号封顶）
+     * 念佛计数上报（每满 108 声发 1 功德币，单日单佛号封顶）
      */
     const val PRACTICE_MEDITATION_REPORT              = "practice/meditationReport"
 

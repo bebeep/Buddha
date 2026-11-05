@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="功德捐赠记录"
-        android:textColor="#EDE3D2"
+        android:textColor="@color/c_text_main"
         android:textSize="17sp"
         android:textStyle="bold" />
 
@@ -30,7 +30,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:text="还没有捐赠记录"
-        android:textColor="#C4A265"
+        android:textColor="@color/c_gold"
         android:textSize="13sp"
         android:visibility="gone" />
 

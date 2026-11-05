@@ -2,7 +2,7 @@
 <com.fingertip.baselib.view.FullTopConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2A2014"
+    android:background="@color/c_bg_card2"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <include
@@ -19,7 +19,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/v_back"
         android:text="心经"
         android:textSize="18sp"
-        android:textColor="#B5A78F"
+        android:textColor="@color/c_text_third"
         app:zdyFont="bold"
         app:layout_constraintStart_toEndOf="@+id/v_back"
         app:layout_constraintEnd_toStartOf="@+id/iv_setting"
@@ -33,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="14dp"
         android:layout_width="38dp"
-        android:src="@mipmap/icon_fojing_setting"
+        android:src="@drawable/icon_fojing_setting"
         android:layout_height="38dp"/>
 
 
@@ -44,9 +44,8 @@
         app:layout_constraintBottom_toTopOf="@+id/tv_answer1"
         android:layout_height="0dp">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_content"
-            android:overScrollMode="never"
+        <com.fingertip.uilib.widgets.CopyBoardView
+            android:id="@+id/board_content"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginHorizontal="16dp"
             android:layout_width="match_parent"
@@ -54,11 +53,11 @@
 
         <com.fingertip.baselib.view.MyTextView
             android:id="@+id/tv_percent"
-            app:layout_constraintTop_toBottomOf="@+id/rv_content"
+            app:layout_constraintTop_toBottomOf="@+id/board_content"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="8dp"
-            android:textColor="#8C8069"
+            android:textColor="@color/c_text_second"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -70,7 +69,7 @@
             android:layout_marginStart="16dp"
             android:text="上一屏"
             android:textSize="12sp"
-            android:textColor="#8C8069"
+            android:textColor="@color/c_text_second"
             android:paddingHorizontal="4dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -82,7 +81,7 @@
             app:layout_constraintStart_toEndOf="@+id/tv_prev"
             app:layout_constraintEnd_toStartOf="@+id/tv_next"
             android:layout_marginHorizontal="8dp"
-            android:textColor="#8C8069"
+            android:textColor="@color/c_text_second"
             android:gravity="center"
             android:singleLine="true"
             android:ellipsize="end"
@@ -97,7 +96,7 @@
             android:layout_marginEnd="8dp"
             android:text="下一屏"
             android:textSize="12sp"
-            android:textColor="#8C8069"
+            android:textColor="@color/c_text_second"
             android:paddingHorizontal="4dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -118,7 +117,7 @@
         app:layout_constraintDimensionRatio="h,1:1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tv_answer2"
-        android:textColor="#EDE3D2"
+        android:textColor="@color/c_text_main"
         android:gravity="center"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="32dp"
@@ -134,7 +133,7 @@
         app:layout_constraintStart_toEndOf="@+id/tv_answer1"
         app:layout_constraintEnd_toStartOf="@+id/tv_answer3"
         app:layout_constraintTop_toTopOf="@+id/tv_answer1"
-        android:textColor="#EDE3D2"
+        android:textColor="@color/c_text_main"
         android:gravity="center"
         android:background="@drawable/bg_fojing_copy_answer"
         android:layout_marginHorizontal="12dp"
@@ -149,7 +148,7 @@
         app:layout_constraintStart_toEndOf="@+id/tv_answer2"
         app:layout_constraintEnd_toStartOf="@+id/tv_answer4"
         app:layout_constraintTop_toTopOf="@+id/tv_answer1"
-        android:textColor="#EDE3D2"
+        android:textColor="@color/c_text_main"
         android:gravity="center"
         android:background="@drawable/bg_fojing_copy_answer"
         android:layout_marginEnd="12dp"
@@ -164,7 +163,7 @@
         app:layout_constraintStart_toEndOf="@+id/tv_answer3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_answer1"
-        android:textColor="#EDE3D2"
+        android:textColor="@color/c_text_main"
         android:gravity="center"
         android:layout_marginEnd="16dp"
         android:background="@drawable/bg_fojing_copy_answer"

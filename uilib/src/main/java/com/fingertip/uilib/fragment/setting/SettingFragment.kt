@@ -22,7 +22,7 @@ import com.fingertip.uilib.viewmodel.SettingVM
  * 只在隐私政策里写个邮箱是过不了审的。所以这里做成两次确认 + 服务端真删数据。
  *
  * 退出登录与注销的区别要在文案上写清楚：
- * 退出只是清 session，装扮和禅值都还在；注销是删账号，数据不可恢复。
+ * 退出只是清 session，装扮和功德币都还在；注销是删账号，数据不可恢复。
  */
 class SettingFragment : TopPmFragment<SettingVM>() {
 
@@ -156,8 +156,9 @@ class SettingFragment : TopPmFragment<SettingVM>() {
                     requireContext(),
                     title = getString(R.string.setting_logout_title),
                     message = getString(R.string.setting_logout_msg),
-                    confirmText = getString(R.string.setting_logout)
-                ) { mViewModel.logout() }.show()
+                    confirmText = getString(R.string.setting_logout),
+                    onConfirm = { mViewModel.logout() }
+                ).show()
             }
 
             binding.llDelete -> {
@@ -169,8 +170,9 @@ class SettingFragment : TopPmFragment<SettingVM>() {
                     requireContext(),
                     title = getString(R.string.setting_delete_title),
                     message = getString(R.string.setting_delete_msg),
-                    confirmText = getString(R.string.setting_delete_confirm)
-                ) { mViewModel.deleteAccount() }.show()
+                    confirmText = getString(R.string.setting_delete_confirm),
+                    onConfirm = { mViewModel.deleteAccount() }
+                ).show()
             }
 
             binding.llPrivacy -> pushDoc(getString(R.string.setting_privacy), LegalDocFragment.ASSET_PRIVACY)

@@ -13,7 +13,7 @@
         style="@style/constraint_center"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
-        app:gdBgColor="#FFFEFA"
+        app:gdBgColor="@color/c_bg_card2"
         app:gdRadius="12dp">
 
         <com.fingertip.baselib.view.MyTextView
@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="确认退出"
-            android:textColor="#B5A78F"
+            android:textColor="@color/c_text_third"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +38,7 @@
             android:gravity="center"
             android:lineSpacingExtra="3dp"
             android:text="确定要退出应用吗？"
-            android:textColor="#8C8069"
+            android:textColor="@color/c_text_second"
             android:textSize="14sp"
             app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
@@ -61,9 +61,9 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="取消"
-                android:textColor="#8C8069"
+                android:textColor="@color/c_text_second"
                 android:textSize="15sp"
-                app:gdBgColor="#F2F0EC"
+                app:gdBgColor="@color/c_line"
                 app:gdRadius="22dp"
                 app:zdyFont="bold" />
 
@@ -75,12 +75,12 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="退出"
-                android:textColor="@color/white"
+                android:textColor="@color/c_text_on_gold"
                 android:textSize="15sp"
-                app:gdEndColor="#FFD543"
+                app:gdEndColor="@color/c_star"
                 app:gdGradientOrientation="LEFT_RIGHT"
                 app:gdRadius="22dp"
-                app:gdStartColor="#C4A265"
+                app:gdStartColor="@color/c_gold"
                 app:zdyFont="bold" />
         </LinearLayout>
     </com.fingertip.baselib.view.shapeview.ShapeConstraintLayout>

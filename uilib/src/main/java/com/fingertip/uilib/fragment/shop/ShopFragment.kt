@@ -15,7 +15,7 @@ import com.fingertip.uilib.adapter.ShopDressAdapter
 import com.fingertip.uilib.databinding.FragmentShopBinding
 import com.fingertip.uilib.dialog.ConfirmDialog
 import com.fingertip.uilib.dialog.PayConfirmDialog
-import com.fingertip.uilib.pay.IapBridge
+import com.fingertip.uilib.utils.openPage
 import com.fingertip.uilib.viewmodel.ShopVM
 
 /**
@@ -24,10 +24,9 @@ import com.fingertip.uilib.viewmodel.ShopVM
  * 五类商品：灯具 / 佛龛 / 头像框 / 昵称 3D / 灯油。
  * 前四类是永久买断，买完可以直接佩戴；灯油是消耗品，买一次点一次灯，没有拥有态。
  *
- * 购买链路（顺序不能变）：
- *   建内部订单 → 拉起商店支付 → 验单发货 → 刷新持有列表 → 自动佩戴
- * 先建单再支付，是为了让服务端在验单时能对上「谁买什么、多少钱」；
- * 反过来做一旦客户端崩溃就会变成「钱扣了没发货」的客诉。
+ * 购买链路（v2.20 起全站统一功德币，不再走 IAP）：
+ *   确认弹窗 → dress/buyByCoin（服务端扣币+发货，返回余额）→ 回写余额 → 刷新持有列表 → 自动佩戴
+ * 一步到位，没有「钱扣了没发货」的中间态。
  *
  * 游客可以逛（列表接口公开），点购买时提示登录。
  */
@@ -71,9 +70,8 @@ class ShopFragment : TopPmFragment<ShopVM>() {
     //我的装扮缓存：用来判断每个商品是「购买 / 佩戴 / 使用中」
     private var myData: MyDressData? = null
 
-    //等待支付回执的商品与订单号，支付回调是异步的，只能先存着
+    //等待结果的商品，购买回调是异步的，只能先存着
     private var pendingDress: ShopDressConfig? = null
-    private var pendingOrderNo: String? = null
 
     //买灯油时的目标佛像id（拜佛页入口带入），建单随单落库
     private var targetBuddhaId = 0
@@ -129,7 +127,9 @@ class ShopFragment : TopPmFragment<ShopVM>() {
                 if (selected) R.drawable.bg_shop_chip_on else R.drawable.bg_home_pill_solid
             )
             chip.setTextColor(
-                if (selected) 0xFF14100C.toInt() else 0xFFB5A78F.toInt()
+                requireContext().getColor(
+                    if (selected) R.color.shop_text_on_gold else R.color.shop_text_chip_off
+                )
             )
         }
         mViewModel.loadList(type)
@@ -160,45 +160,30 @@ class ShopFragment : TopPmFragment<ShopVM>() {
             }
         }
 
-        mViewModel.orderResult.observe(viewLifecycleOwner) { result ->
-            if (!isAdded) return@observe
-            if (result.success) {
-                val orderNo = result.data
-                val dress = pendingDress
-                if (orderNo.isNullOrBlank() || dress == null) return@observe
-                pendingOrderNo = orderNo
-                launchPay(dress, orderNo)
-            } else {
-                pendingDress = null
-                pendingOrderNo = null
-                ToastUtil.showMessage(result.errorMsg ?: getString(R.string.shop_pay_fail))
-            }
-        }
-
-        mViewModel.verifyResult.observe(viewLifecycleOwner) { result ->
+        mViewModel.buyResult.observe(viewLifecycleOwner) { result ->
             if (!isAdded) return@observe
             val dress = pendingDress
-            if (result.success) {
-                pendingDress = null
-                pendingOrderNo = null
-                if (dress == null) return@observe
-                if (dress.isOil()) {
-                    //灯油：服务端发货时已经点燃了灯，这里只提示去拜佛页看
-                    ToastUtil.showMessage(getString(R.string.shop_pay_success_oil))
-                    mViewModel.loadList(currentType)
-                    mViewModel.loadMyDress()
-                } else {
-                    //永久装扮：到账后自动佩戴，省掉用户再点一次
-                    ToastUtil.showMessage(getString(R.string.shop_pay_success))
-                    mViewModel.wear(dress.id, true)
-                    mViewModel.loadList(currentType)
-                }
+            pendingDress = null
+            if (!result.success) {
+                //余额不足/重复购买这类都是正常业务码，服务端已给出可读文案
+                ToastUtil.showMessage(result.errorMsg ?: getString(R.string.shop_pay_fail))
+                return@observe
+            }
+            //服务端返回扣费后的余额：直接回写全局用户信息，商城/我的页立刻同步
+            result.data?.toIntOrNull()?.let { coin ->
+                GlobalConfig.userData?.coin = coin
+            }
+            if (dress == null) return@observe
+            if (dress.isOil()) {
+                //灯油：服务端发货时已经点燃了灯，这里只提示去拜佛页看
+                ToastUtil.showMessage(getString(R.string.shop_pay_success_oil))
+                mViewModel.loadList(currentType)
+                mViewModel.loadMyDress()
             } else {
-                //订单已建但验单失败：服务端保留了订单记录，属于可追查状态，提示联系客服
-                log(TAG, "验单失败：${result.errorCode} ${result.errorMsg} orderNo=$pendingOrderNo")
-                pendingDress = null
-                pendingOrderNo = null
-                ToastUtil.showMessage(getString(R.string.shop_verify_fail))
+                //永久装扮：到账后自动佩戴，省掉用户再点一次
+                ToastUtil.showMessage(getString(R.string.shop_pay_success))
+                mViewModel.wear(dress.id, true)
+                mViewModel.loadList(currentType)
             }
         }
 
@@ -254,60 +239,53 @@ class ShopFragment : TopPmFragment<ShopVM>() {
             ToastUtil.showMessage(getString(R.string.shop_login_first))
             return
         }
-        //游客号花钱前先提醒一次：不绑定的话卸载重装就找不回了。取消键继续买，不打断
+        //游客号花钱前先提醒一次：不绑定的话卸载重装就找不回了。
+        //取消键 = 知道风险仍要继续购买，必须真的继续，否则游客永远买不了（此前就断在这）
         if (GlobalConfig.isGuestAccount) {
             ConfirmDialog(
                 requireContext(),
                 title = getString(R.string.shop_guest_bind_title),
                 message = getString(R.string.shop_guest_bind_msg),
                 confirmText = getString(R.string.shop_guest_bind_go),
-                cancelText = getString(R.string.shop_guest_bind_continue)
-            ) {
-                //清栈重进登录页：绑定成功后和冷启动登录一样回到干净的主页栈
-                startActivity(
-                    android.content.Intent(requireContext(), LoginRegisterActivity::class.java).apply {
-                        addFlags(
-                            android.content.Intent.FLAG_ACTIVITY_NEW_TASK or
-                                android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        )
-                    }
-                )
-            }.show()
+                cancelText = getString(R.string.shop_guest_bind_continue),
+                onCancel = { showPayConfirm(item) },
+                onConfirm = {
+                    //清栈重进登录页：绑定成功后和冷启动登录一样回到干净的主页栈
+                    startActivity(
+                        android.content.Intent(requireContext(), LoginRegisterActivity::class.java).apply {
+                            addFlags(
+                                android.content.Intent.FLAG_ACTIVITY_NEW_TASK or
+                                    android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            )
+                        }
+                    )
+                }
+            ).show()
             return
         }
+        showPayConfirm(item)
+    }
+
+    private fun showPayConfirm(item: ShopDressConfig) {
         PayConfirmDialog(requireContext(), item) {
             pendingDress = item
-            mViewModel.createOrder(item.id, targetBuddhaId)
+            mViewModel.buyByCoin(item.id, targetBuddhaId)
         }.show()
     }
 
-    /**
-     * 建单成功后拉起商店支付。支付回执回来再走验单，验单才算发货。
-     */
-    private fun launchPay(dress: ShopDressConfig, orderNo: String) {
-        // 灯油是消耗型：买完要 consume，否则同一件商品第二次买不了
-        val consumable = dress.dressType == ShopDressConfig.TYPE_OIL
-        IapBridge.launchPurchase(
-            activity = activity,
-            productId = dress.androidProductId(),
-            accountId = GlobalConfig.userData?.accountId ?: 0,
-            consumable = consumable
-        ) { result ->
-            if (!isAdded) return@launchPurchase
-            val payOrderId = result.payOrderId
-            if (result.success && !payOrderId.isNullOrBlank()) {
-                mViewModel.verify(orderNo, payOrderId)
-            } else {
-                //用户取消或通道未接入：订单留着不动，服务端没发货，不存在资损
-                log(TAG, "支付未完成：${result.message} orderNo=$orderNo")
-                pendingDress = null
-                pendingOrderNo = null
-                ToastUtil.showMessage(result.message ?: getString(R.string.shop_pay_fail))
-            }
-        }
+    private fun openMyDress() {
+        //不能强转 parentFragment：商城也可能是别的页面里再打开的，
+        //那样转成 MainFragment 会得到 null，点了毫无反应（就是之前这个 bug）
+        openPage(MyDressFragment())
     }
 
-    private fun openMyDress() {
-        (parentFragment as? com.fingertip.uilib.fragment.MainFragment)?.start(MyDressFragment())
+    /**
+     * 外部（我的装扮「去商城」）把分类切到指定品类。
+     * 只切 UI 与列表，不额外压栈。
+     */
+    fun switchCategory(type: Int) {
+        if (type in ShopDressConfig.TYPE_LAMP..ShopDressConfig.TYPE_OIL) {
+            selectChip(type)
+        }
     }
 }

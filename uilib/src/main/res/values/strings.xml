@@ -38,11 +38,11 @@
     <string name="home_kingkong_nianfo">念佛</string>
     <string name="home_game_zen">禅院</string>
     <string name="home_game_fangsheng">放生</string>
-    <string name="home_game_shop">禅值商店</string>
+    <string name="home_game_shop">功德币商城</string>
     <string name="home_game_coming">敬请期待</string>
     <string name="home_game_available">今日可玩</string>
     <string name="home_game_soon">即将上线</string>
-    <string name="home_game_merit">禅值 %1$d</string>
+    <string name="home_game_merit">功德币 %1$d</string>
     <string name="home_moment_empty">精选内容筹备中，先去佛友圈看看大家的修行分享</string>
     <string name="home_moment_more">查看全部</string>
     <string name="home_load_fail">首页加载失败，请稍后重试</string>
@@ -91,6 +91,7 @@
     <string name="shop_action_in_use">使用中</string>
     <string name="shop_empty">该分类暂无商品</string>
     <string name="shop_my_dress_empty">还没有装扮，去商城挑一件</string>
+    <string name="shop_my_dress_empty_cat">该分类下还没有装扮</string>
     <string name="shop_go_shop">去商城</string>
     <!-- 合规：虚拟物品退款说明 + 恢复购买入口，审核会看 -->
     <string name="shop_tip">虚拟物品一经购买不支持退款\n换机或重装后，可在「设置 - 恢复购买」找回已购内容</string>
@@ -98,18 +99,28 @@
     <string name="shop_pay_title">确认购买</string>
     <string name="shop_pay_confirm">确认支付</string>
     <string name="shop_pay_cancel">取消</string>
-    <string name="shop_pay_hint">支付将在 Google Play / App Store 完成，金额以商店显示为准</string>
+    <string name="shop_pay_hint">确认后立即从功德币余额扣除并到账</string>
     <string name="shop_pay_hint_oil">灯油为消耗品，每次点燃长明灯都需要购买一次</string>
-    <string name="shop_pay_mock_hint">当前为开发环境，走模拟支付，不会产生真实扣款</string>
+    <string name="shop_pay_mock_hint">当前为开发环境，走模拟充值，不会产生真实扣款</string>
     <string name="shop_pay_creating">正在创建订单…</string>
     <string name="shop_pay_checking">正在确认支付结果…</string>
     <string name="shop_pay_success">已到账，装扮已为你佩戴</string>
     <string name="shop_pay_success_oil">灯油已到账，去拜佛页点亮长明灯</string>
-    <string name="shop_pay_fail">支付未完成，请稍后重试</string>
-    <string name="shop_verify_fail">支付校验失败，订单已记录，请联系客服</string>
+    <string name="shop_pay_fail">购买未完成，请稍后重试</string>
+    <string name="shop_verify_fail">购买失败，功德币未扣除，请稍后重试</string>
     <string name="shop_wear_success">已更换装扮</string>
     <string name="shop_take_off_success">已卸下装扮</string>
     <string name="shop_load_fail">加载失败，请稍后再试</string>
+
+    <!-- ============ 功德币充值 ============ -->
+    <string name="recharge_title">功德币充值</string>
+    <string name="recharge_balance_label">当前功德币</string>
+    <string name="recharge_coin_unit">功德币</string>
+    <string name="recharge_empty">暂时没有可购买的档位</string>
+    <string name="recharge_tips">功德币可用于装扮、供佛、灯油等全部消费 · 充值按您所在商店的定价结算</string>
+    <string name="recharge_success">充值到账</string>
+    <string name="recharge_fail">充值未完成，请稍后重试</string>
+    <string name="recharge_verify_fail">充值校验失败，款项不会扣，请稍后重试</string>
 
     <!-- ============ 早课五步流程 ============ -->
     <string name="ep_step_of">第 %1$d / 5 步</string>
@@ -128,6 +139,7 @@
     <string name="ep_chant_start">开始诵经</string>
     <string name="ep_chant_counting">诵经中… %1$d 秒</string>
     <string name="ep_chant_done">诵经完成</string>
+    <string name="ep_chant_source">今日经文 · %1$s · %2$s</string>
     <string name="ep_chant_text">观自在菩萨，行深般若波罗蜜多时，照见五蕴皆空，度一切苦厄。\n\n舍利子，色不异空，空不异色，色即是空，空即是色，受想行识，亦复如是。\n\n舍利子，是诸法空相，不生不灭，不垢不净，不增不减。</string>
 
     <!-- 第三步 称念 -->
@@ -149,7 +161,7 @@
     <string name="ep_back">返回</string>
 
     <!-- 结果态 -->
-    <string name="ep_done_title">早课已完成</string>    <string name="ep_done_desc">今日禅值 +%1$d，连续修持 %2$d 天</string>
+    <string name="ep_done_title">早课已完成</string>    <string name="ep_done_desc">今日功德币 +%1$d，连续修持 %2$d 天</string>
     <string name="ep_done_milestone">再修 %1$d 天达成下一个里程碑</string>
     <string name="ep_already_title">今天已完成早课</string>
     <string name="ep_already_desc">一天一记录，明天再来。也可以去念佛、抄经继续修持</string>
@@ -188,11 +200,11 @@
     <string name="setting_footer">愿众生离苦得乐</string>
     <string name="setting_not_login">当前未登录</string>
     <string name="setting_logout_title">退出登录</string>
-    <string name="setting_logout_msg">退出后需要重新登录才能记录修持、使用装扮。已购装扮与禅值不会丢失。</string>
+    <string name="setting_logout_msg">退出后需要重新登录才能记录修持、使用装扮。已购装扮与功德币不会丢失。</string>
     <string name="setting_logout_done">已退出登录</string>
     <string name="setting_logout_fail">退出失败，请稍后重试</string>
     <string name="setting_delete_title">注销账号</string>
-    <string name="setting_delete_msg">注销后，修持记录、禅值、已购装扮将无法恢复，且不可撤销。确定继续？</string>
+    <string name="setting_delete_msg">注销后，修持记录、功德币、已购装扮将无法恢复，且不可撤销。确定继续？</string>
     <string name="setting_delete_confirm">确认注销</string>
     <string name="setting_delete_done">账号已注销</string>
     <string name="setting_delete_fail">注销失败，请稍后重试</string>
@@ -365,5 +377,33 @@
     <string name="profile_edit_save_ok">保存成功</string>
     <string name="profile_edit_save_fail">保存失败，请稍后再试</string>
     <string name="profile_edit_name_empty">昵称不能为空</string>
+
+    <!-- 修行等级（个人中心修行值详情 + 全部等级表） -->
+    <string name="level_title">修行等级</string>
+    <string name="level_all_entry">等级一览</string>
+    <string name="level_all_title">修行等级表</string>
+    <string name="level_what_title">修行值是什么</string>
+    <string name="level_what_body">修行值记录你在这座道场里走过的路。诵经、念佛、祈福、供灯、放生、随喜供养，每一次都在往上走。修行值只增不减，等级只升不降——哪怕中断几天，之前攒下的也不会消失。</string>
+    <string name="level_gain_title">修行值怎么涨</string>
+    <string name="level_gain_body">每日签到、祈福许愿、供佛随喜、放生游戏、诵经念佛功课，以及消费功德币，都会累积修行值。同一行为的具体数值由服务端配置，可能会随版本调整。</string>
+    <string name="level_stage_title">境界一览</string>
+    <string name="level_stage_desc">自「凡夫」起，经十二重境界至「妙觉」，每一重下设九个阶位</string>
+    <string name="level_stage_desc_dynamic">共 %1$d 重境界 · %2$d 个等级，每一重下设若干阶位</string>
+    <string name="level_all_levels_btn">查看全部等级表</string>
+    <string name="level_config_empty">等级配置加载失败，请稍后重试</string>
+    <string name="level_cur_level">第 %1$d 级 · 共 %2$d 级</string>
+    <string name="level_exp_value">%1$d / %2$d 修行值</string>
+    <string name="level_exp_pct">%1$d%%</string>
+    <string name="level_next_tip">距「%1$s」还需 %2$d 修行值</string>
+    <string name="level_max_tip">已至最高境界「%1$s」，修行值仍可继续累积</string>
+    <string name="level_stage_range">lv%1$d - lv%2$d</string>
+    <string name="level_stage_range_single">lv%1$d</string>
+    <string name="level_stage_need">%1$d 修行值起</string>
+    <string name="level_row_level_only">第 %1$d 级</string>
+    <string name="level_row_start">起点</string>
+    <string name="level_row_exp">累计 %1$d</string>
+    <string name="level_row_delta">本级 +%1$d</string>
+    <string name="level_list_summary">共 %1$d 级 · %2$d 个境界 · 所需修行值逐级递增</string>
+    <string name="level_badge_stage_unknown">修行</string>
 
 </resources>

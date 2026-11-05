@@ -8,7 +8,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2A2014">
+    android:background="@color/c_bg_card2">
 
     <com.fingertip.baselib.view.FullTopConstraintLayout
         android:id="@+id/cl_title"
@@ -22,7 +22,7 @@
             android:layout_width="38dp"
             android:layout_height="38dp"
             android:layout_marginStart="8dp"
-            android:src="@mipmap/icon_back_black"
+            android:src="@drawable/icon_back_black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="签到"
-            android:textColor="#EDE3D2"
+            android:textColor="@color/c_text_main"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +72,7 @@
                     android:layout_height="32dp"
                     android:gravity="center"
                     android:text="‹"
-                    android:textColor="#8C8069"
+                    android:textColor="@color/c_text_second"
                     android:textSize="20sp" />
 
                 <com.fingertip.baselib.view.MyTextView
@@ -82,7 +82,7 @@
                     android:minWidth="110dp"
                     android:gravity="center"
                     android:text="2026年10月"
-                    android:textColor="#B5A78F"
+                    android:textColor="@color/c_text_third"
                     android:textSize="17sp"
                     app:zdyFont="bold" />
 
@@ -92,7 +92,7 @@
                     android:layout_height="32dp"
                     android:gravity="center"
                     android:text="›"
-                    android:textColor="#8C8069"
+                    android:textColor="@color/c_text_second"
                     android:textSize="20sp" />
 
             </LinearLayout>
@@ -138,7 +138,7 @@
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:maxLines="1"
-                        android:textColor="#D9432E"
+                        android:textColor="@color/c_ffe8a79a"
                         android:textSize="15sp"
                         app:zdyFont="bold" />
 
@@ -146,7 +146,7 @@
                         android:id="@+id/tv_festival_countdown"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#C8860D"
+                        android:textColor="@color/c_gold"
                         android:textSize="12sp" />
 
                 </LinearLayout>
@@ -156,7 +156,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:textColor="#B08F52"
+                    android:textColor="@color/c_text_third"
                     android:textSize="11sp" />
 
                 <TextView
@@ -167,7 +167,7 @@
                     android:ellipsize="end"
                     android:lineSpacingExtra="3dp"
                     android:maxLines="2"
-                    android:textColor="#8A6A4A"
+                    android:textColor="@color/c_text_second"
                     android:textSize="12sp" />
 
             </LinearLayout>
@@ -183,7 +183,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:background="#22000000" />
+                android:background="@color/c_22000000" />
 
             <!-- 整月日历格子 -->
             <androidx.recyclerview.widget.RecyclerView
@@ -217,7 +217,7 @@
                     <View
                         android:layout_width="3dp"
                         android:layout_height="14dp"
-                        android:background="#D9432E" />
+                        android:background="@color/c_festival_red" />
 
                     <com.fingertip.baselib.view.MyTextView
                         android:layout_width="0dp"
@@ -225,7 +225,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_weight="1"
                         android:text="本月佛历节日"
-                        android:textColor="#B5A78F"
+                        android:textColor="@color/c_text_third"
                         android:textSize="15sp"
                         app:zdyFont="bold" />
 
@@ -233,7 +233,7 @@
                         android:id="@+id/tv_festival_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#6E6455"
+                        android:textColor="@color/c_text_hint"
                         android:textSize="11sp" />
 
                 </LinearLayout>
@@ -266,7 +266,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textColor="#C4A265"
+                    android:textColor="@color/c_gold"
                     android:textSize="26sp"
                     app:zdyFont="bold" />
 
@@ -275,7 +275,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:text="天"
-                    android:textColor="#B5A78F"
+                    android:textColor="@color/c_text_third"
                     android:textSize="14sp"
                     app:zdyFont="bold" />
 
@@ -284,7 +284,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:text="已连续签到"
-                    android:textColor="#B5A78F"
+                    android:textColor="@color/c_text_third"
                     android:textSize="14sp" />
 
                 <LinearLayout
@@ -321,7 +321,7 @@
                         android:id="@+id/tv_buddhist_year"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#C4A265"
+                        android:textColor="@color/c_gold"
                         android:textSize="15sp"
                         app:zdyFont="bold" />
 
@@ -332,7 +332,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
                         android:gravity="end"
-                        android:textColor="#B5A78F"
+                        android:textColor="@color/c_text_third"
                         android:textSize="14sp" />
 
                 </LinearLayout>
@@ -342,7 +342,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    android:textColor="#8C8069"
+                    android:textColor="@color/c_text_second"
                     android:textSize="13sp" />
 
                 <View
@@ -350,7 +350,7 @@
                     android:layout_height="0.5dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="12dp"
-                    android:background="#14000000" />
+                    android:background="@color/c_14000000" />
 
                 <LinearLayout
                     android:id="@+id/ll_suitable"
@@ -365,7 +365,7 @@
                         android:background="@drawable/bg_sign_circle_tip"
                         android:gravity="center"
                         android:text="宜"
-                        android:textColor="#C4A265"
+                        android:textColor="@color/c_gold"
                         android:textSize="13sp" />
 
                     <TextView
@@ -375,7 +375,7 @@
                         android:layout_marginStart="12dp"
                         android:layout_weight="1"
                         android:lineSpacingExtra="3dp"
-                        android:textColor="#B5A78F"
+                        android:textColor="@color/c_text_third"
                         android:textSize="13sp" />
 
                 </LinearLayout>
@@ -394,7 +394,7 @@
                         android:background="@drawable/bg_sign_circle_tip"
                         android:gravity="center"
                         android:text="忌"
-                        android:textColor="#C4A265"
+                        android:textColor="@color/c_gold"
                         android:textSize="13sp" />
 
                     <TextView
@@ -404,7 +404,7 @@
                         android:layout_marginStart="12dp"
                         android:layout_weight="1"
                         android:lineSpacingExtra="3dp"
-                        android:textColor="#B5A78F"
+                        android:textColor="@color/c_text_third"
                         android:textSize="13sp" />
 
                 </LinearLayout>
@@ -434,7 +434,7 @@
             android:background="@drawable/bg_sign_button"
             android:gravity="center"
             android:text="立即签到"
-            android:textColor="@color/white"
+            android:textColor="@color/c_text_on_gold"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -444,7 +444,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="签到功能每日6:00-22:00开放"
-            android:textColor="#8C8069"
+            android:textColor="@color/c_text_second"
             android:textSize="11sp" />
 
     </LinearLayout>

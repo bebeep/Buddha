@@ -27,7 +27,8 @@ class FojingCommentAdapter(
         get(position)?.let { comment ->
             binding.ivHead.loadImg(comment.avatar)
             binding.tvCommentName.text = comment.userName
-            binding.tvCommentLevel.text = "level ${comment.userLevel}"
+            com.fingertip.uilib.utils.LevelUi.bindTag(binding.ivLevelTag, comment.userLevel)
+            binding.tvCommentLevel.text = com.fingertip.uilib.utils.LevelUi.tagTitle(comment.userLevel)
             binding.ivCommentLike.isSelected = comment.isLiked
             binding.tvCommentLike.text = "${comment.likeCount}"
             binding.tvCommentContent.text = comment.textContent

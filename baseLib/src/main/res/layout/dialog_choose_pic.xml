@@ -12,7 +12,7 @@
         android:id="@+id/TopRly"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:gdBgColor="#EBECEB"
+        app:gdBgColor="@color/c_bg_card2"
         app:gdRadius="10dp">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -29,7 +29,7 @@
         android:layout_below="@+id/TopRly"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:gdBgColor="@color/color_w"
+        app:gdBgColor="@color/c_bg_card2"
         app:gdRadius="10dp">
 
         <com.fingertip.baselib.view.shapeview.ShapeTextView
@@ -39,7 +39,7 @@
             android:gravity="center"
             android:text="取消"
             android:textAllCaps="false"
-            android:textColor="@color/color_bla"
+            android:textColor="@color/c_text_main"
             android:textSize="18sp"
             app:zdyFont="bold" />
     </com.fingertip.baselib.view.shapeview.ShapeRelativeLayout>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 禅语日签弹窗卡片底：与精选卡同一个暗金纸面语言（#2E2416→#221A11 + 金描边） -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:angle="270"
+        android:endColor="#221A11"
+        android:startColor="#2E2416" />
+    <corners android:radius="16dp" />
+    <stroke
+        android:width="1dp"
+        android:color="#4A3C22" />
+</shape>

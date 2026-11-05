@@ -8,7 +8,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#251C10">
+    android:background="@color/c_bg_page">
 
     <com.fingertip.baselib.view.FullTopConstraintLayout
         android:id="@+id/cl_title"
@@ -22,8 +22,8 @@
             android:layout_width="38dp"
             android:layout_height="38dp"
             android:layout_marginStart="8dp"
-            android:src="@mipmap/icon_back_black"
-            android:tint="#EDE3D2"
+            android:src="@drawable/icon_back_black"
+            android:tint="@color/c_text_main"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/meditation_title"
-            android:textColor="#EDE3D2"
+            android:textColor="@color/c_text_main"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -74,7 +74,7 @@
                     android:paddingTop="6dp"
                     android:paddingBottom="6dp"
                     android:text="@string/meditation_holy_amitabha"
-                    android:textColor="#E3C88B"
+                    android:textColor="@color/c_gold_light"
                     android:textSize="11sp" />
 
                 <com.fingertip.baselib.view.MyTextView
@@ -88,7 +88,7 @@
                     android:paddingTop="6dp"
                     android:paddingBottom="6dp"
                     android:text="@string/meditation_holy_guanyin"
-                    android:textColor="#8C8069"
+                    android:textColor="@color/c_text_second"
                     android:textSize="11sp" />
 
                 <com.fingertip.baselib.view.MyTextView
@@ -102,7 +102,7 @@
                     android:paddingTop="6dp"
                     android:paddingBottom="6dp"
                     android:text="@string/meditation_holy_mantra"
-                    android:textColor="#8C8069"
+                    android:textColor="@color/c_text_second"
                     android:textSize="11sp" />
 
             </LinearLayout>
@@ -127,7 +127,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/meditation_holy_amitabha"
-                        android:textColor="#EDE3D2"
+                        android:textColor="@color/c_text_main"
                         android:textSize="15sp" />
 
                     <com.fingertip.baselib.view.MyTextView
@@ -135,7 +135,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="@string/meditation_tap_hint"
-                        android:textColor="#8C8069"
+                        android:textColor="@color/c_text_second"
                         android:textSize="10sp" />
 
                 </LinearLayout>
@@ -165,7 +165,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
-                        android:textColor="#E3C88B"
+                        android:textColor="@color/c_gold_light"
                         android:textSize="18sp"
                         app:zdyFont="bold" />
 
@@ -174,7 +174,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="@string/meditation_today"
-                        android:textColor="#8C8069"
+                        android:textColor="@color/c_text_second"
                         android:textSize="10.5sp" />
 
                 </LinearLayout>
@@ -195,7 +195,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
-                        android:textColor="#E3C88B"
+                        android:textColor="@color/c_gold_light"
                         android:textSize="18sp"
                         app:zdyFont="bold" />
 
@@ -204,7 +204,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="@string/meditation_total"
-                        android:textColor="#8C8069"
+                        android:textColor="@color/c_text_second"
                         android:textSize="10.5sp" />
 
                 </LinearLayout>
@@ -218,7 +218,7 @@
                 android:layout_marginBottom="20dp"
                 android:gravity="center"
                 android:text="@string/early_practice_disclaimer"
-                android:textColor="#6E6455"
+                android:textColor="@color/c_text_hint"
                 android:textSize="10sp" />
 
         </LinearLayout>

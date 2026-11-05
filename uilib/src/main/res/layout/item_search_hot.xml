@@ -5,7 +5,7 @@
     android:id="@+id/tv_search_hot_item"
     android:layout_marginTop="8dp"
     android:textSize="14sp"
-    android:textColor="#C4A265"
+    android:textColor="@color/c_gold"
     tools:text="成都昭觉寺将于6月初6举行开光仪式"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"/>

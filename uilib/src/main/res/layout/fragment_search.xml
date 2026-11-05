@@ -6,7 +6,7 @@
     android:id="@+id/cl_moment_parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#251C10"
+    android:background="@color/c_bg_page"
     android:focusable="true"
     android:focusableInTouchMode="true">
 <!--        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
@@ -14,7 +14,7 @@
 <!--            android:id="@+id/cl_moment_parent"-->
 <!--            xmlns:tools="http://schemas.android.com/tools"-->
 <!--            android:layout_width="match_parent"-->
-<!--            android:background="#251C10"-->
+<!--            android:background="@color/c_bg_page"-->
 <!--            android:focusableInTouchMode="true"-->
 <!--            android:focusable="true"-->
 <!--            android:descendantFocusability="blocksDescendants"-->
@@ -33,7 +33,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:src="@mipmap/icon_back_black"
+            android:src="@drawable/icon_back_black"
             android:layout_marginStart="8dp"
             android:layout_width="38dp"
             android:layout_height="38dp"/>
@@ -49,8 +49,8 @@
             android:background="@drawable/bg_edittext_dark"
             android:layout_width="0dp"
             android:textSize="12sp"
-            android:textColorHint="#6E6455"
-            android:textColor="#B5A78F"
+            android:textColorHint="@color/c_text_hint"
+            android:textColor="@color/c_text_third"
             android:singleLine="true"
             android:maxLength="30"
             android:imeOptions="actionSearch"
@@ -64,7 +64,7 @@
             app:layout_constraintStart_toStartOf="@+id/et_search"
             android:layout_marginStart="10dp"
             android:layout_width="18dp"
-            android:src="@mipmap/icon_search_gray"
+            android:src="@drawable/icon_search_gray"
             android:layout_height="18dp"/>
 
 
@@ -75,7 +75,7 @@
             app:layout_constraintEnd_toEndOf="@+id/et_search"
             android:layout_width="32dp"
             android:padding="7dp"
-            android:src="@mipmap/icon_search_clear"
+            android:src="@drawable/icon_search_clear"
             android:layout_height="32dp"/>
 
 
@@ -88,7 +88,7 @@
     <com.fingertip.baselib.view.MyTextView
         android:id="@+id/tv_search_hot_title"
         android:text="热门搜索"
-        android:textColor="#B5A78F"
+        android:textColor="@color/c_text_third"
         android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@+id/cl_title"
         app:layout_constraintStart_toStartOf="parent"
@@ -111,7 +111,7 @@
     <com.fingertip.baselib.view.MyTextView
         android:id="@+id/tv_search_history_title"
         android:text="历史搜索"
-        android:textColor="#B5A78F"
+        android:textColor="@color/c_text_third"
         android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@+id/rv_search_hot"
         app:layout_constraintStart_toStartOf="parent"
@@ -138,7 +138,7 @@
         android:layout_marginStart="16dp"
         android:text="清除历史记录"
         app:ysunderline="true"
-        android:textColor="#E3C88B"
+        android:textColor="@color/c_gold_light"
         android:textSize="12sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
@@ -174,7 +174,7 @@
                     android:id="@+id/tv_group_user"
                     android:text="佛友（1）"
                     android:textSize="16sp"
-                    android:textColor="#B5A78F"
+                    android:textColor="@color/c_text_third"
                     app:zdyFont="bold"
                     android:layout_marginTop="24dp"
                     android:layout_width="wrap_content"
@@ -189,7 +189,7 @@
                     android:id="@+id/tv_group_moment"
                     android:text="众生（1）"
                     android:textSize="16sp"
-                    android:textColor="#B5A78F"
+                    android:textColor="@color/c_text_third"
                     app:zdyFont="bold"
                     android:layout_marginTop="24dp"
                     android:layout_width="wrap_content"

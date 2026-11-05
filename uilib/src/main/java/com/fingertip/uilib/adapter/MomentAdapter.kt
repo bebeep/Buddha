@@ -57,7 +57,8 @@ class MomentAdapter(
 
         binding.tvContent.text = entity.textContent
         binding.tvName.text = entity.postUserName
-        binding.tvLevel.text = "lv.${entity.userLevel}"
+        com.fingertip.uilib.utils.LevelUi.bindTag(binding.ivLevelTag, entity.userLevel)
+        binding.tvLevel.text = com.fingertip.uilib.utils.LevelUi.tagTitle(entity.userLevel)
         binding.tvCheckinTag.visibility = if (entity.checkIn) View.VISIBLE else View.GONE
         binding.ivHead.loadHead(entity.postAvatar)
         binding.tvLike.text = "${entity.likeCount}"

@@ -1,5 +1,7 @@
 package com.fingertip.uilib.activity
 
+import com.fingertip.baselib.R as BaseR
+import com.fingertip.baselib.top.TopApplication
 import android.content.Intent
 import android.os.Handler
 import android.os.Looper
@@ -107,11 +109,11 @@ class LoginRegisterActivity : TopVMActivity<LoginRegisterVM>() {
             if (result.success) {
                 binding.tvEmailTip.visibility = View.VISIBLE
                 binding.tvEmailTip.setText(R.string.login_email_ok)
-                binding.tvEmailTip.setTextColor("#C4A265".toColorInt())
+                binding.tvEmailTip.setTextColor(TopApplication.instance.getColor(BaseR.color.c_gold))
             } else if (result.errorCode == CODE_EMAIL_EXIST) {
                 binding.tvEmailTip.visibility = View.VISIBLE
                 binding.tvEmailTip.setText(R.string.login_email_exist)
-                binding.tvEmailTip.setTextColor("#D98A6A".toColorInt())
+                binding.tvEmailTip.setTextColor(TopApplication.instance.getColor(BaseR.color.c_d98a6a))
             } else {
                 // 网络抖动等情况不误报「已注册」，直接收起提示
                 binding.tvEmailTip.visibility = View.GONE

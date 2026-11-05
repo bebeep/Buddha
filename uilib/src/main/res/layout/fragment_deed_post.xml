@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2F2518">
+    android:background="@color/c_bg_card">
 
     <com.fingertip.baselib.view.FullTopConstraintLayout
         android:id="@+id/cl_title"
@@ -21,7 +21,7 @@
             android:layout_width="38dp"
             android:layout_height="38dp"
             android:layout_marginStart="8dp"
-            android:src="@mipmap/icon_back_black"
+            android:src="@drawable/icon_back_black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="发布求助"
-            android:textColor="#EDE3D2"
+            android:textColor="@color/c_text_main"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -60,8 +60,8 @@
                 android:hint="此处输入标题，限32字"
                 android:maxLength="32"
                 android:padding="12dp"
-                android:textColor="#EDE3D2"
-                android:textColorHint="#B5A78F"
+                android:textColor="@color/c_text_main"
+                android:textColorHint="@color/c_text_third"
                 android:textSize="15sp" />
 
             <EditText
@@ -74,8 +74,8 @@
                 android:hint="此处输入求助详情，说明受助人情况与善款用途"
                 android:minLines="5"
                 android:padding="12dp"
-                android:textColor="#EDE3D2"
-                android:textColorHint="#B5A78F"
+                android:textColor="@color/c_text_main"
+                android:textColorHint="@color/c_text_third"
                 android:textSize="14sp" />
 
             <TextView
@@ -83,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
                 android:text="选择分类"
-                android:textColor="#EDE3D2"
+                android:textColor="@color/c_text_main"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -100,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
                 android:text="目标功德币"
-                android:textColor="#EDE3D2"
+                android:textColor="@color/c_text_main"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -113,8 +113,8 @@
                 android:hint="达成目标后由平台转赠善款，如 1000"
                 android:inputType="number"
                 android:padding="12dp"
-                android:textColor="#EDE3D2"
-                android:textColorHint="#B5A78F"
+                android:textColor="@color/c_text_main"
+                android:textColorHint="@color/c_text_third"
                 android:textSize="14sp" />
 
             <CheckBox
@@ -123,7 +123,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="加急求助"
-                android:textColor="#B5A78F"
+                android:textColor="@color/c_text_third"
                 android:textSize="13sp" />
 
             <TextView
@@ -132,7 +132,7 @@
                 android:layout_marginTop="8dp"
                 android:lineSpacingExtra="4dp"
                 android:text="温馨提示：发布内容将经过平台审核，请如实描述；弄虚作假将被封禁账号并追回善款。"
-                android:textColor="#C4A265"
+                android:textColor="@color/c_gold"
                 android:textSize="11sp" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
@@ -147,7 +147,7 @@
         android:background="@drawable/bg_sign_button"
         android:gravity="center"
         android:text="发布"
-        android:textColor="@color/white"
+        android:textColor="@color/c_text_on_gold"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent" />

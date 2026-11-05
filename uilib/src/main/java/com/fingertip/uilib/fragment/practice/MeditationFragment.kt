@@ -10,23 +10,25 @@ import com.fingertip.uilib.viewmodel.MeditationVM
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import com.fingertip.baselib.top.TopApplication
+import com.fingertip.baselib.R as BaseR
 
 /**
  * 念佛计数
  *
  * - 点念珠一声 +1，今日计数按「日期 + 佛号」存本机 SharedPreferences，
  *   换会话回来还在（服务端没有"今日单佛号计数"的查询接口，硬要加一个只为显示不值当；
- *   禅值结算在服务端，本地这份只是让用户看见今天的数）。
+ *   功德币结算在服务端，本地这份只是让用户看见今天的数）。
  * - 上报节流：满 108 声报一次、切佛号报一次、离开页面报一次。
  *   点一下就发一次请求既费流量又会被限流，而且服务端本来就是按 108 声的档位结算的。
  * - 累计数从服务端拉（全佛号合计），下拉/重进都会刷新。
- * - 未登录只本地计数，不上报，页脚提示登录后才有禅值。
+ * - 未登录只本地计数，不上报，页脚提示登录后才有功德币。
  */
 class MeditationFragment : TopPmFragment<MeditationVM>() {
 
     companion object {
         private const val SP_NAME = "meditation_count"
-        //满这个数就上报一次，与服务端"每满 108 声 1 禅值"的结算档位对齐
+        //满这个数就上报一次，与服务端"每满 108 声 1 功德币"的结算档位对齐
         private const val FLUSH_UNIT = 108
     }
 
@@ -94,7 +96,7 @@ class MeditationFragment : TopPmFragment<MeditationVM>() {
             chip.setBackgroundResource(
                 if (selected) R.drawable.bg_home_pill_outline else R.drawable.bg_home_pill_solid
             )
-            chip.setTextColor(if (selected) 0xFFE3C88B.toInt() else 0xFF8C8069.toInt())
+            chip.setTextColor(if (selected) TopApplication.instance.getColor(BaseR.color.c_gold_light) else TopApplication.instance.getColor(BaseR.color.c_text_second))
         }
         binding.tvBeadText.text = chips.getOrNull(selectedChip)?.text
     }
@@ -140,7 +142,7 @@ class MeditationFragment : TopPmFragment<MeditationVM>() {
 
     /**
      * 上报未发送的计数。切佛号/离开页面前必须调——
-     * 否则余数留在本地，服务端永远少记一段，禅值也就少了。
+     * 否则余数留在本地，服务端永远少记一段，功德币也就少了。
      */
     private fun flush() {
         if (pending <= 0) return

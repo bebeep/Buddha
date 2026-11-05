@@ -24,7 +24,7 @@
         android:textSize="8sp"
         android:textColor="@color/white"
         android:text="99+"
-        app:gdBgColor="#EA5D5D"
+        app:gdBgColor="@color/c_ffea5d5d"
         app:gdRadius="6dp"
         android:visibility="gone"
         tools:visibility="visible"

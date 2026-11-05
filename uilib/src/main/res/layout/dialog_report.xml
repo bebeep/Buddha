@@ -9,7 +9,7 @@
         style="@style/constraint_center"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        app:gdBgColor="#FFFEFA"
+        app:gdBgColor="@color/c_bg_card2"
         app:gdRadius="12dp">
 
         <com.fingertip.baselib.view.MyTextView
@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
             android:text="@string/report_title"
-            android:textColor="#B5A78F"
+            android:textColor="@color/c_text_third"
             android:textSize="17sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +33,7 @@
             android:layout_marginTop="6dp"
             android:gravity="center"
             android:text="@string/report_sub"
-            android:textColor="#8C8069"
+            android:textColor="@color/c_text_second"
             android:textSize="12sp"
             app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
@@ -54,7 +54,7 @@
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
                 android:text="@string/report_reason_1"
-                android:textColor="#B5A78F"
+                android:textColor="@color/c_text_third"
                 android:textSize="14sp" />
 
             <com.fingertip.baselib.view.MyTextView
@@ -65,7 +65,7 @@
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
                 android:text="@string/report_reason_2"
-                android:textColor="#B5A78F"
+                android:textColor="@color/c_text_third"
                 android:textSize="14sp" />
 
             <com.fingertip.baselib.view.MyTextView
@@ -76,7 +76,7 @@
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
                 android:text="@string/report_reason_3"
-                android:textColor="#B5A78F"
+                android:textColor="@color/c_text_third"
                 android:textSize="14sp" />
 
             <com.fingertip.baselib.view.MyTextView
@@ -87,7 +87,7 @@
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
                 android:text="@string/report_reason_4"
-                android:textColor="#B5A78F"
+                android:textColor="@color/c_text_third"
                 android:textSize="14sp" />
 
             <com.fingertip.baselib.view.MyTextView
@@ -98,7 +98,7 @@
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
                 android:text="@string/report_reason_5"
-                android:textColor="#B5A78F"
+                android:textColor="@color/c_text_third"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -122,9 +122,9 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/report_cancel"
-                android:textColor="#8C8069"
+                android:textColor="@color/c_text_second"
                 android:textSize="15sp"
-                app:gdBgColor="#F2F0EC"
+                app:gdBgColor="@color/c_line"
                 app:gdRadius="22dp"
                 app:zdyFont="bold" />
 
@@ -136,12 +136,12 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/report_submit"
-                android:textColor="@color/white"
+                android:textColor="@color/c_text_on_gold"
                 android:textSize="15sp"
-                app:gdEndColor="#FFD543"
+                app:gdEndColor="@color/c_star"
                 app:gdGradientOrientation="LEFT_RIGHT"
                 app:gdRadius="22dp"
-                app:gdStartColor="#C4A265"
+                app:gdStartColor="@color/c_gold"
                 app:zdyFont="bold" />
 
         </LinearLayout>

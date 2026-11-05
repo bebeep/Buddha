@@ -35,7 +35,7 @@ class TempleListAdapter(
 
         val cover = item.coverList().firstOrNull()
         if (cover.isNullOrBlank()) {
-            binding.ivCover.setImageResource(R.mipmap.icon_menu_gongfo)
+            binding.ivCover.setImageResource(R.drawable.icon_menu_gongfo)
         } else {
             binding.ivCover.loadImg(cover)
         }

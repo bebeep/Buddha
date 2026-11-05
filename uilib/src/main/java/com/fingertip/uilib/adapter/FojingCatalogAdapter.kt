@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fingertip.baselib.bean.BookChapterItem
 import com.fingertip.uilib.databinding.ItemFojingCatalogBinding
 import com.fingertip.uilib.databinding.ItemFojingCatalogJuanBinding
+import com.fingertip.baselib.top.TopApplication
+import com.fingertip.baselib.R as BaseR
 
 
 /**
@@ -83,7 +85,7 @@ class FojingCatalogAdapter(
         holder.binding.tvCount.text = "${row.item.charCount}字"
         //正在读的这一章标个色，翻回目录一眼能看到自己在哪
         val reading = row.index == currentIndex
-        holder.binding.tvTitle.setTextColor(if (reading) 0xFF8C6B3F.toInt() else 0xFF2C1900.toInt())
+        holder.binding.tvTitle.setTextColor(if (reading) TopApplication.instance.getColor(BaseR.color.c_brown_book) else TopApplication.instance.getColor(BaseR.color.c_ink))
         holder.binding.root.setOnClickListener { onSelect(row.index) }
     }
 

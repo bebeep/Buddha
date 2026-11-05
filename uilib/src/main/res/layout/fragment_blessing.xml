@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3D301E">
+    android:background="@color/c_line">
 
     <com.fingertip.baselib.view.FullTopConstraintLayout
         android:id="@+id/cl_title"
@@ -21,7 +21,7 @@
             android:layout_width="38dp"
             android:layout_height="38dp"
             android:layout_marginStart="8dp"
-            android:src="@mipmap/icon_back_black"
+            android:src="@drawable/icon_back_black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="祈福"
-            android:textColor="#EDE3D2"
+            android:textColor="@color/c_text_main"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +45,7 @@
             android:layout_marginEnd="14dp"
             android:padding="4dp"
             android:text="规则"
-            android:textColor="#C4A265"
+            android:textColor="@color/c_gold"
             android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="今日已祝福 0/5 次"
-            android:textColor="#B5A78F"
+            android:textColor="@color/c_text_third"
             android:textSize="13sp" />
 
         <TextView
@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:padding="4dp"
             android:text="查看所有祈福"
-            android:textColor="#C4A265"
+            android:textColor="@color/c_gold"
             android:textSize="13sp" />
     </LinearLayout>
 
@@ -110,7 +110,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="福卡都被祝福完啦，发一张给大家沾沾福气"
-        android:textColor="#C4A265"
+        android:textColor="@color/c_gold"
         android:textSize="14sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -128,7 +128,7 @@
         android:background="@drawable/bg_sign_button"
         android:gravity="center"
         android:text="祈"
-        android:textColor="@color/white"
+        android:textColor="@color/c_text_on_gold"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   登录页（海外版）：Google + 邮箱，无手机号、无微信。
-  暗调禅金：底 #251C10，主金 #C4A265，全屏只有一个金色实底（主按钮）。
+  暗调禅金：底 @color/c_bg_page，主金 @color/c_gold，全屏只有一个金色实底（主按钮）。
 -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#251C10"
+    android:background="@color/c_bg_page"
     android:fillViewport="true"
     android:scrollbars="none">
 
@@ -39,7 +39,7 @@
             android:layout_marginTop="16dp"
             android:letterSpacing="0.18"
             android:text="@string/login_brand"
-            android:textColor="#E3C88B"
+            android:textColor="@color/c_gold_light"
             android:textSize="30sp"
             app:zdyFont="bold" />
 
@@ -51,7 +51,7 @@
             android:layout_marginTop="8dp"
             android:letterSpacing="0.06"
             android:text="@string/login_slogan"
-            android:textColor="#8C8069"
+            android:textColor="@color/c_text_second"
             android:textSize="13sp" />
 
         <Space
@@ -71,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="G"
-                android:textColor="#4285F4"
+                android:textColor="@color/c_ff4285f4"
                 android:textSize="19sp"
                 app:zdyFont="bold" />
 
@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:text="@string/login_google"
-                android:textColor="#1F1F1F"
+                android:textColor="@color/c_ff1f1f1f"
                 android:textSize="15sp"
                 app:zdyFont="medium" />
         </LinearLayout>
@@ -92,7 +92,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:text="@string/login_or_email"
-            android:textColor="#6B6259"
+            android:textColor="@color/c_text_mute"
             android:textSize="12sp" />
 
         <EditText
@@ -107,8 +107,8 @@
             android:paddingStart="18dp"
             android:paddingEnd="18dp"
             android:singleLine="true"
-            android:textColor="#EDE3D2"
-            android:textColorHint="#6B6259"
+            android:textColor="@color/c_text_main"
+            android:textColorHint="@color/c_text_mute"
             android:textSize="15sp" />
 
         <EditText
@@ -123,8 +123,8 @@
             android:paddingStart="18dp"
             android:paddingEnd="18dp"
             android:singleLine="true"
-            android:textColor="#EDE3D2"
-            android:textColorHint="#6B6259"
+            android:textColor="@color/c_text_main"
+            android:textColorHint="@color/c_text_mute"
             android:textSize="15sp" />
 
         <!-- 注册模式的二次密码确认，登录模式隐藏 -->
@@ -140,8 +140,8 @@
             android:paddingStart="18dp"
             android:paddingEnd="18dp"
             android:singleLine="true"
-            android:textColor="#EDE3D2"
-            android:textColorHint="#6B6259"
+            android:textColor="@color/c_text_main"
+            android:textColorHint="@color/c_text_mute"
             android:textSize="15sp"
             android:visibility="gone" />
 
@@ -152,7 +152,7 @@
             android:layout_marginTop="8dp"
             android:paddingStart="4dp"
             android:text="@string/login_email_ok"
-            android:textColor="#C4A265"
+            android:textColor="@color/c_gold"
             android:textSize="12sp"
             android:visibility="gone" />
 
@@ -165,7 +165,7 @@
             android:gravity="center"
             android:letterSpacing="0.12"
             android:text="@string/login_action_login"
-            android:textColor="#14100C"
+            android:textColor="@color/c_text_on_gold"
             android:textSize="16sp"
             app:zdyFont="bold" />
 
@@ -176,7 +176,7 @@
             android:layout_marginTop="6dp"
             android:gravity="center"
             android:text="@string/login_to_register"
-            android:textColor="#C4A265"
+            android:textColor="@color/c_gold"
             android:textSize="13sp" />
 
         <!-- 游客进入：服务端按设备号建/找回游客号，享正式账号全部功能；
@@ -191,7 +191,7 @@
             android:paddingStart="18dp"
             android:paddingEnd="18dp"
             android:text="@string/login_guest"
-            android:textColor="#8A7F70"
+            android:textColor="@color/c_ff8a7f70"
             android:textSize="13sp" />
 
         <Space
@@ -209,7 +209,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/login_agreement_prefix"
-                android:textColor="#6B6259"
+                android:textColor="@color/c_text_mute"
                 android:textSize="11sp" />
 
             <com.fingertip.baselib.view.MyTextView
@@ -217,14 +217,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/login_terms"
-                android:textColor="#B5A78F"
+                android:textColor="@color/c_text_third"
                 android:textSize="11sp" />
 
             <com.fingertip.baselib.view.MyTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/login_and"
-                android:textColor="#6B6259"
+                android:textColor="@color/c_text_mute"
                 android:textSize="11sp" />
 
             <com.fingertip.baselib.view.MyTextView
@@ -232,7 +232,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/login_privacy"
-                android:textColor="#B5A78F"
+                android:textColor="@color/c_text_third"
                 android:textSize="11sp" />
         </LinearLayout>
 

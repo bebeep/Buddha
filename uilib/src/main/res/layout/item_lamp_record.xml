@@ -26,7 +26,7 @@
             android:id="@+id/tv_no"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#EDE3D2"
+            android:textColor="@color/c_text_main"
             android:textSize="13.5sp" />
 
         <com.fingertip.baselib.view.MyTextView
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:textColor="#8C8069"
+            android:textColor="@color/c_text_second"
             android:textSize="10.5sp" />
 
         <com.fingertip.baselib.view.MyTextView
@@ -42,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
-            android:textColor="#6E6455"
+            android:textColor="@color/c_text_hint"
             android:textSize="9.5sp" />
 
     </LinearLayout>

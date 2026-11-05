@@ -35,7 +35,7 @@ class RemindAllDialog(
         }
 
         if (drawbleId!=0){
-            iv_hint?.setImageDrawable(ContextCompat.getDrawable(context,drawbleId?:R.mipmap.icon_sc_account))
+            iv_hint?.setImageDrawable(ContextCompat.getDrawable(context,drawbleId?:R.drawable.icon_sc_account))
         }
 
         textNo?.let {

@@ -5,6 +5,8 @@ import com.fingertip.baselib.bean.LampRecordData
 import com.fingertip.baselib.top.TopRcAdapter
 import com.fingertip.uilib.R
 import com.fingertip.uilib.databinding.ItemLampRecordBinding
+import com.fingertip.baselib.top.TopApplication
+import com.fingertip.baselib.R as BaseR
 
 /**
  * 供灯记录列表
@@ -36,7 +38,7 @@ class LampHistoryAdapter(context: Context) :
 
         val burning = item.lampStatus == 1
         binding.tvState.text = if (burning) "燃烧中" else "已燃尽"
-        binding.tvState.setTextColor(if (burning) 0xFFC4A265.toInt() else 0xFF8C8069.toInt())
+        binding.tvState.setTextColor(if (burning) TopApplication.instance.getColor(BaseR.color.c_gold) else TopApplication.instance.getColor(BaseR.color.c_text_second))
         //燃尽的记录整行压暗，一眼能看出哪些已经结束
         binding.vDot.alpha = if (burning) 1f else 0.3f
         binding.tvNo.alpha = if (burning) 1f else 0.6f

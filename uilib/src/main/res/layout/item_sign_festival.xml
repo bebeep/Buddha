@@ -17,7 +17,7 @@
         android:id="@+id/v_accent"
         android:layout_width="3dp"
         android:layout_height="30dp"
-        android:background="#D9432E" />
+        android:background="@color/c_festival_red" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="#B5A78F"
+            android:textColor="@color/c_text_third"
             android:textSize="14sp"
             app:zdyFont="bold" />
 
@@ -43,7 +43,7 @@
             android:layout_marginTop="2dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="#8C8069"
+            android:textColor="@color/c_text_second"
             android:textSize="11sp" />
 
     </LinearLayout>
@@ -53,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:textColor="#C8860D"
+        android:textColor="@color/c_festival_amber"
         android:textSize="11sp" />
 
 </LinearLayout>

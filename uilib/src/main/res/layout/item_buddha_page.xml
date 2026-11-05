@@ -1,7 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 佛龛轮播单页：佛像展示图 -->
-<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+    佛龛轮播单页：完整分层结构，全部层同页绑定、随轮播一体滑动。
+    素材统一为 1080x2400 全画布透明 PNG（与佛像 cutout 同源对齐），
+    服务端 shop_dress_config.resUrl 配置、场景位置在素材合成时定死，
+    客户端只做满屏叠层，不写任何场景坐标。
+
+    自下而上：
+      iv_shrine        佛龛层（佛像身后，点击跳装扮；buddha 默认龛或用户佩戴龛）
+      lottie_shrine    佛龛氛围动画（付费龛专属，如云水山龛金尘）
+      lottie_back      佛光动画（sceneAnimUrl）
+      iv_buddha        佛像本体（cutout PNG）
+      lottie_front     前置动画（净瓶/仙草）
+      iv_offering      贡品层（供佛中按档次显示，分列香炉两侧，不入装扮商店）
+      incense_group    香杆容器（三根香 + 烟雾动画；随供佛剩余时长整体 scaleY 变短）
+      iv_burner        香炉层（居中固定，盖住香脚；香炉不随香变短缩放）
+      iv_lamp_left/right    佛灯层（供桌后方、佛像脚下，z 在贡品之下；右侧镜像）
+      lottie_flame_left/right 灯焰动画（随灯油剩余比例缩放）
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scaleType="centerCrop"
-    android:importantForAccessibility="no" />
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_shrine"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:importantForAccessibility="no" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_shrine"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:importantForAccessibility="no" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_back"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:id="@+id/iv_buddha"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:importantForAccessibility="no" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_front"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:importantForAccessibility="no" />
+
+    <!-- 佛灯：供桌后方、佛像脚下（z 序在贡品/香炉之下，不再与贡品并排拥挤） -->
+    <ImageView
+        android:id="@+id/iv_lamp_left"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:importantForAccessibility="no" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_flame_left"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:id="@+id/iv_lamp_right"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:importantForAccessibility="no" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_flame_right"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:id="@+id/iv_offering"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:importantForAccessibility="no" />
+
+    <!-- 香杆容器：三根香插炉中 + 烟雾动画；供佛剩余时长减少时容器 scaleY（pivot 在香底/炉口），香随之变短 -->
+    <FrameLayout
+        android:id="@+id/incense_group"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_incense"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:importantForAccessibility="no" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_smoke"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:importantForAccessibility="no" />
+    </FrameLayout>
+
+    <!-- 香炉：居中固定层，z 序在香杆之上盖住香脚；不参与香的缩放 -->
+    <ImageView
+        android:id="@+id/iv_burner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:importantForAccessibility="no" />
+
+    <!--
+        场景点击层（最上层、全透明）：所有素材层都是满屏，谁在上面谁就吃掉整个屏幕的
+        点击——直接在佛灯层上挂单击会让佛龛永远点不到。所以点击统一收在这一层，
+        由 SceneGeometry.hitScene 按画布坐标反算手指落在灯具/佛龛上，再派发对应动作。
+    -->
+    <View
+        android:id="@+id/v_scene_touch"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:importantForAccessibility="no" />
+</FrameLayout>

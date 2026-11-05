@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start|center_vertical"
             android:text="目录"
-            android:textColor="#B5A78F"
+            android:textColor="@color/c_text_third"
             android:textSize="18sp"
             app:zdyFont="bold" />
 
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|center_vertical"
-            android:textColor="#B3A48E"
+            android:textColor="@color/c_text_beige"
             android:textSize="12sp" />
 
     </FrameLayout>
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="目录还没加载出来"
-            android:textColor="#B3A48E"
+            android:textColor="@color/c_text_beige"
             android:textSize="13sp"
             android:visibility="gone" />
 

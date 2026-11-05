@@ -12,5 +12,5 @@
     <corners android:radius="12dp" />
     <stroke
         android:width="0.5dp"
-        android:color="#26C4A265" />
+        android:color="@color/c_gold_15" />
 </shape>

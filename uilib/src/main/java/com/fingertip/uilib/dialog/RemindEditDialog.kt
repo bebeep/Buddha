@@ -10,6 +10,8 @@ import com.fingertip.baselib.view.MyTextView
 import com.fingertip.uilib.R
 import com.fingertip.uilib.databinding.DialogRemindEditBinding
 import java.util.Locale
+import com.fingertip.baselib.top.TopApplication
+import com.fingertip.baselib.R as BaseR
 
 /**
  * 提醒规则编辑弹窗
@@ -41,10 +43,10 @@ class RemindEditDialog(
         const val COLUMNS = 5
 
         /** 选中态：深色字压在金色底上 */
-        const val CHIP_TEXT_ON = 0xFF1C1611.toInt()
+        val CHIP_TEXT_ON = TopApplication.instance.getColor(BaseR.color.c_chip_text_on)
 
         /** 未选中：米色字 */
-        const val CHIP_TEXT_OFF = 0xFFB8AC96.toInt()
+        val CHIP_TEXT_OFF = TopApplication.instance.getColor(BaseR.color.c_text_sand)
     }
 
     private lateinit var binding: DialogRemindEditBinding

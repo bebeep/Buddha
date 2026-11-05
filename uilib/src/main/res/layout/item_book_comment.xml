@@ -26,7 +26,7 @@
         android:layout_marginStart="8dp"
         android:hint="秀芝羽"
         android:textSize="14sp"
-        android:textColor="#C4A265"
+        android:textColor="@color/c_gold"
         android:layout_height="wrap_content"/>
 
 
@@ -55,18 +55,29 @@
 
 
 
+    <!-- 等级徽章：服务端按级下发的药丸图，lv 数字画在图里 -->
+    <ImageView
+        android:id="@+id/iv_level_tag"
+        android:layout_width="42dp"
+        android:layout_height="14dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_comment_level"
+        app:layout_constraintStart_toStartOf="@+id/tv_comment_name"
+        app:layout_constraintTop_toTopOf="@+id/tv_comment_level" />
+
     <com.fingertip.baselib.view.MyTextView
         android:id="@+id/tv_comment_level"
         app:layout_constraintTop_toBottomOf="@+id/tv_comment_name"
         android:layout_width="0dp"
         android:layout_marginTop="4dp"
-        app:layout_constraintStart_toStartOf="@+id/tv_comment_name"
+        app:layout_constraintStart_toEndOf="@+id/iv_level_tag"
         app:layout_constraintBottom_toBottomOf="@+id/iv_head"
-        android:hint="lv5 初入佛门"
+        android:hint="初入佛门"
         android:singleLine="true"
         android:textSize="12sp"
+        android:layout_marginStart="5dp"
         app:layout_constraintEnd_toStartOf="@+id/ll_like"
-        android:textColor="#8C8069"
+        android:textColor="@color/c_text_second"
         android:layout_height="wrap_content"/>
 
     <LinearLayout
@@ -91,7 +102,7 @@
         <com.fingertip.baselib.view.MyTextView
             android:id="@+id/tv_comment_like"
             android:layout_marginStart="4dp"
-            android:textColor="#8C8069"
+            android:textColor="@color/c_text_second"
             android:textSize="12sp"
             android:hint="999"
             android:layout_width="wrap_content"
@@ -107,7 +118,7 @@
         android:layout_width="wrap_content"
         android:layout_marginTop="4dp"
         android:textSize="14sp"
-        android:textColor="#8C8069"
+        android:textColor="@color/c_text_second"
         android:hint="这里是经书简介爱上拉萨扩大了来到喀山啦啊拉萨市快乐打卡啊ask登录劳动的快乐爱上来到拉萨扩大上看到了a来到喀山啦啊拉萨市快乐打卡啊ask登录劳动的快乐爱上来到sk的力量"
         android:layout_height="wrap_content"/>
 

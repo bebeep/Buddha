@@ -13,6 +13,7 @@ import com.fingertip.baselib.bean.BuddhaConfig
 import com.fingertip.baselib.bean.BuddhaFestival
 import com.fingertip.baselib.bean.CalendarRemindData
 import com.fingertip.baselib.bean.CommentEntity
+import com.fingertip.baselib.bean.CoinPackData
 import com.fingertip.baselib.bean.MomentEntity
 import com.fingertip.baselib.bean.OssConfig
 import com.fingertip.baselib.bean.CalendarSimpleRsp
@@ -337,9 +338,11 @@ interface ApiManager {
     ): RequestRsp<String>
 
     /**
-     * 获取佛像列表
+     * 获取佛像列表。
+     * 服务端是 @GetMapping——这里必须用 @GET，用 @POST 会 405，
+     * 之前 globalParam 兜底掩盖了这个失败（供佛状态/香烛贡品一直拿不到）。
      */
-    @POST()
+    @GET()
     suspend fun getBuddhaConfig(
         @Url url: String = NetProperty.GET_BUDDHA_CONFIG,
         @Query("session") session: String = GlobalConfig.session
@@ -621,7 +624,7 @@ interface ApiManager {
     ): RequestRsp<TodayBuddhaInfo>
 
     /**
-     * 获取首页聚合数据：修持进度、供灯状态、禅值余额、连续天数、区块配置
+     * 获取首页聚合数据：修持进度、供灯状态、功德币余额、连续天数、区块配置
      * timeZone 传用户时区（如 Asia/Singapore），空则由服务端按服务器时区算
      */
     @GET()
@@ -1141,18 +1144,53 @@ interface ApiManager {
         @Body body: RequestBody
     ): RequestRsp<Int>
 
+    /**
+     * 功德币购买装扮（APP 内唯一购买方式）
+     *
+     * 直接扣功德币、立刻发货，不需要再走商店支付与验单。
+     * 成功时 data 是扣费后的功德币余额，供页面直接刷新。
+     */
+    @POST()
+    suspend fun buyDressByCoin(
+        @Url url: String = NetProperty.DRESS_BUY_COIN,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("dressId") dressId: Int,
+        @Query("buddhaId") buddhaId: Int = 0
+    ): RequestRsp<String>
+
     //endregion
 
-    //region 禅值
+    //region 功德币充值
 
     /**
-     * 禅值余额
+     * 充值档位列表
      */
     @GET()
-    suspend fun getMeritBalance(
-        @Url url: String = NetProperty.MERIT_BALANCE,
-        @Query("session") session: String = GlobalConfig.session
-    ): RequestRsp<Int>
+    suspend fun getRechargeConfig(
+        @Url url: String = NetProperty.RECHARGE_CONFIG
+    ): RequestRsp<List<CoinPackData>>
+
+    /**
+     * 创建充值订单，返回内部订单号
+     */
+    @POST()
+    suspend fun createRechargeOrder(
+        @Url url: String = NetProperty.RECHARGE_CREATE_ORDER,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("configId") configId: Int,
+        @Query("platform") platform: Int = NetProperty.PLATFORM
+    ): RequestRsp<String>
+
+    /**
+     * 充值验单到账，返回最新功德币余额
+     * body 用 RequestBodyFactory.iapVerifyBody(orderNo, platform, payOrderId)
+     */
+    @POST()
+    suspend fun verifyRecharge(
+        @Url url: String = NetProperty.RECHARGE_VERIFY,
+        @Query("session") session: String = GlobalConfig.session,
+        @Body body: RequestBody
+    ): RequestRsp<String>
 
     //endregion
 

@@ -20,7 +20,7 @@
         android:lineSpacingExtra="3dp"
         android:maxLines="4"
         android:minLines="2"
-        android:textColor="#B5A78F"
+        android:textColor="@color/c_text_third"
         android:textSize="14sp" />
 
     <TextView
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:textColor="#C4A265"
+        android:textColor="@color/c_gold"
         android:textSize="11sp" />
 
 </LinearLayout>

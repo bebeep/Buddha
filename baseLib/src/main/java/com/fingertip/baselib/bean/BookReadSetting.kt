@@ -1,5 +1,8 @@
 package com.fingertip.baselib.bean
 
+import com.fingertip.baselib.top.TopApplication
+import com.fingertip.baselib.R
+
 /**
  * 读经显示设置，对应服务端 book_read_setting，一个账号一份。
  * 四档颜色/字号/行距只存编号，具体色值、sp、dp 在客户端映射
@@ -9,16 +12,16 @@ class BookReadSetting {
     companion object {
         //四档正文色，与 bg_text_color_1~4 一致
         private val TEXT_COLORS = intArrayOf(
-            0xFF2C1900.toInt(),
-            0xFFFF9600.toInt(),
-            0xFF51B23D.toInt(),
-            0xFFAAAAAA.toInt()
+            TopApplication.instance.getColor(R.color.c_text_main),
+            TopApplication.instance.getColor(R.color.c_gold),
+            TopApplication.instance.getColor(R.color.c_pen_green),
+            TopApplication.instance.getColor(R.color.c_text_second)
         )
 
         //四档背景色，与 bg_color_1~4 一致
         private val BACKGROUND_COLORS = intArrayOf(
-            0xFFFFFEFA.toInt(),
-            0xFF2C1900.toInt(),
+            TopApplication.instance.getColor(R.color.c_bg_card),
+            TopApplication.instance.getColor(R.color.c_ink),
             0xFF4DD3E1C6.toInt(),
             0xFF4DEAE3D9.toInt()
         )
@@ -67,11 +70,11 @@ class BookReadSetting {
     fun contentLineSpacing(): Float = lineSpacing(lineSpacingLevel)
 
     /**
-     * 深色底（第2档深褐）就是夜间模式，标题要反白
+     * 深色底就是夜间模式，标题要反白；按背景亮度判断，1 档暗金纸和 2 档深褐都算
      */
-    fun isNight(): Boolean = backgroundColor == 2
+    fun isNight(): Boolean = !isLight(bgColor())
 
-    fun titleColor(): Int = if (isNight()) 0xFFFFFEFA.toInt() else 0xFF2C1900.toInt()
+    fun titleColor(): Int = if (isNight()) TopApplication.instance.getColor(R.color.c_paper) else TopApplication.instance.getColor(R.color.c_ink)
 
     fun keepOn(): Boolean = keepScreenOn == 1
 
@@ -84,7 +87,7 @@ class BookReadSetting {
         if (backgroundColor != 2) return contentTextColor()
         //深褐底下正文文字色档位若也是深色，统一改用米白
         val color = contentTextColor()
-        return if (!isLight(color)) 0xFFFFFEFA.toInt() else color
+        return if (!isLight(color)) TopApplication.instance.getColor(R.color.c_paper) else color
     }
 
     private fun isLight(color: Int): Boolean {

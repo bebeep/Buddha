@@ -26,7 +26,7 @@
         android:ellipsize="end"
         android:gravity="center"
         android:textSize="12sp"
-        android:textColor="#B3A48D"
+        android:textColor="@color/c_text_beige2"
         android:layout_height="wrap_content"/>
 
     <com.fingertip.baselib.view.MyTextView
@@ -35,7 +35,7 @@
         android:layout_marginTop="2dp"
         android:text="使用中"
         android:textSize="10sp"
-        android:textColor="#E3C88B"
+        android:textColor="@color/c_gold_light"
         android:visibility="gone"
         android:layout_height="wrap_content"/>
 </LinearLayout>

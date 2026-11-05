@@ -16,7 +16,7 @@ import com.fingertip.baselib.viewmodel.TopVMImp
  */
 class HomeVM : TopVMImp() {
 
-    //首页聚合数据（修持进度 / 供灯状态 / 禅值余额 / 连签天数 / 区块配置）
+    //首页聚合数据（修持进度 / 供灯状态 / 功德币余额 / 连签天数 / 区块配置）
     val summaryResult = MutableLiveData<RequestResult<HomeSummaryData>>()
 
     //首页头卡的佛历日期与今日佛事

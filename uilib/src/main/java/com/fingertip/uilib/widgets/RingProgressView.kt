@@ -7,6 +7,8 @@ import android.graphics.Paint
 import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
+import com.fingertip.baselib.top.TopApplication
+import com.fingertip.baselib.R as BaseR
 
 /**
  * 金色圆环进度，首页佛历头卡右侧的签到进度的位置。
@@ -31,7 +33,7 @@ class RingProgressView @JvmOverloads constructor(
     private val ringPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.STROKE
         strokeWidth = ringWidth
-        color = Color.parseColor("#33C4A265")
+        color = TopApplication.instance.getColor(BaseR.color.c_gold_20)
     }
 
     //进度弧：亮金，圆头
@@ -39,20 +41,20 @@ class RingProgressView @JvmOverloads constructor(
         style = Paint.Style.STROKE
         strokeWidth = ringWidth
         strokeCap = Paint.Cap.ROUND
-        color = Color.parseColor("#C4A265")
+        color = TopApplication.instance.getColor(BaseR.color.c_gold)
     }
 
     private val textPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         textAlign = Paint.Align.CENTER
         textSize = 14f * density
-        color = Color.parseColor("#E3C88B")
+        color = TopApplication.instance.getColor(BaseR.color.c_gold_light)
         isFakeBoldText = true
     }
 
     private val subPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         textAlign = Paint.Align.CENTER
         textSize = 9f * density
-        color = Color.parseColor("#8C8069")
+        color = TopApplication.instance.getColor(BaseR.color.c_text_second)
     }
 
     //当前进度与满值，max<=0 时不画弧

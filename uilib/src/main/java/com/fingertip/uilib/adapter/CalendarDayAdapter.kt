@@ -10,6 +10,8 @@ import com.fingertip.baselib.bean.CalendarSimpleRsp
 import com.fingertip.baselib.top.TopRcAdapter
 import com.fingertip.uilib.R
 import com.fingertip.uilib.databinding.ItemCalendarDayBinding
+import com.fingertip.baselib.top.TopApplication
+import com.fingertip.baselib.R as BaseR
 
 /**
  * 月历格子 Adapter
@@ -26,11 +28,11 @@ class CalendarDayAdapter(context: Context) : TopRcAdapter<CalendarSimpleInfo, To
 
     companion object {
         //佛菩萨圣诞/成道/出家/涅槃
-        private const val COLOR_FESTIVAL_MAJOR = 0xFFD9432E.toInt()
+        private val COLOR_FESTIVAL_MAJOR = TopApplication.instance.getColor(BaseR.color.c_festival_red)
         //盂兰盆、卫塞节等佛教节日
-        private const val COLOR_FESTIVAL_MINOR = 0xFFC8860D.toInt()
+        private val COLOR_FESTIVAL_MINOR = TopApplication.instance.getColor(BaseR.color.c_festival_amber)
         //春节、中秋等传统节日
-        private const val COLOR_FESTIVAL_TRADITION = 0xFF8A8A8A.toInt()
+        private val COLOR_FESTIVAL_TRADITION = TopApplication.instance.getColor(BaseR.color.c_festival_gray)
     }
 
     override fun initLayoutId(viewType: Int): Int = R.layout.item_calendar_day
@@ -67,7 +69,7 @@ class CalendarDayAdapter(context: Context) : TopRcAdapter<CalendarSimpleInfo, To
         //今天白字压在橙圆上，其余深色
         //今天：金圆底压深字（对比 9:1，白字在金底上只有 2:1）；其余：暗底亮字
         binding.tvSolar.setTextColor(
-            if (isToday) Color.parseColor("#2C1900") else Color.parseColor("#EDE3D2")
+            if (isToday) TopApplication.instance.getColor(BaseR.color.c_ink) else TopApplication.instance.getColor(BaseR.color.c_text_main)
         )
 
         //副标题：节日优先，其次农历；颜色服务端可指定（如节假日红字），格式「0xffffff」
@@ -76,7 +78,7 @@ class CalendarDayAdapter(context: Context) : TopRcAdapter<CalendarSimpleInfo, To
         when {
             festivalColor != null -> binding.tvLunar.setTextColor(festivalColor)
             !item.lunarDateTextColor.isNullOrBlank() -> binding.tvLunar.setTextColor(parseServerColor(item.lunarDateTextColor!!))
-            else -> binding.tvLunar.setTextColor(Color.parseColor(if (inMonth) "#999999" else "#CCCCCC"))
+            else -> binding.tvLunar.setTextColor(if (inMonth) TopApplication.instance.getColor(BaseR.color.c_gray_999) else TopApplication.instance.getColor(BaseR.color.c_gray_ccc))
         }
         //1、2 级节日加粗，在一屏小字里更醒目
         binding.tvLunar.typeface = if (item.festivalLevel in 1..2) Typeface.DEFAULT_BOLD else Typeface.DEFAULT
@@ -100,5 +102,5 @@ class CalendarDayAdapter(context: Context) : TopRcAdapter<CalendarSimpleInfo, To
      */
     private fun parseServerColor(raw: String): Int = runCatching {
         Color.parseColor(raw.replaceFirst("0x", "#", ignoreCase = true))
-    }.getOrDefault(Color.parseColor("#999999"))
+    }.getOrDefault(TopApplication.instance.getColor(BaseR.color.c_gray_999))
 }

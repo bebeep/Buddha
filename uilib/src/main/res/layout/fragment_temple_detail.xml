@@ -7,7 +7,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2F2518">
+    android:background="@color/c_bg_card">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -28,9 +28,9 @@
                     android:id="@+id/iv_cover"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#3D301E"
+                    android:background="@color/c_line"
                     android:scaleType="centerCrop"
-                    tools:src="@mipmap/icon_menu_gongfo" />
+                    tools:src="@drawable/icon_menu_gongfo" />
 
                 <com.fingertip.baselib.view.FullTopConstraintLayout
                     android:id="@+id/cl_title"
@@ -42,7 +42,7 @@
                         android:layout_width="38dp"
                         android:layout_height="38dp"
                         android:layout_marginStart="8dp"
-                        android:src="@mipmap/icon_back_black"
+                        android:src="@drawable/icon_back_black"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -59,7 +59,7 @@
                     android:id="@+id/tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#EDE3D2"
+                    android:textColor="@color/c_text_main"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     tools:text="昭觉寺" />
@@ -69,7 +69,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:textColor="#C4A265"
+                    android:textColor="@color/c_gold"
                     android:textSize="13sp"
                     tools:text="川西第一禅林" />
 
@@ -89,7 +89,7 @@
                         android:background="@drawable/bg_praying_cover_selected"
                         android:gravity="center"
                         android:text="👍 推荐"
-                        android:textColor="#C4A265"
+                        android:textColor="@color/c_gold"
                         android:textSize="13sp" />
 
                     <TextView
@@ -101,7 +101,7 @@
                         android:background="@drawable/bg_praying_cover_normal"
                         android:gravity="center"
                         android:text="👎 不推荐"
-                        android:textColor="#B5A78F"
+                        android:textColor="@color/c_text_third"
                         android:textSize="13sp" />
                 </LinearLayout>
 
@@ -110,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
                     android:text="简介"
-                    android:textColor="#EDE3D2"
+                    android:textColor="@color/c_text_main"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -120,7 +120,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:lineSpacingExtra="5dp"
-                    android:textColor="#B5A78F"
+                    android:textColor="@color/c_text_third"
                     android:textSize="13sp"
                     tools:text="昭觉寺，位于成都市北郊5公里……" />
 
@@ -129,7 +129,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
                     android:text="历史"
-                    android:textColor="#EDE3D2"
+                    android:textColor="@color/c_text_main"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -139,7 +139,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:lineSpacingExtra="5dp"
-                    android:textColor="#B5A78F"
+                    android:textColor="@color/c_text_third"
                     android:textSize="13sp"
                     tools:text="汉建元、唐贞观、宋崇宁……" />
 
@@ -148,7 +148,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
                     android:text="交通"
-                    android:textColor="#EDE3D2"
+                    android:textColor="@color/c_text_main"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -158,7 +158,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:lineSpacingExtra="4dp"
-                    android:textColor="#B5A78F"
+                    android:textColor="@color/c_text_third"
                     android:textSize="13sp"
                     tools:text="成都市成华区昭青路333号" />
 
@@ -169,7 +169,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
                     android:text="讨论"
-                    android:textColor="#EDE3D2"
+                    android:textColor="@color/c_text_main"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -189,7 +189,7 @@
         android:id="@+id/ll_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#251C10"
+        android:background="@color/c_bg_page"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingStart="14dp"
@@ -208,8 +208,8 @@
             android:maxLength="200"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
-            android:textColor="#EDE3D2"
-            android:textColorHint="#B5A78F"
+            android:textColor="@color/c_text_main"
+            android:textColorHint="@color/c_text_third"
             android:textSize="13sp" />
 
         <TextView
@@ -221,7 +221,7 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:text="发送"
-            android:textColor="#C4A265"
+            android:textColor="@color/c_gold"
             android:textSize="14sp"
             android:textStyle="bold" />
     </LinearLayout>

@@ -11,7 +11,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#251C10">
+    android:background="@color/c_bg_page">
 
     <com.fingertip.baselib.view.FullTopConstraintLayout
         android:id="@+id/cl_title"
@@ -25,8 +25,8 @@
             android:layout_width="38dp"
             android:layout_height="38dp"
             android:layout_marginStart="8dp"
-            android:src="@mipmap/icon_back_black"
-            android:tint="#EDE3D2"
+            android:src="@drawable/icon_back_black"
+            android:tint="@color/c_text_main"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/early_practice_title"
-            android:textColor="#EDE3D2"
+            android:textColor="@color/c_text_main"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:textColor="#C4A265"
+            android:textColor="@color/c_gold"
             android:textSize="11sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -138,7 +138,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ep_worship_tip"
-                android:textColor="#B5A78F"
+                android:textColor="@color/c_text_third"
                 android:textSize="12sp" />
 
             <com.fingertip.baselib.view.MyTextView
@@ -149,7 +149,7 @@
                 android:background="@drawable/bg_ep_orb"
                 android:gravity="center"
                 android:text="@string/ep_worship_tap"
-                android:textColor="#E3C88B"
+                android:textColor="@color/c_gold_light"
                 android:textSize="22sp"
                 app:zdyFont="bold" />
 
@@ -158,7 +158,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
-                android:textColor="#C4A265"
+                android:textColor="@color/c_gold"
                 android:textSize="12sp" />
 
         </LinearLayout>
@@ -177,8 +177,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/ep_chant_tip"
-                android:textColor="#B5A78F"
+                android:textColor="@color/c_text_third"
                 android:textSize="12sp" />
+
+            <!-- 今日随机经文的出处：经名 · 品名，拉不到经文时整行隐藏 -->
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_chant_source"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/c_gold"
+                android:textSize="12sp"
+                app:zdyFont="bold"
+                android:visibility="gone" />
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -189,11 +200,12 @@
                 android:padding="14dp">
 
                 <com.fingertip.baselib.view.MyTextView
+                    android:id="@+id/tv_chant_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lineSpacingExtra="7dp"
                     android:text="@string/ep_chant_text"
-                    android:textColor="#EDE3D2"
+                    android:textColor="@color/c_text_main"
                     android:textSize="14sp" />
 
             </ScrollView>
@@ -204,7 +216,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
                 android:gravity="center"
-                android:textColor="#C4A265"
+                android:textColor="@color/c_gold"
                 android:textSize="12sp" />
 
             <com.fingertip.baselib.view.MyTextView
@@ -215,7 +227,7 @@
                 android:background="@drawable/bg_home_pill_outline"
                 android:gravity="center"
                 android:text="@string/ep_chant_start"
-                android:textColor="#C4A265"
+                android:textColor="@color/c_gold"
                 android:textSize="13sp" />
 
         </LinearLayout>
@@ -236,7 +248,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ep_nianfo_tip"
-                android:textColor="#B5A78F"
+                android:textColor="@color/c_text_third"
                 android:textSize="12sp" />
 
             <com.fingertip.baselib.view.MyTextView
@@ -247,7 +259,7 @@
                 android:background="@drawable/bg_ep_orb"
                 android:gravity="center"
                 android:text="@string/meditation_title"
-                android:textColor="#E3C88B"
+                android:textColor="@color/c_gold_light"
                 android:textSize="22sp"
                 app:zdyFont="bold" />
 
@@ -256,7 +268,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
-                android:textColor="#C4A265"
+                android:textColor="@color/c_gold"
                 android:textSize="12sp" />
 
         </LinearLayout>
@@ -275,7 +287,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/ep_vow_tip"
-                android:textColor="#B5A78F"
+                android:textColor="@color/c_text_third"
                 android:textSize="12sp" />
 
             <EditText
@@ -291,8 +303,8 @@
                 android:maxLength="120"
                 android:minLines="5"
                 android:padding="14dp"
-                android:textColor="#EDE3D2"
-                android:textColorHint="#6E6455"
+                android:textColor="@color/c_text_main"
+                android:textColorHint="@color/c_text_hint"
                 android:textSize="13sp" />
 
         </LinearLayout>
@@ -311,7 +323,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ep_review_title"
-                android:textColor="#E3C88B"
+                android:textColor="@color/c_gold_light"
                 android:textSize="16sp"
                 app:zdyFont="bold" />
 
@@ -320,7 +332,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:text="@string/ep_review_tip"
-                android:textColor="#B5A78F"
+                android:textColor="@color/c_text_third"
                 android:textSize="11.5sp" />
 
             <com.fingertip.baselib.view.MyTextView
@@ -330,7 +342,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/bg_home_inner"
                 android:padding="12dp"
-                android:textColor="#EDE3D2"
+                android:textColor="@color/c_text_main"
                 android:textSize="13sp" />
 
             <com.fingertip.baselib.view.MyTextView
@@ -340,7 +352,7 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_home_inner"
                 android:padding="12dp"
-                android:textColor="#EDE3D2"
+                android:textColor="@color/c_text_main"
                 android:textSize="13sp" />
 
             <com.fingertip.baselib.view.MyTextView
@@ -350,7 +362,7 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_home_inner"
                 android:padding="12dp"
-                android:textColor="#EDE3D2"
+                android:textColor="@color/c_text_main"
                 android:textSize="13sp" />
 
             <com.fingertip.baselib.view.MyTextView
@@ -360,7 +372,7 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_home_inner"
                 android:padding="12dp"
-                android:textColor="#EDE3D2"
+                android:textColor="@color/c_text_main"
                 android:textSize="13sp" />
 
         </LinearLayout>
@@ -383,7 +395,7 @@
                 android:background="@drawable/bg_home_dot_gold"
                 android:gravity="center"
                 android:text="✓"
-                android:textColor="#14100C"
+                android:textColor="@color/c_text_on_gold"
                 android:textSize="18sp" />
 
             <com.fingertip.baselib.view.MyTextView
@@ -391,7 +403,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
-                android:textColor="#E3C88B"
+                android:textColor="@color/c_gold_light"
                 android:textSize="18sp"
                 app:zdyFont="bold" />
 
@@ -401,7 +413,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:textColor="#B5A78F"
+                android:textColor="@color/c_text_third"
                 android:textSize="12.5sp" />
 
             <com.fingertip.baselib.view.MyTextView
@@ -409,7 +421,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
-                android:textColor="#8C8069"
+                android:textColor="@color/c_text_second"
                 android:textSize="11sp" />
 
         </LinearLayout>
@@ -426,7 +438,7 @@
         android:background="@drawable/bg_ep_primary_off"
         android:gravity="center"
         android:text="@string/ep_next"
-        android:textColor="#8C8069"
+        android:textColor="@color/c_text_second"
         android:textSize="13.5sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_disclaimer" />
 
@@ -438,7 +450,7 @@
         android:layout_marginBottom="14dp"
         android:gravity="center"
         android:text="@string/early_practice_disclaimer"
-        android:textColor="#6E6455"
+        android:textColor="@color/c_text_hint"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent" />
 

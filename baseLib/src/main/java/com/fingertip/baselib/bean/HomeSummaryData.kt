@@ -4,12 +4,12 @@ package com.fingertip.baselib.bean
  * 首页聚合数据，对应服务端 home/getSummary 返回的 HomeSummaryData
  * （com.buddha.web.model.apiModel.HomeSummaryData）
  *
- * 首屏的修持进度、供灯状态、禅值余额、连签天数一次拿回，
+ * 首屏的修持进度、供灯状态、功德币余额、连签天数一次拿回，
  * 避免首页并发四五个请求在弱网下互相等待。
  */
 class HomeSummaryData {
-    //禅值余额
-    var meritBalance: Int = 0
+    //功德币余额（全站唯一货币，原禅值已并入）
+    var coin: Int = 0
     //早课连续天数
     var streakDays: Int = 0
     //今天（按用户时区）早课/晚课是否已完成
@@ -28,6 +28,8 @@ class HomeSummaryData {
     var lampName: String? = null
     //首页区块列表（运营配置），为空时前端用默认六区块
     var blocks: List<HomeBlockConfig>? = null
+    //首页「佛友圈精选」最多 3 条（官方开示 + 社区热帖混合），空时前端用禅语卡兜底
+    var featuredMoments: List<MomentEntity>? = null
 
     /**
      * 供灯三个字段单独抽出来，灯条渲染只看这个对象，不用在页面里到处传三个值

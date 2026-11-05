@@ -14,6 +14,8 @@ import com.fingertip.uilib.fragment.book.FojingDetailsFragment
 import com.fingertip.uilib.fragment.moment.MomentDetailsFragment
 import com.fingertip.uilib.fragment.temple.TempleDetailFragment
 import com.fingertip.uilib.viewmodel.UserToolVM
+import com.fingertip.baselib.top.TopApplication
+import com.fingertip.baselib.R as BaseR
 
 /**
  * 我的收藏
@@ -142,7 +144,7 @@ class CollectListFragment : TopPmFragment<UserToolVM>() {
             tv.setBackgroundResource(
                 if (on) R.drawable.bg_collect_tab_on else R.drawable.bg_collect_tab_off
             )
-            tv.setTextColor(if (on) 0xFFE3C88B.toInt() else 0xFF8C8069.toInt())
+            tv.setTextColor(if (on) TopApplication.instance.getColor(BaseR.color.c_gold_light) else TopApplication.instance.getColor(BaseR.color.c_text_second))
         }
     }
 

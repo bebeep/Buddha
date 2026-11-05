@@ -6,6 +6,8 @@ import com.fingertip.baselib.top.TopDialog
 import com.fingertip.baselib.util.ToastUtil
 import com.fingertip.uilib.R
 import com.fingertip.uilib.databinding.DialogReportBinding
+import com.fingertip.baselib.top.TopApplication
+import com.fingertip.baselib.R as BaseR
 
 /**
  * 举报弹窗
@@ -72,7 +74,7 @@ class ReportDialog(
         reasons.forEachIndexed { i, tv ->
             val on = i + 1 == index
             tv.setBackgroundResource(if (on) R.drawable.bg_report_item_on else 0)
-            tv.setTextColor(if (on) 0xFF8A6A2F.toInt() else 0xFF2C1900.toInt())
+            tv.setTextColor(if (on) TopApplication.instance.getColor(BaseR.color.c_gold_dark) else TopApplication.instance.getColor(BaseR.color.c_ink))
         }
     }
 }

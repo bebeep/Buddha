@@ -2,8 +2,8 @@
 <!-- 早课礼佛/称念的大圆触控区：暗底 + 金描边，不带实底金（把金色留给主按钮） -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval">
-    <solid android:color="#2F2518" />
+    <solid android:color="@color/c_bg_card" />
     <stroke
         android:width="1.5dp"
-        android:color="#73C4A265" />
+        android:color="@color/c_gold_45" />
 </shape>

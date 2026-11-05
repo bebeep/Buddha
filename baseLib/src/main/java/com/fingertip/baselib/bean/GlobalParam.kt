@@ -38,4 +38,7 @@ class GlobalParam: TopData() {
 
     //佛像配置
     var buddhaConfig : List<BuddhaConfig>?=null
+
+    //修行等级配置（user_level_config 全表，按 level 升序），头衔/徽章/经验门槛都从这里取
+    var userLevelConfig : List<UserLevelConfig>?=null
 }

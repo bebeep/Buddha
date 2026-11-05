@@ -18,7 +18,7 @@
         android:id="@+id/v_outside"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#66000000" />
+        android:background="@color/color_bla_40" />
 
     <LinearLayout
         android:id="@+id/ll_panel"
@@ -35,7 +35,7 @@
             android:gravity="center"
             android:paddingTop="18dp"
             android:paddingBottom="10dp"
-            android:textColor="#8C8069"
+            android:textColor="@color/c_text_second"
             android:textSize="13sp"
             android:visibility="gone"
             tools:text="对该内容"
@@ -51,7 +51,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="8dp"
-            android:background="#F2F0EC" />
+            android:background="@color/c_line" />
 
         <com.fingertip.baselib.view.MyTextView
             android:id="@+id/tv_cancel"
@@ -62,7 +62,7 @@
             android:minHeight="52dp"
             android:paddingVertical="14dp"
             android:text="@string/action_cancel"
-            android:textColor="#B5A78F"
+            android:textColor="@color/c_text_third"
             android:textSize="15sp"
             app:zdyFont="medium" />
 

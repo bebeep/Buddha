@@ -63,7 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:shadowColor="#66000000"
+                android:shadowColor="@color/color_bla_40"
                 android:shadowDx="0"
                 android:shadowDy="1"
                 android:shadowRadius="2"
@@ -78,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:shadowColor="#66000000"
+            android:shadowColor="@color/color_bla_40"
             android:shadowDx="0"
             android:shadowDy="1"
             android:shadowRadius="2"
@@ -94,11 +94,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:shadowColor="#66000000"
+            android:shadowColor="@color/color_bla_40"
             android:shadowDx="0"
             android:shadowDy="1"
             android:shadowRadius="2"
-            android:textColor="#CCFFFFFF"
+            android:textColor="@color/color_w_80"
             android:textSize="12sp"
             tools:text="四川 · 1小时前" />
     </LinearLayout>
@@ -134,7 +134,7 @@
             android:layout_height="36dp"
             android:layout_marginTop="20dp"
             android:contentDescription="评论"
-            android:src="@mipmap/icon_moment_comment" />
+            android:src="@drawable/icon_moment_comment" />
 
         <com.fingertip.baselib.view.MyTextView
             android:id="@+id/tv_comment"

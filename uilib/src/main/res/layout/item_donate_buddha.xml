@@ -24,7 +24,7 @@
         android:ellipsize="end"
         android:maxWidth="64dp"
         android:maxLines="1"
-        android:textColor="#B5A78F"
+        android:textColor="@color/c_text_third"
         android:textSize="11sp"
         tools:text="佛像" />
 </LinearLayout>

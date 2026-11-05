@@ -7,5 +7,5 @@
     android:layout_marginEnd="3dp"
     android:background="@drawable/bg_remind_hour_chip"
     android:gravity="center"
-    android:textColor="#B8AC96"
+    android:textColor="@color/c_text_sand"
     android:textSize="12sp" />

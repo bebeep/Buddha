@@ -28,6 +28,8 @@ import com.fingertip.uilib.dialog.WorshipDialog
 import com.fingertip.uilib.fragment.book.BookShelfFragment
 import com.fingertip.uilib.fragment.book.FojingDetailsFragment
 import com.fingertip.uilib.viewmodel.WorshipVM
+import com.fingertip.baselib.top.TopApplication
+import com.fingertip.baselib.R as BaseR
 
 /**
  * 佛像详情页，对应原型「佛像详情」：
@@ -131,7 +133,7 @@ class BuddhaDetailFragment : TopPmFragment<WorshipVM>() {
             val tv = TextView(context)
             tv.text = tag
             tv.textSize = 12f
-            tv.setTextColor(Color.parseColor("#C89A5B"))
+            tv.setTextColor(TopApplication.instance.getColor(BaseR.color.c_gold_warm))
             tv.setBackgroundResource(R.drawable.bg_buddha_tag)
             tv.setPadding(28, 8, 28, 8)
             tv.gravity = Gravity.CENTER

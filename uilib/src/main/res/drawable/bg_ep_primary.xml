@@ -2,6 +2,6 @@
 <!-- 早课主按钮：金色实底。整页只允许这一个实底元素 -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-    <solid android:color="#C4A265" />
+    <solid android:color="@color/c_gold" />
     <corners android:radius="100dp" />
 </shape>

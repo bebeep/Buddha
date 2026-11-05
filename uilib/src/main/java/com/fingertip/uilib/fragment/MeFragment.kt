@@ -10,6 +10,7 @@ import com.fingertip.baselib.event_bus.MessageEvent
 import com.fingertip.baselib.log
 import com.fingertip.baselib.top.TopPmFragment
 import com.fingertip.baselib.util.ColorUtil
+import com.fingertip.baselib.util.LevelUtil
 import com.fingertip.baselib.util.loadHead
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.DressCaseAdapter
@@ -17,6 +18,9 @@ import com.fingertip.uilib.databinding.FragmentMeBinding
 import com.fingertip.uilib.fragment.blessing.PrayingMineFragment
 import com.fingertip.uilib.fragment.game.FangShengFragment
 import com.fingertip.uilib.fragment.user.ProfileEditFragment
+import com.fingertip.uilib.fragment.user.UserLevelFragment
+import com.fingertip.uilib.utils.LevelUi
+import com.fingertip.uilib.utils.openPage
 import com.fingertip.uilib.viewmodel.UserVM
 import com.lzlz.toplib.extention.toPx
 import kotlinx.coroutines.Dispatchers
@@ -49,7 +53,7 @@ class MeFragment : TopPmFragment<UserVM>() {
         //拉一次最新用户信息（功德币/修行值可能刚变动）
         GlobalConfig.userData?.accountId?.let { mViewModel.loadUserInfo(it) }
 
-        //三格数据（禅值/连续修持/累计诵经）+ 装扮橱窗（§12.6）
+        //三格数据（功德币/连续修持/累计诵经）+ 装扮橱窗（§12.6）
         mViewModel.loadPracticeStats()
         mViewModel.loadMeditationTotal()
         mViewModel.loadMyDress()
@@ -57,11 +61,15 @@ class MeFragment : TopPmFragment<UserVM>() {
 
     private fun renderUser(user: PersonData?) {
         user ?: return
+        val level = user.userLevel ?: 0
         binding.ivAvatar.loadHead(user.avatar)
         binding.ivAvatarTitle.loadHead(user.avatar)
         binding.tvNickname.text = user.userName
         binding.tvNicknameTitle.text = user.userName
-        binding.tvLevel.text = "lv${user.userLevel}"
+        //等级徽章图（lv 数字画在图里）+ 头衔文字，全 App 统一口径
+        LevelUi.bindTag(binding.ivLevelTag, level)
+        binding.tvLevel.text = LevelUi.tagTitle(level)
+        binding.tvLevel.setTextColor(LevelUtil.colorOf(level))
         binding.tvNote.text = user.mood
         binding.tvFollowings.text = "${user.followingCount ?: 0}"
         binding.tvFollowers.text = "${user.followerCount ?: 0}"
@@ -92,7 +100,7 @@ class MeFragment : TopPmFragment<UserVM>() {
                 }
             }
         }
-        //三格数据：禅值（念佛/禅修累计）
+        //三格数据：累计念佛声数（接口语义就是声数，功德币体系已并入功德币，不再显示功德币）
         mViewModel.meditationTotalResult.observe(viewLifecycleOwner) { result ->
             if (result.success) {
                 binding.tvZen.text = "${result.data ?: 0}"
@@ -130,7 +138,8 @@ class MeFragment : TopPmFragment<UserVM>() {
     override fun getClickViews(): List<View> = mutableListOf(
         binding.ivSetting, binding.ivEdit, binding.ivAvatar, binding.tvNickname,
         binding.llExchange, binding.llItem, binding.llCollect, binding.llPunna,
-        binding.llHistory, binding.llMind, binding.llBless, binding.llReborn, binding.llIntro
+        binding.llHistory, binding.llMind, binding.llBless, binding.llReborn, binding.llIntro,
+        binding.llCoins, binding.llExp
     )
 
     override fun onSingleClick(v: View?) {
@@ -153,6 +162,11 @@ class MeFragment : TopPmFragment<UserVM>() {
             }
 
             //海外版：「兑换中心」改为装扮商城入口，「我的物品」改为我的装扮
+            binding.llCoins -> (parentFragment as? MainFragment)?.start(
+                com.fingertip.uilib.fragment.shop.RechargeFragment.newInstance()
+            )
+            //修行值：进等级详情页（等级体系/经验进度/全部等级表）
+            binding.llExp -> openPage(UserLevelFragment.newInstance())
             binding.llExchange -> (parentFragment as? MainFragment)?.start(
                 com.fingertip.uilib.fragment.shop.ShopFragment.newInstance()
             )

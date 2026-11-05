@@ -13,7 +13,7 @@
         android:id="@+id/tv_date"
         android:layout_width="52dp"
         android:layout_height="wrap_content"
-        android:textColor="#C4A265"
+        android:textColor="@color/c_gold"
         android:textSize="11.5sp"
         tools:text="12-08" />
 
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="#EDE3D2"
+            android:textColor="@color/c_text_main"
             android:textSize="12.5sp"
             tools:text="释迦牟尼佛成道日" />
 
@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
-            android:textColor="#8C8069"
+            android:textColor="@color/c_text_second"
             android:textSize="10.5sp"
             tools:text="农历腊月初八" />
 
@@ -49,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:textColor="#8C8069"
+        android:textColor="@color/c_text_second"
         android:textSize="10.5sp"
         tools:text="还有 12 天" />
 

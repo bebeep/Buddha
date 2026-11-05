@@ -30,22 +30,32 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:singleLine="true"
-            android:textColor="#EDE3D2"
+            android:textColor="@color/c_text_main"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/iv_head"
             app:layout_constraintTop_toTopOf="@+id/iv_head"
             app:zdyFont="regular" />
 
+        <!-- 等级徽章：服务端按级下发的药丸图，lv 数字画在图里 -->
+        <ImageView
+            android:id="@+id/iv_level_tag"
+            android:layout_width="42dp"
+            android:layout_height="14dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="2dp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_head"
+            app:layout_constraintStart_toEndOf="@+id/iv_head" />
+
         <com.fingertip.baselib.view.MyTextView
             android:id="@+id/tv_level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="2dp"
-            android:textColor="#8C8069"
+            android:textColor="@color/c_text_second"
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="@+id/iv_head"
-            app:layout_constraintStart_toEndOf="@+id/iv_head" />
+            app:layout_constraintStart_toEndOf="@+id/iv_level_tag" />
 
         <com.fingertip.baselib.view.MyTextView
             android:id="@+id/tv_comment"
@@ -53,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="16dp"
-            android:textColor="#EDE3D2"
+            android:textColor="@color/c_text_main"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +74,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#1FC4A265" />
+        android:background="@color/c_gold_12" />
 
     <!-- 子评论列表（仅此区域可滚动） -->
     <com.scwang.smart.refresh.layout.SmartRefreshLayout

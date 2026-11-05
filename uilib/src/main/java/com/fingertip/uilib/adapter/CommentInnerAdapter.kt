@@ -1,5 +1,7 @@
 package com.fingertip.uilib.adapter
 
+import com.fingertip.baselib.R as BaseR
+import com.fingertip.baselib.top.TopApplication
 import android.content.Context
 import android.view.View
 import com.fingertip.baselib.bean.CommentEntity
@@ -34,7 +36,7 @@ class CommentInnerAdapter(context: Context, val onItemClick:(position:Int,longCl
 
             if (!it.replyNickName.isNullOrEmpty())
             {
-                binding.tvInnerComment.setColoredText("回复 ${it.replyNickName}: ${it.textContent.clearFirstLine()}", "${it.replyNickName}", "#33000000")
+                binding.tvInnerComment.setColoredText("回复 ${it.replyNickName}: ${it.textContent.clearFirstLine()}", "${it.replyNickName}", TopApplication.instance.getColor(BaseR.color.color_bla_20))
 
             }
 

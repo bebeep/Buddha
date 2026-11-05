@@ -11,6 +11,8 @@ import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.DeedListAdapter
 import com.fingertip.uilib.databinding.FragmentDeedMineBinding
 import com.fingertip.uilib.viewmodel.GoodDeedVM
+import com.fingertip.baselib.top.TopApplication
+import com.fingertip.baselib.R as BaseR
 
 /**
  * 我的行善：页签切换「我发布的求助」与「善行记录（我捐赠的）」
@@ -92,17 +94,17 @@ class GoodDeedMineFragment : TopPmFragment<GoodDeedVM>() {
             binding.tvTabPosted -> {
                 if (tab == 0) return
                 binding.tvTabPosted.setBackgroundResource(R.drawable.bg_praying_cover_selected)
-                binding.tvTabPosted.setTextColor(Color.parseColor("#C87A2B"))
+                binding.tvTabPosted.setTextColor(TopApplication.instance.getColor(BaseR.color.c_tag_orange))
                 binding.tvTabDonated.setBackgroundResource(R.drawable.bg_praying_cover_normal)
-                binding.tvTabDonated.setTextColor(Color.parseColor("#8A6B3A"))
+                binding.tvTabDonated.setTextColor(TopApplication.instance.getColor(BaseR.color.c_tag_brown))
                 load(0, 0)
             }
             binding.tvTabDonated -> {
                 if (tab == 1) return
                 binding.tvTabDonated.setBackgroundResource(R.drawable.bg_praying_cover_selected)
-                binding.tvTabDonated.setTextColor(Color.parseColor("#C87A2B"))
+                binding.tvTabDonated.setTextColor(TopApplication.instance.getColor(BaseR.color.c_tag_orange))
                 binding.tvTabPosted.setBackgroundResource(R.drawable.bg_praying_cover_normal)
-                binding.tvTabPosted.setTextColor(Color.parseColor("#8A6B3A"))
+                binding.tvTabPosted.setTextColor(TopApplication.instance.getColor(BaseR.color.c_tag_brown))
                 load(1, 0)
             }
         }

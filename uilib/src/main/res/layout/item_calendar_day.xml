@@ -16,7 +16,7 @@
         android:layout_width="34dp"
         android:layout_height="34dp"
         android:gravity="center"
-        android:textColor="#B5A78F"
+        android:textColor="@color/c_text_third"
         android:textSize="15sp"
         android:textStyle="bold" />
 
@@ -30,7 +30,7 @@
         android:maxLines="1"
         android:paddingStart="2dp"
         android:paddingEnd="2dp"
-        android:textColor="#8C8069"
+        android:textColor="@color/c_text_second"
         android:textSize="10sp" />
 
 </LinearLayout>

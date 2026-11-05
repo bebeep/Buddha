@@ -4,5 +4,5 @@
     <corners
         android:topLeftRadius="20dp"
         android:topRightRadius="20dp" />
-    <solid android:color="#2A2014" />
+    <solid android:color="@color/c_bg_card2" />
 </shape>

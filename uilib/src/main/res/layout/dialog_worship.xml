@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="供佛"
-            android:textColor="#EDE3D2"
+            android:textColor="@color/c_text_main"
             android:textSize="18sp"
             app:zdyFont="bold" />
 
@@ -29,7 +29,7 @@
             android:id="@+id/iv_close"
             android:layout_width="26dp"
             android:layout_height="26dp"
-            android:src="@mipmap/icon_sign_in_close" />
+            android:src="@drawable/icon_sign_in_close" />
     </LinearLayout>
 
     <com.fingertip.baselib.view.MyTextView
@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:textColor="#8C8069"
+        android:textColor="@color/c_text_second"
         android:textSize="13sp"
         tools:text="供奉「释迦牟尼佛」" />
 
@@ -54,7 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:textColor="#8C8069"
+        android:textColor="@color/c_text_second"
         android:textSize="12sp"
         tools:text="我的功德币：1000" />
 
@@ -66,7 +66,7 @@
         android:background="@drawable/bg_button"
         android:gravity="center"
         android:text="确定"
-        android:textColor="@color/white"
+        android:textColor="@color/c_text_on_gold"
         android:textSize="16sp"
         app:zdyFont="bold" />
 
@@ -76,6 +76,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:text="供佛期间可持续获得功德收益，续供自动顺延"
-        android:textColor="#8C8069"
+        android:textColor="@color/c_text_second"
         android:textSize="11sp" />
 </LinearLayout>

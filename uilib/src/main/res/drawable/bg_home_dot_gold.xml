@@ -2,5 +2,5 @@
 <!-- 完成态小勾的底色 -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval">
-    <solid android:color="#C4A265" />
+    <solid android:color="@color/c_gold" />
 </shape>

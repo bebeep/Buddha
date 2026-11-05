@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 等级表行：等级徽章 + 头衔 + 累计门槛 + 相对上一级的增量 -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="16dp"
+    android:paddingTop="11dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="11dp">
+
+    <!-- 当前等级左侧竖条 -->
+    <View
+        android:id="@+id/v_current"
+        android:layout_width="3dp"
+        android:layout_height="0dp"
+        android:background="@color/c_gold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <!-- 等级徽章：服务端按级下发的药丸图；配置缺失时回退到 tv_badge 文字牌 -->
+    <ImageView
+        android:id="@+id/iv_badge"
+        android:layout_width="42dp"
+        android:layout_height="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_badge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="42dp"
+        android:gravity="center"
+        android:textColor="@color/c_gold"
+        android:textSize="11sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="lv12"
+        tools:visibility="gone" />
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_tag"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/c_text_main"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_badge"
+        app:layout_constraintEnd_toStartOf="@+id/tv_exp"
+        app:layout_constraintStart_toEndOf="@+id/iv_badge"
+        app:layout_constraintTop_toTopOf="@+id/iv_badge"
+        tools:text="三阶·居士" />
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_exp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/c_text_second"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_tag"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_tag"
+        tools:text="88" />
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_delta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:textColor="@color/c_text_second"
+        android:textSize="11sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_tag"
+        app:layout_constraintTop_toBottomOf="@+id/tv_tag"
+        tools:text="本级 +24" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

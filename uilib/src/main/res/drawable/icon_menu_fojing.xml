@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    金刚区-佛经
+    2026-11 矢量图标改造：替换同名 mipmap 位图（24dp 线性风格，暗金主题）
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp"
+    android:viewportWidth="24" android:viewportHeight="24">
+    <path android:pathData="M4,5 C6.6,5 9,5.6 11,7 V19 C9,17.6 6.6,17 4,17 Z M20,5 C17.4,5 15,5.6 13,7 V19 C15,17.6 17.4,17 20,17 Z M12,7 V19" android:strokeColor="@color/c_gold" android:strokeWidth="1.70" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+</vector>

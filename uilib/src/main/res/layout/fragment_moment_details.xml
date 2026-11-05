@@ -6,7 +6,7 @@
     android:id="@+id/cl_moment_parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#251C10"
+    android:background="@color/c_bg_page"
     android:descendantFocusability="blocksDescendants"
     android:focusable="true"
     android:focusableInTouchMode="true">
@@ -15,7 +15,7 @@
 <!--            android:id="@+id/cl_moment_parent"-->
 <!--            xmlns:tools="http://schemas.android.com/tools"-->
 <!--            android:layout_width="match_parent"-->
-<!--            android:background="#251C10"-->
+<!--            android:background="@color/c_bg_page"-->
 <!--            android:focusableInTouchMode="true"-->
 <!--            android:focusable="true"-->
 <!--            android:descendantFocusability="blocksDescendants"-->
@@ -34,7 +34,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:src="@mipmap/icon_back_black"
+            android:src="@drawable/icon_back_black"
             android:layout_marginStart="8dp"
             android:layout_width="38dp"
             android:layout_height="38dp"/>
@@ -58,23 +58,33 @@
             android:layout_marginStart="6dp"
             app:layout_constraintBottom_toTopOf="@+id/tv_level"
             android:textSize="15sp"
-            android:textColor="#EDE3D2"
+            android:textColor="@color/c_text_main"
             tools:text="吴彦祖"
             app:layout_constraintVertical_chainStyle="packed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
+        <!-- 等级徽章：服务端按级下发的药丸图，lv 数字画在图里 -->
+        <ImageView
+            android:id="@+id/iv_level_tag"
+            app:layout_constraintTop_toTopOf="@+id/tv_level"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_level"
+            app:layout_constraintStart_toEndOf="@+id/iv_head"
+            android:layout_width="42dp"
+            android:layout_marginStart="8dp"
+            android:layout_height="14dp"/>
+
         <TextView
             android:id="@+id/tv_level"
             app:layout_constraintTop_toBottomOf="@+id/tv_nickname"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iv_head"
+            app:layout_constraintStart_toEndOf="@+id/iv_level_tag"
             android:layout_width="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="4dp"
             android:textSize="10sp"
-            android:textColor="#8C8069"
+            android:textColor="@color/c_text_second"
             android:layout_marginTop="2dp"
-            tools:text="lv1 佛门初探 | 3分钟前"
+            tools:text="佛门初探 · 3分钟前"
             android:layout_height="wrap_content"/>
 
         <ImageView
@@ -82,7 +92,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:src="@mipmap/icon_menu"
+            android:src="@drawable/icon_menu"
             android:layout_marginEnd="8dp"
             android:layout_width="38dp"
             android:layout_height="38dp"/>
@@ -144,8 +154,8 @@
                         android:lineSpacingExtra="5dp"
                         android:paddingHorizontal="15dp"
                         android:paddingBottom="10dp"
-                        android:textColor="#EDE3D2"
-                        android:textColorLink="#32c5f3"
+                        android:textColor="@color/c_text_main"
+                        android:textColorLink="@color/c_ff32c5f3"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
@@ -210,10 +220,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:includeFontPadding="false"
-                    android:textColor="#8C8069"
+                    android:textColor="@color/c_text_second"
                     android:textSize="14sp"
                     android:gravity="center_vertical"
-                    android:drawableStart="@mipmap/icon_moment_locate_gray"
+                    android:drawableStart="@drawable/icon_moment_locate_gray"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/dc_container"
                     tools:text="四川省成都市天府广场101号" />
@@ -235,11 +245,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
                     android:layout_marginStart="13dp"
-                    android:drawableStart="@mipmap/icon_moment_share"
+                    android:drawableStart="@drawable/icon_moment_share"
                     android:drawablePadding="4dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:textColor="#B5A78F"
+                    android:textColor="@color/c_text_third"
                     android:textSize="14sp"
                     app:layout_constraintTop_toTopOf="@+id/tv_like"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_like"
@@ -259,7 +269,7 @@
                     android:layout_marginEnd="16dp"
                     android:drawablePadding="4dp"
                     android:gravity="center"
-                    android:textColor="#B5A78F"
+                    android:textColor="@color/c_text_third"
                     android:textSize="14sp"
                     tools:text="25" />
 
@@ -270,7 +280,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="24dp"
-                    android:background="#1FC4A265"
+                    android:background="@color/c_gold_12"
                     app:layout_constraintTop_toBottomOf="@+id/tv_like" />
 
 
@@ -281,7 +291,7 @@
                     android:layout_marginHorizontal="15dp"
                     android:layout_marginTop="24dp"
                     android:text="评论(899)"
-                    android:textColor="#EDE3D2"
+                    android:textColor="@color/c_text_main"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/v_line"
@@ -301,7 +311,7 @@
                 <com.fingertip.baselib.view.MyTextView
                     android:id="@+id/iv_empty"
                     android:text="暂无内容"
-                    android:textColor="#8C8069"
+                    android:textColor="@color/c_text_second"
                     android:layout_width="wrap_content"
                     android:gravity="center"
                     android:layout_gravity="center"
@@ -341,7 +351,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="center_vertical|end"
-            android:src="@mipmap/btn_comment_send_grey" />
+            android:src="@drawable/btn_comment_send_grey" />
     </FrameLayout>
 
     <FrameLayout
@@ -371,7 +381,7 @@
             android:maxLength="300"
             android:minHeight="48dp"
             android:paddingLeft="15dp"
-            android:textColor="#EDE3D2"
+            android:textColor="@color/c_text_main"
             android:textCursorDrawable="@drawable/bg_comment_curser"
             android:textSize="15sp" />
 

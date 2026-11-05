@@ -12,6 +12,8 @@ import com.fingertip.baselib.top.TopDialogBottomSheetDialog
 import com.fingertip.uilib.R
 import com.fingertip.uilib.databinding.DialogWorshipBinding
 import com.fingertip.uilib.viewmodel.WorshipVM
+import com.fingertip.baselib.top.TopApplication
+import com.fingertip.baselib.R as BaseR
 
 /**
  * 供佛弹窗：按价目选择供奉天数，确定后由页面调 worshipBuddha 接口
@@ -85,7 +87,7 @@ class WorshipDialog(context: Context) : TopDialogBottomSheetDialog(context) {
         tv.setBackgroundResource(
             if (selected) R.drawable.bg_worship_price_selected else R.drawable.bg_worship_price_normal
         )
-        tv.setTextColor(if (selected) Color.parseColor("#C4A265") else Color.parseColor("#8C8069"))
+        tv.setTextColor(if (selected) TopApplication.instance.getColor(BaseR.color.c_gold) else TopApplication.instance.getColor(BaseR.color.c_text_second))
     }
 
     /**

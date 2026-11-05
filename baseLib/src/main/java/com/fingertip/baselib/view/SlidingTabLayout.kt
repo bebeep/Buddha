@@ -13,6 +13,8 @@ import android.widget.TextView
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.blankj.utilcode.util.SizeUtils
+import com.fingertip.baselib.top.TopApplication
+import com.fingertip.baselib.R
 
 class SlidingTabLayout : AxSlidingTabLayout {
     constructor(context: Context?) : super(context) {
@@ -70,14 +72,14 @@ class SlidingTabLayout : AxSlidingTabLayout {
         val selectTextSize = 24f
         if (lastSelectTitle != null) {
             var str= SpannableString(lastSelectTitle?.text);
-            str.setSpan( ForegroundColorSpan(Color.parseColor("#767B7B")), 1,2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            str.setSpan( ForegroundColorSpan(TopApplication.instance.getColor(R.color.c_tab_hint)), 1,2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             lastSelectTitle?.text=str
             lastSelectTitle?.layoutParams=getLp(8f)
             setAnim(lastSelectTitle!!, selectTextSize, normalTextSize)
         }
         val titleView = getTitleView(index)
         var str= SpannableString(titleView.text);
-        str.setSpan( ForegroundColorSpan(Color.parseColor("#3EEBD5")), 1,2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        str.setSpan( ForegroundColorSpan(TopApplication.instance.getColor(R.color.c_tab_teal)), 1,2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         titleView.text = str
         titleView.layoutParams=getLp(7f)
         setAnim(titleView, normalTextSize, selectTextSize)

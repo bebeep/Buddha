@@ -20,7 +20,7 @@
 
     <com.fingertip.baselib.view.MyTextView
         android:id="@+id/tv_name"
-        android:textColor="#EDE3D2"
+        android:textColor="@color/c_text_main"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/iv_head"
         android:text="匿名用户"

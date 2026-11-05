@@ -26,7 +26,8 @@ class BlessRecordAdapter(
         val wisher = item.wishingAccountInfo
         binding.ivAvatar.loadImgNoHolder(wisher?.avatar)
         binding.tvUserName.text = wisher?.userName ?: "佛友"
-        binding.tvUserLevel.text = "lv${wisher?.userLevel ?: 0}"
+        com.fingertip.uilib.utils.LevelUi.bindTag(binding.ivLevelTag, wisher?.userLevel ?: 0)
+        binding.tvUserLevel.text = com.fingertip.uilib.utils.LevelUi.tagTitle(wisher?.userLevel ?: 0)
         binding.tvUserLevel.visibility = if (showLevel) android.view.View.VISIBLE else android.view.View.GONE
         binding.tvBlessDate.text = item.blessDate.orEmpty()
         binding.tvWishContent.text = item.wishContent.orEmpty()

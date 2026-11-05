@@ -14,6 +14,8 @@ import com.fingertip.uilib.viewmodel.EarlyPracticeVM
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import com.fingertip.baselib.top.TopApplication
+import com.fingertip.baselib.R as BaseR
 
 /**
  * 早课五步流程：礼佛 → 诵经 → 称念 → 发愿 → 回向
@@ -26,7 +28,7 @@ import java.util.Locale
  *    没有服务端留存就没有泄露风险。回向卡上只显示有没有写，不做回显以外的用途。
  * 4. 时区交给服务端判定早课/晚课：客户端只上报 IANA 时区 id（Asia/Singapore 这种），
  *    海外用户跨时区不会把"晚上"算成"早上"。
- * 5. 结果页的禅值与连续天数全部来自服务端（提交后重拉统计），不在客户端自增，
+ * 5. 结果页的功德币与连续天数全部来自服务端（提交后重拉统计），不在客户端自增，
  *    否则改本地数据就能刷里程碑奖励。
  */
 class EarlyPracticeFragment : TopPmFragment<EarlyPracticeVM>() {
@@ -38,8 +40,8 @@ class EarlyPracticeFragment : TopPmFragment<EarlyPracticeVM>() {
         private const val CHANT_SECONDS = 60
         //称念佛号目标
         private const val NIANFO_TARGET = 21
-        //单次早课固定禅值，仅用于结果页文案（真实发放以服务端为准）
-        private const val PRACTICE_MERIT = 20
+        //单次早课固定功德币，仅用于结果页文案（真实发放以服务端为准）
+        private const val PRACTICE_COIN = 20
         //愿文本地存储
         private const val SP_NAME = "early_practice"
         private const val SP_KEY_VOW = "last_vow"
@@ -98,12 +100,24 @@ class EarlyPracticeFragment : TopPmFragment<EarlyPracticeVM>() {
         //未登录不必拉统计，页面照常可走完，只是提交时会提示；
         //带 loading 的请求等入栈动画放完再发，避免转场被 HUD + 请求卡顿
         if (GlobalConfig.session.isNotBlank()) {
-            postOnEnterAnimationEnd { mViewModel.loadStatistic() }
+            postOnEnterAnimationEnd {
+                mViewModel.loadStatistic()
+                //第二步诵经的经文：按天随机取，失败保持写死的心经兜底
+                mViewModel.loadDailySutra()
+            }
         }
     }
 
     override fun initObserver() {
         super.initObserver()
+
+        mViewModel.sutraResult.observe(viewLifecycleOwner) { sutra ->
+            if (!isAdded) return@observe
+            binding.tvChantSource.text =
+                getString(R.string.ep_chant_source, sutra.bookTitle, sutra.chapterTitle)
+            binding.tvChantSource.visibility = View.VISIBLE
+            binding.tvChantText.text = sutra.content
+        }
 
         mViewModel.statisticResult.observe(viewLifecycleOwner) { result ->
             if (!isAdded) return@observe
@@ -232,7 +246,7 @@ class EarlyPracticeFragment : TopPmFragment<EarlyPracticeVM>() {
             if (enabled) R.drawable.bg_ep_primary else R.drawable.bg_ep_primary_off
         )
         binding.tvAction.setTextColor(
-            if (enabled) 0xFF14100C.toInt() else 0xFF8C8069.toInt()
+            if (enabled) TopApplication.instance.getColor(BaseR.color.c_text_on_gold) else TopApplication.instance.getColor(BaseR.color.c_text_second)
         )
     }
 
@@ -243,17 +257,17 @@ class EarlyPracticeFragment : TopPmFragment<EarlyPracticeVM>() {
                 no < step -> {
                     dot.setBackgroundResource(R.drawable.bg_home_dot_gold)
                     dot.text = "✓"
-                    dot.setTextColor(0xFF14100C.toInt())
+                    dot.setTextColor(TopApplication.instance.getColor(BaseR.color.c_text_on_gold))
                 }
                 no == step -> {
                     dot.setBackgroundResource(R.drawable.bg_home_circle)
                     dot.text = no.toString()
-                    dot.setTextColor(0xFFE3C88B.toInt())
+                    dot.setTextColor(TopApplication.instance.getColor(BaseR.color.c_gold_light))
                 }
                 else -> {
                     dot.setBackgroundResource(R.drawable.bg_home_circle)
                     dot.text = no.toString()
-                    dot.setTextColor(0xFF4F4839.toInt())
+                    dot.setTextColor(TopApplication.instance.getColor(BaseR.color.c_text_hint2))
                 }
             }
         }
@@ -359,7 +373,7 @@ class EarlyPracticeFragment : TopPmFragment<EarlyPracticeVM>() {
         binding.llResult.visibility = View.VISIBLE
         binding.tvStep.text = ""
         binding.tvResultTitle.setText(R.string.ep_done_title)
-        binding.tvResultDesc.text = getString(R.string.ep_done_desc, PRACTICE_MERIT, streak)
+        binding.tvResultDesc.text = getString(R.string.ep_done_desc, PRACTICE_COIN, streak)
         val next = PracticeStatisticData.nextMilestone(streak)
         binding.tvResultMilestone.text = if (next > 0) {
             getString(R.string.ep_done_milestone, next - streak)
@@ -368,7 +382,7 @@ class EarlyPracticeFragment : TopPmFragment<EarlyPracticeVM>() {
         dots.forEachIndexed { index, dot ->
             dot.setBackgroundResource(R.drawable.bg_home_dot_gold)
             dot.text = "✓"
-            dot.setTextColor(0xFF14100C.toInt())
+            dot.setTextColor(TopApplication.instance.getColor(BaseR.color.c_text_on_gold))
         }
     }
 

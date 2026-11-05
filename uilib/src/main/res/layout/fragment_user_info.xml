@@ -8,7 +8,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2F2518">
+    android:background="@color/c_bg_card">
 
     <com.fingertip.baselib.view.FullTopConstraintLayout
         android:id="@+id/cl_title"
@@ -22,7 +22,7 @@
             android:layout_width="38dp"
             android:layout_height="38dp"
             android:layout_marginStart="8dp"
-            android:src="@mipmap/icon_back_black"
+            android:src="@drawable/icon_back_black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -37,7 +37,7 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:text="关注"
-            android:textColor="@color/white"
+            android:textColor="@color/c_text_on_gold"
             android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +50,7 @@
             android:layout_height="38dp"
             android:layout_marginEnd="4dp"
             android:contentDescription="@string/action_more"
-            android:src="@mipmap/icon_menu"
+            android:src="@drawable/icon_menu"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/tv_follow"
             app:layout_constraintTop_toTopOf="parent" />
@@ -95,26 +95,40 @@
                         android:id="@+id/tv_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#EDE3D2"
+                        android:textColor="@color/c_text_main"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         tools:text="吴彦祖" />
 
-                    <TextView
-                        android:id="@+id/tv_level"
+                    <!-- 等级徽章：服务端按级下发的药丸图，lv 数字画在图里 -->
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:textColor="#C4A265"
-                        android:textSize="12sp"
-                        tools:text="lv1 佛门初探" />
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/iv_level_tag"
+                            android:layout_width="42dp"
+                            android:layout_height="14dp" />
+
+                        <TextView
+                            android:id="@+id/tv_level"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:textColor="@color/c_gold"
+                            android:textSize="12sp"
+                            tools:text="佛门初探" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/tv_display_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#C4A265"
+                    android:textColor="@color/c_gold"
                     android:textSize="11sp"
                     tools:text="ID:888888" />
             </LinearLayout>
@@ -124,7 +138,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textColor="#B5A78F"
+                android:textColor="@color/c_text_third"
                 android:textSize="13sp"
                 tools:text="这里是个性签名" />
 
@@ -147,7 +161,7 @@
                         android:id="@+id/tv_followings"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#C4A265"
+                        android:textColor="@color/c_gold"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         tools:text="6" />
@@ -156,7 +170,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="关注"
-                        android:textColor="#C4A265"
+                        android:textColor="@color/c_gold"
                         android:textSize="11sp" />
                 </LinearLayout>
 
@@ -171,7 +185,7 @@
                         android:id="@+id/tv_followers"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#C4A265"
+                        android:textColor="@color/c_gold"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         tools:text="657" />
@@ -180,7 +194,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="佛友"
-                        android:textColor="#C4A265"
+                        android:textColor="@color/c_gold"
                         android:textSize="11sp" />
                 </LinearLayout>
 
@@ -195,7 +209,7 @@
                         android:id="@+id/tv_donate_total"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#C4A265"
+                        android:textColor="@color/c_gold"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         tools:text="8888" />
@@ -204,7 +218,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="功德捐赠"
-                        android:textColor="#C4A265"
+                        android:textColor="@color/c_gold"
                         android:textSize="11sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -214,7 +228,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="TA的感悟"
-                android:textColor="#EDE3D2"
+                android:textColor="@color/c_text_main"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -225,7 +239,7 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="TA还没有发表过感悟"
-                android:textColor="#C4A265"
+                android:textColor="@color/c_gold"
                 android:textSize="13sp"
                 android:visibility="gone" />
 
