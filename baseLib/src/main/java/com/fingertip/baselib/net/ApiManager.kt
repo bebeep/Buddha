@@ -39,6 +39,7 @@ import com.fingertip.baselib.bean.LampDetailData
 import com.fingertip.baselib.bean.LampRecordData
 import com.fingertip.baselib.bean.UserBlockData
 import com.fingertip.baselib.bean.CollectData
+import com.fingertip.baselib.bean.ImUserSig
 import com.fingertip.baselib.bean.VersionInfo
 import com.fingertip.baselib.constant.GlobalConfig
 import com.fingertip.baselib.util.DeviceIdUtils
@@ -135,6 +136,34 @@ interface ApiManager {
     ): RequestRsp<PersonData?>
 
     /**
+     * 腾讯云 IM 登录凭证（服务端签 userSig，密钥不下发客户端）
+     */
+    @GET()
+    suspend fun getImUserSig(
+        @Url url: String = NetProperty.ACCOUNT_IM_USER_SIG,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<ImUserSig?>
+
+    /**
+     * 发起会话前导入对方 IM 账号（幂等；对方从未登录过 IM 时发消息会 6032）
+     */
+    @POST()
+    suspend fun importPeer(
+        @Url url: String = NetProperty.IM_IMPORT_PEER,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("targetAccountId") targetAccountId: Int
+    ): RequestRsp<String?>
+
+    /**
+     * 私有 OSS 文件换带签名的临时访问 URL（入参原始 URL，返回 原始URL→签名URL 的映射）
+     */
+    @GET()
+    suspend fun getAccessUrl(
+        @Url url: String = NetProperty.CONFIG_GET_ACCESS_URL,
+        @Query("fileUrl") fileUrl: String
+    ): RequestRsp<Map<String, String>?>
+
+    /**
      * 保存最近选中的佛像（拜佛页切换时上报，登录后各端恢复）
      */
     @POST()
@@ -145,7 +174,7 @@ interface ApiManager {
     ): RequestRsp<String>
 
     /**
-     * 注册推送设备订阅
+     * 上报设备档案（FCM token + 时区 + 语言，离线推送与定时提醒的数据源）
      */
     @POST()
     suspend fun registerPush(
@@ -155,16 +184,16 @@ interface ApiManager {
     ): RequestRsp<String?>
 
     /**
-     * 解绑推送设备订阅
+     * 清除设备档案（退出登录时按 FCM token 定位删除）
      */
     @POST()
     suspend fun unregisterPush(
         @Url url: String = NetProperty.PUSH_UNREGISTER,
-        @Query("subscriptionId") subscriptionId: String
+        @Query("fcmToken") fcmToken: String
     ): RequestRsp<String?>
 
     /**
-     * 账号级推送开关
+     * 账号级提醒开关（早课/佛历提醒是否推送）
      */
     @POST()
     suspend fun switchPush(

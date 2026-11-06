@@ -25,12 +25,13 @@ import org.greenrobot.eventbus.Subscribe
 
 import com.fingertip.uilib.fragment.HostFragment
 import com.fingertip.uilib.fragment.MeFragment
+import com.fingertip.uilib.fragment.im.ConversationFragment
 
 /**
  * 主Fragment
  *
  * 海外版信息架构（2026-11 调整）：
- *   首页 / 拜佛(含供灯) / 佛友圈 / 我的 —— 共 4 个 tab
+ *   首页 / 消息(IM) / 拜佛(含供灯) / 佛友圈 / 我的 —— 共 5 个 tab
  * 排行榜（RankFragment）整体下线；游戏（放生/禅院）不做 tab，收进首页游戏卡区。
  */
 class MainFragment : TopVMFragment<MainVM>(), BottomMenu.MenuSelectCallback {
@@ -48,12 +49,14 @@ class MainFragment : TopVMFragment<MainVM>(), BottomMenu.MenuSelectCallback {
 
         if (findChildFragment(HostFragment::class.java) != null) {
             fragmentList.add(findChildFragment(HostFragment::class.java))
+            fragmentList.add(findChildFragment(ConversationFragment::class.java))
             fragmentList.add(findChildFragment(WorshipFragment::class.java))
             fragmentList.add(findChildFragment(MomentFragment::class.java))
             fragmentList.add(findChildFragment(MeFragment::class.java))
         } else {
-            // 顺序必须与底部菜单一致：首页 / 拜佛 / 佛友圈 / 我的
+            // 顺序必须与底部菜单一致：首页 / 消息 / 拜佛 / 佛友圈 / 我的
             fragmentList.add(HostFragment())
+            fragmentList.add(ConversationFragment())
             fragmentList.add(WorshipFragment())
             fragmentList.add(MomentFragment())
             fragmentList.add(MeFragment())
@@ -65,11 +68,13 @@ class MainFragment : TopVMFragment<MainVM>(), BottomMenu.MenuSelectCallback {
 
         binding.bottomMenu.also {
             it.menuSelectCallback = this
-            // 4 个 tab 图标兜底（tabBarConfig 未下发时使用），顺序同 fragmentList
+            // 5 个 tab 图标兜底（tabBarConfig 未下发或数量不匹配时使用），顺序同 fragmentList
             it.addMenuItem(BottomMenuItem(com.fingertip.baselib.R.drawable.icon_tab_host_u, true))
+            // 消息 tab 带数字未读角标
+            it.addMenuItem(BottomMenuItem(R.drawable.tab_chat_selector, hasMsg = true))
             it.addMenuItem(BottomMenuItem(com.fingertip.baselib.R.drawable.icon_tab_baifo_u))
-            // 佛友圈带未读红点（原第 4 位消息角标平移到第 3 位）
-            it.addMenuItem(BottomMenuItem(com.fingertip.baselib.R.drawable.icon_tab_post_u, hasMsg = true))
+            // 佛友圈动态红点
+            it.addMenuItem(BottomMenuItem(com.fingertip.baselib.R.drawable.icon_tab_post_u, hasRedPoint = true))
             it.addMenuItem(BottomMenuItem(com.fingertip.baselib.R.drawable.icon_tab_me_u))
         }
 
@@ -80,6 +85,14 @@ class MainFragment : TopVMFragment<MainVM>(), BottomMenu.MenuSelectCallback {
 
     override fun initObserver() {
 
+    }
+
+    /** IM 未读总数变化 → 消息 tab 角标 */
+    @Subscribe
+    fun onImUnread(event: MessageEvent) {
+        if (event.what == com.fingertip.baselib.event_bus.EventConstant.EVENT_IM_UNREAD) {
+            binding.bottomMenu.setUnReadMsgCount((event.`object` as? Long ?: 0L).toInt())
+        }
     }
 
 
@@ -119,7 +132,7 @@ class MainFragment : TopVMFragment<MainVM>(), BottomMenu.MenuSelectCallback {
      * 这样选中态、onMenuSelect 回调和 lastIndex 都由现有逻辑统一处理，
      * 子页面不需要也不应该去 findViewById 拿 BottomMenu。
      *
-     * @param index 0首页 1拜佛 2佛友圈 3我的
+     * @param index 0首页 1消息 2拜佛 3佛友圈 4我的
      */
     fun selectTab(index: Int) {
         binding.bottomMenu.selectTab(index)

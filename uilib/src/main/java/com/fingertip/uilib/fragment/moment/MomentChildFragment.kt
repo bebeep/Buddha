@@ -15,6 +15,8 @@ import com.fingertip.uilib.activity.MomentVideoFeedActivity
 import com.fingertip.uilib.adapter.MomentAdapter
 import com.fingertip.uilib.databinding.FragmentMomentChildBinding
 import com.fingertip.uilib.fragment.MainFragment
+import com.fingertip.uilib.fragment.user.UserInfoFragment
+import com.fingertip.uilib.utils.openPage
 import com.fingertip.uilib.viewmodel.MomentVM
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.shuyu.gsyvideoplayer.GSYVideoManager
@@ -89,7 +91,8 @@ class MomentChildFragment : TopPmFragment<MomentVM>() {
                 (parentFragment?.parentFragment as MainFragment)
                     .start(MomentDetailsFragment.newInstance(entity.momentId, entity))
             },
-            onVideoClick = { entity -> openVideoFeed(entity) }
+            onVideoClick = { entity -> openVideoFeed(entity) },
+            onUserClick = { entity -> openUserProfile(entity.postAccountId) }
         )
         binding.recyclerview.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerview.adapter = adapter
@@ -129,6 +132,12 @@ class MomentChildFragment : TopPmFragment<MomentVM>() {
         //进去之前先把自己的声音停掉，两边同时出声就乱了
         pauseCurrentVideo()
         MomentVideoFeedActivity.start(requireContext(), videos, index)
+    }
+
+    /** 头像/昵称点击：进用户主页 */
+    private fun openUserProfile(accountId: Int) {
+        if (accountId <= 0) return
+        openPage(UserInfoFragment.newInstance(accountId))
     }
 
     /**

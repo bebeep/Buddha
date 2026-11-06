@@ -732,4 +732,19 @@ object NetProperty {
      * 游客登录（服务端按设备号建/找回游客号，享正式账号全部功能）
      */
     const val ACCOUNT_TRY_PLAY                        = "account/tryPlay"
+
+    /**
+     * 腾讯云 IM 登录凭证（service 端签 userSig，密钥不下发客户端）
+     */
+    const val ACCOUNT_IM_USER_SIG                     = "account/getImUserSig"
+
+    /**
+     * 发起会话前导入对方 IM 账号（幂等；对方从未登录过 IM 时发消息会 6032）
+     */
+    const val IM_IMPORT_PEER                          = "im/importPeer"
+
+    /**
+     * 私有 OSS 文件换取带签名的临时访问 URL（IM 媒体消息渲染用）
+     */
+    const val CONFIG_GET_ACCESS_URL                   = "config/getAccessUrl"
 }

@@ -105,8 +105,12 @@ class StartUpActivity : TopVMActivity<StartUpVM>() {
             val data = it.data
             if (it.success && data != null) {//跳转到主页
                 GlobalConfig.userData = data
-                // 必须在 GlobalConfig.userData 赋值之后再绑定：上报订阅时要用到 session
-                com.fingertip.uilib.push.PushManager.bind(data.accountId)
+                // 必须在 GlobalConfig.userData 赋值之后再上报：设备档案要用到 session
+                com.fingertip.uilib.push.DeviceProfile.report()
+                com.fingertip.uilib.push.DeviceProfile.requestNotificationPermission(this)
+                // IM 登录：换设备后新设备登录即自动云端同步会话与漫游消息
+                com.fingertip.uilib.im.ImManager.init(this)
+                com.fingertip.uilib.im.ImManager.login(data.accountId)
                 binding.ivBanner.visible()
                 binding.ivBanner.isEnabled = true
                 binding.ivBanner.postDelayed({

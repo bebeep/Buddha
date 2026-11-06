@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "160118069641",
+    "project_id": "fingger-buddha",
+    "storage_bucket": "fingger-buddha.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:160118069641:android:51bc566e61031d875ba958",
+        "android_client_info": {
+          "package_name": "com.fingertip.buddha"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLAnVzN-GfYgsPQ3ieadDY1kGUdOzsK3Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

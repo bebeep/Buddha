@@ -9,6 +9,8 @@ import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.MyWishAdapter
 import com.fingertip.uilib.databinding.FragmentMyWishBinding
 import com.fingertip.uilib.dialog.BlessListDialog
+import com.fingertip.uilib.fragment.user.UserInfoFragment
+import com.fingertip.uilib.utils.openPage
 import com.fingertip.uilib.viewmodel.WishVM
 
 /**
@@ -94,6 +96,13 @@ class MyWishFragment : TopPmFragment<WishVM>() {
             it.onLoadMore = { pageNum ->
                 loadingMore = true
                 mViewModel.loadWishBlessList(showingWishingId, pageNum)
+            }
+            it.onUserClick = { accountId ->
+                if (accountId > 0) {
+                    openPage(
+                        com.fingertip.uilib.fragment.user.UserInfoFragment.newInstance(accountId)
+                    )
+                }
             }
             blessListDialog = it
         }

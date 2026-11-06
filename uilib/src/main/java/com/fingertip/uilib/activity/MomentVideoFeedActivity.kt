@@ -103,6 +103,16 @@ class MomentVideoFeedActivity : TopActivity() {
     private fun showComments(entity: MomentEntity) {
         if (commentDialog?.isShowing == true) return
         val dialog = MomentCommentDialog(this, entity.momentId, entity.commentCount)
+        dialog.onUserClick = { accountId ->
+            //评论里的头像/昵称：跳用户主页（压到本 Activity 的 Fragmentation 栈上）
+            if (accountId > 0) {
+                try {
+                    start(com.fingertip.uilib.fragment.user.UserInfoFragment.newInstance(accountId))
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+        }
         dialog.onCommentCountChanged = { count ->
             entity.commentCount = count
             adapter.updateCommentCount(entity.momentId, count)

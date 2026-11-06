@@ -406,4 +406,33 @@
     <string name="level_list_summary">共 %1$d 级 · %2$d 个境界 · 所需修行值逐级递增</string>
     <string name="level_badge_stage_unknown">修行</string>
 
+    <!-- ========== IM 模块 ========== -->
+    <string name="im_conversation_title">消息</string>
+    <string name="im_conversation_empty">还没有会话，去佛友圈认识同修吧</string>
+    <string name="im_conversation_need_login">登录后开始与佛友聊天</string>
+    <string name="im_official_badge">官方</string>
+    <string name="im_unknown_user">同修</string>
+    <string name="im_chat_input_hint">说点什么…</string>
+    <string name="im_chat_official_no_reply">官方账号消息，暂不支持回复</string>
+    <string name="im_chat_recording">正在录音，完成后点下方按钮发送</string>
+    <string name="im_chat_recording_stop">完成并发送</string>
+    <string name="im_chat_activity_go">查看详情</string>
+    <string name="im_chat_invalid_peer">会话不存在</string>
+    <string name="im_chat_not_login">请先登录</string>
+    <string name="im_chat_send_fail">发送失败，请重试</string>
+    <string name="im_chat_no_player">未找到可播放视频的应用</string>
+    <string name="im_chat_play_fail">语音播放失败</string>
+    <string name="im_chat_voice_need_perm">需要麦克风权限才能发语音</string>
+    <string name="im_chat_voice_start_fail">录音失败，请重试</string>
+    <string name="im_chat_voice_too_long">语音最长 60 秒</string>
+    <string name="im_chat_uploading">正在发送…</string>
+    <string name="im_chat_upload_fail">上传失败，请重试</string>
+
+    <!-- Firebase（FCM 离线推送）配置：Firebase 控制台创建项目后填这四个值，留空则推送功能整体跳过 -->
+    <string name="fcm_project_id" translatable="false">fingger-buddha</string>
+    <string name="fcm_api_key" translatable="false">AIzaSyCLAnVzN-GfYgsPQ3ieadDY1kGUdOzsK3Q</string>
+    <string name="fcm_sender_id" translatable="false">160118069641</string>
+    <!-- Firebase App ID：项目设置 → 常规 → 你的应用 → Android 应用 → 应用 ID（1:xxx:android:xxx 格式）。
+         若没注册过 Android 应用，添加一个（包名 com.fingertip.buddha）就会生成 -->
+    <string name="fcm_app_id" translatable="false">1:160118069641:android:51bc566e61031d875ba958</string>
 </resources>

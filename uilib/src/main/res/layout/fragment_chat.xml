@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    单聊页：消息漫游拉取（换设备同步）+ 文本/图片/视频/语音收发
+    官方账号的自定义活动消息渲染为活动卡，点击跳 H5
+-->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_bg_page">
+
+    <com.fingertip.baselib.view.FullTopConstraintLayout
+        android:id="@+id/cl_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/icon_back_black"
+            android:tint="@color/c_text_main"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_peer_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxWidth="220dp"
+            android:singleLine="true"
+            android:textColor="@color/c_text_main"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:zdyFont="bold" />
+
+    </com.fingertip.baselib.view.FullTopConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_msg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        app:layout_constraintBottom_toTopOf="@+id/ll_input_bar"
+        app:layout_constraintTop_toBottomOf="@+id/cl_title" />
+
+    <!-- 底部输入栏：语音/文本 + 图片/视频/发送 -->
+    <LinearLayout
+        android:id="@+id/ll_input_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/c_bg_page"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="12dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_voice"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:padding="3dp"
+            android:src="@drawable/icon_im_voice" />
+
+        <EditText
+            android:id="@+id/et_input"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_im_input"
+            android:hint="@string/im_chat_input_hint"
+            android:maxLines="1"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:textColor="@color/c_text_main"
+            android:textColorHint="@color/c_text_hint"
+            android:textSize="13sp"
+            android:textColorHighlight="@color/c_gold" />
+
+        <ImageView
+            android:id="@+id/iv_image"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:padding="3dp"
+            android:src="@drawable/icon_im_image" />
+
+        <ImageView
+            android:id="@+id/iv_video"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:padding="3dp"
+            android:src="@drawable/icon_im_video" />
+
+        <ImageView
+            android:id="@+id/iv_send"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:padding="4dp"
+            android:src="@drawable/icon_im_send"
+            android:background="@drawable/bg_home_gold_btn" />
+
+    </LinearLayout>
+
+    <!-- 录音中状态条：点语音按钮后替换输入栏 -->
+    <LinearLayout
+        android:id="@+id/ll_recording"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/c_bg_page"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_recording_tip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/im_chat_recording"
+            android:textColor="@color/c_gold"
+            android:textSize="13sp" />
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_recording_stop"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_home_gold_btn"
+            android:gravity="center"
+            android:text="@string/im_chat_recording_stop"
+            android:textColor="@color/c_text_on_gold"
+            android:textSize="13.5sp"
+            app:zdyFont="bold" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

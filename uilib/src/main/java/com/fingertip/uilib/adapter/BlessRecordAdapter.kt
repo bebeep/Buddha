@@ -14,7 +14,9 @@ import com.fingertip.uilib.databinding.ItemMyBlessBinding
  */
 class BlessRecordAdapter(
     context: Context,
-    private val showLevel: Boolean = true
+    private val showLevel: Boolean = true,
+    //许愿人头像/昵称点击：跳用户主页，不传就不响应
+    val onUserClick: ((BlessRecordBean) -> Unit)? = null
 ) : TopRcAdapter<BlessRecordBean, TopRcAdapter.TopRcViewHolder>(context) {
 
     override fun initLayoutId(viewType: Int): Int = R.layout.item_my_bless
@@ -32,5 +34,13 @@ class BlessRecordAdapter(
         binding.tvBlessDate.text = item.blessDate.orEmpty()
         binding.tvWishContent.text = item.wishContent.orEmpty()
         binding.tvBlessContent.text = item.blessContent.orEmpty()
+
+        onUserClick?.let { cb ->
+            val targetId = wisher?.accountId ?: 0
+            if (targetId > 0) {
+                binding.ivAvatar.setOnClickListener { cb(item) }
+                binding.tvUserName.setOnClickListener { cb(item) }
+            }
+        }
     }
 }

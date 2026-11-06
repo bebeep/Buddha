@@ -60,8 +60,12 @@ dependencies {
     // 服务端验单走 purchases.products.get / purchases.subscriptionsv2.get
     implementation 'com.android.billingclient:billing-ktx:7.1.1'
 
-    // OneSignal 推送
-    implementation 'com.onesignal:OneSignal:5.1.38'
+    // FCM：离线推送 token（腾讯云 IM 厂商通道下发）+ 设备档案
+    // 不接 google-services 插件，Firebase 参数在 strings.xml 手动配置（见 DeviceProfile）
+    implementation 'com.google.firebase:firebase-messaging:24.1.0'
+
+    // 腾讯云 IM（腾讯 RTC Chat）：私信收发、图片/视频/语音消息、漫游同步
+    api 'com.tencent.imsdk:imsdk-plus:8.9.7545'
 
     // 动画支持
     implementation 'androidx.core:core-animation:1.0.0'

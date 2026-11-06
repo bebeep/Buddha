@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 对方消息气泡 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/c_im_bubble_other" />
+    <corners android:radius="14dp" />
+</shape>

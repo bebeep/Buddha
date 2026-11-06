@@ -47,6 +47,9 @@ class CommentDetailDialog(context: Context) : TopDialogBottomSheetDialog(context
 
     var onLikeClick:(position: Int,innerPosition:Int, comment: CommentEntity)->Unit = {_,_,_->}
 
+    /** 头像/昵称点击：跳用户主页（宿主 Fragment 用 openPage 打开） */
+    var onUserClick: (accountId: Int) -> Unit = {}
+
     override fun onViewCreate(view: View) {
         binding = DialogCommentDetailBinding.bind(view)
 
@@ -59,7 +62,8 @@ class CommentDetailDialog(context: Context) : TopDialogBottomSheetDialog(context
         adapter = CommentInnerAdapter(context) { position, longClickPosition, viewId ->
             when (viewId) {
                 R.id.iv_inner_head, R.id.tv_inner_nickname -> {
-                    // 跳转资料页（暂空）
+                    // 跳转资料页
+                    adapter.get(position)?.senderAccountId?.let { if (it > 0) onUserClick(it) }
                 }
                 R.id.tv_inner_like -> {
                     //点赞
@@ -130,6 +134,12 @@ class CommentDetailDialog(context: Context) : TopDialogBottomSheetDialog(context
         // 初始化主评论头部
         binding.ivHead.loadHead(parentComment.senderAvatar)
         binding.tvNickname.text = parentComment.senderNickName
+        //主评论头像/昵称：跳用户主页
+        val mainClick = View.OnClickListener {
+            if (parentComment.senderAccountId > 0) onUserClick(parentComment.senderAccountId)
+        }
+        binding.ivHead.setOnClickListener(mainClick)
+        binding.tvNickname.setOnClickListener(mainClick)
         com.fingertip.uilib.utils.LevelUi.bindTag(binding.ivLevelTag, parentComment.senderLevel)
         binding.tvLevel.text =
             com.fingertip.uilib.utils.LevelUi.tagTitle(parentComment.senderLevel) + "·" +

@@ -32,20 +32,28 @@ class BottomMenu @JvmOverloads constructor(
     private lateinit var tabBarSelect :ArrayList<String>
     private lateinit var imageViewList :ArrayList<ImageView>
     // 本地兜底图标，顺序必须与 MainFragment 的 fragmentList 一致
-    // 海外版 4 tab：首页 / 拜佛 / 佛友圈 / 我的（排行榜已下线）
+    // 海外版 5 tab：首页 / 消息 / 拜佛 / 佛友圈 / 我的（排行榜已下线）
     private val localIcon = listOf(
         R.drawable.tab_host_selector,
+        R.drawable.tab_chat_selector,
         R.drawable.tab_baifo_selector,
         R.drawable.tab_post_selector,
         R.drawable.tab_me_selector
     )
 
+    //当前 tab 数：服务端下发的 tabBarConfig URL 列表长度与此不符时整组弃用，
+    //防止 tab 插入后下发列表错位加载错图
+    private val tabCount = localIcon.size
+
     fun initTabBarUrl(){
         tabBarNormal = ArrayList()
         tabBarSelect = ArrayList()
         imageViewList = ArrayList()
-        GlobalConfig.tabBarConfig?.normal?.let {tabBarNormal.addAll(it) }
-        GlobalConfig.tabBarConfig?.selected?.let {tabBarSelect.addAll(it) }
+        val normal = GlobalConfig.tabBarConfig?.normal
+        val selected = GlobalConfig.tabBarConfig?.selected
+        //数量不匹配（旧版 4 tab 配置）则整体忽略，全用本地兜底图标
+        if (normal?.size == tabCount) tabBarNormal.addAll(normal)
+        if (selected?.size == tabCount) tabBarSelect.addAll(selected)
     }
 
     var menuSelectCallback: MenuSelectCallback? = null
@@ -72,9 +80,9 @@ class BottomMenu @JvmOverloads constructor(
             msgMenu = menuItemView
         }
 
-
-        // 第 3 个菜单（index=2）= 佛友圈，动态红点挂这里
-        if (count == 3) momentMenu = menuItemView
+        if (menuItem.hasRedPoint) {
+            momentMenu = menuItemView
+        }
 
         if (menuItem.initSelect) {
             menuItemView.postDelayed({menuItemView.performClick()},500)

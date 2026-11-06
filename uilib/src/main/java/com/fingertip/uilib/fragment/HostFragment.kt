@@ -47,9 +47,9 @@ class HostFragment : TopVMFragment<HomeVM>() {
     companion object {
         private const val TAG = "HostFragment"
 
-        //底部 tab 下标，与 MainFragment.fragmentList 顺序一致：首页 0 / 拜佛 1 / 佛友圈 2 / 我的 3
-        const val TAB_WORSHIP = 1
-        const val TAB_MOMENT = 2
+        //底部 tab 下标，与 MainFragment.fragmentList 顺序一致：首页 0 / 消息 1 / 拜佛 2 / 佛友圈 3 / 我的 4
+        const val TAB_WORSHIP = 2
+        const val TAB_MOMENT = 3
 
         //服务端没下发区块配置时的默认顺序
         private val DEFAULT_SECTIONS = listOf(

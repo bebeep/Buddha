@@ -21,6 +21,6 @@ object SPConstant {
     /** 登录方式：1 邮箱 2 Google 3 Apple 0 游客 */
     const val SP_LOGIN_TYPE = "SP_LOGIN_TYPE"
 
-    /** OneSignal 的 subscription id，退出登录时要解绑 */
-    const val SP_PUSH_SUBSCRIPTION_ID = "SP_PUSH_SUBSCRIPTION_ID"
+    /** FCM token：设备档案上报 / 清除的定位键，退出登录时先调接口再清 */
+    const val SP_FCM_TOKEN = "SP_FCM_TOKEN"
 }

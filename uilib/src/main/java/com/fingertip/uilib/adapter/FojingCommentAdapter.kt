@@ -37,6 +37,14 @@ class FojingCommentAdapter(
                 onItemClick.invoke(v.id,comment)
             }
 
+            //头像/昵称：业务侧在 onItemClick 里按 viewId 跳用户主页
+            binding.ivHead.setOnClickListener { v->
+                onItemClick.invoke(v.id,comment)
+            }
+            binding.tvCommentName.setOnClickListener { v->
+                onItemClick.invoke(v.id,comment)
+            }
+
             //长按评论内容（用于删除自己发布的评论）
             binding.tvCommentContent.setOnLongClickListener { v->
                 onItemLongClick?.invoke(v.id,comment)

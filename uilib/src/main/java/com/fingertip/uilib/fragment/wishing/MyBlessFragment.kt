@@ -8,6 +8,8 @@ import com.fingertip.baselib.util.ToastUtil
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.BlessRecordAdapter
 import com.fingertip.uilib.databinding.FragmentMyBlessBinding
+import com.fingertip.uilib.fragment.user.UserInfoFragment
+import com.fingertip.uilib.utils.openPage
 import com.fingertip.uilib.viewmodel.WishVM
 
 /**
@@ -32,7 +34,15 @@ class MyBlessFragment : TopPmFragment<WishVM>() {
     private var loadingMore = false
 
     override fun initShiTu() {
-        adapter = BlessRecordAdapter(requireContext())
+        adapter = BlessRecordAdapter(requireContext(), onUserClick = { record ->
+            record.wishingAccountInfo?.accountId?.let { id ->
+                if (id > 0) {
+                    openPage(
+                        com.fingertip.uilib.fragment.user.UserInfoFragment.newInstance(id)
+                    )
+                }
+            }
+        })
         binding.rcMyBless.layoutManager = LinearLayoutManager(requireContext())
         binding.rcMyBless.adapter = adapter
         mViewModel.loadMyBless(0)

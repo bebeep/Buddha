@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 底部消息 tab 图标：单色气泡，颜色由 tab_icon_tint 的选中态控制 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M4,3.5 h16 c1.1,0 2,0.9 2,2 v9 c0,1.1 -0.9,2 -2,2 h-8.6 l-4.2,3.6 c-0.63,0.54 -1.6,0.1 -1.6,-0.73 v-2.87 h-1.6 c-1.1,0 -2,-0.9 -2,-2 v-9 c0,-1.1 0.9,-2 2,-2 z M7,7 a1.15,1.15 0 1,0 0,2.3 a1.15,1.15 0 1,0 0,-2.3 z M12,7 a1.15,1.15 0 1,0 0,2.3 a1.15,1.15 0 1,0 0,-2.3 z M17,7 a1.15,1.15 0 1,0 0,2.3 a1.15,1.15 0 1,0 0,-2.3 z" />
+</vector>

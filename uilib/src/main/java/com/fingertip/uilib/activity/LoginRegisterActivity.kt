@@ -20,7 +20,7 @@ import com.fingertip.uilib.R
 import com.fingertip.uilib.databinding.ActivityLoginRegisterBinding
 import com.fingertip.uilib.login.GoogleLoginConfig
 import com.fingertip.uilib.login.GoogleLoginHelper
-import com.fingertip.uilib.push.PushManager
+import com.fingertip.uilib.push.DeviceProfile
 import com.fingertip.uilib.viewmodel.LoginRegisterVM
 
 /**
@@ -226,8 +226,12 @@ class LoginRegisterActivity : TopVMActivity<LoginRegisterVM>() {
     }
 
     private fun enterMain() {
-        // 登录完成即绑定推送：external_id 用 accountId，服务端按它投递
-        PushManager.bind(GlobalConfig.userData?.accountId ?: 0)
+        // 登录完成即上报设备档案（FCM token + 时区，提醒与离线推送的数据源）
+        DeviceProfile.report()
+        DeviceProfile.requestNotificationPermission(this)
+        // IM 登录（换设备同步：登录后云端自动同步会话与漫游消息）
+        com.fingertip.uilib.im.ImManager.init(this)
+        com.fingertip.uilib.im.ImManager.login(GlobalConfig.userData?.accountId ?: 0)
         startActivity(Intent(this, ContainerActivity::class.java))
         finish()
     }

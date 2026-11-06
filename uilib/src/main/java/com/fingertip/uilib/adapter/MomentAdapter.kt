@@ -27,7 +27,9 @@ class MomentAdapter(
     val onItemClick: (entity: MomentEntity) -> Unit,
     val onVideoClick: (entity: MomentEntity) -> Unit = {},
     //长按：目前只有「我的感悟」用（删自己的内容），列表页不传就不生效
-    val onItemLongClick: ((entity: MomentEntity) -> Unit)? = null
+    val onItemLongClick: ((entity: MomentEntity) -> Unit)? = null,
+    //头像/昵称点击：跳用户主页，不传就不响应
+    val onUserClick: ((entity: MomentEntity) -> Unit)? = null
 ) : TopRcAdapter<MomentEntity, MomentAdapter.MomentVH>(context) {
 
     /** 视频容器最大宽度（屏宽 - 左右各 16dp 边距，和布局里的 margin 对齐） */
@@ -73,6 +75,11 @@ class MomentAdapter(
         }
 
         holder.itemView.setOnClickListener { onItemClick(entity) }
+        //头像/昵单独点：进用户主页（不复用整条 item 的点击）
+        onUserClick?.let { cb ->
+            binding.ivHead.setOnClickListener { cb(entity) }
+            binding.tvName.setOnClickListener { cb(entity) }
+        }
         onItemLongClick?.let { cb ->
             holder.itemView.setOnLongClickListener {
                 cb(entity)

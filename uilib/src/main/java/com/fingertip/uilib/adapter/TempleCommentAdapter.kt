@@ -10,8 +10,11 @@ import com.fingertip.uilib.databinding.ItemTempleCommentBinding
 /**
  * 寺庙评论 Adapter
  */
-class TempleCommentAdapter(context: Context) :
-    TopRcAdapter<TempleCommentBean, TopRcAdapter.TopRcViewHolder>(context) {
+class TempleCommentAdapter(
+    context: Context,
+    //头像/昵称点击：跳用户主页，不传就不响应
+    val onUserClick: ((TempleCommentBean) -> Unit)? = null
+) : TopRcAdapter<TempleCommentBean, TopRcAdapter.TopRcViewHolder>(context) {
 
     override fun initLayoutId(viewType: Int): Int = R.layout.item_temple_comment
 
@@ -25,5 +28,10 @@ class TempleCommentAdapter(context: Context) :
         binding.tvDate.text = item.commentDate?.take(10).orEmpty()
         binding.tvContent.text = item.content
         binding.ivAvatar.loadHead(item.avatar)
+
+        onUserClick?.let { cb ->
+            binding.ivAvatar.setOnClickListener { cb(item) }
+            binding.tvName.setOnClickListener { cb(item) }
+        }
     }
 }

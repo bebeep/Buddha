@@ -28,6 +28,8 @@ import com.fingertip.uilib.dialog.CommentDetailDialog
 import com.fingertip.uilib.dialog.ConfirmDialog
 import com.fingertip.uilib.dialog.ReportDialog
 import com.fingertip.uilib.databinding.FragmentMomentDetailsBinding
+import com.fingertip.uilib.fragment.user.UserInfoFragment
+import com.fingertip.uilib.utils.openPage
 import com.fingertip.uilib.viewmodel.MomentVM
 import com.fingertip.uilib.viewmodel.UserToolVM
 import com.fingertip.uilib.viewmodel.UserVM
@@ -279,10 +281,13 @@ class MomentDetailsFragment: TopPmFragment<MomentVM>() {
                     return@CommentAdapter
                 }
                 R.id.iv_head,R.id.tv_nickname->{//主评论头像昵称-跳转资料页
-
+                    val target = commentAdapter.get(position)?.senderAccountId ?: 0
+                    openUserProfile(target)
                 }
                 R.id.iv_inner_head,R.id.tv_inner_nickname->{//子评论头像昵称-跳转资料页
-
+                    val target = commentAdapter.get(position)?.childComment
+                        ?.getOrNull(innerPosition)?.senderAccountId ?: 0
+                    openUserProfile(target)
                 }
                 R.id.tv_more->{//查看评论详情
                     val parentComment = commentAdapter.get(position) ?: return@CommentAdapter
@@ -296,6 +301,7 @@ class MomentDetailsFragment: TopPmFragment<MomentVM>() {
                                 commentAdapter.notifyInnerComment(parentCommentPosition,childCommentPosition,childComment)
                             }
                         }
+                        commentDetailDialog?.onUserClick = { openUserProfile(it) }
                     }
                     commentDetailDialog?.show(position,parentComment)
                 }
@@ -382,12 +388,18 @@ class MomentDetailsFragment: TopPmFragment<MomentVM>() {
 
     }
 
+    /** 头像/昵称点击：进用户主页 */
+    private fun openUserProfile(accountId: Int) {
+        if (accountId <= 0) return
+        openPage(UserInfoFragment.newInstance(accountId))
+    }
+
     override fun onSingleClick(v: View?) {
         super.onSingleClick(v)
         when(v?.id){
             R.id.iv_back -> pop()
-            R.id.iv_head,R.id.tv_nickname -> {//跳转资料页
-
+            R.id.iv_head,R.id.tv_nickname -> {//头像/昵称-跳转资料页
+                openUserProfile(momentEntity?.postAccountId ?: 0)
             }
             R.id.iv_menu -> {//举报 / 拉黑
                 val target = momentEntity?.postAccountId ?: 0

@@ -19,6 +19,9 @@ class BlessListDialog(context: Context) : TopDialogBottomSheetDialog(context) {
     //需要下一页时回调，pageNum 从 1 开始（0 页由打开弹窗时外部拉）
     var onLoadMore: ((pageNum: Int) -> Unit)? = null
 
+    /** 许愿人头像/昵称点击：跳用户主页（宿主 Fragment 处理） */
+    var onUserClick: (accountId: Int) -> Unit = {}
+
     private lateinit var binding: DialogBlessListBinding
     private lateinit var adapter: BlessRecordAdapter
 
@@ -30,7 +33,9 @@ class BlessListDialog(context: Context) : TopDialogBottomSheetDialog(context) {
 
     override fun onViewCreate(view: View) {
         binding = DialogBlessListBinding.bind(view)
-        adapter = BlessRecordAdapter(context)
+        adapter = BlessRecordAdapter(context, onUserClick = { record ->
+            record.wishingAccountInfo?.accountId?.let { if (it > 0) onUserClick(it) }
+        })
         binding.rcBlessList.layoutManager = LinearLayoutManager(context)
         binding.rcBlessList.adapter = adapter
 

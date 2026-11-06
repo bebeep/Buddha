@@ -191,8 +191,10 @@ class SettingFragment : TopPmFragment<SettingVM>() {
      * 所以先置 userData 再显式清一次 session，防止 Setter 逻辑变动后漏清。
      */
     private fun clearLocalSession() {
-        // 先解绑推送：旧账号不该继续收到这台设备的通知
-        com.fingertip.uilib.push.PushManager.unbind()
+        // 先清设备档案：旧账号不该继续被提醒任务命中（IM 已 logout，离线推送自然停）
+        com.fingertip.uilib.push.DeviceProfile.clear()
+        // IM 掉线，清前台通知与角标
+        com.fingertip.uilib.im.ImManager.logout()
         GlobalConfig.userData = null
         GlobalConfig.session = ""
         // session 必须一起清掉，否则下次冷启动会拿已失效的 session 白跑一次续期

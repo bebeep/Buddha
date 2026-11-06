@@ -75,6 +75,9 @@ class MomentCommentDialog(
     /** 评论数变化，外层用来同步右下角评论数 */
     var onCommentCountChanged: (count: Int) -> Unit = {}
 
+    /** 头像/昵称点击：跳用户主页（宿主自行处理页面打开） */
+    var onUserClick: (accountId: Int) -> Unit = {}
+
     private val commentListObserver = Observer<RequestResult<List<CommentEntity>>> { result ->
         if (!isAlive) return@Observer
         if (result.success) {
@@ -150,6 +153,18 @@ class MomentCommentDialog(
             if (longClickPosition != -1) return@CommentAdapter
             val comment = adapter.get(position) ?: return@CommentAdapter
             when (viewId) {
+                R.id.iv_head, R.id.tv_nickname -> {
+                    //主评论头像/昵称：跳用户主页
+                    if (comment.senderAccountId > 0) onUserClick(comment.senderAccountId)
+                }
+
+                R.id.iv_inner_head, R.id.tv_inner_nickname -> {
+                    //子评论头像/昵称：跳用户主页
+                    comment.childComment?.getOrNull(innerPosition)?.let { child ->
+                        if (child.senderAccountId > 0) onUserClick(child.senderAccountId)
+                    }
+                }
+
                 R.id.tv_like -> {
                     //CommentAdapter 自己会翻转 UI 和计数，这里只需要同步数据并调接口
                     val like = !comment.isLiked
@@ -170,6 +185,8 @@ class MomentCommentDialog(
                         detailDialog = CommentDetailDialog(context).apply {
                             //详情弹窗里点了赞，回来整体刷一下列表（数据不多，直接重建）
                             onLikeClick = { _, _, _ -> adapter.notifyDataSetChanged() }
+                            //头像/昵称点击继续往外抛，由宿主打开用户主页
+                            onUserClick = { onUserClick(it) }
                         }
                     }
                     detailDialog?.show(position, comment)

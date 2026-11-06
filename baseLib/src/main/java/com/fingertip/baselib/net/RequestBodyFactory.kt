@@ -115,18 +115,16 @@ object RequestBodyFactory {
     }
 
     /**
-     * 推送订阅上报
+     * 设备档案上报（离线推送 + 定时提醒的时区数据源）
      */
-    fun pushRegisterBody(
-        subscriptionId: String,
-        pushToken: String,
+    fun deviceProfileBody(
+        fcmToken: String,
         timeZone: String,
         lang: String
     ): RequestBody {
         val param = HashMap<String, Any>()
-        param["subscriptionId"] = subscriptionId
+        param["fcmToken"] = fcmToken
         param["platform"] = NetProperty.PLATFORM
-        param["pushToken"] = pushToken
         param["timeZone"] = timeZone
         param["lang"] = lang
         return buildJsonRequestBody(param)

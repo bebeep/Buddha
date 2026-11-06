@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    单条消息：左右头像切换对齐，气泡内按类型显隐
+    （文本 / 图片 / 视频 / 语音 / 官方活动卡）
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingStart="14dp"
+    android:paddingEnd="14dp"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp">
+
+    <ImageView
+        android:id="@+id/iv_avatar_left"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:textColor="@color/c_text_hint"
+            android:textSize="10sp"
+            android:visibility="gone" />
+
+        <!-- 气泡：代码动态设置 layout_gravity 决定靠左还是靠右 -->
+        <LinearLayout
+            android:id="@+id/ll_bubble"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="260dp"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:textColor="@color/c_text_main"
+                android:textSize="14sp"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/iv_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:maxWidth="220dp"
+                android:scaleType="fitCenter"
+                android:visibility="gone" />
+
+            <!-- 视频：封面 + 播放键 -->
+            <FrameLayout
+                android:id="@+id/fl_video"
+                android:layout_width="200dp"
+                android:layout_height="130dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/iv_video_cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop" />
+
+                <ImageView
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_im_play" />
+
+            </FrameLayout>
+
+            <!-- 语音：播放键 + 时长 -->
+            <LinearLayout
+                android:id="@+id/ll_sound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/icon_im_play" />
+
+                <com.fingertip.baselib.view.MyTextView
+                    android:id="@+id/tv_sound_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:textColor="@color/c_text_main"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <!-- 官方活动卡 -->
+            <LinearLayout
+                android:id="@+id/ll_activity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/iv_activity_cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone" />
+
+                <com.fingertip.baselib.view.MyTextView
+                    android:id="@+id/tv_activity_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/c_gold_light"
+                    android:textSize="14sp"
+                    app:zdyFont="bold" />
+
+                <com.fingertip.baselib.view.MyTextView
+                    android:id="@+id/tv_activity_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/c_text_second"
+                    android:textSize="12sp" />
+
+                <com.fingertip.baselib.view.MyTextView
+                    android:id="@+id/tv_activity_go"
+                    android:layout_width="wrap_content"
+                    android:layout_height="26dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_home_gold_btn"
+                    android:gravity="center"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="@string/im_chat_activity_go"
+                    android:textColor="@color/c_text_on_gold"
+                    android:textSize="11.5sp"
+                    app:zdyFont="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_avatar_right"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:scaleType="centerCrop" />
+
+</LinearLayout>

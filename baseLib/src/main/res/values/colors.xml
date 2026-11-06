@@ -132,6 +132,12 @@
     <color name="c_stage_miaojue">#FFF8EBC9</color>
     <color name="c_ffffc34d">#FFFFC34D</color>
     <color name="c_gold_night">#FFFFD08A</color>
+
+    <!-- ========== IM 模块 ========== -->
+    <color name="c_divider">#1FC4A265</color>
+    <color name="c_im_bubble_mine">#FFC4A265</color>
+    <color name="c_im_bubble_other">#FF2A2620</color>
+    <color name="c_im_send_bg_off">#FF3A362E</color>
     <color name="c_ffffe7c4">#FFFFE7C4</color>
     <color name="c_paper">#FFFFFEFA</color>
     <color name="c_white_aa">#AAFFFFFF</color>

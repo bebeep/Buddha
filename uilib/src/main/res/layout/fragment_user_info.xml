@@ -223,6 +223,21 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <!-- 发消息：他人主页直达单聊（自己的主页隐藏） -->
+            <TextView
+                android:id="@+id/tv_send_msg"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_sign_button"
+                android:gravity="center"
+                android:text="发消息"
+                android:textColor="@color/c_text_on_gold"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

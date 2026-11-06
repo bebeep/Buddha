@@ -11,6 +11,8 @@ import com.fingertip.baselib.util.loadImg
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.TempleCommentAdapter
 import com.fingertip.uilib.databinding.FragmentTempleDetailBinding
+import com.fingertip.uilib.fragment.user.UserInfoFragment
+import com.fingertip.uilib.utils.openPage
 import com.fingertip.uilib.viewmodel.TempleVM
 
 /**
@@ -42,7 +44,13 @@ class TempleDetailFragment : TopPmFragment<TempleVM>() {
 
     override fun initShiTu() {
         templeId = arguments?.getInt(ARG_TEMPLE_ID, 0) ?: 0
-        commentAdapter = TempleCommentAdapter(requireContext())
+        commentAdapter = TempleCommentAdapter(requireContext(), onUserClick = { comment ->
+            if (comment.accountId > 0) {
+                openPage(
+                    com.fingertip.uilib.fragment.user.UserInfoFragment.newInstance(comment.accountId)
+                )
+            }
+        })
         binding.rcComment.layoutManager = LinearLayoutManager(requireContext())
         binding.rcComment.adapter = commentAdapter
 

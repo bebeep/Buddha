@@ -1,6 +1,11 @@
 package com.fingertip.uilib.fragment.setting
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import com.fingertip.baselib.bean.BuddhaFestival
 import com.fingertip.baselib.bean.CalendarRemindData
 import com.fingertip.baselib.top.TopPmFragment
@@ -12,7 +17,7 @@ import com.fingertip.uilib.databinding.ItemRemindPreviewBinding
 import com.fingertip.uilib.dialog.ActionSheetDialog
 import com.fingertip.uilib.dialog.ConfirmDialog
 import com.fingertip.uilib.dialog.RemindEditDialog
-import com.fingertip.uilib.push.PushManager
+import com.fingertip.uilib.push.DeviceProfile
 import com.fingertip.uilib.viewmodel.RemindVM
 import java.util.Locale
 import com.fingertip.baselib.top.TopApplication
@@ -56,6 +61,12 @@ class CalendarRemindFragment : TopPmFragment<RemindVM>() {
 
     /** 正在等待删除结果的那条，成功后从列表摘掉 */
     private var pendingDelete: CalendarRemindData? = null
+
+    /** 通知权限申请结果 → 刷新引导条显隐 */
+    private val notificationPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+            refreshPushTip()
+        }
 
     override fun initShiTu() {
         binding.switchFestival.setOnCheckedChangeListener { _, checked ->
@@ -198,7 +209,7 @@ class CalendarRemindFragment : TopPmFragment<RemindVM>() {
     }
 
     private fun refreshPushTip() {
-        val granted = PushManager.hasPermission()
+        val granted = DeviceProfile.hasNotificationPermission(requireContext())
         binding.llPushTip.visibility = if (granted) View.GONE else View.VISIBLE
     }
 
@@ -227,8 +238,17 @@ class CalendarRemindFragment : TopPmFragment<RemindVM>() {
 
             binding.tvAddCustom -> addCustom()
 
-            binding.tvPushTipAction -> PushManager.requestPermission {
-                refreshPushTip()
+            binding.tvPushTipAction -> {
+                // 已永久拒绝的系统不会再弹窗，launch 直接回调未授权，用户只能去系统设置开
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+                    ContextCompat.checkSelfPermission(
+                        requireContext(), Manifest.permission.POST_NOTIFICATIONS
+                    ) == PackageManager.PERMISSION_DENIED
+                ) {
+                    notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                } else {
+                    refreshPushTip()
+                }
             }
         }
     }

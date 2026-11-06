@@ -35,6 +35,8 @@ import com.fingertip.baselib.util.ColorUtil
 import com.fingertip.baselib.util.ToastUtil
 import com.fingertip.baselib.util.loadImg
 import com.fingertip.uilib.databinding.FragFojingDetailsBinding
+import com.fingertip.uilib.fragment.user.UserInfoFragment
+import com.fingertip.uilib.utils.openPage
 import com.google.android.material.appbar.AppBarLayout
 import com.lzlz.toplib.extention.gone
 import com.lzlz.toplib.extention.isVisible
@@ -221,6 +223,14 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
 
         commentAdapter = FojingCommentAdapter(requireContext(), onItemClick = { viewId, data ->
             when(viewId){
+                //头像/昵称：跳用户主页
+                R.id.iv_head, R.id.tv_comment_name -> {
+                    if (data.accountId > 0) {
+                        openPage(
+                            com.fingertip.uilib.fragment.user.UserInfoFragment.newInstance(data.accountId)
+                        )
+                    }
+                }
                 //点赞
                 R.id.ll_like -> {
                     mViewModel.likeBookComment(bookId, data.id, !data.isLiked, { success->
