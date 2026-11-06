@@ -22,6 +22,7 @@ import com.fingertip.uilib.fragment.user.UserLevelFragment
 import com.fingertip.uilib.utils.LevelUi
 import com.fingertip.uilib.utils.openPage
 import com.fingertip.uilib.viewmodel.UserVM
+import com.lzlz.toplib.extention.isVisible
 import com.lzlz.toplib.extention.toPx
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -48,6 +49,9 @@ class MeFragment : TopPmFragment<UserVM>() {
         binding.nsl.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
             val slideOffset = min(scrollY * 1.0f / 88.toPx(), 1f)
             binding.clTitle.setBackgroundColor(ColorUtil.changeAlpha(resources.getColor(R.color.me_title_base), slideOffset))
+
+            binding.ivAvatarTitle.isVisible = slideOffset >= 1f
+            binding.tvNicknameTitle.isVisible = slideOffset >= 1f
         }
 
         //拉一次最新用户信息（功德币/修行值可能刚变动）
