@@ -43,6 +43,7 @@ class MyBlessFragment : TopPmFragment<WishVM>() {
                 }
             }
         })
+        adapter.emptyText = "还没有送出过祝福，去许愿树看看吧"
         binding.rcMyBless.layoutManager = LinearLayoutManager(requireContext())
         binding.rcMyBless.adapter = adapter
         mViewModel.loadMyBless(0)
@@ -77,8 +78,6 @@ class MyBlessFragment : TopPmFragment<WishVM>() {
                     pageNum = 0
                 }
                 hasMore = data.size >= WishVM.PAGE_SIZE
-                binding.tvEmpty.visibility =
-                    if (adapter.itemCount == 0) View.VISIBLE else View.GONE
             } else {
                 log(TAG, "我的祝愿获取失败：${result.errorCode} ${result.errorMsg}")
                 ToastUtil.showMessage(result.errorMsg ?: "加载失败，请稍后再试")

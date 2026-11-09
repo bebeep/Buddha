@@ -25,6 +25,7 @@ class WishVM : TopVMImp() {
     val postWishResult = MutableLiveData<RequestResult<String>>()
     val deleteWishResult = MutableLiveData<RequestResult<String>>()
     val blessResult = MutableLiveData<RequestResult<String>>()
+    val likeResult = MutableLiveData<RequestResult<Int>>()
     val myWishResult = MutableLiveData<RequestResult<List<WishRecordBean>>>()
     val myBlessResult = MutableLiveData<RequestResult<List<BlessRecordBean>>>()
     val wishBlessListResult = MutableLiveData<RequestResult<List<BlessRecordBean>>>()
@@ -92,6 +93,19 @@ class WishVM : TopVMImp() {
         }, {
             blessResult.value = failResult(it.errorCode, it.errorMsg)
         }, showLoading = true, toastError = false)
+    }
+
+    /**
+     * 愿望点赞（toggle），返回点赞后的最新点赞数
+     */
+    fun likeWishing(wishingId: Int) {
+        call({
+            NetManager.getApi().likeWishing(wishingId = wishingId)
+        }, {
+            likeResult.value = successResult(it)
+        }, {
+            likeResult.value = failResult(it.errorCode, it.errorMsg)
+        }, showLoading = false, toastError = false)
     }
 
     /**

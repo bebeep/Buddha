@@ -7,9 +7,9 @@ import com.fingertip.baselib.top.TopFragment
 import com.fingertip.baselib.top.TopFragmentPagerAdapter
 import com.fingertip.uilib.R
 import com.fingertip.uilib.databinding.FragmentMomentBinding
-import com.fingertip.uilib.fragment.MainFragment
 import com.fingertip.uilib.fragment.message.MessageFragment
 import com.fingertip.uilib.fragment.search.SearchFragment
+import com.fingertip.uilib.utils.openPage
 import com.weikaiyun.fragmentation.SupportFragment
 import org.greenrobot.eventbus.Subscribe
 
@@ -50,13 +50,13 @@ class MomentFragment : TopFragment() {
         super.onSingleClick(v)
         when(v?.id){
             R.id.iv_search->{
-                (parentFragment as? MainFragment)?.start(SearchFragment())
+                openPage(SearchFragment())
             }
             R.id.iv_notify->{
-                (parentFragment as? MainFragment)?.start(MessageFragment())
+                openPage(MessageFragment())
             }
             R.id.iv_moment_post->{
-                (parentFragment as? MainFragment)?.start(MomentPostFragment())
+                openPage(MomentPostFragment())
             }
         }
     }

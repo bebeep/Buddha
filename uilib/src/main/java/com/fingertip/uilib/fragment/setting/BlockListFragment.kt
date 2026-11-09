@@ -32,6 +32,7 @@ class BlockListFragment : TopPmFragment<UserVM>() {
 
     override fun initShiTu() {
         adapter = BlockUserAdapter(requireContext()) { item -> confirmUnblock(item) }
+        adapter.emptyText = getString(R.string.block_list_empty)
         binding.rvBlock.layoutManager = LinearLayoutManager(requireContext())
         binding.rvBlock.adapter = adapter
 
@@ -87,8 +88,7 @@ class BlockListFragment : TopPmFragment<UserVM>() {
     }
 
     private fun refreshEmptyState(empty: Boolean) {
-        binding.tvEmpty.visibility = if (empty) View.VISIBLE else View.GONE
-        binding.rvBlock.visibility = if (empty) View.GONE else View.VISIBLE
+        //空态占位由 TopRcAdapter 统一处理
     }
 
     override fun getClickViews(): List<View> = listOf(binding.ivBack)

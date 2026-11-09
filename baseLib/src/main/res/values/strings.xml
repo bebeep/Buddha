@@ -11,4 +11,6 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
+    <string name="empty_common_tip">暂无内容</string>
+
 </resources>

@@ -10,7 +10,7 @@ import com.fingertip.uilib.adapter.MomentAdapter
 import com.fingertip.uilib.databinding.FragmentMyMomentBinding
 import com.fingertip.uilib.dialog.ActionSheetDialog
 import com.fingertip.uilib.dialog.ConfirmDialog
-import com.fingertip.uilib.fragment.MainFragment
+import com.fingertip.uilib.utils.openPage
 import com.fingertip.uilib.viewmodel.MomentVM
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
@@ -47,15 +47,14 @@ class MyMomentFragment : TopPmFragment<MomentVM>() {
         adapter = MomentAdapter(
             requireContext(),
             onItemClick = { entity ->
-                (parentFragment as? MainFragment)
-                    ?.start(MomentDetailsFragment.newInstance(entity.momentId, entity))
+                openPage(MomentDetailsFragment.newInstance(entity.momentId, entity))
             },
             onVideoClick = { entity ->
-                (parentFragment as? MainFragment)
-                    ?.start(MomentDetailsFragment.newInstance(entity.momentId, entity))
+                openPage(MomentDetailsFragment.newInstance(entity.momentId, entity))
             },
             onItemLongClick = { entity -> showItemMenu(entity) }
         )
+        adapter?.emptyText = getString(R.string.my_moment_empty)
         binding.recyclerview.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerview.adapter = adapter
         adapter?.initData(list)
@@ -102,7 +101,6 @@ class MyMomentFragment : TopPmFragment<MomentVM>() {
                 if (data.isEmpty()) binding.srl.finishLoadMoreWithNoMoreData()
                 else binding.srl.finishLoadMore()
                 binding.srl.finishRefresh()
-                refreshEmpty()
             } else {
                 binding.srl.finishRefresh(false)
                 binding.srl.finishLoadMore(false)
@@ -122,7 +120,6 @@ class MyMomentFragment : TopPmFragment<MomentVM>() {
                     adapter?.mlist?.removeAt(index)
                     adapter?.notifyItemRemoved(index)
                 }
-                refreshEmpty()
             } else {
                 ToastUtil.showMessage(result.errorMsg ?: getString(R.string.my_moment_delete_fail))
             }
@@ -143,12 +140,6 @@ class MyMomentFragment : TopPmFragment<MomentVM>() {
                 }.show()
             }
         )).show()
-    }
-
-    private fun refreshEmpty() {
-        val empty = list.isEmpty()
-        binding.tvEmpty.visibility = if (empty) View.VISIBLE else View.GONE
-        binding.srl.visibility = if (empty) View.GONE else View.VISIBLE
     }
 
     override fun getClickViews(): List<View> = listOf(binding.ivBack)

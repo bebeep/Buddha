@@ -41,7 +41,9 @@ import java.util.TimeZone
 object DeviceProfile {
 
     private const val TAG = "DeviceProfile"
-    private const val REQ_NOTIFICATION = 6201
+
+    /** 通知权限申请码，Activity 的 onRequestPermissionsResult 里用它对账 */
+    const val REQ_NOTIFICATION = 6201
 
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
     private var firebaseReady = false
@@ -151,16 +153,22 @@ object DeviceProfile {
             ) == PackageManager.PERMISSION_GRANTED
         } else true
 
-    /** 登录后申请一次通知权限（冷启动弹窗被拒率高，所以放登录之后） */
-    fun requestNotificationPermission(activity: Activity) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return
-        if (hasNotificationPermission(activity)) return
-        try {
+    /**
+     * 登录后申请一次通知权限（冷启动弹窗被拒率高，所以放登录之后）。
+     * @return true = 系统权限弹窗真的弹出来了（调用方应等用户操作完再跳页）；
+     *         false = 无需申请（低版本 / 已有权限 / 弹异常）
+     */
+    fun requestNotificationPermission(activity: Activity): Boolean {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return false
+        if (hasNotificationPermission(activity)) return false
+        return try {
             ActivityCompat.requestPermissions(
                 activity, arrayOf(Manifest.permission.POST_NOTIFICATIONS), REQ_NOTIFICATION
             )
+            true
         } catch (e: Exception) {
             log(TAG, "申请通知权限失败 ${e.message}")
+            false
         }
     }
 }

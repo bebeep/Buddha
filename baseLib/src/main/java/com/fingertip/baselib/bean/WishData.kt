@@ -31,6 +31,10 @@ class WishRecordBean {
     var reviewStatus: Int = 0
     //送出祝福的用户数量
     var blessUserCount: Int = 0
+    //收到的点赞数
+    var likeCount: Int = 0
+    //当前用户是否已点赞
+    var likedByMe: Boolean = false
     //许愿时间 yyyy-MM-dd HH:mm:ss
     var createDate: String? = null
 

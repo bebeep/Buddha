@@ -22,6 +22,11 @@ class MomentImageAdapter(
     val onItemClick: (position: Int) -> Unit
 ) : TopRcAdapter<String?, TopRcAdapter.TopRcViewHolder>(c) {
 
+    init {
+        //动态九宫格子列表，不显示空态占位
+        showEmptyTip = false
+    }
+
     /** 当前已经应用过的比例，避免重复 apply */
     private var appliedRatio: String? = null
 

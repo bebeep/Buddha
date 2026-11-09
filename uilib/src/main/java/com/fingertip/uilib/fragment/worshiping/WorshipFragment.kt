@@ -19,9 +19,9 @@ import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.BuddhaPagerAdapter
 import com.fingertip.uilib.databinding.FragmentWorshipBinding
 import com.fingertip.uilib.dialog.WorshipDialog
-import com.fingertip.uilib.fragment.MainFragment
 import com.fingertip.uilib.fragment.shop.MyDressFragment
 import com.fingertip.uilib.fragment.shop.ShopFragment
+import com.fingertip.uilib.utils.openPage
 import com.fingertip.uilib.viewmodel.LampVM
 import com.fingertip.uilib.viewmodel.ShopVM
 import com.fingertip.uilib.viewmodel.WorshipVM
@@ -262,7 +262,7 @@ class WorshipFragment : TopPmFragment<WorshipVM>() {
     private fun openDressPage(dressType: Int) {
         val owned = myDressData?.dresses.orEmpty().any { it.dressType == dressType }
         if (owned) {
-            (parentFragment as? MainFragment)?.start(MyDressFragment())
+            openPage(MyDressFragment())
         } else {
             openShop(dressType)
         }
@@ -277,14 +277,12 @@ class WorshipFragment : TopPmFragment<WorshipVM>() {
             ToastUtil.showMessage(getString(R.string.shop_login_first))
             return
         }
-        (parentFragment as? MainFragment)?.start(
-            ShopFragment.newInstance(dressType, currentBuddha?.id ?: 0)
-        )
+        openPage(ShopFragment.newInstance(dressType, currentBuddha?.id ?: 0))
     }
 
     private fun openBuddhaDetail() {
         val buddha = currentBuddha ?: return
-        (parentFragment as? MainFragment)?.start(BuddhaDetailFragment.newInstance(buddha))
+        openPage(BuddhaDetailFragment.newInstance(buddha))
     }
 
     /**

@@ -85,6 +85,8 @@ class MyDressFragment : TopPmFragment<ShopVM>() {
 
     override fun initShiTu() {
         adapter = MyDressAdapter(requireContext()) { item -> toggleWear(item) }
+        //本页空态有"全空 vs 分类空"两种文案，保留页面自己的占位
+        adapter.showEmptyTip = false
         binding.rcList.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.rcList.adapter = adapter
         //持有量少，关掉条目动画避免切分类时整屏闪

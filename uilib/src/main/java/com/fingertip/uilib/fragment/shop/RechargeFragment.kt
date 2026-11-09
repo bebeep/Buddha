@@ -49,6 +49,7 @@ class RechargeFragment : TopPmFragment<RechargeVM>() {
     override fun initShiTu() {
         binding.tvBalance.text = "${GlobalConfig.userData?.coin ?: 0}"
         adapter = CoinPackAdapter(requireContext()) { onPackClick(it) }
+        adapter.emptyText = getString(R.string.recharge_empty)
         binding.rcPacks.layoutManager = GridLayoutManager(requireContext(), 3)
         binding.rcPacks.adapter = adapter
         binding.rcPacks.itemAnimator = null
@@ -61,12 +62,18 @@ class RechargeFragment : TopPmFragment<RechargeVM>() {
         mViewModel.configResult.observe(viewLifecycleOwner) { result ->
             if (!isAdded) return@observe
             if (result.success) {
+                //排序由服务端控制（首充档在前、组内价格升序），客户端只渲染不重排。
+                //首充档已用过的：服务端不下发；这里再兜一层，避免老服务端/缓存把灰卡和提示语带出来
                 val list = result.data.orEmpty()
+                    .filter { !it.isFirstCharge || it.firstChargeAvailable }
                 adapter.initData(list)
-                binding.tvEmpty.visibility = if (list.isEmpty()) View.VISIBLE else View.GONE
+                //还有可用的首充档才提示，已用过就不再拿活动文案打扰
+                binding.tvFirstTips.visibility =
+                    if (list.any { it.firstChargeActive }) View.VISIBLE else View.GONE
             } else {
                 log(TAG, "档位失败：${result.errorCode} ${result.errorMsg}")
-                binding.tvEmpty.visibility = View.VISIBLE
+                binding.tvFirstTips.visibility = View.GONE
+                adapter.showEmptyNow()
             }
         }
 
@@ -94,6 +101,8 @@ class RechargeFragment : TopPmFragment<RechargeVM>() {
                     binding.tvBalance.text = "$coin"
                 }
                 ToastUtil.showMessage(getString(R.string.recharge_success))
+                //刚买过首充：重新拉档位，把首充角标刷成「已使用」
+                mViewModel.loadConfig()
             } else {
                 log(TAG, "充值验单失败：${result.errorCode} ${result.errorMsg} orderNo=$pendingOrderNo")
                 ToastUtil.showMessage(result.errorMsg ?: getString(R.string.recharge_verify_fail))
@@ -104,6 +113,12 @@ class RechargeFragment : TopPmFragment<RechargeVM>() {
     private fun onPackClick(pack: CoinPackData) {
         if (GlobalConfig.session.isBlank()) {
             ToastUtil.showMessage(getString(R.string.shop_login_first))
+            return
+        }
+        //首充优惠已用过：本地先拦一道（服务端下单也会拒），顺手刷新资格把角标刷正确
+        if (pack.isFirstCharge && !pack.firstChargeAvailable) {
+            ToastUtil.showMessage(getString(R.string.recharge_first_charge_used_toast))
+            mViewModel.loadConfig()
             return
         }
         pendingPack = pack

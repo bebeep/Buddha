@@ -11,9 +11,9 @@ import com.fingertip.baselib.util.ToastUtil
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.ConversationAdapter
 import com.fingertip.uilib.databinding.FragmentConversationBinding
-import com.fingertip.uilib.fragment.MainFragment
 import com.fingertip.uilib.im.ImManager
 import com.fingertip.uilib.im.ImUtil
+import com.fingertip.uilib.utils.openPage
 import com.fingertip.uilib.viewmodel.MainVM
 import com.tencent.imsdk.v2.V2TIMConversation
 import com.tencent.imsdk.v2.V2TIMConversationResult
@@ -44,13 +44,14 @@ class ConversationFragment : TopPmFragment<MainVM>() {
 
     override fun initShiTu() {
         adapter = ConversationAdapter(requireContext()).apply {
+            emptyText = getString(R.string.im_conversation_empty)
             onItemClick = { conv ->
                 val peerId = ImUtil.userIdOfConversation(conv)
                 //用解析后的昵称/头像（IM 资料缺失时适配器已向后端补拉）
                 val name = adapter.displayName(conv)
                     .takeIf { it.isNotBlank() } ?: getString(R.string.im_unknown_user)
                 val avatar = adapter.displayAvatar(conv)
-                (parentFragment as? MainFragment)?.start(
+                openPage(
                     ChatFragment.newInstance(peerId, name, avatar)
                 )
             }
@@ -82,9 +83,11 @@ class ConversationFragment : TopPmFragment<MainVM>() {
                 else R.string.im_conversation_empty
             )
             binding.tvEmpty.visibility = View.VISIBLE
+            adapter.showEmptyTip = false
             adapter.initData(emptyList())
             return
         }
+        adapter.showEmptyTip = true
         binding.tvEmpty.visibility = View.GONE
         try {
             V2TIMManager.getConversationManager()
@@ -92,8 +95,6 @@ class ConversationFragment : TopPmFragment<MainVM>() {
                     override fun onSuccess(t: V2TIMConversationResult?) {
                         val list = t?.conversationList ?: emptyList()
                         adapter.initData(ImUtil.sortConversations(list))
-                        binding.tvEmpty.visibility =
-                            if (list.isEmpty()) View.VISIBLE else View.GONE
                     }
 
                     override fun onError(code: Int, desc: String?) {

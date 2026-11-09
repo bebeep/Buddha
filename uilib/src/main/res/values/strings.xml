@@ -121,6 +121,10 @@
     <string name="recharge_success">充值到账</string>
     <string name="recharge_fail">充值未完成，请稍后重试</string>
     <string name="recharge_verify_fail">充值校验失败，款项不会扣，请稍后重试</string>
+    <string name="recharge_first_charge_badge">首充</string>
+    <string name="recharge_first_charge_used_badge">已使用</string>
+    <string name="recharge_first_charge_tips">首充专享档位仅限首次充值，每个账号与设备仅可享受一次</string>
+    <string name="recharge_first_charge_used_toast">首充优惠已使用过，可选其他档位</string>
 
     <!-- ============ 早课五步流程 ============ -->
     <string name="ep_step_of">第 %1$d / 5 步</string>

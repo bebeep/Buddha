@@ -8,8 +8,8 @@ import com.fingertip.baselib.top.TopPmFragment
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.LampHistoryAdapter
 import com.fingertip.uilib.databinding.FragmentLampRecordBinding
-import com.fingertip.uilib.fragment.MainFragment
 import com.fingertip.uilib.fragment.shop.ShopFragment
+import com.fingertip.uilib.utils.openPage
 import com.fingertip.uilib.viewmodel.LampVM
 
 /**
@@ -33,6 +33,7 @@ class LampRecordFragment : TopPmFragment<LampVM>() {
 
     override fun initShiTu() {
         adapter = LampHistoryAdapter(requireContext())
+        adapter.emptyText = "还没有供灯记录"
         binding.rcList.layoutManager = LinearLayoutManager(requireContext())
         binding.rcList.adapter = adapter
         binding.rcList.itemAnimator = null
@@ -53,7 +54,6 @@ class LampRecordFragment : TopPmFragment<LampVM>() {
             if (!isAdded) return@observe
             val list = result.data.orEmpty()
             adapter.initData(list)
-            binding.tvEmpty.visibility = if (list.isEmpty()) View.VISIBLE else View.GONE
         }
     }
 
@@ -86,7 +86,7 @@ class LampRecordFragment : TopPmFragment<LampVM>() {
             binding.ivBack -> pop()
             //续燃只有一条路径：去商城买灯油，服务端发货时给现有灯顺延
             binding.tvCurrentAction ->
-                (parentFragment as? MainFragment)?.start(ShopFragment.newInstance(ShopDressConfig.TYPE_OIL))
+                openPage(ShopFragment.newInstance(ShopDressConfig.TYPE_OIL))
         }
     }
 }

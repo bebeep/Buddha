@@ -23,6 +23,7 @@ class DonateRecordDialog(context: Context, private val viewModel: DonateVM) :
     override fun onViewCreate(view: View) {
         binding = DialogDonateRecordBinding.bind(view)
         adapter = DonateRecordAdapter(context)
+        adapter.emptyText = "还没有捐赠记录"
         binding.rcRecords.layoutManager = LinearLayoutManager(context)
         binding.rcRecords.adapter = adapter
         binding.tvClose.setOnClickListener { dismiss() }
@@ -30,8 +31,6 @@ class DonateRecordDialog(context: Context, private val viewModel: DonateVM) :
         viewModel.recordResult.observeForever { result ->
             if (result.success) {
                 adapter.initData(result.data.orEmpty())
-                binding.tvEmpty.visibility =
-                    if (adapter.itemCount == 0) View.VISIBLE else View.GONE
             }
         }
         viewModel.loadRecords(0)

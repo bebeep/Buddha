@@ -22,6 +22,11 @@ class DressCaseAdapter(
     val onItemClick: (item: MyDressItem) -> Unit = {}
 ) : TopRcAdapter<MyDressItem, DressCaseAdapter.DressCaseVH>(context) {
 
+    init {
+        //我的页装扮橱窗横滑子列表，空列表由页面层显示占位文案
+        showEmptyTip = false
+    }
+
     override fun initLayoutId(viewType: Int): Int = R.layout.item_dress_case
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DressCaseVH {

@@ -15,6 +15,8 @@ class BuddhaPhotoAdapter(
 ) : TopRcAdapter<String, TopRcAdapter.TopRcViewHolder>(context) {
 
     init {
+        //法相图册横滑子列表，不显示空态占位
+        showEmptyTip = false
         initData(list)
     }
 

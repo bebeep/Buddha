@@ -9,10 +9,10 @@ import com.fingertip.baselib.util.ToastUtil
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.CollectAdapter
 import com.fingertip.uilib.databinding.FragmentCollectBinding
-import com.fingertip.uilib.fragment.MainFragment
 import com.fingertip.uilib.fragment.book.FojingDetailsFragment
 import com.fingertip.uilib.fragment.moment.MomentDetailsFragment
 import com.fingertip.uilib.fragment.temple.TempleDetailFragment
+import com.fingertip.uilib.utils.openPage
 import com.fingertip.uilib.viewmodel.UserToolVM
 import com.fingertip.baselib.top.TopApplication
 import com.fingertip.baselib.R as BaseR
@@ -55,6 +55,7 @@ class CollectListFragment : TopPmFragment<UserToolVM>() {
                 mViewModel.cancelCollect(item.targetType, item.targetId)
             }
         )
+        adapter.emptyText = getString(R.string.collect_empty)
 
         val manager = LinearLayoutManager(requireContext())
         binding.rvCollect.layoutManager = manager
@@ -149,21 +150,14 @@ class CollectListFragment : TopPmFragment<UserToolVM>() {
     }
 
     private fun refreshEmptyState() {
-        val empty = adapter.mlist.isEmpty()
-        binding.tvEmpty.visibility = if (empty) View.VISIBLE else View.GONE
-        binding.rvCollect.visibility = if (empty) View.GONE else View.VISIBLE
+        //空态占位由 TopRcAdapter 统一处理
     }
 
     private fun openDetail(item: CollectData) {
         when (item.targetType) {
-            CollectData.TYPE_SUTRA -> (parentFragment as? MainFragment)
-                ?.start(FojingDetailsFragment.newInstance(item.targetId))
-
-            CollectData.TYPE_MOMENT -> (parentFragment as? MainFragment)
-                ?.start(MomentDetailsFragment.newInstance(item.targetId))
-
-            CollectData.TYPE_TEMPLE -> (parentFragment as? MainFragment)
-                ?.start(TempleDetailFragment.newInstance(item.targetId))
+            CollectData.TYPE_SUTRA -> openPage(FojingDetailsFragment.newInstance(item.targetId))
+            CollectData.TYPE_MOMENT -> openPage(MomentDetailsFragment.newInstance(item.targetId))
+            CollectData.TYPE_TEMPLE -> openPage(TempleDetailFragment.newInstance(item.targetId))
         }
     }
 

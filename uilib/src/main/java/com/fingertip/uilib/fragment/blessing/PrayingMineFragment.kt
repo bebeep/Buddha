@@ -52,6 +52,7 @@ class PrayingMineFragment : TopPmFragment<BlessingVM>() {
                 pendingDeleteId = praying.id
             }
         }
+        adapter.emptyText = "还没有祈福记录，去发一张福卡吧"
         binding.rcList.layoutManager = LinearLayoutManager(requireContext())
         binding.rcList.adapter = adapter
 
@@ -83,8 +84,6 @@ class PrayingMineFragment : TopPmFragment<BlessingVM>() {
             if (result.success) {
                 val list = result.data.orEmpty()
                 if (pageNum == 0) adapter.initData(list) else adapter.addData(list)
-                binding.tvEmpty.visibility =
-                    if (adapter.itemCount == 0) View.VISIBLE else View.GONE
             } else {
                 log(TAG, "祈福列表获取失败：${result.errorCode} ${result.errorMsg}")
                 ToastUtil.showMessage(result.errorMsg ?: "加载失败，请稍后再试")

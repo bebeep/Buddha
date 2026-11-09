@@ -26,6 +26,11 @@ import com.fingertip.baselib.R as BaseR
  */
 class CalendarDayAdapter(context: Context) : TopRcAdapter<CalendarSimpleInfo, TopRcAdapter.TopRcViewHolder>(context) {
 
+    init {
+        //日历格子子列表，不显示空态占位
+        showEmptyTip = false
+    }
+
     companion object {
         //佛菩萨圣诞/成道/出家/涅槃
         private val COLOR_FESTIVAL_MAJOR = TopApplication.instance.getColor(BaseR.color.c_festival_red)

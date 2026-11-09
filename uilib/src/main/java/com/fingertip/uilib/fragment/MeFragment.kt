@@ -128,7 +128,7 @@ class MeFragment : TopPmFragment<UserVM>() {
         if (dressCaseAdapter == null) {
             dressCaseAdapter = DressCaseAdapter(requireContext(), data) {
                 //点橱窗项进我的装扮（与菜单入口同页）
-                (parentFragment as? MainFragment)?.start(
+                openPage(
                     com.fingertip.uilib.fragment.shop.MyDressFragment()
                 )
             }
@@ -148,53 +148,53 @@ class MeFragment : TopPmFragment<UserVM>() {
 
     override fun onSingleClick(v: View?) {
         when (v) {
-            binding.ivSetting -> (parentFragment as? MainFragment)?.start(
+            binding.ivSetting -> openPage(
                 com.fingertip.uilib.fragment.setting.SettingFragment()
             )
 
             binding.ivEdit -> {
-                (parentFragment as? MainFragment)?.start(ProfileEditFragment())
+                openPage(ProfileEditFragment())
             }
 
             //点头像/昵称看自己的用户信息页
             binding.ivAvatar, binding.tvNickname -> {
                 GlobalConfig.userData?.accountId?.let {
-                    (parentFragment as? MainFragment)?.start(
+                    openPage(
                         com.fingertip.uilib.fragment.user.UserInfoFragment.newInstance(it)
                     )
                 }
             }
 
             //海外版：「兑换中心」改为装扮商城入口，「我的物品」改为我的装扮
-            binding.llCoins -> (parentFragment as? MainFragment)?.start(
+            binding.llCoins -> openPage(
                 com.fingertip.uilib.fragment.shop.RechargeFragment.newInstance()
             )
             //修行值：进等级详情页（等级体系/经验进度/全部等级表）
             binding.llExp -> openPage(UserLevelFragment.newInstance())
-            binding.llExchange -> (parentFragment as? MainFragment)?.start(
+            binding.llExchange -> openPage(
                 com.fingertip.uilib.fragment.shop.ShopFragment.newInstance()
             )
-            binding.llItem -> (parentFragment as? MainFragment)?.start(
+            binding.llItem -> openPage(
                 com.fingertip.uilib.fragment.shop.MyDressFragment()
             )
             //我的收藏：佛经 / 感悟 / 寺庙三类内容统一入口
-            binding.llCollect -> (parentFragment as? MainFragment)?.start(
+            binding.llCollect -> openPage(
                 com.fingertip.uilib.fragment.user.CollectListFragment()
             )
             //海外版：功德捐赠功能已下线，这一格改为供灯记录（订单与灯油状态的凭证页）
-            binding.llPunna -> (parentFragment as? MainFragment)?.start(
+            binding.llPunna -> openPage(
                 com.fingertip.uilib.fragment.worshiping.LampRecordFragment()
             )
             //佛历订阅提醒：原「我的足迹」的坑位。提醒是拉日活最实在的一环，优先做实
-            binding.llHistory -> (parentFragment as? MainFragment)?.start(
+            binding.llHistory -> openPage(
                 com.fingertip.uilib.fragment.setting.CalendarRemindFragment()
             )
             //我的感悟：自己发过的动态，长按可删除（UGC 政策要求用户能删自己的内容）
-            binding.llMind -> (parentFragment as? MainFragment)?.start(
+            binding.llMind -> openPage(
                 com.fingertip.uilib.fragment.moment.MyMomentFragment()
             )
-            binding.llBless -> (parentFragment as? MainFragment)?.start(PrayingMineFragment.newInstance(false))
-            binding.llReborn -> (parentFragment as? MainFragment)?.start(FangShengFragment())
+            binding.llBless -> openPage(PrayingMineFragment.newInstance(false))
+            binding.llReborn -> openPage(FangShengFragment())
 
             //修行攻略：H5 地址由 globalParam.guideUrl 下发，可热更新
             binding.llIntro -> com.fingertip.uilib.activity.CommonWebViewActivity.start(

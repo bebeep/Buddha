@@ -25,8 +25,8 @@ object NetProperty {
     /**
      * 测试服
      */
-//    var TEST_URL            = "http://192.168.10.195:8888/buddha/"   //公司（本机 jar 跑 8899）
-    var TEST_URL            = "http://192.168.1.249:8888/buddha/"   //家里
+    var TEST_URL            = "http://192.168.10.195:8888/buddha/"   //公司（本机 jar 跑 8899）
+//    var TEST_URL            = "http://192.168.1.249:8888/buddha/"   //家里
 //    var TEST_URL            = "https://soonturn.com/buddha"
 
     /**
@@ -376,6 +376,11 @@ object NetProperty {
      * 根据愿望id获取祝福记录
      */
     const val GET_BLESS_RECORD_BY_WISHING_ID          = "wishingTree/getBlessRecordByWishingId"
+
+    /**
+     * 愿望点赞（toggle），返回最新点赞数
+     */
+    const val LIKE_WISHING                            = "wishingTree/likeWishing"
 
     /**
      * 福卡墙

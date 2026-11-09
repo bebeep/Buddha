@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 通用空态占位插画：淡金底圆 + 白色纸卷 + 两行示意文字，配合 layout_common_empty 使用 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+
+    <!-- 淡金底圆 -->
+    <path
+        android:fillColor="#F5EFE0"
+        android:pathData="M24,24 m-21,0 a21,21 0 1,0 42,0 a21,21 0 1,0 -42,0" />
+
+    <!-- 纸卷主体（白色，带一点投影感） -->
+    <path
+        android:fillColor="#E8DFC9"
+        android:pathData="M14.5,11.5 h15.2 l6.3,6.3 v19.2 a1.5,1.5 0 0,1 -1.5,1.5 h-20 a1.5,1.5 0 0,1 -1.5,-1.5 v-24 a1.5,1.5 0 0,1 1.5,-1.5 z" />
+    <path
+        android:fillColor="#FBF8EF"
+        android:pathData="M15.5,12.5 h13.6 l6.1,6.1 v17.9 a1,1 0 0,1 -1,1 h-18.7 a1,1 0 0,1 -1,-1 v-23 a1,1 0 0,1 1,-1 z" />
+
+    <!-- 折角 -->
+    <path
+        android:fillColor="#E0D3B2"
+        android:pathData="M29.2,12.5 l6,6 h-6 a0.8,0.8 0 0,1 -0.8,-0.8 v-4.4 a0.8,0.8 0 0,1 0.8,-0.8 z" />
+
+    <!-- 示意文字两行 -->
+    <path
+        android:fillColor="#E0D3B2"
+        android:pathData="M18.5,23.5 h11 a0.9,0.9 0 0,1 0,1.8 h-11 a0.9,0.9 0 0,1 0,-1.8 z" />
+    <path
+        android:fillColor="#EADFC3"
+        android:pathData="M18.5,28.5 h7 a0.9,0.9 0 0,1 0,1.8 h-7 a0.9,0.9 0 0,1 0,-1.8 z" />
+
+    <!-- 右上小装饰圆点 -->
+    <path
+        android:fillColor="#D9C08C"
+        android:pathData="M36.5,10 m-1.6,0 a1.6,1.6 0 1,0 3.2,0 a1.6,1.6 0 1,0 -3.2,0" />
+</vector>

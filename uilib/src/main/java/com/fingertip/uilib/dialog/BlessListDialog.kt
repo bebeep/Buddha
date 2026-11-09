@@ -36,6 +36,7 @@ class BlessListDialog(context: Context) : TopDialogBottomSheetDialog(context) {
         adapter = BlessRecordAdapter(context, onUserClick = { record ->
             record.wishingAccountInfo?.accountId?.let { if (it > 0) onUserClick(it) }
         })
+        adapter.emptyText = "还没有人祝愿"
         binding.rcBlessList.layoutManager = LinearLayoutManager(context)
         binding.rcBlessList.adapter = adapter
 
@@ -63,9 +64,6 @@ class BlessListDialog(context: Context) : TopDialogBottomSheetDialog(context) {
         val data = list.orEmpty()
         //一页不满说明到底了
         hasMore = data.size >= WishVM.PAGE_SIZE
-
-        binding.tvEmpty.visibility = if (adapter.itemCount == 0 && data.isEmpty()) View.VISIBLE else View.GONE
-        binding.rcBlessList.visibility = if (adapter.itemCount == 0 && data.isEmpty()) View.GONE else View.VISIBLE
 
         if (append) {
             adapter.addData(data)

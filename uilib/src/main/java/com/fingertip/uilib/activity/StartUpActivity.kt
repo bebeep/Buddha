@@ -45,8 +45,7 @@ class StartUpActivity : TopVMActivity<StartUpVM>() {
 
         binding.ivBanner.isEnabled = false
         binding.ivBanner.setOnClickListener {
-            startActivity(Intent(this,ContainerActivity::class.java))
-            finish()
+            goHome()
         }
     }
 
@@ -107,20 +106,43 @@ class StartUpActivity : TopVMActivity<StartUpVM>() {
                 GlobalConfig.userData = data
                 // 必须在 GlobalConfig.userData 赋值之后再上报：设备档案要用到 session
                 com.fingertip.uilib.push.DeviceProfile.report()
-                com.fingertip.uilib.push.DeviceProfile.requestNotificationPermission(this)
                 // IM 登录：换设备后新设备登录即自动云端同步会话与漫游消息
                 com.fingertip.uilib.im.ImManager.init(this)
                 com.fingertip.uilib.im.ImManager.login(data.accountId)
                 binding.ivBanner.visible()
                 binding.ivBanner.isEnabled = true
-                binding.ivBanner.postDelayed({
-                    startActivity(Intent(this,ContainerActivity::class.java))
-                    finish()
-                },2000)
+                val askedPermission = com.fingertip.uilib.push.DeviceProfile.requestNotificationPermission(this)
+                if (askedPermission) {
+                    //首次弹通知权限：等用户在弹窗上操作完再进首页，别让倒计时把首页跳出来压在弹窗下面
+                    pendingJumpHome = true
+                } else {
+                    binding.ivBanner.postDelayed({ goHome() }, 2000)
+                }
             } else { //跳转到登录注册
                 startActivity(Intent(this, LoginRegisterActivity::class.java))
                 finish()
             }
+        }
+    }
+
+    /** 权限弹窗挂起期间的跳首页标记 */
+    private var pendingJumpHome = false
+
+    private fun goHome() {
+        pendingJumpHome = false
+        startActivity(Intent(this, ContainerActivity::class.java))
+        finish()
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == com.fingertip.uilib.push.DeviceProfile.REQ_NOTIFICATION && pendingJumpHome) {
+            //用户已在权限弹窗上操作（允许/拒绝都算），稍等弹窗收起再进首页
+            binding.ivBanner.postDelayed({ if (!isFinishing && !isDestroyed) goHome() }, 300)
         }
     }
 

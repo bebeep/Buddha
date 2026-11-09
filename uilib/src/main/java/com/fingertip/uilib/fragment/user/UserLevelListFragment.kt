@@ -58,7 +58,7 @@ class UserLevelListFragment : TopPmFragment<UserVM>() {
 
         val configs = LevelUtil.configs
         if (configs.isEmpty()) {
-            binding.tvEmpty.visibility = View.VISIBLE
+            adapter.showEmptyNow(getString(R.string.level_config_empty))
             binding.tvSummary.text = getString(R.string.level_config_empty)
             return
         }

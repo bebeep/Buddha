@@ -31,6 +31,11 @@ import com.fingertip.baselib.R as BaseR
  */
 class HomeSectionAdapter(context: Context) : TopRcAdapter<HomeSection, TopRcAdapter.TopRcViewHolder>(context) {
 
+    init {
+        //首页骨架区块列表：加载中会短暂为空，不显示空态占位
+        showEmptyTip = false
+    }
+
     companion object {
         //1 佛历头卡 2 今日修持 3 供灯状态条 4 金刚区 5 游戏卡 6 佛友圈精选 7 骨架
         const val TYPE_BUDDHA_CARD = 1

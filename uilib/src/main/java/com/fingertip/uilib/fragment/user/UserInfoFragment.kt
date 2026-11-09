@@ -18,7 +18,6 @@ import com.fingertip.uilib.databinding.FragmentUserInfoBinding
 import com.fingertip.uilib.dialog.ActionSheetDialog
 import com.fingertip.uilib.dialog.ConfirmDialog
 import com.fingertip.uilib.dialog.ReportDialog
-import com.fingertip.uilib.fragment.MainFragment
 import com.fingertip.uilib.fragment.moment.MomentDetailsFragment
 import com.fingertip.uilib.utils.openPage
 import com.fingertip.uilib.viewmodel.MomentVM
@@ -89,12 +88,10 @@ class UserInfoFragment : TopPmFragment<UserVM>() {
         momentAdapter = MomentAdapter(
             requireContext(),
             onItemClick = { entity ->
-                (parentFragment as? MainFragment)
-                    ?.start(MomentDetailsFragment.newInstance(entity.momentId, entity))
+                openPage(MomentDetailsFragment.newInstance(entity.momentId, entity))
             },
             onVideoClick = { entity ->
-                (parentFragment as? MainFragment)
-                    ?.start(MomentDetailsFragment.newInstance(entity.momentId, entity))
+                openPage(MomentDetailsFragment.newInstance(entity.momentId, entity))
             },
             onUserClick = { entity -> openUserProfile(entity.postAccountId) }
         )

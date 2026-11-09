@@ -225,15 +225,39 @@ class LoginRegisterActivity : TopVMActivity<LoginRegisterVM>() {
         CommonWebViewActivity.start(this, title, url)
     }
 
+    /** 权限弹窗挂起期间的跳首页标记 */
+    private var pendingJumpHome = false
+
     private fun enterMain() {
         // 登录完成即上报设备档案（FCM token + 时区，提醒与离线推送的数据源）
         DeviceProfile.report()
-        DeviceProfile.requestNotificationPermission(this)
         // IM 登录（换设备同步：登录后云端自动同步会话与漫游消息）
         com.fingertip.uilib.im.ImManager.init(this)
         com.fingertip.uilib.im.ImManager.login(GlobalConfig.userData?.accountId ?: 0)
+        if (DeviceProfile.requestNotificationPermission(this)) {
+            //首次弹通知权限：等用户在弹窗上操作完（允许/拒绝都算）再进首页
+            pendingJumpHome = true
+        } else {
+            goHome()
+        }
+    }
+
+    private fun goHome() {
+        pendingJumpHome = false
         startActivity(Intent(this, ContainerActivity::class.java))
         finish()
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == DeviceProfile.REQ_NOTIFICATION && pendingJumpHome) {
+            //用户已在权限弹窗上操作，稍等弹窗收起再进首页
+            mainHandler.postDelayed({ if (!isFinishing && !isDestroyed) goHome() }, 300)
+        }
     }
 
     override fun onDestroy() {

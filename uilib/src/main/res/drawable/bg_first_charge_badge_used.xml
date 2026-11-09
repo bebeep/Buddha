@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 首充角标·已使用态：灰底，避免已用过的档位还在抢注意力 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#B9B0A0" />
+    <corners
+        android:bottomLeftRadius="8dp"
+        android:bottomRightRadius="2dp"
+        android:topLeftRadius="2dp"
+        android:topRightRadius="8dp" />
+</shape>

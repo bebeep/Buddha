@@ -104,6 +104,7 @@ class ShopFragment : TopPmFragment<ShopVM>() {
 
     private fun initRecycler() {
         adapter = ShopDressAdapter(requireContext()) { item -> onDressClick(item) }
+        adapter.emptyText = getString(R.string.shop_empty)
         binding.rcList.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.rcList.adapter = adapter
         //商品数量少，关掉条目动画避免切分类时整屏闪
@@ -143,10 +144,9 @@ class ShopFragment : TopPmFragment<ShopVM>() {
             if (result.success) {
                 val list = result.data.orEmpty()
                 adapter.initData(list)
-                binding.tvEmpty.visibility = if (list.isEmpty()) View.VISIBLE else View.GONE
             } else {
                 log(TAG, "商品列表失败：${result.errorCode} ${result.errorMsg}")
-                binding.tvEmpty.visibility = View.VISIBLE
+                adapter.showEmptyNow()
             }
         }
 

@@ -196,6 +196,7 @@ class MomentCommentDialog(
             }
         }
 
+        adapter.emptyText = "还没有评论，来说两句"
         binding.rvComment.layoutManager = LinearLayoutManager(context)
         binding.rvComment.adapter = adapter
 
@@ -281,9 +282,7 @@ class MomentCommentDialog(
     }
 
     private fun refreshEmptyState() {
-        val empty = adapter.mlist.isEmpty()
-        binding.tvEmpty.visibility = if (empty) View.VISIBLE else View.GONE
-        binding.srl.visibility = if (empty) View.GONE else View.VISIBLE
+        //空态占位由 TopRcAdapter 统一处理
     }
 
     //------------------------- 键盘 -------------------------

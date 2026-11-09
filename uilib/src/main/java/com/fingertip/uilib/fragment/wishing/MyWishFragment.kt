@@ -47,6 +47,7 @@ class MyWishFragment : TopPmFragment<WishVM>() {
                 mViewModel.deleteWishing(wish.id)
             }
         )
+        adapter.emptyText = "还没有许过愿，去许愿树看看吧"
         binding.rcMyWish.layoutManager = LinearLayoutManager(requireContext())
         binding.rcMyWish.adapter = adapter
         mViewModel.loadMyWishes(0)
@@ -59,8 +60,6 @@ class MyWishFragment : TopPmFragment<WishVM>() {
             loadingMore = false
             if (result.success) {
                 adapter.initData(result.data)
-                binding.tvEmpty.visibility =
-                    if (adapter.itemCount == 0) View.VISIBLE else View.GONE
             } else {
                 log(TAG, "我的愿望获取失败：${result.errorCode} ${result.errorMsg}")
                 ToastUtil.showMessage(result.errorMsg ?: "加载失败，请稍后再试")

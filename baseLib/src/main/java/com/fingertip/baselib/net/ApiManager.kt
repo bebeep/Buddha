@@ -752,6 +752,16 @@ interface ApiManager {
         @Query("pageNum") pageNum: Int
     ): RequestRsp<List<BlessRecordBean>>
 
+    /**
+     * 愿望点赞（toggle），返回点赞后的最新点赞数
+     */
+    @POST()
+    suspend fun likeWishing(
+        @Url url: String = NetProperty.LIKE_WISHING,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("wishingId") wishingId: Int
+    ): RequestRsp<Int>
+
     //region 祈福
 
     /**
@@ -1193,21 +1203,28 @@ interface ApiManager {
 
     /**
      * 充值档位列表
+     *
+     * 带 session 才能拿到首充优惠资格（未登录按可享受展示）；
+     * deviceId 用于首充防刷（同一设备换号不给第二次首充）。
      */
     @GET()
     suspend fun getRechargeConfig(
-        @Url url: String = NetProperty.RECHARGE_CONFIG
+        @Url url: String = NetProperty.RECHARGE_CONFIG,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("deviceId") deviceId: String
     ): RequestRsp<List<CoinPackData>>
 
     /**
-     * 创建充值订单，返回内部订单号
+     * 创建充值订单，返回内部订单号。
+     * 首充档位必须带 deviceId，否则服务端拒绝（防刷校验缺失）。
      */
     @POST()
     suspend fun createRechargeOrder(
         @Url url: String = NetProperty.RECHARGE_CREATE_ORDER,
         @Query("session") session: String = GlobalConfig.session,
         @Query("configId") configId: Int,
-        @Query("platform") platform: Int = NetProperty.PLATFORM
+        @Query("platform") platform: Int = NetProperty.PLATFORM,
+        @Query("deviceId") deviceId: String
     ): RequestRsp<String>
 
     /**

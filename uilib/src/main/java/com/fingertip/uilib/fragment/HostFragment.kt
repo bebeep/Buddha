@@ -21,6 +21,8 @@ import com.fingertip.uilib.fragment.practice.MeditationFragment
 import com.fingertip.uilib.fragment.temple.TempleListFragment
 import com.fingertip.uilib.fragment.wishing.WishTreeFragment
 import com.fingertip.uilib.fragment.worshiping.SignInFragment
+import com.fingertip.uilib.utils.findMainFragment
+import com.fingertip.uilib.utils.openPage
 import com.fingertip.uilib.viewmodel.HomeVM
 import com.weikaiyun.fragmentation.SupportFragment
 import java.text.SimpleDateFormat
@@ -234,12 +236,8 @@ class HostFragment : TopVMFragment<HomeVM>() {
         return list.isEmpty() || list.all { it.type == HomeSectionAdapter.TYPE_SKELETON }
     }
 
-    /**
-     * 打开二级页。首页是 MainFragment 的子页面，入口统一由宿主页 start
-     */
-    private fun openPage(fragment: SupportFragment) {
-        (parentFragment as? MainFragment)?.start(fragment)
-    }
+    //打开二级页统一走 utils.openPage（本文件不再自带同名私有方法，避免遮蔽扩展函数）：
+    //向上逐级找 MainFragment 压栈，找不到退化 start()，任何层级入口点了都有反应
 
     /**
      * 切底部 tab。
@@ -249,7 +247,7 @@ class HostFragment : TopVMFragment<HomeVM>() {
      * 不直接 findViewById（本工程约定：控件一律走 ViewBinding/宿主公开方法）。
      */
     private fun switchTab(index: Int) {
-        (parentFragment as? MainFragment)?.selectTab(index)
+        findMainFragment()?.selectTab(index)
     }
 
     override fun getClickViews() = listOf(binding.tvRetry)

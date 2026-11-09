@@ -29,6 +29,11 @@ import android.media.MediaPlayer
 class ChatMessageAdapter(context: android.content.Context) :
     TopRcAdapter<V2TIMMessage, ChatMessageAdapter.Holder>(context) {
 
+    init {
+        //聊天页不用空态占位：空会话保持干净，官方欢迎语由 ChatFragment 自己下发
+        showEmptyTip = false
+    }
+
     //对方头像（进聊天页传入）
     var peerAvatar: String = ""
 

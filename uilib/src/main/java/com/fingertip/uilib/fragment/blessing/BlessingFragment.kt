@@ -42,6 +42,7 @@ class BlessingFragment : TopPmFragment<BlessingVM>() {
         adapter = PrayingCardAdapter(requireContext()) { praying ->
             showCardDialog(praying)
         }
+        adapter.emptyText = "福卡都被祝福完啦，发一张给大家沾沾福气"
         binding.rcWall.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         binding.rcWall.adapter = adapter
@@ -57,7 +58,6 @@ class BlessingFragment : TopPmFragment<BlessingVM>() {
             if (result.success) {
                 val list = result.data.orEmpty()
                 adapter.initData(list)
-                binding.tvEmpty.visibility = if (list.isEmpty()) View.VISIBLE else View.GONE
             } else {
                 log(TAG, "福卡墙获取失败：${result.errorCode} ${result.errorMsg}")
                 ToastUtil.showMessage(result.errorMsg ?: "福卡加载失败，请稍后再试")

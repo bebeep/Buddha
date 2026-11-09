@@ -79,6 +79,26 @@
 
     </LinearLayout>
 
+    <!-- 首充优惠提示：只在还有可用的首充档位时显示 -->
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_first_tips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_home_pill_outline"
+        android:gravity="center"
+        android:paddingStart="10dp"
+        android:paddingTop="6dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="6dp"
+        android:text="@string/recharge_first_charge_tips"
+        android:textColor="@color/c_gold"
+        android:textSize="11sp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/ll_balance" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rc_packs"
         android:layout_width="match_parent"
@@ -90,7 +110,7 @@
         android:paddingEnd="11dp"
         android:paddingBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/tv_tips"
-        app:layout_constraintTop_toBottomOf="@+id/ll_balance" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_first_tips" />
 
     <com.fingertip.baselib.view.MyTextView
         android:id="@+id/tv_empty"

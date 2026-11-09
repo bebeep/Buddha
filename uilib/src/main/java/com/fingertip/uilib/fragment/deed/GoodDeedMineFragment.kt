@@ -41,6 +41,7 @@ class GoodDeedMineFragment : TopPmFragment<GoodDeedVM>() {
                 GoodDeedDetailFragment.newInstance(deed.id)
             )
         }
+        adapter.emptyText = "暂无记录"
         binding.rcList.layoutManager = LinearLayoutManager(requireContext())
         binding.rcList.adapter = adapter
 
@@ -71,8 +72,6 @@ class GoodDeedMineFragment : TopPmFragment<GoodDeedVM>() {
             if (result.success) {
                 val list = result.data.orEmpty()
                 if (pageNum == 0) adapter.initData(list) else adapter.addData(list)
-                binding.tvEmpty.visibility =
-                    if (adapter.itemCount == 0) View.VISIBLE else View.GONE
             } else {
                 log(TAG, "我的行善获取失败：${result.errorCode} ${result.errorMsg}")
                 ToastUtil.showMessage(result.errorMsg ?: "加载失败")
