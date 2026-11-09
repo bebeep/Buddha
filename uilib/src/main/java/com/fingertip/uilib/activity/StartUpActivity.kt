@@ -3,12 +3,14 @@ package com.fingertip.uilib.activity
 import android.content.Intent
 import com.blankj.utilcode.util.NetworkUtils
 import com.blankj.utilcode.util.SPUtils
+import com.bumptech.glide.Glide
 import com.fingertip.baselib.constant.GlobalConfig
 import com.fingertip.baselib.constant.SPConstant
 import com.fingertip.baselib.dialog.RemindAllDialog
 import com.fingertip.baselib.top.TopVMActivity
 import com.fingertip.baselib.util.ToastUtil
 import com.fingertip.uilib.databinding.ActivityStartupBinding
+import com.fingertip.uilib.util.SplashImageCache
 import com.fingertip.uilib.viewmodel.StartUpVM
 import com.lzlz.toplib.extention.visible
 
@@ -22,12 +24,19 @@ class StartUpActivity : TopVMActivity<StartUpVM>() {
 
     lateinit var binding: ActivityStartupBinding
 
+    /** 屏幕分辨率，供启动图按设备缩放解码，避免大图卡顿 */
+    private var screenW = 0
+    private var screenH = 0
+
 
     override fun isFullTopBar() = true
 
     override fun initShiTu() {
         binding = ActivityStartupBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        screenW = resources.displayMetrics.widthPixels
+        screenH = resources.displayMetrics.heightPixels
+
         if (!isTaskRoot) {
             if (intent.hasCategory(Intent.CATEGORY_LAUNCHER) && Intent.ACTION_MAIN == intent.action) {
                 finish()
@@ -35,6 +44,9 @@ class StartUpActivity : TopVMActivity<StartUpVM>() {
             }
         }
 
+        // 进启动页先用本地缓存的启动图盖满（断网也能显示，不依赖网络），避免 logo 闪烁/空白。
+        // 首帧仍由编译期 windowBackground(bg_startup) 兜底，这里盖住第二帧及之后。
+        showCachedSplash()
 
         if (!NetworkUtils.isConnected()){
             showBadNetWork()
@@ -57,6 +69,14 @@ class StartUpActivity : TopVMActivity<StartUpVM>() {
                 return@observe
             }
             GlobalConfig.versionInfo = it.data
+            // 启动页图：后台静默下载到本地缓存，下次启动直接显示（不阻塞本次启动）
+            it.data?.globalParam?.splashUrl?.takeIf { u -> u.isNotEmpty() }?.let { url ->
+                if (url != SplashImageCache.currentUrl()
+                    || SplashImageCache.isExpired()
+                    || SplashImageCache.getCacheFile(this) == null) {
+                    downloadSplashAsync(url)
+                }
+            }
             when(it.data?.versionStatus){
                 1->{//正常
                     GlobalConfig.globalParam = it.data?.globalParam
@@ -146,10 +166,41 @@ class StartUpActivity : TopVMActivity<StartUpVM>() {
         }
     }
 
+    /**
+     * 进启动页先用本地缓存图盖满 ivBanner（全屏 centerCrop），盖住 windowBackground。
+     * 缓存不存在则跳过（保持 bg_startup 兜底，不空白）。子线程解码，避免大图卡主线程。
+     */
+    private fun showCachedSplash() {
+        val file = SplashImageCache.getCacheFile(this) ?: return
+        Thread {
+            val bmp = SplashImageCache.decodeSampled(file.absolutePath, screenW, screenH)
+            runOnUiThread {
+                bmp?.let {
+                    binding.ivBanner.setImageBitmap(it)
+                    binding.ivBanner.visible()
+                }
+            }
+        }.start()
+    }
 
-
-
-
+    /**
+     * 后台用 Glide 下载启动图原图（不阻塞启动），缩放压缩后存到 filesDir 本地缓存，
+     * 同时记录当前 url；下次启动 showCachedSplash 直接读本地显示。
+     */
+    private fun downloadSplashAsync(url: String) {
+        Thread {
+            try {
+                val src = Glide.with(applicationContext).download(url).submit().get()
+                val bmp = SplashImageCache.decodeSampled(src.absolutePath, screenW, screenH)
+                if (bmp != null) {
+                    SplashImageCache.save(this, bmp, 7)
+                    SplashImageCache.setCurrentUrl(url)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }.start()
+    }
 
     private var badNetDialog: RemindAllDialog? = null
     private fun showBadNetWork() {
