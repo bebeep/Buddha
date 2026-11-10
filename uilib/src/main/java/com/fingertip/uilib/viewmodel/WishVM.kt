@@ -58,10 +58,11 @@ class WishVM : TopVMImp() {
 
     /**
      * 发布愿望
+     * @param isAnonymous 是否匿名：0 否 1 是
      */
-    fun postWishing(wishContent: String) {
+    fun postWishing(wishContent: String, isAnonymous: Int = 0) {
         call({
-            NetManager.getApi().postWishing(request = RequestBodyFactory.wishBody(wishContent))
+            NetManager.getApi().postWishing(request = RequestBodyFactory.wishBody(wishContent, isAnonymous))
         }, {
             postWishResult.value = successResult(it)
         }, {

@@ -37,6 +37,10 @@ class WishRecordBean {
     var likedByMe: Boolean = false
     //许愿时间 yyyy-MM-dd HH:mm:ss
     var createDate: String? = null
+    //许愿者头像（后端关联查询；为空时树上牌显示默认头像）
+    var userAvatar: String? = null
+    //是否匿名：0 否 1 是（匿名时树上牌显示默认头像）
+    var isAnonymous: Int = 0
 
     fun isDeleted(): Boolean = reviewStatus == 2
     fun isIllegal(): Boolean = reviewStatus == 1

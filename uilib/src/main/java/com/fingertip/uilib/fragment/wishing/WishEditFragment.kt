@@ -52,7 +52,8 @@ class WishEditFragment : TopPmFragment<WishVM>() {
             if (submitting) return@setOnClickListener
             submitting = true
             binding.tvSubmit.alpha = 0.6f
-            mViewModel.postWishing(content)
+            val isAnonymous = if (binding.swAnonymous.isChecked) 1 else 0
+            mViewModel.postWishing(content, isAnonymous)
         }
         mViewModel.loadWishTags()
     }

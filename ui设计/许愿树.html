@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>许愿树 · 佛学交流</title>
+<style>
+  :root{
+    --gold-1:#ffe9b0;
+    --gold-2:#f7c873;
+    --gold-3:#e8a13c;
+    --wood-1:#f3dca8;
+    --wood-2:#e6bd7e;
+    --wood-3:#b8895a;
+    --ink:#4a3526;
+    --ink-soft:#6b5040;
+    --red-tag:#e0584b;
+    --red-tag-d:#b23a30;
+    --leaf-1:#5fa85f;
+    --leaf-2:#3f7d4f;
+    --leaf-3:#2f5e3c;
+    --trunk-1:#8a5a32;
+    --trunk-2:#5c3a20;
+    --glass:rgba(255,255,255,.14);
+    --glass-bd:rgba(255,255,255,.28);
+    font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+  html,body{ height:100%; }
+  body{
+    overflow:hidden;
+    color:var(--ink);
+    background:
+      radial-gradient(120% 80% at 50% 42%, rgba(255,233,176,.55), rgba(255,233,176,0) 60%),
+      linear-gradient(165deg,#2b2140 0%, #43354f 38%, #6b5240 100%);
+    user-select:none;
+  }
+
+  /* ===== 舞台：整棵许愿树几乎充满屏幕，无手机壳 ===== */
+  .stage{
+    position:fixed; inset:0;
+    display:block;
+  }
+
+  /* 佛光：中心暖金径向光晕，呼吸式微微脉动 */
+  .buddha-glow{
+    position:absolute; left:50%; top:46%;
+    width:min(120vw,1100px); height:min(120vw,1100px);
+    transform:translate(-50%,-50%);
+    background:
+      radial-gradient(circle at 50% 50%, rgba(255,240,200,.85) 0%, rgba(255,214,138,.45) 26%, rgba(247,200,115,.18) 44%, rgba(247,200,115,0) 62%);
+    filter:blur(2px);
+    animation:glow 7s ease-in-out infinite;
+    pointer-events:none;
+    mix-blend-mode:screen;
+  }
+  @keyframes glow{
+    0%,100%{ opacity:.78; transform:translate(-50%,-50%) scale(1); }
+    50%    { opacity:1;   transform:translate(-50%,-50%) scale(1.06); }
+  }
+  /* 佛光环（同心圆纹） */
+  .halo{
+    position:absolute; left:50%; top:44%;
+    width:min(86vw,760px); height:min(86vw,760px);
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+    border:1px solid rgba(255,233,176,.22);
+    box-shadow:0 0 0 26px rgba(255,233,176,.06), 0 0 0 60px rgba(255,233,176,.03);
+    pointer-events:none;
+  }
+
+  /* 飘动的光尘粒子 */
+  .particles{ position:absolute; inset:0; overflow:hidden; pointer-events:none; }
+  .mote{
+    position:absolute; bottom:-10px;
+    width:6px; height:6px; border-radius:50%;
+    background:radial-gradient(circle,#fff6d8,rgba(255,233,176,0));
+    opacity:0;
+    animation:rise linear infinite;
+  }
+  @keyframes rise{
+    0%{ transform:translateY(0) translateX(0) scale(.6); opacity:0; }
+    15%{ opacity:.9; }
+    85%{ opacity:.6; }
+    100%{ transform:translateY(-105vh) translateX(var(--dx,20px)) scale(1.1); opacity:0; }
+  }
+
+  /* ===== 许愿树 SVG ===== */
+  .tree-wrap{
+    position:absolute; left:50%; top:52%;
+    width:min(118vw,1080px); height:min(150vh,1180px);
+    transform:translate(-50%,-50%);
+    pointer-events:none;
+  }
+  .tree-svg{ width:100%; height:100%; display:block; overflow:visible;
+    transform-origin:50% 100%;
+    animation:treeSway 9s ease-in-out infinite alternate;
+  }
+  @keyframes treeSway{
+    0%{ transform:rotate(-.5deg); }
+    100%{ transform:rotate(.6deg); }
+  }
+
+  /* ===== 许愿牌层 ===== */
+  .tags-layer{ position:absolute; inset:0; pointer-events:none; }
+  .tag{
+    position:absolute;
+    width:74px;
+    transform-origin:50% -18px;          /* 以挂绳顶端为支点随风摆动 */
+    animation:sway var(--dur,4s) ease-in-out infinite alternate;
+    animation-delay:var(--delay,0s);
+    pointer-events:auto;
+    cursor:pointer;
+  }
+  @keyframes sway{
+    0%  { transform:rotate(calc(var(--amp,-4deg) * -1)) translateX(-1px); }
+    100%{ transform:rotate(var(--amp,4deg)) translateX(1px); }
+  }
+  .tag .string{
+    position:absolute; left:50%; top:-22px;
+    width:1.5px; height:24px;
+    background:linear-gradient(#caa46a,#8a6a3c);
+    transform-origin:top center;
+    transform:translateX(-50%) rotate(var(--sl,0deg));
+  }
+  .tag .plate{
+    position:relative;
+    width:74px; height:96px;
+    border-radius:10px 10px 12px 12px;
+    background:linear-gradient(160deg,var(--wood-1),var(--wood-2) 60%,var(--wood-3));
+    box-shadow:0 6px 14px rgba(40,20,0,.35), inset 0 1px 0 rgba(255,255,255,.5), inset 0 -8px 12px rgba(120,70,30,.25);
+    padding:9px 7px 8px;
+    display:flex; flex-direction:column; align-items:center; gap:4px;
+    transition:transform .18s ease;
+  }
+  .tag:hover .plate{ transform:scale(1.05); }
+  /* 牌顶挂孔 */
+  .tag .plate::before{
+    content:""; position:absolute; top:6px; left:50%; transform:translateX(-50%);
+    width:9px; height:9px; border-radius:50%;
+    background:#6b4a28; box-shadow:inset 0 1px 2px rgba(0,0,0,.5);
+  }
+  /* 红绳结 */
+  .tag .knot{
+    position:absolute; top:-4px; left:50%; transform:translateX(-50%);
+    width:8px; height:8px; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%,#ff8a7a,var(--red-tag) 60%,var(--red-tag-d));
+    box-shadow:0 1px 2px rgba(0,0,0,.3);
+  }
+  .avatar{
+    width:30px; height:30px; border-radius:50%;
+    margin-top:8px;
+    background:#fff center/cover no-repeat;
+    border:2px solid #fff;
+    box-shadow:0 1px 3px rgba(0,0,0,.25);
+    flex:0 0 auto;
+  }
+  .tag .name{
+    font-size:11px; font-weight:700; color:var(--ink);
+    max-width:62px; text-align:center; line-height:1.1;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .tag .wish{
+    font-size:10px; color:var(--ink-soft); text-align:center; line-height:1.15;
+    display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
+  }
+
+  /* ===== 顶部栏 ===== */
+  .topbar{
+    position:fixed; left:0; right:0; top:0;
+    height:env(safe-area-inset-top,0px);
+    padding-top:calc(env(safe-area-inset-top,0px));
+    display:flex; align-items:center; justify-content:space-between;
+    padding-left:16px; padding-right:16px;
+    z-index:30;
+  }
+  .topbar-inner{
+    width:100%; height:56px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .icon-btn{
+    width:42px; height:42px; border-radius:50%;
+    display:grid; place-items:center;
+    background:var(--glass); border:1px solid var(--glass-bd);
+    backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+    color:#fff; cursor:pointer;
+    transition:transform .15s ease, background .2s ease;
+  }
+  .icon-btn:active{ transform:scale(.92); }
+  .icon-btn svg{ width:22px; height:22px; display:block; }
+  .title{
+    font-size:19px; font-weight:800; letter-spacing:.32em;
+    color:#fff8e8; text-indent:.32em;
+    text-shadow:0 1px 6px rgba(120,60,0,.6), 0 0 18px rgba(255,220,150,.5);
+  }
+
+  /* ===== 右下角导出工具条 ===== */
+  .export-bar{
+    position:fixed; right:16px; bottom:calc(18px + env(safe-area-inset-bottom,0px));
+    z-index:40; display:flex; flex-direction:column; gap:10px; align-items:flex-end;
+  }
+  .export-btn{
+    display:flex; align-items:center; gap:8px;
+    padding:10px 14px; border-radius:999px;
+    background:var(--glass); border:1px solid var(--glass-bd);
+    backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+    color:#fff7e6; font-size:13px; font-weight:600; cursor:pointer;
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
+    transition:transform .15s ease, background .2s ease;
+  }
+  .export-btn:active{ transform:scale(.95); }
+  .export-btn.primary{
+    background:linear-gradient(160deg,var(--gold-1),var(--gold-2));
+    color:#5a3a14; border-color:rgba(255,255,255,.5); font-weight:800;
+  }
+  .export-btn svg{ width:16px; height:16px; }
+
+  /* 弹出的小菜单 */
+  .export-menu{
+    display:none; flex-direction:column; gap:8px; align-items:flex-end;
+    background:rgba(30,22,40,.55); border:1px solid var(--glass-bd);
+    backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    padding:10px; border-radius:16px;
+  }
+  .export-menu.open{ display:flex; }
+  .export-menu .export-btn{ width:100%; justify-content:center; }
+
+  /* 轻提示 */
+  .toast{
+    position:fixed; left:50%; bottom:90px; transform:translateX(-50%) translateY(10px);
+    background:rgba(30,22,40,.82); color:#fff7e6; padding:9px 16px; border-radius:999px;
+    font-size:13px; opacity:0; pointer-events:none; transition:all .3s ease; z-index:60;
+    border:1px solid var(--glass-bd);
+  }
+  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    .buddha-glow,.tree-svg,.tag,.mote{ animation:none !important; }
+  }
+</style>
+</head>
+<body>
+  <div class="stage" id="stage">
+    <div class="buddha-glow"></div>
+    <div class="halo"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- 许愿树：写实卡通风格，内联 SVG，可单独切图 -->
+    <div class="tree-wrap">
+      <svg class="tree-svg" id="treeSvg" viewBox="0 0 600 820" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg" aria-label="许愿树">
+        <defs>
+          <radialGradient id="leafG" cx="42%" cy="34%" r="72%">
+            <stop offset="0%" stop-color="#7cc07c"/>
+            <stop offset="48%" stop-color="#4f9a5e"/>
+            <stop offset="100%" stop-color="#2f5e3c"/>
+          </radialGradient>
+          <radialGradient id="leafG2" cx="55%" cy="40%" r="70%">
+            <stop offset="0%" stop-color="#9ad29a"/>
+            <stop offset="55%" stop-color="#5fa85f"/>
+            <stop offset="100%" stop-color="#356b43"/>
+          </radialGradient>
+          <linearGradient id="trunkG" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#5c3a20"/>
+            <stop offset="42%" stop-color="#8a5a32"/>
+            <stop offset="100%" stop-color="#4a2e18"/>
+          </linearGradient>
+          <radialGradient id="blossom" cx="40%" cy="35%" r="70%">
+            <stop offset="0%" stop-color="#fff3f6"/>
+            <stop offset="100%" stop-color="#ffc2d4"/>
+          </radialGradient>
+          <radialGradient id="fruit" cx="40%" cy="35%" r="70%">
+            <stop offset="0%" stop-color="#ffe27a"/>
+            <stop offset="100%" stop-color="#e8a13c"/>
+          </radialGradient>
+        </defs>
+
+        <!-- 树干与主要枝杈 -->
+        <g id="trunk">
+          <path d="M270 820 C 278 700 250 640 262 560 C 268 520 286 500 300 470
+                   C 314 500 332 520 338 560 C 350 640 322 700 330 820 Z"
+                fill="url(#trunkG)"/>
+          <!-- 左主枝 -->
+          <path d="M292 560 C 240 540 200 500 150 470 C 196 492 240 512 286 530 Z" fill="url(#trunkG)"/>
+          <!-- 右主枝 -->
+          <path d="M312 560 C 366 540 408 502 462 472 C 412 496 366 514 320 532 Z" fill="url(#trunkG)"/>
+          <!-- 中上枝 -->
+          <path d="M300 500 C 296 450 300 410 300 380 C 304 410 308 450 304 500 Z" fill="url(#trunkG)"/>
+          <!-- 树皮纹理 -->
+          <path d="M296 800 C 300 700 282 640 292 560" stroke="#3a2412" stroke-width="3" fill="none" opacity=".4"/>
+          <path d="M308 800 C 312 700 326 640 316 560" stroke="#3a2412" stroke-width="3" fill="none" opacity=".4"/>
+        </g>
+
+        <!-- 树冠：多层写实卡通叶团 -->
+        <g id="canopy">
+          <ellipse cx="300" cy="250" rx="250" ry="210" fill="url(#leafG)"/>
+          <ellipse cx="160" cy="330" rx="150" ry="130" fill="url(#leafG2)"/>
+          <ellipse cx="445" cy="330" rx="155" ry="135" fill="url(#leafG2)"/>
+          <ellipse cx="230" cy="200" rx="140" ry="120" fill="url(#leafG2)"/>
+          <ellipse cx="380" cy="195" rx="150" ry="125" fill="url(#leafG)"/>
+          <ellipse cx="300" cy="140" rx="160" ry="130" fill="url(#leafG2)"/>
+          <ellipse cx="110" cy="250" rx="95" ry="90" fill="url(#leafG)"/>
+          <ellipse cx="495" cy="250" rx="100" ry="95" fill="url(#leafG)"/>
+          <ellipse cx="300" cy="360" rx="175" ry="120" fill="url(#leafG)"/>
+
+          <!-- 高光团块，增加体积感 -->
+          <ellipse cx="250" cy="190" rx="80" ry="60" fill="#a9e0a9" opacity=".5"/>
+          <ellipse cx="380" cy="160" rx="70" ry="55" fill="#a9e0a9" opacity=".45"/>
+          <ellipse cx="180" cy="290" rx="60" ry="50" fill="#a9e0a9" opacity=".4"/>
+
+          <!-- 花朵与金果点缀 -->
+          <g id="deco"></g>
+        </g>
+      </svg>
+    </div>
+
+    <!-- 许愿牌动态层 -->
+    <div class="tags-layer" id="tagsLayer"></div>
+  </div>
+
+  <!-- 顶部栏 -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <button class="icon-btn" id="backBtn" aria-label="返回">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="title">许愿树</div>
+      <button class="icon-btn" id="addBtn" aria-label="添加愿望">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- 导出工具条 -->
+  <div class="export-bar">
+    <div class="export-menu" id="exportMenu">
+      <button class="export-btn" data-export="alltags">导出全部许愿牌</button>
+      <button class="export-btn" data-export="icons">导出图标(返回/添加)</button>
+      <button class="export-btn" data-export="tree">导出许愿树</button>
+    </div>
+    <button class="export-btn primary" id="exportToggle">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+      切图导出
+    </button>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+<script>
+"use strict";
+
+/* ============================================================
+   许愿树 · 数据层
+   每条愿望：name 名字 / wish 心愿 / avatar 头像URL(可选)
+   不传 avatar 时按名字首字生成彩色头像（本地，不依赖网络）
+   ============================================================ */
+const WISHES = [
+  { name:"慧明",  wish:"愿家人平安喜乐，无病无灾。" },
+  { name:"静心",  wish:"愿心无挂碍，常生欢喜。" },
+  { name:"阿祖",  wish:"愿所做皆成，烦恼渐消。" },
+  { name:"妙音",  wish:"愿听经闻法，智慧增长。" },
+  { name:"安然",  wish:"愿世界和平，众生离苦。" },
+  { name:"清和",  wish:"愿学业精进，心静如水。" },
+  { name:"觉远",  wish:"愿放下执念，自在从容。" },
+  { name:"慈航",  wish:"愿父母康健，福寿绵长。" },
+  { name:"守一",  wish:"愿每日安宁，夜梦吉祥。" },
+  { name:"明空",  wish:"愿前程光明，善缘常伴。" },
+];
+
+/* 许愿牌在树上的挂点（相对舞台百分比 x%,y%） */
+const ANCHORS = [
+  {x:30,y:40},{x:64,y:34},{x:48,y:30},{x:21,y:50},{x:76,y:48},
+  {x:38,y:60},{x:60,y:58},{x:33,y:46},{x:69,y:42},{x:50,y:52},
+  {x:16,y:62},{x:83,y:60},{x:44,y:38},{x:56,y:46}
+];
+
+const AV_COLORS = ["#e0584b","#3f8f6b","#d99a2b","#5b7cc4","#a05bb0","#c96b4a","#4a9aa6"];
+
+/* 生成头像 dataURI（首字 + 底色），用于显示与导出 */
+function makeAvatar(name, size){
+  const ch = (name || "善").trim().charAt(0) || "善";
+  const bg = AV_COLORS[Math.abs(hashStr(name||"善")) % AV_COLORS.length];
+  const svg =
+    `<svg xmlns='http://www.w3.org/2000/svg' width='${size}' height='${size}'>`+
+    `<defs><radialGradient id='g' cx='38%' cy='32%' r='75%'>`+
+    `<stop offset='0%' stop-color='#ffffff'/><stop offset='100%' stop-color='${bg}'/></radialGradient></defs>`+
+    `<rect width='100%' height='100%' fill='url(#g)'/>`+
+    `<text x='50%' y='54%' font-size='${size*0.5}' font-family='PingFang SC,Microsoft YaHei,sans-serif' `+
+    `font-weight='700' fill='#ffffff' text-anchor='middle' dominant-baseline='middle'>${ch}</text></svg>`;
+  return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+}
+function hashStr(s){ let h=0; for(let i=0;i<s.length;i++){ h=(h*31+s.charCodeAt(i))>>>0; } return h; }
+
+/* ============================================================
+   渲染许愿牌
+   ============================================================ */
+const tagsLayer = document.getElementById("tagsLayer");
+let tagIndex = 0;
+
+function addWish(data, anchorIdx){
+  const idx = (anchorIdx != null) ? anchorIdx : (tagIndex % ANCHORS.length);
+  const a = ANCHORS[idx];
+  tagIndex++;
+
+  const el = document.createElement("div");
+  el.className = "tag";
+  el.style.left = a.x + "%";
+  el.style.top  = a.y + "%";
+  // 随机摆动参数，营造自然风感
+  const amp = (3 + Math.random()*4).toFixed(2);
+  const dur = (3 + Math.random()*2.5).toFixed(2);
+  const delay = (Math.random()*2).toFixed(2);
+  const sl = (Math.random()*8 - 4).toFixed(1);
+  el.style.setProperty("--amp", amp + "deg");
+  el.style.setProperty("--dur", dur + "s");
+  el.style.setProperty("--delay", "-" + delay + "s");
+  el.style.setProperty("--sl", sl + "deg");
+  el.dataset.name = data.name;
+  el.dataset.wish = data.wish;
+  el.dataset.avatar = data.avatar || "";
+
+  const av = data.avatar || makeAvatar(data.name, 60);
+  el.innerHTML =
+    `<div class="string"></div>`+
+    `<div class="knot"></div>`+
+    `<div class="plate">`+
+      `<div class="avatar" style="background-image:url('${av}')"></div>`+
+      `<div class="name">${esc(data.name)}</div>`+
+      `<div class="wish">${esc(data.wish)}</div>`+
+    `</div>`;
+
+  // 头像单独加载（支持远程URL动态加载）
+  if(data.avatar){
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = ()=>{ el.querySelector(".avatar").style.backgroundImage = `url('${data.avatar}')`; };
+    img.onerror = ()=>{ el.querySelector(".avatar").style.backgroundImage = `url('${makeAvatar(data.name,60)}')`; };
+    img.src = data.avatar;
+  }
+
+  tagsLayer.appendChild(el);
+  // 入场动画
+  el.animate(
+    [{opacity:0, transform:"translateY(-14px) scale(.8)"},{opacity:1, transform:"translateY(0) scale(1)"}],
+    {duration:520, easing:"cubic-bezier(0.34,1.56,0.64,1)", fill:"both"}
+  );
+  return el;
+}
+function esc(s){ return String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c])); }
+
+WISHES.forEach((w,i)=> addWish(w, i));
+
+/* 顶部「添加愿望」按钮：随机生成一条新愿望 */
+const SAMPLE_NAMES = ["善缘","普觉","行愿","无忧","怀瑾","知微","乐天","守拙","明远","安然"];
+const SAMPLE_WISHES = [
+  "愿所求皆所愿，所行化坦途。","愿烦恼日减，欢喜日增。",
+  "愿善待他人，亦被温柔以待。","愿心安此处，便是归途。",
+  "愿风雨有伞，夜路有灯。","愿少些计较，多些从容。"
+];
+document.getElementById("addBtn").addEventListener("click", ()=>{
+  const name = SAMPLE_NAMES[Math.floor(Math.random()*SAMPLE_NAMES.length)];
+  const wish = SAMPLE_WISHES[Math.floor(Math.random()*SAMPLE_WISHES.length)];
+  addWish({name, wish});
+  toast("已挂上一枚新愿望牌");
+});
+document.getElementById("backBtn").addEventListener("click", ()=> toast("返回上一页（示例）"));
+
+/* ============================================================
+   佛光粒子
+   ============================================================ */
+const pBox = document.getElementById("particles");
+const MOTE_N = 22;
+for(let i=0;i<MOTE_N;i++){
+  const m = document.createElement("div");
+  m.className = "mote";
+  const size = 3 + Math.random()*5;
+  m.style.left = (Math.random()*100) + "%";
+  m.style.width = m.style.height = size + "px";
+  m.style.setProperty("--dx", (Math.random()*80-40).toFixed(0)+"px");
+  m.style.animationDuration = (9 + Math.random()*10).toFixed(1) + "s";
+  m.style.animationDelay = (-Math.random()*12).toFixed(1) + "s";
+  pBox.appendChild(m);
+}
+
+/* 树上随机点缀花朵 & 金果（增强写实卡通感） */
+(function deco(){
+  const g = document.getElementById("deco");
+  const pts = [[300,120],[180,180],[420,150],[120,260],[480,250],[250,300],[360,300],[150,360],[460,360],[300,90],[200,230],[400,230]];
+  let s = "";
+  pts.forEach((p,i)=>{
+    const r = 7 + (i%3)*2;
+    s += `<circle cx='${p[0]}' cy='${p[1]}' r='${r}' fill='url(#blossom)' opacity='.95'/>`;
+    s += `<circle cx='${p[0]-2}' cy='${p[1]-2}' r='${r*0.4}' fill='#fff' opacity='.7'/>`;
+  });
+  // 金果
+  [[230,260,9],[370,250,8],[300,200,9],[160,300,7],[440,300,7]].forEach(p=>{
+    s += `<circle cx='${p[0]}' cy='${p[1]}' r='${p[2]}' fill='url(#fruit)'/>`;
+    s += `<circle cx='${p[0]-2}' cy='${p[1]-2}' r='${p[2]*0.35}' fill='#fff6d8' opacity='.8'/>`;
+  });
+  g.innerHTML = s;
+})();
+
+/* ============================================================
+   切图导出（纯前端，无需任何外部库）
+   ============================================================ */
+function toast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg; t.classList.add("show");
+  clearTimeout(toast._t); toast._t = setTimeout(()=>t.classList.remove("show"), 1600);
+}
+function triggerDownload(url, name){
+  const a = document.createElement("a");
+  a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove();
+}
+
+/* 把一枚许愿牌重绘到 canvas 并导出 PNG（含头像） */
+async function exportTagPng(el, index){
+  const W=240, H=320, dpr=2;
+  const cv = document.createElement("canvas");
+  cv.width = W*dpr; cv.height = H*dpr;
+  const ctx = cv.getContext("2d");
+  ctx.scale(dpr,dpr);
+
+  // 挂绳
+  ctx.strokeStyle = "#8a6a3c"; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(W/2, 0); ctx.lineTo(W/2, 26); ctx.stroke();
+  // 红绳结
+  ctx.fillStyle = "#e0584b"; ctx.beginPath(); ctx.arc(W/2, 24, 5, 0, 7); ctx.fill();
+
+  // 木牌
+  const pad=22, px=pad, py=30, pw=W-pad*2, ph=H-py-18;
+  const grad = ctx.createLinearGradient(px,py,px+pw,py+ph);
+  grad.addColorStop(0,"#f3dca8"); grad.addColorStop(.6,"#e6bd7e"); grad.addColorStop(1,"#b8895a");
+  roundRect(ctx,px,py,pw,ph,14); ctx.fillStyle=grad; ctx.fill();
+  ctx.strokeStyle="rgba(120,70,30,.35)"; ctx.lineWidth=1.5; ctx.stroke();
+  // 内描边高光
+  ctx.strokeStyle="rgba(255,255,255,.4)"; ctx.lineWidth=1;
+  roundRect(ctx,px+3,py+3,pw-6,ph-6,11); ctx.stroke();
+  // 挂孔
+  ctx.fillStyle="#6b4a28"; ctx.beginPath(); ctx.arc(W/2, py+12, 5, 0, 7); ctx.fill();
+
+  // 头像
+  const av = el.querySelector(".avatar").style.backgroundImage.match(/url\("?([^")]+)"?\)/);
+  const avUrl = av ? av[1] : makeAvatar(el.dataset.name,60);
+  await drawImg(ctx, avUrl, W/2-22, py+22, 44, 44, true);
+  ctx.strokeStyle="#fff"; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(W/2, py+44, 22, 0, 7); ctx.stroke();
+
+  // 名字
+  ctx.fillStyle="#4a3526"; ctx.textAlign="center"; ctx.font="700 16px 'PingFang SC','Microsoft YaHei',sans-serif";
+  ctx.fillText(el.dataset.name, W/2, py+86);
+  // 心愿（自动换行）
+  ctx.fillStyle="#6b5040"; ctx.font="12px 'PingFang SC','Microsoft YaHei',sans-serif";
+  wrapText(ctx, el.dataset.wish, W/2, py+108, pw-22, 18);
+
+  return new Promise(res=>{
+    cv.toBlob(b=>{ triggerDownload(URL.createObjectURL(b), `许愿牌_${String(index+1).padStart(2,"0")}_${el.dataset.name}.png`); res(); });
+  });
+}
+
+function roundRect(ctx,x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath();
+}
+function wrapText(ctx, text, x, y, maxW, lh){
+  const chars = String(text).split("");
+  let line="", lines=[];
+  for(const c of chars){
+    if(ctx.measureText(line+c).width > maxW && line){ lines.push(line); line=c; }
+    else line+=c;
+  }
+  if(line) lines.push(line);
+  lines.slice(0,4).forEach((ln,i)=> ctx.fillText(ln, x, y+i*lh));
+}
+function drawImg(ctx, url, x, y, w, h, circle){
+  return new Promise(res=>{
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = ()=>{
+      if(circle){
+        ctx.save(); ctx.beginPath(); ctx.arc(x+w/2, y+h/2, w/2, 0, 7); ctx.clip();
+        ctx.drawImage(img, x, y, w, h); ctx.restore();
+      } else ctx.drawImage(img, x, y, w, h);
+      res();
+    };
+    img.onerror = ()=>{
+      // 兜底：用首字头像
+      const fb = new Image(); fb.onload=()=>{ ctx.drawImage(fb,x,y,w,h); res(); }; fb.onerror=()=>res();
+      fb.src = makeAvatar("善",60);
+    };
+    img.src = url;
+  });
+}
+
+async function exportAllTags(){
+  const els = [...tagsLayer.querySelectorAll(".tag")];
+  if(!els.length){ toast("暂无许愿牌"); return; }
+  toast(`开始导出 ${els.length} 枚许愿牌…`);
+  for(let i=0;i<els.length;i++){
+    await exportTagPng(els[i], i);
+    await new Promise(r=>setTimeout(r,120));
+  }
+  toast("许愿牌已全部导出为 PNG");
+}
+
+/* 把 SVG 字符串画到 canvas 导出（图标 / 树） */
+function exportSvgPng(svgStr, w, h, name){
+  return new Promise((res,rej)=>{
+    const blob = new Blob([svgStr], {type:"image/svg+xml;charset=utf-8"});
+    const url = URL.createObjectURL(blob);
+    const img = new Image();
+    img.onload = ()=>{
+      const cv = document.createElement("canvas"); cv.width=w; cv.height=h;
+      const ctx = cv.getContext("2d"); ctx.drawImage(img,0,0,w,h);
+      cv.toBlob(b=>{ triggerDownload(URL.createObjectURL(b), name); URL.revokeObjectURL(url); res(); });
+    };
+    img.onerror = (e)=>{ URL.revokeObjectURL(url); rej(e); };
+    img.src = url;
+  });
+}
+
+const ICON_BACK = `<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 24 24' fill='none' stroke='#ffffff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><rect width='24' height='24' rx='12' fill='rgba(255,255,255,.14)'/><path d='M15 18l-6-6 6-6'/></svg>`;
+const ICON_ADD  = `<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 24 24' fill='none' stroke='#ffffff' stroke-width='2.4' stroke-linecap='round'><rect width='24' height='24' rx='12' fill='rgba(255,255,255,.14)'/><path d='M12 5v14M5 12h14'/></svg>`;
+
+async function exportIcons(){
+  await exportSvgPng(ICON_BACK, 96,96, "图标_返回.png");
+  await exportSvgPng(ICON_ADD, 96,96, "图标_添加愿望.png");
+  toast("图标已导出（返回 / 添加）");
+}
+async function exportTree(){
+  const svg = document.getElementById("treeSvg");
+  const clone = svg.cloneNode(true);
+  clone.setAttribute("width","600"); clone.setAttribute("height","820");
+  const str = new XMLSerializer().serializeToString(clone);
+  await exportSvgPng(str, 600, 820, "许愿树.png");
+  toast("许愿树已导出为 PNG");
+}
+
+/* 导出菜单交互 */
+const menu = document.getElementById("exportMenu");
+document.getElementById("exportToggle").addEventListener("click", ()=> menu.classList.toggle("open"));
+menu.addEventListener("click", e=>{
+  const btn = e.target.closest("[data-export]"); if(!btn) return;
+  const kind = btn.dataset.export;
+  if(kind==="alltags") exportAllTags();
+  if(kind==="icons")  exportIcons();
+  if(kind==="tree")   exportTree();
+  menu.classList.remove("open");
+});
+</script>
+</body>
+</html>

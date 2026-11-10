@@ -2,13 +2,15 @@ package com.fingertip.uilib.fragment.wishing
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.graphics.Outline
 import android.view.Gravity
 import android.view.View
+import android.view.ViewOutlineProvider
 import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.ImageView
+import androidx.core.content.ContextCompat
 import androidx.core.view.doOnLayout
 import com.fingertip.baselib.bean.WishRecordBean
 import com.fingertip.baselib.log
@@ -22,13 +24,15 @@ import com.fingertip.uilib.dialog.WishRuleDialog
 import com.fingertip.uilib.im.WishBus
 import com.fingertip.uilib.utils.openPage
 import com.fingertip.uilib.viewmodel.WishVM
+import com.bumptech.glide.Glide
 import java.util.Calendar
 import kotlin.random.Random
 
 /**
  * 许愿树主页（改版）：
- * - 全屏许愿树背景，愿签牌挂在树冠上随风摆动（随机相位/幅度的 rotation 摆动）
- * - 点愿签牌 → 弹窗查看公开愿望，可点赞、可祝福
+ * - 全屏许愿树背景，愿签牌挂在「树冠以下、主干两侧的横向树杈」上随风摆动（随机相位/幅度的 rotation 摆动）
+ * - 绝不压中间竖直主干；树上最多展示 9 张，真实愿望不足 9 条时用不可点击的装饰牌补满
+ * - 点真实愿签牌 → 弹窗查看公开愿望，可点赞、可祝福
  * - 底部「开始许愿」→ 愿望编辑页，提交成功回来后新愿签从底部飞上树
  */
 class WishTreeFragment : TopPmFragment<WishVM>() {
@@ -36,12 +40,24 @@ class WishTreeFragment : TopPmFragment<WishVM>() {
     companion object {
         private const val TAG = "WishTreeFragment"
 
-        //愿签牌挂点（树冠区域，相对容器宽高的比例），顺序即灌签顺序
+        //愿签牌宽度（dp）：bg_wish_card 竖长金边牌（约 1:2.5）。用户要求树上最多 9 张且明显偏小 → 32dp（再缩 1/3）。
+        private const val TAG_WIDTH_DP = 32
+
+        //树上愿签牌上限：真实愿望不足 9 条时，用装饰牌填充到 9 张（装饰牌不可点击）。
+        private const val MAX_TAGS = 9
+
+        //愿签牌挂点（相对全屏容器的宽高比例），
+        //坐标点依次从左往右
         private val TAG_SLOTS = listOf(
-            0.34f to 0.12f, 0.55f to 0.10f, 0.72f to 0.15f, 0.44f to 0.24f,
-            0.64f to 0.26f, 0.24f to 0.28f, 0.80f to 0.30f, 0.50f to 0.36f,
-            0.30f to 0.40f, 0.70f to 0.40f, 0.42f to 0.50f, 0.62f to 0.52f,
-            0.78f to 0.50f, 0.28f to 0.52f, 0.50f to 0.60f, 0.68f to 0.60f
+            0.18f to 0.49f,
+            0.27f to 0.52f,
+            0.315f to 0.45f,
+            0.42f to 0.48f,
+            0.49f to 0.398f ,
+            0.585f to 0.43f,
+            0.65f to 0.515f,
+            0.72f to 0.435f,
+            0.83f to 0.49f
         )
     }
 
@@ -121,92 +137,125 @@ class WishTreeFragment : TopPmFragment<WishVM>() {
     }
 
     /**
-     * 渲染愿签牌：清空容器，按挂点布局并启动摆动
+     * 渲染愿签牌：清空容器，按挂点布局并启动摆动。
+     * 真实愿望最多取 MAX_TAGS 条；不足则用装饰牌补到 MAX_TAGS（装饰牌不可点击）。
      */
     private fun renderTags(wishes: List<WishRecordBean>) {
         binding.flTags.removeAllViews()
         cancelSway()
         shownWishes.clear()
-        wishes.forEach { shownWishes[it.id] = it }
-        binding.tvEmpty.visibility = if (wishes.isEmpty()) View.VISIBLE else View.GONE
+
+        //真实愿望去重后最多 MAX_TAGS 条；其余挂点用装饰牌补满
+        val real = wishes.distinctBy { it.id }.take(MAX_TAGS)
+        val decorCount = MAX_TAGS - real.size
+        real.forEach { shownWishes[it.id] = it }
+        binding.tvEmpty.visibility = if (real.isEmpty()) View.VISIBLE else View.GONE
 
         //等容器完成布局再摆位（转场中容器未 layout 时宽高为 0）
         binding.flTags.doOnLayout {
             val cw = binding.flTags.width
             val ch = binding.flTags.height
             if (cw <= 0 || ch <= 0) return@doOnLayout
-            //运行时 addView 不触发系统 traversal，手动 measure/layout；
-            //bounds 固定在原点、显示位置用 translation 设定——
-            //这样系统后续 traversal 重置 bounds 也不会破坏定位
-            val tagWidth = 112.toPx()
-            wishes.take(TAG_SLOTS.size).forEachIndexed { index, wish ->
-                val (fx, fy) = TAG_SLOTS[index]
-                //少量随机抖动，避免每次一模一样
-                val jx = (Random.nextFloat() - 0.5f) * 0.03f
-                val jy = (Random.nextFloat() - 0.5f) * 0.02f
-                val tagView = createTagView(wish)
-                binding.flTags.addView(tagView)
-                tagView.measure(
-                    View.MeasureSpec.makeMeasureSpec(tagWidth, View.MeasureSpec.EXACTLY),
-                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
-                )
-                tagView.layout(0, 0, tagView.measuredWidth, tagView.measuredHeight)
-                val px = ((fx + jx) * cw).toInt() - tagView.measuredWidth / 2
-                val py = ((fy + jy) * ch).toInt()
-                tagView.translationX = px.coerceIn(8, (cw - tagView.measuredWidth - 8).coerceAtLeast(8)).toFloat()
-                tagView.translationY = py.coerceAtLeast(8).toFloat()
-                startSway(tagView)
+            val tagWidth = TAG_WIDTH_DP.toPx()
+
+            //先放真实愿望（可点击）
+            real.forEachIndexed { index, wish ->
+                placeTag(createTagView(wish, clickable = true), index, cw, ch, tagWidth)
+            }
+            //再放装饰牌补位（不可点击）
+            repeat(decorCount) { i ->
+                placeTag(createTagView(decorWish(), clickable = false), real.size + i, cw, ch, tagWidth)
             }
         }
     }
 
     /**
-     * 创建愿签牌：红线 + 木牌（愿望内容），顶部中心为摆动轴。
-     * 宽度固定（挂绳居中、木牌撑满），避免 wrap_content 在手动 measure 下尺寸竞态
+     * 在指定挂点摆放一张愿签牌，并启动风摆
      */
-    private fun createTagView(wish: WishRecordBean): LinearLayout {
+    private fun placeTag(tagView: View, slotIndex: Int, cw: Int, ch: Int, tagWidth: Int) {
+        val (fx, fy) = TAG_SLOTS[slotIndex]
+        //少量随机抖动，避免每次一模一样
+//        val jx = (Random.nextFloat() - 0.1f) * 0.03f
+//        val jy = (Random.nextFloat() - 0.1f) * 0.02f
+        val jx = 0f
+        val jy = 0f
+        binding.flTags.addView(tagView)
+        tagView.measure(
+            View.MeasureSpec.makeMeasureSpec(tagWidth, View.MeasureSpec.EXACTLY),
+            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+        )
+        tagView.layout(0, 0, tagView.measuredWidth, tagView.measuredHeight)
+        val px = ((fx + jx) * cw).toInt() - tagView.measuredWidth / 2
+        val py = ((fy + jy) * ch).toInt()
+        tagView.translationX = px.coerceIn(8, (cw - tagView.measuredWidth - 8).coerceAtLeast(8)).toFloat()
+        tagView.translationY = py.coerceAtLeast(8).toFloat()
+        startSway(tagView)
+    }
+
+    /**
+     * 装饰用愿签牌数据：匿名（显示默认头像），无真实内容，仅用于补满 9 个挂点，不可点击。
+     */
+    private fun decorWish(): WishRecordBean =
+        WishRecordBean().apply { id = -1; isAnonymous = 1; userAvatar = null }
+
+    /**
+     * 创建愿签牌：整张 bg_wish_card 金边牌（自带挂绳/流苏）作牌面，
+     * 牌面中央留白面板叠圆形头像（许愿者头像；匿名或没有头像则显示默认头像）。
+     * 不再显示文字。顶部挂孔为摆动轴。
+     * 宽度固定（牌面按比例自适应高度），避免 wrap_content 在手动 measure 下尺寸竞态。
+     * @param clickable 是否可点击查看详情；装饰牌传 false（不可点击）
+     */
+    private fun createTagView(wish: WishRecordBean, clickable: Boolean): View {
         val ctx = requireContext()
-        val tagWidth = 112.toPx()
-        val root = LinearLayout(ctx)
-        root.orientation = LinearLayout.VERTICAL
-        root.gravity = Gravity.CENTER_HORIZONTAL
+        val tagWidth = TAG_WIDTH_DP.toPx()
+
+        //容器：牌面 + 头像叠加
+        val root = FrameLayout(ctx)
         root.layoutParams = FrameLayout.LayoutParams(tagWidth, FrameLayout.LayoutParams.WRAP_CONTENT)
 
-        //挂绳
-        val string = View(ctx)
-        string.layoutParams = LinearLayout.LayoutParams(3.toPx(), 16.toPx())
-        string.setBackgroundColor(0xFF8A5A2B.toInt())
-        root.addView(string)
+        //牌面：bg_wish_card.png（adjustViewBounds 按原图 ~1:2.5 比例自适应高度）
+        val card = ImageView(ctx)
+        card.setImageResource(R.drawable.bg_wish_card)
+        card.adjustViewBounds = true
+        card.scaleType = ImageView.ScaleType.FIT_CENTER
+        card.layoutParams = FrameLayout.LayoutParams(tagWidth, FrameLayout.LayoutParams.WRAP_CONTENT)
+        root.addView(card)
 
-        //木牌
-        val plaque = LinearLayout(ctx)
-        plaque.orientation = LinearLayout.VERTICAL
-        plaque.setBackgroundResource(R.drawable.bg_wish_tag_plaque)
-        plaque.setPadding(8.toPx(), 10.toPx(), 8.toPx(), 10.toPx())
-        plaque.elevation = 3f
-        plaque.layoutParams = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT
-        )
-        root.addView(plaque)
+        //头像：叠在牌面中央留白面板（图高约 41%~76% 区域中部）。
+        //面板中心相对牌高约 0.585；头像直径取牌宽 50%。
+        //确保「始终正圆」：用 ViewOutlineProvider 把头像视图裁成圆——无论 Glide 是否成功 circleCrop、
+        //无论加载的是真实头像还是默认头像，都会被裁成正圆（clipToOutline 在绘制时按视图尺寸生效）。
+        //再垫一张白色圆底，让头像在金边牌上更干净。
+        val panelCenterRatio = 0.585f
+        val avatarSize = (tagWidth * 0.50f).toInt()
+        val avatar = ImageView(ctx)
+        avatar.scaleType = ImageView.ScaleType.CENTER_CROP
+        avatar.outlineProvider = object : ViewOutlineProvider() {
+            override fun getOutline(view: View, outline: Outline) {
+                outline.setOval(0, 0, view.width, view.height)
+            }
+        }
+        avatar.clipToOutline = true
+        avatar.layoutParams = FrameLayout.LayoutParams(avatarSize, avatarSize).apply {
+            gravity = Gravity.CENTER_HORIZONTAL
+            topMargin = ((tagWidth * 2.5f) * panelCenterRatio - avatarSize / 2).toInt()
+        }
+        //匿名 或 无头像 → 默认头像；否则加载许愿者头像（已强制圆形裁切）
+        val headUrl = if (wish.isAnonymous == 1 || wish.userAvatar.isNullOrEmpty()) null else wish.userAvatar
+        Glide.with(ctx)
+            .load(headUrl)
+            .circleCrop()
+            .placeholder(com.fingertip.baselib.R.mipmap.icon_default_head)
+            .error(com.fingertip.baselib.R.mipmap.icon_default_head)
+            .into(avatar)
+        root.addView(avatar)
 
-        val tv = TextView(ctx)
-        tv.text = wish.wishContent.orEmpty()
-        tv.textSize = 11f
-        tv.setTextColor(0xFF5B4632.toInt())
-        tv.maxLines = 6
-        tv.ellipsize = android.text.TextUtils.TruncateAt.END
-        tv.gravity = Gravity.CENTER
-        tv.includeFontPadding = false
-        plaque.addView(
-            tv,
-            LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT
-            )
-        )
-
-        //摆动轴：挂绳顶端中心
+        //摆动轴：牌顶挂孔处
         root.pivotY = 0f
-        root.setOnClickListener { showDetailDialog(wish) }
+        //仅真实愿望牌可点击查看详情；装饰牌不可点击
+        if (clickable) {
+            root.setOnClickListener { showDetailDialog(wish) }
+        }
         return root
     }
 
@@ -245,9 +294,13 @@ class WishTreeFragment : TopPmFragment<WishVM>() {
             if (cw <= 0 || ch <= 0) return@doOnLayout
             //取一个随机挂点
             val (fx, fy) = TAG_SLOTS[Random.nextInt(usedSlots)]
-            val tagView = createTagView(wish)
+            val tagView = createTagView(wish, clickable = true)
+            //树上已满 9 张时，先移除最后一张（通常是装饰牌），保证总数不超上限
+            if (binding.flTags.childCount >= MAX_TAGS) {
+                binding.flTags.removeViewAt(binding.flTags.childCount - 1)
+            }
             binding.flTags.addView(tagView)
-            val tagWidth = 112.toPx()
+            val tagWidth = TAG_WIDTH_DP.toPx()
             tagView.measure(
                 View.MeasureSpec.makeMeasureSpec(tagWidth, View.MeasureSpec.EXACTLY),
                 View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)

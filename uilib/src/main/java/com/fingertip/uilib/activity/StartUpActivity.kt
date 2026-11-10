@@ -1,6 +1,7 @@
 package com.fingertip.uilib.activity
 
 import android.content.Intent
+import android.util.Log
 import com.blankj.utilcode.util.NetworkUtils
 import com.blankj.utilcode.util.SPUtils
 import com.bumptech.glide.Glide
@@ -28,6 +29,12 @@ class StartUpActivity : TopVMActivity<StartUpVM>() {
     private var screenW = 0
     private var screenH = 0
 
+    /** 本地缓存启动图是否已解码并准备显示（用于决定是否延长启动页停留，避免被跳转抢走） */
+    private var hasSplashCache = false
+
+    /** 服务端已决定跳转、但需等本地缓存图显示完再执行的动作 */
+    private var pendingJump: (() -> Unit)? = null
+
 
     override fun isFullTopBar() = true
 
@@ -36,6 +43,8 @@ class StartUpActivity : TopVMActivity<StartUpVM>() {
         setContentView(binding.root)
         screenW = resources.displayMetrics.widthPixels
         screenH = resources.displayMetrics.heightPixels
+        hasSplashCache = false
+        pendingJump = null
 
         if (!isTaskRoot) {
             if (intent.hasCategory(Intent.CATEGORY_LAUNCHER) && Intent.ACTION_MAIN == intent.action) {
@@ -90,8 +99,25 @@ class StartUpActivity : TopVMActivity<StartUpVM>() {
                     } else {
                         sp.remove(SPConstant.SP_ACCOUNT_PASSWORD)
                         sp.remove(SPConstant.SP_ACCOUNT_USERNAME)
-                        startActivity(Intent(this, LoginRegisterActivity::class.java))
-                        finish()
+                        val jump = {
+                            startActivity(Intent(this, LoginRegisterActivity::class.java))
+                            finish()
+                        }
+                        if (hasSplashCache) {
+                            // 本地缓存图已显示，停留一会儿让用户看到再跳登录页
+                            binding.ivBanner.postDelayed(jump, 1200)
+                        } else {
+                            // 本地缓存图尚未解码完：挂起跳转，等解码结果再决定
+                            // （有缓存则延迟显示，无缓存则立即跳，保持原快速过场）
+                            pendingJump = jump
+                            // 异常保底：2.5s 后无论如何跳转，避免卡死
+                            binding.ivBanner.postDelayed({
+                                if (pendingJump != null) {
+                                    pendingJump?.invoke()
+                                    pendingJump = null
+                                }
+                            }, 2500)
+                        }
                     }
                 }
                 2->{//维护
@@ -171,13 +197,33 @@ class StartUpActivity : TopVMActivity<StartUpVM>() {
      * 缓存不存在则跳过（保持 bg_startup 兜底，不空白）。子线程解码，避免大图卡主线程。
      */
     private fun showCachedSplash() {
-        val file = SplashImageCache.getCacheFile(this) ?: return
+        val file = SplashImageCache.getCacheFile(this)
+        if (file == null) {
+            // 无本地缓存：若服务端已决定跳转，立即执行（保持原快速过场，不卡）
+            if (pendingJump != null) {
+                pendingJump?.invoke()
+                pendingJump = null
+            }
+            return
+        }
         Thread {
             val bmp = SplashImageCache.decodeSampled(file.absolutePath, screenW, screenH)
             runOnUiThread {
-                bmp?.let {
-                    binding.ivBanner.setImageBitmap(it)
+                if (bmp != null) {
+                    hasSplashCache = true
+                    binding.ivBanner.setImageBitmap(bmp)
                     binding.ivBanner.visible()
+                    Log.d("SplashCache", "show cached splash, fileLen=${file.length()}")
+                    // 服务端已决定跳转：等用户看到缓存图再跳
+                    if (pendingJump != null) {
+                        binding.ivBanner.postDelayed({ pendingJump?.invoke(); pendingJump = null }, 1200)
+                    }
+                } else {
+                    Log.e("SplashCache", "decode cached splash failed")
+                    if (pendingJump != null) {
+                        pendingJump?.invoke()
+                        pendingJump = null
+                    }
                 }
             }
         }.start()
@@ -190,13 +236,19 @@ class StartUpActivity : TopVMActivity<StartUpVM>() {
     private fun downloadSplashAsync(url: String) {
         Thread {
             try {
+                Log.d("SplashCache", "start download: $url")
                 val src = Glide.with(applicationContext).download(url).submit().get()
+                Log.d("SplashCache", "downloaded file len=${src.length()}")
                 val bmp = SplashImageCache.decodeSampled(src.absolutePath, screenW, screenH)
                 if (bmp != null) {
                     SplashImageCache.save(this, bmp, 7)
                     SplashImageCache.setCurrentUrl(url)
+                    Log.d("SplashCache", "saved splash bitmap ${bmp.width}x${bmp.height}")
+                } else {
+                    Log.e("SplashCache", "decode downloaded file failed")
                 }
             } catch (e: Exception) {
+                Log.e("SplashCache", "download failed: ${e.message}")
                 e.printStackTrace()
             }
         }.start()

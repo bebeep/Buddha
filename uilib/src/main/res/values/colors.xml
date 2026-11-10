@@ -27,4 +27,10 @@
     <!-- 个人中心收起标题栏底色（滚动渐显，changeAlpha 用） -->
     <color name="me_title_base">#FF251C10</color>
 
+    <!-- 许愿树 -->
+    <!-- 页面底色（fragment_wish_tree 根背景） #F3EBDC -->
+    <color name="wish_tree_bg">#FFF3EBDC</color>
+    <!-- 树上规则/入口/空态文字色 #8A6B3F -->
+    <color name="wish_tree_text">#FF8A6B3F</color>
+
 </resources>

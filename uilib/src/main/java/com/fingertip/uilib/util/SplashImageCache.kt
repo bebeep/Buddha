@@ -3,6 +3,7 @@ package com.fingertip.uilib.util
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.util.Log
 import com.blankj.utilcode.util.SPUtils
 import java.io.File
 import java.io.FileOutputStream
@@ -54,13 +55,24 @@ object SplashImageCache {
      */
     fun decodeSampled(path: String, reqW: Int, reqH: Int): Bitmap? {
         val opts = BitmapFactory.Options().apply { inJustDecodeBounds = true }
-        BitmapFactory.decodeFile(path, opts) ?: return null
+        // 注意：inJustDecodeBounds 模式下 decodeFile 返回 null 是正常行为（只填 out 尺寸、不真正解码），
+        // 不能据此判定失败。必须看 outWidth/outHeight 是否 > 0 来判断是不是一张可解码的图片。
+        BitmapFactory.decodeFile(path, opts)
+        if (opts.outWidth <= 0 || opts.outHeight <= 0) {
+            Log.e("SplashCache", "decode bounds failed, maybe not an image? path=$path len=${File(path).length()}")
+            return null
+        }
         opts.inSampleSize = calculateInSampleSize(opts, reqW, reqH)
         opts.inJustDecodeBounds = false
         opts.inPreferredConfig = Bitmap.Config.RGB_565
         return try {
-            BitmapFactory.decodeFile(path, opts)
+            // 优先按 inSampleSize 缩放解码；极端情况下缩放解码异常则退回原图解码（同样 565）
+            BitmapFactory.decodeFile(path, opts) ?: BitmapFactory.decodeFile(
+                path,
+                BitmapFactory.Options().apply { inPreferredConfig = Bitmap.Config.RGB_565 }
+            )
         } catch (e: Exception) {
+            Log.e("SplashCache", "decode sampled failed: ${e.message}")
             null
         }
     }

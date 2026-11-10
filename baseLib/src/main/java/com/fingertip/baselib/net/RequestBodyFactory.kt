@@ -295,10 +295,12 @@ object RequestBodyFactory {
 
     /**
      * 许愿入参
+     * @param isAnonymous 是否匿名：0 否 1 是
      */
-    fun wishBody(wishContent: String): RequestBody {
+    fun wishBody(wishContent: String, isAnonymous: Int = 0): RequestBody {
         val param = HashMap<String, Any>()
         param["wishContent"] = wishContent
+        param["isAnonymous"] = isAnonymous
         return buildJsonRequestBody(param)
     }
 
