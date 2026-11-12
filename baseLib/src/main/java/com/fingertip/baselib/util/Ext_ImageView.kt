@@ -10,6 +10,7 @@ import com.bumptech.glide.integration.webp.decoder.WebpDrawableTransformation
 import com.bumptech.glide.load.Transformation
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.fingertip.baselib.R
@@ -56,12 +57,17 @@ fun ImageView.loadImg(
 
 }
 
+/**
+ * 加载用户头像。约定：所有用户头像一律圆形展示，故默认 transform = CircleCrop()，
+ * centerCrop() 与圆形裁剪叠加后即为正圆（含占位图 icon_default_head 也裁圆）。
+ * 调用方无需再单独处理圆形。
+ */
 fun ImageView.loadHead(
         url: Any?,
         width: Int? = null,
         height: Int? = null,
         @DrawableRes holder: Int? = R.mipmap.icon_default_head,
-        transform: BitmapTransformation? = null,
+        transform: BitmapTransformation? = CircleCrop(),
         listener: RequestListener<Drawable>? = null
 ) {
     loadImg(url, width, height, holder, transform, listener = listener)

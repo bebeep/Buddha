@@ -3,6 +3,7 @@ package com.fingertip.uilib.adapter
 import android.content.Context
 import com.fingertip.baselib.bean.BlessRecordBean
 import com.fingertip.baselib.top.TopRcAdapter
+import com.fingertip.baselib.util.loadHead
 import com.fingertip.baselib.util.loadImgNoHolder
 import com.fingertip.uilib.R
 import com.fingertip.uilib.databinding.ItemMyBlessBinding
@@ -26,7 +27,7 @@ class BlessRecordAdapter(
         val item = get(position) ?: return
 
         val wisher = item.wishingAccountInfo
-        binding.ivAvatar.loadImgNoHolder(wisher?.avatar)
+        binding.ivAvatar.loadHead(wisher?.avatar)
         binding.tvUserName.text = wisher?.userName ?: "佛友"
         com.fingertip.uilib.utils.LevelUi.bindTag(binding.ivLevelTag, wisher?.userLevel ?: 0)
         binding.tvUserLevel.text = com.fingertip.uilib.utils.LevelUi.tagTitle(wisher?.userLevel ?: 0)

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 愿望详情底部弹窗：查看他人公开愿望，可点赞、可祝福 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_sign_info_card"
@@ -19,21 +20,125 @@
         android:textSize="16sp"
         android:textStyle="bold" />
 
-    <!-- 许愿人 + 时间 -->
+    <!-- 匿名标识：仅匿名时显示，隐藏整块用户信息 -->
     <TextView
-        android:id="@+id/tv_wisher"
+        android:id="@+id/tv_wisher_anonymous"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/bg_wish_anonymous_tag"
+        android:paddingStart="10dp"
+        android:paddingTop="3dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="3dp"
+        android:text="匿名用户"
+        android:textColor="@color/c_text_hint"
+        android:textSize="12sp"
+        android:visibility="gone" />
+
+    <!-- 许愿人信息区（非匿名）：头像 + 头像框 + 昵称 + 等级 + 称号 -->
+    <LinearLayout
+        android:id="@+id/ll_wisher"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:textColor="@color/c_text_second"
-        android:textSize="12sp" />
+        android:layout_marginTop="14dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <!-- 头像 + 头像框（叠加层，预留） -->
+        <FrameLayout
+            android:layout_width="48dp"
+            android:layout_height="48dp">
+
+            <com.fingertip.baselib.view.CircleImageView
+                android:id="@+id/iv_wisher_avatar"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:civ_border_width="1.5dp"
+                app:civ_border_color="@color/c_gold" />
+
+            <!-- 头像框：比头像略大居中叠放，后端下发 avatarFrame 时显示 -->
+            <ImageView
+                android:id="@+id/iv_wisher_frame"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:layout_gravity="center"
+                android:scaleType="fitXY"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <!-- 昵称 / 等级 / 称号 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_wisher_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxEms="10"
+                    android:singleLine="true"
+                    android:textColor="@color/c_text_main"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <!-- 等级标签：后端下发 userLevel>0 时显示 -->
+                <TextView
+                    android:id="@+id/tv_wisher_level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_wish_level_tag"
+                    android:paddingStart="6dp"
+                    android:paddingTop="1dp"
+                    android:paddingEnd="6dp"
+                    android:paddingBottom="1dp"
+                    android:textColor="@color/c_gold"
+                    android:textSize="10sp"
+                    android:visibility="gone" />
+
+                <!-- 称号标签：后端下发 userTitle 时显示 -->
+                <TextView
+                    android:id="@+id/tv_wisher_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:background="@drawable/bg_wish_title_tag"
+                    android:paddingStart="6dp"
+                    android:paddingTop="1dp"
+                    android:paddingEnd="6dp"
+                    android:paddingBottom="1dp"
+                    android:textColor="@color/c_text_on_gold"
+                    android:textSize="10sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 许愿时间：匿名 / 非匿名都显示 -->
+    <TextView
+        android:id="@+id/tv_wish_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/c_text_hint"
+        android:textSize="11sp" />
 
     <TextView
         android:id="@+id/tv_wish_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:background="@drawable/bg_wish_card"
         android:lineSpacingExtra="3dp"
         android:padding="12dp"
         android:textColor="@color/c_text_third"

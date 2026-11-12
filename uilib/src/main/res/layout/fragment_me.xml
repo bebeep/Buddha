@@ -444,7 +444,7 @@
                     <ImageView
                         android:layout_marginStart="24dp"
                         android:layout_width="22dp"
-                        android:src="@drawable/icon_me_task"
+                        android:src="@drawable/icon_me_shop"
                         android:tint="@color/c_text_second"
                         android:layout_height="22dp"/>
 
@@ -483,7 +483,7 @@
                     <ImageView
                         android:layout_marginStart="24dp"
                         android:layout_width="22dp"
-                        android:src="@drawable/icon_me_task"
+                        android:src="@drawable/icon_me_dress"
                         android:tint="@color/c_text_second"
                         android:layout_height="22dp"/>
 
@@ -523,7 +523,7 @@
                     <ImageView
                         android:layout_marginStart="24dp"
                         android:layout_width="22dp"
-                        android:src="@drawable/icon_me_task"
+                        android:src="@drawable/icon_me_collect"
                         android:tint="@color/c_text_second"
                         android:layout_height="22dp"/>
 
@@ -562,7 +562,7 @@
                     <ImageView
                         android:layout_marginStart="24dp"
                         android:layout_width="22dp"
-                        android:src="@drawable/icon_me_task"
+                        android:src="@drawable/icon_me_lamp"
                         android:tint="@color/c_text_second"
                         android:layout_height="22dp"/>
 
@@ -602,7 +602,7 @@
                     <ImageView
                         android:layout_marginStart="24dp"
                         android:layout_width="22dp"
-                        android:src="@drawable/icon_me_task"
+                        android:src="@drawable/icon_me_remind"
                         android:tint="@color/c_text_second"
                         android:layout_height="22dp"/>
 
@@ -641,7 +641,7 @@
                     <ImageView
                         android:layout_marginStart="24dp"
                         android:layout_width="22dp"
-                        android:src="@drawable/icon_me_task"
+                        android:src="@drawable/icon_me_mind"
                         android:tint="@color/c_text_second"
                         android:layout_height="22dp"/>
 
@@ -680,7 +680,7 @@
                     <ImageView
                         android:layout_marginStart="24dp"
                         android:layout_width="22dp"
-                        android:src="@drawable/icon_me_task"
+                        android:src="@drawable/icon_me_bless"
                         android:tint="@color/c_text_second"
                         android:layout_height="22dp"/>
 
@@ -719,7 +719,7 @@
                     <ImageView
                         android:layout_marginStart="24dp"
                         android:layout_width="22dp"
-                        android:src="@drawable/icon_me_task"
+                        android:src="@drawable/icon_me_release"
                         android:tint="@color/c_text_second"
                         android:layout_height="22dp"/>
 
@@ -758,7 +758,7 @@
                     <ImageView
                         android:layout_marginStart="24dp"
                         android:layout_width="22dp"
-                        android:src="@drawable/icon_me_task"
+                        android:src="@drawable/icon_me_guide"
                         android:tint="@color/c_text_second"
                         android:layout_height="22dp"/>
 
@@ -820,7 +820,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="12dp"
-            android:src="@drawable/icon_me_edit"
+            android:src="@drawable/icon_me_setting"
             android:tint="@color/c_text_main"
             android:layout_width="38dp"
             android:layout_height="44dp"/>

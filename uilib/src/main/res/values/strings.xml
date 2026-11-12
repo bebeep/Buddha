@@ -288,6 +288,29 @@
     <string name="my_moment_delete_fail">删除失败，请稍后重试</string>
     <string name="my_moment_tip">长按可删除自己的感悟</string>
 
+    <!-- ============ 账号绑定（海外版：已登录用户绑定 / 管理邮箱与 Google） ============ -->
+    <string name="account_bind_title">账号绑定</string>
+    <string name="account_bind_tip">绑定邮箱与 Google 后，换设备也能找回账号；绑邮箱时设置密码，之后可用「邮箱 + 密码」登录。</string>
+    <string name="account_bind_email_label">邮箱</string>
+    <string name="account_bind_email_bound">已绑定：%1$s</string>
+    <string name="account_bind_email_unbound">未绑定</string>
+    <string name="account_bind_email_hint">请输入邮箱地址</string>
+    <string name="account_bind_password_hint">设置登录密码（至少 8 位，可选）</string>
+    <string name="account_bind_email_btn">绑定邮箱</string>
+    <string name="account_bind_email_update">更新邮箱</string>
+    <string name="account_bind_google_label">Google</string>
+    <string name="account_bind_google_bound">已绑定</string>
+    <string name="account_bind_google_unbound">未绑定</string>
+    <string name="account_bind_google_btn">绑定 Google</string>
+    <string name="account_bind_google_update">更换 Google</string>
+    <string name="account_bind_email_invalid">请输入有效的邮箱地址</string>
+    <string name="account_bind_email_exist">该邮箱已被其他账号绑定</string>
+    <string name="account_bind_pwd_short">密码至少 8 位</string>
+    <string name="account_bind_email_ok">邮箱已绑定</string>
+    <string name="account_bind_google_ok">Google 已绑定</string>
+    <string name="account_bind_pwd_ok">登录密码已设置</string>
+    <string name="account_bind_fail">绑定失败，请稍后重试</string>
+
     <!-- ============ 登录 / 注册（海外版：Google + 邮箱，无手机号） ============ -->
     <string name="login_brand">禅 心</string>
     <string name="login_slogan">以禅养心 · 以心会友</string>
@@ -422,6 +445,7 @@
     <string name="im_chat_recording_stop">完成并发送</string>
     <string name="im_chat_activity_go">查看详情</string>
     <string name="im_chat_invalid_peer">会话不存在</string>
+    <string name="im_chat_history_no_more">没有更多消息了</string>
     <string name="im_chat_not_login">请先登录</string>
     <string name="im_chat_send_fail">发送失败，请重试</string>
     <string name="im_chat_no_player">未找到可播放视频的应用</string>

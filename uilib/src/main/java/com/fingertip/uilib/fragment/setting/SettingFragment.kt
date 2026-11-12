@@ -11,18 +11,22 @@ import com.fingertip.uilib.activity.LoginRegisterActivity
 import com.fingertip.uilib.databinding.FragmentSettingBinding
 import com.fingertip.uilib.dialog.ConfirmDialog
 import com.fingertip.uilib.pay.IapBridge
+import com.fingertip.uilib.utils.openPage
 import com.fingertip.uilib.viewmodel.SettingVM
 
 /**
  * 设置
  *
- * 三块：账号（退出 / 注销）、隐私与合规（三份本地法律文本）、关于（版本号）。
+ * 三块：账号（账号绑定 / 退出 / 注销）、隐私与合规（三份本地法律文本）、关于（版本号）。
  *
  * 注销账号这条必须保留：Google Play 的账号删除政策要求「应用内可发起删除」，
  * 只在隐私政策里写个邮箱是过不了审的。所以这里做成两次确认 + 服务端真删数据。
  *
  * 退出登录与注销的区别要在文案上写清楚：
  * 退出只是清 session，装扮和功德币都还在；注销是删账号，数据不可恢复。
+ *
+ * 账号绑定：原本只对游客显示「去登录页绑第三方」的引导，已登录的海外账户（邮件 / Google 登录）
+ * 没有在 App 内绑定或管理邮箱的入口；现在统一为「账号绑定」入口，进账号绑定页。
  */
 class SettingFragment : TopPmFragment<SettingVM>() {
 
@@ -37,10 +41,8 @@ class SettingFragment : TopPmFragment<SettingVM>() {
 
     override fun initShiTu() {
         binding.tvVersion.text = AppUtils.getAppVersionName()
-        //游客号才展示绑定引导；绑定过 Google/Apple 或邮箱登录的都不显示
-        val guest = GlobalConfig.isGuestAccount
-        binding.llBindAccount.visibility = if (guest) View.VISIBLE else View.GONE
-        binding.divBindAccount.visibility = if (guest) View.VISIBLE else View.GONE
+        //账号绑定：所有已登录用户可见；未登录不展示
+        binding.llAccountBind.visibility = if (GlobalConfig.session.isBlank()) View.GONE else View.VISIBLE
     }
 
     override fun initObserver() {
@@ -91,7 +93,7 @@ class SettingFragment : TopPmFragment<SettingVM>() {
 
     override fun getClickViews(): List<View> = listOf(
         binding.ivBack,
-        binding.llBindAccount,
+        binding.llAccountBind,
         binding.llBlockList,
         binding.llRestore,
         binding.llLogout,
@@ -106,15 +108,9 @@ class SettingFragment : TopPmFragment<SettingVM>() {
         when (v) {
             binding.ivBack -> pop()
 
-            //游客号绑定引导：去登录页绑 Google/Apple，账号不换、数据延续。
-            //清栈重进：绑定成功后走 ContainerActivity，和冷启动登录后的栈保持一致
-            binding.llBindAccount -> {
-                if (!GlobalConfig.isGuestAccount) return@onSingleClick
-                startActivity(
-                    Intent(requireContext(), LoginRegisterActivity::class.java).apply {
-                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                    }
-                )
+            //账号绑定：进账号绑定页，绑定 / 管理邮箱与 Google
+            binding.llAccountBind -> {
+                openPage(AccountBindFragment())
             }
 
             //拉黑名单管理。放在账号组最前，是因为它属于"用户自己控制能看到什么"这类设置
@@ -123,8 +119,7 @@ class SettingFragment : TopPmFragment<SettingVM>() {
                     ToastUtil.showMessage(getString(R.string.setting_not_login))
                     return
                 }
-                (parentFragment as? com.fingertip.uilib.fragment.MainFragment)
-                    ?.start(BlockListFragment())
+                openPage(BlockListFragment())
             }
 
             //恢复购买：换设备/重装后把已买的装扮找回来
@@ -182,8 +177,7 @@ class SettingFragment : TopPmFragment<SettingVM>() {
     }
 
     private fun pushDoc(title: String, asset: String) {
-        (parentFragment as? com.fingertip.uilib.fragment.MainFragment)
-            ?.start(LegalDocFragment.newInstance(title, asset))
+        openPage(LegalDocFragment.newInstance(title, asset))
     }
 
     /**

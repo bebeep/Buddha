@@ -41,6 +41,17 @@ class WishRecordBean {
     var userAvatar: String? = null
     //是否匿名：0 否 1 是（匿名时树上牌显示默认头像）
     var isAnonymous: Int = 0
+    //许愿人昵称（与 SimpleAccount.userName 约定对齐；服务端 getWishingTree 当前未下发此字段，
+    // 故弹窗缺省回退「佛友」，后端补发后自动填充，无需改前端）
+    var userName: String? = null
+    //许愿人等级（与 SimpleAccount.userLevel 对齐）
+    var userLevel: Int = 0
+    //许愿人称号 / 头衔（后端可下发，如「虔诚弟子」；为空不展示）
+    var userTitle: String? = null
+    //头像框 URL（预留：非空时叠加在头像上，为空则 GONE）
+    var avatarFrame: String? = null
+    //昵称 3D 特效标识（预留：非空时昵称启用 3D 描边/投影样式，后端后续下发类型）
+    var nickEffect: String? = null
 
     fun isDeleted(): Boolean = reviewStatus == 2
     fun isIllegal(): Boolean = reviewStatus == 1

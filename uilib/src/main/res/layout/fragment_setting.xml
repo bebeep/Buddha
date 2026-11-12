@@ -76,23 +76,22 @@
                 android:background="@drawable/bg_home_card_a"
                 android:orientation="vertical">
 
-                <!-- 游客绑定引导：只对游客账号显示，点了去登录页绑定第三方凭证 -->
+                <!-- 账号绑定：所有已登录用户可见，进账号绑定页（绑定 / 管理邮箱与 Google） -->
                 <LinearLayout
-                    android:id="@+id/ll_bind_account"
+                    android:id="@+id/ll_account_bind"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:visibility="gone">
+                    android:paddingEnd="16dp">
 
                     <com.fingertip.baselib.view.MyTextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/setting_bind_hint"
-                        android:textColor="@color/c_gold"
+                        android:text="@string/account_bind_title"
+                        android:textColor="@color/c_text_main"
                         android:textSize="14sp" />
 
                     <ImageView
@@ -104,13 +103,12 @@
                 </LinearLayout>
 
                 <View
-                    android:id="@+id/div_bind_account"
+                    android:id="@+id/div_account_bind"
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    android:background="@color/c_gold_12"
-                    android:visibility="gone" />
+                    android:background="@color/c_gold_12" />
 
                 <!-- 拉黑管理：给用户一个撤销拉黑的地方。没有这个入口，"拉黑"就变成不可逆操作 -->
                 <LinearLayout

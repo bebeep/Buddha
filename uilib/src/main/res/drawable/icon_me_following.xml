@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    关注
-    2026-11 矢量图标改造：替换同名 mipmap 位图（24dp 线性风格，暗金主题）
+    关注（我关注的人）：单人轮廓 + 右上金色对勾
+    2026-11 矢量图标改造：24dp 线性风格，暗金主题
 -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="24dp" android:height="24dp"
     android:viewportWidth="24" android:viewportHeight="24">
-    <path android:pathData="M13.90,8.40 A3.40,3.40 0 1 1 7.10,8.40 A3.40,3.40 0 1 1 13.90,8.40 Z" android:strokeColor="@color/c_text_second" android:strokeWidth="1.70" android:strokeLineCap="round" android:strokeLineJoin="round"/><path android:pathData="M3.4,19.6 C4.6,16.1 7.2,14.3 10.5,14.3 C13.8,14.3 16.4,16.1 17.6,19.6" android:strokeColor="@color/c_text_second" android:strokeWidth="1.70" android:strokeLineCap="round" android:strokeLineJoin="round"/><path android:pathData="M16.8,10.6 L18.6,12.4 L21.4,8.8" android:strokeColor="@color/c_gold" android:strokeWidth="1.70" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+    <path android:pathData="M11.5,8.4 A3.4,3.4 0 1 1 4.7,8.4 A3.4,3.4 0 1 1 11.5,8.4 Z" android:strokeColor="@color/c_text_second" android:strokeWidth="1.70" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+    <path android:pathData="M2.2,19.4 C3.4,15.9 5.9,14.1 8.1,14.1 C10.3,14.1 12.8,15.9 14,19.4" android:strokeColor="@color/c_text_second" android:strokeWidth="1.70" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+    <path android:pathData="M15.6,11.4 L17.5,13.3 L20.6,9.2" android:strokeColor="@color/c_gold" android:strokeWidth="1.70" android:strokeLineCap="round" android:strokeLineJoin="round"/>
 </vector>

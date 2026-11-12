@@ -72,9 +72,14 @@ class ChatFragment : TopPmFragment<MainVM>() {
     private var peerAvatar = ""
 
     private lateinit var adapter: ChatMessageAdapter
+    private lateinit var lm: androidx.recyclerview.widget.LinearLayoutManager
     private lateinit var voiceRecorder: VoiceRecorder
     private var recording = false
     private var voiceStartAt = 0L
+
+    //向上翻页状态位：防止滚动惯性/重复触发并发拉取；到顶无更多时不再触发
+    private var loadingHistory = false
+    private var hasMoreHistory = true
 
     override fun initShiTu() {
         peerId = arguments?.getString("peerId") ?: ""
@@ -127,10 +132,25 @@ class ChatFragment : TopPmFragment<MainVM>() {
                 }
             }
         }
-        val lm = LinearLayoutManager(requireContext())
+        lm = androidx.recyclerview.widget.LinearLayoutManager(requireContext())
         binding.rvMsg.layoutManager = lm
         binding.rvMsg.adapter = adapter
         binding.rvMsg.itemAnimator = null
+        //滚动到顶（用户主动上滑）触发加载更早的历史消息
+        binding.rvMsg.addOnScrollListener(object :
+            androidx.recyclerview.widget.RecyclerView.OnScrollListener() {
+            override fun onScrolled(
+                rv: androidx.recyclerview.widget.RecyclerView,
+                dx: Int,
+                dy: Int
+            ) {
+                super.onScrolled(rv, dx, dy)
+                //dy<0：用户主动上滑；第一条可见项已到顶 → 翻页
+                if (dy < 0 && lm.findFirstVisibleItemPosition() <= 0) {
+                    triggerLoadHistory()
+                }
+            }
+        })
     }
 
     override fun getClickViews(): List<View> = listOf(
@@ -188,6 +208,7 @@ class ChatFragment : TopPmFragment<MainVM>() {
             ToastUtil.showMessage(getString(R.string.im_chat_not_login))
             return
         }
+        loadingHistory = true
         try {
             //云端拉取（含漫游）：换设备登录后同样能拉到完整历史
             val option = com.tencent.imsdk.v2.V2TIMMessageListGetOption().apply {
@@ -200,30 +221,61 @@ class ChatFragment : TopPmFragment<MainVM>() {
                 .getHistoryMessageList(option,
                     object : V2TIMValueCallback<List<V2TIMMessage>> {
                         override fun onSuccess(t: List<V2TIMMessage>?) {
-                            if (!isAdded) return
+                            if (!isAdded) { loadingHistory = false; return }
                             val list = t.orEmpty()
-                            if (list.isEmpty() && fromMsg == null) return
                             //兼容 SDK 升/降序两种返回：统一按时间升序渲染
                             val ordered = if (list.size > 1 &&
                                 list.first().timestamp > list.last().timestamp
                             ) list.reversed() else list
+
                             if (fromMsg == null) {
-                                adapter.initData(ordered)
-                                scrollBottom()
-                            } else {
-                                //向上翻页：插到头部
-                                val merged = ordered + adapter.data()
-                                adapter.initData(merged)
+                                //首屏：云端结果覆盖本地（云端为准），定位到底部
+                                if (ordered.isNotEmpty()) {
+                                    adapter.initData(ordered)
+                                    scrollBottom()
+                                }
+                                loadingHistory = false
+                                return
                             }
+
+                            //向上翻页分支
+                            if (ordered.isEmpty()) {
+                                //已无更早消息
+                                hasMoreHistory = false
+                                loadingHistory = false
+                                ToastUtil.showMessage(getString(R.string.im_chat_history_no_more))
+                                return
+                            }
+                            //插入头部并精确保持当前阅读位置，否则用户会被顶回顶部
+                            val added = ordered.size
+                            val firstPos = lm.findFirstVisibleItemPosition()
+                            val topOffset = lm.findViewByPosition(firstPos)?.top ?: 0
+                            val merged = ordered + adapter.data()
+                            adapter.initData(merged)
+                            lm.scrollToPositionWithOffset(firstPos + added, topOffset)
+                            loadingHistory = false
                         }
 
                         override fun onError(code: Int, desc: String?) {
                             log(TAG, "历史消息拉取失败 code=$code desc=$desc")
+                            loadingHistory = false
                         }
                     })
         } catch (e: Exception) {
             log(TAG, "历史消息异常 ${e.message}")
+            loadingHistory = false
         }
+    }
+
+    /**
+     * 到顶触发向上翻页（带 lastMsg 的 loadHistory）。
+     * 守卫：正在加载 / 已无更多 / 列表空 时直接返回，避免滚动惯性重复触发。
+     */
+    private fun triggerLoadHistory() {
+        if (loadingHistory || !hasMoreHistory) return
+        if (adapter.data().isEmpty()) return
+        val firstMsg = adapter.data().firstOrNull() ?: return
+        loadHistory(firstMsg)
     }
 
     /**
@@ -270,10 +322,11 @@ class ChatFragment : TopPmFragment<MainVM>() {
     }
 
     private fun scrollBottom() {
-        binding.rvMsg.post {
-            val count = adapter.itemCount
-            if (count > 0) binding.rvMsg.smoothScrollToPosition(count - 1)
-        }
+        // 注意：不能用 post 延迟。post 会让 RecyclerView 先完成首帧布局（停在顶部 position 0），
+        // 等下一帧再 scrollToPosition，视觉上变成「先显示顶部、再滑动到底部」。
+        // 同步调用会把 scroll 目标写进 mPendingScrollPosition，随 initData 的布局同帧处理，首帧即定位底部。
+        val count = adapter.itemCount
+        if (count > 0) binding.rvMsg.scrollToPosition(count - 1)
     }
 
     private fun markRead() {
