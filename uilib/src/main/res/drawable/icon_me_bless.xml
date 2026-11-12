@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    我的祈福
+    2026-11 矢量图标改造：双手合十（暗金主题，24dp 线性风格，单色描边由 ImageView tint 着色）
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp"
+    android:viewportWidth="24" android:viewportHeight="24">
+    <path android:pathData="M12,3.6 C9.4,7 8,11 8.3,15 C8.5,18 10.4,19.5 12,19.5 C13.6,19.5 15.5,18 15.7,15 C16,11 14.6,7 12,3.6 Z"
+        android:strokeColor="@color/c_text_second" android:strokeWidth="1.70" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+    <path android:pathData="M12,5.6 V18.4"
+        android:strokeColor="@color/c_text_second" android:strokeWidth="1.70" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+</vector>

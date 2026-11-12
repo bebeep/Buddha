@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    我的感悟
+    2026-11 矢量图标改造：心形（暗金主题，24dp 线性风格，单色描边由 ImageView tint 着色）
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp"
+    android:viewportWidth="24" android:viewportHeight="24">
+    <path android:pathData="M12,20 C6,15.6 3.5,11.6 3.5,8.6 A4.2,4.2 0 0 1 12,7 A4.2,4.2 0 0 1 20.5,8.6 C20.5,11.6 18,15.6 12,20 Z"
+        android:strokeColor="@color/c_text_second" android:strokeWidth="1.70" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+</vector>

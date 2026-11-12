@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    供灯记录
+    2026-11 矢量图标改造：莲花油灯（暗金主题，24dp 线性风格，单色描边由 ImageView tint 着色）
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp"
+    android:viewportWidth="24" android:viewportHeight="24">
+    <path android:pathData="M5.5,13 H18.5 C18.5,16 16,17.6 12,17.6 C8,17.6 5.5,16 5.5,13 Z"
+        android:strokeColor="@color/c_text_second" android:strokeWidth="1.70" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+    <path android:pathData="M10.6,17.6 V19 H13.4 V17.6"
+        android:strokeColor="@color/c_text_second" android:strokeWidth="1.70" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+    <path android:pathData="M12,4 C14,6.6 14,9.2 12,11.2 C10,9.2 10,6.6 12,4 Z"
+        android:strokeColor="@color/c_text_second" android:strokeWidth="1.70" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+</vector>

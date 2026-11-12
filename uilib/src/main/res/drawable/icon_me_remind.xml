@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    佛历订阅提醒
+    2026-11 矢量图标改造：日历（暗金主题，24dp 线性风格，单色描边由 ImageView tint 着色）
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp"
+    android:viewportWidth="24" android:viewportHeight="24">
+    <path android:pathData="M5,6 H19 V19 A1,1 0 0 1 18,20 H6 A1,1 0 0 1 5,19 Z"
+        android:strokeColor="@color/c_text_second" android:strokeWidth="1.70" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+    <path android:pathData="M8,6 V3.4 M16,6 V3.4"
+        android:strokeColor="@color/c_text_second" android:strokeWidth="1.70" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+    <path android:pathData="M5,10 H19"
+        android:strokeColor="@color/c_text_second" android:strokeWidth="1.70" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+</vector>
