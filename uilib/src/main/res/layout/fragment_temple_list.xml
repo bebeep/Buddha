@@ -28,7 +28,7 @@
         <com.fingertip.baselib.view.MyTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="寺庙"
+            android:text="古刹"
             android:textColor="@color/c_text_main"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -53,7 +53,7 @@
         android:id="@+id/tv_empty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="暂无寺庙数据"
+        android:text="暂无古刹数据"
         android:textColor="@color/c_gold"
         android:textSize="14sp"
         android:visibility="gone"

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 详情页顶部渐变遮罩：顶部压暗向下渐透明，保证白色返回键/标题在封面图上可读 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <gradient
+        android:angle="270"
+        android:startColor="#66000000"
+        android:endColor="#00000000" />
+</shape>

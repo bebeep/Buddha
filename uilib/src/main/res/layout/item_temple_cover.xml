@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 古刹封面轮播单项：满铺 centerCrop，点击进大图预览 -->
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/iv_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_line"
+    android:scaleType="centerCrop" />

@@ -10,7 +10,8 @@
     android:paddingTop="8dp"
     android:paddingBottom="8dp">
 
-    <ImageView
+    <!-- CircleImageView：占位图也裁正圆（CircleCrop 不裁 placeholder 的老坑） -->
+    <com.fingertip.baselib.view.CircleImageView
         android:id="@+id/iv_avatar"
         android:layout_width="36dp"
         android:layout_height="36dp" />

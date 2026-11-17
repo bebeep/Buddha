@@ -47,6 +47,10 @@ interface BookDao {
     @Query("SELECT * FROM book_read_progress WHERE bookId = :bookId LIMIT 1")
     suspend fun getReadProgress(bookId: Int): ReadProgressEntity?
 
+    /** 最近一次读经进度（全局最新），首页"继续诵经"据此定位书目 */
+    @Query("SELECT * FROM book_read_progress ORDER BY updatedAt DESC LIMIT 1")
+    suspend fun getLastReadProgress(): ReadProgressEntity?
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveReadProgress(entity: ReadProgressEntity)
 
@@ -54,6 +58,10 @@ interface BookDao {
 
     @Query("SELECT * FROM book_copy_progress WHERE bookId = :bookId LIMIT 1")
     suspend fun getCopyProgress(bookId: Int): CopyProgressEntity?
+
+    /** 最近一次抄经进度（全局最新），首页"继续抄经"据此定位书目 */
+    @Query("SELECT * FROM book_copy_progress ORDER BY updatedAt DESC LIMIT 1")
+    suspend fun getLastCopyProgress(): CopyProgressEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveCopyProgress(entity: CopyProgressEntity)

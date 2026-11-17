@@ -1,10 +1,12 @@
 package com.fingertip.uilib.fragment
 
 import android.view.View
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fingertip.baselib.bean.HomeBlockConfig
 import com.fingertip.baselib.bean.HomeSummaryData
 import com.fingertip.baselib.constant.GlobalConfig
+import com.fingertip.baselib.db.ChapterStore
 import com.fingertip.baselib.log
 import com.fingertip.baselib.top.TopVMFragment
 import com.fingertip.baselib.util.ToastUtil
@@ -14,6 +16,8 @@ import com.fingertip.uilib.adapter.HomeSectionAdapter
 import com.fingertip.uilib.databinding.FragmentHomeBinding
 import com.fingertip.uilib.dialog.QuoteCardDialog
 import com.fingertip.uilib.fragment.book.BuddhaTextsFragment
+import com.fingertip.uilib.fragment.book.FojingCopyFragment
+import com.fingertip.uilib.fragment.book.FojingReadFragment
 import com.fingertip.uilib.fragment.game.FangShengFragment
 import com.fingertip.uilib.fragment.moment.MomentDetailsFragment
 import com.fingertip.uilib.fragment.practice.EarlyPracticeFragment
@@ -28,6 +32,7 @@ import com.weikaiyun.fragmentation.SupportFragment
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import kotlinx.coroutines.launch
 
 /**
  * 首页（海外版重写）
@@ -91,11 +96,10 @@ class HostFragment : TopVMFragment<HomeVM>() {
             onStartPractice = { openPage(EarlyPracticeFragment()) }
             onPracticeSlotClick = { slot ->
                 when (slot) {
-                    //诵经：进佛经（书架/佛经双 tab，自带返回）
-                    0 -> openPage(BuddhaTextsFragment())
-                    //抄经必须带 bookId（抄哪一部），首页拿不到具体书目，
-                    //所以先进佛经列表让用户选，选完在详情页进抄经
-                    1 -> openPage(BuddhaTextsFragment())
+                    //诵经：有上次读经进度就直接续读，没有则进佛经书架让用户选
+                    0 -> continueRead()
+                    //抄经：有上次抄经进度就直接续抄，没有则进佛经书架让用户选
+                    1 -> continueCopy()
                     //签到
                     else -> openPage(SignInFragment())
                 }
@@ -136,6 +140,38 @@ class HostFragment : TopVMFragment<HomeVM>() {
         binding.rvContent.adapter = adapter
         //区块数量固定，关掉条目动画，避免刷新时整屏闪一下
         binding.rvContent.itemAnimator = null
+    }
+
+    /**
+     * 诵经格：续读上次的经。
+     * 本地读经进度表有记录就直接进读经页（带 bookId），没有则回退到佛经书架让用户自己选。
+     * 进度表只存 bookId/章节/位置，标题留空，读经页会按 bookId 自行加载书目。
+     */
+    private fun continueRead() {
+        lifecycleScope.launch {
+            val progress = ChapterStore.lastReadProgress()
+            if (!isAdded) return@launch
+            if (progress != null) {
+                openPage(FojingReadFragment.newInstance(progress.bookId, ""))
+            } else {
+                openPage(BuddhaTextsFragment())
+            }
+        }
+    }
+
+    /**
+     * 抄经格：续抄上次的经，逻辑同 [continueRead]
+     */
+    private fun continueCopy() {
+        lifecycleScope.launch {
+            val progress = ChapterStore.lastCopyProgress()
+            if (!isAdded) return@launch
+            if (progress != null) {
+                openPage(FojingCopyFragment.newInstance(progress.bookId, ""))
+            } else {
+                openPage(BuddhaTextsFragment())
+            }
+        }
     }
 
     private fun initRefresh() {

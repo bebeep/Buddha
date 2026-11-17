@@ -10,6 +10,7 @@
     android:background="@color/c_bg_card">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/sv_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
@@ -20,33 +21,32 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!-- 封面轮播：多图滑动切换，点击进全屏大图预览（BigImageDialog） -->
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="220dp">
+                android:layout_height="320dp">
 
-                <ImageView
-                    android:id="@+id/iv_cover"
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/vp_cover"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/c_line"
-                    android:scaleType="centerCrop"
-                    tools:src="@drawable/icon_menu_gongfo" />
+                    android:layout_height="match_parent" />
 
-                <com.fingertip.baselib.view.FullTopConstraintLayout
-                    android:id="@+id/cl_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/iv_back"
-                        android:layout_width="38dp"
-                        android:layout_height="38dp"
-                        android:layout_marginStart="8dp"
-                        android:src="@drawable/icon_back_black"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </com.fingertip.baselib.view.FullTopConstraintLayout>
+                <TextView
+                    android:id="@+id/tv_cover_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/bg_cover_indicator"
+                    android:paddingStart="10dp"
+                    android:paddingTop="3dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="3dp"
+                    android:textColor="@color/c_white"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    tools:text="1/8"
+                    tools:visibility="visible" />
             </FrameLayout>
 
             <LinearLayout
@@ -133,15 +133,14 @@
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/tv_history"
+                <!-- 历史时间线容器：templeHistory JSON [{year,content}] 逐条填充 -->
+                <LinearLayout
+                    android:id="@+id/ll_history"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    android:lineSpacingExtra="5dp"
-                    android:textColor="@color/c_text_third"
-                    android:textSize="13sp"
-                    tools:text="汉建元、唐贞观、宋崇宁……" />
+                    android:orientation="vertical"
+                    android:clipChildren="false" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -183,6 +182,48 @@
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <!-- 悬浮顶栏：不随内容滚动，封面段半透明黑底+白字，滚过封面切换实底+主题字 -->
+    <com.fingertip.baselib.view.FullTopConstraintLayout
+        android:id="@+id/cl_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_temple_top_scrim">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/bg_back_circle"
+            android:padding="9dp"
+            android:src="@drawable/icon_back_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/c_white" />
+
+        <TextView
+            android:id="@+id/tv_bar_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="56dp"
+            android:layout_marginEnd="56dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:shadowColor="#66000000"
+            android:shadowDy="1"
+            android:shadowRadius="4"
+            android:textColor="@color/c_white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="昭觉寺" />
+    </com.fingertip.baselib.view.FullTopConstraintLayout>
 
     <!-- 底部评论输入 -->
     <LinearLayout

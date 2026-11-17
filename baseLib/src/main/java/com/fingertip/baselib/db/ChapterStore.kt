@@ -110,6 +110,13 @@ object ChapterStore {
         return dao.getReadProgress(bookId)
     }
 
+    /**
+     * 最近一次读经进度（全局最新），首页"继续诵经"据此定位书目
+     */
+    suspend fun lastReadProgress(): ReadProgressEntity? {
+        return dao.getLastReadProgress()
+    }
+
     suspend fun saveReadProgress(bookId: Int, seq: Int, offset: Int) {
         dao.saveReadProgress(
             ReadProgressEntity(
@@ -125,6 +132,13 @@ object ChapterStore {
 
     suspend fun getCopyProgress(bookId: Int): CopyProgressEntity? {
         return dao.getCopyProgress(bookId)
+    }
+
+    /**
+     * 最近一次抄经进度（全局最新），首页"继续抄经"据此定位书目
+     */
+    suspend fun lastCopyProgress(): CopyProgressEntity? {
+        return dao.getLastCopyProgress()
     }
 
     suspend fun saveCopyProgress(bookId: Int, seq: Int, offset: Int, copiedChars: Long) {

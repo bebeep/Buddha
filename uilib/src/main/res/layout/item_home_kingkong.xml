@@ -128,7 +128,7 @@
                 android:layout_height="40dp"
                 android:background="@drawable/bg_home_inner"
                 android:gravity="center"
-                android:text="寺"
+                android:text="刹"
                 android:textColor="@color/c_gold"
                 android:textSize="14sp"
                 android:visibility="gone" />

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 历史时间线节点：金色圆点 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval">
+    <solid android:color="@color/c_gold" />
+    <size android:width="8dp" android:height="8dp" />
+</shape>

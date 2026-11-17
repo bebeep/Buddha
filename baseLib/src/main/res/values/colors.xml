@@ -140,6 +140,7 @@
     <color name="c_im_send_bg_off">#FF3A362E</color>
     <color name="c_ffffe7c4">#FFFFE7C4</color>
     <color name="c_paper">#FFFFFEFA</color>
+    <color name="c_white">#FFFFFF</color>
     <color name="c_white_aa">#AAFFFFFF</color>
     <color name="c_tab_indicator">#FF4B6A87</color>
 </resources>
