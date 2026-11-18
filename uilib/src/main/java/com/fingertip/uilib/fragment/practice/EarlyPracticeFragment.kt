@@ -11,7 +11,6 @@ import android.os.Handler
 import android.os.Looper
 import android.text.Spannable
 import android.text.SpannableStringBuilder
-import android.text.style.BackgroundColorSpan
 import android.text.style.ForegroundColorSpan
 import android.view.MotionEvent
 import android.view.View
@@ -97,6 +96,8 @@ class EarlyPracticeFragment : TopPmFragment<EarlyPracticeVM>() {
 
     private var chantStarted = false
     private var chantPaused = false
+    //用户一旦手动滑动经文就关闭自动跟随，本次诵经内不再抢位置（重新开始才复位）
+    private var chantAutoFollow = true
     private var chantPos = 0
     private var chantDone = false
     private var chantElapsed = 0
@@ -179,6 +180,14 @@ class EarlyPracticeFragment : TopPmFragment<EarlyPracticeVM>() {
         nb = ItemEpNianfoBinding.bind(pagerAdapter.pageView(2))
         vb = ItemEpVowBinding.bind(pagerAdapter.pageView(3))
         rb = ItemEpReviewBinding.bind(pagerAdapter.pageView(4))
+
+        //诵经：用户一碰经文就关闭自动跟随，本次诵经内不再自动复位滚动位置
+        cb.svSutra.setOnTouchListener { _, event ->
+            if (event.actionMasked == MotionEvent.ACTION_DOWN) {
+                chantAutoFollow = false
+            }
+            false //不消费，保留 ScrollView 自身滚动
+        }
 
         //诵经：把心经的非空白字符抽成逐字引导序列
         val sutra = getString(R.string.ep_heart_sutra)
@@ -351,17 +360,19 @@ class EarlyPracticeFragment : TopPmFragment<EarlyPracticeVM>() {
         if (chantDone || chantStarted) return
         chantStarted = true
         chantPaused = false
+        chantAutoFollow = true
         mainHandler.removeCallbacks(chantRunnable)
         mainHandler.postDelayed(chantRunnable, CHANT_CHAR_MS)
         renderButton()
     }
 
-    /** KTV 式逐字高亮：已读金色、未读暗金、当前字带柔光底 */
+    /** KTV 式逐字高亮：已读金色、未读暗金、当前字亮白金（仅换文字色，不换背景） */
     private fun renderSutra() {
         val sutra = getString(R.string.ep_heart_sutra)
         val text = SpannableStringBuilder(sutra)
         val dim = Color.parseColor("#6B5A3E")
         val gold = Color.parseColor("#E8CF94")
+        val bright = Color.parseColor("#FFF6DC")
         text.setSpan(ForegroundColorSpan(dim), 0, text.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         val readEnd = if (chantPos <= 0) 0 else chantIndices[chantPos - 1] + 1
         if (readEnd > 0) {
@@ -370,15 +381,16 @@ class EarlyPracticeFragment : TopPmFragment<EarlyPracticeVM>() {
         if (chantPos < chantIndices.size) {
             val idx = chantIndices[chantPos]
             text.setSpan(
-                BackgroundColorSpan(Color.parseColor("#66E8CF94")),
+                ForegroundColorSpan(bright),
                 idx, idx + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
             )
         }
         cb.tvSutraText.text = text
         cb.tvChantProgress.text = getString(R.string.ep_chant_progress, chantPos, chantIndices.size)
-        //跟着高亮字滚动，保证引导始终在可视区
+        //跟着高亮字滚动，保证引导始终在可视区；用户手动滑动期间不抢位置
+        if (!chantAutoFollow) return
         cb.svSutra.post {
-            if (!isAdded) return@post
+            if (!isAdded || !chantAutoFollow) return@post
             val layout = cb.tvSutraText.layout ?: return@post
             val line = layout.getLineForOffset(readEnd.coerceAtMost(sutra.length))
             cb.svSutra.scrollTo(0, (layout.getLineTop(line) - cb.svSutra.height / 2).coerceAtLeast(0))

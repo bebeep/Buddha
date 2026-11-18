@@ -161,7 +161,7 @@
 
     <!-- 第二步 诵经：心经全文，逐字引导 -->
     <string name="ep_chant_title">般若波罗蜜多心经</string>
-    <string name="ep_chant_tip">依次点亮，随文句静心读诵</string>
+    <string name="ep_chant_tip">朗声诵读可，心中默念亦可</string>
     <string name="ep_chant_start">开始诵经</string>
     <string name="ep_chant_progress">已诵 %1$d / %2$d 字</string>
     <string name="ep_chant_done">诵经完成</string>
