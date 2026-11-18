@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 敲击涟漪：金色圆环，动画缩放+渐隐 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <stroke android:width="2dp" android:color="#c0f6e9c8" />
+    <solid android:color="#00000000" />
+</shape>

@@ -42,6 +42,18 @@ class GlobalParam: TopData() {
     //修行等级配置（user_level_config 全表，按 level 升序），头衔/徽章/经验门槛都从这里取
     var userLevelConfig : List<UserLevelConfig>?=null
 
+    //念佛页背景音乐配置列表（buddha_bg_music 全表），每次进念佛页随机取一首循环播放
+    var nianfoMusic : List<BgMusic>?=null
+
+    //念佛每念满一藏(108声)增加的修行值
+    var expInNianfo : Int = 0
+
+    //念佛修行值当日可获取上限
+    var expPerdayInNianfo : Int = 0
+
+    //完成早课奖励的修行值（客户端展示兜底，实际发放值由提交结果带回）
+    var expInEarlyPractice : Int = 0
+
     // 启动页整图地址：服务端下发，客户端缓存到本地 filesDir，下次启动直接显示（避免联网等待/首帧空白）
     var splashUrl : String? = ""
 

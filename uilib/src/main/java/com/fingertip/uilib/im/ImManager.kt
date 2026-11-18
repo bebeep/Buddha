@@ -116,6 +116,8 @@ object ImManager {
                         override fun onSuccess() {
                             log(TAG, "IM 登录成功 $userId")
                             loggedIn = true
+                            //通知会话列表：登录前切过来的页面此时还没数据，收到事件立即重拉
+                            EventBusProxy.post(MessageEvent(EventConstant.EVENT_IM_LOGIN_SUCCESS))
                             //登录成功即会拉一次未读，角标立刻就位
                             refreshUnread()
                             //离线推送 token 注册必须等登录完成（否则 SDK 报 6014 not login）：

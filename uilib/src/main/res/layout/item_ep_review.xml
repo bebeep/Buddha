@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 早课第五步：回向。汇总前四步所做功课。 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_home_card_a"
+    android:orientation="vertical"
+    android:padding="18dp">
+
+    <com.fingertip.baselib.view.MyTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ep_review_title"
+        android:textColor="@color/c_gold_light"
+        android:textSize="17sp"
+        app:zdyFont="bold" />
+
+    <com.fingertip.baselib.view.MyTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@string/ep_review_tip"
+        android:textColor="@color/c_text_third"
+        android:textSize="11.5sp" />
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_review_worship"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_home_inner"
+        android:padding="12dp"
+        android:textColor="@color/c_text_main"
+        android:textSize="13sp" />
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_review_chant"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_home_inner"
+        android:padding="12dp"
+        android:textColor="@color/c_text_main"
+        android:textSize="13sp" />
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_review_nianfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_home_inner"
+        android:padding="12dp"
+        android:textColor="@color/c_text_main"
+        android:textSize="13sp" />
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_review_vow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_home_inner"
+        android:padding="12dp"
+        android:textColor="@color/c_text_main"
+        android:textSize="13sp" />
+
+</LinearLayout>

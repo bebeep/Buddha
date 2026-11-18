@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 念佛页背景：径向金色光晕 ×2 + 纵向暗底渐变（禅意暗金 token）
+     注意：光晕必须用 rectangle（radial 渐变按 gradientRadius 画正圆）；
+     用 oval 会随 View 尺寸拉伸成椭圆，在画面中间留下一大块椭圆亮斑。 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="90"
+                android:startColor="#12100c"
+                android:centerColor="#0b0907"
+                android:endColor="#080705"
+                android:centerY="0.55" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="340dp"
+                android:centerX="0.5"
+                android:centerY="0.26"
+                android:startColor="#29c4a265"
+                android:endColor="#00c4a265" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="300dp"
+                android:centerX="0.5"
+                android:centerY="1.0"
+                android:startColor="#386b4423"
+                android:endColor="#006b4423" />
+        </shape>
+    </item>
+</layer-list>

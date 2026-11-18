@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 音量条金色圆 thumb（15dp，带外发光感的柔边） -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <size android:width="15dp" android:height="15dp" />
+            <solid android:color="#33F6E9C8" />
+        </shape>
+    </item>
+    <item
+        android:bottom="2dp"
+        android:left="2dp"
+        android:right="2dp"
+        android:top="2dp">
+        <shape android:shape="oval">
+            <solid android:color="#f6e9c8" />
+        </shape>
+    </item>
+</layer-list>

@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    念佛 · 静心（对应 ui设计/念佛页/念佛页面.html）
+    分层：暗金渐变底 → 竖排经文层 → 佛光粒子层 → 顶栏/修行值/禅盘/底部梵音条
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#050403">
+
+    <!-- 背景光晕 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_nianfo" />
+
+    <!-- 佛光粒子 -->
+    <com.fingertip.uilib.view.nianfo.NianfoGlitterView
+        android:id="@+id/v_glitter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- 顶栏 -->
+        <com.fingertip.baselib.view.FullTopConstraintLayout
+            android:id="@+id/cl_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="12dp"
+                android:padding="10dp"
+                android:src="@drawable/icon_back_black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="#e8cf94" />
+
+            <TextView
+                android:id="@+id/tv_page_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.32"
+                android:shadowColor="#59E8CF94"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="9"
+                android:text="@string/meditation_title"
+                android:textColor="#f6e9c8"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- 当日已获得修行值 / 当日上限（进页调接口获取，上报成功后本地累加） -->
+            <TextView
+                android:id="@+id/tv_exp_today"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:text="0/0"
+                android:textColor="#c9b184"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/iv_info"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_info"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginEnd="12dp"
+                android:padding="10dp"
+                android:src="@drawable/ic_nianfo_info"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </com.fingertip.baselib.view.FullTopConstraintLayout>
+
+        <!-- 顶部计数：本轮「一藏·N」，圆角矩形边框（含文字一体绘制，尺寸严格包裹文字） -->
+        <com.fingertip.uilib.view.nianfo.NianfoCountFrame
+            android:id="@+id/v_count_frame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cl_top" />
+
+        <!-- 一藏奖励强提示：直接占用轮次计数的位置（提示期间计数胶囊隐藏），无边框纯金字 -->
+        <TextView
+            android:id="@+id/tv_reward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:shadowColor="#99E8CF94"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="16"
+            android:textColor="#FFE9B8"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cl_top"
+            tools:text="修行值 +3"
+            tools:visibility="visible" />
+
+        <!-- 禅盘舞台：呼吸环 + 佛珠环 + 木鱼 + 波纹/反馈浮层 -->
+        <FrameLayout
+            android:id="@+id/fl_stage"
+            android:layout_width="340dp"
+            android:layout_height="340dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.46">
+
+            <!-- 经文层：只铺满禅盘区域，做佛珠的背景（预渲染位图滚动，几乎零开销） -->
+            <com.fingertip.uilib.view.nianfo.NianfoSutraView
+                android:id="@+id/v_sutra"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <com.fingertip.uilib.view.nianfo.NianfoBreathRing
+                android:id="@+id/v_breath"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center" />
+
+            <ImageView
+                android:id="@+id/iv_muyu"
+                android:layout_width="300dp"
+                android:layout_height="262dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/meditation_title"
+                android:src="@drawable/muyu_q" />
+
+            <!-- 佛珠必须在木鱼之上：木鱼 ImageView 带点击监听会吃掉它矩形内的所有触摸，
+                 而佛珠环几乎整个落在木鱼矩形里，压在下面收不到拨动事件。
+                 木鱼中心区域由 NianfoMalaView 主动放行（dist <= 0.55 轨道半径时返回 false）。 -->
+            <com.fingertip.uilib.view.nianfo.NianfoMalaView
+                android:id="@+id/v_mala"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/tv_feedback"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:alpha="0"
+                android:letterSpacing="0.2"
+                android:shadowColor="#8CE8CF94"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="11"
+                android:textColor="#f6e9c8"
+                android:textSize="22sp"
+                tools:text="净念 · +2" />
+        </FrameLayout>
+
+        <!-- 阶段提示 -->
+        <TextView
+            android:id="@+id/tv_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            android:letterSpacing="0.3"
+            android:text="@string/nianfo_hint"
+            android:textColor="#c9b184"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toTopOf="@id/ll_dock"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- 底部梵音控制条 -->
+        <LinearLayout
+            android:id="@+id/ll_dock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_nianfo_dock"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="26dp"
+            android:paddingTop="18dp"
+            android:paddingEnd="26dp"
+            android:paddingBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <FrameLayout
+                android:id="@+id/fl_play"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:background="@drawable/bg_nianfo_play">
+
+                <ImageView
+                    android:id="@+id/iv_play"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/nianfo_audio_play"
+                    android:src="@drawable/ic_nianfo_play" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_track_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:letterSpacing="0.12"
+                    android:maxLines="1"
+                    android:text="@string/nianfo_audio_default_title"
+                    android:textColor="#f3e6c6"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_track_sub"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:ellipsize="end"
+                    android:letterSpacing="0.16"
+                    android:maxLines="1"
+                    android:text="@string/nianfo_audio_ready"
+                    android:textColor="#8a795a"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="19dp"
+                android:layout_height="19dp"
+                android:layout_marginStart="10dp"
+                android:contentDescription="@string/nianfo_audio_play"
+                android:src="@drawable/ic_nianfo_volume" />
+
+            <SeekBar
+                android:id="@+id/sb_volume"
+                android:layout_width="96dp"
+                android:layout_height="wrap_content"
+                android:max="100"
+                android:maxHeight="4dp"
+                android:minHeight="4dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp"
+                android:progress="55"
+                android:progressDrawable="@drawable/seek_nianfo_volume"
+                android:splitTrack="false"
+                android:thumb="@drawable/thumb_nianfo_volume"
+                android:thumbOffset="0dp" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 早课第一步：礼佛。顶部佛像，底部小沙弥背对用户，左右水波引导双手按住。 -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 佛像：优先用拜佛页当前佛像，拉不到用本地兜底 -->
+    <FrameLayout
+        android:id="@+id/fl_buddha"
+        android:layout_width="210dp"
+        android:layout_height="250dp"
+        android:background="@drawable/bg_nianfo"
+        app:layout_constraintBottom_toTopOf="@+id/tv_worship_tip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.30">
+
+        <ImageView
+            android:id="@+id/iv_buddha"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/bg_worship_buddha" />
+    </FrameLayout>
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_worship_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="@string/ep_worship_tip"
+        android:textColor="@color/c_text_third"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/ll_hands" />
+
+    <!-- 双手引导区：左/右水波各一个，中间小沙弥 -->
+    <LinearLayout
+        android:id="@+id/ll_hands"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|bottom"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/tv_worship_count"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.fingertip.uilib.view.earlypractice.EpRippleView
+            android:id="@+id/v_ripple_left"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginEnd="8dp" />
+
+        <FrameLayout
+            android:layout_width="104dp"
+            android:layout_height="196dp">
+
+            <ImageView
+                android:id="@+id/iv_monk"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ep_monk" />
+        </FrameLayout>
+
+        <com.fingertip.uilib.view.earlypractice.EpRippleView
+            android:id="@+id/v_ripple_right"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_worship_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/c_gold"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

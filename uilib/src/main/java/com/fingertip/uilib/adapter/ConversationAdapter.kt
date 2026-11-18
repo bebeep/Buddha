@@ -10,22 +10,21 @@ import com.fingertip.baselib.top.TopRcAdapter.TopRcViewHolder
 import com.fingertip.baselib.util.loadImg
 import com.fingertip.uilib.R
 import com.fingertip.uilib.databinding.ItemConversationBinding
+import com.fingertip.uilib.im.ConversationItem
 import com.fingertip.uilib.im.ImConfig
-import com.fingertip.uilib.im.ImMsgUtil
-import com.fingertip.uilib.im.ImUtil
 import com.fingertip.baselib.R as BaseR
-import com.tencent.imsdk.v2.V2TIMConversation
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 /**
- * 会话列表。官方账号排最前由 [ImUtil.sortConversations] 保证
+ * 会话列表。数据是 [ConversationItem]（SDK 会话已转成可缓存的展示模型，见 ImUtil.toItems），
+ * 官方账号排最前由上游排序保证。
  */
 class ConversationAdapter(context: android.content.Context) :
-    TopRcAdapter<V2TIMConversation, ConversationAdapter.Holder>(context) {
+    TopRcAdapter<ConversationItem, ConversationAdapter.Holder>(context) {
 
-    var onItemClick: ((V2TIMConversation) -> Unit)? = null
+    var onItemClick: ((ConversationItem) -> Unit)? = null
 
     override fun initLayoutId(viewType: Int) = R.layout.item_conversation
 
@@ -34,23 +33,22 @@ class ConversationAdapter(context: android.content.Context) :
         val b: ItemConversationBinding = binding
     }
 
-    /** 后端资料兜底：IM 侧没设昵称/头像时用它补（userId -> 资料） */
+    /** 后端资料兜底：IM 侧没设昵称/头像时用它补（peerId -> 资料） */
     private data class Profile(val name: String, val avatar: String)
     private val profiles = HashMap<String, Profile>()
     private val fetching = HashSet<String>()
 
-    /** 展示名：IM showName 优先；为空或就是原始 userId 时用后端昵称兜底 */
-    fun displayName(conv: V2TIMConversation): String {
-        val userId = ImUtil.userIdOfConversation(conv)
-        conv.showName?.takeIf { it.isNotBlank() && it != userId }?.let { return it }
-        profiles[userId]?.name?.takeIf { it.isNotBlank() }?.let { return it }
+    /** 展示名：IM showName 优先；为空时用后端昵称兜底 */
+    fun displayName(item: ConversationItem): String {
+        item.name.takeIf { it.isNotBlank() }?.let { return it }
+        profiles[item.peerId]?.name?.takeIf { it.isNotBlank() }?.let { return it }
         return ""
     }
 
     /** 展示头像：IM faceUrl 优先，为空时用后端头像兜底 */
-    fun displayAvatar(conv: V2TIMConversation): String {
-        conv.faceUrl?.takeIf { it.isNotBlank() }?.let { return it }
-        return profiles[ImUtil.userIdOfConversation(conv)]?.avatar ?: ""
+    fun displayAvatar(item: ConversationItem): String {
+        item.avatar.takeIf { it.isNotBlank() }?.let { return it }
+        return profiles[item.peerId]?.avatar ?: ""
     }
 
     override fun onCreateViewHolder(parent: android.view.ViewGroup, viewType: Int): Holder {
@@ -67,43 +65,40 @@ class ConversationAdapter(context: android.content.Context) :
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val conv = get(position) ?: return
+        val item = get(position) ?: return
         val b = holder.b
-        val userId = ImUtil.userIdOfConversation(conv)
 
-        val official = ImMsgUtil.isOfficialConv(userId)
-        b.tvOfficialBadge.visibility = if (official) View.VISIBLE else View.GONE
+        b.tvOfficialBadge.visibility = if (item.isOfficial) View.VISIBLE else View.GONE
 
         //昵称：IM 资料缺失时异步向后端拉，回来后刷新（profiles 缓存，只拉一次）
-        val name = displayName(conv)
-        if (name.isBlank()) ensureProfile(userId)
+        val name = displayName(item)
+        if (name.isBlank()) ensureProfile(item.peerId)
         b.tvName.text = name.ifBlank { context.getString(R.string.im_unknown_user) }
 
-        val avatarUrl = displayAvatar(conv)
+        val avatarUrl = displayAvatar(item)
         b.ivAvatar.loadImg(
             avatarUrl.ifBlank { null },
-            holder = if (official) R.drawable.icon_im_official_avatar else BaseR.mipmap.icon_default_head,
+            holder = if (item.isOfficial) R.drawable.icon_im_official_avatar else BaseR.mipmap.icon_default_head,
             transform = CircleCrop()
         )
-        b.tvSummary.text = conv.lastMessage?.let { ImMsgUtil.summaryOf(it) } ?: ""
-        b.tvTime.text = ImMsgUtil.conversationTime(conv.lastMessage?.timestamp ?: 0)
-        val unread = conv.unreadCount
-        if (unread > 0) {
+        b.tvSummary.text = item.summary
+        b.tvTime.text = item.timeText
+        if (item.unread > 0) {
             b.tvUnread.visibility = View.VISIBLE
-            b.tvUnread.text = if (unread > 99) "99+" else unread.toString()
+            b.tvUnread.text = if (item.unread > 99) "99+" else item.unread.toString()
         } else {
             b.tvUnread.visibility = View.GONE
         }
-        b.root.setOnClickListener { onItemClick?.invoke(conv) }
+        b.root.setOnClickListener { onItemClick?.invoke(item) }
     }
 
     /** 会话名/头像缺失时向后端补拉资料，成功后缓存并刷新列表 */
-    private fun ensureProfile(userId: String) {
-        if (profiles.containsKey(userId)) return
-        if (!fetching.add(userId)) return
-        val accountId = ImConfig.accountIdOf(userId)
+    private fun ensureProfile(peerId: String) {
+        if (profiles.containsKey(peerId)) return
+        if (!fetching.add(peerId)) return
+        val accountId = ImConfig.accountIdOf(peerId)
         if (accountId <= 0 || GlobalConfig.session.isBlank()) {
-            fetching.remove(userId)
+            fetching.remove(peerId)
             return
         }
         GlobalScope.launch(Dispatchers.Main) {
@@ -111,7 +106,7 @@ class ConversationAdapter(context: android.content.Context) :
                 val rsp = NetManager.getApi().getUserInfo(accountId = accountId)
                 if (rsp.code == 0) {
                     val p = rsp.data
-                    profiles[userId] = Profile(
+                    profiles[peerId] = Profile(
                         p?.userName?.takeIf { it.isNotBlank() } ?: "",
                         p?.avatar ?: ""
                     )
@@ -119,7 +114,7 @@ class ConversationAdapter(context: android.content.Context) :
                 }
             } catch (_: Exception) {
             } finally {
-                fetching.remove(userId)
+                fetching.remove(peerId)
             }
         }
     }

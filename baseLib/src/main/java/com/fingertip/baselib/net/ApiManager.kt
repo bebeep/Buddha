@@ -1,6 +1,7 @@
 package com.fingertip.baselib.net
 
 import com.fingertip.baselib.bean.BookChapter
+import com.fingertip.baselib.bean.NianfoToday
 import com.fingertip.baselib.bean.BookChapterItem
 import com.fingertip.baselib.bean.BookComment
 import com.fingertip.baselib.bean.BookCopySetting
@@ -1283,6 +1284,25 @@ interface ApiManager {
         @Url url: String = NetProperty.PRACTICE_MEDITATION_TOTAL,
         @Query("session") session: String = GlobalConfig.session
     ): RequestRsp<Int>
+
+    /**
+     * 念佛一藏(108声)上报：返回本次实际增加的修行值（0 = 当日已达上限）
+     */
+    @POST()
+    suspend fun reportNianfoRound(
+        @Url url: String = NetProperty.PRACTICE_NIANFO_ROUND_REPORT,
+        @Query("session") session: String = GlobalConfig.session,
+        @Body body: RequestBody = RequestBodyFactory.emptyJsonBody()
+    ): RequestRsp<Int>
+
+    /**
+     * 念佛当日已获得修行值（配合 globalParam.expPerdayInNianfo 展示 X/Y）
+     */
+    @GET()
+    suspend fun getNianfoTodayExp(
+        @Url url: String = NetProperty.PRACTICE_NIANFO_TODAY_EXP,
+        @Query("session") session: String = GlobalConfig.session
+    ): RequestRsp<NianfoToday>
 
     //endregion
 

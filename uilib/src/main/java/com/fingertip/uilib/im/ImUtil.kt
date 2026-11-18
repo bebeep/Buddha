@@ -38,6 +38,35 @@ object ImUtil {
     }
 
     /**
+     * SDK 会话 → 本地展示模型（同时完成格式化与排序）：
+     * 摘要/时间在这里一次性算好，列表绑定与本地缓存都不用再碰 SDK 对象。
+     */
+    fun toItems(list: List<V2TIMConversation>): List<ConversationItem> {
+        val official = ImConfig.officialUserId()
+        return list.map { conv ->
+            val userId = userIdOfConversation(conv)
+            val msg = conv.lastMessage
+            ConversationItem(
+                peerId = userId,
+                name = conv.showName?.takeIf { it.isNotBlank() && it != userId } ?: "",
+                avatar = conv.faceUrl?.takeIf { it.isNotBlank() } ?: "",
+                summary = msg?.let { ImMsgUtil.summaryOf(it) } ?: "",
+                timeText = ImMsgUtil.conversationTime(msg?.timestamp ?: 0),
+                unread = conv.unreadCount,
+                isOfficial = userId == official || ImMsgUtil.isOfficialConv(userId),
+                lastTimestamp = msg?.timestamp ?: 0
+            )
+        }.sortedWith(
+            Comparator { a, b ->
+                when {
+                    a.isOfficial && !b.isOfficial -> -1
+                    !a.isOfficial && b.isOfficial -> 1
+                    else -> b.lastTimestamp.compareTo(a.lastTimestamp)
+                }
+            })
+    }
+
+    /**
      * 云端置顶官方会话（把 conversation 的 isPinned 置为 true）。
      * 客户端排序已经保证官方在前，这里双保险：即使会话很多、本地排序失效
      * （例如腾讯云后台直接下发置顶列表），官方也稳居顶部。

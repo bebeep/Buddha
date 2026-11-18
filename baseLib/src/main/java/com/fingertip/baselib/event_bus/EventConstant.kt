@@ -19,4 +19,7 @@ object EventConstant {
     //IM 新消息到达，会话列表增量刷新 + 前台本地通知（object 为 V2TIMMessage）
     const val EVENT_IM_NEW_MESSAGE = 6
 
+    //IM 登录成功（冷启动同步完成）：会话列表首次填充靠它触发，避免切 tab 早于登录时空屏
+    const val EVENT_IM_LOGIN_SUCCESS = 7
+
 }

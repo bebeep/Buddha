@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Q 版木鱼：圆滚滚暖焦糖色 + 水汪汪大眼 + 粉腮红（自 ui设计/念佛页 SVG 逐路径转换） -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="320dp"
+    android:height="280dp"
+    android:viewportWidth="320"
+    android:viewportHeight="280">
+
+    <!-- 落影 -->
+    <path
+        android:pathData="M94,230 a66,11 0 1,0 132,0 a66,11 0 1,0 -132,0 Z"
+        android:fillColor="#000000"
+        android:fillAlpha="0.34" />
+
+    <!-- 身体主体（圆润胖鼓鼓） -->
+    <path
+        android:pathData="M160 72 C218 72 252 112 252 156 C252 202 214 230 160 230 C106 230 68 202 68 156 C68 112 102 72 160 72 Z"
+        android:fillColor="#d9a05b"
+        android:strokeColor="#5a3418"
+        android:strokeWidth="2.6"
+        android:strokeLineJoin="round" />
+
+    <!-- 底部暗面（柔和硬边） -->
+    <path
+        android:pathData="M68 156 C68 202 106 230 160 230 C214 230 252 202 252 156 C240 190 206 208 160 208 C114 208 80 190 68 156 Z"
+        android:fillColor="#b97a3d" />
+
+    <!-- 左上柔和高光 -->
+    <path
+        android:pathData="M98 122 C110 98 136 86 166 88 C140 98 116 118 108 146 C103 162 102 176 104 186 C92 168 90 142 98 122 Z"
+        android:fillColor="#f0c887"
+        android:fillAlpha="0.9" />
+
+    <!-- 小揪揪（鱼鳍呆毛） -->
+    <path
+        android:pathData="M150 74 Q156 56 166 60 Q172 64 170 76 Z"
+        android:fillColor="#c98c4a"
+        android:strokeColor="#5a3418"
+        android:strokeWidth="2.2"
+        android:strokeLineJoin="round" />
+
+    <!-- 腮红 -->
+    <path
+        android:pathData="M88,166 a16,10 0 1,0 32,0 a16,10 0 1,0 -32,0 Z"
+        android:fillColor="#e88a76"
+        android:fillAlpha="0.5" />
+    <path
+        android:pathData="M200,166 a16,10 0 1,0 32,0 a16,10 0 1,0 -32,0 Z"
+        android:fillColor="#e88a76"
+        android:fillAlpha="0.5" />
+
+    <!-- 水汪汪大眼：眼白 -->
+    <path
+        android:pathData="M108,140 a18,21 0 1,0 36,0 a18,21 0 1,0 -36,0 Z"
+        android:fillColor="#fffaf0"
+        android:strokeColor="#5a3418"
+        android:strokeWidth="2.4" />
+    <path
+        android:pathData="M176,140 a18,21 0 1,0 36,0 a18,21 0 1,0 -36,0 Z"
+        android:fillColor="#fffaf0"
+        android:strokeColor="#5a3418"
+        android:strokeWidth="2.4" />
+    <!-- 大瞳 -->
+    <path
+        android:pathData="M118.5,143 a10.5,13.5 0 1,0 21,0 a10.5,13.5 0 1,0 -21,0 Z"
+        android:fillColor="#3a2414" />
+    <path
+        android:pathData="M186.5,143 a10.5,13.5 0 1,0 21,0 a10.5,13.5 0 1,0 -21,0 Z"
+        android:fillColor="#3a2414" />
+    <!-- 双层高光 -->
+    <path
+        android:pathData="M127.8,138 a4.2,4.2 0 1,0 8.4,0 a4.2,4.2 0 1,0 -8.4,0 Z"
+        android:fillColor="#ffffff" />
+    <path
+        android:pathData="M195.8,138 a4.2,4.2 0 1,0 8.4,0 a4.2,4.2 0 1,0 -8.4,0 Z"
+        android:fillColor="#ffffff" />
+    <path
+        android:pathData="M123.2,148 a1.8,1.8 0 1,0 3.6,0 a1.8,1.8 0 1,0 -3.6,0 Z"
+        android:fillColor="#ffffff"
+        android:fillAlpha="0.85" />
+    <path
+        android:pathData="M191.2,148 a1.8,1.8 0 1,0 3.6,0 a1.8,1.8 0 1,0 -3.6,0 Z"
+        android:fillColor="#ffffff"
+        android:fillAlpha="0.85" />
+
+    <!-- 小 w 嘴 -->
+    <path
+        android:pathData="M146 178 Q153 172 160 179 Q167 172 174 178"
+        android:strokeColor="#5a3418"
+        android:strokeWidth="2.6"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000" />
+
+    <!-- 月牙木鱼缝 -->
+    <path
+        android:pathData="M112 198 Q160 214 208 198 Q160 206 112 198 Z"
+        android:fillColor="#7a4a22"
+        android:fillAlpha="0.55" />
+    <path
+        android:pathData="M114 199 Q160 212 206 199"
+        android:strokeColor="#f0c887"
+        android:strokeWidth="1.6"
+        android:strokeAlpha="0.6"
+        android:fillColor="#00000000" />
+
+    <!-- 木纹两笔 -->
+    <path
+        android:pathData="M134 100 Q160 92 186 100 M124 112 Q160 102 196 112"
+        android:strokeColor="#9c6a34"
+        android:strokeWidth="1.6"
+        android:strokeAlpha="0.4"
+        android:fillColor="#00000000" />
+</vector>

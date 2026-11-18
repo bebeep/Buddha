@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  念佛一藏圆满奖励弹窗：居中卡片，深金禅意风。
+  内容：标题「一藏圆满」+ 大号发光「修行值 +N」+ 说明行 + 继续按钮。
+  N 与说明行由外部传入（N=0 时说明行为"今日已达上限"）。
+-->
+<com.fingertip.baselib.view.shapeview.ShapeConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="48dp"
+    app:gdBgColor="@color/c_bg_card2"
+    app:gdRadius="16dp">
+
+    <TextView
+        android:id="@+id/tv_reward_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:letterSpacing="0.3"
+        android:text="一藏圆满"
+        android:textColor="#c9b183"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_reward_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:shadowColor="#59E8CF94"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="18"
+        android:text="修行值 +3"
+        android:textColor="#f6e9c8"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_reward_title" />
+
+    <TextView
+        android:id="@+id/tv_reward_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:lineSpacingExtra="4dp"
+        android:text="功德回向 · 继续精进"
+        android:textColor="#8a795a"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_reward_value" />
+
+    <com.fingertip.baselib.view.shapeview.ShapeTextView
+        android:id="@+id/tv_reward_ok"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginHorizontal="28dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginBottom="26dp"
+        android:gravity="center"
+        android:letterSpacing="0.2"
+        android:text="继续"
+        android:textColor="#2b2013"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:gdBgColor="#e8cf94"
+        app:gdRadius="22dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_reward_desc" />
+
+</com.fingertip.baselib.view.shapeview.ShapeConstraintLayout>

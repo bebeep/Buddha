@@ -399,6 +399,9 @@ object RequestBodyFactory {
         return buildJsonRequestBody(param)
     }
 
+    /** 空 JSON body：POST 无参数接口用 */
+    fun emptyJsonBody(): RequestBody = buildJsonRequestBody(HashMap<String, Any>())
+
     /**
      * 举报入参
      * @param targetAccountId 被举报内容的作者账号 id

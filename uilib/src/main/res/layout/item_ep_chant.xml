@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 早课第二步：诵经。般若波罗蜜多心经全文，点底部主按钮后逐字高亮跟读。 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_home_card_a"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <com.fingertip.baselib.view.MyTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/ep_chant_title"
+        android:textColor="@color/c_gold_light"
+        android:textSize="17sp"
+        app:zdyFont="bold" />
+
+    <com.fingertip.baselib.view.MyTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:text="@string/ep_chant_tip"
+        android:textColor="@color/c_text_third"
+        android:textSize="11.5sp" />
+
+    <ScrollView
+        android:id="@+id/sv_sutra"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:layout_weight="1"
+        android:background="@drawable/bg_home_inner"
+        android:overScrollMode="never"
+        android:padding="14dp">
+
+        <TextView
+            android:id="@+id/tv_sutra_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="8dp"
+            android:text="@string/ep_heart_sutra"
+            android:textColor="@color/c_text_main"
+            android:textSize="15sp" />
+    </ScrollView>
+
+    <com.fingertip.baselib.view.MyTextView
+        android:id="@+id/tv_chant_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textColor="@color/c_gold"
+        android:textSize="11.5sp" />
+
+</LinearLayout>

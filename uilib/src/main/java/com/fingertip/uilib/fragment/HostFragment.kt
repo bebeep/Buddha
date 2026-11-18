@@ -21,14 +21,13 @@ import com.fingertip.uilib.fragment.book.FojingReadFragment
 import com.fingertip.uilib.fragment.game.FangShengFragment
 import com.fingertip.uilib.fragment.moment.MomentDetailsFragment
 import com.fingertip.uilib.fragment.practice.EarlyPracticeFragment
-import com.fingertip.uilib.fragment.practice.MeditationFragment
+import com.fingertip.uilib.fragment.nianfo.NianFoFragment
 import com.fingertip.uilib.fragment.temple.TempleListFragment
 import com.fingertip.uilib.fragment.wishing.WishTreeFragment
 import com.fingertip.uilib.fragment.worshiping.SignInFragment
 import com.fingertip.uilib.utils.findMainFragment
 import com.fingertip.uilib.utils.openPage
 import com.fingertip.uilib.viewmodel.HomeVM
-import com.weikaiyun.fragmentation.SupportFragment
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -110,7 +109,8 @@ class HostFragment : TopVMFragment<HomeVM>() {
                     0 -> openPage(BuddhaTextsFragment())
                     1 -> openPage(WishTreeFragment())
                     2 -> openPage(TempleListFragment())
-                    else -> openPage(MeditationFragment())
+                    //念佛：禅盘木鱼静心页（敲击节奏判定 + 服务器下发梵音循环）
+                    else -> openPage(NianFoFragment())
                 }
             }
             onGameClick = { index ->

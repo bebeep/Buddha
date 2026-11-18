@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 播放按钮：金描边圆 + 中心微光 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="40dp"
+                android:centerX="0.4"
+                android:centerY="0.35"
+                android:startColor="#38e8cf94"
+                android:endColor="#0fc4a265" />
+            <stroke android:width="1dp" android:color="#80e8cf94" />
+        </shape>
+    </item>
+</layer-list>

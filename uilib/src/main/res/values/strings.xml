@@ -69,6 +69,24 @@
     <string name="meditation_holy_guanyin">观音圣号</string>
     <string name="meditation_holy_mantra">六字大明咒</string>
 
+    <!-- ============ 念佛静心（禅盘木鱼） ============ -->
+    <string name="nianfo_stat_merit">修行值</string>
+    <string name="nianfo_round_done">修行值 +%1$d</string>
+    <string name="nianfo_round_capped">今日修行值已达上限</string>
+    <string name="nianfo_round_report_fail">一藏圆满，修行值结算失败</string>
+    <string name="nianfo_rules_title">念佛规则</string>
+    <string name="nianfo_rules_body">· 轻触木鱼，或在佛珠右侧自上而下轻拨，计一声佛号\n· 距节拍点越近，判定越高：净念 +2 / 专注 +1 / 随念 +1\n· 每念满一藏（108 声）为一轮，可获得修行值奖励\n· 每轮修行值 +%1$d，每日最多获得 %2$d 点，达到上限后当日不再发放\n· 停止念佛片刻后，本轮计数将重新开始</string>
+    <string name="nianfo_hint">随光晕起落 · 一念一叩</string>
+    <string name="nianfo_hint_round">一藏圆满 · 静心继续</string>
+    <string name="nianfo_info_toast">随呼吸节奏叩击木鱼或拨动佛珠 · 每108念为一藏</string>
+    <string name="nianfo_audio_default_title">梵音 · 清净海潮</string>
+    <string name="nianfo_audio_ready">轻触播放，聆听空灵梵音</string>
+    <string name="nianfo_audio_playing">梵音流淌 · 随息入定</string>
+    <string name="nianfo_audio_paused">梵音暂歇 · 静候重启</string>
+    <string name="nianfo_audio_empty">梵音曲库暂空 · 静候上音</string>
+    <string name="nianfo_audio_play">播放梵音</string>
+    <string name="nianfo_audio_stop">暂停梵音</string>
+
     <!-- ============ 供灯 ============ -->
     <string name="lamp_title">供灯</string>
     <string name="lamp_relight">续燃</string>
@@ -133,39 +151,46 @@
     <string name="ep_login_first">登录后才能记录早课</string>
     <string name="ep_submit_fail">提交失败，请稍后重试</string>
 
-    <!-- 第一步 礼佛 -->
-    <string name="ep_worship_tip">轻触佛像，礼佛三拜</string>
+    <!-- 第一步 礼佛：双手按住两侧水波，手机前倾 30° 算一拜 -->
+    <string name="ep_worship_tip">双手按住两侧水波，手机从上往下倾斜 30° 礼佛</string>
+    <string name="ep_worship_tip_holding">保持按住，俯身 30° 完成一拜</string>
+    <string name="ep_worship_tip_bowing">礼佛中…</string>
+    <string name="ep_worship_done">三拜圆满</string>
     <string name="ep_worship_count">已礼 %1$d / 3 拜</string>
     <string name="ep_worship_tap">礼佛</string>
 
-    <!-- 第二步 诵经 -->
-    <string name="ep_chant_tip">静心读诵，读满 60 秒进入下一步</string>
+    <!-- 第二步 诵经：心经全文，逐字引导 -->
+    <string name="ep_chant_title">般若波罗蜜多心经</string>
+    <string name="ep_chant_tip">依次点亮，随文句静心读诵</string>
     <string name="ep_chant_start">开始诵经</string>
-    <string name="ep_chant_counting">诵经中… %1$d 秒</string>
+    <string name="ep_chant_progress">已诵 %1$d / %2$d 字</string>
     <string name="ep_chant_done">诵经完成</string>
-    <string name="ep_chant_source">今日经文 · %1$s · %2$s</string>
-    <string name="ep_chant_text">观自在菩萨，行深般若波罗蜜多时，照见五蕴皆空，度一切苦厄。\n\n舍利子，色不异空，空不异色，色即是空，空即是色，受想行识，亦复如是。\n\n舍利子，是诸法空相，不生不灭，不垢不净，不增不减。</string>
+    <string name="ep_heart_sutra">观自在菩萨，行深般若波罗蜜多时，照见五蕴皆空，度一切苦厄。\n舍利子，色不异空，空不异色，色即是空，空即是色，受想行识，亦复如是。\n舍利子，是诸法空相，不生不灭，不垢不净，不增不减。\n是故空中无色，无受想行识，无眼耳鼻舌身意，无色声香味触法，无眼界，乃至无意识界，无无明，亦无无明尽，乃至无老死，亦无老死尽，无苦集灭道，无智亦无得。\n以无所得故，菩提萨埵，依般若波罗蜜多故，心无挂碍。无挂碍故，无有恐怖，远离颠倒梦想，究竟涅槃。\n三世诸佛，依般若波罗蜜多故，得阿耨多罗三藐三菩提。\n故知般若波罗蜜多，是大神咒，是大明咒，是无上咒，是无等等咒，能除一切苦，真实不虚。\n故说般若波罗蜜多咒，即说咒曰：揭谛揭谛，波罗揭谛，波罗僧揭谛，菩提萨婆诃。</string>
 
-    <!-- 第三步 称念 -->
-    <string name="ep_nianfo_tip">轻触念珠，称念佛号二十一声</string>
-    <string name="ep_nianfo_count">已称念 %1$d / 21 声</string>
+    <!-- 第三步 念佛：与首页念佛页一致，满一藏解锁 -->
+    <string name="ep_nianfo_tip">敲木鱼或拨佛珠，念满一藏</string>
+    <string name="ep_nianfo_count">已念 %1$d / 108 声</string>
+    <string name="ep_nianfo_done">一藏圆满</string>
 
     <!-- 第四步 发愿 -->
     <string name="ep_vow_tip">写下今日一愿，仅保存在本机，不上传</string>
     <string name="ep_vow_hint">愿……</string>
+    <string name="ep_vow_count">%1$d/%2$d 字</string>
+    <string name="ep_vow_history">历史发愿（点击带入）</string>
+    <string name="ep_vow_history_empty">还没有历史发愿</string>
 
     <!-- 第五步 回向 -->
     <string name="ep_review_title">回向</string>
     <string name="ep_review_tip">愿以此功德，回向众生</string>
-    <string name="ep_review_worship">礼佛 %1$d 拜</string>
-    <string name="ep_review_chant">诵经 %1$d 秒</string>
-    <string name="ep_review_nianfo">称念 %1$d 声</string>
-    <string name="ep_review_vow">今日愿：%1$s</string>
+    <string name="ep_review_worship">礼佛 · %1$d 拜</string>
+    <string name="ep_review_chant">诵经 · 般若波罗蜜多心经 一遍</string>
+    <string name="ep_review_nianfo">念佛 · 一藏 %1$d 声</string>
+    <string name="ep_review_vow">发愿 · %1$s</string>
     <string name="ep_finish">完成早课</string>
     <string name="ep_back">返回</string>
 
     <!-- 结果态 -->
-    <string name="ep_done_title">早课已完成</string>    <string name="ep_done_desc">今日功德币 +%1$d，连续修持 %2$d 天</string>
+    <string name="ep_done_title">早课已完成</string>    <string name="ep_done_desc">修行值 +%1$d，连续修持 %2$d 天</string>
     <string name="ep_done_milestone">再修 %1$d 天达成下一个里程碑</string>
     <string name="ep_already_title">今天已完成早课</string>
     <string name="ep_already_desc">一天一记录，明天再来。也可以去念佛、抄经继续修持</string>
@@ -437,6 +462,7 @@
     <string name="im_conversation_title">消息</string>
     <string name="im_conversation_empty">还没有会话，去佛友圈认识同修吧</string>
     <string name="im_conversation_need_login">登录后开始与佛友聊天</string>
+    <string name="im_conversation_syncing">正在同步会话…</string>
     <string name="im_official_badge">官方</string>
     <string name="im_unknown_user">同修</string>
     <string name="im_chat_input_hint">说点什么…</string>

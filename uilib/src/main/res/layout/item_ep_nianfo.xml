@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 早课第三步：念佛。与首页念佛页同款木鱼+佛珠交互，满一藏（108）解锁下一步。 -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#050403">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_nianfo" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.fingertip.uilib.view.nianfo.NianfoCountFrame
+            android:id="@+id/v_count_frame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_nianfo_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/ep_nianfo_tip"
+            android:textColor="#c9b184"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/v_count_frame" />
+
+        <FrameLayout
+            android:id="@+id/fl_stage"
+            android:layout_width="320dp"
+            android:layout_height="320dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.54">
+
+            <com.fingertip.uilib.view.nianfo.NianfoSutraView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <com.fingertip.uilib.view.nianfo.NianfoBreathRing
+                android:id="@+id/v_breath"
+                android:layout_width="280dp"
+                android:layout_height="280dp"
+                android:layout_gravity="center" />
+
+            <ImageView
+                android:id="@+id/iv_muyu"
+                android:layout_width="280dp"
+                android:layout_height="244dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/meditation_title"
+                android:src="@drawable/muyu_q" />
+
+            <com.fingertip.uilib.view.nianfo.NianfoMalaView
+                android:id="@+id/v_mala"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/tv_feedback"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:alpha="0"
+                android:shadowColor="#8CE8CF94"
+                android:shadowRadius="11"
+                android:textColor="#f6e9c8"
+                android:textSize="20sp"
+                tools:text="佛号 · +1" />
+        </FrameLayout>
+
+        <com.fingertip.baselib.view.MyTextView
+            android:id="@+id/tv_nianfo_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            android:textColor="#E8CF94"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

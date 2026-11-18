@@ -612,6 +612,16 @@ object NetProperty {
      */
     const val PRACTICE_MEDITATION_TOTAL               = "practice/getMeditationTotal"
 
+    /**
+     * 念佛一藏(108声)上报（返回本次实际增加的修行值，0=当日已达上限）
+     */
+    const val PRACTICE_NIANFO_ROUND_REPORT            = "practice/nianfoRoundReport"
+
+    /**
+     * 念佛当日已获得修行值（进念佛页展示 X/上限）
+     */
+    const val PRACTICE_NIANFO_TODAY_EXP               = "practice/getNianfoTodayExp"
+
 
     /********************** 海外版：供灯 **********************/
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 念佛页底部梵音控制条：向上渐变压暗 + 金色发丝顶线 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:startColor="#00080705"
+                android:centerColor="#d1080705"
+                android:endColor="#f5080705" />
+        </shape>
+    </item>
+    <item android:gravity="top">
+        <shape android:shape="rectangle">
+            <size android:height="1dp" />
+            <solid android:color="#14e8cf94" />
+        </shape>
+    </item>
+</layer-list>
