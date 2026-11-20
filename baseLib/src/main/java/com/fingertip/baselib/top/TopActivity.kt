@@ -1,8 +1,12 @@
 package com.fingertip.baselib.top
 
+import android.graphics.Rect
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
+import android.widget.EditText
+import com.blankj.utilcode.util.KeyboardUtils
 import com.fingertip.baselib.event_bus.EventBusProxy
 import com.fingertip.baselib.event_bus.MessageEvent
 import com.fingertip.baselib.log
@@ -37,6 +41,28 @@ abstract class TopActivity : SupportActivity(), View.OnClickListener {
     }
 
 
+
+    /**
+     * 点击输入框以外的区域时收起软键盘并清除焦点。
+     * 放在 Activity 层统一处理，覆盖所有页面/弹窗中的 EditText。
+     * 返回 super 不消费事件，点击照常分发给目标 View。
+     */
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+        if (ev.action == MotionEvent.ACTION_DOWN) {
+            val focused = currentFocus
+            if (focused is EditText) {
+                val rect = Rect()
+                focused.getGlobalVisibleRect(rect)
+                val x = ev.rawX.toInt()
+                val y = ev.rawY.toInt()
+                if (!rect.contains(x, y)) {
+                    focused.clearFocus()
+                    KeyboardUtils.hideSoftInput(focused)
+                }
+            }
+        }
+        return super.dispatchTouchEvent(ev)
+    }
 
     /**
      * 是否让布局充满statusBar
