@@ -9,10 +9,11 @@
     <string name="uselib_net5">No Connection</string>
 
     <!-- ============ 首页（海外版·暗调禅金） ============ -->
-    <string name="home_block_practice">今日修持</string>
+    <string name="home_block_practice">今日早课</string>
     <string name="home_block_game">禅意小游戏</string>
     <string name="home_block_moment">佛友圈精选</string>
     <string name="home_btn_start_practice">开始早课</string>
+    <string name="home_btn_practice_done">早课已完成</string>
     <string name="home_streak_days">连续 %1$d 天</string>
     <string name="home_practice_done_today">今日已完成</string>
     <string name="home_practice_todo_today">今日还未开始</string>

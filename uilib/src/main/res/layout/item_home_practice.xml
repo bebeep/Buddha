@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
     首页区块 2：今日修持
-    头部「今日修持」+ 连签天数 + 本页唯一的金色实底按钮「开始早课」；
-    下面三格槽位（诵经 / 抄经 / 签到），每格圆形图标 + 标题 + 完成态（右上角金勾）。
+    头部「今日修持」+ 连签天数 + 右上角主按钮「开始早课」（早课全完成后置灰为「早课已完成」）；
+    下面五格对应早课五步（礼佛/诵经/念佛/发愿/回向），每格圆形单字 + 标题 + 完成态（右上角金勾）。
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -29,40 +29,9 @@
             android:textColor="@color/c_text_main"
             android:textSize="13sp" />
 
-        <com.fingertip.baselib.view.MyTextView
-            android:id="@+id/tv_streak"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_weight="1"
-            android:textColor="@color/c_text_second"
-            android:textSize="10.5sp" />
-
-        <!-- 全页唯一金色实底，别再往这一屏加第二个 -->
-        <com.fingertip.baselib.view.MyTextView
-            android:id="@+id/tv_start_practice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_home_gold_btn"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:paddingTop="6dp"
-            android:paddingBottom="6dp"
-            android:text="@string/home_btn_start_practice"
-            android:textColor="@color/c_ff5a4a22"
-            android:textSize="12sp"
-            app:zdyFont="bold" />
 
     </LinearLayout>
 
-    <com.fingertip.baselib.view.MyTextView
-        android:id="@+id/tv_practice_state"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:text="@string/home_practice_todo_today"
-        android:textColor="@color/c_text_second"
-        android:textSize="10.5sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -70,22 +39,22 @@
         android:layout_marginTop="14dp"
         android:orientation="horizontal">
 
-        <!-- 格 1：诵经 -->
+        <!-- 第一步：礼佛 -->
         <LinearLayout
             android:id="@+id/ll_slot_1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="6dp"
+            android:layout_marginEnd="2dp"
             android:layout_weight="1"
             android:background="@drawable/bg_home_inner"
             android:gravity="center"
             android:orientation="vertical"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp">
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
 
             <FrameLayout
-                android:layout_width="44dp"
-                android:layout_height="44dp">
+                android:layout_width="36dp"
+                android:layout_height="36dp">
 
                 <com.fingertip.baselib.view.MyTextView
                     android:id="@+id/tv_slot_1_char"
@@ -93,20 +62,20 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/bg_home_circle"
                     android:gravity="center"
-                    android:text="诵"
+                    android:text="礼"
                     android:textColor="@color/c_gold"
-                    android:textSize="15sp" />
+                    android:textSize="13sp" />
 
                 <com.fingertip.baselib.view.MyTextView
                     android:id="@+id/tv_slot_1_check"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
                     android:layout_gravity="top|end"
                     android:background="@drawable/bg_home_dot_gold"
                     android:gravity="center"
                     android:text="✓"
                     android:textColor="@color/c_text_on_gold"
-                    android:textSize="9sp"
+                    android:textSize="8sp"
                     android:visibility="gone" />
 
             </FrameLayout>
@@ -115,39 +84,30 @@
                 android:id="@+id/tv_slot_1_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/home_slot_chant"
+                android:layout_marginTop="6dp"
+                android:text="@string/early_practice_step_worship"
                 android:textColor="@color/c_text_main"
-                android:textSize="11.5sp" />
-
-            <com.fingertip.baselib.view.MyTextView
-                android:id="@+id/tv_slot_1_state"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="@string/home_slot_go"
-                android:textColor="@color/c_text_hint"
-                android:textSize="9.5sp" />
+                android:textSize="10sp" />
 
         </LinearLayout>
 
-        <!-- 格 2：抄经 -->
+        <!-- 第二步：诵经 -->
         <LinearLayout
             android:id="@+id/ll_slot_2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:layout_marginEnd="3dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
             android:layout_weight="1"
             android:background="@drawable/bg_home_inner"
             android:gravity="center"
             android:orientation="vertical"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp">
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
 
             <FrameLayout
-                android:layout_width="44dp"
-                android:layout_height="44dp">
+                android:layout_width="36dp"
+                android:layout_height="36dp">
 
                 <com.fingertip.baselib.view.MyTextView
                     android:id="@+id/tv_slot_2_char"
@@ -155,20 +115,20 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/bg_home_circle"
                     android:gravity="center"
-                    android:text="抄"
+                    android:text="诵"
                     android:textColor="@color/c_gold"
-                    android:textSize="15sp" />
+                    android:textSize="13sp" />
 
                 <com.fingertip.baselib.view.MyTextView
                     android:id="@+id/tv_slot_2_check"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
                     android:layout_gravity="top|end"
                     android:background="@drawable/bg_home_dot_gold"
                     android:gravity="center"
                     android:text="✓"
                     android:textColor="@color/c_text_on_gold"
-                    android:textSize="9sp"
+                    android:textSize="8sp"
                     android:visibility="gone" />
 
             </FrameLayout>
@@ -177,38 +137,31 @@
                 android:id="@+id/tv_slot_2_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/home_slot_copy"
+                android:layout_marginTop="6dp"
+                android:text="@string/early_practice_step_chant"
                 android:textColor="@color/c_text_main"
-                android:textSize="11.5sp" />
+                android:textSize="10sp" />
 
-            <com.fingertip.baselib.view.MyTextView
-                android:id="@+id/tv_slot_2_state"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="@string/home_slot_go"
-                android:textColor="@color/c_text_hint"
-                android:textSize="9.5sp" />
 
         </LinearLayout>
 
-        <!-- 格 3：签到 -->
+        <!-- 第三步：念佛 -->
         <LinearLayout
             android:id="@+id/ll_slot_3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
             android:layout_weight="1"
             android:background="@drawable/bg_home_inner"
             android:gravity="center"
             android:orientation="vertical"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp">
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
 
             <FrameLayout
-                android:layout_width="44dp"
-                android:layout_height="44dp">
+                android:layout_width="36dp"
+                android:layout_height="36dp">
 
                 <com.fingertip.baselib.view.MyTextView
                     android:id="@+id/tv_slot_3_char"
@@ -216,20 +169,20 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/bg_home_circle"
                     android:gravity="center"
-                    android:text="签"
+                    android:text="念"
                     android:textColor="@color/c_gold"
-                    android:textSize="15sp" />
+                    android:textSize="13sp" />
 
                 <com.fingertip.baselib.view.MyTextView
                     android:id="@+id/tv_slot_3_check"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
                     android:layout_gravity="top|end"
                     android:background="@drawable/bg_home_dot_gold"
                     android:gravity="center"
                     android:text="✓"
                     android:textColor="@color/c_text_on_gold"
-                    android:textSize="9sp"
+                    android:textSize="8sp"
                     android:visibility="gone" />
 
             </FrameLayout>
@@ -238,19 +191,118 @@
                 android:id="@+id/tv_slot_3_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/home_slot_sign"
+                android:layout_marginTop="6dp"
+                android:text="@string/early_practice_step_nianfo"
                 android:textColor="@color/c_text_main"
-                android:textSize="11.5sp" />
+                android:textSize="10sp" />
+
+
+        </LinearLayout>
+
+        <!-- 第四步：发愿 -->
+        <LinearLayout
+            android:id="@+id/ll_slot_4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_home_inner"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <FrameLayout
+                android:layout_width="36dp"
+                android:layout_height="36dp">
+
+                <com.fingertip.baselib.view.MyTextView
+                    android:id="@+id/tv_slot_4_char"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_home_circle"
+                    android:gravity="center"
+                    android:text="愿"
+                    android:textColor="@color/c_gold"
+                    android:textSize="13sp" />
+
+                <com.fingertip.baselib.view.MyTextView
+                    android:id="@+id/tv_slot_4_check"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_gravity="top|end"
+                    android:background="@drawable/bg_home_dot_gold"
+                    android:gravity="center"
+                    android:text="✓"
+                    android:textColor="@color/c_text_on_gold"
+                    android:textSize="8sp"
+                    android:visibility="gone" />
+
+            </FrameLayout>
 
             <com.fingertip.baselib.view.MyTextView
-                android:id="@+id/tv_slot_3_state"
+                android:id="@+id/tv_slot_4_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="@string/home_slot_go"
-                android:textColor="@color/c_text_hint"
-                android:textSize="9.5sp" />
+                android:layout_marginTop="6dp"
+                android:text="@string/early_practice_step_vow"
+                android:textColor="@color/c_text_main"
+                android:textSize="10sp" />
+
+
+        </LinearLayout>
+
+        <!-- 第五步：回向 -->
+        <LinearLayout
+            android:id="@+id/ll_slot_5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_home_inner"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <FrameLayout
+                android:layout_width="36dp"
+                android:layout_height="36dp">
+
+                <com.fingertip.baselib.view.MyTextView
+                    android:id="@+id/tv_slot_5_char"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_home_circle"
+                    android:gravity="center"
+                    android:text="回"
+                    android:textColor="@color/c_gold"
+                    android:textSize="13sp" />
+
+                <com.fingertip.baselib.view.MyTextView
+                    android:id="@+id/tv_slot_5_check"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_gravity="top|end"
+                    android:background="@drawable/bg_home_dot_gold"
+                    android:gravity="center"
+                    android:text="✓"
+                    android:textColor="@color/c_text_on_gold"
+                    android:textSize="8sp"
+                    android:visibility="gone" />
+
+            </FrameLayout>
+
+            <com.fingertip.baselib.view.MyTextView
+                android:id="@+id/tv_slot_5_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/early_practice_step_share"
+                android:textColor="@color/c_text_main"
+                android:textSize="10sp" />
+
 
         </LinearLayout>
 

@@ -50,17 +50,19 @@ import com.fingertip.baselib.R as BaseR
 class EarlyPracticeFragment : TopPmFragment<EarlyPracticeVM>() {
 
     companion object {
-        private const val WORSHIP_TARGET = 3
-        private const val NIANFO_TARGET = 108
+        //阈值与 SP key 统一由 EarlyPracticeProgress 定义，首页读同一份完成态
+        private const val WORSHIP_TARGET = EarlyPracticeProgress.WORSHIP_TARGET
+        private const val NIANFO_TARGET = EarlyPracticeProgress.NIANFO_TARGET
         //跟读速度：每字 0.5 秒
         private const val CHANT_CHAR_MS = 500L
         private const val VOW_MAX = 200
-        private const val SP_NAME = "early_practice"
-        private const val SP_KEY_VOW = "last_vow"
-        private const val SP_KEY_VOW_HISTORY = "vow_history"
+        private const val SP_NAME = EarlyPracticeProgress.SP_NAME
+        private const val SP_KEY_VOW = EarlyPracticeProgress.SP_KEY_VOW
+        private const val SP_KEY_VOW_HISTORY = EarlyPracticeProgress.SP_KEY_VOW_HISTORY
         //分步完成状态（按天存，跨天作废）：五步 json
-        private const val SP_KEY_PROGRESS = "progress"
-        private const val SP_KEY_PROGRESS_DATE = "progress_date"
+        private const val SP_KEY_PROGRESS = EarlyPracticeProgress.SP_KEY_PROGRESS
+        private const val SP_KEY_PROGRESS_DATE = EarlyPracticeProgress.SP_KEY_PROGRESS_DATE
+        private const val ARG_START_STEP = "start_step"
         private val STEP_NAMES = intArrayOf(
             R.string.early_practice_step_worship,
             R.string.early_practice_step_chant,
@@ -71,6 +73,13 @@ class EarlyPracticeFragment : TopPmFragment<EarlyPracticeVM>() {
     }
 
     override fun layoutId() = R.layout.fragment_early_practice
+
+    /** 从首页五格进入时指定起始步骤（1..5），默认第 1 步 */
+    fun startAt(stepIndex: Int): EarlyPracticeFragment = apply {
+        arguments = (arguments ?: android.os.Bundle()).apply {
+            putInt(ARG_START_STEP, stepIndex.coerceIn(1, 5))
+        }
+    }
 
     override fun initVM(): EarlyPracticeVM = provideVM()
 
@@ -161,6 +170,12 @@ class EarlyPracticeFragment : TopPmFragment<EarlyPracticeVM>() {
         tilt = EpTiltDetector(requireContext()) { onBow() }
 
         binding.vpSteps.registerOnPageChangeCallback(pageChangeCallback)
+
+        //从首页五格进入时定位到对应步骤（回调会同步更新 step 与头部/按钮）
+        val startStep = arguments?.getInt(ARG_START_STEP, 1) ?: 1
+        if (startStep != 1 && !todayDone) {
+            binding.vpSteps.setCurrentItem(startStep - 1, false)
+        }
 
         restoreProgress()
         renderHeader()
@@ -539,6 +554,8 @@ class EarlyPracticeFragment : TopPmFragment<EarlyPracticeVM>() {
                 justSubmitted = false
                 showDoneResult(data.currentStreak)
             } else if (data.lastPracticeDate == todayStr()) {
+                //换设备登录可能没经过首页：统计接口确认今日已完成，先回填本地五步
+                EarlyPracticeProgress.syncFromServer(requireContext(), true)
                 todayDone = true
                 showAlreadyResult()
             }
@@ -548,6 +565,8 @@ class EarlyPracticeFragment : TopPmFragment<EarlyPracticeVM>() {
             if (!isAdded) return@observe
             if (!result.success) {
                 if (result.errorMsg?.contains("签到") == true || result.errorMsg?.contains("今天") == true) {
+                    //服务端判定今天已完成，本地同步补齐，别等首页下次刷新
+                    EarlyPracticeProgress.syncFromServer(requireContext(), true)
                     todayDone = true
                     showAlreadyResult()
                 } else {
@@ -558,6 +577,8 @@ class EarlyPracticeFragment : TopPmFragment<EarlyPracticeVM>() {
             }
             //服务端把本次实际发放修行值放在提交结果 data 里带回
             expGain = result.data?.toIntOrNull() ?: 0
+            //提交成功即今日完成，先把五步本地状态补齐，首页不用等 summary 回来才亮
+            EarlyPracticeProgress.syncFromServer(requireContext(), true)
             justSubmitted = true
             mViewModel.loadStatistic()
         }
@@ -771,36 +792,60 @@ class EarlyPracticeFragment : TopPmFragment<EarlyPracticeVM>() {
 
     // ==================== 分步状态本地持久化（按天） ====================
 
-    /** 五步完成状态写本地；跨天自动作废。提交状态仍以服务器为准。 */
+    /** 五步完成状态写本地；跨天、换账号自动作废。提交状态仍以服务器为准。 */
     private fun saveProgress() {
         if (!::vb.isInitialized) return
+        //服务端回填过的完成态不能被本机中途保存覆盖掉
+        val raw = sp.getString(SP_KEY_PROGRESS, "").orEmpty()
+        val serverDone = runCatching { JSONObject(raw).optBoolean("serverDone", false) }
+            .getOrDefault(false)
         val progress = JSONObject().apply {
             put("worship", worshipCount)
             put("chant", chantDone)
             put("nianfo", nianfoCount)
             put("vow", vb.etVow.text?.toString().orEmpty())
+            if (serverDone) put("serverDone", true)
         }
         sp.edit()
             .putString(SP_KEY_PROGRESS, progress.toString())
             .putString(SP_KEY_PROGRESS_DATE, todayStr())
+            .putString(
+                EarlyPracticeProgress.SP_KEY_ACCOUNT_ID,
+                (GlobalConfig.userData?.accountId ?: 0).toString()
+            )
             .apply()
     }
 
     /** 进页恢复当天的分步状态：只恢复进度，是否完成仍由服务端统计判定 */
     private fun restoreProgress() {
+        if (!EarlyPracticeProgress.belongsToCurrentAccount(
+                sp.getString(EarlyPracticeProgress.SP_KEY_ACCOUNT_ID, "")
+            )
+        ) return
         if (sp.getString(SP_KEY_PROGRESS_DATE, "") != todayStr()) return
         val raw = sp.getString(SP_KEY_PROGRESS, "").orEmpty()
         if (raw.isBlank()) return
         try {
             val p = JSONObject(raw)
-            worshipCount = p.optInt("worship", 0).coerceIn(0, WORSHIP_TARGET)
-            chantDone = p.optBoolean("chant", false)
-            nianfoCount = p.optInt("nianfo", 0).coerceIn(0, NIANFO_TARGET)
-            if (chantDone) chantPos = chantIndices.size
-            nianfoDone = nianfoCount >= NIANFO_TARGET
-            val vow = p.optString("vow", "")
-            vb.etVow.setText(vow)
-            vowDone = vow.trim().isNotBlank()
+            if (p.optBoolean("serverDone", false)) {
+                //服务端已判今日完成（换设备登录回填）：五步直接按完成态恢复，
+                //愿文是本机私密数据、服务端不存，没有就不编造
+                worshipCount = WORSHIP_TARGET
+                chantDone = true
+                chantPos = chantIndices.size
+                nianfoCount = NIANFO_TARGET
+                nianfoDone = true
+                vowDone = true
+            } else {
+                worshipCount = p.optInt("worship", 0).coerceIn(0, WORSHIP_TARGET)
+                chantDone = p.optBoolean("chant", false)
+                nianfoCount = p.optInt("nianfo", 0).coerceIn(0, NIANFO_TARGET)
+                if (chantDone) chantPos = chantIndices.size
+                nianfoDone = nianfoCount >= NIANFO_TARGET
+                val vow = p.optString("vow", "")
+                vb.etVow.setText(vow)
+                vowDone = vow.trim().isNotBlank()
+            }
             wb.tvWorshipCount.text = getString(R.string.ep_worship_count, worshipCount)
             nb.tvNianfoCount.text = getString(R.string.ep_nianfo_count, nianfoCount)
             renderSutra()

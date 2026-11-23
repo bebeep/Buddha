@@ -15,6 +15,7 @@ import com.fingertip.uilib.databinding.ItemHomeKingkongBinding
 import com.fingertip.uilib.databinding.ItemHomeLampBarBinding
 import com.fingertip.uilib.databinding.ItemHomeMomentBinding
 import com.fingertip.uilib.databinding.ItemHomePracticeBinding
+import com.fingertip.uilib.fragment.practice.EarlyPracticeProgress
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -84,8 +85,8 @@ class HomeSectionAdapter(context: Context) : TopRcAdapter<HomeSection, TopRcAdap
     //「开始早课」
     var onStartPractice: (() -> Unit)? = null
 
-    //修持三格：0 诵经 1 抄经 2 签到
-    var onPracticeSlotClick: ((slot: Int) -> Unit)? = null
+    //早课五步格：0 礼佛 1 诵经 2 念佛 3 发愿 4 回向，点开早课对应步骤
+    var onPracticeSlotClick: ((step: Int) -> Unit)? = null
 
     //供灯条点击，切拜佛 tab
     var onLampClick: (() -> Unit)? = null
@@ -169,53 +170,45 @@ class HomeSectionAdapter(context: Context) : TopRcAdapter<HomeSection, TopRcAdap
 
     /**
      * 区块 2：今日修持。
-     * 头部显示连签与今日早课状态；三格槽位按聚合接口的当日完成态渲染
-     * （sutraDone / copyDone / signDone，服务端按用户时区算"今天"）
+     * 头部显示连签与今日早课状态；五格对应早课五步，各自完成态从
+     * [EarlyPracticeProgress] 读取（前四步本地按天进度 + 回向看服务端提交态）。
+     * 五步全完成时「开始早课」置灰并改「早课已完成」。
      */
     private fun bindPractice(holder: TopRcAdapter.TopRcViewHolder) {
         val binding = holder.getBinding<ItemHomePracticeBinding>()
         val data = summary
 
-        //没数据（游客或接口还没回来）时不摆打卡态，只留引导
-        if (data == null) {
-            binding.tvStreak.text = ""
-            binding.tvPracticeState.text = ""
-        } else {
-            binding.tvStreak.text = if (data.streakDays > 0) {
-                context.getString(R.string.home_streak_days, data.streakDays)
-            } else ""
-            binding.tvPracticeState.setText(
-                if (data.practiceDoneToday) R.string.home_practice_done_today
-                else R.string.home_practice_todo_today
-            )
+
+        //五步完成态：前四步读本地按天进度，回向读服务端提交态
+        val flags = EarlyPracticeProgress.stepDoneFlags(context, data?.practiceDoneToday == true)
+        val containers = listOf(
+            binding.llSlot1, binding.llSlot2, binding.llSlot3, binding.llSlot4, binding.llSlot5
+        )
+        val checks = listOf(
+            binding.tvSlot1Check, binding.tvSlot2Check, binding.tvSlot3Check,
+            binding.tvSlot4Check, binding.tvSlot5Check
+        )
+        containers.forEachIndexed { index, container ->
+            bindPracticeSlot(container, checks[index], index + 1, flags[index])
         }
 
-        binding.tvStartPractice.setOnClickListener { onStartPractice?.invoke() }
-
-        bindPracticeSlot(binding.llSlot1, binding.tvSlot1Check, binding.tvSlot1State, 0, data?.sutraDone == true)
-        bindPracticeSlot(binding.llSlot2, binding.tvSlot2Check, binding.tvSlot2State, 1, data?.copyDone == true)
-        bindPracticeSlot(binding.llSlot3, binding.tvSlot3Check, binding.tvSlot3State, 2, data?.signDone == true)
     }
 
     /**
      * 单格槽位：已完成显示金勾与亮金状态字，未完成显示虚线底 + 禁用色
      *
-     * @param done 服务端下发的当日完成态；游客（summary 为空）一律按未完成渲染
+     * @param step 早课步骤序号 1..5，点击时回调给 HostFragment 打开对应步骤
+     * @param done 该步完成态；游客（summary 为空）一律按未完成渲染
      */
     private fun bindPracticeSlot(
         container: View,
         check: View,
-        state: com.fingertip.baselib.view.MyTextView,
-        slot: Int,
+        step: Int,
         done: Boolean
     ) {
         check.visibility = if (done) View.VISIBLE else View.GONE
         container.setBackgroundResource(if (done) R.drawable.bg_home_inner else R.drawable.bg_home_dashed)
-        state.setText(if (done) R.string.home_slot_done else R.string.home_slot_go)
-        state.setTextColor(
-            if (done) TopApplication.instance.getColor(BaseR.color.c_gold_light) else TopApplication.instance.getColor(BaseR.color.c_text_hint)
-        )
-        container.setOnClickListener { onPracticeSlotClick?.invoke(slot) }
+        container.setOnClickListener { onPracticeSlotClick?.invoke(step) }
     }
 
     /**

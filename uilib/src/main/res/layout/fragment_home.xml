@@ -14,16 +14,6 @@
     android:layout_height="match_parent"
     android:background="@color/c_bg_page">
 
-    <com.scwang.smart.refresh.layout.SmartRefreshLayout
-        android:id="@+id/srl"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:overScrollMode="never"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_content"
             android:layout_width="match_parent"
@@ -33,7 +23,6 @@
             android:paddingBottom="12dp"
             android:scrollbars="none" />
 
-    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
     <!-- 首屏聚合接口失败：给一条重试出口，别让页面空着 -->
     <LinearLayout

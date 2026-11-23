@@ -1,12 +1,10 @@
 package com.fingertip.uilib.fragment
 
 import android.view.View
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fingertip.baselib.bean.HomeBlockConfig
 import com.fingertip.baselib.bean.HomeSummaryData
 import com.fingertip.baselib.constant.GlobalConfig
-import com.fingertip.baselib.db.ChapterStore
 import com.fingertip.baselib.log
 import com.fingertip.baselib.top.TopVMFragment
 import com.fingertip.baselib.util.ToastUtil
@@ -16,11 +14,10 @@ import com.fingertip.uilib.adapter.HomeSectionAdapter
 import com.fingertip.uilib.databinding.FragmentHomeBinding
 import com.fingertip.uilib.dialog.QuoteCardDialog
 import com.fingertip.uilib.fragment.book.BuddhaTextsFragment
-import com.fingertip.uilib.fragment.book.FojingCopyFragment
-import com.fingertip.uilib.fragment.book.FojingReadFragment
 import com.fingertip.uilib.fragment.game.FangShengFragment
 import com.fingertip.uilib.fragment.moment.MomentDetailsFragment
 import com.fingertip.uilib.fragment.practice.EarlyPracticeFragment
+import com.fingertip.uilib.fragment.practice.EarlyPracticeProgress
 import com.fingertip.uilib.fragment.nianfo.NianFoFragment
 import com.fingertip.uilib.fragment.temple.TempleListFragment
 import com.fingertip.uilib.fragment.wishing.WishTreeFragment
@@ -31,7 +28,6 @@ import com.fingertip.uilib.viewmodel.HomeVM
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
-import kotlinx.coroutines.launch
 
 /**
  * 首页（海外版重写）
@@ -84,7 +80,6 @@ class HostFragment : TopVMFragment<HomeVM>() {
 
     override fun initShiTu() {
         initRecycler()
-        initRefresh()
         showSkeleton()
         loadAll()
     }
@@ -93,16 +88,8 @@ class HostFragment : TopVMFragment<HomeVM>() {
         adapter = HomeSectionAdapter(requireContext()).apply {
             onBuddhaCardClick = { openPage(SignInFragment()) }
             onStartPractice = { openPage(EarlyPracticeFragment()) }
-            onPracticeSlotClick = { slot ->
-                when (slot) {
-                    //诵经：有上次读经进度就直接续读，没有则进佛经书架让用户选
-                    0 -> continueRead()
-                    //抄经：有上次抄经进度就直接续抄，没有则进佛经书架让用户选
-                    1 -> continueCopy()
-                    //签到
-                    else -> openPage(SignInFragment())
-                }
-            }
+            //早课五步：打开早课页并定位到点击的那一步
+            onPracticeSlotClick = { step -> openPage(EarlyPracticeFragment().startAt(step)) }
             onLampClick = { switchTab(TAB_WORSHIP) }
             onKingKongClick = { index ->
                 when (index) {
@@ -142,53 +129,7 @@ class HostFragment : TopVMFragment<HomeVM>() {
         binding.rvContent.itemAnimator = null
     }
 
-    /**
-     * 诵经格：续读上次的经。
-     * 本地读经进度表有记录就直接进读经页（带 bookId），没有则回退到佛经书架让用户自己选。
-     * 进度表只存 bookId/章节/位置，标题留空，读经页会按 bookId 自行加载书目。
-     */
-    private fun continueRead() {
-        lifecycleScope.launch {
-            val progress = ChapterStore.lastReadProgress()
-            if (!isAdded) return@launch
-            if (progress != null) {
-                openPage(FojingReadFragment.newInstance(progress.bookId, ""))
-            } else {
-                openPage(BuddhaTextsFragment())
-            }
-        }
-    }
 
-    /**
-     * 抄经格：续抄上次的经，逻辑同 [continueRead]
-     */
-    private fun continueCopy() {
-        lifecycleScope.launch {
-            val progress = ChapterStore.lastCopyProgress()
-            if (!isAdded) return@launch
-            if (progress != null) {
-                openPage(FojingCopyFragment.newInstance(progress.bookId, ""))
-            } else {
-                openPage(BuddhaTextsFragment())
-            }
-        }
-    }
-
-    private fun initRefresh() {
-        //刷新头用 UIApplication 里注册的全局默认（MaterialHeader），这里只关掉上拉加载。
-        //用 OnRefreshLoadMoreListener 收口，和项目里其它列表保持一致（直接 setOnRefreshListener 有重载歧义）
-        binding.srl.setEnableLoadMore(false)
-        binding.srl.setOnRefreshLoadMoreListener(
-            object : com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener {
-                override fun onRefresh(refreshLayout: com.scwang.smart.refresh.layout.api.RefreshLayout) {
-                    loadAll()
-                }
-
-                override fun onLoadMore(refreshLayout: com.scwang.smart.refresh.layout.api.RefreshLayout) {
-                    //整页刷新不带上拉加载
-                }
-            })
-    }
 
     /**
      * 首屏先只放骨架：聚合接口回来之前不铺假数据，避免骨架和真数据高度不一致地跳
@@ -223,7 +164,6 @@ class HostFragment : TopVMFragment<HomeVM>() {
 
         mViewModel.summaryResult.observe(viewLifecycleOwner) { result ->
             if (!isAdded) return@observe
-            binding.srl.finishRefresh()
             if (result.success) {
                 binding.llError.visibility = View.GONE
                 renderSummary(result.data)
@@ -246,6 +186,9 @@ class HostFragment : TopVMFragment<HomeVM>() {
     }
 
     private fun renderSummary(data: HomeSummaryData?) {
+        //服务端说今天已完成就把五步完成态回填本地：换设备登录后首页与早课页
+        //读的是同一份状态，不会只首页亮着、进早课又变回第一步
+        EarlyPracticeProgress.syncFromServer(requireContext(), data?.practiceDoneToday == true)
         adapter.summary = data
         adapter.initData(buildSections(data?.blocks))
     }
