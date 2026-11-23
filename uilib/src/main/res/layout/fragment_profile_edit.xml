@@ -60,15 +60,16 @@
             android:paddingBottom="24dp">
 
             <!-- 头像：金环展示位。换头像走 OSS 上传流程未接，点击先进我的装扮 -->
-            <ImageView
+            <com.fingertip.baselib.view.CircleImageView
                 android:id="@+id/iv_avatar"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="12dp"
-                android:background="@drawable/bg_avatar_gold_ring"
-                android:padding="3dp"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                app:civ_border_color="@color/c_gold"
+                app:civ_border_overlay="true"
+                app:civ_border_width="2dp"/>
 
             <com.fingertip.baselib.view.MyTextView
                 android:id="@+id/tv_wear_hint"
