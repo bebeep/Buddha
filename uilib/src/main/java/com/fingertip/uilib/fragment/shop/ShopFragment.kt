@@ -2,16 +2,14 @@ package com.fingertip.uilib.fragment.shop
 
 import android.os.Bundle
 import android.view.View
-import androidx.recyclerview.widget.GridLayoutManager
-import com.fingertip.baselib.bean.MyDressData
+import androidx.viewpager.widget.ViewPager
 import com.fingertip.baselib.bean.ShopDressConfig
 import com.fingertip.baselib.constant.GlobalConfig
-import com.fingertip.baselib.log
+import com.fingertip.baselib.top.TopFragmentPagerAdapter
 import com.fingertip.baselib.top.TopPmFragment
 import com.fingertip.baselib.util.ToastUtil
 import com.fingertip.uilib.R
 import com.fingertip.uilib.activity.LoginRegisterActivity
-import com.fingertip.uilib.adapter.ShopDressAdapter
 import com.fingertip.uilib.databinding.FragmentShopBinding
 import com.fingertip.uilib.dialog.ConfirmDialog
 import com.fingertip.uilib.dialog.PayConfirmDialog
@@ -19,16 +17,18 @@ import com.fingertip.uilib.utils.openPage
 import com.fingertip.uilib.viewmodel.ShopVM
 
 /**
- * 装扮商店
+ * 装扮商店（ViewPager 宿主）
  *
- * 五类商品：灯具 / 佛龛 / 头像框 / 昵称 3D / 灯油。
- * 前四类是永久买断，买完可以直接佩戴；灯油是消耗品，买一次点一次灯，没有拥有态。
+ * 四类永久装扮：灯具 / 佛龛 / 头像框 / 昵称 3D，买完可以直接佩戴。
+ * 灯油是消耗品，已从商店 tab 移除，改由拜佛页佛灯弹窗「点灯/续燃」直接购买。
+ *
+ * 页面结构：宿主只持有标题栏、tab、ViewPager 与购买链路；四个分类页
+ * [ShopTabFragment] 各自持有 VM / 列表 / 空态，点 tab 与左右滑都只改 ViewPager 的
+ * currentItem，因此不存在单 RecyclerView 方案里「旧请求盖到新分类」的串页问题。
+ * 购买、佩戴这两类写操作保留在宿主，成功后统一通知各页刷新。
  *
  * 购买链路（v2.20 起全站统一功德币，不再走 IAP）：
- *   确认弹窗 → dress/buyByCoin（服务端扣币+发货，返回余额）→ 回写余额 → 刷新持有列表 → 自动佩戴
- * 一步到位，没有「钱扣了没发货」的中间态。
- *
- * 游客可以逛（列表接口公开），点购买时提示登录。
+ *   确认弹窗 → dress/buyByCoin（服务端扣币+发货，返回余额）→ 回写余额 → 刷新持有列表 → 自动佩戴。
  */
 class ShopFragment : TopPmFragment<ShopVM>() {
 
@@ -37,18 +37,26 @@ class ShopFragment : TopPmFragment<ShopVM>() {
         private const val ARG_TYPE = "dressType"
         private const val ARG_BUDDHA = "buddhaId"
 
+        /** tab 顺序与 ShopDressConfig.TYPE_* 一一对应 */
+        private val TAB_TYPES = listOf(
+            ShopDressConfig.TYPE_LAMP,
+            ShopDressConfig.TYPE_SHRINE,
+            ShopDressConfig.TYPE_FRAME,
+            ShopDressConfig.TYPE_NAME3D
+        )
+
         /**
-         * @param dressType 打开时默认选中的品类，见 [ShopDressConfig.TYPE_LAMP] 等
-         * @param buddhaId 拜佛页带过来的目标佛像id：买灯油时建单落到该佛像，发货即点亮在其佛前。
-         *                 其它入口（我的页/我的装扮）不传，按 0 处理（灯油订单不指定佛像）
+         * @param dressType 打开时默认选中的品类；灯油不再有商店 tab
+         * @param buddhaId 预留参数：点灯/续燃已在拜佛页弹窗内完成，不再经商店传佛像
          */
-        fun newInstance(dressType: Int = ShopDressConfig.TYPE_LAMP, buddhaId: Int = 0): ShopFragment {
-            val f = ShopFragment()
-            f.arguments = Bundle().apply {
+        fun newInstance(
+            dressType: Int = ShopDressConfig.TYPE_LAMP,
+            buddhaId: Int = 0
+        ): ShopFragment = ShopFragment().apply {
+            arguments = Bundle().apply {
                 putInt(ARG_TYPE, dressType)
                 putInt(ARG_BUDDHA, buddhaId)
             }
-            return f
         }
     }
 
@@ -58,23 +66,23 @@ class ShopFragment : TopPmFragment<ShopVM>() {
 
     private val binding get() = mBinding as FragmentShopBinding
 
-    private lateinit var adapter: ShopDressAdapter
+    private lateinit var tabFragments: List<ShopTabFragment>
 
-    //分类 chip 按品类下标排列（0 位不用）
-    private val chips by lazy {
-        listOf(binding.tvCat1, binding.tvCat2, binding.tvCat3, binding.tvCat4, binding.tvCat5)
-    }
-
-    private var currentType = ShopDressConfig.TYPE_LAMP
-
-    //我的装扮缓存：用来判断每个商品是「购买 / 佩戴 / 使用中」
-    private var myData: MyDressData? = null
+    /** 当前分类，供「我的装扮 → 去商城」回跳时定位 */
+    private var currentType: Int = ShopDressConfig.TYPE_LAMP
 
     //等待结果的商品，购买回调是异步的，只能先存着
     private var pendingDress: ShopDressConfig? = null
 
-    //买灯油时的目标佛像id（拜佛页入口带入），建单随单落库
+    //预留：点灯/续燃不再经过商店，买其他装扮时按 0 处理
     private var targetBuddhaId = 0
+
+    /** tab 与 ViewPager 共用一份状态：page 变化只更新 currentType，不重复拉列表 */
+    private val pageChangeListener = object : ViewPager.SimpleOnPageChangeListener() {
+        override fun onPageSelected(position: Int) {
+            currentType = TAB_TYPES.getOrElse(position) { ShopDressConfig.TYPE_LAMP }
+        }
+    }
 
     override fun getClickViews(): List<View> = listOf(binding.ivBack, binding.tvMyDress)
 
@@ -88,77 +96,29 @@ class ShopFragment : TopPmFragment<ShopVM>() {
 
     override fun initShiTu() {
         targetBuddhaId = arguments?.getInt(ARG_BUDDHA, 0) ?: 0
-        val arg = arguments?.getInt(ARG_TYPE, ShopDressConfig.TYPE_LAMP) ?: ShopDressConfig.TYPE_LAMP
+        val arg = arguments?.getInt(ARG_TYPE, ShopDressConfig.TYPE_LAMP)
+            ?: ShopDressConfig.TYPE_LAMP
         //传进来的品类不合法就退回灯具，避免入口参数写错导致空白页
-        currentType = if (arg in ShopDressConfig.TYPE_LAMP..ShopDressConfig.TYPE_OIL) {
-            arg
-        } else {
-            ShopDressConfig.TYPE_LAMP
-        }
+        currentType = if (arg in TAB_TYPES) arg else ShopDressConfig.TYPE_LAMP
 
-        initRecycler()
-        initChips()
-        selectChip(currentType)
-        mViewModel.loadMyDress()
-    }
-
-    private fun initRecycler() {
-        adapter = ShopDressAdapter(requireContext()) { item -> onDressClick(item) }
-        adapter.emptyText = getString(R.string.shop_empty)
-        binding.rcList.layoutManager = GridLayoutManager(requireContext(), 2)
-        binding.rcList.adapter = adapter
-        //商品数量少，关掉条目动画避免切分类时整屏闪
-        binding.rcList.itemAnimator = null
-    }
-
-    private fun initChips() {
-        chips.forEachIndexed { index, chip ->
-            chip.setOnClickListener { selectChip(index + 1) }
-        }
-    }
-
-    /**
-     * 切换品类：换选中样式 + 拉对应分类的商品
-     */
-    private fun selectChip(type: Int) {
-        currentType = type
-        chips.forEachIndexed { index, chip ->
-            val selected = index + 1 == type
-            chip.setBackgroundResource(
-                if (selected) R.drawable.bg_shop_chip_on else R.drawable.bg_home_pill_solid
-            )
-            chip.setTextColor(
-                requireContext().getColor(
-                    if (selected) R.color.shop_text_on_gold else R.color.shop_text_chip_off
-                )
-            )
-        }
-        mViewModel.loadList(type)
+        tabFragments = TAB_TYPES.map { ShopTabFragment.newInstance(it) }
+        binding.vpShop.offscreenPageLimit = TAB_TYPES.size - 1
+        binding.vpShop.adapter = TopFragmentPagerAdapter(tabFragments, childFragmentManager)
+        val titles = arrayOf(
+            getString(R.string.shop_cat_lamp),
+            getString(R.string.shop_cat_shrine),
+            getString(R.string.shop_cat_frame),
+            getString(R.string.shop_cat_name3d)
+        )
+        binding.tabLayout.normalTextSize = 13f
+        binding.tabLayout.selectTextSize = 14f
+        binding.tabLayout.setViewPager(binding.vpShop, titles)
+        binding.vpShop.addOnPageChangeListener(pageChangeListener)
+        binding.vpShop.setCurrentItem(TAB_TYPES.indexOf(currentType), false)
     }
 
     override fun initObserver() {
         super.initObserver()
-
-        mViewModel.listResult.observe(viewLifecycleOwner) { result ->
-            if (!isAdded) return@observe
-            if (result.success) {
-                val list = result.data.orEmpty()
-                adapter.initData(list)
-            } else {
-                log(TAG, "商品列表失败：${result.errorCode} ${result.errorMsg}")
-                adapter.showEmptyNow()
-            }
-        }
-
-        mViewModel.myResult.observe(viewLifecycleOwner) { result ->
-            if (!isAdded) return@observe
-            if (result.success) {
-                renderMyDress(result.data)
-            } else {
-                //未登录就是 INVALID_SESSION，游客态不需要提示，商品照常可逛
-                log(TAG, "我的装扮失败：${result.errorCode} ${result.errorMsg}")
-            }
-        }
 
         mViewModel.buyResult.observe(viewLifecycleOwner) { result ->
             if (!isAdded) return@observe
@@ -170,20 +130,16 @@ class ShopFragment : TopPmFragment<ShopVM>() {
                 return@observe
             }
             //服务端返回扣费后的余额：直接回写全局用户信息，商城/我的页立刻同步
-            result.data?.toIntOrNull()?.let { coin ->
-                GlobalConfig.userData?.coin = coin
-            }
+            result.data?.toIntOrNull()?.let { coin -> GlobalConfig.userData?.coin = coin }
             if (dress == null) return@observe
             if (dress.isOil()) {
                 //灯油：服务端发货时已经点燃了灯，这里只提示去拜佛页看
                 ToastUtil.showMessage(getString(R.string.shop_pay_success_oil))
-                mViewModel.loadList(currentType)
-                mViewModel.loadMyDress()
+                refreshTabs()
             } else {
                 //永久装扮：到账后自动佩戴，省掉用户再点一次
                 ToastUtil.showMessage(getString(R.string.shop_pay_success))
                 mViewModel.wear(dress.id, true)
-                mViewModel.loadList(currentType)
             }
         }
 
@@ -194,40 +150,32 @@ class ShopFragment : TopPmFragment<ShopVM>() {
             } else {
                 ToastUtil.showMessage(result.errorMsg ?: getString(R.string.shop_load_fail))
             }
-            //无论成败都以服务端状态为准重新拉一次，避免本地状态和服务端不一致
-            mViewModel.loadMyDress()
+            //无论成败都以服务端状态为准刷新所有分类页（含刚买的那一类）
+            refreshTabs()
         }
     }
 
-    private fun renderMyDress(data: MyDressData?) {
-        myData = data
-        adapter.ownedIds = data?.dresses.orEmpty().map { it.dressId }.toSet()
-        //佩戴中的 id：四类各一个槽位，都算「使用中」
-        val wearing = data?.wearing
-        adapter.wearingIds = if (wearing == null) emptySet() else setOf(
-            wearing.lampDressId,
-            wearing.shrineDressId,
-            wearing.frameDressId,
-            wearing.name3dDressId
-        ).filter { it > 0 }.toSet()
-        adapter.notifyDataSetChanged()
+    /** 各分类页自己重拉，写操作只在宿主发生，这里做一次扇出即可 */
+    private fun refreshTabs() {
+        if (!isAdded || !::tabFragments.isInitialized) return
+        tabFragments.forEach { it.refresh() }
     }
 
     /**
-     * 点商品卡：油直接买；永久装扮按「已拥有 → 佩戴」「未拥有 → 购买」分流
+     * 供子分类页调用：商品卡点击。油直接买；永久装扮按「已拥有 → 佩戴」「未拥有 → 购买」分流。
+     * owned/wearing 由点击发生的那一页传入——持有态是本页独立渲染的，宿主不缓存副本，
+     * 避免四页状态同步时拿到别的分类的旧数据。
      */
-    private fun onDressClick(item: ShopDressConfig) {
+    fun onDressClick(item: ShopDressConfig, owned: Boolean, wearing: Boolean) {
         if (item.isOil()) {
             confirmPurchase(item)
             return
         }
-        val wearing = item.id in adapter.wearingIds
         if (wearing) {
-            //已经在用了，不弹任何东西，避免误触后一脸问号
             ToastUtil.showMessage(getString(R.string.shop_action_in_use))
             return
         }
-        if (item.id in adapter.ownedIds) {
+        if (owned) {
             mViewModel.wear(item.id, true)
             return
         }
@@ -280,12 +228,19 @@ class ShopFragment : TopPmFragment<ShopVM>() {
     }
 
     /**
-     * 外部（我的装扮「去商城」）把分类切到指定品类。
-     * 只切 UI 与列表，不额外压栈。
+     * 外部（我的装扮「去商城」）把页面切到指定品类。
+     * 只切 ViewPager 坐标，不额外压栈、不重复拉列表。
      */
     fun switchCategory(type: Int) {
-        if (type in ShopDressConfig.TYPE_LAMP..ShopDressConfig.TYPE_OIL) {
-            selectChip(type)
+        if (!isAdded || !::tabFragments.isInitialized || type !in TAB_TYPES) return
+        currentType = type
+        binding.vpShop.setCurrentItem(TAB_TYPES.indexOf(type), true)
+    }
+
+    override fun onDestroyView() {
+        if (::tabFragments.isInitialized) {
+            binding.vpShop.removeOnPageChangeListener(pageChangeListener)
         }
+        super.onDestroyView()
     }
 }

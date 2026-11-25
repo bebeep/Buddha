@@ -7,11 +7,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.fingertip.baselib.bean.MomentEntity
 import com.fingertip.baselib.dialog.BigImageDialog
+import com.fingertip.baselib.top.TopApplication
 import com.fingertip.baselib.top.TopRcAdapter
 import com.fingertip.baselib.util.TimeUtil
 import com.fingertip.baselib.util.loadHead
 import com.fingertip.uilib.R
 import com.fingertip.uilib.databinding.ItemMomentBinding
+import com.lzlz.toplib.extention.setColoredTextAllOccurrences
+import com.fingertip.baselib.R as BaseR
 
 /**
  * 佛友圈列表。
@@ -29,8 +32,14 @@ class MomentAdapter(
     //长按：目前只有「我的感悟」用（删自己的内容），列表页不传就不生效
     val onItemLongClick: ((entity: MomentEntity) -> Unit)? = null,
     //头像/昵称点击：跳用户主页，不传就不响应
-    val onUserClick: ((entity: MomentEntity) -> Unit)? = null
+    val onUserClick: ((entity: MomentEntity) -> Unit)? = null,
+    //搜索页专用：正文里命中关键词的部分染成亮金，普通列表不传
+    var highlightKeyword: String = ""
 ) : TopRcAdapter<MomentEntity, MomentAdapter.MomentVH>(context) {
+
+    private val highlightColor: Int by lazy {
+        TopApplication.instance.getColor(BaseR.color.c_gold_light)
+    }
 
     /** 视频容器最大宽度（屏宽 - 左右各 16dp 边距，和布局里的 margin 对齐） */
     private val videoMaxWidth: Int by lazy {
@@ -57,7 +66,13 @@ class MomentAdapter(
         binding.rvPhotos.visibility = if (entity.momentType == 3) View.VISIBLE else View.GONE
         binding.tvContent.visibility = if (entity.textContent.isNullOrEmpty()) View.GONE else View.VISIBLE
 
-        binding.tvContent.text = entity.textContent
+        if (highlightKeyword.isBlank()) {
+            binding.tvContent.text = entity.textContent
+        } else {
+            binding.tvContent.setColoredTextAllOccurrences(
+                entity.textContent.orEmpty(), highlightKeyword, highlightColor, true
+            )
+        }
         binding.tvName.text = entity.postUserName
         com.fingertip.uilib.utils.LevelUi.bindTag(binding.ivLevelTag, entity.userLevel)
         binding.tvLevel.text = com.fingertip.uilib.utils.LevelUi.tagTitle(entity.userLevel)

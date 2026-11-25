@@ -1,5 +1,6 @@
 package com.fingertip.uilib.fragment.temple
 
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.view.MotionEvent
@@ -10,6 +11,7 @@ import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.blankj.utilcode.util.KeyboardUtils
+import com.fingertip.baselib.bean.CollectData
 import com.fingertip.baselib.bean.TempleBean
 import com.fingertip.baselib.dialog.BigImageDialog
 import com.fingertip.baselib.log
@@ -24,6 +26,7 @@ import com.fingertip.uilib.databinding.ItemTempleHistoryBinding
 import com.fingertip.uilib.fragment.user.UserInfoFragment
 import com.fingertip.uilib.utils.openPage
 import com.fingertip.uilib.viewmodel.TempleVM
+import com.fingertip.uilib.viewmodel.UserToolVM
 import org.json.JSONArray
 
 /**
@@ -58,6 +61,10 @@ class TempleDetailFragment : TopPmFragment<TempleVM>() {
     private var coverIndex = 0
     //顶栏是否悬浮在封面之上（true=透明遮罩+白字，false=实底+主题字）
     private var barOverCover = true
+
+    //古刹收藏：状态走 userTool 的 isCollected，详情页不塞业务 VO
+    private val userToolVM = UserToolVM()
+    private var collected = false
 
     override fun initShiTu() {
         templeId = arguments?.getInt(ARG_TEMPLE_ID, 0) ?: 0
@@ -99,6 +106,7 @@ class TempleDetailFragment : TopPmFragment<TempleVM>() {
 
         mViewModel.loadDetail(templeId)
         mViewModel.loadComments(templeId, 0)
+        if (templeId > 0) userToolVM.isCollected(CollectData.TYPE_TEMPLE, templeId)
     }
 
     /** 收起软键盘并取消评论框焦点 */
@@ -119,6 +127,16 @@ class TempleDetailFragment : TopPmFragment<TempleVM>() {
             binding.ivBack.clearColorFilter()
             binding.tvBarTitle.setTextColor(ContextCompat.getColor(requireContext(), BaseR.color.c_text_main))
         }
+        renderCollect()
+    }
+
+    /** 顶栏两态都要看清星标：未收藏在封面上是白色、实底是灰色；已收藏恒亮金 */
+    private fun renderCollect() {
+        val colorRes = if (collected) BaseR.color.c_gold
+        else if (barOverCover) BaseR.color.c_white else BaseR.color.c_gray_b8
+        binding.ivCollect.imageTintList = ColorStateList.valueOf(
+            ContextCompat.getColor(requireContext(), colorRes)
+        )
     }
 
     override fun initObserver() {
@@ -161,6 +179,31 @@ class TempleDetailFragment : TopPmFragment<TempleVM>() {
                 mViewModel.loadDetail(templeId)
             } else {
                 ToastUtil.showMessage(result.errorMsg ?: "评论失败")
+            }
+        }
+
+        userToolVM.isCollectedResult.observe(viewLifecycleOwner) {
+            if (it.success) {
+                collected = it.data == true
+                renderCollect()
+            }
+        }
+        userToolVM.addCollectResult.observe(viewLifecycleOwner) {
+            if (it.success) {
+                collected = true
+                renderCollect()
+                ToastUtil.showMessage(getString(R.string.collect_add_done))
+            } else {
+                ToastUtil.showMessage(it.errorMsg ?: getString(R.string.collect_add_fail))
+            }
+        }
+        userToolVM.cancelCollectResult.observe(viewLifecycleOwner) {
+            if (it.success) {
+                collected = false
+                renderCollect()
+                ToastUtil.showMessage(getString(R.string.collect_cancel_done))
+            } else {
+                ToastUtil.showMessage(it.errorMsg ?: getString(R.string.collect_cancel_fail))
             }
         }
     }
@@ -276,13 +319,17 @@ class TempleDetailFragment : TopPmFragment<TempleVM>() {
     }
 
     override fun getClickViews(): List<View> = listOf(
-        binding.ivBack, binding.tvUp, binding.tvDown, binding.tvSend
+        binding.ivBack, binding.ivCollect, binding.tvUp, binding.tvDown, binding.tvSend
     )
 
     override fun onSingleClick(v: View?) {
         super.onSingleClick(v)
         when (v) {
             binding.ivBack -> pop()
+            binding.ivCollect -> if (templeId > 0) {
+                if (collected) userToolVM.cancelCollect(CollectData.TYPE_TEMPLE, templeId)
+                else userToolVM.addCollect(CollectData.TYPE_TEMPLE, templeId)
+            }
             binding.tvUp -> {
                 if (temple?.myRecommendStatus == 1) {
                     ToastUtil.showMessage("已推荐过啦")

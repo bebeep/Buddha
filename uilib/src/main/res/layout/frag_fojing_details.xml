@@ -340,6 +340,16 @@
             android:layout_height="wrap_content"/>
 
         <ImageView
+            android:id="@+id/iv_collect"
+            app:layout_constraintEnd_toStartOf="@+id/iv_share"
+            app:layout_constraintTop_toTopOf="@+id/iv_share"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_share"
+            android:src="@drawable/ic_collect_star"
+            android:tint="@color/c_gray_b8"
+            android:layout_width="38dp"
+            android:layout_height="38dp"/>
+
+        <ImageView
             android:id="@+id/iv_share"
             app:layout_constraintEnd_toEndOf="parent"
             android:src="@drawable/icon_share"

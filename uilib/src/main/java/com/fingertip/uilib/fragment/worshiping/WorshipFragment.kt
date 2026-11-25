@@ -18,6 +18,9 @@ import com.fingertip.baselib.util.ToastUtil
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.BuddhaPagerAdapter
 import com.fingertip.uilib.databinding.FragmentWorshipBinding
+import com.fingertip.uilib.dialog.ConfirmDialog
+import com.fingertip.uilib.dialog.LampActionDialog
+import com.fingertip.uilib.dialog.PayConfirmDialog
 import com.fingertip.uilib.dialog.WorshipDialog
 import com.fingertip.uilib.fragment.shop.MyDressFragment
 import com.fingertip.uilib.fragment.shop.ShopFragment
@@ -40,7 +43,7 @@ import com.fingertip.baselib.R as BaseR
  * - 佛龛：每尊佛像有默认龛（buddha_config.shrineDressId），用户佩戴的龛覆盖默认；
  *   点击佛龛进装扮（已拥有→我的装扮，未拥有→商城佛龛分类）。佛龛单次购买永久有效，跨佛像复用。
  * - 佛灯：位于佛像底部两侧，最上层；灯焰随灯油剩余比例缩放（油越少火越小）；
- *   点击佛灯进装扮；无灯/将熄时点击直达灯油分类续燃。灯具同样永久有效、跨佛像复用。
+ *   点击佛灯弹「点灯/续燃/切换灯具」操作窗，灯油不再摆在装扮商店 tab。灯具永久有效、跨佛像复用。
  * - 香烛/贡品：不入装扮商店，与供佛绑定——priceField 每档带 incense/offering 档次，
  *   供佛中按档次渲染素材，香烛随供佛剩余时长变短（对容器 scaleY）。
  *
@@ -73,6 +76,14 @@ class WorshipFragment : TopPmFragment<WorshipVM>() {
 
     /** 供奉弹窗，供奉成功后要关掉它 */
     private var worshipDialog: WorshipDialog? = null
+
+    /** 佛灯操作弹窗：点灯/续燃走这里，灯油列表由 dressVM 拉 */
+    private var lampActionDialog: LampActionDialog? = null
+
+    /** 购买回调是异步的：先把灯油、目标佛像和动作类型存住 */
+    private var pendingLampOil: ShopDressConfig? = null
+    private var pendingLampBuddhaId = 0
+    private var pendingLampRelight = false
 
     /** 轮播页选中回调，onDestroyView 时要反注册 */
     private val onPageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
@@ -173,37 +184,40 @@ class WorshipFragment : TopPmFragment<WorshipVM>() {
         val lampUrl = lampCfg?.resUrl?.takeIf { it.isNotBlank() }
             ?: lampNow?.lampResUrl?.takeIf { it.isNotBlank() }
         val lampShown = bindSceneImage(holder.lampLeft, lampUrl)
-        if (lampShown) {
-            //右灯是独立 ImageView，必须自己加载同一素材（只设 visibility 会一直是空图）
+        //右灯是独立 ImageView，必须自己加载同一素材（只设 visibility 会一直是空图）；
+        //镜像轴固定在画布中线，转换器 applyGeometry 只负责灯焰/香的 pivot，不动灯身
+        holder.lampRight.scaleX = -1f
+        if (lampShown && lampUrl != null) {
             holder.lampRight.visibility = View.VISIBLE
-            holder.lampRight.scaleX = -1f //整画布镜像，灯从左侧翻到右侧
             Glide.with(holder.lampRight).load(lampUrl).dontAnimate().into(holder.lampRight)
         } else {
-            holder.lampLeft.visibility = View.GONE
+            holder.lampRight.setImageDrawable(null)
             holder.lampRight.visibility = View.GONE
         }
-        holder.lampLeft.visibility = if (lampShown) View.VISIBLE else View.GONE
         //灯焰只在燃着时出现，随灯油剩余比例缩放（油越少火越小）；
-        //pivot 与镜像在适配器 applyGeometry 里按画布锚点落地
+        //左右两侧是两份独立的 LottieAnimationView，必须各自 setComposition + playAnimation，
+        //右侧只设 visibility 会永远是一块空白（此前只有左边有火就是这么来的）。
+        //pivot 与镜像在适配器 applyGeometry 里按画布锚点落地，右侧靠 scaleX=-1 翻到画布另一半。
         val burning = lampNow != null && !lampNow.isNone()
-        val flameVisible = lampShown && burning && bindSceneLottie(holder.flameLeft,
-            lampCfg?.sceneAnimUrl?.takeIf { it.isNotBlank() } ?: lampNow?.lampAnimUrl?.takeIf { it.isNotBlank() })
-        holder.flameRight.visibility = if (flameVisible) View.VISIBLE else View.GONE
-        if (!flameVisible) {
+        val flameUrl = lampCfg?.sceneAnimUrl?.takeIf { it.isNotBlank() }
+            ?: lampNow?.lampAnimUrl?.takeIf { it.isNotBlank() }
+        val leftFlameReady = lampShown && burning && bindSceneLottie(holder.flameLeft, flameUrl)
+        val flameVisible = leftFlameReady && bindSceneLottie(holder.flameRight, flameUrl)
+        if (flameVisible) {
+            holder.flameRight.visibility = View.VISIBLE
+        } else {
+            //熄灭/无素材：两侧都取消动画并隐藏，避免 ViewHolder 复用时残留旧火
             holder.flameLeft.cancelAnimation()
             holder.flameRight.cancelAnimation()
+            holder.flameLeft.visibility = View.GONE
+            holder.flameRight.visibility = View.GONE
         }
         holder.flameScale = if (flameVisible) lampNow?.flameScale() ?: 1f else 1f
 
-        //场景点击：佛龛→装扮(佛龛)；佛灯→无灯/将熄先续油，正常状态进灯具装扮
+        //场景点击：佛龛→装扮(佛龛)；佛灯→点灯/续燃/切换灯具弹窗。
+        //回调里不要捕获 lampNow：ViewHolder 复用/切佛后可能已过期，弹窗打开时现取最新状态
         holder.onShrineClick = { openDressPage(ShopDressConfig.TYPE_SHRINE) }
-        holder.onLampClick = {
-            if (lampNow == null || lampNow.isNone() || lampNow.isDying()) {
-                openShop(ShopDressConfig.TYPE_OIL)
-            } else {
-                openDressPage(ShopDressConfig.TYPE_LAMP)
-            }
-        }
+        holder.onLampClick = { showLampActionDialog() }
     }
 
     /** 静态素材：Glide 加载全画布透明 PNG；url 为空隐藏。返回是否可见 */
@@ -269,8 +283,7 @@ class WorshipFragment : TopPmFragment<WorshipVM>() {
     }
 
     /**
-     * 商城入口：带品类跳过去。
-     * 灯油要把目标佛像捎给商城：建单落库，验单发货时点亮在该佛像前。
+     * 商城入口：带品类跳过去（现在只用于佛龛装扮；灯油在佛灯弹窗里就地买）。
      */
     private fun openShop(dressType: Int) {
         if (GlobalConfig.session.isBlank()) {
@@ -318,6 +331,74 @@ class WorshipFragment : TopPmFragment<WorshipVM>() {
             mViewModel.worshipBuddha(buddha.id, days)
         }
         dialog.show()
+    }
+
+    /**
+     * 点佛灯：先拉灯油商品，再弹点灯/续燃操作窗。
+     * 灯油商品仍走 dress 接口，只是客户端不把它摆进装扮商店 tab。
+     */
+    private fun showLampActionDialog() {
+        val buddhaId = currentBuddha?.id ?: return
+        if (GlobalConfig.session.isBlank()) {
+            ToastUtil.showMessage(getString(R.string.shop_login_first))
+            return
+        }
+        lampActionDialog?.dismiss()
+        val dialog = LampActionDialog(requireContext())
+        lampActionDialog = dialog
+        dialog.onBuy = { oil, relight ->
+            confirmLampPurchase(oil, buddhaId, relight)
+        }
+        dialog.onSwitchDress = {
+            lampActionDialog = null
+            //佛灯弹窗这个入口把用户送进「灯具」页并锁死：其他 tab 不可点、不能左右滑走，
+            //免得换完灯回不到拜佛页。个人中心/商城入口仍用普通构造，4 个 tab 照常可切。
+            openPage(MyDressFragment.newInstance(ShopDressConfig.TYPE_LAMP, lockTab = true))
+        }
+        dialog.showLoading()
+        dialog.show()
+        dressVM.loadList(ShopDressConfig.TYPE_OIL, showLoading = true)
+    }
+
+    /** 和商城同一套校验：登录 → 游客提醒 → 购买确认 */
+    private fun confirmLampPurchase(oil: ShopDressConfig, buddhaId: Int, relight: Boolean) {
+        if (GlobalConfig.session.isBlank()) {
+            ToastUtil.showMessage(getString(R.string.shop_login_first))
+            return
+        }
+        lampActionDialog?.dismiss()
+        lampActionDialog = null
+        if (GlobalConfig.isGuestAccount) {
+            ConfirmDialog(
+                requireContext(),
+                title = getString(R.string.shop_guest_bind_title),
+                message = getString(R.string.shop_guest_bind_msg),
+                confirmText = getString(R.string.shop_guest_bind_go),
+                cancelText = getString(R.string.shop_guest_bind_continue),
+                onCancel = { showLampPayConfirm(oil, buddhaId, relight) },
+                onConfirm = {
+                    startActivity(
+                        android.content.Intent(requireContext(), com.fingertip.uilib.activity.LoginRegisterActivity::class.java).apply {
+                            addFlags(
+                                android.content.Intent.FLAG_ACTIVITY_NEW_TASK or
+                                    android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            )
+                        }
+                    )
+                }
+            ).show()
+            return
+        }
+        showLampPayConfirm(oil, buddhaId, relight)
+    }
+
+    private fun showLampPayConfirm(oil: ShopDressConfig, buddhaId: Int, relight: Boolean) {
+        PayConfirmDialog(requireContext(), oil) {
+            pendingLampOil = oil
+            pendingLampBuddhaId = buddhaId
+            pendingLampRelight = relight
+            dressVM.buyByCoin(oil.id, buddhaId)
+        }.show()
     }
 
     override fun initObserver() {
@@ -381,6 +462,34 @@ class WorshipFragment : TopPmFragment<WorshipVM>() {
             }
         }
 
+        //佛灯弹窗的灯油列表；弹窗已关就丢弃，避免异步结果把新弹窗覆盖成旧数据
+        dressVM.listResult.observe(viewLifecycleOwner) { result ->
+            if (!isAdded) return@observe
+            val dialog = lampActionDialog ?: return@observe
+            if (result.success) {
+                dialog.render(result.data.orEmpty(), lampData)
+            } else {
+                dialog.showLoadFailed()
+            }
+        }
+
+        //点灯/续燃购买结果：服务端已经点亮/顺延，客户端只回写余额并刷新状态
+        dressVM.buyResult.observe(viewLifecycleOwner) { result ->
+            if (!isAdded) return@observe
+            if (pendingLampOil == null) return@observe
+            pendingLampOil = null
+            val buddhaId = pendingLampBuddhaId
+            val relight = pendingLampRelight
+            if (!result.success) {
+                ToastUtil.showMessage(result.errorMsg ?: getString(R.string.shop_pay_fail))
+                return@observe
+            }
+            result.data?.toIntOrNull()?.let { coin -> GlobalConfig.userData?.coin = coin }
+            ToastUtil.showMessage(getString(if (relight) R.string.lamp_relight_success else R.string.lamp_light_success))
+            lampVM.loadStatus(buddhaId)
+            dressVM.loadMyDress()
+        }
+
         //供奉结果：成功关弹窗并整刷佛像列表（香烛/贡品档次随供佛状态变化）
         mViewModel.worshipResult.observe(viewLifecycleOwner) { result ->
             if (!isAdded) return@observe
@@ -425,7 +534,7 @@ class WorshipFragment : TopPmFragment<WorshipVM>() {
 
     override fun onResume() {
         super.onResume()
-        //每次回到这一页都刷一次灯状态和装扮：用户可能刚在商城买了灯油/换了佩戴；
+        //每次回到这一页都刷一次灯状态和装扮：用户可能刚在弹窗点灯/续燃或换了佩戴；
         //多佛像后按当前佛像查，切佛像时也会各自刷
         if (GlobalConfig.session.isNotBlank()) {
             lampVM.loadStatus(currentBuddha?.id ?: 0)
@@ -435,6 +544,10 @@ class WorshipFragment : TopPmFragment<WorshipVM>() {
 
     override fun onDestroyView() {
         binding.vpBuddha.unregisterOnPageChangeCallback(onPageChangeCallback)
+        lampActionDialog?.dismiss()
+        lampActionDialog = null
+        worshipDialog?.dismiss()
+        worshipDialog = null
         super.onDestroyView()
     }
 }

@@ -8,10 +8,9 @@
     android:layout_height="wrap_content">
 
 
-    <com.fingertip.baselib.view.shapeview.ShapeImageView
+    <ImageView
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/iv_head"
-        app:radius="20dp"
         android:layout_marginStart="24dp"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_width="40dp"

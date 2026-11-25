@@ -37,7 +37,7 @@ class ShopVM : TopVMImp() {
 
     /**
      * 拉商品列表。游客也能拉（只能逛不能买）
-     * @param dressType 1灯具 2佛龛 3头像框 4昵称3D 5灯油
+     * @param dressType 1灯具 2佛龛 3头像框 4昵称3D 5灯油（商店不展示 5，拜佛页佛灯弹窗会拉）
      */
     fun loadList(dressType: Int, showLoading: Boolean = false) {
         currentType = dressType

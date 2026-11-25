@@ -2,8 +2,9 @@
 <!--
     装扮商店
 
-    结构：标题栏（返回 / 标题 / 我的装扮）→ 分类 chips → 商品网格 → 底部合规小字。
+    结构：标题栏（返回 / 标题 / 我的装扮）→ 分类 tab → ViewPager（四个独立分类页）→ 底部合规小字。
     底部那行「虚拟物品不支持退款 · 恢复购买在设置」是审核员真的会看的位置，别删。
+    分类页各自持有自己的列表与空态，点 tab 与左右滑都只改 ViewPager 的 currentItem。
 -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -60,76 +61,31 @@
 
     </com.fingertip.baselib.view.FullTopConstraintLayout>
 
-    <!-- 分类 chips：品类由后端枚举固定为 5 类，写死 5 个比动态生成清楚 -->
-    <HorizontalScrollView
-        android:id="@+id/sv_category"
+    <!-- 分类 tab：灯油是消耗品，已移到拜佛页佛灯弹窗，商店只摆 4 类永久装扮 -->
+    <com.fingertip.baselib.view.tablayout.ScaleTabLayout
+        android:id="@+id/tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:overScrollMode="never"
-        android:scrollbars="none"
-        app:layout_constraintTop_toBottomOf="@+id/cl_title">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingStart="16dp"
-            android:paddingTop="2dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="10dp">
-
-            <com.fingertip.baselib.view.MyTextView
-                android:id="@+id/tv_cat_1"
-                style="@style/shop_chip"
-                android:text="@string/shop_cat_lamp" />
-
-            <com.fingertip.baselib.view.MyTextView
-                android:id="@+id/tv_cat_2"
-                style="@style/shop_chip"
-                android:text="@string/shop_cat_shrine" />
-
-            <com.fingertip.baselib.view.MyTextView
-                android:id="@+id/tv_cat_3"
-                style="@style/shop_chip"
-                android:text="@string/shop_cat_frame" />
-
-            <com.fingertip.baselib.view.MyTextView
-                android:id="@+id/tv_cat_4"
-                style="@style/shop_chip"
-                android:text="@string/shop_cat_name3d" />
-
-            <com.fingertip.baselib.view.MyTextView
-                android:id="@+id/tv_cat_5"
-                style="@style/shop_chip"
-                android:text="@string/shop_cat_oil" />
-
-        </LinearLayout>
-    </HorizontalScrollView>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rc_list"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:clipToPadding="false"
-        android:overScrollMode="never"
-        android:paddingStart="11dp"
-        android:paddingTop="2dp"
-        android:paddingEnd="11dp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_tip"
-        app:layout_constraintTop_toBottomOf="@+id/sv_category" />
-
-    <com.fingertip.baselib.view.MyTextView
-        android:id="@+id/tv_empty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/shop_empty"
-        android:textColor="@color/c_text_second"
-        android:textSize="12sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/rc_list"
+        android:layout_height="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/rc_list" />
+        app:layout_constraintTop_toBottomOf="@+id/cl_title"
+        app:tl_indicator_color="@color/c_gold"
+        app:tl_indicator_corner_radius="16dp"
+        app:tl_indicator_height="3dp"
+        app:tl_indicator_horizontal="CENTER"
+        app:tl_indicator_width="18dp"
+        app:tl_tab_padding="12dp"
+        app:tl_textBold="BOTH"
+        app:tl_textSelectColor="@color/c_gold_light"
+        app:tl_textUnselectColor="@color/c_text_second" />
+
+    <com.fingertip.uilib.view.LockableViewPager
+        android:id="@+id/vp_shop"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toTopOf="@+id/tv_tip"
+        app:layout_constraintTop_toBottomOf="@+id/tab_layout" />
 
     <com.fingertip.baselib.view.MyTextView
         android:id="@+id/tv_tip"

@@ -22,4 +22,7 @@ object EventConstant {
     //IM 登录成功（冷启动同步完成）：会话列表首次填充靠它触发，避免切 tab 早于登录时空屏
     const val EVENT_IM_LOGIN_SUCCESS = 7
 
+    //取消收藏成功：我的收藏各 tab 同步摘掉该条（object 为 CollectData）
+    const val EVENT_COLLECT_CANCEL = 8
+
 }

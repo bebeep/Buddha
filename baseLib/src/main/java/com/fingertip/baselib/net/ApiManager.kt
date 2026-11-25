@@ -32,6 +32,7 @@ import com.fingertip.baselib.bean.DonateRecordBean
 import com.fingertip.baselib.bean.LuckyBagBean
 import com.fingertip.baselib.bean.PersonData
 import com.fingertip.baselib.bean.RequestRsp
+import com.fingertip.baselib.bean.SearchResultEntity
 import com.fingertip.baselib.bean.MyDressData
 import com.fingertip.baselib.bean.ShopDressConfig
 import com.fingertip.baselib.bean.SignInData
@@ -252,6 +253,16 @@ interface ApiManager {
         @Query("session") session: String = GlobalConfig.session,
         @Query("pageCount") pageCount: Int = 0,
     ): RequestRsp<List<MomentEntity>>
+
+    /**
+     * 统一搜索：佛友 + 动态
+     */
+    @GET()
+    suspend fun search(
+        @Url url: String = NetProperty.SEARCH,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("keyword") keyword: String
+    ): RequestRsp<SearchResultEntity>
 
     /**
      * 动态详情

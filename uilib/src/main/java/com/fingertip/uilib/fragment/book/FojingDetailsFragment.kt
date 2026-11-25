@@ -5,6 +5,7 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.ComponentName
 import android.content.Context
+import android.content.res.ColorStateList
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Rect
@@ -22,6 +23,7 @@ import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
 import com.fingertip.baselib.bean.BookComment
 import com.fingertip.baselib.bean.BuddhaBook
+import com.fingertip.baselib.bean.CollectData
 import com.fingertip.baselib.constant.GlobalConfig
 import com.fingertip.baselib.constant.SPConstant
 import com.fingertip.baselib.dialog.RemindAllDialog
@@ -30,6 +32,8 @@ import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.FojingCommentAdapter
 import com.fingertip.uilib.adapter.FojingRecommendAdapter
 import com.fingertip.uilib.viewmodel.BookshelfVM
+import com.fingertip.uilib.viewmodel.UserToolVM
+import com.fingertip.baselib.top.TopApplication
 import com.fingertip.baselib.top.TopVMFragment
 import com.fingertip.baselib.util.ColorUtil
 import com.fingertip.baselib.util.ToastUtil
@@ -47,6 +51,7 @@ import java.io.File
 import kotlin.math.abs
 import kotlin.math.log
 import kotlin.math.min
+import com.fingertip.baselib.R as BaseR
 
 /**
  * 佛经-书籍详情
@@ -74,6 +79,10 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
     var bookId: Int = 0
     var currPage : Int = 0
     var bookInfo: BuddhaBook ? = null
+
+    //收藏走 userTool 接口，和「加入书架」是两个独立状态
+    private val userToolVM = UserToolVM()
+    private var collected = false
 
     private var keyboardListener: ViewTreeObserver.OnGlobalLayoutListener? = null
 
@@ -147,16 +156,21 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
 
         mViewModel.getBookInfoByBookId(bookId)
         mViewModel.getBookComment(bookId,currPage)
+        userToolVM.isCollected(CollectData.TYPE_SUTRA, bookId)
     }
 
     override fun getClickViews(): List<View> {
-        return listOf(binding.vBack.ivBack, binding.ivShare, binding.tvRead, binding.tvCopy, binding.btnAddShelf, binding.btnAddComment, binding.ivSend)
+        return listOf(binding.vBack.ivBack, binding.ivCollect, binding.ivShare, binding.tvRead, binding.tvCopy, binding.btnAddShelf, binding.btnAddComment, binding.ivSend)
     }
 
     override fun onSingleClick(v: View?) {
         super.onSingleClick(v)
         when(v?.id){
             R.id.v_back -> pop()
+            R.id.iv_collect -> if (bookId > 0) {
+                if (collected) userToolVM.cancelCollect(CollectData.TYPE_SUTRA, bookId)
+                else userToolVM.addCollect(CollectData.TYPE_SUTRA, bookId)
+            }
             R.id.iv_share -> shareBook()
             R.id.tv_read -> {
                 start(FojingReadFragment.newInstance(bookId, bookInfo?.bookTitle ?: ""))
@@ -178,6 +192,31 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
             {
                 bookInfo = it.data
                 refreshUI()
+            }
+        }
+
+        userToolVM.isCollectedResult.observe(this) {
+            if (it.success) {
+                collected = it.data == true
+                renderCollect()
+            }
+        }
+        userToolVM.addCollectResult.observe(this) {
+            if (it.success) {
+                collected = true
+                renderCollect()
+                ToastUtil.showMessage(getString(R.string.collect_add_done))
+            } else {
+                ToastUtil.showMessage(it.errorMsg ?: getString(R.string.collect_add_fail))
+            }
+        }
+        userToolVM.cancelCollectResult.observe(this) {
+            if (it.success) {
+                collected = false
+                renderCollect()
+                ToastUtil.showMessage(getString(R.string.collect_cancel_done))
+            } else {
+                ToastUtil.showMessage(it.errorMsg ?: getString(R.string.collect_cancel_fail))
             }
         }
 
@@ -302,6 +341,14 @@ class FojingDetailsFragment :TopVMFragment<BookshelfVM>(),OnLoadMoreListener{
     /**
      * 调用系统分享（封面图片 + 文字 + 应用下载链接）
      */
+    /** 收藏星标：已收藏亮金，未收藏灰，和动态详情页同一套视觉 */
+    private fun renderCollect() {
+        val color = TopApplication.instance.getColor(
+            if (collected) BaseR.color.c_gold else BaseR.color.c_gray_b8
+        )
+        binding.ivCollect.imageTintList = ColorStateList.valueOf(color)
+    }
+
     private fun shareBook() {
         val title = bookInfo?.bookTitle ?: "佛经分享"
         val intro = bookInfo?.bookIntro ?: ""

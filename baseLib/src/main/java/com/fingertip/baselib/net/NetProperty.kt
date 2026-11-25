@@ -142,6 +142,12 @@ object NetProperty {
 
 
     /**
+     * 统一搜索：佛友 + 动态
+     */
+    const val SEARCH                              = "search/doSearch"
+
+
+    /**
      * 获取动态详情
      */
     const val GET_MOMENT_DETAILS                     = "moment/getMomentDetails"

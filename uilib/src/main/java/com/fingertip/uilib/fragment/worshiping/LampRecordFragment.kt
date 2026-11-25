@@ -3,13 +3,11 @@ package com.fingertip.uilib.fragment.worshiping
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fingertip.baselib.bean.LampDetailData
-import com.fingertip.baselib.bean.ShopDressConfig
 import com.fingertip.baselib.top.TopPmFragment
 import com.fingertip.uilib.R
 import com.fingertip.uilib.adapter.LampHistoryAdapter
 import com.fingertip.uilib.databinding.FragmentLampRecordBinding
-import com.fingertip.uilib.fragment.shop.ShopFragment
-import com.fingertip.uilib.utils.openPage
+import com.fingertip.uilib.utils.findMainFragment
 import com.fingertip.uilib.viewmodel.LampVM
 
 /**
@@ -84,9 +82,8 @@ class LampRecordFragment : TopPmFragment<LampVM>() {
         super.onSingleClick(v)
         when (v) {
             binding.ivBack -> pop()
-            //续燃只有一条路径：去商城买灯油，服务端发货时给现有灯顺延
-            binding.tvCurrentAction ->
-                openPage(ShopFragment.newInstance(ShopDressConfig.TYPE_OIL))
+            //灯油已移出商城：回拜佛 tab 点佛灯，在弹窗里点灯/续燃
+            binding.tvCurrentAction -> findMainFragment()?.selectTab(2)
         }
     }
 }

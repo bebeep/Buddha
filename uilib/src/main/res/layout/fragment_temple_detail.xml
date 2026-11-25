@@ -203,6 +203,19 @@
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/c_white" />
 
+        <ImageView
+            android:id="@+id/iv_collect"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_back_circle"
+            android:padding="9dp"
+            android:src="@drawable/ic_collect_star"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_back"
+            app:tint="@color/c_white" />
+
         <TextView
             android:id="@+id/tv_bar_title"
             android:layout_width="0dp"
