@@ -3,6 +3,8 @@ package com.fingertip.uilib.fragment.user
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.fingertip.baselib.event_bus.EventConstant
+import com.fingertip.baselib.event_bus.MessageEvent
 import com.fingertip.baselib.top.TopPmFragment
 import com.fingertip.baselib.util.ToastUtil
 import com.fingertip.uilib.R
@@ -10,6 +12,7 @@ import com.fingertip.uilib.adapter.FollowUserAdapter
 import com.fingertip.uilib.databinding.FragFansFollowTabBinding
 import com.fingertip.uilib.utils.openPage
 import com.fingertip.uilib.viewmodel.FansFollowVM
+import org.greenrobot.eventbus.Subscribe
 
 /**
  * 粉丝 / 关注的单个分页。
@@ -49,6 +52,8 @@ class FansFollowTabFragment : TopPmFragment<FansFollowVM>() {
     private var pendingPage: Int = 0
     private var hasMore: Boolean = true
     private var loading: Boolean = false
+    /** 有在途请求时收到刷新，先记下来，等响应处理完再重拉，避免两次请求结果互相覆盖 */
+    private var pendingRefresh: Boolean = false
     private lateinit var adapter: FollowUserAdapter
 
     override fun initShiTu() {
@@ -110,7 +115,35 @@ class FansFollowTabFragment : TopPmFragment<FansFollowVM>() {
                 ToastUtil.showMessage(result.errorMsg ?: getString(R.string.fans_follow_load_fail))
                 if (page == 0) adapter.showEmptyNow()
             }
+            //在途请求期间收到的刷新，等本次响应处理完再执行，避免两次请求结果互相覆盖
+            if (pendingRefresh) {
+                pendingRefresh = false
+                requestRefresh()
+            }
         }
+    }
+
+    /**
+     * 从列表点头像进他人主页关注/取关后，返回时列表必须跟着变。
+     * 只有「关注」tab 受"我关注谁"影响；粉丝 tab 是别人关注我，不随本端操作变化，不刷新。
+     */
+    @Subscribe
+    fun onMessageEvent(event: MessageEvent) {
+        if (event.what != EventConstant.EVENT_FOLLOW_CHANGED) return
+        if (tab != FansFollowListFragment.TAB_FOLLOWING) return
+        requestRefresh()
+    }
+
+    private fun requestRefresh() {
+        //列表页在返回栈里视图通常还在；万一已销毁就别碰 binding，交给下次创建时首屏加载
+        if (!isAdded || view == null) return
+        if (loading) {
+            pendingRefresh = true
+            return
+        }
+        pageNum = 0
+        hasMore = true
+        loadPage()
     }
 
     private fun loadPage() {

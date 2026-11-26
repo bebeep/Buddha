@@ -116,6 +116,7 @@ class UserInfoFragment : TopPmFragment<UserVM>() {
         mViewModel.followResult.observe(viewLifecycleOwner) { result ->
             if (result.success) {
                 followed = true
+                peerUser?.followStatus = 1
                 binding.tvFollow.text = "已关注"
                 ToastUtil.showMessage("关注成功")
                 //个人中心的关注数要跟着变；用粘性事件，回退到个人中心时不会漏掉
@@ -128,6 +129,7 @@ class UserInfoFragment : TopPmFragment<UserVM>() {
         mViewModel.unFollowResult.observe(viewLifecycleOwner) { result ->
             if (result.success) {
                 followed = false
+                peerUser?.followStatus = 0
                 binding.tvFollow.text = "关注"
                 ToastUtil.showMessage("已取消关注")
                 EventBusProxy.postSticky(MessageEvent(EventConstant.EVENT_FOLLOW_CHANGED))
@@ -183,6 +185,9 @@ class UserInfoFragment : TopPmFragment<UserVM>() {
 
     private fun render(user: PersonData) {
         peerUser = user
+        //关注状态由服务端按当前登录人下发，不能靠本地默认值猜（否则每次进主页都显示"关注"）
+        followed = (user.followStatus ?: 0) == 1
+        binding.tvFollow.text = if (followed) "已关注" else "关注"
         binding.ivAvatar.loadHead(user.avatar)
         binding.tvName.text = user.userName
         com.fingertip.uilib.utils.LevelUi.bindTag(binding.ivLevelTag, user.userLevel ?: 0)

@@ -28,6 +28,8 @@ class PersonData : TopData {
     var followerCount: Int? = 0
     //关注数
     var followingCount: Int? = 0
+    //当前登录人是否关注了该用户：1已关注 0未关注（服务端 getUserInfo 下发，他人主页用它初始化按钮）
+    var followStatus: Int? = 0
     //性别0 未知 1 男 2女
     var gender: Int? = 0
     //是否删除
