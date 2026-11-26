@@ -28,6 +28,12 @@ object EventBusProxy {
         EventBus.getDefault().postSticky(obj)
     }
 
+    /** 粘性事件消费后移除，避免订阅者下次注册时重复处理 */
+    @JvmStatic
+    fun removeStickyEvent(obj: Any) {
+        EventBus.getDefault().removeStickyEvent(obj)
+    }
+
     fun cancelEventDelivery(event: Any) {
         EventBus.getDefault().cancelEventDelivery(event)
     }

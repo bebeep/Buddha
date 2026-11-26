@@ -33,6 +33,8 @@ import com.fingertip.baselib.bean.LuckyBagBean
 import com.fingertip.baselib.bean.PersonData
 import com.fingertip.baselib.bean.RequestRsp
 import com.fingertip.baselib.bean.SearchResultEntity
+import com.fingertip.baselib.bean.FollowUserEntity
+import com.fingertip.baselib.bean.SearchUserEntity
 import com.fingertip.baselib.bean.MyDressData
 import com.fingertip.baselib.bean.ShopDressConfig
 import com.fingertip.baselib.bean.SignInData
@@ -1110,6 +1112,26 @@ interface ApiManager {
         @Query("session") session: String = GlobalConfig.session,
         @Query("targetAccountId") targetAccountId: Int
     ): RequestRsp<String>
+
+    /**
+     * 粉丝列表：别人关注我。只能查当前登录人，不支持传他人 accountId。
+     */
+    @GET()
+    suspend fun getFans(
+        @Url url: String = NetProperty.ACCOUNT_GET_FANS,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("pageNum") pageNum: Int = 0
+    ): RequestRsp<List<FollowUserEntity>>
+
+    /**
+     * 关注列表：我关注别人。只能查当前登录人，不支持传他人 accountId。
+     */
+    @GET()
+    suspend fun getFollowing(
+        @Url url: String = NetProperty.ACCOUNT_GET_FOLLOWING,
+        @Query("session") session: String = GlobalConfig.session,
+        @Query("pageNum") pageNum: Int = 0
+    ): RequestRsp<List<FollowUserEntity>>
 
     /**
      * 供佛：按价目选择供奉天数，扣功德币；已在供则顺延

@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.fingertip.baselib.bean.MyDressData
 import com.fingertip.baselib.bean.PersonData
 import com.fingertip.baselib.constant.GlobalConfig
+import com.fingertip.baselib.event_bus.EventConstant
+import com.fingertip.baselib.event_bus.EventBusProxy
 import com.fingertip.baselib.event_bus.MessageEvent
 import com.fingertip.baselib.log
 import com.fingertip.baselib.top.TopPmFragment
@@ -17,6 +19,7 @@ import com.fingertip.uilib.adapter.DressCaseAdapter
 import com.fingertip.uilib.databinding.FragmentMeBinding
 import com.fingertip.uilib.fragment.blessing.PrayingMineFragment
 import com.fingertip.uilib.fragment.game.FangShengFragment
+import com.fingertip.uilib.fragment.user.FansFollowListFragment
 import com.fingertip.uilib.fragment.user.ProfileEditFragment
 import com.fingertip.uilib.fragment.user.UserLevelFragment
 import com.fingertip.uilib.utils.LevelUi
@@ -143,7 +146,7 @@ class MeFragment : TopPmFragment<UserVM>() {
         binding.ivSetting, binding.ivEdit, binding.ivAvatar, binding.tvNickname,
         binding.llExchange, binding.llItem, binding.llCollect, binding.llPunna,
         binding.llHistory, binding.llMind, binding.llBless, binding.llReborn, binding.llIntro,
-        binding.llCoins, binding.llExp
+        binding.llCoins, binding.llExp, binding.tvFollowers, binding.tvFollowings
     )
 
     override fun onSingleClick(v: View?) {
@@ -171,6 +174,14 @@ class MeFragment : TopPmFragment<UserVM>() {
             )
             //修行值：进等级详情页（等级体系/经验进度/全部等级表）
             binding.llExp -> openPage(UserLevelFragment.newInstance())
+
+            //粉丝 / 关注数字：进双 tab 列表页，默认落在对应 tab（方向别对调）
+            binding.tvFollowers -> openPage(
+                FansFollowListFragment.newInstance(FansFollowListFragment.TAB_FANS)
+            )
+            binding.tvFollowings -> openPage(
+                FansFollowListFragment.newInstance(FansFollowListFragment.TAB_FOLLOWING)
+            )
             binding.llExchange -> openPage(
                 com.fingertip.uilib.fragment.shop.ShopFragment.newInstance()
             )
@@ -209,10 +220,14 @@ class MeFragment : TopPmFragment<UserVM>() {
         GlobalConfig.userData?.accountId?.let { mViewModel.loadUserInfo(it) }
     }
 
-    @Subscribe
+    @Subscribe(sticky = true)
     fun onMessageEvent(event: MessageEvent) {
         when (event.what) {
-
+            //关注/取关成功后立即重拉用户信息：粉丝/关注数走服务端实时计数，回退到本页不会漏刷新
+            EventConstant.EVENT_FOLLOW_CHANGED -> {
+                GlobalConfig.userData?.accountId?.let { mViewModel.loadUserInfo(it) }
+                EventBusProxy.removeStickyEvent(event)
+            }
         }
     }
 }

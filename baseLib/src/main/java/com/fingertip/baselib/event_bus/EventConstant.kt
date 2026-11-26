@@ -25,4 +25,7 @@ object EventConstant {
     //取消收藏成功：我的收藏各 tab 同步摘掉该条（object 为 CollectData）
     const val EVENT_COLLECT_CANCEL = 8
 
+    //关注/取关成功：个人中心重拉用户信息，刷新粉丝/关注数（粘性，回退时不会漏）
+    const val EVENT_FOLLOW_CHANGED = 9
+
 }

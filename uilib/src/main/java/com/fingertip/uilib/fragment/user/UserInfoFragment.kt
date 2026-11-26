@@ -118,6 +118,8 @@ class UserInfoFragment : TopPmFragment<UserVM>() {
                 followed = true
                 binding.tvFollow.text = "已关注"
                 ToastUtil.showMessage("关注成功")
+                //个人中心的关注数要跟着变；用粘性事件，回退到个人中心时不会漏掉
+                EventBusProxy.postSticky(MessageEvent(EventConstant.EVENT_FOLLOW_CHANGED))
             } else {
                 ToastUtil.showMessage(result.errorMsg ?: "关注失败")
             }
@@ -128,6 +130,7 @@ class UserInfoFragment : TopPmFragment<UserVM>() {
                 followed = false
                 binding.tvFollow.text = "关注"
                 ToastUtil.showMessage("已取消关注")
+                EventBusProxy.postSticky(MessageEvent(EventConstant.EVENT_FOLLOW_CHANGED))
             } else {
                 ToastUtil.showMessage(result.errorMsg ?: "操作失败")
             }
@@ -194,8 +197,9 @@ class UserInfoFragment : TopPmFragment<UserVM>() {
         binding.tvDonateTotal.visibility = if (isSelf) View.VISIBLE else View.GONE
     }
 
-    override fun getClickViews(): List<View> =
-        listOf(binding.ivBack, binding.tvFollow, binding.ivMore, binding.tvSendMsg)
+    override fun getClickViews(): List<View> = listOf(
+        binding.ivBack, binding.tvFollow, binding.ivMore, binding.tvSendMsg
+    )
 
     override fun onSingleClick(v: View?) {
         super.onSingleClick(v)

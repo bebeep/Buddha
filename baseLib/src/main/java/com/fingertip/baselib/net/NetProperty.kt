@@ -539,6 +539,16 @@ object NetProperty {
     const val UN_FOLLOW                               = "account/unFollow"
 
     /**
+     * 粉丝列表（别人关注我，只查当前登录人，pageNum 从 0 起）
+     */
+    const val ACCOUNT_GET_FANS                        = "account/getFans"
+
+    /**
+     * 关注列表（我关注别人，只查当前登录人，pageNum 从 0 起）
+     */
+    const val ACCOUNT_GET_FOLLOWING                   = "account/getFollowing"
+
+    /**
      * 供佛（选择供奉天数，扣功德币）
      */
     const val WORSHIP_BUDDHA                          = "account/worshipBuddha"
